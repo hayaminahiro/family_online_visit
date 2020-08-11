@@ -1,1 +1,41 @@
 <h1>お知らせ一覧画面</h1>
+<%= link_to "新規お知らせ投稿", new_information_path, class: "button is-info" %>
+
+<div class="table-container">
+  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <tr>
+      <th style="text-align :center;">投稿日時</th>
+      <th style="text-align :center;">タイトル</th>
+      <th style="text-align :center;">投稿内容</th>
+      <th style="text-align :center;">編集／削除</th>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align :center;">トップお知らせ</td>
+    </tr>
+    <tr>
+      <td><%= @first_information.created_at %></td>
+      <td></td>
+      <td><%= @first_information.news %></td>
+      <td>
+        <%= link_to "編集", edit_information_path(@first_information), class: "button is-primary is-outlined" %>
+        <%#= link_to "削除", @first_information, method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align :center;">お知らせ</td>
+    </tr>
+    <% @informations.each do |information| %>
+    <tr>
+      <td><%= information.created_at %></td>
+      <td></td>
+      <td><%= information.news %></td>
+      <td>
+        <%= link_to "編集", edit_information_path(information), class: "button is-primary is-outlined" %>
+        <%= link_to "削除", information, method: :delete,
+              data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
