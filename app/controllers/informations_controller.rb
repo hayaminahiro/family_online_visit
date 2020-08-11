@@ -43,6 +43,6 @@ class InformationsController < ApplicationController
   private
 
   def information_params
-    params.require(:information).permit(:news)
+    params.require(:information).permit(:news, :title)
   end
 end
