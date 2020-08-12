@@ -1,7 +1,7 @@
 class InformationsController < ApplicationController
   def index
-    @informations = Information.all
-    @first_information = @informations.first
+    @information_top = Information.find_by(status: "head")
+    @informations = Information.where(status: "others")
   end
 
   def new

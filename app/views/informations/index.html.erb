@@ -13,11 +13,11 @@
       <td colspan="4" style="text-align :center;">トップお知らせ</td>
     </tr>
     <tr>
-      <td><%= @first_information.created_at %></td>
-      <td></td>
-      <td><%= @first_information.news %></td>
+      <td style="vertical-align: middle;"><%= @information_top.created_at %></td>
+      <td style="vertical-align: middle;"><%= @information_top.title %></td>
+      <td style="vertical-align: middle;"><%= @information_top.news %></td>
       <td>
-        <%= link_to "編集", edit_information_path(@first_information), class: "button is-primary is-outlined" %>
+        <%= link_to "編集", edit_information_path(@information_top), class: "button is-primary is-outlined" %>
         <%#= link_to "削除", @first_information, method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
       </td>
@@ -27,9 +27,9 @@
     </tr>
     <% @informations.each do |information| %>
     <tr>
-      <td><%= information.created_at %></td>
-      <td></td>
-      <td><%= information.news %></td>
+      <td style="vertical-align: middle;"><%= information.created_at %></td>
+      <td style="vertical-align: middle;"><%= information.title %></td>
+      <td style="vertical-align: middle;"><%= information.news %></td>
       <td>
         <%= link_to "編集", edit_information_path(information), class: "button is-primary is-outlined" %>
         <%= link_to "削除", information, method: :delete,
