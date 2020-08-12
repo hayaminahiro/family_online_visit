@@ -52,9 +52,8 @@ ActiveRecord::Schema.define(version: 2020_08_08_024857) do
     t.string "password", null: false
     t.string "password_digest", null: false
     t.string "room_name"
-    t.string "admin", default: "0"
-    t.string "boolean", default: "0"
-    t.string "floor_authority", default: "0"
+    t.boolean "admin", default: false
+    t.boolean "floor_authority", default: false
     t.string "resident_name1"
     t.string "resident_name2"
     t.string "phone"
