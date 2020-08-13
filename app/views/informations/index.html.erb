@@ -1,36 +1,36 @@
 <h1>お知らせ一覧画面</h1>
-<%= link_to "新規お知らせ投稿", new_information_path, class: "button is-info" %>
+<div style= "text-align: right;"><%= link_to "新規お知らせ投稿", new_information_path, class: "button is-info" %></div>
 
 <div class="table-container">
-  <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-    <tr>
-      <th style="text-align :center;">投稿日時</th>
-      <th style="text-align :center;">タイトル</th>
-      <th style="text-align :center;">投稿内容</th>
-      <th style="text-align :center;">編集／削除</th>
+  <table class="table is-bordered is-fullwidth">
+    <tr class="tr-top">
+      <th class="th time">投稿日時</th>
+      <th class="th head">タイトル</th>
+      <th class="th content">投稿内容</th>
+      <th class="th edit">編集／削除</th>
     </tr>
-    <tr>
-      <td colspan="4" style="text-align :center;">トップお知らせ</td>
+    <tr class="tr-head">
+      <td class="notice" colspan="4">トップお知らせ</td>
     </tr>
-    <tr>
-      <td style="vertical-align: middle;"><%= @information_top.created_at %></td>
-      <td style="vertical-align: middle;"><%= @information_top.title %></td>
-      <td style="vertical-align: middle;"><%= @information_top.news %></td>
-      <td>
-        <%= link_to "編集", edit_information_path(@information_top), class: "button is-primary is-outlined" %>
+    <tr class="tr-content">
+      <td class="td-content"><%= @top_info.created_at %></td>
+      <td class="td-content"><%= @top_info.title %></td>
+      <td class="td-content"><%= @top_info.news %></td>
+      <td class="td-content">
+        <%= link_to "編集", edit_information_path(@top_info), class: "button is-primary is-outlined" %>
         <%#= link_to "削除", @first_information, method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
       </td>
     </tr>
-    <tr>
-      <td colspan="4" style="text-align :center;">お知らせ</td>
+    <tr class="tr-others">
+      <td class="notice" colspan="4">お知らせ</td>
     </tr>
     <% @informations.each do |information| %>
-    <tr>
-      <td style="vertical-align: middle;"><%= information.created_at %></td>
-      <td style="vertical-align: middle;"><%= information.title %></td>
-      <td style="vertical-align: middle;"><%= information.news %></td>
-      <td>
+    <tr class="tr-content">
+      <td class="td-content"><%= information.created_at %></td>
+      <td class="td-content"><%= information.title %></td>
+      <td class="td-content"><%= information.news %></td>
+      <td class="td-content">
         <%= link_to "編集", edit_information_path(information), class: "button is-primary is-outlined" %>
         <%= link_to "削除", information, method: :delete,
               data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
