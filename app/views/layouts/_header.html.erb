@@ -20,52 +20,51 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
 
-
     <div class="navbar-end">
-      <div class="navbar-start has-text-weight-bold">
+      <div class="navbar-start has-text-weight-bold" style="font-size: 20px;">
         <!--全ユーザー閲覧可能-->
-        <a class="navbar-item">
-          トップ
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "トップ", root_path, class: "links" %>
+        </p>
 
         <!--家族のみ閲覧可-->
-        <a class="navbar-item">
-          予約
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "予約", "#", class: "links" %>
+        </p>
 
         <!--家族のみ閲覧可-->
-        <a class="navbar-item">
-          ビデオ通話
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
+        </p>
 
         <!--adminと職員のみ閲覧可能-->
-        <a class="navbar-item">
-          予約状況一覧
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
+        </p>
 
         <!--adminと職員のみ閲覧可能-->
-        <a class="navbar-item">
-          ご家族一覧
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "ご家族一覧", users_path, class: "links" %>
+        </p>
 
         <!--adminと職員のみ閲覧可能-->
-        <a class="navbar-item">
-          入居者一覧
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "入居者一覧", "#", class: "links" %>
+        </p>
 
         <!--全ユーザー閲覧可能-->
-        <a class="navbar-item">
-          お問い合わせ
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+        </p>
 
         <!--adminのみ閲覧可能-->
-        <a class="navbar-item">
-          お知らせ
-        </a>
+        <p class="navbar-item">
+          <%= link_to_unless_current "お知らせ", "#", class: "links" %>
+        </p>
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link has-text-weight-bold">
+        <a class="navbar-link has-text-weight-bold" style="color: paleturquoise;">
           More
         </a>
         <div class="navbar-dropdown">
@@ -95,3 +94,7 @@
     </div>
   </div>
 </nav>
+
+<style>
+
+</style>
