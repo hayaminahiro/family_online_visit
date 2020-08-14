@@ -1,9 +1,15 @@
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <%= link_to root_path, class: "navbar-item" do %>
-      <i class="fas fa-photo-video fa-2x fa-border" style="margin-right: 10px; color: paleturquoise;"></i>
-      <h1 class="title is-8" style="font-family: Georgia; color: paleturquoise">Online Visit</h1>
-    <% end %>
+    <section class="navbar is-dark" style="padding: 5px;">
+      <div class="navbar-body">
+        <div class="container">
+          <%= link_to root_path, class: "navbar-item" do %>
+            <i class="fas fa-photo-video fa-2x fa-border" style="margin-right: 10px; color: paleturquoise;"></i>
+            <h1 class="title is-8" style="font-family: Georgia; color: paleturquoise">Online Visit</h1>
+          <% end %>
+        </div>
+      </div>
+    </section>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -13,93 +19,69 @@
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-<!--    <div class="navbar-start" style="font-weight: bold;">-->
-<!--      <a class="navbar-item">-->
-<!--        トップ-->
-<!--      </a>-->
 
-<!--      <a class="navbar-item">-->
-<!--        予約状況一覧-->
-<!--      </a>-->
-
-<!--      <a class="navbar-item">-->
-<!--        入居者一覧-->
-<!--      </a>-->
-
-<!--      <a class="navbar-item">-->
-<!--        お問い合わせ-->
-<!--      </a>-->
-
-<!--      <a class="navbar-item">-->
-<!--        お知らせ-->
-<!--      </a>-->
-
-<!--      <div class="navbar-item has-dropdown is-hoverable">-->
-<!--        <a class="navbar-link">-->
-<!--          More-->
-<!--        </a>-->
-
-<!--        <div class="navbar-dropdown">-->
-<!--          <a class="navbar-item">-->
-<!--            About-->
-<!--          </a>-->
-<!--          <a class="navbar-item">-->
-<!--            Jobs-->
-<!--          </a>-->
-<!--          <a class="navbar-item">-->
-<!--            Contact-->
-<!--          </a>-->
-<!--          <hr class="navbar-divider">-->
-<!--          <a class="navbar-item">-->
-<!--            Report an issue-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-    </div>
 
     <div class="navbar-end">
-      <div class="navbar-start" style="font-weight: bold;">
+      <div class="navbar-start has-text-weight-bold">
+        <!--全ユーザー閲覧可能-->
         <a class="navbar-item">
           トップ
         </a>
 
+        <!--家族のみ閲覧可-->
+        <a class="navbar-item">
+          予約
+        </a>
+
+        <!--家族のみ閲覧可-->
+        <a class="navbar-item">
+          ビデオ通話
+        </a>
+
+        <!--adminと職員のみ閲覧可能-->
         <a class="navbar-item">
           予約状況一覧
         </a>
 
+        <!--adminと職員のみ閲覧可能-->
+        <a class="navbar-item">
+          ご家族一覧
+        </a>
+
+        <!--adminと職員のみ閲覧可能-->
         <a class="navbar-item">
           入居者一覧
         </a>
 
+        <!--全ユーザー閲覧可能-->
         <a class="navbar-item">
           お問い合わせ
         </a>
 
+        <!--adminのみ閲覧可能-->
         <a class="navbar-item">
           お知らせ
         </a>
+      </div>
 
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link has-text-weight-bold">
+          More
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            マイページ
           </a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
-            </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div>
+          <a class="navbar-item">
+            設定
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            ログアウト
+          </a>
         </div>
+      </div>
+
       <div class="navbar-item">
         <div class="buttons">
           <a class="button is-primary">
