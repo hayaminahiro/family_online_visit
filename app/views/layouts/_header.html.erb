@@ -49,7 +49,7 @@
 
         <!--adminと職員のみ閲覧可能-->
         <p class="navbar-item">
-          <%= link_to_unless_current "入居者一覧", "#", class: "links" %>
+          <%= link_to_unless_current "入居者一覧", residents_path, class: "links" %>
         </p>
 
         <!--全ユーザー閲覧可能-->
@@ -59,7 +59,7 @@
 
         <!--adminのみ閲覧可能-->
         <p class="navbar-item">
-          <%= link_to_unless_current "お知らせ", "#", class: "links" %>
+          <%= link_to_unless_current "お知らせ", informations_path, class: "links" %>
         </p>
       </div>
 
@@ -94,7 +94,3 @@
     </div>
   </div>
 </nav>
-
-<style>
-
-</style>
