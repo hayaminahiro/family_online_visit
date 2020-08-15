@@ -10,7 +10,6 @@
         </div>
       </div>
     </section>
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -19,9 +18,8 @@
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-
     <div class="navbar-end">
-      <div class="navbar-start has-text-weight-bold" style="font-size: 20px;">
+      <div class="navbar-start has-text-weight-bold" style="font-size: 22px;">
         <!--全ユーザー閲覧可能-->
         <p class="navbar-item">
           <%= link_to_unless_current "トップ", root_path, class: "links" %>
@@ -64,18 +62,18 @@
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link has-text-weight-bold" style="color: paleturquoise;">
+        <a class="navbar-link has-text-weight-bold" style="color: #F7F7F7;">
           More
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+          <a class="navbar-item has-text-weight-bold">
             マイページ
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item has-text-weight-bold">
             設定
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item">
+          <a class="navbar-item has-text-weight-bold">
             ログアウト
           </a>
         </div>

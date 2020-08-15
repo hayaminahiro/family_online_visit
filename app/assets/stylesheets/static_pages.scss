@@ -7,7 +7,7 @@ h2 {
 }
 
 .links {
-  color: paleturquoise;
+  color: #F7F7F7;
   font-size: 15px;
 }
 
@@ -128,3 +128,13 @@ footer.modal-card-foot {
 .notice-btn {
   margin-top: 30px;
 }
+
+//スマホ表示用
+div#navbarBasicExample.navbar-menu.is-active {
+  background: royalblue;
+}
+
+p.navbar-item {
+  color: #F7F7F7;
+}
+
