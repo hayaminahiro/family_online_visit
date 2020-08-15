@@ -1,6 +1,114 @@
+.main-title {
+  margin-top: 100px;
+}
+
+h2 {
+  color: gray !important;
+}
+
 .links {
   color: paleturquoise;
   font-size: 15px;
 }
 
+//背景
+.image-layout {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+  background-color: #3ecd85;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  background-image: url(/assets/1606021_m.jpg);
+}
+
+.image-layout::before{
+  /* 透過した黒を重ねる */
+  background-color: rgba(0,0,0,0.1);
+  /* どの範囲に重ねるかを指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+}
+
+.btn-flat-border {
+  width: 250px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align:center;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  margin-bottom: 50px;
+}
+
+.btn-flat-border:hover {
+  background: #67c5ff;
+  color: white;
+}
+
+.btn-flat-border-new {
+  width: 250px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align:center;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #32CD32;
+  border: solid 2px #32CD32;
+  border-radius: 3px;
+  transition: .4s;
+  margin-bottom: 50px;
+}
+
+.btn-flat-border-new:hover {
+  background: #32CD32;
+  color: white;
+}
+
+.top-btn-position {
+  margin-top: 20px;
+}
+
+.top-btn {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.family-btn {
+  float: right;
+}
+
+#explanation {
+  color: #2E2F30;
+  font-weight: bold;
+}
+
+p#explanation {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+#span-color {
+  color: #B00100;
+}
+
+.button.button.is-danger.is-rounded.has-text-weight-bold.red-btn {
+  margin-top: -10px;
+}
 
