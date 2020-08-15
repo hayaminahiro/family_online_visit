@@ -1,7 +1,9 @@
 class InformationsController < ApplicationController
   def index
-    @information_top = Information.find_by(status: "head")
+    @info_top = Information.find_by(status: "head")
     @informations = Information.where(status: "others")
+    @information = Information.new
+    # @edit_information = Information.find(params[:id])
   end
 
   def new
@@ -14,7 +16,8 @@ class InformationsController < ApplicationController
       flash[:success] = "お知らせを新規作成できました"
       redirect_to informations_path
     else
-      render 'new'
+      flash[:danger] = "新規作成できませんでした。入力内容をご確認ください"
+      redirect_to informations_path
     end
   end
 
