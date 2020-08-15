@@ -11,6 +11,11 @@ h2 {
   font-size: 15px;
 }
 
+.notice-link {
+  color: #2E2F30;
+  font-size: 15px;
+}
+
 //背景
 .image-layout {
   position: absolute;
@@ -118,4 +123,8 @@ p#explanation {
 
 footer.modal-card-foot {
   padding-left: 450px;
+}
+
+.notice-btn {
+  margin-top: 30px;
 }

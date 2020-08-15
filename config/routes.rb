@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   end
 
   resources :residents
-  resources :informations
+  resources :informations do
+    collection do
+      # お知らせ表示
+      get 'show_notice'
+    end
+  end
 
 end
