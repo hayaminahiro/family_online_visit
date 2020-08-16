@@ -3,7 +3,6 @@ class InformationsController < ApplicationController
     @info_top = Information.find_by(status: "head")
     @informations = Information.where(status: "others")
     @information = Information.new
-    # @edit_information = Information.find(params[:id])
   end
 
   def new
