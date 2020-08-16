@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.information-title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 33px;
+}
+
 /* テーブル内の位置調整と装飾 */
 #table-informations {
   th {
