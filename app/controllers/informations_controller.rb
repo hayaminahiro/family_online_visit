@@ -5,10 +5,6 @@ class InformationsController < ApplicationController
     @information = Information.new
   end
 
-  def new
-    @information = Information.new
-  end
-
   def create
     @information = Information.new(information_params)
     if  @information.save
@@ -18,10 +14,6 @@ class InformationsController < ApplicationController
       flash[:danger] = "新規作成できませんでした。入力内容をご確認ください"
       redirect_to informations_path
     end
-  end
-
-  def edit
-    @information = Information.find(params[:id])
   end
 
   def update
