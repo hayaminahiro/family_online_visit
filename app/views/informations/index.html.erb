@@ -1,6 +1,6 @@
-<h1>お知らせ一覧画面</h1>
+<h1 class="information-title">お知らせ投稿</h1>
 
-<div style= "text-align: right;"><button type="button" class="button is-info show-modal" data-target="my-modal">新規お知らせ投稿</button></div>
+<div style= "text-align: right;"><button type="button" class="button is-info" id="new">新規お知らせ投稿</button></div>
 
 <div class="table-container">
   <table class="table is-bordered is-fullwidth" id="table-informations">
@@ -21,9 +21,7 @@
         <td><%= @info_top.title %></td>
         <td><%= @info_top.news %></td>
         <td>
-          <%= link_to "編集", edit_information_path(@info_top), class: "button is-primary is-outlined" %>
-          <%#= link_to "削除", @first_information, method: :delete,
-                  data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+          <button type="button" class="button is-primary is-outlined" id="edit">編集</button>
         </td>
       </tr>
       <tr class="tr-head">
@@ -35,58 +33,15 @@
         <td><%= information.title %></td>
         <td><%= information.news %></td>
         <td>
-          <%= link_to "編集", edit_information_path(information), class: "button is-primary is-outlined" %>
+          <button type="button" class="button is-primary is-outlined" id=<%= information.id %>>編集</button>
           <%= link_to "削除", information, method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+          <%= render "notice_edit", {information: information, information_id: information.news} %>
         </td>
       </tr>
       <% end %>
     <tbody>
   </table>
 </div>
-
-<div class="modal" id="my-modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">新規お知らせ作成</p>
-            <button class="delete" aria-label="close" data-target="my-modal"></button>
-        </header>
-        <section class="modal-card-body">
-								<div class="form-group col-sm-5">
-                  <%= form_with(model: @information, url: informations_path, method: :post, local: true) do |f| %>
-                    <div class="">
-                      <div class="form-group col-sm-5">
-                        <% @information.errors.full_messages.each do |message| %>
-                          <div class="form-error"><%= message %></div>
-                        <% end %>
-
-                        <%= f.text_field :title, placeholder:"タイトルを入力", class: "input" %>
-                        <%= f.text_field :news, placeholder:"本文を入力", class: "textarea" %>
-                        <%= f.submit "投稿" ,class:"button is-info is-outlined" %>
-                      </div>
-                    </div>
-                  <% end %>
-                  <%#= render 'new' %>
-								</div>
-        </section>
-    </div>
-</div>
-
-<script>
-for (const element of document.querySelectorAll('.modal .delete, .show-modal')) {
-  element.addEventListener('click', e => {
-    const modalId = element.dataset.target;
-        const modal = document.getElementById(modalId);
-        modal.classList.toggle('is-active');
-    });
-}
-</script>
-
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-<script>
-  $("#close, div.modal-background").on("click", function() {
-    $("div.modal").removeClass("is-active");
-  });
-</script>
+          <%= render 'new' %>
+          <%= render 'edit' , { information: @info_top } %>

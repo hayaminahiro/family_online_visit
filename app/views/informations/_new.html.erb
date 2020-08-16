@@ -1,0 +1,39 @@
+<div class="modal" id="new">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+        <p class="modal-card-title">新規お知らせ作成</p>
+        <button class="delete" aria-label="close" id="close"></button>
+    </header>
+    <section class="modal-card-body">
+            <div class="form-group col-sm-5">
+              <%= form_with(model: @information, url: informations_path, method: :post, local: true) do |f| %>
+                <div class="">
+                  <div class="form-group col-sm-5">
+                    <% @information.errors.full_messages.each do |message| %>
+                      <div class="form-error"><%= message %></div>
+                    <% end %>
+
+                    <%= f.text_field :title, placeholder:"タイトルを入力", class: "input" %>
+                    <%= f.text_field :news, placeholder:"本文を入力", class: "textarea" %>
+                    <div style= "text-align: right;"><%= f.submit "投稿",class:"button is-info is-outlined" %></div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+    </section>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#new").on("click", function() {
+            $("div#new").addClass("is-active");
+        })
+
+        $("#close, div.modal-background").on("click", function() {
+            $("div#new").removeClass("is-active");
+        })
+    });
+</script>

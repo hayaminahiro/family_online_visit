@@ -1,0 +1,39 @@
+<div class="modal" id="edit">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+        <p class="modal-card-title">お知らせ編集</p>
+        <button class="delete" aria-label="close" id="close"></button>
+    </header>
+    <section class="modal-card-body">
+            <div class="form-group col-sm-5">
+              <%= form_with(model: information, url: information_path(information), method: :patch, local: true) do |f| %>
+								<div class="">
+									<div class="form-group col-sm-5">
+										<% @information.errors.full_messages.each do |message| %>
+											<div class="form-error">= message</div>
+										<% end %>
+
+										<%= f.text_field :title, class: "input" %>
+										<%= f.text_field :news, class: "textarea" %>
+										<div style= "text-align: right;"><%= f.submit "編集",class:"button is-info is-outlined" %></div>
+									</div>
+								</div>
+							<% end %>
+            </div>
+    </section>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#edit").on("click", function() {
+            $("div#edit").addClass("is-active");
+        })
+
+        $("#close, div.modal-background").on("click", function() {
+            $("div#edit").removeClass("is-active");
+        })
+    });
+</script>
