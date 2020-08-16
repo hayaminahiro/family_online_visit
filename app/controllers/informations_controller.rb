@@ -30,7 +30,8 @@ class InformationsController < ApplicationController
       flash[:success] = "更新できました"
       redirect_to informations_path
     else
-      render 'edit'
+      flash[:danger] = "更新できませんでした。入力内容をご確認ください"
+      redirect_to informations_path
     end
   end
 
