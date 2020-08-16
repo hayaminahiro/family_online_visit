@@ -1,7 +1,14 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title has-text-centered">
+    </div>
+  </div>
+</section>
+
+<section class="hero-1" style="background-image: linear-gradient(25deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/video_room.jpg');">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered has-text-white is-size-2">
         面会ルーム
       </h1>
     </div>
@@ -11,28 +18,34 @@
 <section class="section">
   <div class="container">
     <div class="room">
-      <div class="has-text-centered">
-        <video id="js-local-stream"></video>
-        <span id="js-room-mode"></span>
+      <div class="has-text-centered columns">
+        <div class="column is-half">
+          <video id="js-local-stream"></video>
+          <span id="js-room-mode"></span>:
+        </div>
+        <div class="column is-half">
+          <div cl="remote-streams" id="js-remote-streams"></div>
+        </div>
+      </div>
+      <div class="has-text-centered"> 
         <p class="column is-three-fifths is-offset-one-fifth control">
           <input class="input is-medium is-warning has-text-weight-semibold" type="text" placeholder="Room Name" id="js-room-id">
-         </p> 
+        </p>
+        <h3 class="is-size-3"><strong>Room Name:&emsp;</strong></h3><br>
         <button id="js-join-trigger" class="button is-success is-large is-rounded has-text-weight-semibold">面会開始</button>&emsp;
-        <button id="js-leave-trigger" class="button is-danger is-large is-rounded has-text-weight-semibold">退室する</button>
+        <button id="js-leave-trigger" class="button is-danger is-large is-rounded has-text-weight-semibold">退室する</button> 
       </div><br>
-
-      <div class="remote-streams" id="js-remote-streams"></div>
-        <div class="has-text-centered">
-          <pre class="messages" id="js-messages"></pre>
-          <input class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text">
-          <p class="has-text-right has-text-weight-semibold">
-            *メッセージを送信することができます。
-          </p>
-          <button id="js-send-trigger" class="button is-info is-large is-rounded has-text-weight-semibold">送信する</button>
-        </div>
-      </div><br>
-      <p class="meta" id="js-meta"></p>
-    </div>
+      <div class="has-text-centered">
+        <pre class="messages" id="js-messages"></pre>
+        <input class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text">
+        <p class="has-text-right has-text-weight-semibold">
+          *メッセージを送信することができます。
+        </p>
+        <button id="js-send-trigger" class="button is-info is-large is-rounded has-text-weight-semibold">送信する</button>
+      </div>
+    </div><br>
+    <p class="meta" id="js-meta"></p>
+  </div> 
 </section>
 
 <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
