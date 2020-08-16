@@ -1,10 +1,10 @@
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <section class="navbar is-dark" style="padding: 5px;">
+    <section class="navbar is-dark dark-top">
       <div class="navbar-body">
         <div class="container">
           <%= link_to root_path, class: "navbar-item" do %>
-            <i class="fas fa-photo-video fa-2x fa-border" style="margin-right: 10px; color: paleturquoise;"></i>
+            <i class="fas fa-photo-video fa-2x fa-border font-awe-video"></i>
             <h1 class="title is-8" style="font-family: Georgia; color: paleturquoise">Online Visit</h1>
           <% end %>
         </div>
@@ -19,7 +19,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
-      <div class="navbar-start has-text-weight-bold" style="font-size: 22px;">
+      <div class="navbar-start has-text-weight-bold">
         <!--全ユーザー閲覧可能-->
         <p class="navbar-item">
           <%= link_to_unless_current "トップ", root_path, class: "links" %>
@@ -62,18 +62,18 @@
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link has-text-weight-bold" style="color: #F7F7F7;">
+        <a class="navbar-link has-text-weight-bold more">
           More
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item has-text-weight-bold">
+          <a class="navbar-item has-text-weight-bold is-size-5">
             マイページ
           </a>
-          <a class="navbar-item has-text-weight-bold">
+          <a class="navbar-item has-text-weight-bold is-size-5">
             設定
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item has-text-weight-bold">
+          <a class="navbar-item has-text-weight-bold is-size-5">
             ログアウト
           </a>
         </div>
@@ -81,10 +81,10 @@
 
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <a class="button is-primary is-large has-text-weight-bold">
             <strong>新規登録</strong>
           </a>
-          <a class="button is-light">
+          <a class="button is-light is-large has-text-weight-bold">
             ログイン
           </a>
         </div>

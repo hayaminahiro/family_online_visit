@@ -1,19 +1,24 @@
 .main-title {
-  margin-top: 140px;
+  margin-top: 100px;
 }
 
 h2 {
   color: gray !important;
 }
 
+.top-title {
+  font-family: Georgia;
+  font-size: 130px;
+  color: #2E2F30;
+}
+
 .links {
   color: #F7F7F7;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .notice-link {
   color: #2E2F30;
-  font-size: 15px;
 }
 
 //背景
@@ -106,7 +111,7 @@ p#explanation {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 20px;
-  font-size: 14px;
+  font-size: 22px;
 }
 
 #span-color {
@@ -136,5 +141,19 @@ div#navbarBasicExample.navbar-menu.is-active {
 
 p.navbar-item {
   color: #F7F7F7;
+  font-size: 30px;
 }
 
+.dark-top {
+  padding: 5px;
+}
+
+.font-awe-video {
+  margin-right: 10px;
+  color: paleturquoise;
+}
+
+.more {
+  color: #F7F7F7;
+  font-size: 22px;
+}
