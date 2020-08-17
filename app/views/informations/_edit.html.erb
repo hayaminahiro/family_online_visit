@@ -9,10 +9,6 @@
       <div class="form-group col-sm-5">
         <%= form_with(model: information, url: information_path(information), method: :patch, local: true) do |f| %>
         <div class="form-group col-sm-5">
-          <% @information.errors.full_messages.each do |message| %>
-            <div class="form-error">= message</div>
-          <% end %>
-
           <%= f.text_field :title, class: "input" %>
           <%= f.text_field :news, class: "textarea" %>
           <div style= "text-align: right;"><%= f.submit "編集",class:"button is-info is-outlined" %></div>

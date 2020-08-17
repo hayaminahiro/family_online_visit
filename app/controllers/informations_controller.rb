@@ -9,30 +9,27 @@ class InformationsController < ApplicationController
     @information = Information.new(information_params)
     if  @information.save
       flash[:success] = "お知らせを新規作成できました"
-      redirect_to informations_path
     else
       flash[:danger] = "新規作成できませんでした。入力内容をご確認ください"
-      redirect_to informations_path
     end
+    redirect_to informations_path
   end
 
   def update
     @information = Information.find(params[:id])
     if @information.update(information_params)
       flash[:success] = "更新できました"
-      redirect_to informations_path
     else
       flash[:danger] = "更新できませんでした。入力内容をご確認ください"
-      redirect_to informations_path
     end
+    redirect_to informations_path
   end
 
   def destroy
     @information = Information.find(params[:id])
-    if @information.destroy
-      flash[:danger] = "お知らせを削除しました"
-      redirect_to informations_path
-    end
+    @information.destroy
+    flash[:danger] = "お知らせを削除しました"
+    redirect_to informations_path
   end
 
   private
