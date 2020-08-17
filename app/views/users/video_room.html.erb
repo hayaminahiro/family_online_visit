@@ -29,10 +29,10 @@
       </div>
       <div class="has-text-centered"> 
         <p class="column is-three-fifths is-offset-one-fifth control">
-          <input class="input is-medium is-warning has-text-weight-semibold" type="text" placeholder="Room Name" id="js-room-id">
+          <input class="input is-medium is-warning has-text-weight-semibold" type="text" placeholder="Room Nameを入力してください" id="js-room-id">
         </p>
         <h3 class="is-size-3"><strong>Room Name:&emsp;</strong></h3><br>
-        <button id="js-join-trigger" class="button is-success is-large is-rounded has-text-weight-semibold">面会開始</button>&emsp;
+        <button id="js-join-trigger" class="button is-success is-large is-rounded has-text-weight-semibold">入室する</button>&emsp;
         <button id="js-leave-trigger" class="button is-danger is-large is-rounded has-text-weight-semibold">退室する</button> 
       </div><br>
       <div class="has-text-centered">
@@ -42,6 +42,19 @@
           *メッセージを送信することができます。
         </p>
         <button id="js-send-trigger" class="button is-info is-large is-rounded has-text-weight-semibold">送信する</button>
+      </div>
+    </div><br>
+    <div class="has-text-centered">
+      <%= link_to "戻る", "#", class: "button is-large is-outlined is-dark" %>
+    </div>
+    <div class="has-text-right">  
+      <div class="content">
+        <button id="timer" class="has-text-weight-semibold button is-large is-primary">残り30分</p>
+      </div>
+      <div class="button" id="buttonBox">
+          <button id="start" class="has-text-weight-semibold">
+            面会開始
+          </button>
       </div>
     </div><br>
     <p class="meta" id="js-meta"></p>
@@ -170,4 +183,90 @@
   
     peer.on('error', console.error);
   })();
+</script>
+
+<script>
+  var point;
+  var sec;
+  var seconds;
+  var min;
+  var hour;
+  var start;
+  var now;
+  var time;
+  var id;
+
+  document.getElementById('start').addEventListener('click', function () {
+    if (document.getElementById('start').innerHTML === 'START') {
+      start = new Date();
+      id = setInterval(goTimer, 10);
+      document.getElementById('start').innerHTML = '面会中';
+
+      document.getElementById('buttonBox').classList.remove('button');
+      document.getElementById('buttonBox').classList.add('buttonbutton');
+      if (document.getElementById('start').innerHTML === '面会中') {
+        document.getElementById('start').disabled = true;
+      }
+  } else {
+      clearInterval(id);
+      document.getElementById('start').innerHTML = 'START';
+
+      document.getElementById('buttonBox').classList.remove('buttonbutton');
+      document.getElementById('buttonBox').classList.add('button');
+      if (document.getElementById('start').innerHTML === '面会中') {
+        document.getElementById('start').disabled = true;
+      }
+    }
+  });
+
+  var goTimer = function () {
+    now = new Date();
+    time = now.getTime() - start.getTime();
+
+    point = Math.floor(time / 100);
+    sec = Math.floor(time / 1000);
+    min = Math.floor(sec / 60);
+    hour = Math.floor(min / 60);
+    seconds = Math.floor(time / 1000);
+
+    if (seconds < 1800) {
+        point = 9 - (point - sec * 10);
+        sec = 59 - (sec - min * 60);
+        min = 29 - (min - hour * 60);
+
+        point = addZero(point);
+        sec = addZero(sec);
+        min = addZero(min);
+
+      document.getElementById('timer').innerHTML = '残り' + min + '分';
+    } else if (seconds >= 1800 && seconds < 240) {
+        point = point - sec * 10;
+        sec = sec - min * 60;
+        min = min - 3;
+
+        point = addZero(point);
+        sec = addZero(sec);
+        min = addZero(min);
+
+        document.getElementById('timer').style.color = 'red';
+        document.getElementById('timer').innerHTML = '残り' + min + '分';
+
+    } else {
+        clearInterval(id);
+        document.getElementById('timer').innerHTML = '残り30分';
+        document.getElementById('timer').style.color = 'white';
+        document.getElementById('start').innerHTML = 'start';
+
+        document.getElementById('buttonBox').classList.remove('buttonbutton');
+        document.getElementById('buttonBox').classList.add('button');
+    }
+
+  };
+
+  var addZero = function (value) {
+    if (value < 10) {
+        value = '0' + value;
+    }
+    return value;
+  };
 </script>
