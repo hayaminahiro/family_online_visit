@@ -1,3 +1,33 @@
 // Place all the styles related to the informations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.information-title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 33px;
+}
+
+/* テーブル内の位置調整と装飾 */
+#table-informations {
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  thead th{/*table内のヘッダーに対して*/
+    color: white;
+  }
+  thead tr{
+    background-color: rgb( 42, 78, 118 )
+  }
+  .tr-head {/*table内の「トップお知らせ」「お知らせ」に対して*/
+      background-color: rgb( 63, 150, 247 )
+    }
+  .text-color{
+    color:white;
+  }
+}
