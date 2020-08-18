@@ -3,13 +3,13 @@
 }
 
 h2 {
-  color: gray !important;
+  color: white !important;
 }
 
 .top-title {
   font-family: Georgia;
   font-size: 130px;
-  color: #2E2F30;
+  color: black;
 }
 
 .links {
@@ -33,12 +33,13 @@ h2 {
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: cover;
-  background-image: url(/assets/meal.jpg);
+  //家族と青空
+  background-image: url(/assets/family-sky.jpg);
 }
 
 .image-layout::before{
   /* 透過した黒を重ねる */
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(1,1,1,0.2);
   /* どの範囲に重ねるかを指定 */
   position: absolute;
   top: 0;
@@ -102,20 +103,20 @@ h2 {
 }
 
 #explanation {
-  color: #2E2F30;
+  color: white;
   font-weight: bold;
 }
 
 p#explanation {
   width: 100%;
-  text-align: center;
+  text-align: left;
   margin-top: 50px;
   margin-bottom: 20px;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 #span-color {
-  color: #B00100;
+  color: crimson;
 }
 
 .button.button.is-danger.is-rounded.has-text-weight-bold.red-btn {
