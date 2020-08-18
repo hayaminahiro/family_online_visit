@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'static_pages#top'
+
   devise_for :users, controllers: {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
@@ -19,5 +21,11 @@ Rails.application.routes.draw do
 
 
   resources :residents
-  resources :informations
+  resources :informations do
+    collection do
+      # お知らせ表示
+      get 'show_notice'
+    end
+  end
+
 end

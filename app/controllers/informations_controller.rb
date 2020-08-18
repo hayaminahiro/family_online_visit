@@ -37,4 +37,8 @@ class InformationsController < ApplicationController
   def information_params
     params.require(:information).permit(:news, :title)
   end
+
+  # 家族向けお知らせ表示ページ
+  def show_notice
+  end
 end

@@ -1,0 +1,160 @@
+.main-title {
+  margin-top: 100px;
+}
+
+h2 {
+  color: white !important;
+}
+
+.top-title {
+  font-family: Georgia;
+  font-size: 130px;
+  color: black;
+}
+
+.links {
+  color: #F7F7F7;
+  font-size: 20px;
+}
+
+.notice-link {
+  color: #2E2F30;
+}
+
+//背景
+.image-layout {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+  background-color: #3ecd85;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  //家族と青空
+  background-image: url(/assets/family-sky.jpg);
+}
+
+.image-layout::before{
+  /* 透過した黒を重ねる */
+  background-color: rgba(1,1,1,0.2);
+  /* どの範囲に重ねるかを指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+}
+
+.btn-flat-border {
+  width: 250px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align:center;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  margin-bottom: 50px;
+}
+
+.btn-flat-border:hover {
+  background: #67c5ff;
+  color: white;
+}
+
+.btn-flat-border-new {
+  width: 250px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align:center;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #32CD32;
+  border: solid 2px #32CD32;
+  border-radius: 3px;
+  transition: .4s;
+  margin-bottom: 50px;
+}
+
+.btn-flat-border-new:hover {
+  background: #32CD32;
+  color: white;
+}
+
+.top-btn-position {
+  margin-top: 20px;
+}
+
+.top-btn {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.family-btn {
+  float: right;
+}
+
+#explanation {
+  color: white;
+  font-weight: bold;
+}
+
+p#explanation {
+  width: 100%;
+  text-align: left;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+#span-color {
+  color: crimson;
+}
+
+.button.button.is-danger.is-rounded.has-text-weight-bold.red-btn {
+  margin-top: -10px;
+}
+
+.reserve-modal {
+  text-align: center;
+}
+
+footer.modal-card-foot {
+  padding-left: 450px;
+}
+
+.notice-btn {
+  margin-top: 30px;
+}
+
+//スマホ表示用
+div#navbarBasicExample.navbar-menu.is-active {
+  background: royalblue;
+}
+
+p.navbar-item {
+  color: #F7F7F7;
+  font-size: 30px;
+}
+
+.dark-top {
+  padding: 5px;
+}
+
+.font-awe-video {
+  margin-right: 10px;
+  color: paleturquoise;
+}
+
+.more {
+  color: #F7F7F7;
+  font-size: 22px;
+}
