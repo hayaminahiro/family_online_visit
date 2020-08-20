@@ -1,1 +1,64 @@
-<h1>ご家族一覧ページ</h1>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">
+       ご家族一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div class="table-container">
+	<table class="table is-fullwidth is-hoverable is-striped is-narrow">
+		<thead>
+			<tr>
+				<th>名前</th>
+				<th>入居者登録</th>
+				<th>面会予約</th>
+				<th>部屋名の設定</th>
+				<th>部屋名</th>
+				<th></th>
+				<th>編集</th>
+				<th>削除</th>
+			</tr>								
+    </thead>
+		<tbody>
+			<% @users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<td>
+					<%= link_to "登録", '#', class: "button is-info" %>
+				</td>
+				<td>
+					<%= link_to "予約", '#', class: "button is-link" %>
+				</td>
+				<td>
+					<button class="button is-primary" id="open">
+						<span><i class="fas fa-key"></i></span>
+					</button>	
+				</td>
+				<td>
+					<%= user.room_name %>
+				</td>
+				<td>
+					<%= link_to video_room_user_path(user), class: "button is-warning" do %>
+						<span><i class="fas fa-photo-video"></i></span>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to edit_user_registration_path(user), class: "button is-success" do %>
+						<span><i class="fas fa-user-edit"></i></span>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to user_registration_path(user), method: :delete,
+							data: {confirm: "削除してよろしいですか?"},
+							class: "button is-danger" do %>
+						<span><i class="far fa-trash-alt"></i></span>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
