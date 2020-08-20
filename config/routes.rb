@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :video_room
+      get 'video_room'
+      patch 'room_word_update'
     end
     resources :reservations
   end
