@@ -31,6 +31,11 @@ class InformationsController < ApplicationController
     flash[:danger] = "お知らせを削除しました"
     redirect_to informations_path
   end
+  # 家族向けお知らせ表示ページ
+  def show_notice
+    @info_top = Information.find_by(status: "head")
+    @informations = Information.where(status: "others")
+  end
 
   private
 
@@ -38,7 +43,4 @@ class InformationsController < ApplicationController
     params.require(:information).permit(:news, :title)
   end
 
-  # 家族向けお知らせ表示ページ
-  def show_notice
-  end
 end
