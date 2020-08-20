@@ -1,1 +1,38 @@
-<h1>入居者一覧画面</h1>
+<h1 class="resident-title">入居者一覧</h1>
+
+<div class="resident-head-button">
+  <div class="head-button"><button type="button" class="button is-success" id="">CSVインポート</button></div>
+  <div class="head-button"><button type="button" class="button is-info" id="new">入居者新規登録</button></div>
+</div>
+
+<div class="table-container">
+  <table class="table is-bordered is-fullwidth" id="table-residents">
+    <thead>
+      <tr>
+        <th colspan="4">現在利用中</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tr-head">
+        <td style="width: 50%;">入居者名</td>
+        <td style="width: 25%;">ご家族名</td>
+        <td style="width: 25%;"></td>
+      </tr>
+      <% @residents.each do |resident| %>
+      <tr>
+        <td><%= resident.name %></td>
+        <td><%#= resident.users %></td>
+        <td>
+          <button type="button" class="button is-primary is-outlined" id="<%= resident.id %>">編集</button>
+          <button type="button" class="button is-primary is-outlined" id="">退所</button>
+          <%= link_to "削除", resident, method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+          <%= render 'edit', {resident: resident, resident_id: resident.name} %>
+        </td>
+      </tr>
+      <% end %>
+    <tbody>
+  </table>
+</div>
+
+<%= render 'new' %>

@@ -1,0 +1,33 @@
+<div class="modal" id="new">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">入居者新規登録</p>
+      <button class="delete" aria-label="close" id="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="form-group col-sm-5">
+        <%= form_with(model: @resident, url: residents_path, method: :post, local: true) do |f| %>
+        <div class="form-group col-sm-5">
+          <%= f.text_field :name, placeholder:"タイトルを入力", class: "input" %>
+          <%= f.text_field :floor, placeholder:"フロアを入力", class: "input" %>
+          <%= f.text_field :charge_worker, placeholder:"担当者を入力", class: "input" %>
+          <div style= "text-align: right;"><%= f.submit "投稿",class:"button is-info is-outlined" %></div>
+        </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#new").on("click", function() {
+            $("div#new").addClass("is-active");
+        })
+
+        $("#close, div.modal-background").on("click", function() {
+            $("div#new").removeClass("is-active");
+        })
+    });
+</script>
