@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   
   def index
     @users = User.where.not(admin: true)
+    if params[:search].present?
+      @users = @users.where('name LIKE ?', "%#{params[:search]}%").order(:id)
+    end
   end
 
   def room_word_update
