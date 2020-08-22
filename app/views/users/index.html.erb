@@ -1,1 +1,2 @@
-<h1>ご家族一覧ページ</h1>
+<% @facility = Facility.find(params[:facility_id]) %>
+<h1><%= @facility.name %>ご家族一覧ページ</h1>
