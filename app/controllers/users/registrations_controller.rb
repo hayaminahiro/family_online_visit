@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    @facilities = Facility.all #施設テーブルとの関連付けで追加
     super
   end
 
@@ -16,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @facilities = Facility.all #施設テーブルとの関連付けで追加
     super
   end
 
@@ -42,12 +44,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    # devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, { :facility_ids=> [] }]) #facility_idsを追加
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, { :facility_ids=> [] }]) #facility_idsを追加
   end
 
   # The path used after sign up.

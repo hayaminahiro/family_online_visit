@@ -26,6 +26,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field"> <!--施設テーブルとの関連付けのため追加-->
+    <%= f.collection_check_boxes :facility_ids, @facilities, :id, :name, include_hidden: false do |b| %><br />
+    <%=  b.label { b.check_box + b.text } %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit "新規作成", class: "button is-info" %>
   </div>
