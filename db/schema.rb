@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_080508) do
+ActiveRecord::Schema.define(version: 2020_08_21_233713) do
+
+  create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "facility_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_facility_users_on_facility_id"
+    t.index ["user_id"], name: "index_facility_users_on_user_id"
+  end
 
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -41,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_080508) do
   end
 
   create_table "residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "facility_id"
     t.string "name", null: false
     t.integer "floor", null: false
     t.string "charge_worker"
@@ -69,6 +85,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_080508) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "facility_users", "facilities"
+  add_foreign_key "facility_users", "users"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
   add_foreign_key "reservations", "users"
