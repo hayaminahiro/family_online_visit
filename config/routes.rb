@@ -11,20 +11,43 @@ Rails.application.routes.draw do
     get "sign_out", :to => "users/sessions#destroy"
   end
 
-  resources :users do
-    member do
-      get :video_room
+
+# 修正前
+  # resources :users do
+  #   member do  #user_idが付与される
+  #     get :video_room
+  #   end
+  #   resources :facilities do #user_id、facility_idが付与される
+  #     resources :residents
+  #     #施設のホーム画面
+  #     get :facility_home
+  #   end
+  #   resources :reservations  #user_id、reservations_idが付与される
+  # end
+
+
+  # resources :informations do
+  #   collection do  #idが付与されない
+  #     # お知らせ表示
+  #     get 'show_notice'
+  #   end
+  # end
+
+
+  # 修正後
+  resources :facilities do #facility_idが付与される
+    resources :residents
+    get :home #施設のホーム画面
+    resources :users do
+      member do #facility_id、user_idが付与される
+        get :video_room
+      end
+      resources :reservations  #facility_id、user_id、reservations_idが付与される
     end
-    resources :reservations
-  end
-
-
-
-  resources :residents
-  resources :informations do
-    collection do
-      # お知らせ表示
-      get 'show_notice'
+    resources :informations do
+      collection do
+        get 'show_notice' # トップお知らせ表示
+      end
     end
   end
 
