@@ -12,12 +12,12 @@
 	<div class="hero-body">
 		<div class="container">
 			<%= form_with(url: users_path, method: :get, local: true) do |f| %>
-			<div class="field has-addons has-addons-right">
+			<div class="field is-grouped is-grouped-right">
 				<div class="control">
-					<%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-black" %>
+					<%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-rounded is-black" %>
 				</div>
 				<div class="control">	
-					<%= f.submit "\uf002検索", class: "fa button is-link is-medium" %>
+					<%= f.submit "\uf002検索", class: "fa button is-link is-medium is-rounded" %>
 				</div> 
 			</div>
 			<% end %>
@@ -43,15 +43,15 @@
 			<% @users.each do |user| %>
 			<tr>
 				<td class="is-vcentered">
-					<div class="has-text-weight-semibold is-size-3">
+					<div class="has-text-weight-semibold is-size-4">
 						<%= user.name %>
 					</div>	
 				</td>
 				<td>
-					<%= link_to "登録", '#', class: "button is-info is-large has-text-weight-semibold" %>
+					<%= link_to "登録", '#', class: "button is-info is-large is-rounded has-text-weight-semibold" %>
 				</td>
 				<td>
-					<%= link_to "予約", '#', class: "button is-link is-large has-text-weight-semibold" %>
+					<%= link_to "予約", '#', class: "button is-link is-large  is-rounded has-text-weight-semibold" %>
 				</td>
 				<td>
 					<button class="button is-primary is-large" id="open">
@@ -89,7 +89,7 @@
 					</div>
 				</td>
 				<td class="is-vcentered">
-					<div class="has-text-weight-semibold is-size-3">
+					<div class="has-text-weight-semibold is-size-4">
 						<%= user.room_name %>
 					</div>	
 				</td>
