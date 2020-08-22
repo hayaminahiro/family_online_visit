@@ -1,0 +1,36 @@
+<h1 class="facility-title">施設一覧</h1>
+
+<div class="facility-head-button">
+  <div class="head-button"><button type="button" class="button is-info" id="new">施設新規登録</button></div>
+</div>
+
+<div class="table-container">
+  <table class="table is-bordered is-fullwidth" id="table-facilities">
+    <thead>
+      <tr>
+        <th colspan="4">施設一覧</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tr-head">
+        <td style="width: 50%;">施設名</td>
+        <td style="width: 25%;"></td>
+        <td style="width: 25%;"></td>
+      </tr>
+      <% @facilities.each do |facility| %>
+      <tr>
+        <td><%= facility.name %></td>
+        <td><%#= facility.users %></td>
+        <td>
+          <button type="button" class="button is-primary is-outlined" id="<%= facility.id %>">編集</button>
+          <%= link_to "削除", facility_path(facility, facility_id: params[:facility_id]), method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+          <%= render 'edit', {facility: facility, facility_id: facility.name} %>
+        </td>
+      </tr>
+      <% end %>
+    <tbody>
+  </table>
+</div>
+
+<%= render 'new' %>
