@@ -25,42 +25,53 @@
           <%= link_to_unless_current "トップ", root_path, class: "links" %>
         </p>
 
-        <!--家族のみ閲覧可-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "予約", "#", class: "links" %>
-        </p>
+
 
         <!--家族のみ閲覧可-->
+        <p class="navbar-item">
+          <%#= link_to_unless_current "予約", "#", class: "links" %>
+        </p>
+<% if user_signed_in? %>
+  <% if request.path.include?("facilities") %> <!--URLにfacilitiesが含まれているなら表示する-->
+        <p class="navbar-item">
+          <%= link_to_unless_current "施設一覧", facilities_path(facility_id: params[:facility_id]), class: "links" %>
+        </p>
+        <p class="navbar-item">
+          <%#= link_to_unless_current "施設トップ画面", user_facility_facility_top_path(current_user, facility), class: "links" %>
+        </p>
+        <!--家族のみ閲覧可
         <p class="navbar-item">
           <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
+        </p>-->
+
+        <!--adminと職員のみ閲覧可能
+        <p class="navbar-item">
+          <%#= link_to_unless_current "予約状況一覧", "#", class: "links" %>
+        </p>-->
+
+        <!--adminと職員のみ閲覧可能-->
+        <p class="navbar-item">
+          <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: params[:facility_id]), class: "links" %>
         </p>
 
         <!--adminと職員のみ閲覧可能-->
         <p class="navbar-item">
-          <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
+          <%= link_to_unless_current "入居者一覧", facility_residents_path(facility_id: params[:facility_id]), class: "links" %>
         </p>
-
-        <!--adminと職員のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "ご家族一覧", users_path, class: "links" %>
-        </p>
-
-        <!--adminと職員のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "入居者一覧", residents_path, class: "links" %>
-        </p>
+  <% end %>
+<% end %>
 
         <!--全ユーザー閲覧可能-->
         <p class="navbar-item">
-          <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+          <%#= link_to_unless_current "お問い合わせ", "#", class: "links" %>
         </p>
 
         <!--adminのみ閲覧可能-->
         <p class="navbar-item">
-          <%= link_to_unless_current "お知らせ", informations_path, class: "links" %>
+          <%#= link_to_unless_current "お知らせ", informations_path, class: "links" %>
         </p>
       </div>
-
+<%# 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link has-text-weight-bold more">
           More
@@ -77,16 +88,14 @@
             ログアウト
           </a>
         </div>
-      </div>
+      </div> %>
 
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary is-large has-text-weight-bold">
-            <strong>新規登録</strong>
-          </a>
-          <a class="button is-light is-large has-text-weight-bold">
-            ログイン
-          </a>
+            <%= link_to_unless_current "新規登録", new_user_registration_path, style:"margin-right:10px; color:white;" %>
+            <%= link_to_unless_current "ログイン", sign_in_path, style:"margin-right:10px; color:white;" %>
+            <%= link_to_unless_current "ログアウト", sign_out_path, style:"margin-right:10px; color:white;" %>
+            <%= link_to_unless_current "編集", edit_user_registration_path, style:"margin-right:10px; color:white;" %>
         </div>
       </div>
     </div>

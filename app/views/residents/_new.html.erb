@@ -7,7 +7,7 @@
     </header>
     <section class="modal-card-body">
       <div class="form-group col-sm-5">
-        <%= form_with(model: @resident, url: residents_path, method: :post, local: true) do |f| %>
+        <%= form_with(model: @resident, url: facility_residents_path(facility_id: params[:facility_id]), method: :post, local: true) do |f| %>
         <div class="form-group col-sm-5">
           <%= f.text_field :name, placeholder:"タイトルを入力", class: "input" %>
           <%= f.text_field :floor, placeholder:"フロアを入力", class: "input" %>

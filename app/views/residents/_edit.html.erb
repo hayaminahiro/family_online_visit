@@ -7,7 +7,7 @@
     </header>
     <section class="modal-card-body">
       <div class="form-group col-sm-5">
-        <%= form_with(model: resident, url: resident_path(resident), method: :patch, local: true) do |f| %>
+        <%= form_with(model: resident, url: facility_resident_path(resident, facility_id: params[:facility_id]), method: :patch, local: true) do |f| %>
         <div class="form-group col-sm-5">
           <%= f.text_field :name, class: "input" %>
           <%= f.text_field :floor, class: "input" %>
