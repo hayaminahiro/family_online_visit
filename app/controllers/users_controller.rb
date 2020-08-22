@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: :room_word_update
   
   def index
-    @users = User.where.not(admin: true)
+    @users = User.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
-      @users = @users.where('name LIKE ?', "%#{params[:search]}%").order(:id)
+      @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
   end
 

@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'font-awesome-sass', '~> 5.4.1'
 gem "bulma-rails"
+gem 'will_paginate-bulma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
