@@ -7,30 +7,10 @@
             <h1 class="main-title">
               <strong class="top-title">Online Visit</strong>
             </h1>
-            <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
+            <h2 class="sub-title" style="font-size: 40px; margin-right:80px;">オンラインで大切な家族との時間を共有</h2>
           </div>
             <div class="button-position">
               <div class="columns is-centered">
-                <div class="column is-3 top-btn-position">
-                  <div class="top-btn">
-                    <button class="button is-large is-primary is-rounded has-text-weight-bold">予約する</button>
-                  </div>
-                  <div class="top-btn">
-                    <button class="button is-large is-success is-rounded has-text-weight-bold">予約情報確認</button>
-                  </div>
-                  <div class="top-btn">
-                    <button class="button is-large is-info is-rounded has-text-weight-bold">通話を開始する</button>
-                  </div>
-                </div>
-                <div class="top-btn">
-                  <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
-                  <button class="button is-large is-danger is-rounded has-text-weight-bold red-btn" id="open">ご入居者様の登録申請</button><br>
-                  <div class="notice-btn">
-                    <button class="button is-large is-warning is-rounded has-text-weight-bold">
-                      <%= link_to_unless_current "お知らせ表示", show_notice_informations_path, class: "notice-link" %>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
         </div>
@@ -43,38 +23,11 @@
   </section>
 </body>
 
-<!--ご入居者様の登録申請ボタンのモーダル-->
-<div>
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title is-half has-text-weight-bold reserve-modal">予約情報</p>
-        <button class="delete" aria-label="close" id="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p class="image is-3by2">
 
-        </p>
-        コンテンツ欄
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-danger has-text-weight-bold" style="float: right">予約を取り消し</button>
-      </footer>
-    </div>
-  </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#open").on("click", function() {
-            $("div.modal").addClass("is-active");
-        })
-
-        $("#close, div.modal-background").on("click", function() {
-            $("div.modal").removeClass("is-active");
-        })
-    });
-</script>
+<!--ここから下を追加しました-->
+<% if user_signed_in? %>
+  <h1 style="margin-left:40px; color:white; font-size:40px;">【ご利用施設一覧】</h1>
+  <% current_user.facilities.each do |facility| %> <!--current_user.facilitiesでログイン中のユーザが登録済みの施設を全て取得-->
+    <%= link_to_unless_current facility.name, facility_home_path(facility),  style:"margin-right:40px; color:white; font-size:30px;" %><br>
+  <% end %>
+<% end %>
