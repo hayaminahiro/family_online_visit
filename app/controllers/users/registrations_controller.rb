@@ -9,6 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def new_admin
+    super
+  end
+
   # POST /resource
   def create
     super
