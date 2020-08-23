@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    @facilities = Facility.all #施設テーブルとの関連付けで追加
     super
   end
 
@@ -23,6 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+    @facilities = Facility.all #施設テーブルとの関連付けで追加
     super
   end
 
