@@ -1,0 +1,15 @@
+//フラッシュメッセージ
+.error-position {
+  margin: 20px 0;
+  padding: 15px;
+}
+
+//エラーメッセージ（フルメッセージ用）
+.errors_full_messages {
+  margin: 0 0 20px 0;
+  padding: 15px;
+}
+
+div.notification.is-danger.error-count {
+  margin-bottom: 0;
+}

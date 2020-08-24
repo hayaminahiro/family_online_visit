@@ -8,9 +8,9 @@ class InformationsController < ApplicationController
   def create
     @information = Information.new(information_params)
     if  @information.save
-      flash[:success] = "お知らせを新規作成できました"
+      flash[:notice] = "お知らせを新規作成できました"
     else
-      flash[:danger] = "新規作成できませんでした。入力内容をご確認ください"
+      flash[:alert] = "新規作成できませんでした。入力内容をご確認ください"
     end
     redirect_to informations_path
   end
@@ -18,9 +18,9 @@ class InformationsController < ApplicationController
   def update
     @information = Information.find(params[:id])
     if @information.update(information_params)
-      flash[:success] = "更新できました"
+      flash[:notice] = "更新できました"
     else
-      flash[:danger] = "更新できませんでした。入力内容をご確認ください"
+      flash[:alert] = "更新できませんでした。入力内容をご確認ください"
     end
     redirect_to informations_path
   end
@@ -28,7 +28,7 @@ class InformationsController < ApplicationController
   def destroy
     @information = Information.find(params[:id])
     @information.destroy
-    flash[:danger] = "お知らせを削除しました"
+    flash[:alert] = "お知らせを削除しました"
     redirect_to informations_path
   end
   # 家族向けお知らせ表示ページ
