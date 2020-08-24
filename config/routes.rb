@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
 
+  devise_for :facilities, controllers: {
+      sessions:      'facilities/sessions',
+      passwords:     'facilities/passwords',
+      registrations: 'facilities/registrations'
+  }
   devise_for :users, controllers: {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
+      sessions:      'users/sessions',
+      passwords:     'users/passwords',
+      registrations: 'users/registrations'
   }
 
   devise_scope :user do
