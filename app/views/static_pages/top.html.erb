@@ -5,8 +5,10 @@
         <div class="media-content">
           <div class="content has-text-centered">
             <h1 class="main-title">
-              <%#= current_facility.facility_name %>
-              <%# @facility.facility_name %>
+              <% if facility_signed_in? %>
+                <%= current_facility.facility_name %>
+                <%# @facility.facility_name %>
+              <% end %>
               <strong class="top-title">Online Visit</strong>
             </h1>
             <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
