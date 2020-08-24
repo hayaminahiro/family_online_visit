@@ -56,21 +56,19 @@
 					<%= link_to "予約", '#', class: "button is-link is-medium is-rounded has-text-weight-semibold" %>
 				</td>
 				<td>
-					<button class="button is-primary is-medium" id="open">
+					<button class="button is-primary is-medium" id=<%= user.id %>>
 						<span><i class="fas fa-key"></i></span>
 					</button>
 
-					<!--面会用合言葉の登録モーダル-->
-
-					<div>
-						<div class="modal">
-							<div class="modal-background"></div>
+					<!-- Room Name モーダル表示 -->
+					<div class="modal" id=<%= user.name %>>
+						<div class="modal-background"></div>
 							<div class="modal-card">
 								<header class="modal-card-head" style="background-color: #48D1CC;">
-									<p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
-									<button class="delete" aria-label="close" id="close"></button>
+													<p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
+													<button class="delete" aria-label="close" id="close"></button>
 								</header>
-								<%= form_with(model: user, url: room_word_update_user_path(user), local: true, method: :patch) do |f| %>
+								<%= form_with(model: user, url: room_word_update_user_path(user), method: :patch, local: true,) do |f| %>
 								<section class="modal-card-body">
 									<div class="field">
 										<%= f.label :room_name, class: "label is-size-4" %>
@@ -87,10 +85,21 @@
 								</footer>	
 								<% end %>
 							</div>
-						</div>
 					</div>
 
-					<!--モーダル　ここまで-->
+					<script>
+						$(document).ready(function() {
+							$("#<%= user.id %>").on("click", function() {
+								$("div#<%= user.name %>").addClass("is-active");
+							})
+
+							$("#close, div.modal-background").on("click", function() {
+								$("div#<%= user.name %>").removeClass("is-active");
+							})
+						});
+					</script>
+					<!-- ここまで -->
+
 				</td>
 				<td class="is-vcentered">
 					<div class="has-text-weight-semibold is-size-5">
@@ -121,17 +130,3 @@
 </div>
 
 <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#open").on("click", function() {
-            $("div.modal").addClass("is-active");
-        })
-
-        $("#close, div.modal-background").on("click", function() {
-            $("div.modal").removeClass("is-active");
-        })
-    });
-</script>
