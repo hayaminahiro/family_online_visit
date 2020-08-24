@@ -1,11 +1,11 @@
 <section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title has-text-centered is-size-1">
-       ご家族一覧
-      </h1>
-    </div>
-  </div>
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title has-text-centered is-size-1">
+			 ご家族一覧
+			</h1>
+		</div>
+	</div>
 </section>
 
 <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
@@ -40,7 +40,7 @@
 				<th>編集</th>
 				<th>削除</th>
 			</tr>								
-    </thead>
+		</thead>
 		<tbody>
 			<% @users.each do |user| %>
 			<tr>
