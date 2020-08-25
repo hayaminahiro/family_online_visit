@@ -1,21 +1,24 @@
 <div class="modal" id=<%= resident_id %> >
   <div class="modal-background"></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-        <p class="modal-card-title">入居者情報編集</p>
-        <button class="delete" aria-label="close" id="close"></button>
+    <header class="modal-card-head" style="background-color: #48D1CC;">
+      <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">入居者情報編集</p>
+      <button class="delete" aria-label="close" id="close"></button>
     </header>
     <section class="modal-card-body">
+      <%= form_with(model: resident, url: resident_path(resident), method: :patch, local: true) do |f| %>
       <div class="form-group col-sm-5">
-        <%= form_with(model: resident, url: resident_path(resident), method: :patch, local: true) do |f| %>
-        <div class="form-group col-sm-5">
-          <%= f.text_field :name, class: "input" %>
-          <%= f.number_field :floor, class: "input" %>
-          <%= f.text_field :charge_worker, class: "input" %>
-          <div style= "text-align: right;"><%= f.submit "編集",class:"button is-info is-outlined" %></div>
-        </div>
-        <% end %>
+        <%= f.text_field :name, class: "input" %><br><br>
+        <%= f.number_field :floor, class: "input" %><br><br>
+        <%= f.text_field :charge_worker, class: "input" %>
+      </div><br>
+      <div class="has-text-centered">
+        <%= f.submit "\uf044 編集する",class:"fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
+        <button type="button" class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold" aria-label="close" id="close">
+        キャンセル
+        </button>
       </div>
+      <% end %>
     </section>
   </div>
 </div>
