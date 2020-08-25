@@ -34,6 +34,6 @@ class ResidentsController < ApplicationController
   private
 
   def resident_params
-    params.require(:resident).permit(:name, :floor, :charge_worker)
+    params.require(:resident).permit(:name, :charge_worker)
   end
 end
