@@ -1,18 +1,23 @@
 <body class="image-layout">
-  <section class="section" >
+  <section class="section" style="padding-top: 10px;">
     <div class="container">
       <article class="media">
         <div class="media-content">
           <div class="content has-text-centered">
             <h1 class="main-title">
-              <% if facility_signed_in? %>
-                <%= current_facility.facility_name %>
-                <%# @facility.facility_name %>
-              <% end %>
               <strong class="top-title">Online Visit</strong>
             </h1>
+            <h5 class="is-size-2">
+              <% if facility_signed_in? %>
+                管理者 <%= current_facility.facility_name %> 様
+              <% elsif user_signed_in? %>
+                <%= current_user.name %> 様
+              <% end %>
+            </h5>
             <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
-            <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold" %>
+            <% unless user_signed_in? || facility_signed_in? %>
+              <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold" %>
+            <% end %>
           </div>
             <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
               <div class="button-position">
