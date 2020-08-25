@@ -1,8 +1,9 @@
 <h1 class="resident-title">入居者一覧</h1>
 
+<%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 <div class="resident-head-button">
-  <div class="head-button"><button type="button" class="button is-success" id="">CSVインポート</button></div>
-  <div class="head-button"><button type="button" class="button is-info" id="new">入居者新規登録</button></div>
+  <div class="head-button"><button type="button" class="button is-success" style="border-radius: 100px; font-weight: bold; font-size: 18px;" id="">CSVインポート</button></div>
+  <div class="head-button"><button type="button" class="button is-info" style="border-radius: 100px; font-weight: bold; font-size: 18px;" id="new">入居者新規登録</button></div>
 </div>
 
 <div class="table-container">
@@ -23,10 +24,12 @@
         <td><%= resident.name %></td>
         <td><%#= resident.users %></td>
         <td>
-          <button type="button" class="button is-primary is-outlined" id="<%= resident.id %>">編集</button>
-          <button type="button" class="button is-primary is-outlined" id="">退所</button>
-          <%= link_to "削除", resident, method: :delete,
-                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
+          <button type="button" class="button is-success is-medium" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
+          <button type="button" class="button is-warning is-medium" id=""><i class="fas fa-luggage-cart"></i></button>
+          <%= link_to resident, method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-medium" do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
           <%= render 'edit', {resident: resident, resident_id: resident.name} %>
         </td>
       </tr>
@@ -34,5 +37,6 @@
     <tbody>
   </table>
 </div>
+<%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 
 <%= render 'new' %>

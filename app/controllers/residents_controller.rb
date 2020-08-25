@@ -1,6 +1,6 @@
 class ResidentsController < ApplicationController
   def index
-    @residents = Resident.all
+    @residents = Resident.all.paginate(page: params[:page], per_page: 30)
     @resident = Resident.new
   end
 
