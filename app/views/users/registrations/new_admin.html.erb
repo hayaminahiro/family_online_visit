@@ -1,3 +1,4 @@
+# 保留中。使用しないかも。
 <body class="image-layout">
   <section class="hero is-primary hero-size" >
     <div class="container">
@@ -5,7 +6,7 @@
         <div class="media-content">
           <div class="content has-text-centered">
             <div class="signup-title">
-              <strong class="new-title">新規登録</strong>
+              <strong class="new-title">管理者新規登録</strong>
             </div>            
           </div>
             <div class="button-position">
@@ -15,8 +16,12 @@
                   <%= render "users/shared/error_messages", resource: resource %>
                 
                   <div class="field">
-                    <%= f.label :name, "あなたのお名前", class: "label" %><br />
+                    <%= f.label :name, "施設(機関)名", class: "label" %><br />
                     <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input is-medium input-top", :size=>"100px" %>
+                  </div>
+
+                  <div class="field">                    
+                    <%= f.hidden_field :admin, :value => true %>
                   </div>
                   
                   <div class="field">

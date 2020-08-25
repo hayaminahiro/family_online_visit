@@ -13,36 +13,58 @@
             </h1>
             <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
           </div>
-            <div class="button-position">
-              <div class="columns is-centered">
-                <div class="column is-3 top-btn-position">
-                  <div class="top-btn">
-                    <button class="button is-large is-primary is-rounded has-text-weight-bold">予約する</button>
+            <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
+              <div class="button-position">
+                <div class="columns is-centered">
+                  <div class="column is-3 top-btn-position">
+                    <div class="top-btn">
+                      <button class="button is-large is-primary is-rounded has-text-weight-bold">予約する</button>
+                    </div>
+                    <div class="top-btn">
+                      <button class="button is-large is-success is-rounded has-text-weight-bold">予約情報確認</button>
+                    </div>
+                    <div class="top-btn">
+                      <button class="button is-large is-info is-rounded has-text-weight-bold">通話を開始する</button>
+                    </div>
                   </div>
                   <div class="top-btn">
-                    <button class="button is-large is-success is-rounded has-text-weight-bold">予約情報確認</button>
-                  </div>
-                  <div class="top-btn">
-                    <button class="button is-large is-info is-rounded has-text-weight-bold">通話を開始する</button>
-                  </div>
-                </div>
-                <div class="top-btn">
-                  <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
-                  <button class="button is-large is-danger is-rounded has-text-weight-bold red-btn" id="open">ご入居者様の登録申請</button><br>
-                  <div class="notice-btn">
-                    <button class="button is-large is-warning is-rounded has-text-weight-bold">
-                      <%= link_to_unless_current "お知らせ表示", show_notice_informations_path, class: "notice-link" %>
-                    </button>
+                    <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
+                    <button class="button is-large is-danger is-rounded has-text-weight-bold red-btn" id="open">ご入居者様の登録申請</button><br>
+                    <div class="notice-btn">
+                      <button class="button is-large is-warning is-rounded has-text-weight-bold">
+                        <%= link_to_unless_current "お知らせ表示", show_notice_informations_path, class: "notice-link" %>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
         </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column">
+      </article>      
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <div class="admin-btn">
+              <% if user_signed_in? %>              
+                <% if current_user.admin == true && current_user.floor_authority == true %>                                    
+
+                  <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>                    
+                  
+                    <%= f.hidden_field :floor_authority, :value => false %>                                      
+                    
+                    <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>                                                            
+                  <% end %>
+                <% elsif current_user.admin == true && current_user.floor_authority == false %>
+                  <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>                    
+                    
+                    <%= f.hidden_field :floor_authority, :value => true %>                                      
+                    
+                    <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>                                                            
+                  <% end %>                  
+                <% end %>
+              <% end %>
+            </div>            
+          </div>
         </div>
-      </div>
     </div>
   </section>
 </body>

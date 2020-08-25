@@ -6,5 +6,6 @@ class ApplicationController < ActionController::Base
 # deviseでユーザー新規作成の際に名前のカラムを保存するためのもの（標準装備はemail,passwordのみ）
   def configre_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :facility_name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:floor_authority])
   end
 end
