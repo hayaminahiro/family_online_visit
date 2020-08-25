@@ -21,13 +21,11 @@ Rails.application.routes.draw do
     resources :reservations
   end
 
-
-
   resources :residents
   resources :informations do
     collection do
       # お知らせ表示
-      get 'show_notice'
+      get 'top_notice'
     end
   end
 

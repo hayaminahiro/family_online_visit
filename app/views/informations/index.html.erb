@@ -1,7 +1,7 @@
 <h1 class="information-title">お知らせ投稿</h1>
 
-<div style= "text-align: right;"><button type="button" class="button is-info" id="new">新規お知らせ投稿</button></div>
-
+<%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+<div class="new-info-btn"><button type="button" class="button is-info" style="border-radius: 100px; font-weight: bold; font-size: 18px;" id="new">新規お知らせ投稿</button></div>
 <div class="table-container">
   <table class="table is-bordered is-fullwidth" id="table-informations">
     <thead>
@@ -17,11 +17,11 @@
         <td class="text-color" colspan="4">トップお知らせ</td>
       </tr>
       <tr>
-        <td><%= @info_top.created_at %></td>
+        <td><%= l(@info_top.created_at, format: :default_info) %></td>
         <td><%= @info_top.title %></td>
         <td><%= @info_top.news %></td>
         <td>
-          <button type="button" class="button is-primary is-outlined" id="edit">編集</button>
+          <button type="button" class="button is-success is-medium" id="edit"><i class="fas fa-edit"></i></button>
         </td>
       </tr>
       <tr class="tr-head">
@@ -29,20 +29,23 @@
       </tr>
       <% @informations.each do |information| %>
       <tr>
-        <td><%= information.created_at %></td>
+        <td><%= l(information.created_at, format: :default_info) %></td>
         <td><%= information.title %></td>
         <td><%= information.news %></td>
         <td>
-          <button type="button" class="button is-primary is-outlined" id=<%= information.id %>>編集</button>
-          <%= link_to "削除", information, method: :delete,
-                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-outlined" %>
-          <%= render "notice_edit", {information: information, information_id: information.news} %>
+          <button type="button" class="button is-success is-medium" id=<%= information.id %>><i class="fas fa-edit"></i></button>
+          <%= link_to information, method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-medium" do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+          <%= render "notice_edit", {information: information, information_id: information.title} %>
         </td>
       </tr>
       <% end %>
     <tbody>
   </table>
 </div>
+<%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 
 <%= render 'new' %>
 <%= render 'edit' , { information: @info_top } %>
