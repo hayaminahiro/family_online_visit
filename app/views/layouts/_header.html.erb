@@ -21,7 +21,6 @@
     <div class="navbar-end">
       <div class="navbar-start has-text-weight-bold">
         <!--全ユーザー閲覧可能-->
-
         <% if user_signed_in? || facility_signed_in? %>
           <p class="navbar-item">
             <%= link_to_unless_current "トップ", root_path, class: "links" %>
@@ -39,17 +38,17 @@
             </p>
 
           <% elsif facility_signed_in? %>
-            <!--adminと職員のみ閲覧可能-->
+            <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
             </p>
 
-            <!--adminと職員のみ閲覧可能-->
+            <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "ご家族一覧", users_path, class: "links" %>
             </p>
 
-            <!--adminと職員のみ閲覧可能-->
+            <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "入居者一覧", residents_path, class: "links" %>
             </p>
@@ -62,34 +61,32 @@
             </p>
 
           <% if facility_signed_in? %>
-            <!--facilityのみ閲覧可能-->
+            <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "お知らせ", informations_path, class: "links" %>
             </p>
-
           <% end %>
+
         <% end %>
       </div>
 
       <% if user_signed_in?  || facility_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-weight-bold more">
-            More
+            <i class="fas fa-user-circle fa-2x"></i>
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item has-text-weight-bold is-size-5">
+            <a class="navbar-item has-text-weight-bold is-size-6">
               マイページ
             </a>
-            <a class="navbar-item has-text-weight-bold is-size-5">
+            <a class="navbar-item has-text-weight-bold is-size-6">
               設定
             </a>
             <hr class="navbar-divider">
-            <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-5" %>            
+            <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-6" %>
           </div>
         </div>
-      <% end %>
-
-      <% unless user_signed_in? || facility_signed_in? %>
+      <% else %>
         <div class="navbar-item">
           <div class="buttons">
             <p class="navbar-item has-text-weight-bold is-size-5">
