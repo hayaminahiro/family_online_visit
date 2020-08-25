@@ -92,9 +92,10 @@
       <% unless user_signed_in? %>
         <div class="navbar-item">
           <div class="buttons">
-            <%= link_to "新規登録", new_user_registration_path, class: "button is-primary is-large has-text-weight-bold" %>
-
-            <%= link_to "ログイン", user_session_path, class: "button is-light is-large has-text-weight-bold" %>
+            <p class="navbar-item has-text-weight-bold is-size-5">
+              管理者はこちらから
+            </p>
+            <%= link_to "ログイン", facility_session_path, class: "button is-primary is-large has-text-weight-bold" %>
           </div>
         </div>
       <% end %>

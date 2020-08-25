@@ -12,6 +12,7 @@
               <strong class="top-title">Online Visit</strong>
             </h1>
             <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
+            <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold" %>
           </div>
             <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
               <div class="button-position">
