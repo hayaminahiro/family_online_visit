@@ -2,13 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* index.html、タイトル */
 .information-title{
   text-align: center;
   font-weight: bold;
   font-size: 33px;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
-
-/* テーブル内の位置調整と装飾 */
+.new-info-btn{
+  text-align: right;
+  margin: 0px 40px 10px 0px;
+}
+/* index.html、テーブル内の位置調整と装飾 */
 #table-informations {
   th {
     vertical-align: middle;
@@ -30,4 +36,22 @@
   .text-color{
     color:white;
   }
+}
+
+/* top_noticeの装飾 */
+#top-notice-table{
+  thead tr{
+    background-color: greenyellow;
+    font-size: 17px;
+  }
+}
+.top-td{
+  text-align: center;
+  color:darksalmon;
+}
+/* show.htmlの装飾 */
+.show-info-title{
+  font-size: 25px;
+  font-weight: 900;
+  color: #19ab4c;
 }
