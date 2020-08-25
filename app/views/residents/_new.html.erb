@@ -8,9 +8,10 @@
     <section class="modal-card-body">
       <%= form_with(model: @resident, url: residents_path, method: :post, local: true) do |f| %>
       <div class="form-group col-sm-5">
-        <%= f.text_field :name, placeholder:"タイトルを入力", class: "input" %><br><br>
-        <%= f.number_field :floor, placeholder:"フロアを入力", class: "input" %><br><br>
-        <%= f.text_field :charge_worker, placeholder:"担当者を入力", class: "input" %>
+        <%#= f.text_field :name, placeholder:"タイトルを入力", class: "input" %>
+        <%= f.text_field :name, :placeholder => " \uf304 名前を入力", class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
+        <%= f.number_field :floor, :placeholder => " \uf756 フロアを入力", class: "fa input is-link is-medium is-rounded" %><br><br>
+        <%= f.text_field :charge_worker, :placeholder => " \uf4c4 担当者を入力", class: "fa input is-link is-medium is-rounded" %>
       </div><br>
       <div class="has-text-centered">
         <%= f.submit "\uf044 投稿する",class:"fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
