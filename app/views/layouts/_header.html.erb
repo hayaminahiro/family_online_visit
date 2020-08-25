@@ -21,74 +21,83 @@
     <div class="navbar-end">
       <div class="navbar-start has-text-weight-bold">
         <!--全ユーザー閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "トップ", root_path, class: "links" %>
-        </p>
 
-        <!--家族のみ閲覧可-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "予約", "#", class: "links" %>
-        </p>
+        <% if user_signed_in? %>
+          <p class="navbar-item">
+            <%= link_to_unless_current "トップ", root_path, class: "links" %>
+          </p>
 
-        <!--家族のみ閲覧可-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
-        </p>
+          <% if current_user.admin == false && current_user.floor_authority == false %>
+            <!--家族のみ閲覧可-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "予約", "#", class: "links" %>
+            </p>
 
-        <!--adminと職員のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
-        </p>
+            <!--家族のみ閲覧可-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
+            </p>
 
-        <!--adminと職員のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "ご家族一覧", users_path, class: "links" %>
-        </p>
+          <% elsif current_user.admin == true %>
+            <!--adminと職員のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
+            </p>
 
-        <!--adminと職員のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "入居者一覧", residents_path, class: "links" %>
-        </p>
+            <!--adminと職員のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "ご家族一覧", users_path, class: "links" %>
+            </p>
 
-        <!--全ユーザー閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
-        </p>
+            <!--adminと職員のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "入居者一覧", residents_path, class: "links" %>
+            </p>
+        
 
-        <!--adminのみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "お知らせ", informations_path, class: "links" %>
-        </p>
+          <% end %>
+          <% if current_user.floor_authority == false %>
+            <!--全ユーザー閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+            </p>
+
+          <% elsif current_user.admin == true && current_user.floor_authority == false %>
+            <!--adminのみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "お知らせ", informations_path, class: "links" %>
+            </p>
+          <% end %>
+        <% end %>
       </div>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link has-text-weight-bold more">
-          More
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item has-text-weight-bold is-size-5">
-            マイページ
+      <% if user_signed_in? %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link has-text-weight-bold more">
+            More
           </a>
-          <a class="navbar-item has-text-weight-bold is-size-5">
-            設定
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item has-text-weight-bold is-size-5">
-            ログアウト
-          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item has-text-weight-bold is-size-5">
+              マイページ
+            </a>
+            <a class="navbar-item has-text-weight-bold is-size-5">
+              設定
+            </a>
+            <hr class="navbar-divider">
+            <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-5" %>            
+          </div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary is-large has-text-weight-bold">
-            <strong>新規登録</strong>
-          </a>
-          <a class="button is-light is-large has-text-weight-bold">
-            ログイン
-          </a>
+      <% unless user_signed_in? %>
+        <div class="navbar-item">
+          <div class="buttons">
+            <%= link_to "新規登録", new_user_registration_path, class: "button is-primary is-large has-text-weight-bold" %>
+
+            <%= link_to "ログイン", user_session_path, class: "button is-light is-large has-text-weight-bold" %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </nav>
