@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   def video_room
   end
 
-<<<<<<< HEAD
   def change_admin
     @user = User.find(params[:id])
     if @user.update_attributes(admin_params)
@@ -43,15 +42,12 @@ class UsersController < ApplicationController
   def admin_params
     params.permit(:floor_authority)
   end
-=======
-  private
 
-    def room_params
-      params.require(:user).permit(:room_name)
-    end
+  def room_params
+    params.require(:user).permit(:room_name)
+  end
 
-    def set_user
-      @user = User.find(params[:id])
-    end
->>>>>>> ecd45e7de24372928a473d4a3ceb028dce72fb28
+  def set_user
+    @user = User.find(params[:id])
+  end
 end

@@ -13,13 +13,10 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-<<<<<<< HEAD
       get :video_room
       patch :change_admin
-=======
       get 'video_room'
       patch 'room_word_update'
->>>>>>> ecd45e7de24372928a473d4a3ceb028dce72fb28
     end
     resources :reservations
   end
