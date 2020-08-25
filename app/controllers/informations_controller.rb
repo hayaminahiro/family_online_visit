@@ -1,7 +1,7 @@
 class InformationsController < ApplicationController
   def index
     @info_top = Information.find_by(status: "head")
-    @informations = Information.order(id: "DESC").paginate(page: params[:page], per_page: 10)
+    @informations = Information.where(status: "others").order(id: "DESC").paginate(page: params[:page], per_page: 10)
     @information = Information.new
   end
 
