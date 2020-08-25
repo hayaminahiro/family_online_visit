@@ -9,6 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def new_admin
+    super
+  end
+
   # POST /resource
   def create
     super
@@ -26,7 +30,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    super
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "#{@user.name}のデータを削除しました。"
+    redirect_to users_url
   end
 
   # GET /resource/cancel
