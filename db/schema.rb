@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_073235) do
 
   create_table "residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "floor", null: false
+    t.integer "floor"
     t.string "charge_worker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
