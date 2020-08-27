@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :facilities
+
   # resources :facilities do #facility_idが付与される
   #   resources :residents
   #   get :home #施設のホーム画面
