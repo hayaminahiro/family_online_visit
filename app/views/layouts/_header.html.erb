@@ -77,10 +77,18 @@
           </a>
           <div class="navbar-dropdown">
             <a class="navbar-item has-text-weight-bold is-size-6">
-              マイページ
+              <% if user_signed_in? %>
+                <%= link_to "マイページ", user_path(current_user), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% elsif facility_signed_in? %>
+                <%= link_to "マイページ", facility_path(current_facility), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% end %>
             </a>
             <a class="navbar-item has-text-weight-bold is-size-6">
-              設定
+              <% if user_signed_in? %>
+                <%= link_to "設定", edit_user_registration_path(resource_name), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% elsif facility_signed_in? %>
+                <%= link_to "設定", edit_facility_registration_path(resource_name), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% end %>
             </a>
             <hr class="navbar-divider">
             <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-6" %>
