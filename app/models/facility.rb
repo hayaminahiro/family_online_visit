@@ -4,8 +4,13 @@ class Facility < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # User:Facility = 多対多 ・・・関連付け
+  has_many :facility_users, dependent: :destroy
+  has_many :users, through: :facility_users
+
   # cookieでログイン情報を保持
   def remember_me
     true
   end
+
 end
