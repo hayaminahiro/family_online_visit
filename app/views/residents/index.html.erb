@@ -1,22 +1,57 @@
-<h1 class="resident-title is-size-1">入居者一覧</h1>
+<section class="resident-title hero">
+<div class="hero-body">
+  <div class="container has-text-centered">
+      <h1 class="title is-1 has-text-white">
+        入居者一覧
+      </h1>
+    </div>
+</div>
+
+<div class="hero-foot">
+<nav class="tabs is-boxed is-fullwidth is-large">
+        <div class="container">
+          <ul>
+            <li class="tab is-active has-text-weight-bold" onclick="openTab(event,'WebDev')"><a >利用中</a></li>
+            <li class="tab has-text-weight-bold" onclick="openTab(event,'WebAud')"><a >退所</a></li>
+          </ul>
+        </div>
+      </nav>
+  </div>
+</section>
+
+<div class="container section">
+    <div id="WebDev" class="content-tab" >
+
 
 <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 <div class="resident-head-button">
     <!--CSVインポート-->
   <%= render partial: 'csv_import' %>
-  <div class="head-button"><button type="button" class="button is-info" style="border-radius: 100px; font-weight: bold; font-size: 18px;" id="new">入居者新規登録</button></div>
+  <div class="head-button"><button type="button" class="button is-info is-rounded is-size-5 has-text-weight-bold"  id="new"><i class="fas fa-user-plus"></i></button></div>
+    <div style="margin-left:auto;">
+      <%= form_with(url: residents_path, method: :get, local: true) do |f| %>
+      <div class="field is-grouped is-grouped-right">
+        <div class="control">
+          <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
+        </div>
+        <div class="control">
+          <%= f.submit "\uf002検索", class: "fa button is-link is-rounded" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
 </div>
 
 <div class="table-container">
   <table class="table is-striped is-fullwidth" id="table-residents">
     <thead>
       <tr class="has-text-weight-bold">
-        <th style="width: 24%;">入居者名</th>
-        <th style="width: 23%;">ご家族名</th>
-        <th style="width: 23%;">担当者名</th>
-        <th style="width: 10%;">編集</th>
-        <th style="width: 10%;">退所</th>
-        <th style="width: 10%;">削除</th>
+        <th style="width: 30%;">入居者名</th>
+        <th style="width: 30%;">ご家族名</th>
+        <th style="width: 30%;">担当者名</th>
+        <th style="width: 5%;">編集</th>
+        <th style="width: 5%;">退所</th>
+        <th style="width: 5%;">削除</th>
       </tr>
     </thead>
     <tbody>
@@ -26,12 +61,12 @@
         <td><%#= resident.users %></td>
         <td><%= resident.charge_worker %></td>
         <td>
-          <button type="button" class="button is-success is-medium" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
+          <button type="button" class="button is-success" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
         </td>
-        <td><button type="button" class="button is-warning is-medium" id=""><i class="fas fa-luggage-cart"></i></button></td>
+        <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
         <td>
         <%= link_to resident, method: :delete,
-                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-medium" do %>
+                data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
             <i class="far fa-trash-alt"></i>
         <% end %>
         <%= render 'edit', {resident: resident, resident_id: resident.name} %>
@@ -40,7 +75,31 @@
       <% end %>
     <tbody>
   </table>
-</div>
 <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-
+</div>
+    </div>
+    <div id="WebAud" class="content-tab" style="display:none">
+        <p>
+          退所者一覧<br>
+        Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+</div>
 <%= render 'new' %>
+
+<script>
+function openTab(evt, tabName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("content-tab");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tab");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " is-active";
+}
+</script>
+
+
