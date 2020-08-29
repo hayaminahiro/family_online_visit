@@ -8,7 +8,9 @@
     <section class="modal-card-body">
       <%= form_with(model: resident, url: resident_path(resident), method: :patch, local: true) do |f| %>
       <div class="form-group col-sm-5">
+        <%= f.label :name, class: "label is-size-4" %>
         <%= f.text_field :name, class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
+        <%= f.label :charge_worker, class: "label is-size-4" %>
         <%= f.text_field :charge_worker, class: "fa input is-link is-medium is-rounded" %>
       </div><br>
       <div class="has-text-centered">
@@ -23,13 +25,13 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $("#<%= resident.id %>").on("click", function() {
-            $("div#<%= resident_id %>").addClass("is-active");
-        })
+  $(document).ready(function() {
+    $("#<%= resident.id %>").on("click", function() {
+      $("div#<%= resident_id %>").addClass("is-active");
+    })
 
-        $("#close, div.modal-background").on("click", function() {
-            $("div#<%= resident_id %>").removeClass("is-active");
-        })
-    });
+    $("#close, div.modal-background").on("click", function() {
+      $("div#<%= resident_id %>").removeClass("is-active");
+    })
+  });
 </script>
