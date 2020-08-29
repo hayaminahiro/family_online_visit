@@ -1,8 +1,8 @@
 class ResidentsController < ApplicationController
   def index
-    @residents = Resident.all.paginate(page: params[:page], per_page: 3)
+    @residents = Resident.all.paginate(page: params[:page], per_page: 30)
     if params[:search].present?
-      @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 3).order(:id)
+      @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
     @resident = Resident.new
   end
