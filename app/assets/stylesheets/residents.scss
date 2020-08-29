@@ -7,18 +7,14 @@
 
 .resident-head-button{
   display: flex;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   margin-bottom: 10px;
 }
 .head-button{
   margin-right: 30px;
 }
 .resident-title{
-  text-align: center;
-  font-weight: bold;
-  font-size: 33px;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  background-color: rgb( 117, 150, 224 );
 }
 
 /* テーブル内の位置調整と装飾 */
@@ -44,4 +40,7 @@
   .text-color{
     color:white;
   }
+}
+.pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
+  display: none;
 }
