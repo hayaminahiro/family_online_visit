@@ -11,7 +11,7 @@ class ResidentsController < ApplicationController
     else
       flash[:alert] = "入居者登録できませんでした。入力内容をご確認ください"
     end
-    redirect_to residents_path
+      redirect_to residents_path
   end
 
   def update
@@ -21,7 +21,7 @@ class ResidentsController < ApplicationController
     else
       flash[:alert] = "更新できませんでした。入力内容をご確認ください"
     end
-    redirect_to residents_path
+      redirect_to residents_path
   end
 
   def destroy
@@ -29,6 +29,18 @@ class ResidentsController < ApplicationController
     @resident.destroy
     flash[:alert] = "入居者情報を削除しました"
     redirect_to residents_path
+  end
+
+  def import
+    if params[:file].blank?
+      flash[:alert] = "ファイルが選択されていません"
+    elsif File.extname(params[:file].original_filename) != ".csv"
+      flash[:alert] = "インポート可能なファイルではありません"
+    else
+      Resident.import(params[:file])
+      flash[:notice] = "CSVファイルをインポートしました"
+    end
+      redirect_to residents_path
   end
 
   private
