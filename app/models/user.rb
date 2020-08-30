@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
 
   protected
-  def self.find_for_google(auth)
+  def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
 
     unless user
