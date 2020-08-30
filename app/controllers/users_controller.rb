@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:room_word_update, :edit, :update]
+  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy]
   # ログインしてなければ閲覧不可
-  before_action :authenticate_user!, except: [:index, :video_room, :edit, :update]
-  before_action :authenticate_facility!, only: [:index, :video_room, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :video_room, :edit, :update, :destroy]
+  before_action :authenticate_facility!, only: [:index, :video_room, :edit, :update, :destroy]
 
   def index
     @users = User.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
@@ -33,10 +33,16 @@ class UsersController < ApplicationController
     end
     if @user.update_attributes(user_params)
       flash[:notice] = "ユーザー情報を更新しました。"
-      redirect_to users_path
+      redirect_to users_url
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = "#{@user.name}を削除しました。"
+    redirect_to users_url
   end
 
   def video_room

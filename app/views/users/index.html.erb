@@ -117,8 +117,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to user_registration_path(params: {id: user.id}), method: :delete,
-                        data: {confirm: "削除してよろしいですか?"},
+          <%= link_to user, method: :delete, data: { confirm: "削除してよろしいですか?" },
                         class: "button is-danger is-medium" do %>
           <span><i class="far fa-trash-alt"></i></span>
           <% end %>
