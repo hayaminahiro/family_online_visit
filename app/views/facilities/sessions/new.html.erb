@@ -15,12 +15,12 @@
               <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <div class="field">
                   <%= f.label :email, class: "label" %><br />
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium is-info input-top", :size=>"100px" %>
+                  <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium is-info input-top", :size=>"100px" %>
                 </div>
 
                 <div class="field">
                   <%= f.label :password, class: "label" %><br />
-                  <%= f.password_field :password, autocomplete: "current-password", class: "input is-medium is-info input-top" %>
+                  <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium is-info input-top" %>
                 </div>
 
                 <% if devise_mapping.rememberable? %>
