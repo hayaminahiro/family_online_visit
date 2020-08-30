@@ -1,4 +1,4 @@
-//フラッシュメッセージ
+//共通フラッシュメッセージ
 .error-position {
   margin: 20px 0;
   padding: 15px;
@@ -12,4 +12,25 @@
 
 div.notification.is-danger.error-count {
   margin-bottom: 0;
+}
+
+//施設・家族ユーザー共通
+
+//入力フィールド
+.field {
+  color: #2E2F30;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 20px !important;
+}
+
+.account-link {
+  color: blue;
+}
+
+input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
+  border-color: green;
 }

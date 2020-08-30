@@ -16,7 +16,7 @@
             </h5>
             <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
             <% unless user_signed_in? || facility_signed_in? %>
-              <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold" %>
+              <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold center-login" %>
             <% end %>
           </div>
             <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>

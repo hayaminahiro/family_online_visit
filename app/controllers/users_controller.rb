@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: :room_word_update
-  # ログインしてなければ閲覧不可
-  before_action :authenticate_user!
+  # ログインしてなければ閲覧不可(indexはfacilityユーザーは可能)
+  before_action :authenticate_user!, except: :index
+  before_action :authenticate_facility!, only: :index
   
   def index
     @users = User.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)

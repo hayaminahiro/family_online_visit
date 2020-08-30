@@ -181,20 +181,17 @@ p.navbar-item {
   margin-top: 40px;
 }
 
-.hero-size {
-  margin-right: 200px;
-  margin-left: 200px;
-  margin-top: 50px;
-}
-
 .login-hero-size {
   margin-right: 200px;
   margin-left: 200px;
   margin-top: 80px;
+  background-color: rgba( 204, 255, 255, 0.2 );
+  color: blue;
 }
 
 .to-new-userpage {
   margin-top: -80px;
+  padding-bottom: 30px;
 }
 
 .login-title {
@@ -207,4 +204,13 @@ p.navbar-item {
 
 .admin-btn {
   margin-top: 100px;
+}
+
+.center-login {
+  margin-top: 50px;
+}
+
+a.button.is-success.is-rounded.is-large.has-text-weight-bold.center-login {
+  border-color: green;
+  border-width: 1.5px;
 }

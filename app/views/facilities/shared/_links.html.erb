@@ -3,8 +3,8 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <div class=" has-text-weight-bold">新規ユーザーですか？
-    <%= link_to "アカウント登録はこちら", new_registration_path(resource_name) %>
+  <div class="has-text-weight-bold field">新規ユーザーですか？
+    <%= link_to "アカウント登録はこちら", new_registration_path(resource_name), class: 'account-link' %>
   </div><br />
 <% end %>
 
