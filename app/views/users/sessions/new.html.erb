@@ -35,9 +35,12 @@
                     </div><br>
                   <% end %>
                   <div class="to-new-userpage">
-                    <%= render "users/shared/links" %>
+                    <%= render "users/shared/links" %>                    
                   </div>
-                
+                  <div class="google-line-login">
+                    <%= link_to image_tag("btn_google_signin_dark_focus_web.png"), user_google_omniauth_authorize_path %><br>
+                    <%= link_to image_tag("btn_login_base.png"), user_line_omniauth_authorize_path, :onmouseover => "btn_login_hover.png" %>
+                  </div>                
                 </div>
               </div>
             </div>
@@ -45,8 +48,7 @@
       </article>
       <div class="columns is-centered">
         <div class="column">
-        <%= link_to image_tag("btn_google_signin_dark_focus_web.png"), user_google_omniauth_authorize_path %><br>
-        <%= link_to image_tag("btn_login_base.png"), user_line_omniauth_authorize_path, :onmouseover => "btn_login_hover.png" %>
+        
         </div>
       </div>
     </div>
