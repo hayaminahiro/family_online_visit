@@ -1,32 +1,37 @@
 <div class="modal" id="new">
   <div class="modal-background"></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-        <p class="modal-card-title">新規お知らせ作成</p>
-        <button class="delete" aria-label="close" id="close"></button>
+    <header class="modal-card-head" style="background-color: #48D1CC;">
+      <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">新規お知らせ作成</p>
+      <button class="delete" aria-label="close" id="close"></button>
     </header>
     <section class="modal-card-body">
+      <%= form_with(model: @information, url: informations_path, method: :post, local: true) do |f| %>
       <div class="form-group col-sm-5">
-        <%= form_with(model: @information, url: informations_path, method: :post, local: true) do |f| %>
         <div class="form-group col-sm-5">
-          <%= f.text_field :title, placeholder:"タイトルを入力", class: "input" %>
-          <%= f.text_field :news, placeholder:"本文を入力", class: "textarea" %>
-          <div style= "text-align: right;"><%= f.submit "投稿",class:"button is-info is-outlined" %></div>
+          <%= f.text_field :title, :placeholder => " \uf304 タイトルを入力", class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
+          <%= f.text_area :news, :placeholder => " \uf304 本文を入力", class: "fa textarea is-link is-medium is-rounded is-focused" %>
         </div>
-        <% end %>
+      </div><br>
+      <div class="has-text-centered">
+        <%= f.submit "\uf044 投稿する",class:"fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
+        <button type="button" class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold" aria-label="close" id="close">
+          キャンセル
+        </button>
       </div>
+      <% end %>
     </section>
   </div>
 </div>
 
 <script>
-    $(document).ready(function() {
-        $("#new").on("click", function() {
-            $("div#new").addClass("is-active");
-        })
+  $(document).ready(function() {
+    $("#new").on("click", function() {
+      $("div#new").addClass("is-active");
+    })
 
-        $("#close, div.modal-background").on("click", function() {
-            $("div#new").removeClass("is-active");
-        })
-    });
+    $("#close, div.modal-background").on("click", function() {
+      $("div#new").removeClass("is-active");
+    })
+  });
 </script>

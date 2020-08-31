@@ -1,0 +1,51 @@
+
+<div style="margin:80px;">
+  <div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth" id="top-notice-table">
+      <thead>
+        <tr>
+          <th colspan="4" class="has-text-centered">《当システムでできること》</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-href="<%= information_path(@info_top) %>">
+          <td class="top-td" style="width:20%;"><%= l( @info_top.created_at, format: :dot) %></td>
+          <td style="width:30%;"><%= @info_top.title %></td>
+          <td style="width:50%;"><%= @info_top.news %></td>
+        </tr>
+      <tbody>
+    </table>
+    <br><br>
+    <table class="table is-striped is-hoverable is-fullwidth" id="top-notice-table">
+      <thead>
+        <tr>
+          <th colspan="4" class="has-text-centered">《ホームからのお知らせ》</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @informations.last(5).each do |information| %>
+        <tr data-href="<%= information_path(information) %>">
+          <td class="top-td" style="width:20%;"><%= l(information.created_at, format: :dot) %></td>
+          <td style="width:30%;"><%= information.title %></td>
+          <td style="width:50%;"><%= information.news %></td>
+        </tr>
+        <% end %>
+      <tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+jQuery(function($) {
+  //data-hrefの属性を持つtrを選択しclassにclickableを付加
+  $('tr[data-href]').addClass('clickable')
+    //クリックイベント
+    .click(function(e) {
+      //e.targetはクリックした要素自体、それがa要素以外であれば
+      if(!$(e.target).is('a')){
+        //その要素の先祖要素で一番近いtrの
+        //data-href属性の値に書かれているURLに遷移する
+        window.location = $(e.target).closest('tr').data('href');}
+  });
+});
+</script>

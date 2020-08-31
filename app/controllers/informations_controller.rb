@@ -1,8 +1,12 @@
 class InformationsController < ApplicationController
   def index
     @info_top = Information.find_by(status: "head")
-    @informations = Information.where(status: "others")
+    @informations = Information.where(status: "others").order(id: "DESC").paginate(page: params[:page], per_page: 10)
     @information = Information.new
+  end
+
+  def show
+    @information = Information.find(params[:id])
   end
 
   def create
@@ -31,6 +35,11 @@ class InformationsController < ApplicationController
     flash[:alert] = "お知らせを削除しました"
     redirect_to informations_path
   end
+  # 家族向けお知らせ表示ページ
+  def top_notice
+    @info_top = Information.find_by(status: "head")
+    @informations = Information.where(status: "others")
+  end
 
   private
 
@@ -38,7 +47,4 @@ class InformationsController < ApplicationController
     params.require(:information).permit(:news, :title)
   end
 
-  # 家族向けお知らせ表示ページ
-  def show_notice
-  end
 end

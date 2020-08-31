@@ -6,10 +6,12 @@ Rails.application.routes.draw do
       passwords:     'facilities/passwords',
       registrations: 'facilities/registrations'
   }
+  
   devise_for :users, controllers: {
       sessions:      'users/sessions',
       passwords:     'users/passwords',
-      registrations: 'users/registrations'
+      registrations: 'users/registrations',
+      omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   devise_scope :facility do
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy"  
+    get "sign_out", :to => "users/sessions#destroy"
   end
 
   resources :users do
@@ -32,11 +34,13 @@ Rails.application.routes.draw do
     resources :reservations
   end
 
-  resources :residents
+  resources :residents do
+    collection { post :import }
+  end
   resources :informations do
     collection do
       # お知らせ表示
-      get 'show_notice'
+      get 'top_notice'
     end
   end
 
