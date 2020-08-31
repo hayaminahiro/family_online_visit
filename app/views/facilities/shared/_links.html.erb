@@ -3,8 +3,11 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <div class="has-text-weight-bold field">新規ユーザーですか？
-    <%= link_to "アカウント登録はこちら", new_registration_path(resource_name), class: 'account-link' %>
+  <div class="has-text-weight-bold field facility-side">
+    新規管理者ユーザーの方&ensp;<i class="fas fa-hand-point-right"></i>
+    <button type="button" class="button is-link is-focused is-medium is-rounded has-text-weight-semibold">
+      <%= link_to "アカウント登録", new_registration_path(resource_name), class: 'account-link' %>
+    </button>
   </div><br />
 <% end %>
 

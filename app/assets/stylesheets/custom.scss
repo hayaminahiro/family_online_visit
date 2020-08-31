@@ -18,7 +18,7 @@ div.notification.is-danger.error-count {
 
 //入力フィールド
 .field {
-  color: #2E2F30;
+  color: #2e2f30;
   font-size: 20px;
   font-weight: bold;
 }
@@ -28,13 +28,36 @@ div.notification.is-danger.error-count {
 }
 
 .account-link {
-  color: blue;
+  color: #f7f7f7;
+}
+
+.new-account-btn {
+  color: #f7f7f7;
 }
 
 input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
   border-color: green;
+  margin-top: 10px;
 }
 
-.google-line-login {
+.google-login {
+  position: relative;
+  margin-top: -80px;
+  margin-bottom: 50px;
+}
+
+.line-login {
+  position: relative;
   margin-top: -30px;
+}
+
+.user-side {
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+.facility-side {
+  margin-top: -80px;
+  padding-bottom: 50px;
+  width: 100%;
 }
