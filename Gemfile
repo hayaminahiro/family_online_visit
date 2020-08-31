@@ -19,6 +19,10 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-line'
+gem 'dotenv-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
