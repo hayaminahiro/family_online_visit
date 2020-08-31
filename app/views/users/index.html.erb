@@ -25,7 +25,7 @@
 </section>
 
 <div class="container section">
-  <div id="WebDev" class="content-tab" >
+  <div id="WebDev" class="content-tab">
     <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
     <section class="hero is-small">
       <div class="hero-body">
@@ -92,7 +92,9 @@
                     </div><br>
                     <div class="has-text-centered">
                       <%= f.submit "\uf044 登録する", class: "fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
-                      <button type="button" class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold" aria-label="close" id="close">
+                      <button type="button"
+                        class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold"
+                        aria-label="close" id="close">
                         キャンセル
                       </button>
                     </div>
@@ -104,12 +106,12 @@
               </div>
 
               <script>
-                $(document).ready(function() {
-                  $("#<%= user.id %>").on("click", function() {
+                $(document).ready(function () {
+                  $("#<%= user.id %>").on("click", function () {
                     $("div#<%= user.name %>").addClass("is-active");
                   })
 
-                  $("#close, div.modal-background").on("click", function() {
+                  $("#close, div.modal-background").on("click", function () {
                     $("div#<%= user.name %>").removeClass("is-active");
                   })
                 });
@@ -128,14 +130,13 @@
               <% end %>
             </td>
             <td>
-              <%= link_to edit_user_registration_path(params: {id: user.id}), class: "button is-success is-medium" do %>
+              <%= link_to edit_user_path(user), class: "button is-success is-medium" do %>
               <span><i class="fas fa-user-edit"></i></span>
               <% end %>
             </td>
             <td>
-              <%= link_to user_registration_path(params: {id: user.id}), method: :delete,
-                            data: {confirm: "削除してよろしいですか?"},
-                            class: "button is-danger is-medium" do %>
+              <%= link_to user, method: :delete, data: { confirm: "削除してよろしいですか?" },
+                              class: "button is-danger is-medium" do %>
               <span><i class="far fa-trash-alt"></i></span>
               <% end %>
             </td>
@@ -150,7 +151,12 @@
   <div id="WebAud" class="content-tab" style="display:none">
     <p>
       test2<br>
-      Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+      it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+      typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+      containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+      versions of Lorem Ipsum.</p>
   </div>
 </div>
 
@@ -159,13 +165,13 @@
     var i, x, tablinks;
     x = document.getElementsByClassName("content-tab");
     for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
+      x[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tab");
     for (i = 0; i < x.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
   }
-</script> 
+</script>

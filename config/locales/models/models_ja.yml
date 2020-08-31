@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ご家族
+      facility: 施設
       information: お知らせ
       resident: 入居者
       reservation: 予約
@@ -24,6 +25,12 @@ ja:
           address: 住所
           created_at: 作成日
           updated_at: 更新日
+        facility:
+          id: ID
+          facility_name: 施設名
+          email: メールアドレス
+          password: パスワード
+          password_confirmation: パスワード再入力
         information:
           title: タイトル
           news: 本文 

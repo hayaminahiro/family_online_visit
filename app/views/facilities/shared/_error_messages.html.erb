@@ -1,15 +1,15 @@
-<% if obj.errors.any? %>
+<% if resource.errors.any? %>
   <div class="message is-danger">
     <div class="notification is-size-5 has-text-weight-bold is-danger error-count">
-      入力エラーが<%= obj.errors.count %>件ありました。
+      入力エラーが<%= resource.errors.count %>件ありました。
     </div>
     <ul class="has-text-danger is-size-6 has-text-weight-bold errors_full_messages">
-      <% obj.errors.full_messages.each do |msg| %>
+      <% resource.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<!--例：下記のようにViewページに埋め込む-->
-<%#= render partial: 'shared/error_messages', locals: { obj: @user } %>
+<!--下記のようにして使用-->
+<%#= render "users/shared/error_messages", resource: resource %>
