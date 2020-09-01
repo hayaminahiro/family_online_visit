@@ -1,0 +1,137 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <section class="navbar is-dark dark-top">
+      <div class="navbar-body">
+        <div class="container">
+          <%= link_to root_path, class: "navbar-item" do %>
+            <i class="fas fa-photo-video fa-2x fa-border font-awe-video"></i>
+            <h1 class="title is-2" style="font-family: Georgia; color: paleturquoise">Online Visit</h1>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-start has-text-weight-bold">
+        <!--全ユーザー閲覧可能-->
+        <% if user_signed_in? || facility_signed_in? %>
+          <p class="navbar-item">
+            <%= link_to_unless_current "トップ", root_path, class: "links" %>
+          </p>
+
+          <% if user_signed_in? %>
+            <!--家族のみ閲覧可-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "予約", "#", class: "links" %>
+            </p>
+
+            <!--家族のみ閲覧可-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
+            </p>
+
+          <% elsif facility_signed_in? %>
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
+            </p>
+
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "ご家族一覧", users_path, class: "links" %>
+            </p>
+
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "入居者一覧", residents_path, class: "links" %>
+            </p>
+
+          <% end %>
+
+            <!--全ユーザー閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+            </p>
+
+          <% if facility_signed_in? %>
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "お知らせ", informations_path, class: "links" %>
+            </p>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <% if user_signed_in?  || facility_signed_in? %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link has-text-weight-bold more">
+            <i class="fas fa-user-circle fa-2x"></i>
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item has-text-weight-bold is-size-6">
+              <% if user_signed_in? %>
+                <%= link_to "マイページ", user_path(current_user), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% elsif facility_signed_in? %>
+                <%= link_to "マイページ", facility_path(current_facility), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% end %>
+            </a>
+            <a class="navbar-item has-text-weight-bold is-size-6">
+              <% if user_signed_in? %>
+                <%= link_to "設定", edit_user_registration_path(resource_name), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% elsif facility_signed_in? %>
+                <%= link_to "設定", edit_facility_registration_path(resource_name), class: "navbar-item has-text-weight-bold is-size-6" %>
+              <% end %>
+            </a>
+            <hr class="navbar-divider">
+            <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-6" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="navbar-item">
+          <div class="buttons">
+            <p class="navbar-item has-text-weight-bold is-size-5">
+              管理者はこちらから
+            </p>
+            <%= link_to "ログイン", facility_session_path, class: "button is-primary is-large has-text-weight-bold" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
+
+    });
+</script>

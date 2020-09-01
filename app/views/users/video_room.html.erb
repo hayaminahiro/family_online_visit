@@ -1,0 +1,272 @@
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+    </div>
+  </div>
+</section>
+
+<section class="hero-1" style="background-image: linear-gradient(25deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/video_room.jpg');">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered has-text-white is-size-2">
+        面会ルーム
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="room">
+      <div class="has-text-centered columns">
+        <div class="column is-half">
+          <video id="js-local-stream"></video>
+          <span id="js-room-mode"></span>:
+        </div>
+        <div class="column is-half">
+          <div cl="remote-streams" id="js-remote-streams"></div>
+        </div>
+      </div>
+      <div class="has-text-centered"> 
+        <p class="column is-three-fifths is-offset-one-fifth control">
+          <input class="input is-medium is-warning has-text-weight-semibold" type="text" placeholder="Room Nameを入力してください" id="js-room-id">
+        </p>
+        <h3 class="is-size-3"><strong>Room Name:&emsp;</strong></h3><br>
+        <button id="js-join-trigger" class="button is-success is-large is-rounded has-text-weight-semibold">入室する</button>&emsp;
+        <button id="js-leave-trigger" class="button is-danger is-large is-rounded has-text-weight-semibold">退室する</button> 
+      </div><br>
+      <div class="has-text-centered">
+        <pre class="messages" id="js-messages"></pre>
+        <input class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text">
+        <p class="has-text-right has-text-weight-semibold">
+          *メッセージを送信することができます。
+        </p>
+        <button id="js-send-trigger" class="button is-info is-large is-rounded has-text-weight-semibold">送信する</button>
+      </div>
+    </div><br>
+    <div class="has-text-centered">
+      <%= link_to "戻る", "#", class: "button is-large is-outlined is-dark" %>
+    </div>
+    <div class="has-text-right">  
+      <div class="content">
+        <button id="timer" class="has-text-weight-semibold button is-large is-primary">残り30分</p>
+      </div>
+      <div class="button" id="buttonBox">
+          <button id="start" class="has-text-weight-semibold">
+            面会開始
+          </button>
+      </div>
+    </div><br>
+    <p class="meta" id="js-meta"></p>
+  </div> 
+</section>
+
+<script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+<script>
+  const Peer = window.Peer;
+
+  (async function main() {
+    const localVideo = document.getElementById('js-local-stream');
+    const joinTrigger = document.getElementById('js-join-trigger');
+    const leaveTrigger = document.getElementById('js-leave-trigger');
+    const remoteVideos = document.getElementById('js-remote-streams');
+    const roomId = document.getElementById('js-room-id');
+    const roomMode = document.getElementById('js-room-mode');
+    const localText = document.getElementById('js-local-text');
+    const sendTrigger = document.getElementById('js-send-trigger');
+    const messages = document.getElementById('js-messages');
+    const meta = document.getElementById('js-meta');
+    const sdkSrc = document.querySelector('script[src*=skyway]');
+  
+    meta.innerText = `
+      UA: ${navigator.userAgent}
+      SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
+    `.trim();
+  
+    const getRoomModeByHash = () => (location.hash === '#sfu' ? 'sfu' : 'mesh');
+  
+    roomMode.textContent = getRoomModeByHash();
+    window.addEventListener(
+      'hashchange',
+      () => (roomMode.textContent = getRoomModeByHash())
+    );
+  
+    const localStream = await navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+        video: true,
+      })
+      .catch(console.error);
+  
+    // Render local stream
+    localVideo.muted = true;
+    localVideo.srcObject = localStream;
+    localVideo.playsInline = true;
+    await localVideo.play().catch(console.error);
+  
+    // eslint-disable-next-line require-atomic-updates
+    const peer = (window.peer = new Peer({
+      key: "56ce0219-dc92-4ccb-98e3-4fe9bc9be693",
+      debug: 3,
+    }));
+  
+    // Register join handler
+    joinTrigger.addEventListener('click', () => {
+      // Note that you need to ensure the peer has connected to signaling server
+      // before using methods of peer instance.
+      if (!peer.open) {
+        return;
+      }
+  
+      const room = peer.joinRoom(roomId.value, {
+        mode: getRoomModeByHash(),
+        stream: localStream,
+      });
+  
+      room.once('open', () => {
+        messages.textContent += '=== 入室しました ===\n';
+      });
+      room.on('peerJoin', peerId => {
+        messages.textContent += `=== ${peerId} joined ===\n`;
+      });
+  
+      // Render remote stream for new peer join in the room
+      room.on('stream', async stream => {
+        const newVideo = document.createElement('video');
+        newVideo.srcObject = stream;
+        newVideo.playsInline = true;
+        // mark peerId to find it later at peerLeave event
+        newVideo.setAttribute('data-peer-id', stream.peerId);
+        remoteVideos.append(newVideo);
+        await newVideo.play().catch(console.error);
+      });
+  
+      room.on('data', ({ data, src }) => {
+        // Show a message sent to the room and who sent
+        messages.textContent += `${src}: ${data}\n`;
+      });
+  
+      // for closing room members
+      room.on('peerLeave', peerId => {
+        const remoteVideo = remoteVideos.querySelector(
+          `[data-peer-id="${peerId}"]`
+        );
+        remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+        remoteVideo.srcObject = null;
+        remoteVideo.remove();
+  
+        messages.textContent += `=== ${peerId} left ===\n`;
+      });
+  
+      // for closing myself
+      room.once('close', () => {
+        sendTrigger.removeEventListener('click', onClickSend);
+        messages.textContent += '== 退室しました ===\n';
+        Array.from(remoteVideos.children).forEach(remoteVideo => {
+          remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+          remoteVideo.srcObject = null;
+          remoteVideo.remove();
+        });
+      });
+  
+      sendTrigger.addEventListener('click', onClickSend);
+      leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+  
+      function onClickSend() {
+        // Send message to all of the peers in the room via websocket
+        room.send(localText.value);
+  
+        messages.textContent += `${peer.id}: ${localText.value}\n`;
+        localText.value = '';
+      }
+    });
+  
+    peer.on('error', console.error);
+  })();
+</script>
+
+<script>
+  var point;
+  var sec;
+  var seconds;
+  var min;
+  var hour;
+  var start;
+  var now;
+  var time;
+  var id;
+
+  document.getElementById('start').addEventListener('click', function () {
+    if (document.getElementById('start').innerHTML === 'START') {
+      start = new Date();
+      id = setInterval(goTimer, 10);
+      document.getElementById('start').innerHTML = '面会中';
+
+      document.getElementById('buttonBox').classList.remove('button');
+      document.getElementById('buttonBox').classList.add('buttonbutton');
+      if (document.getElementById('start').innerHTML === '面会中') {
+        document.getElementById('start').disabled = true;
+      }
+  } else {
+      clearInterval(id);
+      document.getElementById('start').innerHTML = 'START';
+
+      document.getElementById('buttonBox').classList.remove('buttonbutton');
+      document.getElementById('buttonBox').classList.add('button');
+      if (document.getElementById('start').innerHTML === '面会中') {
+        document.getElementById('start').disabled = true;
+      }
+    }
+  });
+
+  var goTimer = function () {
+    now = new Date();
+    time = now.getTime() - start.getTime();
+
+    point = Math.floor(time / 100);
+    sec = Math.floor(time / 1000);
+    min = Math.floor(sec / 60);
+    hour = Math.floor(min / 60);
+    seconds = Math.floor(time / 1000);
+
+    if (seconds < 1800) {
+        point = 9 - (point - sec * 10);
+        sec = 59 - (sec - min * 60);
+        min = 29 - (min - hour * 60);
+
+        point = addZero(point);
+        sec = addZero(sec);
+        min = addZero(min);
+
+      document.getElementById('timer').innerHTML = '残り' + min + '分';
+    } else if (seconds >= 1800 && seconds < 240) {
+        point = point - sec * 10;
+        sec = sec - min * 60;
+        min = min - 3;
+
+        point = addZero(point);
+        sec = addZero(sec);
+        min = addZero(min);
+
+        document.getElementById('timer').style.color = 'red';
+        document.getElementById('timer').innerHTML = '残り' + min + '分';
+
+    } else {
+        clearInterval(id);
+        document.getElementById('timer').innerHTML = '残り30分';
+        document.getElementById('timer').style.color = 'white';
+        document.getElementById('start').innerHTML = 'start';
+
+        document.getElementById('buttonBox').classList.remove('buttonbutton');
+        document.getElementById('buttonBox').classList.add('button');
+    }
+
+  };
+
+  var addZero = function (value) {
+    if (value < 10) {
+        value = '0' + value;
+    }
+    return value;
+  };
+</script>

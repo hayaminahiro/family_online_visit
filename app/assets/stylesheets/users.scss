@@ -1,0 +1,27 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 面会ルームのタイトル */
+
+.hero-1 {
+  background-size: cover;
+  background-position: center;
+}
+
+/* ご家族一覧 */
+
+#family-table th {
+  background-color: #FFDAB9;
+  font-size: 20px;
+  text-align: center; 
+}
+
+#family-table td {
+  text-align: center;
+}
+
+.hero .tabs ul {
+  margin-right: 40px;
+  margin-left: 40px;
+}

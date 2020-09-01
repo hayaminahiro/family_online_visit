@@ -25,3 +25,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+.idea/
+/.env
+.env
+/public/uploads
+vendor/bundle
+
+.DS_Store
