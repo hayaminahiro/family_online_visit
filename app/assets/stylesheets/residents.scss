@@ -1,0 +1,46 @@
+// Place all the styles related to the residents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the residents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.resident-head-button{
+  display: flex;
+  // justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.head-button{
+  margin-right: 30px;
+}
+.resident-title{
+  background-color: rgb( 117, 150, 224 );
+}
+
+/* テーブル内の位置調整と装飾 */
+#table-residents {
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  thead th{/*table内のヘッダーに対して*/
+    color: white;
+    font-size:20px;
+  }
+  thead tr{
+    background-color: rgb( 117, 150, 224 )
+  }
+  .tr-head {/*table内のラベル対して*/
+      background-color: rgb( 188, 214, 226 )
+    }
+  .text-color{
+    color:white;
+  }
+}
+.pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
+  display: none;
+}

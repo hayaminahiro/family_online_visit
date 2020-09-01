@@ -1,0 +1,15 @@
+<% if resource.errors.any? %>
+  <div class="message is-danger">
+    <div class="notification is-size-5 has-text-weight-bold is-danger error-count">
+      入力エラーが<%= resource.errors.count %>件ありました。
+    </div>
+    <ul class="has-text-danger is-size-6 has-text-weight-bold errors_full_messages">
+      <% resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<!--下記のようにして使用-->
+<%#= render "users/shared/error_messages", resource: resource %>

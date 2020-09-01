@@ -1,0 +1,177 @@
+<section class="hero is-small">
+  <div class="hero-body">
+  </div>
+</section>
+
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-centered is-size-1">
+        ご家族一覧
+      </h1>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <div class="tabs is-boxed is-fullwidth is-large">
+      <div class="container">
+        <ul>
+          <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight-semibold">利用中</a></li>
+          <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight-semibold">退所</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container section">
+  <div id="WebDev" class="content-tab">
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-rounded is-black" %>
+            </div>
+            <div class="control">
+              <%= f.submit "\uf002検索", class: "fa button is-medium is-link is-rounded" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <div class="table-container">
+      <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>入居者登録</th>
+            <th>面会予約</th>
+            <th>Room Nameの設定</th>
+            <th>Room Name</th>
+            <th>面会</th>
+            <th>編集</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= user.name %>
+              </div>
+            </td>
+            <td>
+              <%= link_to "登録", '#', class: "button is-info is-medium is-rounded has-text-weight-semibold" %>
+            </td>
+            <td>
+              <%= link_to "予約", '#', class: "button is-link is-medium is-rounded has-text-weight-semibold" %>
+            </td>
+            <td>
+              <button class="button is-primary is-medium" id=<%= user.id %>>
+                <span><i class="fas fa-key"></i></span>
+              </button>
+
+              <!-- Room Name モーダル表示 -->
+              <div class="modal" id=<%= user.name %>>
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #48D1CC;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%= form_with(model: user, url: room_word_update_user_path(user), method: :patch, local: true,) do |f| %>
+                  <section class="modal-card-body">
+                    <div class="field">
+                      <%= f.label :room_name, class: "label is-size-4" %>
+                      <%= f.text_field :room_name, :placeholder => " \uf084 Room Nameを入力してください", class: "fa input is-link is-large is-rounded is-focused" %>
+                    </div><br>
+                    <div class="has-text-centered">
+                      <%= f.submit "\uf044 登録する", class: "fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
+                      <button type="button"
+                        class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold"
+                        aria-label="close" id="close">
+                        キャンセル
+                      </button>
+                    </div>
+                  </section>
+                  <footer class="modal-card-foot">
+                  </footer>
+                  <% end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= user.id %>").on("click", function () {
+                    $("div#<%= user.name %>").addClass("is-active");
+                  })
+
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= user.name %>").removeClass("is-active");
+                  })
+                });
+              </script>
+              <!-- ここまで -->
+
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= user.room_name %>
+              </div>
+            </td>
+            <td>
+              <%= link_to video_room_user_path(user), class: "button is-warning is-medium" do %>
+              <span><i class="fas fa-photo-video"></i></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_user_path(user), class: "button is-success is-medium" do %>
+              <span><i class="fas fa-user-edit"></i></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user, method: :delete, data: { confirm: "削除してよろしいですか?" },
+                              class: "button is-danger is-medium" do %>
+              <span><i class="far fa-trash-alt"></i></span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><br>
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+  </div>
+
+  <div id="WebAud" class="content-tab" style="display:none">
+    <p>
+      test2<br>
+      Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+      it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+      typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+      containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+      versions of Lorem Ipsum.</p>
+  </div>
+</div>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+</script>
