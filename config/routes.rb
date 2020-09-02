@@ -24,42 +24,55 @@ Rails.application.routes.draw do
     get "sign_out", :to => "users/sessions#destroy"
   end
 
-  resources :users do
-    member do
-      get :video_room
-      patch :change_admin
-      get 'video_room'
-      patch 'room_word_update'
-    end
-    resources :reservations
-  end
-
-  resources :residents do
-    collection { post :import }
-  end
-  resources :informations do
-    collection do
-      # お知らせ表示
-      get 'top_notice'
+  # ご家族目線のルーティング
+  resources :users do # /users/:id/~~~
+    resources :reservations # /users/:user_id/~~~
+    resources :facilities do # user_id, facility_id付与
+      resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
+        member do # /users/:user_id/facilities/:id/~~~
+          get :video_room # /users/:user_id/facilities/:id/video_room
+          patch :change_admin
+          get 'video_room'
+          patch 'room_word_update'
+        end
     end
   end
 
-  resources :facilities
+  # 施設目線のルーティング
+  resources :facilities do # /facilities/:id/~~~
+    resources :residents # /facilities/:facility_id/residents/:id/~~~
+    resources :informations do # /facilities/:facility_id/informations/~~~
+      collection do
+        get 'show_notice' # お知らせ表示
+      end
+    end
+    resources :users do
+      member do
+        get :video_room # /facilities/:facility_id/users/:id/video_room
+      end
+    end
+  end
 
-  # resources :facilities do #facility_idが付与される
-  #   resources :residents
-  #   get :home #施設のホーム画面
-  #   resources :users do
-  #     member do #facility_id、user_idが付与される
-  #       get :video_room
-  #     end
-  #     resources :reservations  #facility_id、user_id、reservations_idが付与される
+  # resources :users do
+  #   member do
+  #     get :video_room
+  #     patch :change_admin
+  #     get 'video_room'
+  #     patch 'room_word_update'
   #   end
-  #   resources :informations do
-  #     collection do
-  #       get 'show_notice' # トップお知らせ表示
-  #     end
+  #   resources :reservations
+  # end
+
+  # resources :residents do
+  #   collection { post :import }
+  # end
+  # resources :informations do
+  #   collection do
+  #     # お知らせ表示
+  #     get 'top_notice'
   #   end
   # end
+
+  # resources :facilities
 
 end
