@@ -1,44 +1,44 @@
 <body class="image-layout">
-  <section class="hero is-primary hero-size" >
+  <section class="hero login-hero-size" >
     <div class="container">
       <article class="media">
         <div class="media-content">
           <div class="content has-text-centered">
             <div class="signup-title">
               <strong class="new-title">新規登録</strong>
-            </div>            
+            </div>
           </div>
             <div class="button-position">
               <div class="columns is-centered">
                 <div class="column is-6 top-btn-position">
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   <%= render "users/shared/error_messages", resource: resource %>
-                
+
                   <div class="field">
                     <%= f.label :name, "あなたのお名前", class: "label" %><br />
-                    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input is-medium input-top", :size=>"100px" %>
+                    <%= f.text_field :name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
                   </div>
-                  
+
                   <div class="field">
                     <%= f.label :email, class: "label" %><br />
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium input-top" %>
+                    <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
                   </div>
-                
+
                   <div class="field">
                     <%= f.label :password, class: "label" %><br />
-                    <%= f.password_field :password, autocomplete: "new-password", class: "input is-medium input-top" %>
+                    <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
                   </div>
-                
+
                   <div class="field">
                     <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input is-medium input-top" %>
+                    <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
                   </div>
-                
+
                   <div class="actions">
-                    <%= f.submit "新規登録", class: "button is-info is-medium is-fullwidth new-btn" %>
+                    <%= f.submit "新規登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
                   </div>
                 <% end %>
-                
+
                 </div>
               </div>
             </div>
@@ -52,18 +52,4 @@
   </section>
 </body>
 
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#open").on("click", function() {
-            $("div.modal").addClass("is-active");
-        })
-
-        $("#close, div.modal-background").on("click", function() {
-            $("div.modal").removeClass("is-active");
-        })
-    });
-</script>
 

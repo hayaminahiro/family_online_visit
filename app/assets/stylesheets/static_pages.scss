@@ -37,9 +37,9 @@ h2 {
   background-image: url(/assets/family-sky.jpg);
 }
 
-.image-layout::before{
+.image-layout::before {
   /* 透過した黒を重ねる */
-  background-color: rgba(1,1,1,0.2);
+  background-color: rgba(1, 1, 1, 0.2);
   /* どの範囲に重ねるかを指定 */
   position: absolute;
   top: 0;
@@ -53,7 +53,7 @@ h2 {
   width: 250px;
   font-size: 24px;
   font-weight: bold;
-  text-align:center;
+  text-align: center;
   display: inline-block;
   padding: 0.3em 1em;
   text-decoration: none;
@@ -73,7 +73,7 @@ h2 {
   width: 250px;
   font-size: 24px;
   font-weight: bold;
-  text-align:center;
+  text-align: center;
   display: inline-block;
   padding: 0.3em 1em;
   text-decoration: none;
@@ -181,20 +181,18 @@ p.navbar-item {
   margin-top: 40px;
 }
 
-.hero-size {
-  margin-right: 200px;
-  margin-left: 200px;
-  margin-top: 50px;
-}
-
 .login-hero-size {
   margin-right: 200px;
   margin-left: 200px;
   margin-top: 80px;
+  background-color: rgba(204, 255, 255, 0.2);
+  color: blue;
+  border-radius: 2%;
 }
 
 .to-new-userpage {
-  margin-top: -80px;
+  margin-top: 20px;
+  margin-bottom: -30px;
 }
 
 .login-title {
@@ -207,4 +205,13 @@ p.navbar-item {
 
 .admin-btn {
   margin-top: 100px;
+}
+
+.center-login {
+  margin-top: 50px;
+}
+
+a.button.is-success.is-rounded.is-large.has-text-weight-bold.center-login {
+  border-color: green;
+  border-width: 1.5px;
 }

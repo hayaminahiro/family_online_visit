@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: :room_word_update
-  
+  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy]
+  # ログインしてなければ閲覧不可
+  before_action :authenticate_user!, except: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
+  before_action :authenticate_facility!, only: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
+
   def index
     @users = User.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
@@ -16,6 +19,29 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "登録できませんでした。"
     end
+    redirect_to users_url
+  end
+
+  def edit
+  end
+
+  def update
+    # passwordが空白でも編集できる
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+    if @user.update_attributes(user_params)
+      flash[:notice] = "ユーザー情報を更新しました。"
+      redirect_to users_url
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = "#{@user.name}を削除しました。"
     redirect_to users_url
   end
 
@@ -50,4 +76,9 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
 end
