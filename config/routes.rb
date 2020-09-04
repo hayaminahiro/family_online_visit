@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :users do # /users/:id/~~~
     resources :reservations # /users/:user_id/~~~
     resources :facilities do # user_id, facility_id付与
+      get :home #施設のホーム画面
       resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
         member do # /users/:user_id/facilities/:id/~~~
           get :video_room # /users/:user_id/facilities/:id/video_room
@@ -41,16 +42,18 @@ Rails.application.routes.draw do
   # 施設目線のルーティング
   resources :facilities do # /facilities/:id/~~~
     resources :residents # /facilities/:facility_id/residents/:id/~~~
-    resources :informations do # /facilities/:facility_id/informations/~~~
-      collection do
-        get 'show_notice' # お知らせ表示
-      end
-    end
+    get :home #施設のホーム画面
     resources :users do
       member do
         get :video_room # /facilities/:facility_id/users/:id/video_room
       end
     end
+    resources :informations do # /facilities/:facility_id/informations/~~~
+      collection do
+        get 'show_notice' # お知らせ表示
+      end
+    end
+
   end
 
   # resources :users do

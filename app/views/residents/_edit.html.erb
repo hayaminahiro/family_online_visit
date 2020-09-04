@@ -6,7 +6,7 @@
       <button class="delete" aria-label="close" id="close"></button>
     </header>
     <section class="modal-card-body">
-      <%= form_with(model: resident, url: resident_path(resident), method: :patch, local: true) do |f| %>
+      <%= form_with(model: resident, url: "#", method: :patch, local: true) do |f| %>
       <div class="form-group col-sm-5">
         <%= f.label :name, class: "label is-size-4" %>
         <%= f.text_field :name, class: "fa input is-link is-medium is-rounded is-focused" %><br><br>

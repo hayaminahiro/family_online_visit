@@ -1,16 +1,11 @@
 <body class="image-layout">
   <section class="section login-hero-size" style="padding-top: 10px;">
-    <% if user_signed_in? %>
-      <% current_user.facilities.each do |facility| %> <!--current_user.facilitiesでログイン中のユーザが登録済みの施設を全て取得-->
-        <% @facility = facility.id %>
-        <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>/
-      <% end %>
-    <% end %>
     <div class="container">
       <article class="media">
         <div class="media-content">
           <div class="content has-text-centered">
             <h1 class="main-title">
+              <h3><%= @facility.facility_name %>へようこそ！</h3>
               <strong class="top-title">Online Visit</strong>
             </h1>
             <h5 class="is-size-2">

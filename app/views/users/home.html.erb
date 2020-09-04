@@ -1,31 +1,31 @@
 <body class="image-layout">
-  <section class="section login-hero-size" style="padding-top: 10px;">
-    <% if user_signed_in? %>
-      <% current_user.facilities.each do |facility| %> <!--current_user.facilitiesでログイン中のユーザが登録済みの施設を全て取得-->
-        <% @facility = facility.id %>
-        <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>/
-      <% end %>
-    <% end %>
-    <div class="container">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <h1 class="main-title">
-              <strong class="top-title">Online Visit</strong>
-            </h1>
-            <h5 class="is-size-2">
-              <% if facility_signed_in? %>
-              管理者 <%= current_facility.facility_name %> 様
-              <% elsif user_signed_in? %>
-              <%= current_user.name %> 様
-              <% end %>
-            </h5>
-            <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
-            <% unless user_signed_in? || facility_signed_in? %>
-            <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold center-login" %>
+<section class="section login-hero-size" style="padding-top: 10px;">
+  <div class="container">
+    <article class="media">
+      <div class="media-content">
+        <div class="content has-text-centered">
+          <h1 class="main-title">
+            <% current_user.facilities.each do |f| %>
+              <%# if current_user.id == f.id  %>
+                <%= f.facility_name %>
+              <%# end %>
             <% end %>
-          </div>
-          <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
+            <% console %>
+            <strong class="top-title">Online Visit</strong>
+          </h1>
+          <h5 class="is-size-2">
+            <% if facility_signed_in? %>
+              管理者 <%= current_facility.facility_name %> 様
+            <% elsif user_signed_in? %>
+              <%= current_user.name %> 様
+            <% end %>
+          </h5>
+          <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
+          <% unless user_signed_in? || facility_signed_in? %>
+            <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold center-login" %>
+          <% end %>
+        </div>
+        <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
           <div class="button-position">
             <div class="columns is-centered">
               <div class="column is-3 top-btn-position">
@@ -50,30 +50,30 @@
               </div>
             </div>
           </div>
-          <% end %>
-        </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column is-3">
-          <div class="admin-btn">
-            <% if user_signed_in? %>
+        <% end %>
+      </div>
+    </article>
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="admin-btn">
+          <% if user_signed_in? %>
             <% if current_user.admin == true && current_user.floor_authority == true %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => false %>
-            <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
-            <% end %>
+              <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
+                <%= f.hidden_field :floor_authority, :value => false %>
+                <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
+              <% end %>
             <% elsif current_user.admin == true && current_user.floor_authority == false %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => true %>
-            <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
+              <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
+                <%= f.hidden_field :floor_authority, :value => true %>
+                <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
+              <% end %>
             <% end %>
-            <% end %>
-            <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 </body>
 
 <!--ご入居者様の登録申請ボタンのモーダル-->
@@ -100,13 +100,13 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
-  $(document).ready(function() {
-    $("#open").on("click", function() {
-      $("div.modal").addClass("is-active");
-    })
+    $(document).ready(function() {
+        $("#open").on("click", function() {
+            $("div.modal").addClass("is-active");
+        })
 
-    $("#close, div.modal-background").on("click", function() {
-      $("div.modal").removeClass("is-active");
-    })
-  });
+        $("#close, div.modal-background").on("click", function() {
+            $("div.modal").removeClass("is-active");
+        })
+    });
 </script>
