@@ -42,7 +42,6 @@ Rails.application.routes.draw do
   # 施設目線のルーティング
   resources :facilities do # /facilities/:id/~~~
     resources :residents # /facilities/:facility_id/residents/:id/~~~
-    get :home #施設のホーム画面
     resources :users do
       member do
         get :video_room # /facilities/:facility_id/users/:id/video_room
@@ -50,7 +49,7 @@ Rails.application.routes.draw do
     end
     resources :informations do # /facilities/:facility_id/informations/~~~
       collection do
-        get 'show_notice' # お知らせ表示
+        get 'top_notice' # お知らせ表示
       end
     end
 
