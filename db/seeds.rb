@@ -1,10 +1,3 @@
-# Information.create!(
-#   facility_id: 2,
-#   title: "当システムの利用方法",
-#   news: "ご利用前にご入居者様の・・・",
-#   status: 1
-# )
-
 # deviseの場合、~.save!しないとpasswordがseedに反映されない。
 admin = Facility.create!(
   facility_name: "管理者ユーザー",
@@ -53,3 +46,10 @@ end
     charge_worker: "担当者-#{n+1}"
   )
 end
+
+Information.create!(
+    facility_id: 2,
+    title: "当システムの利用方法",
+    news: "ご利用前にご入居者様の・・・",
+    status: 1
+)
