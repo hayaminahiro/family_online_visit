@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_062838) do
+ActiveRecord::Schema.define(version: 2020_09_05_145314) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,12 +34,14 @@ ActiveRecord::Schema.define(version: 2020_08_28_062838) do
     t.index ["user_id"], name: "index_facility_users_on_user_id"
   end
 
-  create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "news"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "facility_id"
+    t.index ["facility_id"], name: "index_informations_on_facility_id"
   end
 
   create_table "relatives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_08_28_062838) do
     t.string "charge_worker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "facility_id"
+    t.index ["facility_id"], name: "index_residents_on_facility_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -100,7 +104,9 @@ ActiveRecord::Schema.define(version: 2020_08_28_062838) do
 
   add_foreign_key "facility_users", "facilities"
   add_foreign_key "facility_users", "users"
+  add_foreign_key "informations", "facilities"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
   add_foreign_key "reservations", "users"
+  add_foreign_key "residents", "facilities"
 end

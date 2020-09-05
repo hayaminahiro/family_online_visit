@@ -9,7 +9,6 @@ class ResidentsController < ApplicationController
 
   def create
     @resident = Resident.new(resident_params)
-    @resident.facility_id = params[:facility_id].to_i  #追加
     if  @resident.save
       flash[:notice] = "入居者を新規登録できました"
     else
@@ -20,7 +19,6 @@ class ResidentsController < ApplicationController
 
   def update
     @resident = Resident.find(params[:id])
-    @resident.facility_id = params[:facility_id].to_i #追加
     if @resident.update(resident_params)
       flash[:notice] = "入居者情報を更新できました"
     else
