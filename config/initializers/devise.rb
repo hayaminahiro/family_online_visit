@@ -10,10 +10,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   require 'devise/orm/active_record'
-  config.omniauth :google_oauth2,
-                  ENV['GOOGLE_APP_ID'],
-                  ENV['GOOGLE_APP_SECRET'],
-                  name: :google
+  config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET'], skip_jwt: true
 
   config.omniauth :line,
                   ENV['LINE_KEY'],

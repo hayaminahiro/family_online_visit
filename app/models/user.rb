@@ -2,39 +2,67 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-<<<<<<< HEAD
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i[google_oauth2 line]
-=======
-         :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i[google line]
 
   # User:Facility = 多対多 ・・・関連付け
   has_many :facility_users, dependent: :destroy
   has_many :facilities, through: :facility_users
   accepts_nested_attributes_for :facility_users, allow_destroy: true
 
->>>>>>> e99865f6c630db8f1def578cb9d56bfe0c360166
   has_many :relatives, dependent: :destroy
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
+  has_many :sns_credential, dependent: :destroy
 
   # cookieでログイン情報を保持
   def remember_me
     true
   end
 
-  protected
-  def self.from_omniauth(auth)
-    user = User.find_by(email: auth.info.email)
+  def self.without_sns_data(auth)
+    user = User.where(email: auth.info.email).first
 
-    unless user
-      user = User.create(name:     auth.info.name,
-                         email: auth.info.email,
-                         provider: auth.provider,
-                         uid:      auth.uid,
-                         token:    auth.credentials.token,
-                         password: Devise.friendly_token[0, 20],
-                         meta:     auth.to_yaml)
+      if user.present?
+        sns = SnsCredential.create(
+          uid: auth.uid,
+          provider: auth.provider,
+          user_id: user.id
+        )
+      else
+        user = User.new(
+          nickname: auth.info.name,
+          email: auth.info.email,
+        )
+        sns = SnsCredential.new(
+          uid: auth.uid,
+          provider: auth.provider
+        )
+      end
+      return { user: user ,sns: sns}
     end
-    user
+
+   def self.with_sns_data(auth, snscredential)
+    user = User.where(id: snscredential.user_id).first
+    unless user.present?
+      user = User.new(
+        nickname: auth.info.name,
+        email: auth.info.email,
+      )
+    end
+    return {user: user}
+   end
+
+   def self.find_oauth(auth)
+    uid = auth.uid
+    provider = auth.provider
+    snscredential = SnsCredential.where(uid: uid, provider: provider).first
+    if snscredential.present?
+      user = with_sns_data(auth, snscredential)[:user]
+      sns = snscredential
+    else
+      user = without_sns_data(auth)[:user]
+      sns = without_sns_data(auth)[:sns]
+    end
+    return { user: user ,sns: sns}
   end
 end
