@@ -1,4 +1,6 @@
 class Information < ApplicationRecord
+  belongs_to :facility
+
   validates :news, presence: true
   validates :title, presence: true, uniqueness: true
 

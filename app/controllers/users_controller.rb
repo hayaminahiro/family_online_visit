@@ -63,6 +63,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # def home
+  #   @users = User.find(params[:user_id])
+  # end
+
   private
 
   def admin_params

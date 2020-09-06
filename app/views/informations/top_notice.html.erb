@@ -1,4 +1,3 @@
-
 <div style="margin:80px;">
   <div class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth" id="top-notice-table">
@@ -8,7 +7,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-href="<%= information_path(@info_top) %>">
+        <tr data-href="<%#= information_path(@info_top) %>">
           <td class="top-td" style="width:20%;"><%= l( @info_top.created_at, format: :dot) %></td>
           <td style="width:30%;"><%= @info_top.title %></td>
           <td style="width:50%;"><%= @info_top.news %></td>

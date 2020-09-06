@@ -9,6 +9,10 @@ class InformationsController < ApplicationController
     @information = Information.find(params[:id])
   end
 
+  def show_notice
+    @facility = Facility.find(params[:facility_id])
+  end
+
   def create
     @information = Information.new(information_params)
     if  @information.save
