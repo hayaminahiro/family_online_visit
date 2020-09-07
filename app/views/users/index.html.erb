@@ -125,12 +125,12 @@
               </div>
             </td>
             <td>
-              <%= link_to video_room_facility_user_path(facility_id: current_facility.id, id: user.id), class: "button is-warning is-medium" do %>
+              <%= link_to video_room_facility_user_path(current_facility.id, id: user.id), class: "button is-warning is-medium" do %>
               <span><i class="fas fa-photo-video"></i></span>
               <% end %>
             </td>
             <td>
-              <%= link_to edit_user_path(user), class: "button is-success is-medium" do %>
+              <%= link_to edit_facility_user_path(current_facility.id, id: user.id), class: "button is-success is-medium" do %>
               <span><i class="fas fa-user-edit"></i></span>
               <% end %>
             </td>

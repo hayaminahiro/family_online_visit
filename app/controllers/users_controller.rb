@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     end
     if @user.update_attributes(user_params)
       flash[:notice] = "ユーザー情報を更新しました。"
-      redirect_to users_url
+      redirect_to facility_users_url(current_facility)
     else
       render "edit"
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = "#{@user.name}を削除しました。"
-    redirect_to users_url
+    redirect_to facility_users_url(current_facility)
   end
 
   def video_room
