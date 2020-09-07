@@ -1,11 +1,15 @@
 class FacilitiesController < ApplicationController
 
+  before_action :set_facility, only: [:update]
+
   # ログインしてなければ閲覧不可
   # before_action :authenticate_facility!
 
   def index
     @facilities = Facility.all
-    @facility = Facility.new
+    # raise
+    # @facility = current
+    # @facility = Facility.new
   end
 
   def create
@@ -41,8 +45,12 @@ class FacilitiesController < ApplicationController
 
   private
 
+  def set_facility
+    @facility = Facility.find(params[:id])
+  end
+
   def facility_params
-    params.require(:facility).permit(:name)
+    params.require(:facility).permit(:facility_name)
   end
 
 end

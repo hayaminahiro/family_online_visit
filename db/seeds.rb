@@ -1,11 +1,13 @@
 # deviseの場合、~.save!しないとpasswordがseedに反映されない。
 admin = Facility.create!(
   facility_name: "管理者ユーザー",
-  email: "admin@email.com",
-  password: "password"
+  email: "facility_admin@email.com",
+  password: "password",
+  admin: true
 )
 admin.save!
 
+# facility_id = 2
 home = Facility.create!(
   facility_name: "老人ホーム-A",
   email: "home@email.com",

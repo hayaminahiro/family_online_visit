@@ -22,52 +22,60 @@
       <div class="navbar-start has-text-weight-bold">
         <!--全ユーザー閲覧可能-->
         <% if user_signed_in? || facility_signed_in? %>
-        <p class="navbar-item">
-          <%= link_to_unless_current "トップ", root_path, class: "links" %>
-        </p>
+          <p class="navbar-item">
+            <%= link_to_unless_current "トップ", root_path, class: "links" %>
+          </p>
 
-        <% if user_signed_in? %>
-        <!--家族のみ閲覧可-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "予約", "#", class: "links" %>
-        </p>
+          <% if user_signed_in? %>
+          <!--家族のみ閲覧可-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "予約", "#", class: "links" %>
+            </p>
 
-        <!--家族のみ閲覧可-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
-        </p>
+            <!--家族のみ閲覧可-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
+            </p>
 
-        <% elsif facility_signed_in? %>
-        <!--管理者のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
-        </p>
+          <% elsif facility_signed_in? && current_facility.admin== false %>
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
+            </p>
 
-        <!--管理者のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility), class: "links" %>
-        </p>
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility), class: "links" %>
+            </p>
 
-        <!--管理者のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "入居者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
-        </p>
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "入居者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
+            </p>
+
+          <% end %>
+
+          <!--全ユーザー閲覧可能-->
+          <p class="navbar-item">
+            <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+          </p>
+
+          <% if facility_signed_in? && current_facility.admin== false %>
+            <!--管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>
+            </p>
+          <% end %>
+
+          <% if facility_signed_in? && current_facility.admin? %>
+            <!--システム全体管理者のみ閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "システム利用施設一覧", facilities_path, class: "links" %>
+            </p>
+          <% end %>
 
         <% end %>
 
-        <!--全ユーザー閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
-        </p>
-
-        <% if facility_signed_in? %>
-        <!--管理者のみ閲覧可能-->
-        <p class="navbar-item">
-          <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>
-        </p>
-        <% end %>
-
-        <% end %>
       </div>
 
       <% if user_signed_in?  || facility_signed_in? %>

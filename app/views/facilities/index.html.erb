@@ -1,0 +1,91 @@
+<section class="hero is-small">
+  <div class="hero-body">
+  </div>
+</section>
+
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-centered is-size-1">
+        システム利用施設一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div class="container section">
+  <div id="WebDev" class="content-tab">
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-rounded is-black" %>
+            </div>
+            <div class="control">
+              <%= f.submit "\uf002検索", class: "fa button is-medium is-link is-rounded" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <div class="table-container">
+      <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
+        <thead>
+          <tr>
+            <th>施設名</th>
+            <th>メールアドレス</th>
+            <th>登録ユーザー数</th>
+            <th>施設情報</th>
+            <th>編集</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @facilities.each do |f| %>
+          <tr>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.facility_name %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.email %>
+              </div>
+            </td>
+            <td>
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.users.count %>
+              </div>
+
+
+
+            </td>
+            <td>
+              <%= link_to facility_path(f), class: "button is-link is-medium" do %>
+              <span><i class="fas fa-laptop-house"></i></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "#", class: "button is-success is-medium" do %>
+              <span><i class="fas fa-user-edit"></i></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "#", method: :delete, data: { confirm: "削除してよろしいですか?" },
+                          class: "button is-danger is-medium" do %>
+              <span><i class="far fa-trash-alt"></i></span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><br>
+  </div>
+
+
+</div>
