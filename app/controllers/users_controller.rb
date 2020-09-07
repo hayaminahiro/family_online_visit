@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy]
+  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy, :video_room]
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, except: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
   before_action :authenticate_facility!, only: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
 
   def index
-    @users = User.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
+    @facility = Facility.find(params[:facility_id])
+    @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
       @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
