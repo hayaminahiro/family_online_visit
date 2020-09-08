@@ -30,7 +30,7 @@
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
-          <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: facility_users_path(@facility), method: :get, local: true) do |f| %>
           <div class="field is-grouped is-grouped-right">
             <div class="control">
               <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-rounded is-black" %>
