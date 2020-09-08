@@ -16,6 +16,6 @@ class Resident < ApplicationRecord
   end
   # CSVインポートで更新を許可するカラム
   def self.updatable_attributes
-    ["name", "charge_worker"]
+    ["name", "charge_worker", "facility_id"]
   end
 end
