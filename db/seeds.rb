@@ -29,6 +29,17 @@ hoiku = Facility.create!(
 )
 hoiku.save!
 
+60.times do |n|
+  name = "sample施設-#{n+1}"
+  email = "facility#{n+1}@email.com"
+  password = "password"
+  Facility.create!(
+    facility_name: name,
+    email: email,
+    password: password
+  )
+end
+
 99.times do |n|
   name = "sampleご家族-#{n+1}"
   email = "sample#{n+1}@email.com"

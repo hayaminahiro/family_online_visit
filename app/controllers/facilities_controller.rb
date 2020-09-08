@@ -6,16 +6,21 @@ class FacilitiesController < ApplicationController
   before_action :authenticate_facility!
 
   def index
-    @facilities = Facility.all
-  end
-
-  def show
+    @facilities = Facility.paginate(page: params[:page], per_page: 30).order(:id)
+    if params[:search].present?
+      @facilities = Facility.where('facility_name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
+    end
   end
 
   def edit
   end
 
   def update
+    # passwordが空白でも編集できる
+    if params[:facility][:password].blank? && params[:facility][:password_confirmation].blank?
+      params[:facility].delete(:password)
+      params[:facility].delete(:password_confirmation)
+    end
     if @facility.update_attributes(facility_params)
       flash[:notice] = "「#{@facility.facility_name}」の施設情報を更新できました。"
     else

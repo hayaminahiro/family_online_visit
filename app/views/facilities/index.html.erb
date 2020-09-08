@@ -15,13 +15,14 @@
 
 <div class="container section">
   <div id="WebDev" class="content-tab">
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
-          <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: facilities_path, method: :get, local: true) do |f| %>
           <div class="field is-grouped is-grouped-right">
             <div class="control">
-              <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-rounded is-black" %>
+              <%= f.text_field :search, :placeholder => "施設名を入力", class: "input is-medium is-rounded is-black" %>
             </div>
             <div class="control">
               <%= f.submit "\uf002検索", class: "fa button is-medium is-link is-rounded" %>
@@ -82,7 +83,6 @@
         </tbody>
       </table>
     </div><br>
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
   </div>
-
-
 </div>
