@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "登録できませんでした。"
     end
-    redirect_to users_url
+    redirect_to facility_users_url(current_facility)
   end
 
   def edit

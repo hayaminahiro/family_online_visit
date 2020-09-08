@@ -84,7 +84,7 @@
                     <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
-                  <%= form_with(model: user, url:"#", method: :patch, local: true,) do |f| %>
+                  <%= form_with(model: user, url: room_word_update_facility_user_path(current_facility.id, user), method: :patch, local: true,) do |f| %>
                   <section class="modal-card-body">
                     <div class="field">
                       <%= f.label :room_name, class: "label is-size-4" %>

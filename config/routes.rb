@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :video_room # /facilities/:facility_id/users/:id/video_room
+        patch :room_word_update  #Room_Name登録のため追加
       end
     end
     resources :informations do # /facilities/:facility_id/informations/~~~
