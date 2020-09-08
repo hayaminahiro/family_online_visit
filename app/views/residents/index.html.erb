@@ -75,7 +75,7 @@
                   data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
                 <i class="far fa-trash-alt"></i>
                 <% end %>
-                <%= render 'edit', {resident: resident, resident_id: resident.name} %>
+                <%= render 'edit', {resident: resident, resident_id: (resident.name + resident.id.to_s)} %>
               </td>
             </tr>
             <% end %>
