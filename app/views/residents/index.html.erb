@@ -61,7 +61,6 @@
         </thead>
         <tbody>
           <% @residents.each do |resident| %>
-            <% if current_facility.id == resident.facility_id %>
             <tr class="is-size-5">
               <td><%= resident.name %></td>
               <td><%#= resident.users %></td>
@@ -78,7 +77,6 @@
                 <%= render 'edit', {resident: resident, resident_id: (resident.name + resident.id.to_s)} %>
               </td>
             </tr>
-            <% end %>
           <% end %>
         <tbody>
       </table>
