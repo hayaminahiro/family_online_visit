@@ -61,22 +61,24 @@
         </thead>
         <tbody>
           <% @residents.each do |resident| %>
-          <tr class="is-size-5">
-            <td><%= resident.name %></td>
-            <td><%#= resident.users %></td>
-            <td><%= resident.charge_worker %></td>
-            <td>
-              <button type="button" class="button is-success" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
-            </td>
-            <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
-            <td>
-              <%= link_to "#", method: :delete,
-                data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
-              <i class="far fa-trash-alt"></i>
-              <% end %>
-              <%= render 'edit', {resident: resident, resident_id: resident.name} %>
-            </td>
-          </tr>
+            <% if current_facility.id == resident.facility_id %>
+            <tr class="is-size-5">
+              <td><%= resident.name %></td>
+              <td><%#= resident.users %></td>
+              <td><%= resident.charge_worker %></td>
+              <td>
+                <button type="button" class="button is-success" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
+              </td>
+              <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
+              <td>
+                <%= link_to facility_resident_path(current_facility, resident), method: :delete,
+                  data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
+                <i class="far fa-trash-alt"></i>
+                <% end %>
+                <%= render 'edit', {resident: resident, resident_id: resident.name} %>
+              </td>
+            </tr>
+            <% end %>
           <% end %>
         <tbody>
       </table>
