@@ -9,29 +9,32 @@ class ResidentsController < ApplicationController
 
   def create
     @resident = Resident.new(resident_params)
-    if  @resident.save
+    @resident.facility_id = current_facility.id
+    if @resident.save
       flash[:notice] = "入居者を新規登録できました"
     else
       flash[:alert] = "入居者登録できませんでした。入力内容をご確認ください"
     end
-      redirect_to residents_path
+      redirect_to facility_residents_path
   end
 
   def update
     @resident = Resident.find(params[:id])
+    @resident.facility_id = current_facility.id
     if @resident.update(resident_params)
       flash[:notice] = "入居者情報を更新できました"
     else
       flash[:alert] = "更新できませんでした。入力内容をご確認ください"
     end
-      redirect_to residents_path
+      redirect_to facility_residents_path
   end
 
   def destroy
     @resident = Resident.find(params[:id])
+    @resident.facility_id = current_facility.id
     @resident.destroy
     flash[:alert] = "入居者情報を削除しました"
-    redirect_to residents_path
+    redirect_to facility_residents_path
   end
 
   def import
@@ -43,7 +46,7 @@ class ResidentsController < ApplicationController
       Resident.import(params[:file])
       flash[:notice] = "CSVファイルをインポートしました"
     end
-      redirect_to residents_path
+      redirect_to facility_residents_path
   end
 
   private
