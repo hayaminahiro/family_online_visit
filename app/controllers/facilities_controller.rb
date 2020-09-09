@@ -1,6 +1,6 @@
 class FacilitiesController < ApplicationController
 
-  before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility]
+  before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show]
 
   # ログインしてなければ閲覧不可
   before_action :authenticate_facility!
@@ -26,7 +26,7 @@ class FacilitiesController < ApplicationController
     else
       flash[:alert] = "更新できませんでした。入力内容をご確認ください。"
     end
-    redirect_to facilities_url
+    redirect_to @facility
   end
 
   def destroy
