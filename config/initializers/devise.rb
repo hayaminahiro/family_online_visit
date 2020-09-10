@@ -10,13 +10,14 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   require 'devise/orm/active_record'
-  config.omniauth :google_oauth2,ENV['GOOGLE_APP_ID'],ENV['GOOGLE_APP_SECRET'], skip_jwt: true, scope: 'email'
+  config.omniauth :google_oauth2,ENV['GOOGLE_APP_ID'],ENV['GOOGLE_APP_SECRET'], skip_jwt: true, scope: 'profile'
 
+  # リダイレクト先は本番push前に要変更
   config.omniauth :line,
                   ENV['LINE_KEY'],
                   ENV['LINE_SECRET'],
-                  scope: 'openid',
-                  redirect_uri: "https://4398e57bb92c.ngrok.io/users/auth/line/callback"
+                  scope: 'profile',
+                  redirect_uri: "https://a9eddc68e523.ngrok.io/users/auth/line/callback"
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
