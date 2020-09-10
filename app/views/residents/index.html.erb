@@ -34,7 +34,7 @@
       <%= render partial: 'csv_import' %>
       <div class="head-button"><button type="button" class="button is-info is-rounded is-size-5 has-text-weight-bold" id="new"><i class="fas fa-user-plus"></i></button></div>
       <div style="margin-left:auto;">
-        <%= form_with(url: "#", method: :get, local: true) do |f| %>
+        <%= form_with(url: user_facility_residents_path(current_facility), method: :get, local: true) do |f| %>
         <div class="field is-grouped is-grouped-right">
           <div class="control">
             <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
