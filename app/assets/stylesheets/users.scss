@@ -19,22 +19,9 @@
   z-index: -1;
   background-position: center 50%;
   background-repeat: no-repeat;
-  background-image: url("/video_image.jpg");
+  background-image: url("/Video_Room_photo.jpg");
   background-size: cover;
 }
-
-.video_background::before {
-  /* 透過した黒を重ねる */
-	background-color: rgba(0,0,0,0.2);
-	/* どの範囲に重ねるかを指定 */
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	content: ' ';
-}
-
 
 /* ご家族一覧 */
 
