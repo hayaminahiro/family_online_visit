@@ -17,7 +17,7 @@ Devise.setup do |config|
                   ENV['LINE_KEY'],
                   ENV['LINE_SECRET'],
                   scope: 'profile',
-                  redirect_uri: "https://a9eddc68e523.ngrok.io/users/auth/line/callback"
+                  redirect_uri: "http://localhost:3000/users/auth/line/callback"
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
