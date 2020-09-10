@@ -6,7 +6,7 @@ class FacilitiesController < ApplicationController
   before_action :authenticate_facility!
 
   def index
-    @facilities = Facility.paginate(page: params[:page], per_page: 30).order(:id)
+    @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
       @facilities = Facility.where('facility_name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
@@ -26,7 +26,7 @@ class FacilitiesController < ApplicationController
     else
       flash[:alert] = "更新できませんでした。入力内容をご確認ください。"
     end
-    redirect_to @facility
+    redirect_to facilities_url
   end
 
   def destroy
