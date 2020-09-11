@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   # 施設目線のルーティング
   resources :facilities do # /facilities/:id/~~~
+    patch :change_admin # /facilities/:facility_id/change_admin
     resources :residents # /facilities/:facility_id/residents/:id/~~~
     resources :users do
       member do

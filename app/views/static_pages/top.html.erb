@@ -56,18 +56,18 @@
       <div class="columns is-centered">
         <div class="column is-3">
           <div class="admin-btn">
-            <% if user_signed_in? %>
-            <% if current_user.admin == true && current_user.floor_authority == true %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => false %>
-            <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
-            <% end %>
-            <% elsif current_user.admin == true && current_user.floor_authority == false %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => true %>
-            <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
-            <% end %>
-            <% end %>
+            <% if facility_signed_in? %>
+              <% if current_facility.facility_admin == true %>
+                <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+                <%= f.hidden_field :facility_admin, :value => false %>
+                <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
+                <% end %>
+              <% elsif current_facility.facility_admin == false %>
+                <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+                <%= f.hidden_field :facility_admin, :value => true %>
+                <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
         </div>
