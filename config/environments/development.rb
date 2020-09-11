@@ -58,5 +58,6 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"  #Better Errorsをdockerで使用の場合に追加
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"  #BetterErrorsをdockerで使用の場合に追加
+  config.web_console.whitelisted_ips = %w( 0.0.0.0/0 ::/0 ) #web_consoleをdockerで使用の場合に追加
 end

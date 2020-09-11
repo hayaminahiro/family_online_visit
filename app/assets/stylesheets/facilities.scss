@@ -1,3 +1,12 @@
 // Place all the styles related to the facilities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.delete-message {
+  font-size: 20px;
+  color: #2e2f30;
+}
+
+input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
+  margin-top: 10px;
+}

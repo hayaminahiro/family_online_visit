@@ -1,4 +1,6 @@
 class Resident < ApplicationRecord
+  belongs_to :facility
+
   has_many :relatives, dependent: :destroy
   has_many :users, through: :relatives
 
