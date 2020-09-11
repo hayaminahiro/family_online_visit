@@ -30,6 +30,7 @@ class FacilitiesController < ApplicationController
   end
 
   def change_admin
+<<<<<<< HEAD
     @facility = Facility.find(params[:facility_id])
     if @facility.update_attributes(admin_params)
       flash[:notice] = "権限を変更しました。"      
@@ -37,6 +38,16 @@ class FacilitiesController < ApplicationController
       flash[:alert] = "権限を変更できませんでした。"
     end
     redirect_to root_path
+=======
+    @facility = Facility.find(params[:id])
+    if @facility.update_attributes(admin_params)
+      flash[:notice] = "権限を変更します"
+      redirect_to root_path
+    else
+      flash[:alert] = "権限を変更できませんでした"
+    end
+    render :root
+>>>>>>> c78abff... facility_adminボタン実装完。機能未
   end
 
 

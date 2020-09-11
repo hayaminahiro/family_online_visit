@@ -60,12 +60,20 @@
               <% if current_facility.facility_admin == true %>
                 <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
                 <%= f.hidden_field :facility_admin, :value => false %>
+<<<<<<< HEAD
                 <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
+=======
+                <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
+>>>>>>> c78abff... facility_adminボタン実装完。機能未
                 <% end %>
               <% elsif current_facility.facility_admin == false %>
                 <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
                 <%= f.hidden_field :facility_admin, :value => true %>
+<<<<<<< HEAD
                 <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
+=======
+                <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
+>>>>>>> c78abff... facility_adminボタン実装完。機能未
                 <% end %>
               <% end %>
             <% end %>
