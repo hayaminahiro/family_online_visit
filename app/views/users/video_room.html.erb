@@ -1,3 +1,5 @@
+<ul class="video_background">
+</ul>
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
@@ -5,11 +7,11 @@
   </div>
 </section>
 
-<section class="hero-1" style="background-image: linear-gradient(25deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/video_room.jpg');">
+<section class="hero-1" style="background-image: url('/video_room.jpg');">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title has-text-centered has-text-white is-size-2">
-        面会ルーム
+      <h1 class="title has-text-centered has-text-white is-size-1">
+        <font color="#F9BF4B">・</font>ー<font color="#4DADA1">Video Room</font>ー<font color="#F9BF4B">・</font>
       </h1>
     </div>
   </div>
@@ -29,9 +31,9 @@
       </div>
       <div class="has-text-centered"> 
         <p class="column is-three-fifths is-offset-one-fifth control">
-          <input class="input is-medium is-warning has-text-weight-semibold" type="text" placeholder="Room Nameを入力してください" id="js-room-id">
+          <input class="input is-large is-warning has-text-weight-semibold is-rounded is-focused is-size-3" type="text" placeholder="Room Nameを入力してください" value="<%= @user.room_name %>"id="js-room-id">
         </p>
-        <h3 class="is-size-3"><strong>Room Name:&emsp;</strong></h3><br>
+        <h3 class="is-size-3"><strong>Room Name:&emsp;<font color="#FF7F50"><%= @user.room_name %></font></strong></h3><br>
         <button id="js-join-trigger" class="button is-success is-large is-rounded has-text-weight-semibold">入室する</button>&emsp;
         <button id="js-leave-trigger" class="button is-danger is-large is-rounded has-text-weight-semibold">退室する</button> 
       </div><br>
@@ -45,9 +47,13 @@
       </div>
     </div><br>
     <div class="has-text-centered">
-      <%= link_to "戻る", "#", class: "button is-large is-outlined is-dark" %>
+      <% if current_facility %>
+        <%= link_to "戻る", facility_users_path(@facility), class: "button is-large is-outlined is-dark" %>
+      <% elsif current_user%>
+        <%= link_to "戻る", user_path(@user), class: "button is-large is-outlined is-dark" %>
+      <% end %> 
     </div>
-    <div class="has-text-right">  
+    <div class="has-text-right">
       <div class="content">
         <button id="timer" class="has-text-weight-semibold button is-large is-primary">残り30分</p>
       </div>
@@ -127,7 +133,7 @@
         messages.textContent += '=== 入室しました ===\n';
       });
       room.on('peerJoin', peerId => {
-        messages.textContent += `=== ${peerId} joined ===\n`;
+        messages.textContent += `=== 相手が入室しました ===\n`;
       });
   
       // Render remote stream for new peer join in the room
@@ -155,7 +161,7 @@
         remoteVideo.srcObject = null;
         remoteVideo.remove();
   
-        messages.textContent += `=== ${peerId} left ===\n`;
+        messages.textContent += `=== 面会が終了しました ===\n`;
       });
   
       // for closing myself
@@ -175,7 +181,6 @@
       function onClickSend() {
         // Send message to all of the peers in the room via websocket
         room.send(localText.value);
-  
         messages.textContent += `${peer.id}: ${localText.value}\n`;
         localText.value = '';
       }

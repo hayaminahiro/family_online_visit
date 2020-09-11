@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   end
 
   def video_room
+    @facility = Facility.find(params[:facility_id])
   end
 
   def change_admin
