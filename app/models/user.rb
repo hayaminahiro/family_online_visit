@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
 
+  validates :name, presence: true  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
+
   # cookieでログイン情報を保持
   def remember_me
     true

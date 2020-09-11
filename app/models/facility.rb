@@ -11,6 +11,8 @@ class Facility < ApplicationRecord
   has_many :facility_users, dependent: :destroy
   has_many :users, through: :facility_users
 
+  validates :facility_name, presence: true
+
   # cookieでログイン情報を保持
   def remember_me
     true
