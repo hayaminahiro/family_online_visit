@@ -43,7 +43,9 @@ Rails.application.routes.draw do
 
   # 施設目線のルーティング
   resources :facilities do # /facilities/:id/~~~
-    resources :residents # /facilities/:facility_id/residents/:id/~~~
+    resources :residents do # /facilities/:facility_id/residents/:id/~~~
+      collection { post :import } # CSVインポート機能
+    end
     resources :users do
       member do
         get :video_room # /facilities/:facility_id/users/:id/video_room
