@@ -32,7 +32,6 @@ Rails.application.routes.draw do
       resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
         member do # /users/:user_id/facilities/:id/~~~
           get :video_room # /users/:user_id/facilities/:id/video_room
-          patch :change_admin
           get 'video_room'
           patch 'room_word_update'
         end
