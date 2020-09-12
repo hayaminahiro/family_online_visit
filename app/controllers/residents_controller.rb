@@ -1,6 +1,4 @@
 class ResidentsController < ApplicationController
-  before_action :set_current_facility, only: [:import]
-
   def index
       @residents = Resident.all.where(facility_id: current_facility.id).paginate(page: params[:page], per_page: 30)
     if params[:search].present?
@@ -40,6 +38,7 @@ class ResidentsController < ApplicationController
   end
 
   def import
+    Resident.current_facility = current_facility
     if params[:file].blank?
       flash[:alert] = "ファイルが選択されていません"
     elsif File.extname(params[:file].original_filename) != ".csv"
@@ -49,10 +48,6 @@ class ResidentsController < ApplicationController
       flash[:notice] = "CSVファイルをインポートしました"
     end
       redirect_to facility_residents_path
-  end
-
-  def set_current_facility
-    Resident.current_facility = current_facility
   end
 
   private
