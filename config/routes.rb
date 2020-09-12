@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   # ご家族目線のルーティング
   resources :users do # /users/:id/~~~
+    get :facilities_used #利用施設の登録画面
+    patch :update_facilities_used
     resources :reservations # /users/:user_id/~~~
     resources :facilities do # user_id, facility_id付与
       get :home #施設のホーム画面

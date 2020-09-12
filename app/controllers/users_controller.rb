@@ -65,22 +65,38 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  private
-
-  def admin_params
-    params.permit(:floor_authority)
+  def facilities_used # 利用施設登録ページ
+    @facilities = Facility.all
+    @user = User.find(params[:user_id])
   end
 
-  def room_params
-    params.require(:user).permit(:room_name)
+  def update_facilities_used
+    @user = User.find(params[:user_id])
+    @user.update_attributes(facilities_used_params)
+    flash[:notice] = "登録施設を更新しました。"
+    redirect_to root_path
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
+    private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
+      def admin_params
+        params.permit(:floor_authority)
+      end
+
+      def room_params
+        params.require(:user).permit(:room_name)
+      end
+
+      def set_user
+        @user = User.find(params[:id])
+      end
+
+      def user_params
+        params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      end
+
+      def facilities_used_params
+        params.require(:user).permit(facility_ids: [])
+      end
 
 end
