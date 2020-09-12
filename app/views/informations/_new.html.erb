@@ -6,7 +6,7 @@
       <button class="delete" aria-label="close" id="close"></button>
     </header>
     <section class="modal-card-body">
-      <%= form_with(model: @information, url: "#", method: :post, local: true) do |f| %>
+      <%= form_with(model: @information, url: facility_informations_path(current_facility), method: :post, local: true) do |f| %>
       <div class="form-group col-sm-5">
         <div class="form-group col-sm-5">
           <%= f.text_field :title, :placeholder => " \uf304 タイトルを入力", class: "fa input is-link is-medium is-rounded is-focused" %><br><br>

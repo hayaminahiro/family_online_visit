@@ -7,7 +7,7 @@
     <p style="font-size: 18px; margin-top: 15px;"><%=safe_join(@information.news.split("\n"),tag(:br))%></p>
     <hr>
   </div>
-  <%= link_to top_notice_informations_path, class:"button is-success is-outlined" do %>
+  <%= link_to top_notice_facility_informations_path(current_user), class:"button is-success is-outlined" do %>
     <i class="fas fa-arrow-left"></i>　戻る
   <% end %>
 </div>
