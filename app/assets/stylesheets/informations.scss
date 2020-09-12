@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// index.html.erb
 .panel{
   margin: 20px;
 }
@@ -12,7 +13,6 @@
   font-size: 25px;
   font-weight: bold;
   color: #afaaaa;
-  // font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif !important;
 }
 .level-info {
   align-items: center;
@@ -22,4 +22,28 @@
 .new-info{
   width: 90px;
   margin-left: 20px;
+}
+.info-section{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: left;
+}
+#info-card{
+  width:300px;
+  margin: 20px;
+}
+#info-content{
+  height:100px;
+}
+// show.html.erb
+.show-info-container{
+  margin: 80px;
+}
+.show-info-p{
+  font-size: 18px;
+  margin-top: 15px;
+}
+.show-info-sp{
+  color:#7a7a7a;
 }

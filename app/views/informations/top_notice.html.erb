@@ -9,17 +9,22 @@
   </div>
 
   <div id="Web" class="content-tab" >
-    <div style="text-align:center;">
-      <div style="display:flex; flex-wrap: wrap; justify-content: center; text-align: left;">
+    <div clsss="has-text-centered">
+      <div class="info-section">
         <% @informations.first(6).each do |information| %>
-          <div class="card" style="width:300px; margin: 20px;">
+          <div class="card" id="info-card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= image_tag 'default.png', class: "info-image" %>
+              </figure>
+            </div>
             <div class="card-content">
-              <div class="content" style="height:200px;">
+              <div class="content" id="info-content">
                 <p><%= l( information.created_at, format: :hyphen) %></p>
-                <p style="font-weight:bold;">
+                <p class="has-text-weight-bold">
                   <%= information.title %>
                 </p>
-                <%= information.news.truncate(90) %>
+                <%= information.news.truncate(30) %>
               </div>
             </div>
             <footer class="card-footer">
@@ -34,16 +39,16 @@
   </div>
 
   <div id="Aud" class="content-tab" style="display:none">
-    <div style="text-align:center;">
-      <div style="display:flex; flex-wrap: wrap; justify-content: center; text-align: left;">
-        <div class="card" style="width:300px; margin: 20px;">
+    <div class="has-text-centered">
+      <div class="info-section">
+        <div class="card" id="info-card">
           <div class="card-content">
-            <div class="content" style="height:200px;">
+            <div class="content" id="info-content">
               <p><%= l( @info_top.created_at, format: :hyphen) %></p>
-              <p style="font-weight:bold;">
+              <p class="has-text-weight-bold">
                 <%= @info_top.title %>
               </p>
-              <%= @info_top.news.truncate(90) %>
+              <%= @info_top.news.truncate(30) %>
             </div>
           </div>
           <footer class="card-footer">
