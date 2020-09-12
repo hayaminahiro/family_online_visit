@@ -66,10 +66,12 @@ class UsersController < ApplicationController
   end
 
   def facilities_used # 利用施設登録ページ
-    @facilities = Facility.all
+    @facilities = Facility.all.where.not(admin: true)
     @user = User.find(params[:user_id])
     if params[:search].present?
       @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%")
+    else
+      @facilities = @facilities = @facilities.where('facility_name LIKE ?', "")
     end
   end
 
