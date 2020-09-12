@@ -9,6 +9,20 @@
   background-position: center;
 }
 
+.video_background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: -1;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+  background-image: url("/Video_Room_photo.jpg");
+  background-size: cover;
+}
+
 /* ご家族一覧 */
 
 #family-table th {

@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   end
 
   def video_room
+    @facility = Facility.find(params[:facility_id])
   end
 
   def change_admin
@@ -63,10 +64,6 @@ class UsersController < ApplicationController
   def new_admin
     @user = User.new
   end
-
-  # def home
-  #   @users = User.find(params[:user_id])
-  # end
 
   private
 
