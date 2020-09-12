@@ -1,24 +1,49 @@
-<%= form_with(url: user_facilities_used_path, method: :get, local: true) do |f| %>
-  <div class="field is-grouped is-grouped-right">
-    <div class="control">
-      <%= f.text_field :search, :placeholder => "施設名を入力", class: "input is-medium is-rounded is-black" %>
-    </div>
-    <div class="control">
-      <%= f.submit "\uf002検索", class: "fa button is-medium is-link is-rounded" %>
+<section class="hero is-small">
+  <div class="hero-body">
+  </div>
+</section>
+
+<section class="hero is-success is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-centered is-size-1">
+        ご利用施設登録
+      </h1>
     </div>
   </div>
-<% end %>
+</section>
 
-<%= form_with model: @user, url: user_update_facilities_used_path(@user), local: true do |f| %>
-  <div class="field"> <!--施設テーブルとの関連付けのため追加-->
-    <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name, include_hidden: false do |b| %>
-      <div style="float: right;">
-        <%=  b.label { b.check_box + b.text } %>
+<div class="container section">
+  <div id="WebDev" class="content-tab">
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <%= form_with(url: user_facilities_used_path, method: :get, local: true) do |f| %>
+            <div class="field is-grouped is-grouped-right">
+              <div class="control">
+                <%= f.text_field :search, :placeholder => "施設名を入力", class: "input is-medium is-rounded is-black" %>
+              </div>
+              <div class="control">
+                <%= f.submit "\uf002検索", class: "fa button is-medium is-link is-rounded" %>
+              </div>
+            </div>
+          <% end %>
+          </div>
+      </div>
+    </section>
+
+    <%= form_with model: @user, url: user_update_facilities_used_path(@user), local: true do |f| %>
+      <div class="field"> <!--施設テーブルとの関連付けのため追加-->
+        <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name, include_hidden: false do |b| %>
+          <div style="float: right;">
+            <%=  b.label { b.check_box + b.text } %>
+          </div>
+        <% end %>
+      </div>
+      <div class="actions">
+        <%= f.submit "更新", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
       </div>
     <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit "更新", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-  </div>
-<% end %>
+</div>
 
