@@ -47,6 +47,16 @@ end
   )
 end
 
+31.times do |n|
+  name = "タイトル-#{n+1}"
+  Information.create!(
+    facility_id: 2,
+    title: name,
+    news: "お知らせ-#{n+1}",
+    status: 0
+  )
+end
+
 Information.create!(
     facility_id: 2,
     title: "当システムの利用方法",
