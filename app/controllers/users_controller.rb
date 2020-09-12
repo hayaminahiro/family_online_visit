@@ -68,6 +68,9 @@ class UsersController < ApplicationController
   def facilities_used # 利用施設登録ページ
     @facilities = Facility.all
     @user = User.find(params[:user_id])
+    if params[:search].present?
+      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%")
+    end
   end
 
   def update_facilities_used
