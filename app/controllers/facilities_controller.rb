@@ -31,6 +31,7 @@ class FacilitiesController < ApplicationController
 
   def change_admin
 <<<<<<< HEAD
+<<<<<<< HEAD
     @facility = Facility.find(params[:facility_id])
     if @facility.update_attributes(admin_params)
       flash[:notice] = "権限を変更しました。"      
@@ -40,14 +41,20 @@ class FacilitiesController < ApplicationController
     redirect_to root_path
 =======
     @facility = Facility.find(params[:id])
+=======
+    @facility = Facility.find(params[:facility_id])
+>>>>>>> abdad96... 権限変更ボタン・機能実装完了
     if @facility.update_attributes(admin_params)
-      flash[:notice] = "権限を変更します"
-      redirect_to root_path
+      flash[:notice] = "権限を変更しました。"      
     else
-      flash[:alert] = "権限を変更できませんでした"
+      flash[:alert] = "権限を変更できませんでした。"
     end
+<<<<<<< HEAD
     render :root
 >>>>>>> c78abff... facility_adminボタン実装完。機能未
+=======
+    redirect_to root_path
+>>>>>>> abdad96... 権限変更ボタン・機能実装完了
   end
 
 
