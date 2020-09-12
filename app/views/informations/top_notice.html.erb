@@ -1,50 +1,74 @@
-<div style="margin:80px;">
-  <div class="table-container">
-    <table class="table is-striped is-hoverable is-fullwidth" id="top-notice-table">
-      <thead>
-        <tr>
-          <th colspan="4" class="has-text-centered">《当システムでできること》</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-href="<%#= information_path(@info_top) %>">
-          <td class="top-td" style="width:20%;"><%= l( @info_top.created_at, format: :dot) %></td>
-          <td style="width:30%;"><%= @info_top.title %></td>
-          <td style="width:50%;"><%= @info_top.news %></td>
-        </tr>
-      <tbody>
-    </table>
-    <br><br>
-    <table class="table is-striped is-hoverable is-fullwidth" id="top-notice-table">
-      <thead>
-        <tr>
-          <th colspan="4" class="has-text-centered">《ホームからのお知らせ》</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @informations.last(5).each do |information| %>
-        <tr data-href="<%= information_path(information) %>">
-          <td class="top-td" style="width:20%;"><%= l(information.created_at, format: :dot) %></td>
-          <td style="width:30%;"><%= information.title %></td>
-          <td style="width:50%;"><%= information.news %></td>
-        </tr>
-        <% end %>
-      <tbody>
-    </table>
+<article class="panel is-success">
+  <div class="level-info">
+      <div class="level-center">
+        <p class="panel-tabs">
+          <a class="panel-tab is-active" onclick="openTab(event,'Web')">お知らせ</a>
+          <a class="panel-tab" onclick="openTab(event,'Aud')">システムからのお知らせ</a>
+        </p>
+      </div>
   </div>
-</div>
+
+  <div id="Web" class="content-tab" >
+    <div style="text-align:center;">
+      <div style="display:flex; flex-wrap: wrap; justify-content: center; text-align: left;">
+        <% @informations.first(6).each do |information| %>
+          <div class="card" style="width:300px; margin: 20px;">
+            <div class="card-content">
+              <div class="content" style="height:200px;">
+                <p><%= l( information.created_at, format: :hyphen) %></p>
+                <p style="font-weight:bold;">
+                  <%= information.title %>
+                </p>
+                <%= information.news.truncate(90) %>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <div class="card-footer-item">
+                <%= link_to "続きを読む", facility_information_path(current_user, information), class: "" %>
+              </div>
+            </footer>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="Aud" class="content-tab" style="display:none">
+    <div style="text-align:center;">
+      <div style="display:flex; flex-wrap: wrap; justify-content: center; text-align: left;">
+        <div class="card" style="width:300px; margin: 20px;">
+          <div class="card-content">
+            <div class="content" style="height:200px;">
+              <p><%= l( @info_top.created_at, format: :hyphen) %></p>
+              <p style="font-weight:bold;">
+                <%= @info_top.title %>
+              </p>
+              <%= @info_top.news.truncate(90) %>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <div class="card-footer-item">
+              <%= link_to "続きを読む", facility_information_path(current_user, @info_top), class: "" %>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <script>
-jQuery(function($) {
-  //data-hrefの属性を持つtrを選択しclassにclickableを付加
-  $('tr[data-href]').addClass('clickable')
-    //クリックイベント
-    .click(function(e) {
-      //e.targetはクリックした要素自体、それがa要素以外であれば
-      if(!$(e.target).is('a')){
-        //その要素の先祖要素で一番近いtrの
-        //data-href属性の値に書かれているURLに遷移する
-        window.location = $(e.target).closest('tr').data('href');}
-  });
-});
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("panel-tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
 </script>

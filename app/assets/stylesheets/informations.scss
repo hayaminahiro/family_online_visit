@@ -2,56 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* index.html、タイトル */
-.information-title{
-  text-align: center;
-  font-weight: bold;
-  font-size: 33px;
-  margin-top: 50px;
-  margin-bottom: 30px;
+.panel{
+  margin: 20px;
 }
-.new-info-btn{
-  text-align: right;
-  margin: 0px 40px 10px 0px;
-}
-/* index.html、テーブル内の位置調整と装飾 */
-#table-informations {
-  th {
-    vertical-align: middle;
-    text-align: center;
-  }
-  td {
-    vertical-align: middle;
-    text-align: center;
-  }
-  thead th{/*table内のヘッダーに対して*/
-    color: white;
-  }
-  thead tr{
-    background-color: rgb( 42, 78, 118 )
-  }
-  .tr-head {/*table内の「トップお知らせ」「お知らせ」に対して*/
-      background-color: rgb( 63, 150, 247 )
-    }
-  .text-color{
-    color:white;
-  }
-}
-
-/* top_noticeの装飾 */
-#top-notice-table{
-  thead tr{
-    background-color: greenyellow;
-    font-size: 17px;
-  }
-}
-.top-td{
-  text-align: center;
-  color:darksalmon;
-}
-/* show.htmlの装飾 */
-.show-info-title{
+.panel-tabs a {
+  border-bottom: 1px solid #dbdbdb;
+  margin: 0px 30px 30px 30px;
+  padding: 0.5em;
   font-size: 25px;
-  font-weight: 900;
-  color: #19ab4c;
+  font-weight: bold;
+  color: #afaaaa;
+  // font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif !important;
+}
+.level-info {
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 30px 50px 30px;
+}
+.new-info{
+  width: 90px;
+  margin-left: 20px;
 }

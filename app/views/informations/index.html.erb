@@ -1,51 +1,127 @@
-<h1 class="information-title">お知らせ投稿</h1>
-
-<%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-<div class="new-info-btn"><button type="button" class="button is-info" style="border-radius: 100px; font-weight: bold; font-size: 18px;" id="new">新規お知らせ投稿</button></div>
-<div class="table-container">
-  <table class="table is-bordered is-fullwidth" id="table-informations">
-    <thead>
-      <tr>
-        <th style="width: 20%;">投稿日時</th>
-        <th style="width: 25%;">タイトル</th>
-        <th style="width: 35%;">投稿内容</th>
-        <th style="width: 20%;">編集／削除</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="tr-head">
-        <td class="text-color" colspan="4">トップお知らせ</td>
-      </tr>
-      <tr>
-        <td><%= l(@info_top.created_at, format: :default_info) %></td>
-        <td><%= @info_top.title %></td>
-        <td><%= @info_top.news %></td>
-        <td>
-          <button type="button" class="button is-success is-medium" id="edit"><i class="fas fa-edit"></i></button>
-        </td>
-      </tr>
-      <tr class="tr-head">
-        <td class="text-color" colspan="4">お知らせ</td>
-      </tr>
-      <% @informations.each do |information| %>
-      <tr>
-        <td><%= l(information.created_at, format: :default_info) %></td>
-        <td><%= information.title %></td>
-        <td><%= information.news %></td>
-        <td>
-          <button type="button" class="button is-success is-medium" id=<%= information.id %>><i class="fas fa-edit"></i></button>
-          <%= link_to information, method: :delete,
-                data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-medium" do %>
-            <i class="far fa-trash-alt"></i>
+<article class="panel is-success">
+  <div class="level-info">
+    <nav class="level">
+      <!-- Left side -->
+      <div class="level-left">
+        <p class="panel-tabs">
+          <a class="panel-tab is-active" onclick="openTab(event,'Web')">お知らせ</a>
+          <a class="panel-tab" onclick="openTab(event,'Aud')">システムからのお知らせ</a>
+        </p>
+      </div>
+      <!-- Right side -->
+      <div class="level-right">
+        <div class="level-item">
+          <%= form_with(url: "#", method: :get, local: true) do |f| %>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control has-icons-left">
+              <%= f.text_field :search, :placeholder => "タイトルを入力..", class: "input is-rounded" %>
+              <span class="icon is-left">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+            <div class="control">
+              <%= f.submit "\uf002検索", class: "fa button is-success is-outlined is-rounded" %>
+            </div>
+          </div>
           <% end %>
-          <%= render "notice_edit", {information: information, information_id: information.title} %>
-        </td>
-      </tr>
-      <% end %>
-    <tbody>
-  </table>
-</div>
-<%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+            <button class="button is-success is-rounded new-info" id="new">
+              <span class="icon is-small">
+                <i class="fas fa-bell"> new</i>
+              </span>
+            </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div id="Web" class="content-tab" >
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+    <div style="text-align:center;">
+      <div style="display:flex; flex-wrap: wrap; justify-content: center; text-align: left;">
+        <% @informations.each do |information| %>
+          <div class="card" style="width:300px; margin: 20px;">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= image_tag 'default.png', class: "info-image" %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content" style="height:100px;">
+                <p><%= l( information.created_at, format: :hyphen) %></p>
+                <p style="font-weight:bold;">
+                  <%= information.title %>
+                </p>
+                <%= information.news.truncate(30) %>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <div class="card-footer-item"><button type="button" class="button is-success is-light is-medium" id=<%= information.id %>><i class="fas fa-edit"></i></button>
+                <%= render "notice_edit", {information: information, information_id: information.title} %>
+              </div>
+              <div class="card-footer-item"><%= link_to facility_information_url(current_facility, information), method: :delete,
+                      data: { confirm: "#{information.title}のお知らせを削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </div>
+            </footer>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+  </div>
+
+  <div id="Aud" class="content-tab" style="display:none">
+    <div style="text-align:center;">
+      <div style="display:flex; flex-wrap: wrap; justify-content: center; text-align: left;">
+        <div class="card" style="width:300px; margin: 20px;">
+          <div class="card-content">
+            <div class="content" style="height:100px;">
+              <p><%= l( @info_top.created_at, format: :hyphen) %></p>
+              <p style="font-weight:bold;">
+                <%= @info_top.title %>
+              </p>
+              <%= @info_top.news.truncate(30) %>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <div class="card-footer-item">
+              <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <%= render 'new' %>
 <%= render 'edit' , { information: @info_top } %>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("panel-tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
