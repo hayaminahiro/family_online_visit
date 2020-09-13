@@ -58,6 +58,8 @@
 
 .search-title {
   margin-top: 70px;
+  color: white !important;
+  margin-right: 140px;
   text-shadow:
     1px 1px 1px #003366,
     -1px 1px 1px #003366,
@@ -71,4 +73,22 @@
 
 .search-input {
   width: 600px;
+}
+
+.search-btn {
+  text-shadow:
+    1px 1px 1px #003366,
+    -1px 1px 1px #003366,
+    1px -1px 1px #003366,
+    -1px -1px 1px #003366,
+    1px 0px 1px #003366,
+    0px 1px 1px #003366,
+    -1px 0px 1px #003366,
+    0px -1px 1px #003366;
+}
+
+.btn-width {
+  width: 40%;
+  display: flex;
+  margin-left: 90px;
 }

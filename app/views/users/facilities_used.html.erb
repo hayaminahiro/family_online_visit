@@ -3,17 +3,17 @@
   <div id="WebDev" class="content-tab">
     <section class="hero is-medium">
       <div class="hero-body search-img">
-        <h1 class="title has-text-centered is-size-1 search-title" style="color: white; margin-right: 100px;">
+        <h1 class="title has-text-centered is-size-1 search-title" style="">
           ご利用施設登録
         </h1>
         <div class="container">
           <%= form_with(url: user_facilities_used_path, method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-centered">
               <div class="control search-input">
-                <%= f.text_field :search, :placeholder => "施設名を入力", class: "input is-focused is-medium is-rounded is-black" %>
+                <%= f.text_field :search, :placeholder => "\uf0e0 ご利用の施設名を入力してください", class: "input is-focused is-medium is-rounded is-black" %>
               </div>
               <div class="control">
-                <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-link is-rounded" %>
+                <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-success is-rounded search-btn" %>
               </div>
             </div>
           <% end %>
@@ -38,7 +38,7 @@
                   </figure>
                 </div>
                 <div class="media-content">
-                <%= b.label { b.check_box + b.text } %>
+                <%= b.label { b.check_box + " " + b.text } %>
                   <p class="title is-4">John Smith</p>
                   <p class="subtitle is-6">@johnsmith</p>
                 </div>
@@ -55,8 +55,8 @@
           </div>
         <% end %>
       </div>
-      <div class="actions">
-        <%= f.submit "更新", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+      <div class="actions btn-width">
+        <%= f.submit "利用施設を登録", class: "button is-primary is-medium is-fullwidth new-btn has-text-weight-bold" %>
       </div>
     <% end %>
     <% current_user.facilities.each do |facility| %>
