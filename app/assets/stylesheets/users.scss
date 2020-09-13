@@ -42,7 +42,7 @@
 
 /* 利用施設登録 */
 .card-style {
-  width: 350px;
+  width: 340px;
   float: left;
   margin-right: 20px;
   margin-left: 30px;
@@ -54,6 +54,25 @@
   background-image: url(/assets/home.jpg); 
   height: 600px;
   margin: 0 calc(50% - 50vw);
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+.search-img:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(3px);
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
 }
 
 .search-title {
