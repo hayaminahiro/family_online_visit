@@ -10,7 +10,7 @@
           <%= form_with(url: user_facilities_used_path, method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-centered">
               <div class="control search-input">
-                <%= f.text_field :search, :placeholder => "\uf0e0 ご利用の施設名を入力してください", class: "input is-focused is-medium is-rounded is-black" %>
+                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-rounded is-black" %>
               </div>
               <div class="control">
                 <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-success is-rounded search-btn" %>
@@ -20,7 +20,42 @@
           </div>
       </div>
     </section>
-
+    <div id="tabs-with-content">
+      <div class="tabs is-centered">
+        <ul>
+          <li class="is-active">
+            <a>
+              <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+              <span>Pictures</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+              <span>Music</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+              <span>Videos</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+              <span>Documents</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <section class="tab-content">Pictures content</section>
+        <section class="tab-content">Music content</section>
+        <section class="tab-content">Videos content</section>
+        <section class="tab-content">Documents content</section>
+      </div>
+    </div>
     <%= form_with model: @user, url: user_update_facilities_used_path(@user), local: true do |f| %>
       <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
         <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name, include_hidden: false do |b| %>
@@ -43,7 +78,6 @@
                   <p class="subtitle is-6">@johnsmith</p>
                 </div>
               </div>
-
               <div class="content">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Phasellus nec iaculis mauris. <a>@bulmaio</a>.
@@ -65,4 +99,42 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  let tabsWithContent = (function () {
+    let tabs = document.querySelectorAll('.tabs li');
+    let tabsContent = document.querySelectorAll('.tab-content');
+
+    let deactvateAllTabs = function () {
+      tabs.forEach(function (tab) {
+        tab.classList.remove('is-active');
+      });
+    };
+
+    let hideTabsContent = function () {
+      tabsContent.forEach(function (tabContent) {
+        tabContent.classList.remove('is-active');
+      });
+    };
+
+    let activateTabsContent = function (tab) {
+      tabsContent[getIndex(tab)].classList.add('is-active');
+    };
+
+    let getIndex = function (el) {
+      return [...el.parentElement.children].indexOf(el);
+    };
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        deactvateAllTabs();
+        hideTabsContent();
+        tab.classList.add('is-active');
+        activateTabsContent(tab);
+      });
+    })
+
+    tabs[0].click();
+  })();
+</script>
 
