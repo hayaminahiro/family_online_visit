@@ -77,9 +77,14 @@ class UsersController < ApplicationController
 
   def update_facilities_used
     @user = User.find(params[:user_id])
-    @user.update_attributes(facilities_used_params)
-    flash[:notice] = "登録施設を更新しました。"
-    redirect_to user_facilities_used_url
+    if (params[:user][:facility_ids] == [""]) == true
+      flash[:alert] = "登録施設を選択して下さい。"
+      redirect_to user_facilities_used_url
+    else
+      @user.update_attributes(facilities_used_params)
+      flash[:notice] = "登録施設を更新しました。"
+      redirect_to user_facilities_used_url
+    end
   end
 
     private
