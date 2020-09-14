@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     @user.update_attributes(facilities_used_params)
     flash[:notice] = "登録施設を更新しました。"
-    redirect_to root_path
+    redirect_to user_facilities_used_url
   end
 
     private

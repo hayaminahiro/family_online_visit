@@ -21,7 +21,7 @@
       </div>
     </section>
     <div id="tabs-with-content">
-      <div class="tabs is-centered is-large">
+      <div class="tabs is-centered is-large has-text-weight-bold">
         <ul>
           <li class="is-active">
             <a>
@@ -41,7 +41,7 @@
         <section class="tab-content">
           <%= form_with model: @user, url: user_update_facilities_used_path(@user), local: true do |f| %>
             <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
-              <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name, include_hidden: false do |b| %>
+              <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name do |b| %>
                 <div class="card card-style">
                   <div class="card-image">
                     <figure class="image is-4by3">
