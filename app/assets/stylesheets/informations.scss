@@ -23,11 +23,15 @@
   width: 90px;
   margin-left: 20px;
 }
+#info-container{
+  padding-bottom: 50px;
+}
 .info-section{
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
   text-align: left;
+  margin-bottom: 30px;
 }
 #info-card{
   width:300px;

@@ -34,8 +34,8 @@
     </nav>
   </div>
   <div id="Web" class="content-tab" >
+    <div clsss="has-text-centered" id="info-container">
     <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-    <div clsss="has-text-centered">
       <div class="info-section">
         <% @informations.each do |information| %>
           <div class="card" id="info-card">
@@ -66,8 +66,8 @@
           </div>
         <% end %>
       </div>
-    </div>
     <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+    </div>
   </div>
 
   <div id="Aud" class="content-tab" style="display:none">
