@@ -55,7 +55,7 @@
 
           <% end %>
 
-          <% unless current_facility.facility_admin == true %>
+          <% unless facility_signed_in? && current_facility.facility_admin == true %>
             <!--全ユーザー閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
