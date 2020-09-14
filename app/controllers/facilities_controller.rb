@@ -3,7 +3,7 @@ class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show]
 
   # ログインしてなければ閲覧不可
-  before_action :authenticate_facility!
+  before_action :authenticate_facility!, except: :home
 
   def index
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
