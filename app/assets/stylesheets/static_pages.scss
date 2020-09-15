@@ -13,7 +13,7 @@ h2 {
 }
 
 .links {
-  color: #F7F7F7;
+  color:#CD853F;
   font-size: 20px;
 }
 
@@ -39,7 +39,7 @@ h2 {
 
 .image-layout::before {
   /* 透過した黒を重ねる */
-  background-color: rgba(1, 1, 1, 0.2);
+  background-color: rgba(0, 0, 0, 0);
   /* どの範囲に重ねるかを指定 */
   position: absolute;
   top: 0;
@@ -137,11 +137,11 @@ footer.modal-card-foot {
 
 //スマホ表示用
 div#navbarBasicExample.navbar-menu.is-active {
-  background: royalblue;
+  background: white;
 }
 
 p.navbar-item {
-  color: #F7F7F7;
+  color:#CD853F;
   font-size: 20px;
 }
 
@@ -151,7 +151,7 @@ p.navbar-item {
 
 .font-awe-video {
   margin-right: 10px;
-  color: paleturquoise;
+  color: #CD853F;
 }
 
 .more {
@@ -214,4 +214,112 @@ p.navbar-item {
 a.button.is-success.is-rounded.is-large.has-text-weight-bold.center-login {
   border-color: green;
   border-width: 1.5px;
+}
+
+#hero-2 {
+  background-size: cover;
+  background-position: center;
+  background-image: url("/family.jpg");
+  overflow: hidden;
+  position: relative;
+}
+
+.top-image {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: -1;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+  background-image: url("/video_image.jpg");
+  background-size: cover;
+}
+
+.hero-3 {
+  background-color: #FFDEAD;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color:#FFDEAD;
+  width:100%;
+  height: 100px;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+}
+
+.content {
+  margin-top: 30px;
+}
+
+.main_img {
+  z-index:10;
+  opacity: 0;
+  width: 100%;
+  height: 800px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-animation: anime 36s 0s infinite;
+  animation: anime 36s 0s infinite;
+}
+
+.main_img:nth-of-type(2) {
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+.main_img:nth-of-type(3) {
+  -webkit-animation-delay: 12s;
+  animation-delay: 12s;
+}
+
+.main_img:nth-of-type(4) {
+  -webkit-animation-delay: 18s;
+  animation-delay: 18s;
+}
+
+.main_img:nth-of-type(5) {
+  -webkit-animation-delay: 24s;
+  animation-delay: 24s;
+}
+
+.main_img:nth-of-type(6) {
+  -webkit-animation-delay: 30s;
+  animation-delay: 30s;
+}
+
+@keyframes anime {
+  0% {
+        opacity: 0;
+    }
+    8% {
+        opacity: 1;
+    }
+    17% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+        transform: scale(1.2) ;
+        z-index:9;
+    }
+    100% { opacity: 0 }
+}
+
+#hero-4 {
+  position: relative;
 }
