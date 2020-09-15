@@ -70,8 +70,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     if params[:search].present?
       @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%")
+      aaa = @facilities.ids << current_user.facilities.ids
+      aaa.flatten!
+      facilities = @facilities.ids << aaa
+      facilities.flatten!
+      @facilities = Facility.find(facilities)
     else
-      @facilities = @facilities = @facilities.where('facility_name LIKE ?', "")
+      @facilities = @facilities.where('facility_name LIKE ?', "")
+      aaa = @facilities.ids << current_user.facilities.ids
+      aaa.flatten!
+      facilities = @facilities.ids << aaa
+      facilities.flatten!
+      @facilities = current_user.facilities.find(facilities)
     end
   end
 
