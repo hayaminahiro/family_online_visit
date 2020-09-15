@@ -39,3 +39,38 @@
   margin-right: 40px;
   margin-left: 40px;
 }
+
+// ログイン画面
+.google-sentence {
+  font-size: 30px;
+  // color: red;
+  // background-color: white;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.google-privacy {
+  text-align: center;
+  color: black;
+}
+
+// プライバシーポリシー画面
+
+.pp-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.pp-sentence {
+  font-size: 20px;
+}
+
+.pp-black {
+  margin-bottom: 40px;
+}
+
+.pp-border {
+  border-bottom: solid 5px orange;
+  margin-bottom: 20px;
+}

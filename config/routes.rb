@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
+    get "privacy", :to => "users/sessions#privacy"
   end
 
   # ご家族目線のルーティング
