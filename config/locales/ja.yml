@@ -207,4 +207,5 @@ ja:
       short: "%m/%d %H:%M"
       time: "%H：%M"
       dot: "%Y.%m.%d"
+      hyphen: "%Y-%m-%d"
     pm: 午後
