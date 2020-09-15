@@ -1,101 +1,56 @@
-<body class="image-layout">
-  <section class="section login-hero-size" style="padding-top: 10px;">
-    <% if user_signed_in? %>
-      <% current_user.facilities.each do |facility| %> <!--current_user.facilitiesでログイン中のユーザが登録済みの施設を全て取得-->
-        <% @facility = facility.id %>
-        <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>/
-      <% end %>
-    <% end %>
-    <div class="container">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <h1 class="main-title">
-              <strong class="top-title">Online Visit</strong>
-            </h1>
-            <h5 class="is-size-2">
-              <% if facility_signed_in? %>
-              管理者 <%= current_facility.facility_name %> 様
-              <% elsif user_signed_in? %>
-              <%= current_user.name %> 様
-              <% end %>
-            </h5>
-            <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
-            <% unless user_signed_in? || facility_signed_in? %>
-            <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold center-login" %>
-            <% end %>
-          </div>
-          <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
-          <div class="button-position">
-            <div class="columns is-centered">
-              <div class="column is-3 top-btn-position">
-                <div class="top-btn">
-                  <button class="button is-large is-primary is-rounded has-text-weight-bold">予約する</button>
-                </div>
-                <div class="top-btn">
-                  <button class="button is-large is-success is-rounded has-text-weight-bold" id="open">予約情報確認</button>
-                </div>
-                <div class="top-btn">
-                  <button class="button is-large is-info is-rounded has-text-weight-bold">通話を開始する</button>
-                </div>
-              </div>
-              <div class="top-btn">
-                <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
-                <button class="button is-large is-danger is-rounded has-text-weight-bold red-btn">ご入居者様の登録申請</button><br>
-                <div class="notice-btn">
-                  <button class="button is-large is-warning is-rounded has-text-weight-bold">
-                    <%= link_to_unless_current "お知らせ表示", class: "notice-link" %>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column is-3">
-          <div class="admin-btn">
-            <% if user_signed_in? %>
-            <% if current_user.admin == true && current_user.floor_authority == true %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => false %>
-            <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
-            <% end %>
-            <% elsif current_user.admin == true && current_user.floor_authority == false %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => true %>
-            <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
-            <% end %>
-            <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
-
-<!--ご入居者様の登録申請ボタンのモーダル-->
-<div>
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title is-half has-text-weight-bold reserve-modal">予約情報</p>
-        <button class="delete" aria-label="close" id="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p class="image is-3by2">
-
-        </p>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-danger has-text-weight-bold" style="float: right">予約を取り消し</button>
-      </footer>
+<section class="hero is-medium" id="hero-2">
+  <div class="main_img" style="background-image: url('/online_visit_top2.jpg')"></div>
+  <div class="main_img" style="background-image: url('/video_room.jpg')"></div>
+  <div class="main_img" style="background-image: url('/online_visit_top3.jpg')"></div>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="has-text-centered" style="font-size: 100px;">
+        <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
+      </h1>
+      <p class="is-size-3 has-text-weight-semibold">
+        <font color="#4682B4">大切</font><font color="#fff">な</font><font color="#4DADA1">人</font>と結ぶ<font color="#FA8072">出会い</font><font color="#fff">の</font><font color="#FFD700">時間</font>
+      </p>
     </div>
   </div>
-</div>
+</section>
+
+
+<section class="hero is-medium has-text-centered" id="hero-4">
+  <% if user_signed_in? %>
+    <div class="tabs is-toggle is-toggle-rounded is-fullwidth">
+      <div class="container">
+        <ul>
+          <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight-semibold">ご入居者様登録申請</a></li>
+          <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight-semibold">お知らせ表示</a></li>
+          <li class="tab" onclick="openTab(event,'WebThd')"><a class="has-text-weight-semibold">登録施設</a></li>
+        </ul>
+      </div>
+    </div> 
+  <% end %>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+    <% unless user_signed_in? || facility_signed_in? %>
+      <%= link_to user_session_path, class: "button is-info is-large is-rounded is-focused has-text-weight-bold" do %>
+        <span class="icon">
+          <i class="fas fa-house-user"></i>
+        </span>
+        <span>
+          ログイン
+        </span>
+      <% end %><br><br>
+      <strong><span class="is-size-4"><font color="#CD853F">ご家族の方はこちらから</font></span></strong>
+    <% end %>
+    <% if user_signed_in? %>
+      <div id="WebDev" class="content-tab">
+      </div>
+      <div id="WebAud" class="content-tab" style="display:none">
+      </div>
+      <div id="WebThd" class="content-tab" style="display:none">
+      </div>
+    <% end %>
+    </div>
+  </div>
+</section>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
