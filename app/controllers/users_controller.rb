@@ -70,25 +70,24 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     if params[:search].present?
       @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%")
-      aaa = @facilities.ids << current_user.facilities.ids
-      aaa.flatten!
-      facilities = @facilities.ids << aaa
-      facilities.flatten!
+      ids = @facilities.ids << current_user.facilities.ids
+      facilities = @facilities.ids << ids.flatten!
       @facilities = Facility.find(facilities)
     else
       @facilities = @facilities.where('facility_name LIKE ?', "")
-      aaa = @facilities.ids << current_user.facilities.ids
-      aaa.flatten!
-      facilities = @facilities.ids << aaa
-      facilities.flatten!
-      @facilities = current_user.facilities.find(facilities)
+      ids = @facilities.ids << current_user.facilities.ids
+      facilities = @facilities.ids << ids.flatten!
+      if ids.present?
+        @facilities = Facility.find(facilities)
+      end
     end
   end
 
   def update_facilities_used
     @user = User.find(params[:user_id])
     if (params[:user][:facility_ids] == [""]) == true
-      flash[:alert] = "登録施設を選択して下さい。"
+      @user.update_attributes(facilities_used_params)
+      flash[:alert] = "新しく施設を登録して下さい。"
       redirect_to user_facilities_used_url
     else
       @user.update_attributes(facilities_used_params)
