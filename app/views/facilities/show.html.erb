@@ -1,1 +1,62 @@
-<h1>施設マイページ</h1>
+<section class="hero is-small">
+  <div class="hero-body">
+  </div>
+</section>
+
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-centered is-size-1">
+        <%= @facility.facility_name %> / 施設マイページ
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div class="container section">
+  <div id="WebDev" class="content-tab">
+    <div class="table-container">
+      <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
+        <thead>
+          <tr>
+            <th>施設名</th>
+            <th>メールアドレス</th>
+            <th>登録ユーザー数</th>
+            <th>編集</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= @facility.facility_name %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= @facility.email %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= @facility.users.count %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <%= link_to edit_facility_path(@facility), class: "button is-success is-medium" do %>
+              <span><i class="fas fa-user-edit"></i></span>
+              <% end %>
+            </td>
+            <td class="is-vcentered">
+              <%= link_to facility_path(@facility), method: :delete, data: { confirm: "「#{@facility.facility_name}」を削除してよろしいですか?" },
+                class: "button is-danger is-medium" do %>
+              <span><i class="far fa-trash-alt"></i></span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

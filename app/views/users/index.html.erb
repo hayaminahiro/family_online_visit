@@ -30,7 +30,7 @@
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
-          <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: facility_users_path(@facility), method: :get, local: true) do |f| %>
           <div class="field is-grouped is-grouped-right">
             <div class="control">
               <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-medium is-rounded is-black" %>
@@ -84,7 +84,7 @@
                     <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
-                  <%= form_with(model: user, url: room_word_update_user_path(user), method: :patch, local: true,) do |f| %>
+                  <%= form_with(model: user, url: room_word_update_facility_user_path(current_facility.id, user), method: :patch, local: true,) do |f| %>
                   <section class="modal-card-body">
                     <div class="field">
                       <%= f.label :room_name, class: "label is-size-4" %>
@@ -125,12 +125,12 @@
               </div>
             </td>
             <td>
-              <%= link_to video_room_user_path(user), class: "button is-warning is-medium" do %>
+              <%= link_to video_room_facility_user_path(current_facility.id, id: user.id), class: "button is-warning is-medium" do %>
               <span><i class="fas fa-photo-video"></i></span>
               <% end %>
             </td>
             <td>
-              <%= link_to edit_user_path(user), class: "button is-success is-medium" do %>
+              <%= link_to edit_facility_user_path(current_facility.id, id: user.id), class: "button is-success is-medium" do %>
               <span><i class="fas fa-user-edit"></i></span>
               <% end %>
             </td>

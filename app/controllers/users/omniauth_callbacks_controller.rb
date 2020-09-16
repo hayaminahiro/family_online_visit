@@ -6,26 +6,52 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_for(:google)
   end
 
-  def line
-    callback_for(:line)
-  end
-  
 
   def callback_for(provider)
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
+    @omniauth = request.env['omniauth.auth']
+    info = User.find_oauth(@omniauth)
+    @user = info[:user]
+    if @user.persisted? 
+      sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-    else
-      session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-      redirect_to new_user_registration_url
+    else 
+      @sns = info[:sns]
+      render template: "devise/registrations/new" 
     end
   end
 
   def failure
-    redirect_to root_path
+    redirect_to root_path and return
   end
 
+  def line; basic_action end
+
+  private
+
+ def basic_action
+   @omniauth = request.env['omniauth.auth']
+   if @omniauth.present?
+     @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+     if @profile
+       @profile.set_values(@omniauth)
+       sign_in(:user, @profile)
+     else
+       @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+       email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+       @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+       @profile.set_values(@omniauth)
+       sign_in(:user, @profile)
+       # redirect_to edit_user_path(@profile.user.id) and return
+     end
+   end
+   flash[:notice] = "ログインしました"
+   redirect_to root_path
+ end
+
+
+ def fake_email(uid,provider)
+    return "#{auth.uid}-#{auth.provider}@example.com"
+ end
   
   
 
