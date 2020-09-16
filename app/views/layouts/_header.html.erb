@@ -55,12 +55,14 @@
 
           <% end %>
 
-          <!--全ユーザー閲覧可能-->
-          <p class="navbar-item">
-            <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
-          </p>
+          <% unless facility_signed_in? && current_facility.facility_admin == true %>
+            <!--全ユーザー閲覧可能-->
+            <p class="navbar-item">
+              <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+            </p>
+          <% end %>
 
-          <% if facility_signed_in? && current_facility.admin== false %>
+          <% if facility_signed_in? && current_facility.admin== false && current_facility.facility_admin == false %>
             <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>

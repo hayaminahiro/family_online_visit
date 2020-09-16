@@ -18,6 +18,9 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def privacy
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
