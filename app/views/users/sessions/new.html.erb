@@ -36,8 +36,8 @@
 
                 <% end %>
 
-                <div class="google-login">
-                  <%= link_to image_tag("btn_google_signin_dark_focus_web.png"), user_google_omniauth_authorize_path %><br>
+                <div class="google-login">                
+                  <%= link_to image_tag("btn_google_signin_dark_focus_web.png"), user_google_oauth2_omniauth_authorize_path %><br>
                 </div>
 
                 <div class="line-login">
@@ -55,7 +55,13 @@
       </article>
       <div class="columns is-centered">
         <div class="column">
-
+          <div class="google-sentence">
+            このアプリでは、福祉施設入居者とそのご家族がインターネットを介して繋がることができます。<br>ご家族はアプリ登録を行い、面会予約を行うことで入居しているご家族の方とテレビ電話で繋がることができます。<br>
+            アプリ登録では、「sign in with google」を使用することで、googleに登録してある会員情報から簡単にユーザー登録・ログインをすることが可能です。<br>
+            <div class="google-privacy">
+            <%= link_to "privacy policy", privacy_path, class: "button is-large is-warning has-text-weight-bold" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

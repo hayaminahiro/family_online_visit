@@ -31,6 +31,12 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="field"> <!--施設テーブルとの関連付けのため追加-->
+    <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name, include_hidden: false do |b| %><br />
+      <%=  b.label { b.check_box + b.text } %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit "更新", class: "button is-info" %>
   </div>

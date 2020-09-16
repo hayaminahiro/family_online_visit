@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy]
+  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy, :video_room]
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, except: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
   before_action :authenticate_facility!, only: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
 
   def index
-    @users = User.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
+    @facility = Facility.find(params[:facility_id])
+    @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
       @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "登録できませんでした。"
     end
-    redirect_to users_url
+    redirect_to facility_users_url(current_facility)
   end
 
   def edit
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
     end
     if @user.update_attributes(user_params)
       flash[:notice] = "ユーザー情報を更新しました。"
-      redirect_to users_url
+      redirect_to facility_users_url(current_facility)
     else
       render "edit"
     end
@@ -42,21 +43,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = "#{@user.name}を削除しました。"
-    redirect_to users_url
+    redirect_to facility_users_url(current_facility)
   end
 
   def video_room
-  end
-
-  def change_admin
-    @user = User.find(params[:id])
-    if @user.update_attributes(admin_params)
-      flash[:notice] = "権限を変更します"
-      redirect_to root_path
-    else
-      flash[:alert] = "権限を変更できませんでした"
-    end
-    render :root
+    @facility = Facility.find(params[:facility_id])
   end
 
   def new_admin
@@ -64,10 +55,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def admin_params
-    params.permit(:floor_authority)
-  end
 
   def room_params
     params.require(:user).permit(:room_name)

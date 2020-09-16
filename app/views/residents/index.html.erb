@@ -34,7 +34,7 @@
       <%= render partial: 'csv_import' %>
       <div class="head-button"><button type="button" class="button is-info is-rounded is-size-5 has-text-weight-bold" id="new"><i class="fas fa-user-plus"></i></button></div>
       <div style="margin-left:auto;">
-        <%= form_with(url: residents_path, method: :get, local: true) do |f| %>
+        <%= form_with(url: user_facility_residents_path(current_facility), method: :get, local: true) do |f| %>
         <div class="field is-grouped is-grouped-right">
           <div class="control">
             <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
@@ -70,11 +70,11 @@
             </td>
             <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
             <td>
-              <%= link_to resident, method: :delete,
+              <%= link_to facility_resident_path(current_facility, resident), method: :delete,
                 data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
               <i class="far fa-trash-alt"></i>
               <% end %>
-              <%= render 'edit', {resident: resident, resident_id: resident.name} %>
+              <%= render 'edit', {resident: resident, resident_id: (resident.name + resident.id.to_s)} %>
             </td>
           </tr>
           <% end %>
