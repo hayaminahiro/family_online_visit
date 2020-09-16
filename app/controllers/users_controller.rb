@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy, :video_room]
+  before_action :set_user, only: [:room_word_update, :edit, :update, :destroy, :video_room, :show]
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, except: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
   before_action :authenticate_facility!, only: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
@@ -21,6 +21,9 @@ class UsersController < ApplicationController
       flash[:alert] = "登録できませんでした。"
     end
     redirect_to facility_users_url(current_facility)
+  end
+
+  def show
   end
 
   def edit
