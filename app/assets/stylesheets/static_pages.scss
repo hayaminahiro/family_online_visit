@@ -13,8 +13,9 @@ h2 {
 }
 
 .links {
-  color:#CD853F;
+  color:#595a5a;
   font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .notice-link {
@@ -137,16 +138,20 @@ footer.modal-card-foot {
 
 //スマホ表示用
 div#navbarBasicExample.navbar-menu.is-active {
-  background: white;
+  background-color: #efefef;
 }
 
 p.navbar-item {
-  color:#CD853F;
+  color:#595a5a;
   font-size: 20px;
+  background-color: #efefef;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .dark-top {
   padding: 5px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 .font-awe-video {
@@ -250,7 +255,7 @@ html {
 }
 
 footer {
-  background-color:#FFDEAD;
+  background-color: #FFDEAD;
   width:100%;
   height: 100px;
   bottom: 0;
@@ -279,17 +284,17 @@ footer {
 
 .main_img:nth-of-type(2) {
   -webkit-animation-delay: 6s;
-  animation-delay: 6s;
+  animation-delay: 5s;
 }
 
 .main_img:nth-of-type(3) {
   -webkit-animation-delay: 12s;
-  animation-delay: 12s;
+  animation-delay: 10s;
 }
 
 .main_img:nth-of-type(4) {
   -webkit-animation-delay: 18s;
-  animation-delay: 18s;
+  animation-delay: 15s;
 }
 
 .main_img:nth-of-type(5) {

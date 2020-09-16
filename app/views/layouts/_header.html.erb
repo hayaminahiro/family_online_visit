@@ -1,18 +1,18 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background: #efefef;">
+  <div class="navbar-brand" style="background: #efefef;">
     <section class="navbar dark-top" style="background-color: #FFDEAD;">
       <div class="navbar-body">
         <div class="container">
           <%= link_to root_path, class: "navbar-item" do %>
             <i class="fas fa-photo-video fa-2x font-awe-video"></i>
-            <h1 class="title is-2" style="font-family: 'Quicksand', sans-serif;">
+            <h1 class="is-size-3 is-2" style="font-family: 'Quicksand', sans-serif;">
               <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
             </h1>
           <% end %>
         </div>
       </div>
     </section>
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" style="background-color: #FFDEAD; border-radius: 50%; margin-top: 12px;">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -21,7 +21,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
-      <div class="navbar-start has-text-weight-bold">
+      <div class="navbar-start has-text-weight-semibold">
         <!--全ユーザー閲覧可能-->
         <% if user_signed_in? || facility_signed_in? %>
         <p class="navbar-item">
@@ -77,7 +77,7 @@
         <a class="navbar-link has-text-weight-bold more">
           <font color="#CD853F"><i class="fas fa-user-circle fa-2x"></i></font>
         </a>
-        <div class="navbar-dropdown">
+        <div class="navbar-dropdown" style="background-color: #efefef;">
           <a class="navbar-item has-text-weight-bold is-size-6">
             <% if user_signed_in? %>
             <%= link_to "マイページ", user_path(current_user), :style=>"color: #CD853F;", class: "navbar-item has-text-weight-bold is-size-6" %>

@@ -2,15 +2,14 @@
   <div class="main_img" style="background-image: url('/static_pages5.jpg')"></div>
   <div class="main_img" style="background-image: url('/video_room.jpg')"></div>
   <div class="main_img" style="background-image: url('/static_pages2.jpg')"></div>
-  <div class="main_img" style="background-image: url('/static_pages7.jpg')"></div>
   <div class="main_img" style="background-image: url('/static_pages1.jpg')"></div>
   <div class="hero-body">
     <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
-      <h1 class="has-text-centered" style="font-size: 100px;">
+      <h1 class="has-text-centered" style="font-size: 80px;">
         <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
       </h1>
-      <p class="is-size-3 has-text-weight-semibold">
-        <font color="#4682B4">大切</font><font color="#fff">な</font><font color="#4DADA1">人</font>と結ぶ<font color="#FA8072">出会い</font><font color="#fff">の</font><font color="#FFD700">時間</font>
+      <p class="is-size-3">
+        大切な人と結ぶ出会いの時間
       </p>
     </div>
   </div>
@@ -30,18 +29,20 @@
     </div> 
   <% end %>
   <div class="hero-body">
+    <div class="container has-text-left" style="margin-left: 100px;">
+      <% unless user_signed_in? || facility_signed_in? %>
+        <%= link_to user_session_path, class: "button is-info is-large is-rounded is-focused has-text-weight-bold" do %>
+          <span class="icon">
+            <i class="fas fa-house-user"></i>
+          </span>
+          <span>
+            ログイン
+          </span>
+        <% end %><br><br>
+        <strong><span class="is-size-4"><font color="#CD853F">ご家族の方はこちらから</font></span></strong>
+      <% end %>
+    </div>
     <div class="container has-text-centered">
-    <% unless user_signed_in? || facility_signed_in? %>
-      <%= link_to user_session_path, class: "button is-info is-large is-rounded is-focused has-text-weight-bold" do %>
-        <span class="icon">
-          <i class="fas fa-house-user"></i>
-        </span>
-        <span>
-          ログイン
-        </span>
-      <% end %><br><br>
-      <strong><span class="is-size-4"><font color="#CD853F">ご家族の方はこちらから</font></span></strong>
-    <% end %>
     <% if user_signed_in? %>
       <div id="WebDev" class="content-tab">
       </div>
