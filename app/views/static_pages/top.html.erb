@@ -29,28 +29,38 @@
     </div> 
   <% end %>
   <div class="hero-body">
-    <div class="container has-text-left" style="margin-left: 100px;">
-      <% unless user_signed_in? || facility_signed_in? %>
-        <%= link_to user_session_path, class: "button is-info is-large is-rounded is-focused has-text-weight-bold" do %>
-          <span class="icon">
-            <i class="fas fa-house-user"></i>
-          </span>
-          <span>
-            ログイン
-          </span>
-        <% end %><br><br>
-        <strong><span class="is-size-4"><font color="#CD853F">ご家族の方はこちらから</font></span></strong>
+    <div class="container">
+      <% if user_signed_in? %>
+        <div id="WebDev" class="content-tab">
+        </div>
+        <div id="WebAud" class="content-tab" style="display:none">
+        </div>
+        <div id="WebThd" class="content-tab" style="display:none">
+        </div>
+      <% elsif !user_signed_in? || !facility_signed_in? %>
+        <div class="inline-block_content">
+          <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+            これからの暮らしに欠かすことのできない要素として<br>
+            オンラインをとらえ離れていてもすぐに繋がれる<br>
+            <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
+            ログインすることで 面会予約、ビデオチャット<br>
+            、写真の閲覧 が可能になります。<br>
+            ユーザの新規登録がお済みでない方も<br>
+            こちらのログインボタンよりお入りください<br>
+          </p><br>
+          <%= link_to user_session_path, class: "btn-animation-02" do %>
+            <span class="icon">
+              <i class="fas fa-users"></i>
+            </span>&nbsp;
+            <span>
+              ログイン
+            </span>
+          <% end %>
+        </div>&emsp;&emsp;
+        <div class="inline-block_content">
+          <img src="static_pages5.jpg" width="400" height="300">
+        </div>
       <% end %>
-    </div>
-    <div class="container has-text-centered">
-    <% if user_signed_in? %>
-      <div id="WebDev" class="content-tab">
-      </div>
-      <div id="WebAud" class="content-tab" style="display:none">
-      </div>
-      <div id="WebThd" class="content-tab" style="display:none">
-      </div>
-    <% end %>
     </div>
   </div>
 </section>
