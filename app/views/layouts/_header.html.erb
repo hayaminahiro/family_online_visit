@@ -107,15 +107,10 @@
       <div class="navbar-item">
         <div class="buttons">
           <p class="navbar-item has-text-weight-bold is-size-5">
-            <font color ="#CD853F">管理者はこちらから</font>
+            <font color ="#828282">管理者はこちらから</font>
           </p>
-          <%= link_to facility_session_path, :style=>"color: white;", class: "button is-warning is-large is-rounded has-text-weight-bold" do %>
-            <span class="icon">
-              <i class="far fa-user-circle"></i>
-            </span>
-            <span>
-              ログイン
-            </span>
+          <%= link_to facility_session_path, class: "circle_spread_btn" do %>
+            <i class="far fa-user-circle fa-2x" style="padding-top: 9px;"></i>
           <% end %>
         </div>
       </div>
