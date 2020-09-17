@@ -21,9 +21,8 @@
     <div class="tabs is-toggle is-toggle-rounded is-fullwidth">
       <div class="container">
         <ul>
-          <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight-semibold">ご入居者様登録申請</a></li>
-          <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight-semibold">お知らせ表示</a></li>
-          <li class="tab" onclick="openTab(event,'WebThd')"><a class="has-text-weight-semibold">登録施設</a></li>
+          <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight-semibold">施設登録</a></li>
+          <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight-semibold">マイページ</a></li>
         </ul>
       </div>
     </div> 
@@ -32,10 +31,42 @@
     <div class="container">
       <% if user_signed_in? %>
         <div id="WebDev" class="content-tab">
+          <div class="inline-block_content">
+            <img src="user_mypage.jpg" width="400" height="300">
+          </div>
+          <div class="inline-block_content">
+            <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+              介護施設、病院、保育園などを様々なジャンルから<br>
+              利用したい施設を登録することで<br>
+              ビデオチャットの予約をすることができます。
+            </p><br>
+            <%= link_to "#", class: "btn-animation-facility" do %>
+              <span class="icon">
+                <i class="far fa-building"></i>
+              </span>&nbsp;
+              <span>
+                施設登録
+              </span>
+            <% end %>
+          </div>
         </div>
         <div id="WebAud" class="content-tab" style="display:none">
-        </div>
-        <div id="WebThd" class="content-tab" style="display:none">
+          <div class="inline-block_content">
+            <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+              登録した施設、予約の確認、写真の閲覧ができます。<br>
+            </p><br>
+            <%= link_to "#", class: "btn-animation-login" do %>
+              <span class="icon">
+                <i class="far fa-user"></i>
+              </span>&nbsp;
+              <span>
+                マイページ
+              </span>
+            <% end %>
+          </div>
+          <div class="inline-block_content">
+            <img src="facility_registration.jpg" width="400" height="300">
+          </div>
         </div>
       <% elsif !user_signed_in? || !facility_signed_in? %>
         <div class="inline-block_content">
@@ -43,8 +74,8 @@
             これからの暮らしに欠かすことのできない要素として<br>
             オンラインをとらえ離れていてもすぐに繋がれる<br>
             <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
-            ログインすることで 面会予約、ビデオチャット<br>
-            、写真の閲覧 が可能になります。<br>
+            ログインすることで 面会予約、ビデオチャット、<br>
+            写真の閲覧 が可能になります。<br>
             ユーザの新規登録がお済みでない方も<br>
             こちらのログインボタンよりお入りください<br>
           </p><br>
