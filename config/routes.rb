@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
+    get "privacy", :to => "users/sessions#privacy"
   end
 
   # ご家族目線のルーティング
@@ -32,7 +33,6 @@ Rails.application.routes.draw do
       resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
         member do # /users/:user_id/facilities/:id/~~~
           get :video_room # /users/:user_id/facilities/:id/video_room
-          patch :change_admin
           get 'video_room'
           patch 'room_word_update'
         end
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   # 施設目線のルーティング
   resources :facilities do # /facilities/:id/~~~
+    patch :change_admin # /facilities/:facility_id/change_admin
     resources :residents do # /facilities/:facility_id/residents/:id/~~~
       collection { post :import } # CSVインポート機能
     end

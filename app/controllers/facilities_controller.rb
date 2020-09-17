@@ -29,6 +29,17 @@ class FacilitiesController < ApplicationController
     redirect_to facilities_url
   end
 
+  def change_admin
+    @facility = Facility.find(params[:facility_id])
+    if @facility.update_attributes(admin_params)
+      flash[:notice] = "権限を変更しました。"      
+    else
+      flash[:alert] = "権限を変更できませんでした。"
+    end
+    redirect_to root_path
+  end
+
+
   def destroy
     @facility.destroy
     flash[:notice] = "「#{@facility.facility_name}」の施設情報を削除しました。"
@@ -47,6 +58,10 @@ class FacilitiesController < ApplicationController
 
       def facility_params
         params.require(:facility).permit(:facility_name, :email, :password,:password_confirmation)
+      end
+
+      def admin_params
+        params.permit(:facility_admin)
       end
 
 end
