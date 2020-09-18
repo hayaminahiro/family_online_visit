@@ -4,6 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+  password = Devise.friendly_token.first(7)
+  if session[:provider].present? && session[:uid].present?
+    @user = User.create(name:session[:name], email: session[:email], password: "password", password_confirmation: "password")
+    sns = SnsCredential.create(user_id: @user.id, uid: session[:uid], provider: session[:provider])
+  else
+    @user = User.create(name:session[:name], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation])
+  end
+
   # GET /resource/sign_up
   def new
     @facilities = Facility.all #施設テーブルとの関連付けで追加

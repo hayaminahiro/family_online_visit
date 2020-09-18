@@ -24,7 +24,6 @@
 }
 
 /* ご家族一覧 */
-
 #family-table th {
   background-color: #FFDAB9;
   font-size: 20px;
@@ -40,8 +39,7 @@
   margin-left: 40px;
 }
 
-/* ご家族編集 */
-
+/* ご家族編集画面 */
 .edit-field {
   color: #2e2f30;
   font-size: 20px;
@@ -51,4 +49,38 @@
 
 .under {
   border-bottom: double 4px red;
+}
+
+// ログイン画面
+.google-sentence {
+  font-size: 30px;
+  // color: red;
+  // background-color: white;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.google-privacy {
+  text-align: center;
+  color: black;
+}
+
+// プライバシーポリシー画面
+.pp-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.pp-sentence {
+  font-size: 20px;
+}
+
+.pp-black {
+  margin-bottom: 40px;
+}
+
+.pp-border {
+  border-bottom: solid 5px orange;
+  margin-bottom: 20px;
 }
