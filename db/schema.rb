@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
     t.index ["facility_id"], name: "index_residents_on_facility_id"
   end
 
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -100,6 +107,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
     t.string "provider"
     t.string "uid"
     t.string "meta"
+    t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
