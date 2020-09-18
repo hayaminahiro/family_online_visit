@@ -69,17 +69,9 @@ class UsersController < ApplicationController
     @facilities = Facility.all.where.not(admin: true)
     @user = User.find(params[:user_id])
     if params[:search].present?
-      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%")
-      ids = @facilities.ids << current_user.facilities.ids
-      facilities = @facilities.ids << ids.flatten!
-      @facilities = Facility.find(facilities)
+      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities)
     else
       @facilities = @facilities.where('facility_name LIKE ?', "")
-      ids = @facilities.ids << current_user.facilities.ids
-      facilities = @facilities.ids << ids.flatten!
-      if ids.present?
-        @facilities = Facility.find(facilities)
-      end
     end
   end
 
