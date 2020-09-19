@@ -24,7 +24,7 @@
                   <% end %>
 
                   <div class="field">
-                    <p class="is-size-6">※パスワードの変更はこちらから（<span class="under">6文字以上</span>で入力）</p>
+                    <p class="is-size-6">パスワードの変更はこちらから（<span class="under">6文字以上</span>で入力）</p>
                     <%= f.label :password %><br />
                     <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "current-password", class: "fa input is-medium is-info input-top" %>
                     <% if @minimum_password_length %>
