@@ -39,3 +39,109 @@
   margin-right: 40px;
   margin-left: 40px;
 }
+
+/* ご家族マイページ */
+.my-page{
+  background-color: rgb(250,248,244);
+}
+.my-page-container{
+  width: 980px;
+  margin: auto;
+}
+.edit-main-image{
+  display: block;
+  margin-top: 20px;
+}
+.edit-my-image{
+  display: block;
+  width:150px;
+  border-radius: 30px;
+}
+.my-container-head{
+  position: relative;
+  height:500px;
+}
+.edit-main-image, .edit-my-image, .my-name, .my-email, #my-page-table{
+  position: absolute;
+}
+.edit-main-image{
+  // z-index: 0;
+  left: 0;
+  top: 0;
+}
+.edit-my-image{
+  z-index: 1;
+  bottom: 60px;
+  left: 30px;
+}
+#my-page-table{
+  width: 300px;
+  z-index: 1;
+  bottom: 60px;
+  right: 10px;
+}
+.my-name{
+  z-index: 1;
+  bottom: 90px;
+  left: 240px;
+  font-size: 30px;
+  font-weight: 800;
+}
+.my-email{
+  z-index: 1;
+  bottom: 60px;
+  left: 240px;
+}
+.my-page-tab{
+  border-bottom: solid 1px #e0dccc;
+  margin-bottom: 13px;
+  border-top: solid 1px #e0dccc;
+}
+.facility-section{
+  display:flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+  text-align: left;
+  margin-bottom: 30px;
+}
+#facility-card{
+  width:260px;
+  margin: 20px;
+}
+#facility-content{
+  height:110px;
+}
+.level-facility {
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+.under-section{
+}
+.my-container-under{
+  display: flex;
+}
+.under-section{
+  flex: 2;
+}
+.mypage-information{
+  flex: 1;
+  padding-left: 40px;
+  border-left: solid 1px rgb(238,236,228);
+}
+.mypage-info-p{
+  background-color: #fdfae6;
+  padding: 10px;
+  border: solid 2px rgb(250,228,133);
+  margin: 0px 0px 15px 0px;
+  border-radius: 3px;
+}
+.mypage-info-span{
+  background-color: #4a86b6;
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+  display: inline-block;
+  border-radius: 3px;
+  margin-left: 8px;
+}
