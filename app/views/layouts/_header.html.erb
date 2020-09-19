@@ -82,25 +82,29 @@
       <% if user_signed_in?  || facility_signed_in? %>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link has-text-weight-bold more">
-          <font color="#CD853F"><i class="fas fa-user-circle fa-2x"></i></font>
+        <% if facility_signed_in? %>
+          <font color="#4682B4"><i class="fas fa-user-circle fa-2x"></i></font>
+        <% else %>
+          <font color="#4DADA1"><i class="fas fa-user-circle fa-2x"></i></font>
+        <% end %>
         </a>
         <div class="navbar-dropdown" style="background-color: #efefef;">
           <a class="navbar-item has-text-weight-bold is-size-6">
             <% if user_signed_in? %>
-            <%= link_to "マイページ", user_path(current_user), :style=>"color: #CD853F;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <%= link_to "マイページ", user_path(current_user), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% elsif facility_signed_in? %>
-            <%= link_to "マイページ", facility_path(current_facility), :style=>"color: #CD853F;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <%= link_to "マイページ", facility_path(current_facility), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% end %>
           </a>
           <a class="navbar-item has-text-weight-bold is-size-6">
             <% if user_signed_in? %>
-            <%= link_to "設定", edit_user_registration_path(resource_name), :style=>"color: #CD853F;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <%= link_to "設定", edit_user_registration_path(resource_name), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% elsif facility_signed_in? %>
-            <%= link_to "設定", edit_facility_registration_path(resource_name), :style=>"color: #CD853F;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <%= link_to "設定", edit_facility_registration_path(resource_name), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% end %>
           </a>
           <hr class="navbar-divider">
-          <%= link_to "ログアウト", sign_out_path, :style=>"color: #CD853F;", class: "navbar-item has-text-weight-bold is-size-6" %>
+          <%= link_to "ログアウト", sign_out_path, :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
         </div>
       </div>
       <% else %>

@@ -1,7 +1,7 @@
 <section class="hero is-medium" id="hero-2">
   <div class="main_img" style="background-image: url('/static_pages5.jpg')"></div>
   <div class="main_img" style="background-image: url('/video_room.jpg')"></div>
-  <div class="main_img" style="background-image: url('/static_pages2.jpg')"></div>
+  <div class="main_img" style="background-image: url('/static_pages9.jpg')"></div>
   <div class="main_img" style="background-image: url('/static_pages1.jpg')"></div>
   <div class="hero-body">
     <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
@@ -17,58 +17,56 @@
 
 
 <section class="hero is-medium has-text-centered" id="hero-4">
-  <% if user_signed_in? %>
-    <div class="tabs is-toggle is-toggle-rounded is-fullwidth">
-      <div class="container">
-        <ul>
-          <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight-semibold">施設登録</a></li>
-          <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight-semibold">マイページ</a></li>
-        </ul>
-      </div>
-    </div> 
-  <% end %>
-  <div class="hero-body">
-    <div class="container">
-      <% if user_signed_in? %>
-        <div id="WebDev" class="content-tab">
-          <div class="inline-block_content">
-            <img src="user_mypage.jpg" width="400" height="300">
+  <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
+    <% if user_signed_in? %>
+      <div class="cp_tab">
+        <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+        <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設登録</label>
+        <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;マイページ</label>
+
+        <div class="cp_tabpanels">
+          <div id="first_tab01" class="cp_tabpanel">
+            <div class="inline-block_content">
+              <img src="user_mypage.jpg" width="400" height="300">
+            </div>&emsp;&emsp;
+            <div class="inline-block_content">
+              <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+                介護施設、病院、保育園などを様々なジャンルから<br>
+                利用したい施設を登録することで<br>
+                ビデオチャットの予約をすることができます。
+              </p><br>
+              <%= link_to "#", class: "btn-animation-facility" do %>
+                <span class="icon">
+                  <i class="far fa-building"></i>
+                </span>&nbsp;
+                <span>
+                  施設登録
+                </span>
+              <% end %>
+            </div>
           </div>
-          <div class="inline-block_content">
-            <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-              介護施設、病院、保育園などを様々なジャンルから<br>
-              利用したい施設を登録することで<br>
-              ビデオチャットの予約をすることができます。
-            </p><br>
-            <%= link_to "#", class: "btn-animation-facility" do %>
-              <span class="icon">
-                <i class="far fa-building"></i>
-              </span>&nbsp;
-              <span>
-                施設登録
-              </span>
-            <% end %>
+          <div id="second_tab01" class="cp_tabpanel">
+            <div class="inline-block_content">
+              <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+                登録した施設、予約の確認、写真の閲覧ができます。<br>
+              </p><br>
+              <%= link_to "#", class: "btn-animation-login" do %>
+                <span class="icon">
+                  <i class="fas fa-home"></i>
+                </span>&nbsp;
+                <span>
+                  マイページ
+                </span>
+              <% end %>
+            </div>&emsp;&emsp;
+            <div class="inline-block_content">
+              <img src="facility_registration.jpg" width="400" height="300">
+            </div>
           </div>
-        </div>
-        <div id="WebAud" class="content-tab" style="display:none">
-          <div class="inline-block_content">
-            <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-              登録した施設、予約の確認、写真の閲覧ができます。<br>
-            </p><br>
-            <%= link_to "#", class: "btn-animation-login" do %>
-              <span class="icon">
-                <i class="far fa-user"></i>
-              </span>&nbsp;
-              <span>
-                マイページ
-              </span>
-            <% end %>
-          </div>
-          <div class="inline-block_content">
-            <img src="facility_registration.jpg" width="400" height="300">
-          </div>
-        </div>
-      <% elsif !user_signed_in? || !facility_signed_in? %>
+        </div> 
+      <% elsif !user_signed_in? && !facility_signed_in? %>
+        <div class="about-title is-size-3">Online Visitについて</div>
         <div class="inline-block_content">
           <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
             これからの暮らしに欠かすことのできない要素として<br>
@@ -77,7 +75,7 @@
             ログインすることで 面会予約、ビデオチャット、<br>
             写真の閲覧 が可能になります。<br>
             ユーザの新規登録がお済みでない方も<br>
-            こちらのログインボタンよりお入りください<br>
+            こちらの<font color="#4DADA1">ログインボタン</font>よりお入りください<br>
           </p><br>
           <%= link_to user_session_path, class: "btn-animation-login" do %>
             <span class="icon">
@@ -91,23 +89,9 @@
         <div class="inline-block_content">
           <img src="static_pages5.jpg" width="400" height="300">
         </div>
+      <% elsif facility_signed_in? %>
+        
       <% end %>
     </div>
   </div>
 </section>
-
-<script>
-  function openTab(evt, tabName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("content-tab");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tab");
-    for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " is-active";
-  }
-</script>
