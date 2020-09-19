@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:room_word_update, :edit, :update, :destroy, :video_room]
+  before_action :set_user_id, only: [:facilities_used, :my_facilities, :update_facilities_used,]
+  before_action :facility_all, only: [:facilities_used, :my_facilities]
+  before_action :set_facility_id, only: [:index, :video_room]
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, except: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
   before_action :authenticate_facility!, only: [:room_word_update, :index, :video_room, :edit, :update, :destroy]
 
   def index
-    @facility = Facility.find(params[:facility_id])
     @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
       @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
@@ -14,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def room_word_update
-    @user = User.find(params[:id])
     if @user.update_attributes(room_params)
       flash[:notice] = "Room Nameを登録しました。"
     else
@@ -47,7 +48,6 @@ class UsersController < ApplicationController
   end
 
   def video_room
-    @facility = Facility.find(params[:facility_id])
   end
 
   def new_admin
@@ -55,8 +55,6 @@ class UsersController < ApplicationController
   end
 
   def facilities_used # 利用施設検索/登録ページ
-    @facilities = Facility.all.where.not(admin: true)
-    @user = User.find(params[:user_id])
     if params[:search].present?
       @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities)
     else
@@ -65,12 +63,9 @@ class UsersController < ApplicationController
   end
 
   def my_facilities # 登録済み施設ページ
-    @facilities = Facility.all.where.not(admin: true)
-    @user = User.find(params[:user_id])
   end
 
   def update_facilities_used
-    @user = User.find(params[:user_id])
     if (params[:user][:facility_ids] == [""]) == true
       @user.update_attributes(facilities_used_params)
       flash[:alert] = "新しく施設を登録して下さい。"
@@ -94,6 +89,18 @@ class UsersController < ApplicationController
 
       def set_user
         @user = User.find(params[:id])
+      end
+
+      def set_user_id
+        @user = User.find(params[:user_id])
+      end
+
+      def facility_all
+        @facilities = Facility.all.where.not(admin: true)
+      end
+
+      def set_facility_id
+        @facility = Facility.find(params[:facility_id])
       end
 
       def user_params
