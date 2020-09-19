@@ -1,12 +1,5 @@
 <body class="image-layout">
   <section class="section login-hero-size" style="padding-top: 10px;">
-    <% if user_signed_in? %>
-      <!--current_user.facilitiesでログイン中のユーザが登録済みの施設を全て取得-->
-      <% current_user.facilities.each do |facility| %>
-        <% @facility = facility.id %>
-        <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>/
-      <% end %>
-    <% end %>
     <div class="container">
       <article class="media">
         <div class="media-content">
@@ -31,7 +24,7 @@
               <div class="columns is-centered">
                 <div class="column is-3 top-btn-position">
                   <div class="top-btn">
-                    <%= link_to "利用施設の登録", user_facilities_used_path(current_user), class: "button is-warning is-rounded is-large has-text-weight-bold center-login" %>
+                    <%= link_to "ご利用を始める", user_my_facilities_path(current_user), class: "button is-warning is-rounded is-large has-text-weight-bold center-login" %>
                   </div>
                 </div>
               </div>

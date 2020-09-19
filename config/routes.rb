@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :users do # /users/:id/~~~
     get :facilities_used #利用施設の登録画面
     patch :update_facilities_used
+    get :my_facilities #現在の利用施設
     resources :reservations # /users/:user_id/~~~
     resources :facilities do # user_id, facility_id付与
       get :home #施設のホーム画面

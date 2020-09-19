@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def facilities_used # 利用施設登録ページ
+  def facilities_used # 利用施設検索/登録ページ
     @facilities = Facility.all.where.not(admin: true)
     @user = User.find(params[:user_id])
     if params[:search].present?
@@ -64,16 +64,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_facilities # 登録済み施設ページ
+    @facilities = Facility.all.where.not(admin: true)
+    @user = User.find(params[:user_id])
+  end
+
   def update_facilities_used
     @user = User.find(params[:user_id])
     if (params[:user][:facility_ids] == [""]) == true
       @user.update_attributes(facilities_used_params)
       flash[:alert] = "新しく施設を登録して下さい。"
-      redirect_to user_facilities_used_url
+      redirect_to user_my_facilities_url
     else
       @user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を更新しました。"
-      redirect_to user_facilities_used_url
+      redirect_to user_my_facilities_url
     end
   end
 

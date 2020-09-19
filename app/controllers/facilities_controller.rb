@@ -37,7 +37,7 @@ class FacilitiesController < ApplicationController
     else
       flash[:alert] = "権限を変更できませんでした。"
     end
-    redirect_to root_path
+    redirect_to root_url
   end
 
 
