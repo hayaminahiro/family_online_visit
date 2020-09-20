@@ -1,4 +1,3 @@
-
 <div class="my-page">
   <div class="my-page-container">
     <div class="my-container-head">
@@ -14,7 +13,7 @@
         <thead>
         <tbody>
           <tr>
-            <th>施設数</th>
+            <th class="cp_tooltip">施設数<span class="cp_tooltiptext">登録した施設数</span></th>
             <td>
             <% if current_user.facilities.present? %>
               <%= current_user.facilities.where.not(admin: true).count %>
@@ -24,7 +23,7 @@
             </td>
           </tr>
           <tr>
-            <th>入居者数</th>
+            <th class="co_tooltip">入居者数<span class="co_tooltiptext">登録した入居者数</span></th>
             <td>
             <% if current_user.residents.present? %>
               <%= current_user.residents.count %>

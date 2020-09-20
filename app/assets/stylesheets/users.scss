@@ -149,3 +149,76 @@
   margin-bottom: 10px;
   padding: 10px;
 }
+// ツールチップ
+.cp_tooltip {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+  background: linear-gradient(transparent 70%, #b1f8b7 60%);
+  margin-left: 15px;
+}
+.cp_tooltip .cp_tooltiptext {
+	position: absolute;
+	z-index: 1;
+	top: -5px;
+	left: 105%;
+	visibility: hidden;
+	/*width: auto;*/
+	white-space: nowrap;
+	padding: 0.3em 0.5em;
+	transition: opacity 1s;
+	text-align: center;
+	opacity: 0;
+	color: #ffffff;
+	border-radius: 6px;
+	background-color: #6af188;
+}
+.cp_tooltip .cp_tooltiptext::after {
+	position: absolute;
+	top: 40%;
+	right: 100%;
+	margin-left: -5px;
+	content: ' ';
+	border: 5px solid transparent;
+	border-right-color: #6af188;
+}
+.cp_tooltip:hover .cp_tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}
+.co_tooltip {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+  background: linear-gradient(transparent 70%, #9ec6f1 60%);
+  margin-left: 15px;
+}
+.co_tooltip .co_tooltiptext {
+	position: absolute;
+	z-index: 1;
+	top: -5px;
+	left: 105%;
+	visibility: hidden;
+	/*width: auto;*/
+	white-space: nowrap;
+	padding: 0.3em 0.5em;
+	transition: opacity 1s;
+	text-align: center;
+	opacity: 0;
+	color: #ffffff;
+	border-radius: 6px;
+	background-color: #2bb7e2;
+}
+.co_tooltip .co_tooltiptext::after {
+	position: absolute;
+	top: 40%;
+	right: 100%;
+	margin-left: -5px;
+	content: ' ';
+	border: 5px solid transparent;
+	border-right-color: #2bb7e2;
+}
+.co_tooltip:hover .co_tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}
