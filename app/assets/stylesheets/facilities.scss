@@ -10,3 +10,99 @@
 input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   margin-top: 10px;
 }
+
+/* 利用施設登録 */
+.card-style {
+  width: 340px;
+  float: left;
+  margin-right: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.search-img {
+  background-image: url(/assets/home.jpg); 
+  height: 600px;
+  margin: 0 calc(50% - 50vw);
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+.search-img:before{
+  content: '';
+  background: inherit;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(3px);
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+}
+
+.search-title {
+  margin-top: 70px;
+  color: white !important;
+  margin-right: 140px;
+  text-shadow:
+    1px 1px 1px #003366,
+    -1px 1px 1px #003366,
+    1px -1px 1px #003366,
+    -1px -1px 1px #003366,
+    1px 0px 1px #003366,
+    0px 1px 1px #003366,
+    -1px 0px 1px #003366,
+    0px -1px 1px #003366;
+}
+
+.search-input {
+  width: 600px;
+}
+
+.search-btn {
+  text-shadow:
+    1px 1px 1px #003366,
+    -1px 1px 1px #003366,
+    1px -1px 1px #003366,
+    -1px -1px 1px #003366,
+    1px 0px 1px #003366,
+    0px 1px 1px #003366,
+    -1px 0px 1px #003366,
+    0px -1px 1px #003366;
+}
+
+.btn-width {
+  width: 40%;
+  display: flex;
+  margin-left: 90px;
+}
+
+// タブ機能
+#tabs-with-content .tabs:not(:last-child) {
+  margin-bottom: 0;
+}
+
+#tabs-with-content .tab-content {
+  padding: 1rem;
+  display: none;
+}
+
+#tabs-with-content .tab-content.is-active {
+  display: block;
+}
+
+.tag-position {
+  margin-left: 10px;
+  margin-right: 40px;
+  margin-left: 20px;
+}
+
+#under-pagination {
+  margin-bottom: 100px;
+}

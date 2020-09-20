@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       passwords:     'facilities/passwords',
       registrations: 'facilities/registrations'
   }
-  
+
   devise_for :users, controllers: {
       sessions:      'users/sessions',
       passwords:     'users/passwords',
@@ -27,17 +27,18 @@ Rails.application.routes.draw do
 
   # ご家族目線のルーティング
   resources :users do # /users/:id/~~~
-    get :facilities_used #利用施設の登録画面
-    patch :update_facilities_used
-    get :my_facilities #現在の利用施設
     resources :reservations # /users/:user_id/~~~
     resources :facilities do # user_id, facility_id付与
+      collection do
+        get :facilities_used #利用施設の登録画面
+        patch :update_facilities_used
+        get :my_facilities #現在の利用施設
+      end
       get :home #施設のホーム画面
       resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
         member do # /users/:user_id/facilities/:id/~~~
           get :video_room # /users/:user_id/facilities/:id/video_room
-          get 'video_room'
-          patch 'room_word_update'
+          patch :room_word_update
         end
     end
   end
@@ -56,10 +57,9 @@ Rails.application.routes.draw do
     end
     resources :informations do # /facilities/:facility_id/informations/~~~
       collection do
-        get 'top_notice' # お知らせ表示
+        get :top_notice # お知らせ表示
       end
     end
-
   end
 
 end

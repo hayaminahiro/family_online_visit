@@ -6,7 +6,7 @@
           ご利用施設検索
         </h1>
         <div class="container">
-          <%= form_with(url: user_facilities_used_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: facilities_used_user_facilities_path, method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-centered">
               <div class="control search-input">
                 <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-rounded is-black" %>
@@ -28,7 +28,7 @@
               <span>登録施設</span>
             </a>
           </li>
-          <%= form_with(url: user_facilities_used_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: facilities_used_user_facilities_path, method: :get, local: true) do |f| %>
             <%= f.submit "\uf002登録済施設のみ検索表示", class: "fa tag is-warning" %>
           <% end %>
         </ul>
