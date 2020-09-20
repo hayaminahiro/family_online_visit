@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def show
     @facilities = Facility.all.where.not(admin: true)
     @facilities = @facilities.where(id: current_user.facilities)
-    @informations = Information.all
+    @informations = Information.where(facility_id: current_user.facilities).where(status: "others")
   end
 
   def edit

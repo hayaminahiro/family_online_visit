@@ -17,7 +17,7 @@
             <th>施設数</th>
             <td>
             <% if current_user.facilities.present? %>
-              <%= current_user.facilities.count %>
+              <%= current_user.facilities.where.not(admin: true).count %>
             <% else %>
               <p>0</p>
             <% end %>
@@ -47,6 +47,7 @@
                 <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">登録施設</a>
                 <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')">入居者</a>
                 <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')">写真</a>
+                <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">動画</a>
               </p>
             </div>
           </nav>
@@ -79,12 +80,18 @@
         <div id="Pic" class="content-tab" style="display:none">
           <p>写真を表示</p>
         </div>
+        <div id="Mov" class="content-tab" style="display:none">
+          <p>動画を表示</p>
+        </div>
       </div>
       <div class="mypage-information">
         <p class="mypage-info-p"><span class="mypage-info-span">お知らせ</span></p>
-        <% @informations.each do |information| %>
+        <% @history = @informations.group_by(&:facility_id) %>
+        <% @history.each do |facility_id, other| %>
+        <% @infors = Information.where(facility_id: facility_id).where(status: "others") %>
+        <% @infors.first(2).each do |information| %>
         <div>
-          <div class="box">
+          <div class="box" id="user-box">
             <article class="media">
               <div class="media-left">
                 <figure class="image is-64x64">
@@ -103,8 +110,9 @@
               </div>
             </article>
           </div>
-          <% end %>
         </div>
+        <% end %>
+        <% end %>
       </div>
     </div>
   </div>
