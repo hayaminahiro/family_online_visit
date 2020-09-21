@@ -110,10 +110,6 @@
       });
     };
 
-    // let activateTabsContent = function (tab) {
-    //   tabsContent[getIndex(tab)].classList.add('is-active');
-    // };
-
     let getIndex = function (el) {
       return [...el.parentElement.children].indexOf(el);
     };
@@ -123,7 +119,6 @@
         deactvateAllTabs();
         hideTabsContent();
         tab.classList.add('is-active');
-        // activateTabsContent(tab);
       });
     })
 
