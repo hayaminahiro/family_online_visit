@@ -60,7 +60,7 @@
             <% end %>
           </div>
           <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
-            <%= f.collection_check_boxes :facility_ids, current_user.facilities, :id, :facility_name do |b| %>
+            <%= f.collection_check_boxes :facility_ids, current_user.facilities, :id, :facility_name, style: 'display:none' do |b| %>
               <div class="card card-style">
                 <div class="card-image">
                   <figure class="image is-4by3">
