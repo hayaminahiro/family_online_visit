@@ -20,30 +20,40 @@ class User < ApplicationRecord
   def remember_me
     true
   end
+  # パスワード入力なしでご家族情報編集可能にするため追加
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
 
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
-
-      if user.present?
-        sns = SnsCredential.create(
-          uid: auth.uid,
-          provider: auth.provider,
-          user_id: user.id
-        )
-      else
-        user = User.new(
-          name: auth.info.name,
-          email: auth.info.email,
-        )
-        sns = SnsCredential.new(
-          uid: auth.uid,
-          provider: auth.provider
-        )
-      end
-      return { user: user ,sns: sns}
+    if user.present?
+      sns = SnsCredential.create(
+        uid: auth.uid,
+        provider: auth.provider,
+        user_id: user.id
+      )
+    else
+      user = User.new(
+        name: auth.info.name,
+        email: auth.info.email,
+      )
+      sns = SnsCredential.new(
+        uid: auth.uid,
+        provider: auth.provider
+      )
     end
+    return { user: user ,sns: sns}
+  end
 
-   def self.with_sns_data(auth, snscredential)
+  def self.with_sns_data(auth, snscredential)
     user = User.where(id: snscredential.user_id).first
     unless user.present?
       user = User.new(
@@ -52,9 +62,9 @@ class User < ApplicationRecord
       )
     end
     return {user: user}
-   end
+  end
 
-   def self.find_oauth(auth)
+  def self.find_oauth(auth)
     uid = auth.uid
     provider = auth.provider
     snscredential = SnsCredential.where(uid: uid, provider: provider).first
@@ -72,16 +82,16 @@ class User < ApplicationRecord
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
     credentials = omniauth['credentials']
     info = omniauth['info']
-  
+
     access_token = credentials['refresh_token']
     access_secret = credentials['secret']
     credentials = credentials.to_json
     name = info['name']
     # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
-  
-    def set_values_by_raw_info(raw_info)
-      self.raw_info = raw_info.to_json
-      self.save!
-    end
+
+  def set_values_by_raw_info(raw_info)
+    self.raw_info = raw_info.to_json
+    self.save!
+  end
 end

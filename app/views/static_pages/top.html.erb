@@ -1,91 +1,97 @@
-<body class="image-layout">
-  <section class="section login-hero-size" style="padding-top: 10px;">
-    <div class="container">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <h1 class="main-title">
-              <strong class="top-title">Online Visit</strong>
-            </h1>
-            <h5 class="is-size-2">
-              <% if facility_signed_in? %>
-                管理者 <%= current_facility.facility_name %> 様
-              <% elsif user_signed_in? %>
-                <%= current_user.name %> 様
-              <% end %>
-            </h5>
-            <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
-            <% unless user_signed_in? || facility_signed_in? %>
-              <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold center-login" %>
-            <% end %>
-          </div>
-          <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
-            <div class="button-position">
-              <div class="columns is-centered">
-                <div class="column is-3 top-btn-position">
-                  <div class="top-btn">
-                    <%= link_to "ご利用を始める", my_facilities_user_facilities_path(current_user), class: "button is-warning is-rounded is-large has-text-weight-bold center-login" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column is-3">
-          <div class="admin-btn">
-            <% if facility_signed_in? %>
-              <% if current_facility.facility_admin == true %>
-                <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-                <%= f.hidden_field :facility_admin, :value => false %>
-                <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
-                <% end %>
-              <% elsif current_facility.facility_admin == false %>
-                <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-                <%= f.hidden_field :facility_admin, :value => true %>
-                <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
-
-<!--ご入居者様の登録申請ボタンのモーダル-->
-<div>
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title is-half has-text-weight-bold reserve-modal">予約情報</p>
-        <button class="delete" aria-label="close" id="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p class="image is-3by2">
-
-        </p>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-danger has-text-weight-bold" style="float: right">予約を取り消し</button>
-      </footer>
+<section class="hero is-medium" id="hero-2">
+  <div class="main_img" style="background-image: url('/static_pages5.jpg')"></div>
+  <div class="main_img" style="background-image: url('/video_room.jpg')"></div>
+  <div class="main_img" style="background-image: url('/static_pages9.jpg')"></div>
+  <div class="main_img" style="background-image: url('/static_pages1.jpg')"></div>
+  <div class="hero-body">
+    <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
+      <h1 class="has-text-centered" style="font-size: 80px;">
+        <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
+      </h1>
+      <p class="is-size-3">
+        大切な人と結ぶ出会いの時間
+      </p>
     </div>
   </div>
-</div>
+</section>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    $("#open").on("click", function() {
-      $("div.modal").addClass("is-active");
-    })
+<section class="hero is-medium has-text-centered" id="hero-4">
+  <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
+    <% if user_signed_in? %>
+      <div class="cp_tab">
+        <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+        <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設登録</label>
+        <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;マイページ</label>
 
-    $("#close, div.modal-background").on("click", function() {
-      $("div.modal").removeClass("is-active");
-    })
-  });
-</script>
+        <div class="cp_tabpanels">
+          <div id="first_tab01" class="cp_tabpanel">
+            <div class="inline-block_content">
+              <img src="user_mypage.jpg" width="400" height="300">
+            </div>&emsp;&emsp;
+            <div class="inline-block_content">
+              <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+                介護施設、病院、保育園などを様々なジャンルから<br>
+                利用したい施設を登録することで<br>
+                ビデオチャットの予約をすることができます。
+              </p><br>
+              <%= link_to "#", class: "btn-animation-facility" do %>
+                <span class="icon">
+                  <i class="far fa-building"></i>
+                </span>&nbsp;
+                <span>
+                  施設登録
+                </span>
+              <% end %>
+            </div>
+          </div>
+          <div id="second_tab01" class="cp_tabpanel">
+            <div class="inline-block_content">
+              <img src="facility_registration.jpg" width="400" height="300">
+            </div>&emsp;&emsp;
+            <div class="inline-block_content">
+              <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+                  登録した施設、予約の確認、写真の閲覧ができます。<br>
+              </p><br>
+              <%= link_to "#", class: "btn-animation-login" do %>
+                <span class="icon">
+                  <i class="fas fa-home"></i>
+                </span>&nbsp;
+                <span>
+                  マイページ
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div> 
+      <% elsif !user_signed_in? && !facility_signed_in? %>
+        <div class="about-title is-size-3">Online Visitについて</div>
+        <div class="inline-block_content">
+          <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+            これからの暮らしに欠かすことのできない要素として<br>
+            オンラインをとらえ離れていてもすぐに繋がれる<br>
+            <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
+            ログインすることで 面会予約、ビデオチャット、<br>
+            写真の閲覧 が可能になります。<br>
+            ユーザの新規登録がお済みでない方も<br>
+            こちらの<font color="#4DADA1">ログインボタン</font>よりお入りください<br>
+          </p><br>
+          <%= link_to user_session_path, class: "btn-animation-login" do %>
+            <span class="icon">
+              <i class="fas fa-users"></i>
+            </span>&nbsp;
+            <span>
+              ログイン
+            </span>
+          <% end %>
+        </div>&emsp;&emsp;
+        <div class="inline-block_content">
+          <img src="static_pages5.jpg" width="400" height="300">
+        </div>
+      <% elsif facility_signed_in? %>
+        
+      <% end %>
+    </div>
+  </div>
+</section>

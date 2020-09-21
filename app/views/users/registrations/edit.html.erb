@@ -1,44 +1,125 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-# ユーザー情報の編集処理用のビュー
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<div class="main-content">
+  <aside>
+    <nav class="">
+      <div class="">
+        <p class="edit-link">アカウント</p>
+        <hr class="edit-hr">
+        <a class="panel-tab is-active user-aside-link" onclick="openTab(event,'Web')">アカウント設定</a>
+        <a class="panel-tab user-aside-link" onclick="openTab(event,'Aud')">パスワード変更</a>
+        <p class="edit-link">施設</phas-text-weight-bold>
+        <hr class="edit-hr">
+        <a class="panel-tab user-aside-link" onclick="openTab(event,'Faci')">登録施設変更</a>
+        <p class="edit-link">入居者</p>
+        <hr class="edit-hr">
+        <a class="panel-tab user-aside-link" onclick="openTab(event,'Resi')">登録入居者変更</a>
+      </div>
+    </nav>
+  </aside>
+  <main>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <article class="panel is-success">
+      <div id="Web" class="content-tab" >
+        <div>
+          <table class="table is-fullwidth is-narrow user-edit-table" id="u-edit-table">
+            <thead>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td></td>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td><%= f.submit "更新", class: "button is-success is-fullwidth new-btn has-text-weight-bold edit-tfoot" %>
+                </td>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <th>名前</th>
+                <td>山本　太郎</td>
+              </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <td><%= f.email_field :email, autocomplete: "email", class: "fa input is-info" %>
+                </td>
+              </tr>
+              <tr>
+                <th>電話番号</th>
+                <td>080-4990-4484</td>
+              </tr>
+              <tr clas>
+                <th>住所</th>
+                <td>千葉県佐倉市００−００</td>
+              </tr>
+              <tr>
+                <th>プロフィール画像</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(空欄のままなら変更しません)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> 文字以上</em>
+      <div id="Aud" class="content-tab" style="display:none">
+        <table class="table is-fullwidth is-narrow user-edit-table" id="u-edit-table">
+          <thead>
+            <tr>
+              <th><abbr title="Position"></abbr></th>
+              <td></td>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th><abbr title="Position"></abbr></th>
+              <td>
+                <%= f.submit "更新", class: "button is-success is-fullwidth new-btn has-text-weight-bold edit-tfoot" %>
+              </td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <th>パスワード</th>
+              <td>
+              <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "current-password", class: "fa input is-info" %>
+              <% if @minimum_password_length %>
+                <br />
+              <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>パスワード確認</th>
+              <td>
+              <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードの確認", autocomplete: "current-password", class: "fa input is-info" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="Faci" class="content-tab" style="display:none">
+        <p>登録施設変更画面</p>
+      </div>
+      <div id="Resi" class="content-tab" style="display:none">
+        <p>登録入居者変更画面</p>
+      </div>
+    </article>
     <% end %>
-  </div>
+  </main>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(変更を反映するには現在のパスワードを入力してください)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "更新", class: "button is-info" %>
-  </div>
-<% end %>
-<br>
-<p>↓これは恐らく不要(標準装備)？？</p>
-
-
-<p>気に入りません? <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<script>
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("panel-tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+</script>
