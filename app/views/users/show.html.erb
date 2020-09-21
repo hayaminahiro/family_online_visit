@@ -85,8 +85,8 @@
       </div>
       <div class="mypage-information">
         <p class="mypage-info-p"><span class="mypage-info-span">お知らせ</span></p>
-        <% @history = @informations.group_by(&:facility_id) %>
-        <% @history.each do |facility_id, other| %>
+        <% @facilities_grouped = @informations.group_by(&:facility_id) %>
+        <% @facilities_grouped.each do |facility_id, other| %>
         <% @infors = Information.where(facility_id: facility_id).where(status: "others") %>
         <% @infors.first(2).each do |information| %>
         <div>
@@ -98,7 +98,7 @@
                 </figure>
               </div>
               <div class="media-content">
-                <div class="content">
+                <div class="content" id="edit-content">
                   <p class="is-size-7">
                   <strong><%= information.title %></strong><br>
                     <small><%= information.facility.facility_name %></small>
