@@ -11,6 +11,7 @@
   <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Quicksand rel="stylesheet">
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
     <% end %>
   </div>  
   <%= yield %>
-  <%= debug(params) if Rails.env.development? %>
+  <!--<%= debug(params) if Rails.env.development? %>-->
   <%= render 'layouts/footer' %>
 </body>
 
