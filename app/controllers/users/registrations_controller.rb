@@ -4,6 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+  password = Devise.friendly_token.first(7)
+
+
   # GET /resource/sign_up
   def new
     @facilities = Facility.all #施設テーブルとの関連付けで追加
@@ -61,6 +64,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
     devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, { :facility_ids=> [] }]) #facility_idsを追加
+  end
+
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
   end
 
   # The path used after sign up.
