@@ -21,16 +21,21 @@
     <% if user_signed_in? %>
       <div class="cp_tab">
         <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
-        <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設登録</label>
+        <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設（登録済）</label>
         <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;マイページ</label>
+        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;施設登録</label>
+        <input type="radio" name="cp_tab" id="tab1_3" aria-controls="third_tab01">
+        <label for="tab1_3"><i class="fas fa-home"></i>&nbsp;マイページ</label>
 
         <div class="cp_tabpanels">
           <div id="first_tab01" class="cp_tabpanel">
-            <div class="inline-block_content">
+            
+          </div>
+          <div id="second_tab01" class="cp_tabpanel">
+            <div class="inline-block_tab">
               <img src="user_mypage.jpg" width="400" height="300">
             </div>&emsp;&emsp;
-            <div class="inline-block_content">
+            <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 介護施設、病院、保育園などを様々なジャンルから<br>
                 利用したい施設を登録することで<br>
@@ -46,11 +51,11 @@
               <% end %>
             </div>
           </div>
-          <div id="second_tab01" class="cp_tabpanel">
-            <div class="inline-block_content">
+          <div id="third_tab01" class="cp_tabpanel">
+            <div class="inline-block_tab">
               <img src="facility_registration.jpg" width="400" height="300">
             </div>&emsp;&emsp;
-            <div class="inline-block_content">
+            <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 登録した施設、予約の確認、写真の閲覧ができます。<br>
               </p><br>
