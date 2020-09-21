@@ -33,7 +33,7 @@
           <% end %>
         </ul>
       </div>
-      <div>
+      <div class="field" style="margin-left: 60px; margin-right: 80px">
         <% current_user.facilities.each do |facility| %>
           <div class="card card-style">
             <div class="card-image">
@@ -78,9 +78,9 @@
       });
     };
 
-    let activateTabsContent = function (tab) {
-      tabsContent[getIndex(tab)].classList.add('is-active');
-    };
+    // let activateTabsContent = function (tab) {
+    //   tabsContent[getIndex(tab)].classList.add('is-active');
+    // };
 
     let getIndex = function (el) {
       return [...el.parentElement.children].indexOf(el);
@@ -91,7 +91,7 @@
         deactvateAllTabs();
         hideTabsContent();
         tab.classList.add('is-active');
-        activateTabsContent(tab);
+        // activateTabsContent(tab);
       });
     })
 
