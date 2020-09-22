@@ -103,38 +103,14 @@
       <div class="about-title is-size-3 has-text-centered">お知らせ</div>
       <article class="panel" id="panel-content-user">
         <div class="columns is-multiline has-text-left">
-          <% @informations.each do |information| %>
-            <div class="column is-3">
-              <div class="card">
-                <div class="card-content">
-                  <p><%= l( information.created_at, format: :hyphen) %></p>
-                  <p class="has-text-weight-bold">
-                    <%= information.title %>
-                  </p><br>
-                  <%= information.news.truncate(12) %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          お知らせ表示が入る
         </div>
       </article>
     <% elsif facility_signed_in? %>
       <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
       <article class="panel" id="panel-content">
         <div class="columns is-multiline has-text-left">
-          <% @informations.each do |information| %>
-            <div class="column is-3">
-              <div class="card">
-                <div class="card-content">
-                  <p><%= l( information.created_at, format: :hyphen) %></p>
-                  <p class="has-text-weight-bold">
-                    <%= information.title %>
-                  </p><br>
-                  <%= information.news.truncate(12) %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          お知らせ表示が入る
         </div>
       </article>
     <% elsif !user_signed_in? && !facility_signed_in? %>
@@ -165,19 +141,7 @@
       <div class="about-title is-size-3 has-text-centered">お知らせ</div>
       <article class="panel" id="panel-content">
         <div class="columns is-multiline has-text-left">
-          <% @informations.each do |information| %>
-            <div class="column is-3">
-              <div class="card">
-                <div class="card-content">
-                  <p><%= l( information.created_at, format: :hyphen) %></p>
-                  <p class="has-text-weight-bold">
-                    <%= information.title %>
-                  </p><br>
-                  <%= information.news.truncate(12) %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          お知らせ表示が入る
         </div>
       </article>
     <% end %>
