@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Online_Visit</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title>Online_Visit</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand rel="stylesheet">
-  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-</head>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand rel="stylesheet">
+    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  </head>
 
-<body>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-  <%= render 'layouts/header' %>
-  <div class="container">
-    <% if flash[:notice] %>
-    <div class="notification is-success is-size-5 has-text-weight-bold error-position">
-      <p class="notice"><%= notice %></p>
-    </div>
-    <% elsif flash[:alert] %>
-    <div class="notification is-danger is-size-5 has-text-weight-bold error-position">
-      <p class="alert"><%= alert %></p>
-    </div>
-    <% end %>
-  </div>  
-  <%= yield %>
-  <%= debug(params) if Rails.env.development? %>
-  <%= render 'layouts/footer' %>
-</body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% if flash[:notice] %>
+      <div class="notification is-success is-size-5 has-text-weight-bold error-position">
+        <p class="notice"><%= notice %></p>
+      </div>
+      <% elsif flash[:alert] %>
+      <div class="notification is-danger is-size-5 has-text-weight-bold error-position">
+        <p class="alert"><%= alert %></p>
+      </div>
+      <% end %>
+    </div> 
+    <%= yield %>
+    <%#= debug(params) if Rails.env.development? %>
+    <%= render 'layouts/footer' %>
+  </body>
 
 </html>
