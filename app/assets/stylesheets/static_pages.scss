@@ -503,8 +503,6 @@ p.content1 {
   color: #FFF;
 }
 
-
-
 //タブ機能
 .cp_tab *, .cp_tab *:before, .cp_tab *:after {
 	-webkit-box-sizing: border-box;
@@ -576,6 +574,12 @@ p.content1 {
 
 #panel-content {
   padding: 20px;
+}
+
+//ユーザーログイン後のお知らせpanel
+#panel-content-user {
+  padding: 20px;
+  margin: 37px;
 }
 
 .about-title-2 {
