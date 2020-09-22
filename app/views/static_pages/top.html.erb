@@ -29,8 +29,8 @@
 
         <div class="cp_tabpanels">
           <div id="first_tab01" class="cp_tabpanel">
-            
           </div>
+
           <div id="second_tab01" class="cp_tabpanel">
             <div class="inline-block_tab">
               <img src="user_mypage.jpg" width="400" height="300">
@@ -51,6 +51,7 @@
               <% end %>
             </div>
           </div>
+        
           <div id="third_tab01" class="cp_tabpanel">
             <div class="inline-block_tab">
               <img src="facility_registration.jpg" width="400" height="300">
@@ -69,62 +70,99 @@
               <% end %>
             </div>
           </div>
-        </div> 
-      <% elsif !user_signed_in? && !facility_signed_in? %>
-        <div class="about-title is-size-3">Online Visitについて</div>
-        <div class="inline-block_content">
-          <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-            これからの暮らしに欠かすことのできない要素として<br>
-            オンラインをとらえ離れていてもすぐに繋がれる<br>
-            <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
-            ログインすることで 面会予約、ビデオチャット、<br>
-            写真の閲覧 が可能になります。<br>
-            ユーザの新規登録がお済みでない方も<br>
-            こちらの<font color="#4DADA1">ログインボタン</font>よりお入りください<br>
-          </p><br>
-          <%= link_to user_session_path, class: "btn-animation-login" do %>
-            <span class="icon">
-              <i class="fas fa-users"></i>
-            </span>&nbsp;
-            <span>
-              ログイン
-            </span>
-          <% end %>
-        </div>&emsp;&emsp;
-        <div class="inline-block_content">
-          <img src="static_pages5.jpg" width="400" height="300">
         </div>
-      <% elsif facility_signed_in? %>
-        
-      <% end %>
-    </div>
-  </div>
-</section>
+      </div>
 
-<section class="section" style="background: #efefef;">
-  <div class="container">
-    <div class="about-title is-size-3 has-text-centered">お知らせ</div>
-    <div class="columns is-multiline has-text-left">
-      <% @informations.each do |information| %>
-        <div class="column is-3">
-          <div class="card">
-            <div class="card-content">
-              <p><%= l( information.created_at, format: :hyphen) %></p>
-              <p class="has-text-weight-bold">
-                <%= information.title %>
-              </p><br>
-              <%= information.news.truncate(12) %>
+      <div class="about-title is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content">
+        <div class="columns is-multiline has-text-left">
+          <% @informations.each do |information| %>
+            <div class="column is-3">
+              <div class="card">
+                <div class="card-content">
+                  <p><%= l( information.created_at, format: :hyphen) %></p>
+                  <p class="has-text-weight-bold">
+                    <%= information.title %>
+                  </p><br>
+                  <%= information.news.truncate(12) %>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </article>
+    <% elsif facility_signed_in? %>
+      <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content">
+        <div class="columns is-multiline has-text-left">
+          <% @informations.each do |information| %>
+            <div class="column is-3">
+              <div class="card">
+                <div class="card-content">
+                  <p><%= l( information.created_at, format: :hyphen) %></p>
+                  <p class="has-text-weight-bold">
+                    <%= information.title %>
+                  </p><br>
+                  <%= information.news.truncate(12) %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </article>
+    <% elsif !user_signed_in? && !facility_signed_in? %>
+      <div class="about-title-2 is-size-3">Online Visitについて</div>
+      <div class="inline-block_content">
+        <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+          これからの暮らしに欠かすことのできない要素として<br>
+          オンラインをとらえ離れていてもすぐに繋がれる<br>
+          <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
+          ログインすることで 面会予約、ビデオチャット、<br>
+          写真の閲覧 が可能になります。<br>
+          ユーザの新規登録がお済みでない方も<br>
+          こちらの<font color="#4DADA1">ログインボタン</font>よりお入りください<br>
+        </p><br>
+        <%= link_to user_session_path, class: "btn-animation-login" do %>
+          <span class="icon">
+            <i class="fas fa-users"></i>
+          </span>&nbsp;
+          <span>
+            ログイン
+          </span>
+        <% end %>
+      </div>&emsp;&emsp;
+      <div class="inline-block_content">
+        <img src="static_pages5.jpg" width="400" height="300">
+      </div>
+
+      <div class="about-title is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content">
+        <div class="columns is-multiline has-text-left">
+          <% @informations.each do |information| %>
+            <div class="column is-3">
+              <div class="card">
+                <div class="card-content">
+                  <p><%= l( information.created_at, format: :hyphen) %></p>
+                  <p class="has-text-weight-bold">
+                    <%= information.title %>
+                  </p><br>
+                  <%= information.news.truncate(12) %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </article>
+    <% end %>
   </div>
 </section>
 
 <script>
   $(function(){
     ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('.section', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.about-title', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.cp_tab', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.about-title-2', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
   });
 </script>
