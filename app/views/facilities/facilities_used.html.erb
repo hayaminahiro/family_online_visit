@@ -1,0 +1,127 @@
+<div class="container">
+  <div id="WebDev" class="content-tab">
+    <section class="hero is-medium">
+      <div class="hero-body search-img">
+        <h1 class="title has-text-centered is-size-1 search-title" style="">
+          ご利用施設検索
+        </h1>
+        <div class="container">
+          <%= form_with(url: facilities_used_user_facilities_path, method: :get, local: true) do |f| %>
+            <div class="field is-grouped is-grouped-centered">
+              <div class="control search-input">
+                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-rounded is-black" %>
+              </div>
+              <div class="control">
+                <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-success is-rounded search-btn" %>
+              </div>
+            </div>
+          <% end %>
+          </div>
+      </div>
+    </section>
+    <div id="tabs-with-content">
+      <div class="tabs is-centered is-large has-text-weight-bold">
+        <ul>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fas fa-search-minus"  aria-hidden="true"></i></span>
+              <span>検索結果</span>
+            </a>
+          </li>
+          <li>
+            <%= link_to my_facilities_user_facilities_path(current_user) do %>
+              <span class="icon is-small"><i class="fas fa-laptop-house"  aria-hidden="true"></i></span>
+              <span>登録施設</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
+          <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
+            <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name do |b| %>
+              <div class="card card-style">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <%= image_tag 'default.png', class: "info-image" %>
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <%= b.label { b.check_box + " " + b.text } %>
+                    </div>
+                  </div>
+                  <div class="content">
+                    各施設紹介/お知らせetc検討
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
+            <%= f.collection_check_boxes :facility_ids, current_user.facilities, :id, :facility_name, style: 'display:none' do |b| %>
+              <div class="card card-style">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <%= image_tag 'default.png', class: "info-image" %>
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <%= b.label { b.check_box + " " + b.text } %>
+                      <span class="tag is-warning tag-position">登録済</span>
+                    </div>
+                  </div>
+                  <div class="content">
+                    各施設紹介/お知らせetc検討
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="actions btn-width">
+            <%= f.submit "利用施設を登録", class: "button is-primary is-medium is-fullwidth new-btn has-text-weight-bold" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="under-pagination">
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" if @facilities.present? %>
+  </div>
+</div>
+
+<script>
+  let tabsWithContent = (function () {
+    let tabs = document.querySelectorAll('.tabs li');
+    let tabsContent = document.querySelectorAll('.tab-content');
+
+    let deactvateAllTabs = function () {
+      tabs.forEach(function (tab) {
+        tab.classList.remove('is-active');
+      });
+    };
+
+    let hideTabsContent = function () {
+      tabsContent.forEach(function (tabContent) {
+        tabContent.classList.remove('is-active');
+      });
+    };
+
+    let getIndex = function (el) {
+      return [...el.parentElement.children].indexOf(el);
+    };
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        deactvateAllTabs();
+        hideTabsContent();
+        tab.classList.add('is-active');
+      });
+    })
+
+    tabs[0].click();
+  })();
+</script>
