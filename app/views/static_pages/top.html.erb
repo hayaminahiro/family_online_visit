@@ -21,16 +21,48 @@
     <% if user_signed_in? %>
       <div class="cp_tab">
         <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
-        <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設登録</label>
+        <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設（登録済）</label>
         <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;マイページ</label>
+        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;施設登録</label>
+        <input type="radio" name="cp_tab" id="tab1_3" aria-controls="third_tab01">
+        <label for="tab1_3"><i class="fas fa-home"></i>&nbsp;マイページ</label>
 
         <div class="cp_tabpanels">
           <div id="first_tab01" class="cp_tabpanel">
-            <div class="inline-block_content">
+            <article class="panel" id="panel-content">
+              <div class="columns is-multiline">
+                <% current_user.facilities.each do |facility| %>
+                  <div class="column is-3">
+                    <div class="card">
+                      <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                      </figure>
+                      <div class="card-content">
+                        <p class="title is-4">
+                          <% @facility = facility.id %>
+                          <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                        </p>
+                        <%= link_to '#', class: "button is-outlined is-danger" do %>
+                          <span>
+                            登録解除
+                          </span>&nbsp;
+                          <span class="icon">
+                            <i class="fas fa-times"></i>
+                          </span>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </article>
+          </div>
+
+          <div id="second_tab01" class="cp_tabpanel">
+            <div class="inline-block_tab">
               <img src="user_mypage.jpg" width="400" height="300">
             </div>&emsp;&emsp;
-            <div class="inline-block_content">
+            <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 介護施設、病院、保育園などを様々なジャンルから<br>
                 利用したい施設を登録することで<br>
@@ -46,13 +78,14 @@
               <% end %>
             </div>
           </div>
-          <div id="second_tab01" class="cp_tabpanel">
-            <div class="inline-block_content">
+        
+          <div id="third_tab01" class="cp_tabpanel">
+            <div class="inline-block_tab">
               <img src="facility_registration.jpg" width="400" height="300">
             </div>&emsp;&emsp;
-            <div class="inline-block_content">
+            <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-                  登録した施設、予約の確認、写真の閲覧ができます。<br>
+                登録した施設、予約の確認、写真の閲覧ができます。<br>
               </p><br>
               <%= link_to "#", class: "btn-animation-login" do %>
                 <span class="icon">
@@ -64,34 +97,64 @@
               <% end %>
             </div>
           </div>
-        </div> 
-      <% elsif !user_signed_in? && !facility_signed_in? %>
-        <div class="about-title is-size-3">Online Visitについて</div>
-        <div class="inline-block_content">
-          <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-            これからの暮らしに欠かすことのできない要素として<br>
-            オンラインをとらえ離れていてもすぐに繋がれる<br>
-            <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
-            ログインすることで 面会予約、ビデオチャット、<br>
-            写真の閲覧 が可能になります。<br>
-            ユーザの新規登録がお済みでない方も<br>
-            こちらの<font color="#4DADA1">ログインボタン</font>よりお入りください<br>
-          </p><br>
-          <%= link_to user_session_path, class: "btn-animation-login" do %>
-            <span class="icon">
-              <i class="fas fa-users"></i>
-            </span>&nbsp;
-            <span>
-              ログイン
-            </span>
-          <% end %>
-        </div>&emsp;&emsp;
-        <div class="inline-block_content">
-          <img src="static_pages5.jpg" width="400" height="300">
         </div>
-      <% elsif facility_signed_in? %>
-        
-      <% end %>
-    </div>
+      </div>
+
+      <div class="about-title is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content-user">
+        <div class="columns is-multiline has-text-left">
+          お知らせ表示が入る
+        </div>
+      </article>
+    <% elsif facility_signed_in? %>
+      <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content">
+        <div class="columns is-multiline has-text-left">
+          お知らせ表示が入る
+        </div>
+      </article>
+    <% elsif !user_signed_in? && !facility_signed_in? %>
+      <div class="about-title-2 is-size-3">Online Visitについて</div>
+      <div class="inline-block_content">
+        <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+          これからの暮らしに欠かすことのできない要素として<br>
+          オンラインをとらえ離れていてもすぐに繋がれる<br>
+          <strong>“Online Visit(オンラインビジット)”</strong>を作りました。<br>
+          ログインすることで 面会予約、ビデオチャット、<br>
+          写真の閲覧 が可能になります。<br>
+          ユーザの新規登録がお済みでない方も<br>
+          こちらの<font color="#4DADA1">ログインボタン</font>よりお入りください<br>
+        </p><br>
+        <%= link_to user_session_path, class: "btn-animation-login" do %>
+          <span class="icon">
+            <i class="fas fa-users"></i>
+          </span>&nbsp;
+          <span>
+            ログイン
+          </span>
+        <% end %>
+      </div>&emsp;&emsp;
+      <div class="inline-block_content">
+        <img src="static_pages5.jpg" width="400" height="300">
+      </div>
+
+      <div class="about-title is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content">
+        <div class="columns is-multiline has-text-left">
+          お知らせ表示が入る
+        </div>
+      </article>
+    <% end %>
   </div>
 </section>
+
+<script>
+  $(function(){
+    ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.about-title', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.cp_tab', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.about-title-2', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+  });
+</script>
