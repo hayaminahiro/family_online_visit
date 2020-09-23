@@ -24,7 +24,6 @@
 }
 
 /* ご家族一覧 */
-
 #family-table th {
   background-color: #FFDAB9;
   font-size: 20px;
@@ -36,8 +35,8 @@
 }
 
 .hero .tabs ul {
-  margin-right: 40px;
-  margin-left: 40px;
+  margin-right: 30px;
+  margin-left: 50px;
 }
 
 // ログイン画面
@@ -55,7 +54,6 @@
 }
 
 // プライバシーポリシー画面
-
 .pp-title {
   font-size: 30px;
   font-weight: bold;
@@ -73,4 +71,50 @@
 .pp-border {
   border-bottom: solid 5px orange;
   margin-bottom: 20px;
+}
+
+/* ご家族編集画面 */
+.main-content {
+  margin: 0px 100px;
+  display: flex;
+  font-size: 2rem;
+  min-height: 100vh;
+}
+aside {/*画面左*/
+  width: 25%;
+  font-size:15px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+main {/*画面中央*/
+  width: 75%;
+  margin: 0 auto;
+}
+.user-aside-link{
+  display: block;
+  color:black;
+  margin: 10px;
+}
+.user-edit-table{
+  background:rgba(224, 231, 231, 0.605);
+}
+#u-edit-table tr{
+  height: 45px;
+  line-height: 45px;
+}
+#u-edit-table th{
+  background-color: rgb(241,244,248);
+}
+.edit-hr{
+  margin: 0px;
+}
+.edit-link{
+  margin-top: 30px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.edit-tfoot{
+  margin: 10px 0px;
 }
