@@ -70,7 +70,7 @@ class FacilitiesController < ApplicationController
     if params[:user].blank?
       flash[:alert] = "新しく施設を登録して下さい。"
       redirect_to my_facilities_user_facilities_url
-    elsif params[:user][:facility_ids].count == current_user.facilities.count
+    elsif params[:user][:facility_ids].map{|n| n.to_i} == current_user.facilities.ids
       flash[:alert] = "登録施設が更新されていません。"
       redirect_to my_facilities_user_facilities_url
     else
