@@ -34,6 +34,16 @@
                     <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
                   </div>
 
+                  <div class="field">
+                    <%= f.label :address, "あなたの住所", class: "label" %><br />
+                    <%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", autocomplete: "address", class: "fa input is-medium input-top" %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :phone, "電話番号", class: "label" %><br />
+                    <%= f.text_field :phone, :placeholder => "\uf098電話番号を入力してください", autocomplete: "phone", class: "fa input is-medium input-top" %>
+                  </div>
+
                   <div class="actions">
                     <%= f.submit "新規登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
                   </div>
