@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :set_user, only: [:room_word_update, :edit, :update, :destroy, :video_room]
   before_action :set_facility_id, only: [:index, :video_room]
   # ログインしてなければ閲覧不可
@@ -20,6 +19,12 @@ class UsersController < ApplicationController
       flash[:alert] = "登録できませんでした。"
     end
     redirect_to facility_users_url(current_facility)
+  end
+
+  def show
+    @facilities = Facility.all.where.not(admin: true)
+    @facilities = @facilities.where(id: current_user.facilities)
+    @informations = Information.where(facility_id: current_user.facilities).where(status: "others")
   end
 
   def edit

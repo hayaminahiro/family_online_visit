@@ -1,1 +1,134 @@
-<h1>ご家族マイページ</h1>
+<div class="my-page">
+  <div class="my-page-container">
+    <div class="my-container-head">
+      <div class="">
+        <%= image_tag 'user_bg_default.png', class: "edit-main-image" %>
+      </div>
+      <div>
+        <%= image_tag 'user_default.png', class: "edit-my-image" %>
+      </div>
+      <p class="my-name">山本　太郎<%#= current_user.name %></p>
+      <p class="my-email"><%= current_user.email %></p>
+      <table class="table is-narrow" id="my-page-table">
+        <thead>
+        <tbody>
+          <tr>
+            <th class="cp_tooltip">施設数<span class="cp_tooltiptext">登録した施設数</span></th>
+            <td>
+            <% if current_user.facilities.present? %>
+              <%= current_user.facilities.where.not(admin: true).count %>
+            <% else %>
+              <p>0</p>
+            <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class="co_tooltip">入居者数<span class="co_tooltiptext">登録した入居者数</span></th>
+            <td>
+            <% if current_user.residents.present? %>
+              <%= current_user.residents.count %>
+            <% else %>
+              <p>0</p>
+            <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="my-container-under">
+      <div class="under-section">
+        <div class="level-facility">
+          <nav class="level my-page-tab">
+            <!-- Left side -->
+            <div class="level-left">
+              <p class="panel-tabs">
+                <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">登録施設</a>
+                <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')">入居者</a>
+                <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')">写真</a>
+                <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">動画</a>
+              </p>
+            </div>
+          </nav>
+        </div>
+        <div id="Web" class="content-tab" >
+          <div class="facility-section">
+          <% @facilities.each do |facility| %>
+            <div class="card" id="facility-card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <%= image_tag 'default.png', class: "facility-image" %>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="content" id="facility-content">
+                  <p class="has-text-weight-bold">
+                    <%= facility.facility_name %>
+                  </p>
+                  <p><%= facility.email %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        </div>
+        <div id="Aud" class="content-tab" style="display:none">
+          <p>登録している入居者の情報がみれる</p>
+          <%#= current_user.residents %>
+        </div>
+        <div id="Pic" class="content-tab" style="display:none">
+          <p>写真を表示</p>
+        </div>
+        <div id="Mov" class="content-tab" style="display:none">
+          <p>動画を表示</p>
+        </div>
+      </div>
+      <div class="mypage-information">
+        <p class="mypage-info-p"><span class="mypage-info-span">お知らせ</span></p>
+        <% @facilities_grouped = @informations.group_by(&:facility_id) %>
+        <% @facilities_grouped.each do |facility_id, other| %>
+        <% @infors = Information.where(facility_id: facility_id).where(status: "others") %>
+        <% @infors.first(2).each do |information| %>
+        <div>
+          <div class="box" id="user-box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content" id="edit-content">
+                  <p class="is-size-7">
+                  <strong><%= information.title %></strong><br>
+                    <small><%= information.facility.facility_name %></small>
+                    <br>
+                    <%= information.news %>
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("panel-tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+</script>
