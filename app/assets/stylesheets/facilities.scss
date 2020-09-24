@@ -98,9 +98,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 .tag-position {
-  margin-left: 10px;
-  margin-right: 40px;
-  margin-left: 20px;
+  float: right;
 }
 
 #under-pagination {
@@ -109,4 +107,28 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 
 .card-position {
   margin-top: 30px;
+}
+
+label {
+  margin-right: 5px; /* ボタン同士の間隔 */
+}
+label input {
+  display: none; /* デフォルトのinputは非表示にする */
+}
+label span {
+  color: #333; /* 文字色を黒に */
+  font-size: 14px; /* 文字サイズを14pxに */
+  border: 1px solid #333; /* 淵の線を指定 */
+  border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
+  padding: 5px 20px; /* 上下左右に余白をトル */
+}
+label input:checked + span {
+  color: #FFF; /* 文字色を白に */
+  background: #FF69B4; /* 背景色を薄い赤に */
+  border: 1px solid #DB7093; /* 淵の線を薄い赤に */
+}
+
+.current_tag {
+  float: left;
+  margin-top: 550px;
 }

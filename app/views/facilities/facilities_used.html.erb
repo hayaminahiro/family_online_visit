@@ -50,8 +50,10 @@
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
-                      <%= fa.facility_name %>
+                      <label>
+                        <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
+                      </label>
+                      <span><%= fa.facility_name %></span>
                     </div>
                   </div>
                   <div class="content">
@@ -73,8 +75,10 @@
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
-                      <%= fa.facility_name %>
+                      <label>
+                        <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
+                        <%= fa.facility_name %>
+                      </label>
                       <span class="tag is-warning tag-position">登録済</span>
                     </div>
                   </div>
@@ -85,6 +89,7 @@
               </div>
             <% end %>
           </div>
+          <div class="current_tag"></div>
           <div class="actions btn-width">
             <%= f.submit "利用施設を登録", class: "button is-primary is-medium is-fullwidth new-btn has-text-weight-bold" %>
           </div>
