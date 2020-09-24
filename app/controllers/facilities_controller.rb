@@ -56,7 +56,6 @@ class FacilitiesController < ApplicationController
       @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities).paginate(page: params[:page], per_page: 9).order(:id)
     else
       @facilities = @facilities.where('facility_name LIKE ?', "")
-      # raise
     end
   end
 
@@ -65,16 +64,20 @@ class FacilitiesController < ApplicationController
   end
 
   def update_facilities_used
-    if (params[:user][:facility_ids] == [""]) == true
-      @user.update_attributes(facilities_used_params)
-      flash[:alert] = "新しく施設を登録して下さい。"
-      redirect_to my_facilities_user_facilities_url
-    else
-
-      @user.update_attributes(facilities_used_params)
-      flash[:notice] = "登録施設を更新しました。"
-      redirect_to my_facilities_user_facilities_url
-    end
+      if params[:user].present?
+        params[:user][:facility_ids].delete("0")
+      end
+      if params[:user].blank?
+        flash[:alert] = "新しく施設を登録して下さい。"
+        redirect_to my_facilities_user_facilities_url
+      elsif params[:user][:facility_ids].count == current_user.facilities.count
+        flash[:alert] = "登録施設が更新されていません。"
+        redirect_to my_facilities_user_facilities_url
+      else
+        @user.update_attributes(facilities_used_params)
+        flash[:notice] = "登録施設を更新しました。"
+        redirect_to my_facilities_user_facilities_url
+      end
   end
 
     private
