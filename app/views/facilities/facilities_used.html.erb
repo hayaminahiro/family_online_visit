@@ -19,6 +19,7 @@
           </div>
       </div>
     </section>
+
     <div id="tabs-with-content">
       <div class="tabs is-centered is-large has-text-weight-bold">
         <ul>
@@ -39,7 +40,7 @@
       <div>
         <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
           <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
-            <%= f.collection_check_boxes :facility_ids, @facilities, :id, :facility_name do |b| %>
+            <% @facilities.each do |fa| %>
               <div class="card card-style">
                 <div class="card-image">
                   <figure class="image is-4by3">
@@ -49,7 +50,8 @@
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <%= b.label { b.check_box + " " + b.text } %>
+                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
+                      <%= fa.facility_name %>
                     </div>
                   </div>
                   <div class="content">
@@ -59,8 +61,9 @@
               </div>
             <% end %>
           </div>
+
           <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
-            <%= f.collection_check_boxes :facility_ids, current_user.facilities, :id, :facility_name, style: 'display:none' do |b| %>
+            <% current_user.facilities.each do |fa| %>
               <div class="card card-style">
                 <div class="card-image">
                   <figure class="image is-4by3">
@@ -70,7 +73,8 @@
                 <div class="card-content">
                   <div class="media">
                     <div class="media-content">
-                      <%= b.label { b.check_box + " " + b.text } %>
+                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
+                      <%= fa.facility_name %>
                       <span class="tag is-warning tag-position">登録済</span>
                     </div>
                   </div>

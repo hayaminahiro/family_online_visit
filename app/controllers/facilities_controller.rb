@@ -70,6 +70,7 @@ class FacilitiesController < ApplicationController
       flash[:alert] = "新しく施設を登録して下さい。"
       redirect_to my_facilities_user_facilities_url
     else
+
       @user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を更新しました。"
       redirect_to my_facilities_user_facilities_url
@@ -99,6 +100,7 @@ class FacilitiesController < ApplicationController
       end
 
       def facilities_used_params
+        params[:user][:facility_ids].delete("0")
         params.require(:user).permit(facility_ids: [])
       end
 
