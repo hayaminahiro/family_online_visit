@@ -59,9 +59,9 @@ class FacilitiesController < ApplicationController
     end
   end
 
-  def my_facilities # 登録済み施設ページ
-    @facilities = Facility.all.where.not(admin: true)
-  end
+  # def my_facilities # 登録済み施設ページ
+  #   @facilities = Facility.all.where.not(admin: true)
+  # end
 
   def update_facilities_used
     if params[:user].present?
@@ -69,14 +69,14 @@ class FacilitiesController < ApplicationController
     end
     if params[:user].blank?
       flash[:alert] = "新しく施設を登録して下さい。"
-      redirect_to my_facilities_user_facilities_url
+      redirect_to facilities_used_user_facilities_url
     elsif params[:user][:facility_ids].map{|n| n.to_i} == current_user.facilities.ids
       flash[:alert] = "登録施設が更新されていません。"
-      redirect_to my_facilities_user_facilities_url
+      redirect_to facilities_used_user_facilities_url
     else
       @user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を更新しました。"
-      redirect_to my_facilities_user_facilities_url
+      redirect_to facilities_used_user_facilities_url
     end
   end
 

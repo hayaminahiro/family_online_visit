@@ -118,11 +118,14 @@
                         <p class="title is-4">
                           <% @facility = facility.id %>
                           <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                          <span class="tag is-warning tag-position">登録済</span>
                         </p>
                       </div>
                     </div>
                     <div class="content">
-                      各施設紹介/お知らせetc検討
+                      <p class="title is-6">
+                        各施設紹介/お知らせetc
+                      </p>
                     </div>
                   </div>
                 </div>
