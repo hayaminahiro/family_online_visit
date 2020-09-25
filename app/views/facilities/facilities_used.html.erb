@@ -1,8 +1,8 @@
-<div class="container">
-  <div id="WebDev" class="content-tab">
-    <section class="hero is-medium">
-      <div class="hero-body search-img">
-        <h1 class="title has-text-centered is-size-1 search-title" style="">
+<section class="hero is-medium" id="hero-2">
+  <div class="hero-body search-img">
+    <div class="hero-body">
+      <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
+        <h1 class="has-text-centered" style="font-size: 80px;">
           ご利用施設検索
         </h1>
         <div class="container">
@@ -16,121 +16,123 @@
               </div>
             </div>
           <% end %>
-          </div>
-      </div>
-    </section>
-
-    <div id="tabs-with-content">
-      <div class="tabs is-centered is-large has-text-weight-bold">
-        <ul>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fas fa-search-minus"  aria-hidden="true"></i></span>
-              <span>検索結果</span>
-            </a>
-          </li>
-          <li>
-            <%= link_to my_facilities_user_facilities_path(current_user) do %>
-              <span class="icon is-small"><i class="fas fa-laptop-house"  aria-hidden="true"></i></span>
-              <span>登録施設</span>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
-          <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
-            <% @facilities.each do |fa| %>
-              <div class="card card-style">
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <%= image_tag 'default.png', class: "info-image" %>
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-content">
-                      <label>
-                        <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
-                      </label>
-                      <span><%= fa.facility_name %></span>
-                    </div>
-                  </div>
-                  <div class="content">
-                    各施設紹介/お知らせetc検討
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-
-          <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
-            <% current_user.facilities.each do |fa| %>
-              <div class="card card-style">
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <%= image_tag 'default.png', class: "info-image" %>
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-content">
-                      <label>
-                        <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
-                        <%= fa.facility_name %>
-                      </label>
-                      <span class="tag is-warning tag-position">登録済</span>
-                    </div>
-                  </div>
-                  <div class="content">
-                    各施設紹介/お知らせetc検討
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="current_tag"></div>
-          <div class="actions btn-width">
-            <%= f.submit "登録施設の更新", class: "button is-primary is-medium is-fullwidth new-btn has-text-weight-bold" %>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-  <div id="under-pagination">
-    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" if @facilities.present? %>
+</section>
+
+<section class="hero is-medium has-text-centered" id="hero-4">
+  <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
+    <div class="cp_tab">
+      <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+      <label for="tab1_1"><i class="far fa-building"></i>&nbsp;検索結果</label>
+      <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+      <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;登録施設</label>
+
+      <div class="cp_tabpanels">
+        <div id="first_tab01" class="cp_tabpanel">
+          <article class="panel" id="panel-content">
+            <div class="columns is-multiline">
+              <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
+                <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
+                  <% @facilities.each do |fa| %>
+                    <div class="card card-style">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-content">
+                            <label>
+                              <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
+                              <span><%= fa.facility_name %></span>
+                            </label>
+                            <span class="tag is-danger tag-position">未登録</span>
+                          </div>
+                        </div>
+                        <div class="content">
+                          <p class="title is-6">
+                            各施設紹介/お知らせetc
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
+                  <% current_user.facilities.each do |fa| %>
+                    <div class="card card-style">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-content">
+                            <label>
+                              <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
+                              <%= fa.facility_name %>
+                            </label>
+                            <span class="tag is-warning tag-position">登録済</span>
+                          </div>
+                        </div>
+                        <div class="content">
+                          <p class="title is-6">
+                            各施設紹介/お知らせetc
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="current_tag"></div>
+                <div class="actions btn-width">
+                  <%= f.submit "登録施設の更新", class: "btn-denim has-text-weight-bold denim-position" %>
+                </div>
+              <% end %>
+            </div>
+          </article>
+          <div id="under-pagination">
+            <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" if @facilities.present? %>
+          </div>
+        </div>
+
+        <div id="second_tab01" class="cp_tabpanel">
+          <article class="panel" id="panel-search">
+            <div class="columns is-multiline" style="margin: 30px;">
+              <% current_user.facilities.each do |facility| %>
+                <div class="card card-style">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p class="title is-4">
+                          <% @facility = facility.id %>
+                          <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="content">
+                      各施設紹介/お知らせetc検討
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="current_tag"></div>
+          </article>
+        </div>
+
+      </div>
+    </div>
   </div>
-</div>
-
-<script>
-  let tabsWithContent = (function () {
-    let tabs = document.querySelectorAll('.tabs li');
-    let tabsContent = document.querySelectorAll('.tab-content');
-
-    let deactvateAllTabs = function () {
-      tabs.forEach(function (tab) {
-        tab.classList.remove('is-active');
-      });
-    };
-
-    let hideTabsContent = function () {
-      tabsContent.forEach(function (tabContent) {
-        tabContent.classList.remove('is-active');
-      });
-    };
-
-    let getIndex = function (el) {
-      return [...el.parentElement.children].indexOf(el);
-    };
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        deactvateAllTabs();
-        hideTabsContent();
-        tab.classList.add('is-active');
-      });
-    })
-
-    tabs[0].click();
-  })();
-</script>
+</section>
