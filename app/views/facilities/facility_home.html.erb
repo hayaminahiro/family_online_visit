@@ -1,0 +1,41 @@
+<section class="hero is-medium">
+  <figure class="image is-3by1">
+    <%= image_tag 'facility_image.jpg', class: "facility-home-image" %>
+  </figure>
+</section>
+
+<div class="about-title is-size-3 has-text-centered">権限変更</div>
+<div class="inline-block_content">
+  <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+  </p><br>
+</div>
+<div class="inline-block_content">
+  <% if facility_signed_in? %>
+    <% if current_facility.facility_admin == true %>
+      <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+        <%= f.hidden_field :facility_admin, :value => false %>
+        <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
+      <% end %>
+    <% elsif current_facility.facility_admin == false %>
+      <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+        <%= f.hidden_field :facility_admin, :value => true %>
+        <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="about-title is-size-3 has-text-centered">お知らせ</div>
+<article class="panel" id="panel-content">
+  <div class="columns is-multiline has-text-left">
+    お知らせ表示が入る
+  </div>
+</article>
+
+<script>
+  $(function(){
+    ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.about-title', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+  });
+</script>
