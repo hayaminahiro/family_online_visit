@@ -5,7 +5,7 @@ class FacilitiesController < ApplicationController
   before_action :set_user_id, only: [:facilities_used, :my_facilities, :update_facilities_used]
 
   # ログインしてなければ閲覧不可
-  before_action :authenticate_facility!, except: [:home, :facilities_used, :my_facilities, :update_facilities_used]
+  before_action :authenticate_facility!, except: [:home, :facilities_used, :my_facilities, :update_facilities_used, :request_resident, :create_resident_association]
   before_action :authenticate_user!, only: [:home, :facilities_used, :my_facilities, :update_facilities_used]
 
   def index
