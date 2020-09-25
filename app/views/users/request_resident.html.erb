@@ -1,0 +1,13 @@
+<h1>入居者登録申請画面</h1>
+<%= form_with(model: @request, url: facility_user_create_resident_association_path(current_user, facility_id: params[:facility_id])) do |f| %>
+  <div class="form-group col-sm-5">
+    <div class="form-group col-sm-5">
+      <%= f.text_area :req_name, :placeholder => " \uf304 入居者名を入力", class: "fa textarea is-link is-medium is-rounded is-focused" %>
+      <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号を入力", class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
+      <%= f.text_field :req_address, :placeholder => " \uf304 住所を入力", class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
+    </div>
+  </div><br>
+  <div class="has-text-centered">
+    <%= f.submit "\uf044 申請する",class:"fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
+  </div>
+<% end %>

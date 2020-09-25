@@ -52,6 +52,23 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def request_resident #入居者登録申請画面
+    @request = RequestResident.new
+  end
+
+  def create_resident_association #入居者登録申請画面
+    @request = RequestResident.new(request_params)
+    @request.facility_id = params[:facility_id].to_i
+    @request.user_id = current_user.id
+    if  @request.save
+      flash[:notice] = "入居者申請できました"
+    else
+      flash[:alert] = "申請できませんでした。入力内容をご確認ください"
+    end
+    logger.debug @request.errors.inspect
+    redirect_to user_facility_home_url
+  end
+
     private
 
       def admin_params
@@ -74,4 +91,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
       end
 
+      def request_params
+        params.require(:request_resident).permit(:req_name, :req_phone, :req_address)
+      end
 end
