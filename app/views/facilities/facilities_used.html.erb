@@ -28,14 +28,24 @@
       <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
       <label for="tab1_1"><i class="far fa-building"></i>&nbsp;検索結果</label>
       <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-      <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;登録施設</label>
+      <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;各登録施設へ</label>
 
       <div class="cp_tabpanels">
         <div id="first_tab01" class="cp_tabpanel">
           <article class="panel" id="panel-content">
             <div class="columns is-multiline">
               <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
-                <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
+                <div class="actions btn-width">
+                  <%= f.submit "登録施設の更新", class: "btn-denim has-text-weight-bold denim-position" %>
+                </div>
+                <div class="field" style="margin-left: 60px; margin-right: 80px">
+                  <% if @facilities.blank? %>
+                    <div class="content">
+                      <p class="title is-6 result">
+                        検索結果はありません。
+                      </p>
+                    </div>
+                  <% end %>
                   <% @facilities.each do |fa| %>
                     <div class="card card-style">
                       <div class="card-image">
@@ -48,8 +58,8 @@
                           <div class="media-content">
                             <label>
                               <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
-                              <span><%= fa.facility_name %></span>
-                            </label>
+                              <%= fa.facility_name %>
+                            </label><br>
                             <span class="tag is-danger tag-position">未登録</span>
                           </div>
                         </div>
@@ -63,7 +73,12 @@
                   <% end %>
                 </div>
 
-                <div class="field" style="margin-left: 60px; margin-right: 80px"> <!--施設テーブルとの関連付けのため追加-->
+                <div class="field" style="margin-left: 60px; margin-right: 80px; float: left;"> <!--施設テーブルとの関連付けのため追加-->
+                  <div class="content">
+                    <p class="title is-5">
+                      現在の登録施設
+                    </p>
+                  </div>
                   <% current_user.facilities.each do |fa| %>
                     <div class="card card-style">
                       <div class="card-image">
@@ -77,7 +92,7 @@
                             <label>
                               <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
                               <%= fa.facility_name %>
-                            </label>
+                            </label><br>
                             <span class="tag is-warning tag-position">登録済</span>
                           </div>
                         </div>
@@ -91,9 +106,6 @@
                   <% end %>
                 </div>
                 <div class="current_tag"></div>
-                <div class="actions btn-width">
-                  <%= f.submit "登録施設の更新", class: "btn-denim has-text-weight-bold denim-position" %>
-                </div>
               <% end %>
             </div>
           </article>
