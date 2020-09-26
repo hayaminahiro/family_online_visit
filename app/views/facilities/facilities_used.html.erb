@@ -1,24 +1,22 @@
 <section class="hero is-medium" id="hero-2">
   <div class="hero-body search-img">
-    <div class="hero-body">
-      <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
-        <h1 class="has-text-centered" style="font-size: 80px;">
+    <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
+        <h1 class="has-text-centered has-text-weight-bold search-title">
           ご利用施設検索
         </h1>
         <div class="container">
           <%= form_with(url: facilities_used_user_facilities_path, method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-centered">
               <div class="control search-input">
-                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-rounded is-black" %>
+                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-black" %>
               </div>
               <div class="control">
-                <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-success is-rounded search-btn" %>
+                <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-link search-btn" %>
               </div>
             </div>
           <% end %>
         </div>
       </div>
-    </div>
   </div>
 </section>
 
@@ -36,7 +34,7 @@
             <div class="columns is-multiline">
               <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
                 <div class="actions btn-width">
-                  <%= f.submit "登録施設の更新", class: "btn-denim has-text-weight-bold denim-position" %>
+                  <%= f.submit "\uf110 登録施設の更新", class: "fa btn-denim has-text-weight-bold denim-position" %>
                 </div>
                 <div class="field" style="margin-left: 60px; margin-right: 80px">
                   <% if @facilities.blank? %>
