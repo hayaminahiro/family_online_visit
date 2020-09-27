@@ -9,6 +9,7 @@ admin.save!
 
 # facility_id = 2
 home = Facility.create!(
+  id: 2,
   facility_name: "老人ホーム-A",
   email: "home-a@email.com",
   password: "password"
