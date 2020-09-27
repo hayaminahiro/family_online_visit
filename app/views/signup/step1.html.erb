@@ -5,13 +5,13 @@
         <div class="media-content">
           <div class="content has-text-centered">
             <div class="signup-title">
-              <strong class="new-title">新規登録</strong>
+              <strong class="new-title">新規登録1ページ</strong>
             </div>
           </div>
             <div class="button-position">
               <div class="columns is-centered">
                 <div class="column is-6 top-btn-position">
-                <%= form_for @user, url: step1_signup_path, method: :get do |f| %>
+                <%= form_for @user, url: step2_signup_index_path, method: :get do |f| %>
                   <%= render "users/shared/error_messages", resource: resource %>
 
                   <div class="field">
@@ -35,7 +35,7 @@
                   </div>
 
                   <div class="actions">
-                    <%= f.submit "新規登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                    <%= f.submit "次へ", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
                   </div>
                 <% end %>
 

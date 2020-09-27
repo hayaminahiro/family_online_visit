@@ -22,15 +22,15 @@ class SignupController < ApplicationController
 
   def create
     @user = User.new(
-      name: session[:name], # sessionに保存された値をインスタンスに渡す
+      name: session[:name],
       email: session[:email],
       password: session[:password],
       password_confirmation: session[:password_confirmation],
-      address: session[:address], 
-      phone: session[:phone], 
+      address: session[:address],
+      phone: session[:phone]
     )
     if @user.save
-　　　# ログインするための情報を保管
+   # ログインするための情報を保管
       session[:id] = @user.id
       redirect_to done_signup_index_path
     else
@@ -41,17 +41,17 @@ class SignupController < ApplicationController
   def done
     sign_in User.find(session[:id]) unless user_signed_in?
   end
-    
+
   private
-  　# 許可するキーを設定します
+   # 許可するキーを設定します
       def user_params
       params.require(:user).permit(
-          :name, 
-          :email, 
-          :password, 
-          :password_confirmation, 
-          :address, 
-          :phone, 
+          :name,
+          :email,
+          :password,
+          :password_confirmation,
+          :address,
+          :phone
       )
       end
 end
