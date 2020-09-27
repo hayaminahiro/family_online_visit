@@ -5,24 +5,34 @@
 </section>
 
 <div class="about-title is-size-3 has-text-centered">権限変更</div>
-<div class="inline-block_content">
-  <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-  </p><br>
-</div>
-<div class="inline-block_content">
-  <% if facility_signed_in? %>
-    <% if current_facility.facility_admin == true %>
-      <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-        <%= f.hidden_field :facility_admin, :value => false %>
-        <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
-      <% end %>
-    <% elsif current_facility.facility_admin == false %>
-      <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-        <%= f.hidden_field :facility_admin, :value => true %>
-        <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
+<div class="has-text-centered">
+  <div class="inline-block_home">
+    <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+      ボタンをクリックすることで、管理者または一般職員<br>
+      の表示切り替えをすることができます。
+    </p>
+  </div>
+  <div class="inline-block_home">
+    <% if facility_signed_in? %>
+      <% if current_facility.facility_admin == true %>
+        <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+          <%= f.hidden_field :facility_admin, :value => false %>
+          <%= f.button :type => "submit", class: "general-btn" do %>
+            <i class="fas fa-users fa-3x"></i>&nbsp;
+            <span>一般</span>
+          <% end %>
+        <% end %>
+      <% elsif current_facility.facility_admin == false %>
+        <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+          <%= f.hidden_field :facility_admin, :value => true %>
+          <%= f.button :type => "submit", class: "admin-btn" do %>
+            <i class="far fa-user-circle fa-3x"></i>&nbsp;
+            <span>管理者</span>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 <div class="about-title is-size-3 has-text-centered">お知らせ</div>
