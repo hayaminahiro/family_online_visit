@@ -71,6 +71,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 #under-pagination {
+  margin-top: 50px;
   margin-bottom: 150px;
 }
 
@@ -93,8 +94,8 @@ label span {
 }
 label input:checked + span {
   color: #FFF; /* 文字色を白に */
-  background: #FF69B4; /* 背景色を薄い赤に */
-  border: 1px solid #DB7093; /* 淵の線を薄い赤に */
+  background: #f07700; /* 背景色を薄いオレンジに */
+  border: 1px solid #ff9124; /* 淵の線を薄いオレンジに */
 }
 
 .current_tag {
@@ -131,7 +132,7 @@ label input:checked + span {
 }
 
 p.title.is-6.result {
-  margin-bottom: 50px;
+  margin: 100px;
   color: brown;
 }
 
@@ -158,4 +159,25 @@ a.btn-gradient:hover {
   font-size: 40px;
   margin-right: 100px;
   color: white;
+}
+
+.modal-description {
+  font-size: 18px;
+  padding: 25px;
+}
+
+.modal-sub-description {
+  font-size: 14px;
+}
+
+.span-check {
+  color: #FF4F02;
+}
+
+input.fa.button.is-medium.is-focused.has-text-weight-semibold.orange-btn {
+  background: orange;
+}
+
+.under-line {
+  border-bottom: 1px solid;
 }
