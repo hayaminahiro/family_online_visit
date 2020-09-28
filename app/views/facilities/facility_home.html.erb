@@ -8,6 +8,8 @@
 <div class="has-text-centered">
   <div class="inline-block_home">
     <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+      表示されているボタンは現在の役職設定になっています。<br>
+      権限を変更したい場合は、ボタンにカーソルを合わせ<br>
       ボタンをクリックすることで、管理者または一般職員<br>
       の表示切り替えをすることができます。
     </p>
@@ -18,7 +20,8 @@
         <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
           <%= f.hidden_field :facility_admin, :value => false %>
           <%= f.button :type => "submit", class: "general-btn" do %>
-            <i class="fas fa-users fa-3x"></i>&nbsp;
+            <i class="far fa-user-circle" id="users"></i>
+            <span><i class="fas fa-users"></i>&nbsp;</span>
             <span>一般</span>
           <% end %>
         <% end %>
@@ -26,7 +29,8 @@
         <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
           <%= f.hidden_field :facility_admin, :value => true %>
           <%= f.button :type => "submit", class: "admin-btn" do %>
-            <i class="far fa-user-circle fa-3x"></i>&nbsp;
+            <i class="fas fa-users" id="admin"></i>
+            <span><i class="far fa-user-circle"></i>&nbsp;</span>
             <span>管理者</span>
           <% end %>
         <% end %>
@@ -47,5 +51,6 @@
     ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
     ScrollReveal().reveal('.about-title', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('.inline-block_home', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
   });
 </script>
