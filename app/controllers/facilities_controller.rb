@@ -60,6 +60,7 @@ class FacilitiesController < ApplicationController
   end
 
   def update_facilities_used
+    # raise
     if params[:user].present?
       params[:user][:facility_ids].delete("0")
     end
@@ -67,11 +68,11 @@ class FacilitiesController < ApplicationController
       flash[:alert] = "新しく施設を登録して下さい。"
       redirect_to facilities_used_user_facilities_url
     elsif params[:user][:facility_ids].map{|n| n.to_i} == current_user.facilities.ids
-      # raise
+      raise
       flash[:alert] = "登録施設が更新されていません。"
       redirect_to facilities_used_user_facilities_url
-    else
-      raise
+    elsif params[:user][:facility_ids].map{|n| n.to_i} != current_user.facilities.ids
+      # raise
       @user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を更新しました。"
       redirect_to facilities_used_user_facilities_url
