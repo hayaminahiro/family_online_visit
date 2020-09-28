@@ -67,11 +67,11 @@ class FacilitiesController < ApplicationController
     if params[:user].blank?
       flash[:alert] = "新しく施設を登録して下さい。"
       redirect_to facilities_used_user_facilities_url
-    elsif params[:user][:facility_ids].map{|n| n.to_i} == current_user.facilities.ids
-      raise
-      flash[:alert] = "登録施設が更新されていません。"
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.sort == current_user.facilities.ids.sort
+      # raise
+      flash[:alert] = "登録施設が更新されていません。登録チェック ✔️ を確認して更新して下さい。"
       redirect_to facilities_used_user_facilities_url
-    elsif params[:user][:facility_ids].map{|n| n.to_i} != current_user.facilities.ids
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.sort != current_user.facilities.ids.sort
       # raise
       @user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を更新しました。"
