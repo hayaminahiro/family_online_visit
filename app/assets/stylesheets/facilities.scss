@@ -126,8 +126,8 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 //権限変更（一般）
-.general-btn {
-  margin-top: 100px;
+.general-change {
+  margin-top: 50px;
   border: 1px solid transparent;
   outline: none;
   background: linear-gradient(25deg,#2bc0e4, #eaecc6);
@@ -175,7 +175,8 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 //権限変更（管理者）
-.admin-btn {
+.admin-change {
+  margin-top: 50px;
   border: 1px solid transparent;
   outline: none;
   background: linear-gradient(25deg, #F13F79, #FFC778);
@@ -221,4 +222,3 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
     }
   }
 }
-
