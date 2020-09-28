@@ -24,9 +24,9 @@
   <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
     <div class="cp_tab">
       <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
-      <label for="tab1_1"><i class="far fa-building"></i>&nbsp;検索結果</label>
+      <label for="tab1_1"><i class="fas fa-search-location"></i>&nbsp;検索結果</label>
       <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-      <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;各登録施設へ</label>
+      <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;登録施設へ</label>
 
       <div class="cp_tabpanels">
         <div id="first_tab01" class="cp_tabpanel">
@@ -128,7 +128,7 @@
 
         <div id="second_tab01" class="cp_tabpanel">
           <article class="panel" id="panel-search">
-            <div class="columns is-multiline" style="margin-top: 15px; margin-left: 55px;">
+            <div class="columns is-multiline">
               <% if current_user.facilities.blank? %>
                 <p class="title is-6 result">現在の登録施設はありません。</p>
               <% end %>
@@ -168,12 +168,13 @@
                                     <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録 ✔</span>
                                     <%= fa.facility_name %>
 
-
-                                    <br>
-                                    <% current_user.facilities.where.not(id: fa).each do |hidden_fa| %>
-                                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(hidden_fa), :name => 'user[facility_ids][]' }, hidden_fa.id %><span>登録 ✔</span>
-                                      <%= hidden_fa.facility_name %>
-                                    <% end %>
+                                    <!-- 更新しようとしている施設「id: fa」を除く施設一覧を隠して更新させる -->
+                                    <div style="display: none">
+                                      <% current_user.facilities.where.not(id: fa).each do |hidden_fa| %>
+                                        <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(hidden_fa), :name => 'user[facility_ids][]' }, hidden_fa.id %><span>登録 ✔</span>
+                                        <%= hidden_fa.facility_name %>
+                                      <% end %>
+                                    </div>
 
 
                                     <%# end %>

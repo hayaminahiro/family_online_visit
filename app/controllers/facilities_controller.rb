@@ -53,7 +53,7 @@ class FacilitiesController < ApplicationController
   def facilities_used # 利用施設検索/登録ページ
     @facilities = Facility.all.where.not(admin: true)
     if params[:search].present?
-      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities).paginate(page: params[:page], per_page: 9).order(:id)
+      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities).paginate(page: params[:page], per_page: 12).order(:id)
     else
       @facilities = @facilities.where('facility_name LIKE ?', "")
     end
