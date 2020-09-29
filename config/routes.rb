@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'step1'
       get 'step2' # ここで、入力が終了
+      get 'step3'
       get 'done' # 登録完了後のページ
     end
   end

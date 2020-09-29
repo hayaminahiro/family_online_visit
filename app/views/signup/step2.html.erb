@@ -1,17 +1,38 @@
 <body class="image-layout">
   <section class="hero login-hero-size" >
-    <div class="container">
+    <div class="container-fruid">
       <article class="media">
         <div class="media-content">
           <div class="content has-text-centered">
-            <div class="signup-title">
-              <strong class="new-title">新規登録2ページ</strong>
+            <div class="signup-upper">  
+              <div class="signups-title">
+                <strong class="new-title">追加情報登録</strong><br>                         
+              </div>              
+              <div class="page-display">
+                <div class="page-number">
+                  <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-inverse fa-stack-1x">1</i>    
+                </div>
+                ・・・
+                <div class="page-number">
+                  <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
+                  <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
+                  <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">2</i>    
+                </div>
+                ・・・
+                <div class="page-number">
+                  <span class="fa-stack fa-lg" style="font-size: 1.5em; color: white;">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>    
+                </div>
+              </div>
             </div>
           </div>
             <div class="button-position">
               <div class="columns is-centered">
                 <div class="column is-6 top-btn-position">
-                <%= form_for @user, url: signup_index_path, method: :post do |f| %>
+                <%= form_for @user, url: step3_signup_index_path, method: :get do |f| %>
                   <%= render "users/shared/error_messages", resource: resource %>
 
                   <div class="field">
@@ -43,3 +64,4 @@
 </body>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css">
