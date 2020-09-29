@@ -14,7 +14,15 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
 
-  validates :name, presence: true  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
+  VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :name,                    presence: true, length: {maximum: 20}  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
+  validates :email,                   presence: true , uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  validates :password,                presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
+  validates :password_confirmation,   presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
+
+  validates :address,                 presence: true
+  validates :phone,                   presence: true
 
   # cookieでログイン情報を保持
   def remember_me

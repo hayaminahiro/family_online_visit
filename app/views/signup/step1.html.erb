@@ -1,5 +1,5 @@
 <body class="image-layout">
-  <section class="hero login-hero-size" >
+  <section class="hero comfirm-hero-size" >
     <div class="container-fluid">
       <article class="media">
         <div class="media-content">
@@ -34,7 +34,7 @@
               <div class="columns is-centered">
                 <div class="column is-6 top-btn-position">
                 <%= form_for @user, url: step2_signup_index_path, method: :get do |f| %>
-                  <%= render "users/shared/error_messages", resource: resource %>
+                  <%= render "users/shared/error_messages", resource: @user %>
 
                   <div class="field">
                     <%= f.label :name, "あなたのお名前", class: "label" %><br />
