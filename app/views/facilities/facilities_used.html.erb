@@ -130,6 +130,7 @@
                         <div class="media-content">
                           <div class="under-line">
                             <% @facility = fa.id %>
+                            <span id="here">こちらから</span>
                             <i class="far fa-hand-point-right" style="color: royalblue;"></i>
                             <%= link_to fa.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                           </div>
