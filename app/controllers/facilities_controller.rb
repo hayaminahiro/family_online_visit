@@ -60,23 +60,21 @@ class FacilitiesController < ApplicationController
   end
 
   def update_facilities_used
-    # raise
     if params[:user].present?
       params[:user][:facility_ids].delete("0")
     end
     if params[:user].blank?
       flash[:alert] = "新しく施設を登録して下さい。"
-      redirect_to facilities_used_user_facilities_url
     elsif params[:user][:facility_ids].map{|n| n.to_i}.sort == current_user.facilities.ids.sort
-      # raise
       flash[:alert] = "登録施設が更新されていません。登録チェック ✔️ を確認して更新して下さい。"
-      redirect_to facilities_used_user_facilities_url
-    elsif params[:user][:facility_ids].map{|n| n.to_i}.sort != current_user.facilities.ids.sort
-      # raise
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.count > current_user.facilities.ids.count
       @user.update_attributes(facilities_used_params)
-      flash[:notice] = "登録施設を更新しました。"
-      redirect_to facilities_used_user_facilities_url
+      flash[:notice] = "新しく施設を登録しました。"
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.count < current_user.facilities.ids.count
+      @user.update_attributes(facilities_used_params)
+      flash[:notice] = "登録施設を解除しました。"
     end
+    redirect_to facilities_used_user_facilities_url
   end
 
     private
