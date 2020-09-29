@@ -13,10 +13,11 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 
 /* 利用施設登録 */
 .card-style {
-  width: 400px;
+  width: 345px;
   display: inline-block;
   text-align: center;
-  margin: 50px;
+  margin: 20px 20px;
+  border-radius: 1%;
 }
 
 .search-img {
@@ -75,10 +76,6 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   margin-bottom: 150px;
 }
 
-.card-position {
-  margin-top: 30px;
-}
-
 label {
   margin-right: 5px; /* ボタン同士の間隔 */
 }
@@ -105,30 +102,6 @@ label input:checked + span {
 
 #panel-search {
   padding: 20px;
-}
-
-/* ここから下がボタンのCSS　*/
-.btn-denim {
-  display: inline-block;
-  max-width: 180px;
-  text-align: left;
-  background-color: #293b6a;
-  font-size: 16px;
-  color: #FFF;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 16px;
-  border: 1px dashed #FFF;
-  box-shadow: 0px 0px 0px 5px #293b6a;/* box-shadowで外枠を */
-}
-
-.btn-denim:hover {
-  border-style: solid;
-}
-
-.denim-position {
-  margin: 50px 0 50px 10px;
-  float: left;
 }
 
 p.title.is-6.result {
@@ -176,8 +149,19 @@ a.btn-gradient:hover {
 
 input.fa.button.is-medium.is-focused.has-text-weight-semibold.orange-btn {
   background: orange;
+  color: #401c00;
 }
 
 .under-line {
   border-bottom: 1px solid;
+  color: #401c00;
+}
+
+div.under-line {
+  border-bottom: 1px solid;
+  color: #401c00;
+}
+
+.card-radius {
+  border-radius: 1% 1% 0 0;
 }

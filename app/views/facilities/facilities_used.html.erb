@@ -29,24 +29,18 @@
       <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;登録施設へ</label>
 
       <div class="cp_tabpanels">
-        <div id="first_tab01" class="cp_tabpanel">
+        <div id="first_tab01" class="cp_tabpanel" style="padding: 10px">
           <article class="panel">
             <div class="columns is-multiline">
-              <div class="field">
+              <div class="field" style="padding: 20px;">
                 <% if @facilities.blank? %>
-                  <div class="content">
-                    <p class="title is-6 result">
-                      検索結果はありません。
-                    </p>
-                  </div>
+                    <p class="title is-6 result">検索結果はありません。</p>
                 <% end %>
                 <% @facilities.each do |fa| %>
                   <div class="card card-style">
                     <div class="card-image">
                       <figure class="image is-4by3">
-                      
-                        <a><img src="/assets/remember.jpg" id=<%= fa.id %>></a>
-                       
+                        <a><img src="/assets/remember.jpg" id=<%= fa.id %> class="card-radius"></a>
                       </figure>
                     </div>
                     <div class="card-content">
@@ -55,12 +49,7 @@
                           <div class="under-line">
                             <%= fa.facility_name %>
                           </div>
-                          <div style="">
-                            <span class="tag is-danger tag-position">未登録</span>
-                          </div>
-                          
-
-                          
+                          <span class="tag is-danger tag-position">未登録</span>
 
                           <!-- 登録施設 モーダル表示 -->
                           <div class="modal" id=<%= fa.facility_name %>>
@@ -105,10 +94,7 @@
                               })
                             });
                           </script>
-                          <!-- ここまで -->
 
-
-                          
                         </div>
                       </div>
                       <div class="content">
@@ -118,7 +104,6 @@
                   </div>
                 <% end %>
               </div>
-
             </div>
           </article>
           <div id="under-pagination">
@@ -126,10 +111,10 @@
           </div>
         </div>
 
-        <div id="second_tab01" class="cp_tabpanel">
+        <div id="second_tab01" class="cp_tabpanel" style="padding: 10px;">
           <article class="panel">
             <div class="columns is-multiline">
-              <div class="field">
+              <div class="field" style="padding: 20px;">
                 <% if current_user.facilities.blank? %>
                   <p class="title is-6 result">現在の登録施設はありません。</p>
                 <% end %>
@@ -137,29 +122,25 @@
                   <div class="card card-style">
                     <div class="card-image">
                       <figure class="image is-4by3">
-                        <img src="/assets/remember.jpg" alt="">
+                        <a><img src="/assets/remember.jpg" id=<%= fa.id %> class="card-radius"></a>
                       </figure>
                     </div>
                     <div class="card-content">
                       <div class="media">
                         <div class="media-content">
-                          <p class="title is-4">
+                          <div class="under-line">
                             <% @facility = fa.id %>
+                            <i class="far fa-hand-point-right" style="color: royalblue;"></i>
                             <%= link_to fa.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
-                            <span class="tag is-warning tag-position">登録済</span>
-                          </p>
-
-
-                          <button class="button is-primary is-medium" id=<%= fa.id %>>
-                            <span><i class="fas fa-key"></i></span>
-                          </button>
+                          </div>
+                          <span class="tag is-warning tag-position">登録済</span>
 
                           <!-- 登録施設 モーダル表示 -->
                           <div class="modal" id=<%= fa.facility_name %>>
                             <div class="modal-background"></div>
                             <div class="modal-card">
-                              <header class="modal-card-head" style="background-color: #48D1CC;">
-                                <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
+                              <header class="modal-card-head" style="background-color: #e3dcca;">
+                                <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
                                 <button class="delete" aria-label="close" id="close"></button>
                               </header>
                               <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
@@ -168,7 +149,6 @@
                                     <label>
                                       <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
                                       <%= fa.facility_name %>
-
                                       <!-- 更新しようとしている施設「id: fa」を除く施設一覧を隠して更新させる -->
                                       <div style="display: none">
                                         <% current_user.facilities.where.not(id: fa).each do |hidden_fa| %>
@@ -176,21 +156,13 @@
                                           <%= hidden_fa.facility_name %>
                                         <% end %>
                                       </div>
-
-
-                                      <%# end %>
-                                    </label><br>
-                                  </div><br>
-                                  <div class="has-text-centered">
-                                    <%= f.submit "\uf044 登録する", class: "fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
-                                    <button type="button"
-                                      class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold"
-                                      aria-label="close" id="close">
-                                      キャンセル
-                                    </button>
+                                    </label>
+                                    <p class="modal-description">ここから施設の登録を解除することができます。</p>
+                                    <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>のチェックを外して更新ボタンから登録解除して下さい。</p>
                                   </div>
                                 </section>
-                                <footer class="modal-card-foot">
+                                <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                                    <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                                 </footer>
                               <% end %>
                             </div>
@@ -207,23 +179,19 @@
                               })
                             });
                           </script>
-                          <!-- ここまで -->
+
                         </div>
                       </div>
                       <div class="content">
-                        <p class="title is-6">
-                          各施設紹介/お知らせetc
-                        </p>
+                        <p class="title is-6">各施設紹介/お知らせetc</p>
                       </div>
                     </div>
                   </div>
                 <% end %>
               </div>
             </div>
-            <div class="current_tag"></div>
           </article>
         </div>
-
       </div>
     </div>
   </div>
