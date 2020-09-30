@@ -26,10 +26,10 @@ class FacilitiesController < ApplicationController
     end
     if @facility.update_attributes(facility_params)
       flash[:notice] = "「#{@facility.facility_name}」の施設情報を更新できました。"
+      redirect_to facilities_url
     else
-      flash[:alert] = "更新できませんでした。入力内容をご確認ください。"
+      render :edit
     end
-    redirect_to facilities_url
   end
 
   def change_admin
