@@ -136,11 +136,12 @@ a.btn-gradient:hover {
 
 .modal-description {
   font-size: 18px;
-  padding: 25px;
+  padding: 20px;
 }
 
 .modal-sub-description {
   font-size: 14px;
+  margin-bottom: 14px;
 }
 
 .span-check {
@@ -194,4 +195,10 @@ div.under-line {
   height: 100%;
   float: right;
   margin: 5px;
+}
+
+.title-in-modal {
+  border-bottom: 1px solid;
+  padding: 3px;
+  margin-bottom: 7px;
 }
