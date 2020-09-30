@@ -5,7 +5,7 @@ class FacilitiesController < ApplicationController
   before_action :set_user_id, only: [:facilities_used, :my_facilities, :update_facilities_used]
 
   # ログインしてなければ閲覧不可
-  before_action :authenticate_facility!, except: [:home, :facilities_used, :my_facilities, :update_facilities_used, :request_resident, :create_resident_association]
+  before_action :authenticate_facility!, except: [:home, :facilities_used, :my_facilities, :update_facilities_used, :new_connection, :create_connection]
   before_action :authenticate_user!, only: [:home, :facilities_used, :my_facilities, :update_facilities_used]
 
   def index
@@ -48,6 +48,7 @@ class FacilitiesController < ApplicationController
   end
 
   def home #各施設のホーム画面
+    @requests = RequestResident.order(created_at: :desc).find_by(user_id: current_user.id)
   end
 
   def facilities_used # 利用施設検索/登録ページ
@@ -73,6 +74,33 @@ class FacilitiesController < ApplicationController
       @user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を更新しました。"
       redirect_to my_facilities_user_facilities_url
+    end
+  end
+
+  def new_connection #申請された情報で入居者と家族を紐付ける画面
+    current_facility.request_residents.each do |request|
+    request_user = User.find(request.user_id)
+      @residents = Resident.where(facility_id: current_facility)
+      if params[:search].present?
+        @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(:id)
+      else
+        @residents = @residents.where('name LIKE ?', "")
+      end
+    end
+  end
+
+  def create_connection #入居者とご家族を紐付ける
+    @user = User.find(params[:user_id].to_i)
+    @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
+    if (params[:user][:resident_ids] == [""]) == true
+      @user.update_attributes(residents_connection_params)
+      flash[:alert] = "登録する入居者を選択してください。"
+      redirect_to facility_url(params[:facility_id].to_i)
+    else
+      @user.update_attributes(residents_connection_params)
+      flash[:notice] = "入居者登録しました。"
+      redirect_to facility_url(params[:facility_id].to_i)
+      @request_resident.登録済!
     end
   end
 
@@ -102,4 +130,7 @@ class FacilitiesController < ApplicationController
         params.require(:user).permit(facility_ids: [])
       end
 
+      def residents_connection_params
+        params.require(:user).permit(resident_ids: [])
+      end
 end
