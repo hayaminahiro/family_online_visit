@@ -49,7 +49,7 @@
                           <div class="under-line"><%= fa.facility_name %></div>
                           <!-- カード全体どこからでもモーダル表示できるように見えないBOX設置 -->
                           <a><div class="hidden <%= fa.id %>"></div></a>
-                          <span class="tag is-danger tag-position">未登録</span>
+                          <span class="tag is-danger is-light is-rounded tag-position">未登録</span>
 
                           <!-- 登録施設 モーダル表示 -->
                           <div class="modal" id=<%= fa.facility_name %>>
@@ -187,8 +187,8 @@
                         <p class="title is-6">各施設紹介/お知らせetc</p>
                       </div>
                     </div>
-                    <button class="button tag is-danger has-text-weight-bold cancel-btn" id=<%= fa.id %>>
-                        登録解除
+                    <button class="button tag is-danger is-light is-rounded cancel-btn" id=<%= fa.id %>>
+                        解除
                     </button>
                   </div>
                 <% end %>
