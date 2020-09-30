@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_190818) do
     t.string "req_name"
     t.string "req_phone"
     t.string "req_address"
+    t.integer "req_approval", default: 0
     t.bigint "user_id"
     t.bigint "facility_id"
     t.datetime "created_at", null: false
