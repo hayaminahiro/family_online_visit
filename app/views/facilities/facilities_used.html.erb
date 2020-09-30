@@ -37,18 +37,18 @@
                     <p class="title is-6 result">検索結果はありません。</p>
                 <% end %>
                 <% @facilities.each do |fa| %>
-                  <div class="card card-style">
+                  <div class="card card-style" style="position: relative;">
                     <div class="card-image">
                       <figure class="image is-4by3">
-                        <a><img src="/assets/remember.jpg" id=<%= fa.id %> class="card-radius"></a>
+                        <img src="/assets/remember.jpg" class="card-radius">
                       </figure>
                     </div>
                     <div class="card-content">
                       <div class="media">
                         <div class="media-content">
-                          <div class="under-line">
-                            <%= fa.facility_name %>
-                          </div>
+                          <div class="under-line"><%= fa.facility_name %></div>
+                          <!-- カード全体どこからでもモーダル表示できるように見えないBOX設置 -->
+                          <a><div class="hidden <%= fa.id %>"></div></a>
                           <span class="tag is-danger tag-position">未登録</span>
 
                           <!-- 登録施設 モーダル表示 -->
@@ -85,7 +85,7 @@
 
                           <script>
                             $(document).ready(function () {
-                              $("#<%= fa.id %>").on("click", function () {
+                              $(".<%= fa.id %>").on("click", function () {
                                 $("div#<%= fa.facility_name %>").addClass("is-active");
                               })
 

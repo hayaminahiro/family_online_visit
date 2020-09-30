@@ -174,3 +174,12 @@ div.under-line {
   background: cornsilk;
   margin-bottom: 7px;
 }
+
+// カード全体どこからでもモーダル表示できるように見えないBOX設置
+.hidden {
+  position: absolute;
+  right: 0px;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
