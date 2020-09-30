@@ -92,7 +92,7 @@ class FacilitiesController < ApplicationController
   def create_connection #入居者とご家族を紐付ける
     @user = User.find(params[:user_id].to_i)
     @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
-    if (params[:user][:resident_ids] == [""]) == true
+    if (params[:user][:resident_ids] == ["", ""]) == true
       @user.update_attributes(residents_connection_params)
       flash[:alert] = "登録する入居者を選択してください。"
       redirect_to facility_url(params[:facility_id].to_i)
