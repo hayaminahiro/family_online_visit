@@ -122,19 +122,19 @@
                   <div class="card card-style">
                     <div class="card-image">
                       <figure class="image is-4by3">
-                        <a><img src="/assets/remember.jpg" id=<%= fa.id %> class="card-radius"></a>
+                        <img src="/assets/remember.jpg" class="card-radius">
                       </figure>
                     </div>
                     <div class="card-content">
                       <div class="media">
                         <div class="media-content">
                           <div class="under-line">
+                            <!-- <span class="tag is-warning tag-position">登録済</span> -->
                             <% @facility = fa.id %>
                             <span id="here">こちらから</span>
                             <i class="far fa-hand-point-right" style="color: royalblue;"></i>
                             <%= link_to fa.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                           </div>
-                          <span class="tag is-warning tag-position">登録済</span>
 
                           <!-- 登録施設 モーダル表示 -->
                           <div class="modal" id=<%= fa.facility_name %>>
@@ -187,6 +187,9 @@
                         <p class="title is-6">各施設紹介/お知らせetc</p>
                       </div>
                     </div>
+                    <button class="button tag is-danger has-text-weight-bold cancel-btn" id=<%= fa.id %>>
+                        登録解除
+                    </button>
                   </div>
                 <% end %>
               </div>

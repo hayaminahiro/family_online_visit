@@ -67,7 +67,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 .tag-position {
-  margin-top: 10px;
+  margin-top: 3px;
   float: right;
 }
 
@@ -182,4 +182,16 @@ div.under-line {
   left: 0;
   top: 0;
   height: 100%;
+}
+
+.cancel-btn {
+  position: absolute;
+  border: 1px solid;
+  color: red;
+  right: 0px;
+  left: 0;
+  top: 0;
+  height: 100%;
+  float: right;
+  margin: 5px;
 }
