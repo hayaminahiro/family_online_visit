@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :sns_credential, dependent: :destroy
   has_many :request_residents, dependent: :destroy
 
-  # validates :name, presence: true  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
+  validates :name, presence: true  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
 
   # cookieでログイン情報を保持
   def remember_me
