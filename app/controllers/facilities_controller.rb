@@ -2,8 +2,7 @@ class FacilitiesController < ApplicationController
 
   before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show]
   before_action :set_facility_id, only: [:change_admin, :home]
-  before_action :set_user_id, only: [:facilities_used, :my_facilities, :update_facilities_used]
-
+  before_action :set_user_id, only: [:facilities_used, :update_facilities_used]
   # ログインしてなければ閲覧不可
   before_action :authenticate_facility!, except: [:home, :facilities_used, :my_facilities, :update_facilities_used, :new_connection, :create_connection]
   before_action :authenticate_user!, only: [:home, :facilities_used, :my_facilities, :update_facilities_used]
@@ -26,10 +25,10 @@ class FacilitiesController < ApplicationController
     end
     if @facility.update_attributes(facility_params)
       flash[:notice] = "「#{@facility.facility_name}」の施設情報を更新できました。"
+      redirect_to facilities_url
     else
-      flash[:alert] = "更新できませんでした。入力内容をご確認ください。"
+      render :edit
     end
-    redirect_to facilities_url
   end
 
   def change_admin
@@ -54,27 +53,28 @@ class FacilitiesController < ApplicationController
   def facilities_used # 利用施設検索/登録ページ
     @facilities = Facility.all.where.not(admin: true)
     if params[:search].present?
-      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities).paginate(page: params[:page], per_page: 9).order(:id)
+      @facilities = @facilities.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities).paginate(page: params[:page], per_page: 12).order(:id)
     else
       @facilities = @facilities.where('facility_name LIKE ?', "")
-      # raise
     end
-  end
-
-  def my_facilities # 登録済み施設ページ
-    @facilities = Facility.all.where.not(admin: true)
   end
 
   def update_facilities_used
-    if (params[:user][:facility_ids] == [""]) == true
-      @user.update_attributes(facilities_used_params)
-      flash[:alert] = "新しく施設を登録して下さい。"
-      redirect_to my_facilities_user_facilities_url
-    else
-      @user.update_attributes(facilities_used_params)
-      flash[:notice] = "登録施設を更新しました。"
-      redirect_to my_facilities_user_facilities_url
+    if params[:user].present?
+      params[:user][:facility_ids].delete("0")
     end
+    if params[:user].blank?
+      flash[:alert] = "新しく施設を登録して下さい。"
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.sort == current_user.facilities.ids.sort
+      flash[:alert] = "登録施設が更新されていません。登録チェック ✔️ を確認して更新して下さい。"
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.count > current_user.facilities.ids.count
+      @user.update_attributes(facilities_used_params)
+      flash[:notice] = "新しく施設を登録しました。"
+    elsif params[:user][:facility_ids].map{|n| n.to_i}.count < current_user.facilities.ids.count
+      @user.update_attributes(facilities_used_params)
+      flash[:notice] = "登録施設を解除しました。"
+    end
+    redirect_to facilities_used_user_facilities_url
   end
 
   def new_connection #申請された情報で入居者と家族を紐付ける画面
@@ -124,6 +124,7 @@ class FacilitiesController < ApplicationController
       end
 
       def facilities_used_params
+        params[:user][:facility_ids].delete("0")
         params.require(:user).permit(facility_ids: [])
       end
 
