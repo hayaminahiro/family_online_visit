@@ -4,8 +4,8 @@ class FacilitiesController < ApplicationController
   before_action :set_facility_id, only: [:change_admin, :home]
   before_action :set_user_id, only: [:facilities_used, :update_facilities_used]
   # ログインしてなければ閲覧不可
-  before_action :authenticate_facility!, except: [:home, :facilities_used, :my_facilities, :update_facilities_used, :new_connection, :create_connection]
-  before_action :authenticate_user!, only: [:home, :facilities_used, :my_facilities, :update_facilities_used]
+  before_action :authenticate_facility!, except: [:home, :facilities_used, :update_facilities_used, :new_connection, :create_connection]
+  before_action :authenticate_user!, only: [:home, :facilities_used, :update_facilities_used]
 
   def index
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
