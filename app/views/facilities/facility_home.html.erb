@@ -67,9 +67,13 @@
       <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">システムからのお知らせ</a>
     </p>
     <div id="Web" class="content-tab" >
-      <div class="has-text-centered">
-        カレンダー
-      </div>  
+      <div class="has-text-centered" id="calendar-reservations">
+        <div class="columns is-centered">
+        <%= month_calendar(attribute: :calendar_day, events: @calendar_reservations) do |date, reservations| %>
+          <%= l(date, format: :short) %>
+        <% end %>
+        </div>
+      </div>
     </div>
     <div id="Aud" class="content-tab" style="display:none">
     </div>

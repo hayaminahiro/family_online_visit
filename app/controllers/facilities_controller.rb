@@ -33,6 +33,7 @@ class FacilitiesController < ApplicationController
   end
 
   def facility_home  #施設ルートのhome画面
+    @calendar_reservations = Reservation.where.not(calendar_day: nil)
   end
 
   def change_admin
