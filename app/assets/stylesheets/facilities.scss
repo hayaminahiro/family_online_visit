@@ -321,5 +321,33 @@ div.under-line {
 
 //calendar
 #calendar-reservations {
+  margin: 50px 30px;
+  padding-bottom: 30px;
+}
+
+#calendar-info .calendar-th {
+  background: #87CEEB;
+}
+
+.simple-calendar .wday-6 {
+  color: blue;
+}
+
+.simple-calendar .wday-0 {
+  color: red;
+}
+
+#new-family-table {
   margin-top: 50px;
+  padding-bottom: 30px;
+}
+
+#new-family-table th {
+  background-color: #FFDAB9;
+  font-size: 20px;
+  text-align: center;
+}
+
+#new-family-table td {
+  text-align: center;
 }

@@ -53,12 +53,6 @@
       <%= current_facility.facility_name %>【新着情報】
     </p>
     <div class="panel-block">
-      <p class="control has-icons-left">
-        <input class="input" type="text" placeholder="Search">
-        <span class="icon is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
-      </p>
     </div>
     <p class="panel-tabs">
       <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">カレンダー</a>
@@ -69,15 +63,32 @@
     <div id="Web" class="content-tab" >
       <div class="has-text-centered" id="calendar-reservations">
         <div class="is-centered">
-        <%= month_calendar(attribute: :calendar_day, events: @calendar_reservations) do |date, reservations| %>
-          <%= l(date, format: :short) %>
-        <% end %>
-        </div>
+          <%= month_calendar(attribute: :calendar_day, events: @calendar_reservations) do |date, reservations| %>
+            <%= l(date, format: :short) %>
+          <% end %>
+        </div><br>
+        <%= link_to "予約状況一覧へ", '#', class: "button is-warning is-rounded is-medium"%>
       </div>
     </div>
     <div id="Aud" class="content-tab" style="display:none">
     </div>
     <div id="Pic" class="content-tab" style="display:none">
+      <div class="table-container" align="center">
+        <table class="table is-hoverable is-striped is-narrow" id="new-family-table">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>入居者登録</th>
+              <th>面会予約</th>
+              <th>Room Nameの設定</th>
+              <th>Room Name</th>
+              <th>面会</th>
+              <th>編集</th>
+              <th>削除</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
     </div>
     <div id="Mov" class="content-tab" style="display:none">
       <div class="has-text-left">
