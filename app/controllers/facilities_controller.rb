@@ -78,15 +78,12 @@ class FacilitiesController < ApplicationController
   end
 
   def new_connection #申請された情報で入居者と家族を紐付ける画面
-    current_facility.request_residents.each do |request|
-    request_user = User.find(request.user_id)
       @residents = Resident.where(facility_id: current_facility)
       if params[:search].present?
         @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(:id)
       else
         @residents = @residents.where('name LIKE ?', "")
       end
-    end
   end
 
   def create_connection #入居者とご家族を紐付ける
@@ -100,7 +97,7 @@ class FacilitiesController < ApplicationController
       @user.update_attributes(residents_connection_params)
       flash[:notice] = "入居者登録しました。"
       redirect_to facility_url(params[:facility_id].to_i)
-      @request_resident.登録済!
+      @request_resident.登録済! #この記述で@request_residentのenumの値を「申請中→登録済」に更新させている
     end
   end
 

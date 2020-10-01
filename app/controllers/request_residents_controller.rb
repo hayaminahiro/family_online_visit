@@ -16,7 +16,7 @@ class RequestResidentsController < ApplicationController
     end
   end
 
-  def index
+  def index #登録済み申請一覧
     @request_residents = RequestResident.where(req_approval: "登録済").where(facility_id: current_facility)
   end
 

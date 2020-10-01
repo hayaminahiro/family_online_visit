@@ -37,6 +37,7 @@
               <div class="top-btn">
                 <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
                 <button class="button is-large is-rounded has-text-weight-bold">
+                  <!--このif文の書き方がもっといい感じに書けないか検討します-->
                   <% if @requests.present? && @requests.req_approval == "申請中" && @requests.facility_id == @facility.id %>
                     <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "has-text-weight-bold is-size-5 is-disabled" , id: 'submit-btn' %>
                   <% elsif @requests.present? && @requests.facility_id == @facility.id %>
