@@ -9,8 +9,44 @@ admin.save!
 
 # facility_id = 2
 home = Facility.create!(
+  id: 2,
   facility_name: "老人ホーム-A",
-  email: "home@email.com",
+  email: "home-a@email.com",
+  password: "password"
+)
+home.save!
+
+home = Facility.create!(
+  facility_name: "老人ホーム-B",
+  email: "home-b@email.com",
+  password: "password"
+)
+home.save!
+
+home = Facility.create!(
+  facility_name: "老人ホーム-C",
+  email: "home-c@email.com",
+  password: "password"
+)
+home.save!
+
+home = Facility.create!(
+  facility_name: "老人ホーム-D",
+  email: "home-d@email.com",
+  password: "password"
+)
+home.save!
+
+home = Facility.create!(
+  facility_name: "老人ホーム-E",
+  email: "home-e@email.com",
+  password: "password"
+)
+home.save!
+
+home = Facility.create!(
+  facility_name: "老人ホーム-F",
+  email: "home-f@email.com",
   password: "password"
 )
 home.save!
