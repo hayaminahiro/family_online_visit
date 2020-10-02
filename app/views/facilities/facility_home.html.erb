@@ -49,7 +49,7 @@
 
 <article class="panel is-primary" id="panel-content">
   <nav class="panel">
-    <p class="panel-heading">
+    <p class="panel-heading has-text-centered">
       <%= current_facility.facility_name %>【新着情報】
     </p>
     <div class="panel-block">
@@ -57,11 +57,11 @@
     <p class="panel-tabs">
       <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
       <% if current_facility.facility_admin == true %>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;新規入居者登録申請</a>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
         <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')"><i class="far fa-user"></i>&nbsp;新規ユーザー</a>
       <% end %>
         <a class="panel-tab is-size-5" onclick="openTab(event,'Res')"><i class="fas fa-user-friends"></i>&nbsp;入居者</a>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">システムからのお知らせ</a>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">お知らせ</a>
         <a class="panel-tab is-size-5" onclick="openTab(event,'Inq')">お問い合わせ</a>
     </p>
     <div id="Web" class="content-tab" >
