@@ -55,10 +55,14 @@
     <div class="panel-block">
     </div>
     <p class="panel-tabs">
-      <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">カレンダー</a>
-      <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')">新規入居者</a>
-      <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')">新規ユーザー</a>
-      <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">システムからのお知らせ</a>
+      <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
+      <% if current_facility.facility_admin == true %>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;新規入居者登録申請</a>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')"><i class="far fa-user"></i>&nbsp;新規ユーザー</a>
+      <% end %>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Res')"><i class="fas fa-user-friends"></i>&nbsp;入居者</a>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">システムからのお知らせ</a>
+        <a class="panel-tab is-size-5" onclick="openTab(event,'Inq')">お問い合わせ</a>
     </p>
     <div id="Web" class="content-tab" >
       <div class="has-text-centered" id="calendar-reservations">
@@ -67,33 +71,74 @@
             <%= l(date, format: :short) %>
           <% end %>
         </div><br>
-        <%= link_to "予約状況一覧へ", '#', class: "button is-warning is-rounded is-medium"%>
+        <%= link_to "予約状況一覧へ", '#', class: "button is-warning is-rounded is-medium" if current_facility.facility_admin == true %>
       </div>
     </div>
+    <% if current_facility.facility_admin == true %>
     <div id="Aud" class="content-tab" style="display:none">
+      <div class="columns">
+        <div class="column is-offset-1 is-10 is-offset-1 table-container">
+          <table class="table is-hoverable is-fullwidth is-striped is-narrow" id="new-family-table">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>入居者</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
     </div>
     <div id="Pic" class="content-tab" style="display:none">
-      <div class="table-container" align="center">
-        <table class="table is-hoverable is-striped is-narrow" id="new-family-table">
-          <thead>
-            <tr>
-              <th>名前</th>
-              <th>入居者登録</th>
-              <th>面会予約</th>
-              <th>Room Nameの設定</th>
-              <th>Room Name</th>
-              <th>面会</th>
-              <th>編集</th>
-              <th>削除</th>
-            </tr>
-          </thead>
-        </table>
+      <div class="columns">
+        <div class="column is-offset-1 is-10 is-offset-1 table-container">
+          <table class="table is-hoverable is-fullwidth is-striped is-narrow" id="new-family-table">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>住所</th>
+                <th>TEL</th>
+                <th>編集</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div id="Res" class="content-tab" style="display:none">
+      <div class="has-text-centered">
+        <div class="tab-resident">
+          <img src="/static_pages1.jpg" width="400" height="300">
+        </div>
+        <div class="tab-resident">
+          <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
+            入居者の新規登録、編集、退所する場合はこちらのボタンを<br>
+            押してください。
+          </p><br>
+          <%= link_to facility_residents_path(facility_id: current_facility), class: "btn-tab-resident" do %>
+            <span class="icon">
+              <i class="fas fa-user-friends"></i>
+            </span>&nbsp;
+            <span>
+              入居者一覧
+            </span>
+          <% end %>
+        </div>
       </div>
     </div>
     <div id="Mov" class="content-tab" style="display:none">
-      <div class="has-text-left">
-          お知らせ表示が入る
-      </div>
+      <div class="has-text-centered is-size-4">
+        システムからのお知らせが表示される<br>
+        今後実装予定
+      </div><br>
+    </div>
+    <div id="Inq" class="content-tab" style="display:none">
+      <div class="has-text-centered is-size-4">
+        ユーザーからの問い合わせが表示される<br>
+        今後実装予定
+      </div><br>
     </div>
   </nav>
 </article>
@@ -118,7 +163,6 @@
   $(function(){
     ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
     ScrollReveal().reveal('.about-title', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
     ScrollReveal().reveal('.inline-block_home', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
   });
 </script>

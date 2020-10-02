@@ -33,6 +33,8 @@ class FacilitiesController < ApplicationController
   end
 
   def facility_home  #施設ルートのhome画面
+    @facilities = Facility.all.where.not(admin: true)
+    @registration_application = @facilities.where(id: current_facility.users)
     @calendar_reservations = Reservation.where.not(calendar_day: nil)
     @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
