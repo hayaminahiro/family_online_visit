@@ -47,7 +47,8 @@ class FacilitiesController < ApplicationController
   end
 
   def home #各施設のホーム画面
-    @requests = RequestResident.order(created_at: :desc).find_by(user_id: current_user.id)
+    # RequestResidentを新しく作成された順に並べ替え、今いる施設のidの範囲にレコードを指定し、ログイン中の自分のidに最初にヒットした１つのレコードを取得
+    @requests = RequestResident.order(created_at: :desc).where(facility_id: @facility.id).find_by(user_id: current_user.id)
   end
 
   def facilities_used # 利用施設検索/登録ページ

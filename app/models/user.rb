@@ -8,12 +8,14 @@ class User < ApplicationRecord
   has_many :facility_users, dependent: :destroy
   has_many :facilities, through: :facility_users
   accepts_nested_attributes_for :facility_users, allow_destroy: true
+  # User:Facility = 多対多 ・・・関連付け 申請のために作成
+  has_many :request_residents, dependent: :destroy
+  has_many :facilities, through: :request_residents
 
   has_many :relatives, dependent: :destroy
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
-  has_many :request_residents, dependent: :destroy
 
   validates :name, presence: true  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
 
