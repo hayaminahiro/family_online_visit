@@ -407,3 +407,52 @@ div.under-line {
 .btn-tab-resident:hover {
   color: #FFF;
 }
+
+//タブ（ユーザー）ボタン
+.btn-tab-user {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  background-color: #00d1b2;
+  border: 2px solid #00d1b2;
+  font-size: 20px;
+  color: #00d1b2;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.btn-tab-user span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-tab-user::before,
+.btn-tab-user::after {
+  content: "";
+  display: block;
+  background-color: #FFF;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: .2s;
+}
+.btn-tab-user::before {
+  left: 0;
+}
+.btn-tab-user::after {
+  right: 0;
+}
+
+.btn-tab-user:hover:before,
+.btn-tab-user:hover:after {
+  width: 0;
+  background-color: #FFF;
+}
+
+.btn-tab-user:hover {
+  color: #FFF;
+}

@@ -50,7 +50,7 @@
 <article class="panel is-primary" id="panel-content">
   <nav class="panel">
     <p class="panel-heading has-text-centered">
-      <%= current_facility.facility_name %>【新着情報】
+      <%= current_facility.facility_name %>【施設情報】
     </p>
     <div class="panel-block">
     </div>
@@ -102,7 +102,26 @@
                 <th>削除</th>
               </tr>
             </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
           </table>
+          <div class="has-text-centered">
+            <%= link_to facility_users_path(facility_id: current_facility), class: "btn-tab-user" do %>
+              <span class="icon">
+                <i class="far fa-user"></i>
+              </span>&nbsp;
+              <span>
+                ご家族一覧
+              </span>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
