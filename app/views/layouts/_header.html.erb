@@ -26,11 +26,19 @@
         <% if user_signed_in? || facility_signed_in? %>
           <% if facility_signed_in? %>
             <p class="navbar-item">
-              <%= link_to_unless_current "トップ", facility_home_facility_path(id: current_facility), class: "links" %>
+              <%= link_to facility_home_facility_path(id: current_facility), class: "links" do %>
+                <span class="icon">
+                  <i class="fas fa-home"></i>
+                </span>&nbsp;
+              <% end %>
             </p>
           <% else %>
             <p class="navbar-item">
-              <%= link_to_unless_current "トップ", root_path, class: "links" %>
+              <%= link_to root_path, class: "links" do %>
+                <span class="icon">
+                  <i class="fas fa-home"></i>
+                </span>&nbsp;
+              <% end %>  
             </p>
           <% end %>
 
@@ -58,7 +66,7 @@
           <% elsif facility_signed_in? %>
             <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
-              <%= link_to_unless_current "入居者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
+              <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
             </p>
           <% end %>
 
