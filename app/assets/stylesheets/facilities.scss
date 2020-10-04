@@ -87,8 +87,12 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 label {
   margin-right: 5px; /* ボタン同士の間隔 */
 }
-label input {
-  display: none; /* デフォルトのinputは非表示にする */
+/* facilities-usedページのcollection_checkboxを非表示にする */
+.facilities-used-label{
+  input[type="checkbox"], input[type="radio"] {
+    vertical-align: baseline;
+    display: none;
+  }
 }
 label span {
   color: #333; /* 文字色を黒に */
