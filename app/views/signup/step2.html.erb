@@ -33,20 +33,20 @@
               <div class="columns is-centered">
                 <div class="column is-6 top-btn-position">
                 <%= form_for @user, url: step3_signup_index_path, method: :get do |f| %>
-                  <%= render "users/shared/error_messages", resource: resource %>
+                  <%= render "users/shared/error_messages", resource: @user %>
 
                   <div class="field">
                     <%= f.label :address, "あなたの住所", class: "label" %><br />
-                    <%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", autocomplete: "address", class: "fa input is-medium input-top", :size=>"100px" %>
+                    <%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", value: session[:address], autocomplete: "address", class: "fa input is-medium input-top", :size=>"100px" %>
                   </div>
 
                   <div class="field">
                     <%= f.label :phone, "電話番号", class: "label" %><br />
-                    <%= f.text_field :phone, :placeholder => "\uf098電話番号を入力してください", autocomplete: "phone", class: "fa input is-medium input-top" %>
+                    <%= f.text_field :phone, :placeholder => "\uf098電話番号を入力してください", value: session[:phone], autocomplete: "phone", class: "fa input is-medium input-top" %>
                   </div>
 
                   <div class="actions">
-                    <%= f.submit "新規登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                    <%= f.submit "次へ", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
                   </div>
                 <% end %>
 

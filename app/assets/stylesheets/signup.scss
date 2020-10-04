@@ -32,3 +32,32 @@
     color: blue;
     border-radius: 2%;
   }
+
+  .confirm-newuser {
+    font-size: 30px;
+    color: black;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    padding: 0.25em 0.5em;
+    background: #DDFFFF;
+    border: dashed 1px #5b8bd0;/*点線*/
+  }
+
+  .confirm-message {
+      font-size: 20px;
+      color: black;
+  }
+
+  .confirm-new {
+      font-size: 30px;
+      color: black;
+      margin-top: 30px;
+  }
+
+  .confirm {
+      margin-top: 40px;
+  }
+
+  .basic_btn {
+      float: right;
+  }

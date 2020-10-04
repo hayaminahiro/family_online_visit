@@ -39,8 +39,8 @@ class SignupController < ApplicationController
 
   def validates_step2
     # step2で入力された値をsessionに保存
-    session[:address] = user_params[:address]
-    session[:phone] = user_params[:phone]
+    session[:address] = user_add_params[:address]
+    session[:phone] = user_add_params[:phone]
     # バリデーション用に、仮でインスタンスを作成する
     @user = User.new(
       name: session[:name], # sessionに保存された値をインスタンスに渡す
@@ -51,7 +51,7 @@ class SignupController < ApplicationController
       phone: session[:phone]
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-　　render '/signup/step2' unless @user.valid?
+    render 'step2' unless @user.valid?
   end 
 
   def create
@@ -75,6 +75,7 @@ class SignupController < ApplicationController
 
   def done
     sign_in User.find(session[:id]) unless user_signed_in?
+    redirect_to root_path
   end
 
   private
@@ -87,6 +88,13 @@ class SignupController < ApplicationController
           :password_confirmation,
           :address,
           :phone
+      )
+      end
+
+      def user_add_params
+      params.require(:user).permit(
+        :address,
+        :phone
       )
       end
 end

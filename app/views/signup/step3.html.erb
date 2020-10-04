@@ -6,7 +6,8 @@
           <div class="content has-text-centered">
             <div class="signup-upper">  
               <div class="signups-title">
-                <strong class="new-title">入力情報確認</strong><br>                         
+                <strong class="new-title">入力情報確認</strong><br>
+                <div class="confirm-message">（入力項目を確認後、合っていれば新規作成ボタンを押してください）</div>                         
               </div>              
               <div class="page-display">
                 <div class="page-number">
@@ -31,45 +32,52 @@
           </div>
             <div class="button-position">
               <div class="columns is-centered">
+                <div class="column is-3 comfirm-btn">
+                <%= link_to "プロフ写真", step1_signup_index_path, class: "btn btn-warning" %>
+                </div>
+                
                 <div class="column is-6 comfirm-page">
                 <%= form_for @user, url: signup_index_path, method: :post do |f| %>
-                  <%= render "users/shared/error_messages", resource: resource %>
+                  <%= render "users/shared/error_messages", resource: @user %>
 
                   <div class="comfirm">
-                    <%= f.label :name, "あなたのお名前", class: "label" %><br />
-                    <%= f.text_field :name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
+                    <%= f.label :name, "・あなたのお名前", class: "label" %><br />
+                    <div class="confirm-newuser"><%= session[:name] %>
+                    </div>
                   </div>
 
                   <div class="comfirm">
                     <%= f.label :email, class: "label" %><br />
-                    <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
+                    <div class="confirm-newuser"><%= session[:email] %>
+                    </div>
                   </div>
 
                   <div class="comfirm">
                     <%= f.label :password, class: "label" %><br />
-                    <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
-                  </div>
-
-                  <div class="comfirm">
-                    <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-                    <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
-                  </div>
+                    <div class="confirm-newuser"><%= session[:password] %>
+                    </div>
+                  </div>                  
                   
                   <div class="comfirm">
                     <%= f.label :address, "あなたの住所", class: "label" %><br />
-                    <%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", autocomplete: "address", class: "fa input is-medium input-top", :size=>"100px" %>
+                    <div class="confirm-newuser"><%= session[:address] %>
+                    </div>
                   </div>
 
                   <div class="comfirm">
                     <%= f.label :phone, "電話番号", class: "label" %><br />
-                    <%= f.text_field :phone, :placeholder => "\uf098電話番号を入力してください", autocomplete: "phone", class: "fa input is-medium input-top" %>
+                    <div class="confirm-newuser"><%= session[:phone] %>
+                    </div>
                   </div>
 
                   <div class="comfirm">
-                    <%= f.submit "新規登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                    <%= f.submit "新規登録", class: "button is-link is-medium success-btn has-text-weight-bold", style: "width:45%;" %>
+                    <%= link_to "修正する", step1_signup_index_path, class: "button is-light is-medium basic_btn has-text-weight-bold", style: "width:45%;" %>
                   </div>
                 <% end %>
 
+                </div>
+                <div class="column is-3 comfirm-btn">
                 </div>
               </div>
             </div>

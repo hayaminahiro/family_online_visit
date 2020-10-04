@@ -38,12 +38,12 @@
 
                   <div class="field">
                     <%= f.label :name, "あなたのお名前", class: "label" %><br />
-                    <%= f.text_field :name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
+                    <%= f.text_field :name, :placeholder => "\uf304 お名前を入力してください", value: session[:name], autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
                   </div>
 
                   <div class="field">
                     <%= f.label :email, class: "label" %><br />
-                    <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
+                    <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", value: session[:email], autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
                   </div>
 
                   <div class="field">
