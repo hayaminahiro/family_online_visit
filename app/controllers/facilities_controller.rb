@@ -79,12 +79,12 @@ class FacilitiesController < ApplicationController
   end
 
   def new_connection #申請された情報で入居者と家族を紐付ける画面
-      @residents = Resident.where(facility_id: current_facility)
-      if params[:search].present?
-        @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(:id)
-      else
-        @residents = @residents.where('name LIKE ?', "")
-      end
+    @residents = Resident.where(facility_id: current_facility)
+    if params[:search].present?
+      @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(:id)
+    else
+      @residents = @residents.where('name LIKE ?', "")
+    end
   end
 
   def create_connection #入居者とご家族を紐付ける
