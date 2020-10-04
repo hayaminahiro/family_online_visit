@@ -14,6 +14,12 @@
                 <%= form_with model: @facility, local: true, method: :patch do |f| %>
                 <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
 
+                <!-- ここから追加するコード -->
+                <div class="field">
+                  <%= f.label :image %>
+                  <%= f.file_field :image %>
+                </div>
+
                 <div class="field">
                   <%= f.label :facility_name,  class: "label" %><br />
                   <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>

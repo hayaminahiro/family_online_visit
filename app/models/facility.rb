@@ -18,4 +18,7 @@ class Facility < ApplicationRecord
     true
   end
 
+  # モデル | ImageUploaderクラスとavatarカラムを紐づける
+  mount_uploader :image, ImageUploader
+
 end
