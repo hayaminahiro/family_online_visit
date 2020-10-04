@@ -65,7 +65,7 @@
                                     <p class="title-in-modal"><%= fa.facility_name %></p>
                                     <p class="modal-description">本システムのご利用には、施設の登録が必要です。</p>
                                     <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>にチェックを入れて更新ボタンから登録して下さい。</p>
-                                    <label>
+                                    <label class="facilities-used-label">
                                       <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
                                       <% current_user.facilities.each do |fa| %>
                                         <div style="display: none">
