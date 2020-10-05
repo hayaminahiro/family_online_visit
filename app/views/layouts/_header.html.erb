@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="main navigation" style="background: #efefef;">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background: #efefef;">
   <div class="navbar-brand" style="background: #efefef;">
     <section class="navbar dark-top" style="background-color: #FFDEAD;">
       <div class="navbar-body">
@@ -38,7 +38,7 @@
                 <span class="icon">
                   <i class="fas fa-home"></i>
                 </span>&nbsp;
-              <% end %>  
+              <% end %>
             </p>
           <% end %>
 
@@ -63,24 +63,25 @@
             <p class="navbar-item">
               <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility), class: "links" %>
             </p>
-          <% elsif facility_signed_in? %>
-            <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
-              <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
-            </p>
           <% end %>
 
+          <%if facility_signed_in? %>
+            <p class="navbar-item">
+                <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
+            </p>
+          <% end %>
+          
             <!--全ユーザー閲覧可能-->
           <p class="navbar-item">
             <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
           </p>
 
-          <% if facility_signed_in? && current_facility.admin== false && current_facility.facility_admin == true %>
+          <!--<% if facility_signed_in? && current_facility.admin== false && current_facility.facility_admin == true %>
             <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
+            <!--<p class="navbar-item">
               <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>
             </p>
-          <% end %>
+          <% end %>-->
 
           <% if facility_signed_in? && current_facility.admin? %>
             <!--システム全体管理者のみ閲覧可能-->
