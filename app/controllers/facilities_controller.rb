@@ -3,9 +3,8 @@ class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show]
   before_action :set_facility_id, only: [:change_admin, :home]
   before_action :set_user_id, only: [:facilities_used, :update_facilities_used]
-
   # ログインしてなければ閲覧不可
-  before_action :authenticate_facility!, except: [:home, :facilities_used, :update_facilities_used]
+  before_action :authenticate_facility!, except: [:home, :facilities_used, :update_facilities_used, :new_connection, :create_connection]
   before_action :authenticate_user!, only: [:home, :facilities_used, :update_facilities_used]
 
   def index
@@ -48,6 +47,8 @@ class FacilitiesController < ApplicationController
   end
 
   def home #各施設のホーム画面
+    # RequestResidentを新しく作成された順に並べ替え、今いる施設のidの範囲にレコードを指定し、ログイン中の自分のidに最初にヒットした１つのレコードを取得
+    @requests = RequestResident.order(created_at: :desc).where(facility_id: @facility.id).find_by(user_id: current_user.id)
   end
 
   def facilities_used # 利用施設検索/登録ページ
@@ -77,6 +78,30 @@ class FacilitiesController < ApplicationController
     redirect_to facilities_used_user_facilities_url
   end
 
+  def new_connection #申請された情報で入居者と家族を紐付ける画面
+    @residents = Resident.where(facility_id: current_facility)
+    if params[:search].present?
+      @residents = @residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(:id)
+    else
+      @residents = @residents.where('name LIKE ?', "")
+    end
+  end
+
+  def create_connection #入居者とご家族を紐付ける
+    @user = User.find(params[:user_id].to_i)
+    @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
+    if (params[:user][:resident_ids] == ["", ""]) == true
+      @user.update_attributes(residents_connection_params)
+      flash[:alert] = "登録する入居者を選択してください。"
+      redirect_to facility_url(params[:facility_id].to_i)
+    else
+      @user.update_attributes(residents_connection_params)
+      flash[:notice] = "入居者登録しました。"
+      redirect_to facility_url(params[:facility_id].to_i)
+      @request_resident.登録済! #この記述で@request_residentのenumの値を「申請中→登録済」に更新させている
+    end
+  end
+
     private
 
       def set_facility
@@ -104,4 +129,7 @@ class FacilitiesController < ApplicationController
         params.require(:user).permit(facility_ids: [])
       end
 
+      def residents_connection_params
+        params.require(:user).permit(resident_ids: [])
+      end
 end

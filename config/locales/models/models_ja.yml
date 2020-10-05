@@ -27,13 +27,14 @@ ja:
           updated_at: 更新日
         facility:
           id: ID
+          image: 画像
           facility_name: 施設名
           email: メールアドレス
           password: パスワード
           password_confirmation: パスワード再入力
         information:
           title: タイトル
-          news: 本文 
+          news: 本文
         resident:
           name: 入居者のお名前
           floor: 利用階
@@ -51,5 +52,7 @@ ja:
         #   photo: 写真
         #   worker_message: 職員メッセージ
         #   family_message: ご家族メッセージ
-
-        
+        request_resident:
+          req_name: 入居者様名
+          req_phone: ご家族様連絡先
+          req_address: ご家族様住所

@@ -65,7 +65,7 @@
                                     <p class="title-in-modal"><%= fa.facility_name %></p>
                                     <p class="modal-description">本システムのご利用には、施設の登録が必要です。</p>
                                     <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>にチェックを入れて更新ボタンから登録して下さい。</p>
-                                    <label>
+                                    <label class="facilities-used-label">
                                       <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
                                       <% current_user.facilities.each do |fa| %>
                                         <div style="display: none">
@@ -150,7 +150,7 @@
                                     <p class="title-in-modal"><%= fa.facility_name %></p>
                                     <p class="modal-description">ここから施設の登録を解除することができます。</p>
                                     <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>のチェックを外して更新ボタンから登録解除して下さい。</p>
-                                    <label>
+                                    <label class="facilities-used-label">
                                       <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
                                       <!-- 更新しようとしている施設「id: fa」を除く施設一覧を隠して更新させる -->
                                       <div style="display: none">

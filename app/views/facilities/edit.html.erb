@@ -14,10 +14,12 @@
                 <%= form_with model: @facility, local: true, method: :patch do |f| %>
                 <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
 
-                <!-- ここから追加するコード -->
                 <div class="field">
                   <%= f.label :image %>
                   <%= f.file_field :image %>
+                  <% if @facility.image? %>
+                    <%= image_tag @facility.image.url, :size =>'80x80' %>
+                  <% end %>
                 </div>
 
                 <div class="field">
