@@ -77,20 +77,29 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 
-label {
-  margin-right: 5px; /* ボタン同士の間隔 */
+.card-position {
+  margin-top: 30px;
 }
-label input {
-  display: none; /* デフォルトのinputは非表示にする */
+
+#submit-btn{
+  pointer-events: none;
 }
-label span {
+
+/* facilities-usedページのcollection_checkboxを非表示にする */
+.facilities-used-label{
+  input[type="checkbox"], input[type="radio"] {
+    vertical-align: baseline;
+    display: none;
+  }
+}
+.facilities-used-label span {
   color: #333; /* 文字色を黒に */
   font-size: 14px; /* 文字サイズを14pxに */
   border: 1px solid #333; /* 淵の線を指定 */
   border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
   padding: 5px 20px; /* 上下左右に余白をトル */
 }
-label input:checked + span {
+.facilities-used-label input:checked + span {
   color: #FFF; /* 文字色を白に */
   background: #f07700; /* 背景色を薄いオレンジに */
   border: 1px solid #ff9124; /* 淵の線を薄いオレンジに */
