@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  req_name: MyString
+  req_phone: MyString
+  req_address: MyString
+  user: one
+  facility: one
+
+two:
+  req_name: MyString
+  req_phone: MyString
+  req_address: MyString
+  user: two
+  facility: two
