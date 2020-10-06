@@ -1,4 +1,4 @@
-<article class="panel is-success">
+<article class="panel is-success" style="min-height: 70vh;">
   <div class="level-info">
     <nav class="level">
       <!-- Left side -->
@@ -73,29 +73,34 @@
   <div id="Aud" class="content-tab" style="display:none">
     <div class="has-text-centered">
       <div class="info-section">
-        <div class="card" id="info-card">
-          <div class="card-content">
-            <div class="content" id="info-content">
-              <p><%= l( @info_top.created_at, format: :hyphen) %></p>
-              <p class="has-text-weight-bold">
-                <%= @info_top.title %>
-              </p>
-              <%= @info_top.news.truncate(30) %>
-            </div>
+        <article class="message is-dark">
+          <div class="message-body">
+            <nav class="level">
+              <!-- Left side -->
+              <div class="level-left">
+                <div class="">
+                  <p><%= l( @info_top.created_at, format: :hyphen) %></p>
+                  <p class="has-text-weight-bold">
+                    <%= @info_top.title %>
+                  </p>
+                  <%= @info_top.news %>
+                </div>
+              </div>
+              <!-- Right side -->
+              <div class="level-right">
+                <figure class="image is-64x64">
+                  <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                </figure>
+              </div>
+            </nav>
           </div>
-          <footer class="card-footer">
-            <div class="card-footer-item">
-              <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
-            </div>
-          </footer>
-        </div>
+        </article>
       </div>
     </div>
   </div>
 </article>
 
 <%= render 'new' %>
-<%= render 'edit' , { information: @info_top } %>
 
 <script>
   function openTab(evt, tabName) {
