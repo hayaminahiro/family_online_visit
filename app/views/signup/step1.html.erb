@@ -1,5 +1,5 @@
 <body class="image-layout">
-  <section class="hero comfirm-hero-size" >
+  <section class="" >
     <div class="container-fluid">
       <article class="media">
         <div class="media-content">
@@ -36,33 +36,34 @@
                 <%= form_for @user, url: step2_signup_index_path, method: :get do |f| %>
                   <%= render "users/shared/error_messages", resource: @user %>
 
-                  <div class="field">
+                  <div class="field-signup">
                     <%= f.label :name, "あなたのお名前", class: "label" %><br />
                     <%= f.text_field :name, :placeholder => "\uf304 お名前を入力してください", value: session[:name], autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
                   </div>
 
-                  <div class="field">
+                  <div class="field-signup">
                     <%= f.label :email, class: "label" %><br />
                     <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", value: session[:email], autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
                   </div>
 
-                  <div class="field">
+                  <div class="field-signup">
                     <%= f.label :password, class: "label" %><br />
                     <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
                   </div>
 
-                  <div class="field">
+                  <div class="field-signup">
                     <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
                     <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
                   </div>
 
-                  <div class="actions">
+                  <div class="field-signup">
                     <%= f.submit "次へ", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
                   </div>
                 <% end %>
 
                 </div>
-              </div>
+                
+              </div>              
             </div>
         </div>
       </article>

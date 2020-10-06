@@ -66,16 +66,13 @@ class SignupController < ApplicationController
     if @user.save
    # ログインするための情報を保管
       session[:id] = @user.id
-      redirect_to done_signup_index_path
+      sign_in User.find(session[:id]) unless user_signed_in?
+      flash[:notice] = "新規ユーザーを登録しました"
+      redirect_to root_path
     else
       flash[:alert] = "登録できませんでした。"
       render 'step1'
     end
-  end
-
-  def done
-    sign_in User.find(session[:id]) unless user_signed_in?
-    redirect_to root_path
   end
 
   private
