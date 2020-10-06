@@ -23,7 +23,7 @@
         <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
         <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設（登録済）</label>
         <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-        <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;施設登録</label>
+        <label for="tab1_2"><i class="fas fa-building"></i>&nbsp;施設登録</label>
         <input type="radio" name="cp_tab" id="tab1_3" aria-controls="third_tab01">
         <label for="tab1_3"><i class="fas fa-home"></i>&nbsp;マイページ</label>
 
@@ -87,7 +87,7 @@
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 登録した施設、予約の確認、写真の閲覧ができます。<br>
               </p><br>
-              <%= link_to "#", class: "btn-animation-login" do %>
+              <%= link_to user_path(current_user), class: "btn-animation-login" do %>
                 <span class="icon">
                   <i class="fas fa-home"></i>
                 </span>&nbsp;
@@ -151,10 +151,7 @@
 <script>
   $(function(){
     ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('.about-title', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('.cp_tab', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('.about-title-2', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
   });
 </script>
