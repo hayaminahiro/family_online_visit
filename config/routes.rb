@@ -34,12 +34,14 @@ Rails.application.routes.draw do
         patch :update_facilities_used
         get :my_facilities #現在の利用施設
       end
+      member do # /users/:user_id/facilities/:id/~~~
+        get :video_room # /users/:user_id/facilities/:id/video_room
+        patch :room_word_update
+      end
+      get :new_connection
+      patch :create_connection
       get :home #施設のホーム画面
       resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
-        member do # /users/:user_id/facilities/:id/~~~
-          get :video_room # /users/:user_id/facilities/:id/video_room
-          patch :room_word_update
-        end
     end
   end
 
@@ -54,6 +56,7 @@ Rails.application.routes.draw do
         get :video_room # /facilities/:facility_id/users/:id/video_room
         patch :room_word_update  #Room_Name登録のため追加
       end
+      resources :request_residents #入居者登録申請画面
     end
     resources :informations do # /facilities/:facility_id/informations/~~~
       collection do
