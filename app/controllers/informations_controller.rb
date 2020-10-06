@@ -1,10 +1,7 @@
 class InformationsController < ApplicationController
-  #各施設の管理者のみお知らせを編集・削除・作成が可能
+  # ログインしてなければ閲覧不可
   before_action :authenticate_user!, only: [:top_notice, :show]
   before_action :authenticate_facility!, only: [:index, :create, :update, :destroy]
-  # # ログインしてなければ閲覧不可
-  # before_action :authenticate_user!, only: [:home, :facilities_used, :update_facilities_used]
-  # before_action :authenticate_facility!, except: [:index, :show_notice]
 
   def index
     @info_top = Information.find_by(status: "head")
@@ -48,6 +45,7 @@ class InformationsController < ApplicationController
     flash[:alert] = "お知らせを削除しました"
     redirect_to facility_informations_url
   end
+
   # 家族向けお知らせ表示ページ
   def top_notice
     @info_top = Information.find_by(status: "head")
