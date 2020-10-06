@@ -1,4 +1,11 @@
 class InformationsController < ApplicationController
+  #各施設の管理者のみお知らせを編集・削除・作成が可能
+  before_action :authenticate_user!, only: [:top_notice, :show]
+  before_action :authenticate_facility!, only: [:index, :create, :update, :destroy]
+  # # ログインしてなければ閲覧不可
+  # before_action :authenticate_user!, only: [:home, :facilities_used, :update_facilities_used]
+  # before_action :authenticate_facility!, except: [:index, :show_notice]
+
   def index
     @info_top = Information.find_by(status: "head")
     @informations = Information.where(facility_id: current_facility.id).where(status: "others").order(id: "DESC").paginate(page: params[:page], per_page: 9)
@@ -10,10 +17,6 @@ class InformationsController < ApplicationController
 
   def show
     @information = Information.find(params[:id])
-  end
-
-  def show_notice
-    @facility = Facility.find(params[:facility_id])
   end
 
   def create
