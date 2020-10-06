@@ -7,7 +7,7 @@
       <div>
         <%= image_tag 'user_default.png', class: "edit-my-image" %>
       </div>
-      <p class="my-name">山本　太郎<%#= current_user.name %></p>
+      <p class="my-name"><%= current_user.name %></p>
       <p class="my-email"><%= current_user.email %></p>
       <table class="table is-narrow" id="my-page-table">
         <thead>
@@ -73,8 +73,44 @@
         </div>
         </div>
         <div id="Aud" class="content-tab" style="display:none">
-          <p>登録している入居者の情報がみれる</p>
-          <%#= current_user.residents %>
+          <p class="has-text-weight-bold">登録済みの入居者</p>
+          <% current_user.residents.each do |user_resident| %>
+            <%= user_resident.name %>
+            <%= user_resident.charge_worker %>
+            <%= user_resident.facility.facility_name %><br>
+          <% end %>
+          <br><br>
+          <p class="has-text-weight-bold">申請履歴</p>
+          <div class="table-container">
+            <table class="table is-striped is-hoverable" style="display: block;
+                overflow-x: scroll;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch; width: 600px;">
+              <thead>
+                <tr>
+                  <th>申請日</th>
+                  <th>入居者</th>
+                  <th>電話番号</th>
+                  <th>住所</th>
+                  <th>施設名</th>
+                  <th>状態</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @requests.each do |request| %>
+              <% req_facility = Facility.find(request.facility_id) %>
+                <tr>
+                  <td><%= request.created_at %></td>
+                  <td><%= request.req_name %></td>
+                  <td><%= request.req_phone %></td>
+                  <td><%= request.req_address %></td>
+                  <td><%= req_facility.facility_name %></td>
+                  <td>【<%= request.req_approval %>】</td>
+                </tr>
+              <% end %>
+              <tbody>
+            </table>
+          </div>
         </div>
         <div id="Pic" class="content-tab" style="display:none">
           <p>写真を表示</p>

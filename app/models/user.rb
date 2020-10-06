@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :facilities, through: :facility_users
   accepts_nested_attributes_for :facility_users, allow_destroy: true
 
+  has_many :request_residents, dependent: :destroy
   has_many :relatives, dependent: :destroy
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
