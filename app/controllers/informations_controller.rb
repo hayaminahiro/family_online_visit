@@ -38,6 +38,7 @@ class InformationsController < ApplicationController
     else
       flash[:alert] = "更新できませんでした。入力内容をご確認ください"
     end
+    return redirect_to root_url if @information.status == "head"
     redirect_to facility_informations_url
   end
 
