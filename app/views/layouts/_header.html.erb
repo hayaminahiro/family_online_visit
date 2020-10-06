@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="main navigation" style="background: #efefef;">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background: #efefef;">
   <div class="navbar-brand" style="background: #efefef;">
     <section class="navbar dark-top" style="background-color: #FFDEAD;">
       <div class="navbar-body">
@@ -24,9 +24,23 @@
       <div class="navbar-start has-text-weight-semibold">
         <!--全ユーザー閲覧可能-->
         <% if user_signed_in? || facility_signed_in? %>
-          <p class="navbar-item">
-            <%= link_to_unless_current "トップ", root_path, class: "links" %>
-          </p>
+          <% if facility_signed_in? %>
+            <p class="navbar-item">
+              <%= link_to facility_home_facility_path(id: current_facility), class: "links" do %>
+                <span class="icon">
+                  <i class="fas fa-home"></i>
+                </span>&nbsp;
+              <% end %>
+            </p>
+          <% else %>
+            <p class="navbar-item">
+              <%= link_to root_path, class: "links" do %>
+                <span class="icon">
+                  <i class="fas fa-home"></i>
+                </span>&nbsp;
+              <% end %>
+            </p>
+          <% end %>
 
           <% if user_signed_in? %>
           <!--家族のみ閲覧可-->
@@ -39,7 +53,7 @@
               <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
             </p>
 
-          <% elsif facility_signed_in? %>
+          <% elsif facility_signed_in? && current_facility.facility_admin == true %>
           <!--管理者のみ閲覧可能-->
             <p class="navbar-item">
               <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
@@ -49,26 +63,25 @@
             <p class="navbar-item">
               <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility), class: "links" %>
             </p>
-
-            <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
-              <%= link_to_unless_current "入居者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
-            </p>
           <% end %>
 
-          <% unless facility_signed_in? && current_facility.facility_admin == true %>
+          <%if facility_signed_in? %>
+            <p class="navbar-item">
+                <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
+            </p>
+          <% end %>
+          
             <!--全ユーザー閲覧可能-->
-            <p class="navbar-item">
-              <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
-            </p>
-          <% end %>
+          <p class="navbar-item">
+            <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+          </p>
 
-          <% if facility_signed_in? && current_facility.admin== false && current_facility.facility_admin == false %>
+          <!--<% if facility_signed_in? && current_facility.admin== false && current_facility.facility_admin == true %>
             <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
+            <!--<p class="navbar-item">
               <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>
             </p>
-          <% end %>
+          <% end %>-->
 
           <% if facility_signed_in? && current_facility.admin? %>
             <!--システム全体管理者のみ閲覧可能-->
@@ -83,7 +96,15 @@
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link has-text-weight-bold more">
         <% if facility_signed_in? %>
-          <font color="#4682B4"><i class="fas fa-user-circle fa-2x"></i></font>
+          <% if current_facility.facility_admin == true %>
+            <div class="admin-icon">
+              <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+          <% elsif current_facility.facility_admin == false %>
+            <div class="general-icon">
+              <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+          <% end %>
         <% else %>
           <font color="#4DADA1"><i class="fas fa-user-circle fa-2x"></i></font>
         <% end %>
