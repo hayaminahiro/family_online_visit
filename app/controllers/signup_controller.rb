@@ -84,7 +84,12 @@ class SignupController < ApplicationController
           :password,
           :password_confirmation,
           :address,
-          :phone
+          :phone,
+          :postcode,
+          :prefecture_name,
+          :address_city,
+          :address_street,
+          :address_building
       )
       end
 

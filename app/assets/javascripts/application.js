@@ -14,4 +14,5 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require jquery.jpostal
 //= require_tree .
