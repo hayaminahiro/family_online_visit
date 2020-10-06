@@ -78,7 +78,7 @@
               <% end %>
             </div>
           </div>
-        
+
           <div id="third_tab01" class="cp_tabpanel">
             <div class="inline-block_tab">
               <img src="facility_registration.jpg" width="400" height="300">
@@ -103,14 +103,62 @@
       <div class="about-title is-size-3 has-text-centered">お知らせ</div>
       <article class="panel" id="panel-content-user">
         <div class="columns is-multiline has-text-left">
-          お知らせ表示が入る
+          <article class="panel" id="panel-content">
+            <div class="columns is-multiline has-text-left">
+              <div class="show-info-container">
+                <hr>
+                <h1 class="show-info-title"><%= @info_top.title %></h1>
+                <hr>
+                <div>
+                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
+                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </article>
+    <% elsif facility_signed_in? && current_facility.admin? %>
+      <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
+      <article class="panel" id="panel-content">
+        <div class="columns is-multiline has-text-left">
+          <article class="panel" id="panel-content">
+            <div class="columns is-multiline has-text-left">
+              <div class="show-info-container">
+                <hr>
+                <h1 class="show-info-title"><%= @info_top.title %></h1>
+                <hr>
+                <div>
+                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
+                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                  <hr>
+                  <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </article>
+      <%= render 'edit_info' , { information: @info_top } %>
     <% elsif facility_signed_in? %>
       <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
       <article class="panel" id="panel-content">
         <div class="columns is-multiline has-text-left">
-          お知らせ表示が入る
+          <article class="panel" id="panel-content">
+            <div class="columns is-multiline has-text-left">
+              <div class="show-info-container">
+                <hr>
+                <h1 class="show-info-title"><%= @info_top.title %></h1>
+                <hr>
+                <div>
+                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
+                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </article>
     <% elsif !user_signed_in? && !facility_signed_in? %>
@@ -141,7 +189,20 @@
       <div class="about-title is-size-3 has-text-centered">お知らせ</div>
       <article class="panel" id="panel-content">
         <div class="columns is-multiline has-text-left">
-          お知らせ表示が入る
+          <article class="panel" id="panel-content">
+            <div class="columns is-multiline has-text-left">
+              <div class="show-info-container">
+                <hr>
+                <h1 class="show-info-title"><%= @info_top.title %></h1>
+                <hr>
+                <div>
+                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
+                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </article>
     <% end %>
