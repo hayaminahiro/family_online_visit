@@ -4,25 +4,63 @@
   </figure>
 </section>
 
+<section class="hero is-small is-light bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-right">
+        <%= @facility.facility_name %>
+      </h1>
+      <div class="has-text-centered is-size-4">
+        ようこそ<%= current_user.name %>さん<%= image_tag 'user_default.png', class: "edit-my-image" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="about-title is-size-3 has-text-centered">登録申請</div>
+
+<div class="has-text-centered">
+  <div class="card">
+    <div class="card-image" id="home-images">
+      <figure class="image is-4by3">
+        <%= link_to image_tag("/assets/user_facility_home_application.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility) %>
+        <p>登録申請</p>
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="has-text-centered is-size-5">
+        <% if @requests.present? && @requests.req_approval == "申請中" %>
+          <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "button is-rounded is-outlined is-success is-disabled" , id: 'submit-btn' %>
+        <% elsif @requests.present? %>
+          <%= link_to "入居者登録は #{@requests.req_approval} です", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" %>
+        <% else %>
+          <%= link_to "ご入居者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about-title is-size-3 has-text-centered">Memu</div>
+
 <div class="columns .is-variable is-0" style="margin-top: 20px;">
   <div class="column is-3">
     <div class="card" style="height: 450px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
-          <img src="/static_pages2.jpg">
+          <%= link_to image_tag("/assets/user_facility_home_application.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility) %>
+          <p>登録申請</p>
         </figure>
       </div>
       <div class="card-content">
         <div class="has-text-centered is-size-5">
-          <button class="button is-rounded has-text-weight-bold">
-            <% if @requests.present? && @requests.req_approval == "申請中" %>
-              <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "has-text-weight-bold is-size-5 is-disabled" , id: 'submit-btn' %>
-            <% elsif @requests.present? %>
-              <%= link_to "入居者登録は #{@requests.req_approval} です", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5" %>
-            <% else %>
-              <%= link_to "ご入居者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5" %>
-            <% end %>
-          </button><br>
+          <% if @requests.present? && @requests.req_approval == "申請中" %>
+            <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "button is-rounded is-outlined is-success is-disabled" , id: 'submit-btn' %>
+          <% elsif @requests.present? %>
+            <%= link_to "入居者登録は #{@requests.req_approval} です", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" %>
+          <% else %>
+            <%= link_to "ご入居者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" %>
+          <% end %>
         </div>
         <div class="content">
           予約、テレビ電話のシステムを<br>
@@ -32,11 +70,13 @@
       </div>
     </div>
   </div>
+
   <div class="column is-3">
     <div class="card" style="height: 450px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
-          <img src="/static_pages2.jpg">
+          <%= link_to image_tag("/assets/user_facility_home_reservation.jpg"), '#' %>
+          <p>面会予約</p>
         </figure>
       </div>
       <div class="card-content">
@@ -50,7 +90,6 @@
             </span>
           <% end %>  
         </div>
-
         <div class="content">
           オンラインでの面会予約の日時<br>
           の登録、編集、削除ができます。<br>
@@ -58,11 +97,13 @@
       </div>
     </div>
   </div>
+
   <div class="column is-3">
     <div class="card" style="height: 450px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
-          <img src="/static_pages5.jpg">
+          <%= link_to image_tag("/static_pages5.jpg"), '#' %>
+          <p>ビデオ通話</p>
         </figure>
       </div>
       <div class="card-content">
@@ -82,11 +123,13 @@
       </div>
     </div>
   </div>
+
   <div class="column is-3">
     <div class="card" style="height: 450px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
-          <img src="/static_pages2.jpg">
+          <%= link_to image_tag("/assets/user_facility_home_contact.jpg"), '#' %>
+          <p>お問い合わせ</p>
         </figure>
       </div>
       <div class="card-content">
@@ -108,7 +151,9 @@
   </div>
 </div>
 
-
+<script>
+  ScrollReveal().reveal('.card', { delay: 100, distance: '50px', origin: 'bottom', duration: 800, viewFactor: 0.5 });
+</script>
 
 
 
