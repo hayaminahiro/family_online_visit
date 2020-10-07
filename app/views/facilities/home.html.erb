@@ -1,40 +1,152 @@
-<body class="image-layout">
-  <section class="section login-hero-size" style="padding-top: 10px;">
-    <div class="container">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <h1 class="main-title">
-              <h3><%= @facility.facility_name %>へようこそ！</h3>
-              <strong class="top-title">Online Visit</strong>
-            </h1>
-            <h5 class="is-size-2">
-              <% if facility_signed_in? %>
-              管理者 <%= current_facility.facility_name %> 様
-              <% elsif user_signed_in? %>
-              <%= current_user.name %> 様
-              <% end %>
-            </h5>
-            <h2 class="sub-title" style="font-size: 40px;">オンラインで大切な家族との時間を共有</h2>
-            <% unless user_signed_in? || facility_signed_in? %>
-            <%= link_to "ログイン", user_session_path, class: "button is-success is-rounded is-large has-text-weight-bold center-login" %>
+<section class="hero is-medium">
+  <figure class="image is-3by1">
+    <%= image_tag 'facility_image.jpg', class: "facility-home-image" %>
+  </figure>
+</section>
+
+<div class="columns .is-variable is-0" style="margin-top: 20px;">
+  <div class="column is-3">
+    <div class="card" style="height: 450px;">
+      <div class="card-image" id="home-images">
+        <figure class="image is-4by3">
+          <img src="/static_pages2.jpg">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="has-text-centered is-size-5">
+          <button class="button is-rounded has-text-weight-bold">
+            <% if @requests.present? && @requests.req_approval == "申請中" %>
+              <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "has-text-weight-bold is-size-5 is-disabled" , id: 'submit-btn' %>
+            <% elsif @requests.present? %>
+              <%= link_to "入居者登録は #{@requests.req_approval} です", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5" %>
+            <% else %>
+              <%= link_to "ご入居者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5" %>
             <% end %>
-          </div>
-          <% if user_signed_in? && current_user.admin == false && current_user.floor_authority == false %>
-          <div class="button-position">
-            <div class="columns is-centered">
-              <div class="column is-3 top-btn-position">
-                <div class="top-btn">
-                  <button class="button is-large is-primary is-rounded has-text-weight-bold">予約する</button>
-                </div>
-                <div class="top-btn">
-                  <button class="button is-large is-success is-rounded has-text-weight-bold" id="open">予約情報確認</button>
-                </div>
-                <div class="top-btn">
-                  <button class="button is-large is-info is-rounded has-text-weight-bold">通話を開始する</button>
-                </div>
-              </div>
-              <div class="top-btn">
+          </button><br>
+        </div>
+        <div class="content">
+          予約、テレビ電話のシステムを<br>
+          ご利用する場合は初めに<br>
+          利用者登録申請で手続きを行ってください。<br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-3">
+    <div class="card" style="height: 450px;">
+      <div class="card-image" id="home-images">
+        <figure class="image is-4by3">
+          <img src="/static_pages2.jpg">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="has-text-centered is-size-5">
+          <%= link_to '#', class: "button is-rounded is-warning is-outlined" do %>
+            <span class="icon">
+              <i class="far fa-calendar-alt"></i>&nbsp;
+            </span>
+            <span>
+              面会予約
+            </span>
+          <% end %>  
+        </div>
+
+        <div class="content">
+          オンラインでの面会予約の日時<br>
+          の登録、編集、削除ができます。<br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-3">
+    <div class="card" style="height: 450px;">
+      <div class="card-image" id="home-images">
+        <figure class="image is-4by3">
+          <img src="/static_pages5.jpg">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="has-text-centered is-size-5">
+          <%= link_to '#', class: "button is-link is-rounded is-outlined" do %>
+            <span class="icon">
+              <i class="fas fa-video"></i>&nbsp;
+            </span>
+            <span>
+              ビデオ通話
+            </span>
+          <% end %>  
+        </div>
+        <div class="content">
+          施設利用者とのビデオ通話ができます。
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-3">
+    <div class="card" style="height: 450px;">
+      <div class="card-image" id="home-images">
+        <figure class="image is-4by3">
+          <img src="/static_pages2.jpg">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="has-text-centered is-size-5">
+          <%= link_to '#', class: "button is-primary is-rounded is-outlined" do %>
+            <span class="icon">
+              <i class="far fa-paper-plane"></i>&nbsp;
+            </span>
+            <span>
+              お問い合わせ
+            </span>
+          <% end %>
+        </div>
+        <div class="content">
+          施設に問い合わせをすることができます。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!--<div class="top-btn">
                 <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
                 <button class="button is-large is-rounded has-text-weight-bold">
                   <% if @requests.present? && @requests.req_approval == "申請中" %>
@@ -50,56 +162,7 @@
                     <%= link_to "お知らせ表示", top_notice_facility_informations_path(facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                   </button>
                 </div>
-              </div>
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column is-3">
-          <div class="admin-btn">
-            <% if user_signed_in? %>
-            <% if current_user.admin == true && current_user.floor_authority == true %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => false %>
-            <%= f.submit "管理者専用画面へ変更", class: "button is-large is-success has-text-weight-bold" %>
-            <% end %>
-            <% elsif current_user.admin == true && current_user.floor_authority == false %>
-            <%= form_with(model: @user, url: change_admin_user_path(current_user.id), local: true, method: :patch) do |f| %>
-            <%= f.hidden_field :floor_authority, :value => true %>
-            <%= f.submit "一般職員専用画面へ変更", class: "button is-large is-info has-text-weight-bold" %>
-            <% end %>
-            <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
-
-<!--ご入居者様の登録申請ボタンのモーダル-->
-<div>
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title is-half has-text-weight-bold reserve-modal">予約情報</p>
-        <button class="delete" aria-label="close" id="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p class="image is-3by2">
-
-        </p>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-danger has-text-weight-bold" style="float: right">予約を取り消し</button>
-      </footer>
-    </div>
-  </div>
-</div>
-
+              </div>-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
