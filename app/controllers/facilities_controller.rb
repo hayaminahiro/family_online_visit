@@ -1,6 +1,6 @@
 class FacilitiesController < ApplicationController
 
-  before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show]
+  before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show, :facility_home]
   before_action :set_facility_id, only: [:change_admin, :home]
   before_action :set_user_id, only: [:facilities_used, :update_facilities_used]
   # ログインしてなければ閲覧不可
@@ -31,13 +31,23 @@ class FacilitiesController < ApplicationController
     end
   end
 
+  def facility_home  #施設ルートのhome画面
+    @facilities = Facility.all.where.not(admin: true)
+    @registration_application = @facilities.where(id: current_facility.users)
+    @calendar_reservations = Reservation.where.not(calendar_day: nil)
+    @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
+    if params[:search].present?
+      @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
+    end
+  end
+
   def change_admin
     if @facility.update_attributes(admin_params)
       flash[:notice] = "権限を変更しました。"
     else
       flash[:alert] = "権限を変更できませんでした。"
     end
-    redirect_to root_url
+    redirect_to facility_home_facility_url @facility
   end
 
   def destroy
@@ -121,7 +131,7 @@ class FacilitiesController < ApplicationController
       end
 
       def admin_params
-        params.permit(:facility_admin)
+        params.require(:facility).permit(:facility_admin)
       end
 
       def facilities_used_params
