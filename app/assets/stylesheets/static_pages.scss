@@ -588,3 +588,33 @@ p.content1 {
   margin-bottom: 50px;
   margin-top: 0px;
 }
+
+//ヘッダー（一般職員アイコン）
+.general-icon {
+  background: linear-gradient(25deg, #F13F79, #FFC778);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255,255,255,0.0);
+  color: #fff;
+}
+
+/*IEで未対応の場合は以下で背景を非表示に*/
+@media all and (-ms-high-contrast:none){
+  .general-icon {
+    background: none;
+  }
+}
+
+//ヘッダー（管理者アイコン）
+.admin-icon {
+  background: linear-gradient(25deg,#2bc0e4, #eaecc6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255,255,255,0.0);
+  color: #fff;
+}
+
+/*IEで未対応の場合は以下で背景を非表示に*/
+@media all and (-ms-high-contrast:none){
+  .admin-icon {
+    background: none;
+  }
+}

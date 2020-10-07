@@ -55,6 +55,9 @@ Rails.application.routes.draw do
 
   # 施設目線のルーティング
   resources :facilities do # /facilities/:id/~~~
+    member do
+      get :facility_home #施設ルートのホーム画面
+    end
     patch :change_admin # /facilities/:facility_id/change_admin
     resources :residents do # /facilities/:facility_id/residents/:id/~~~
       collection { post :import } # CSVインポート機能
