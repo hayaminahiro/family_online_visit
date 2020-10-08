@@ -18,7 +18,7 @@
                   <%= f.label :image %>
                   <%= f.file_field :image %>
                   <% if @facility.image? %>
-                    <%= image_tag @facility.image.url, :size =>'80x80' %>
+                    <%= image_tag @facility.image.url, :size => '150x150' %>
                   <% end %>
                 </div>
 

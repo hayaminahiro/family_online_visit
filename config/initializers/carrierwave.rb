@@ -13,4 +13,7 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1',   # アジアパシフィック(東京)を選択した場合
       path_style: true
     }
-end 
+end
+
+# 日本語ファイル名の設定
+CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
