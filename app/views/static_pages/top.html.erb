@@ -15,7 +15,6 @@
   </div>
 </section>
 
-
 <section class="hero is-medium has-text-centered" id="hero-4">
   <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
     <% if user_signed_in? %>
@@ -99,68 +98,6 @@
           </div>
         </div>
       </div>
-
-      <div class="about-title is-size-3 has-text-centered">お知らせ</div>
-      <article class="panel" id="panel-content-user">
-        <div class="columns is-multiline has-text-left">
-          <article class="panel" id="panel-content">
-            <div class="columns is-multiline has-text-left">
-              <div class="show-info-container">
-                <hr>
-                <h1 class="show-info-title"><%= @info_top.title %></h1>
-                <hr>
-                <div>
-                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
-                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-                  <hr>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </article>
-    <% elsif facility_signed_in? && current_facility.admin? %>
-      <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
-      <article class="panel" id="panel-content">
-        <div class="columns is-multiline has-text-left">
-          <article class="panel" id="panel-content">
-            <div class="columns is-multiline has-text-left">
-              <div class="show-info-container">
-                <hr>
-                <h1 class="show-info-title"><%= @info_top.title %></h1>
-                <hr>
-                <div>
-                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
-                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-                  <hr>
-                  <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </article>
-      <%= render 'edit_info' , { information: @info_top } %>
-    <% elsif facility_signed_in? %>
-      <div class="about-title-2 is-size-3 has-text-centered">お知らせ</div>
-      <article class="panel" id="panel-content">
-        <div class="columns is-multiline has-text-left">
-          <article class="panel" id="panel-content">
-            <div class="columns is-multiline has-text-left">
-              <div class="show-info-container">
-                <hr>
-                <h1 class="show-info-title"><%= @info_top.title %></h1>
-                <hr>
-                <div>
-                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
-                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-                  <hr>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </article>
     <% elsif !user_signed_in? && !facility_signed_in? %>
       <div class="about-title-2 is-size-3">Online Visitについて</div>
       <div class="inline-block_content">
@@ -185,27 +122,8 @@
       <div class="inline-block_content">
         <img src="static_pages5.jpg" width="400" height="300">
       </div>
-
-      <div class="about-title is-size-3 has-text-centered">お知らせ</div>
-      <article class="panel" id="panel-content">
-        <div class="columns is-multiline has-text-left">
-          <article class="panel" id="panel-content">
-            <div class="columns is-multiline has-text-left">
-              <div class="show-info-container">
-                <hr>
-                <h1 class="show-info-title"><%= @info_top.title %></h1>
-                <hr>
-                <div>
-                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
-                  <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-                  <hr>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </article>
     <% end %>
+    <%= render 'system_information' %>
   </div>
 </section>
 
