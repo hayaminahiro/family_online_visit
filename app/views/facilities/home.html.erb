@@ -4,14 +4,24 @@
   </figure>
 </section>
 
-<section class="hero is-small is-light bold">
+<section class="hero is-small is-info is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-right">
         <%= @facility.facility_name %>
       </h1>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light bold">
+  <div class="hero-body">
+    <div class="contaniner">
+      <div class="has-text-centered">
+        <%= image_tag 'user_default.png', class: "facility-user-image" %>
+      </div>
       <div class="has-text-centered is-size-4">
-        ようこそ<%= current_user.name %>さん<%= image_tag 'user_default.png', class: "edit-my-image" %>
+        ようこそ<%= current_user.name %>さん
       </div>
     </div>
   </div>
@@ -19,27 +29,26 @@
 
 <div class="about-title is-size-3 has-text-centered">登録申請</div>
 
-<div class="has-text-centered">
-  <div class="card">
-    <div class="card-image" id="home-images">
-      <figure class="image is-4by3">
-        <%= link_to image_tag("/assets/user_facility_home_application.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility) %>
-        <p>登録申請</p>
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="has-text-centered is-size-5">
-        <% if @requests.present? && @requests.req_approval == "申請中" %>
-          <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "button is-rounded is-outlined is-success is-disabled" , id: 'submit-btn' %>
-        <% elsif @requests.present? %>
-          <%= link_to "入居者登録は #{@requests.req_approval} です", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" %>
-        <% else %>
-          <%= link_to "ご入居者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" %>
-        <% end %>
-      </div>
+<div class="columns .is-variable is-0" style="background-color: #A9A9A9;">
+  <div class="column is-9" style="padding: 0px; padding-bottom: 20px;">
+    <div class="has-text-centered" id="request-user">
+      <%= link_to image_tag("/assets/user_facility_home_application.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "request-image" %>
+      <p><%= link_to "ご利用者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "btn-shine" %></p>
     </div>
   </div>
-</div>
+  <div class="column is-3" id="layout-comment">
+    <p class="content-request has-text-weight-semibold is-size-6" style="color: #fff;">
+      施設をご利用される場合は<br>
+      施設のご利用者様の登録申請<br>
+      をおこなってください。<br>
+      申請が完了した場合、面会予約、<br>
+      ビデオ通話、写真・動画の閲覧<br>
+      などのメニューを使用することが<br>
+      できるようになります。
+    </p>
+  </div>
+</div> 
+
 
 <div class="about-title is-size-3 has-text-centered">Memu</div>
 
