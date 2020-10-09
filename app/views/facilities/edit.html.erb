@@ -1,4 +1,3 @@
-<body class="image-layout">
   <section class="hero login-hero-size">
     <div class="container">
       <article class="media">
@@ -12,39 +11,42 @@
             <div class="columns is-centered">
               <div class="column is-6 top-btn-position">
                 <%= form_with model: @facility, local: true, method: :patch do |f| %>
-                <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
+                  <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
+                  <div class="field">
+                    <%= f.label :image %>
+                    <div>
+                      <div id="uploadArea" class="drag-erea">
+                        <%= f.file_field :image, value: "upload" %>
+                      </div>
+                    </div>
+                    <% if @facility.image? %>
+                      <%= image_tag @facility.image.url, :size => '150x150' %>
+                    <% end %>
+                  </div>
 
-                <div class="field">
-                  <%= f.label :image %>
-                  <%= f.file_field :image %>
-                  <% if @facility.image? %>
-                    <%= image_tag @facility.image.url, :size => '150x150' %>
-                  <% end %>
-                </div>
+                  <div class="field">
+                    <%= f.label :facility_name,  class: "label" %><br />
+                    <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
+                  </div>
 
-                <div class="field">
-                  <%= f.label :facility_name,  class: "label" %><br />
-                  <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
-                </div>
+                  <div class="field">
+                    <%= f.label :email, class: "label" %><br />
+                    <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
+                  </div>
 
-                <div class="field">
-                  <%= f.label :email, class: "label" %><br />
-                  <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
-                </div>
+                  <div class="field">
+                    <%= f.label :password, class: "label" %><br />
+                    <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
+                  </div>
 
-                <div class="field">
-                  <%= f.label :password, class: "label" %><br />
-                  <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
-                </div>
+                  <div class="field">
+                    <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
+                    <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
+                  </div>
 
-                <div class="field">
-                  <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-                  <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
-                </div>
-
-                <div class="actions">
-                  <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-                </div>
+                  <div class="actions">
+                    <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                  </div>
                 <% end %>
 
               </div>
@@ -58,4 +60,44 @@
       </div>
     </div>
   </section>
-</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded',() => {
+
+    let uploadArea = document.getElementById('uploadArea');
+
+    uploadArea.addEventListener("dragover",(event) => {
+      event.preventDefault();
+      event.target.classList.add('drag');
+    });
+
+    uploadArea.addEventListener("dragleave",(event) => {
+      event.target.classList.remove('drag');
+    });
+
+    // 追加のdropイベント
+    uploadArea.addEventListener("drop",(event) => {
+      event.preventDefault();
+      let input = document.querySelectorAll('input[name="facility[image]"]');
+      input[0].files = event.dataTransfer.files; //取得したinput[type=file]にDropしたファイルを突っ込む
+    });
+
+  });
+</script>
+
+<style>
+  .drag-erea{
+    padding:180px 0;
+    width:100%;
+    margin: 0 auto 20px;
+    background: #f6f6f6;
+    text-align: center;
+  }
+  .drag-erea.drag{
+    background: #f0f0f0;
+  }
+
+  .drag-erea input {
+    margin:0 auto;
+  }
+</style>

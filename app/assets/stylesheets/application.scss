@@ -13,8 +13,9 @@
  *= require simple_calendar
  *= require_tree .
  *= require_self
+ *= require dropzone/dropzone
  */
- @import 'font-awesome-sprockets';
- @import 'font-awesome';
- @import "bulma";
-  
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import "bulma";
+
