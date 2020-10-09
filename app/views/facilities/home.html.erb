@@ -14,7 +14,7 @@
   </div>
 </section>
 
-<section class="hero is-small is-light bold">
+<section class="hero is-small">
   <div class="hero-body">
     <div class="contaniner">
       <div class="has-text-centered">
@@ -42,12 +42,9 @@
 <div class="columns .is-variable is-0" style="background-color: #A9A9A9;">
   <div class="column is-9" style="padding: 0px; padding-bottom: 20px;">
     <div class="has-text-centered" id="request-user">
-      <%if @requests.present? %>
-        <%= link_to image_tag("/assets/user_facility_home_application.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "request-image", id: "disabled-btn" %>
-      <% else %>
-        <%= link_to image_tag("/assets/user_facility_home_application.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "request-image" %>
-      <% end %>
-
+      <figure class="image is-4by3">
+        <%= image_tag("/assets/user_facility_home_application.jpg") %>
+      </figure>
       <% if @requests.present? && @requests.req_approval == "申請中" %>
         <p><%= link_to "利用者登録は #{@requests.req_approval} です", "#", class: "btn-shine", id: "disabled-btn" %></p>
       <% elsif @requests.present? %>
@@ -71,7 +68,7 @@
       できるようになります。
     </p>
   </div>
-</div> 
+</div>
 
 
 <div class="about-title is-size-3 has-text-centered">Memu</div>
@@ -82,7 +79,7 @@
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("/assets/user_facility_home_reservation.jpg"), '#' %>
-          <p>面会予約</p>
+          <p><%= link_to "面会予約", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
       <div class="card-content">
@@ -109,7 +106,7 @@
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("/assets/user_facility_menu_chat.jpg"), '#' %>
-          <p>ビデオ通話</p>
+          <p><%= link_to "ビデオ通話", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
       <div class="card-content">
@@ -135,12 +132,12 @@
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("/assets/user_facility_menu_album.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility) %>
-          <p>写真・動画</p>
+          <p><%= link_to "写真・動画", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
       <div class="card-content">
         <div class="has-text-centered is-size-5">
-          <%= link_to new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "button is-rounded is-outlined is-success" do %>
+          <%= link_to '#', class: "button is-rounded is-outlined is-success" do %>
             <span class="icon">
               <i class="fas fa-photo-video"></i>&nbsp;
             </span>
@@ -162,7 +159,7 @@
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("/assets/user_facility_home_contact.jpg"), '#' %>
-          <p>お問い合わせ</p>
+          <p><%= link_to "お問い合わせ", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
       <div class="card-content">
