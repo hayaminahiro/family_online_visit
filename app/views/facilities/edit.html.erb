@@ -1,65 +1,63 @@
-  <section class="hero login-hero-size">
-    <div class="container">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <div class="signup-title">
-              <strong class="new-title">施設情報編集</strong>
-            </div>
+<section class="hero login-hero-size", style="background: white;">
+  <div class="container">
+    <article class="media">
+      <div class="media-content">
+        <div class="content has-text-centered">
+          <div class="signup-title">
+            <strong class="new-title">施設情報編集</strong>
           </div>
-          <div class="button-position">
-            <div class="columns is-centered">
-              <div class="column is-6 top-btn-position">
-                <%= form_with model: @facility, local: true, method: :patch do |f| %>
-                  <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
-                  <div class="field">
-                    <%= f.label :image %>
-                    <div>
-                      <div id="uploadArea" class="drag-erea">
-                        <%= f.file_field :image, value: "upload" %>
-                      </div>
-                    </div>
+        </div>
+        <div class="button-position">
+          <div class="columns is-centered">
+            <div class="column is-6 top-btn-position">
+              <%= form_with model: @facility, local: true, method: :patch do |f| %>
+                <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
+                <div class="field">
+                  <div class="facility-photo">
                     <% if @facility.image? %>
-                      <%= image_tag @facility.image.url, :size => '150x150' %>
+                      <%= image_tag @facility.image.url, :size => '120x120' %>
                     <% end %>
                   </div>
+                  <%= f.label :image, "画像を選択", class: "image_input_btn" %>
+                  <%= f.file_field :image, value: "upload", class: "image_uploading" %>
+                  <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
+                </div>
 
-                  <div class="field">
-                    <%= f.label :facility_name,  class: "label" %><br />
-                    <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
-                  </div>
+                <div class="field">
+                  <%= f.label :facility_name,  class: "label" %><br />
+                  <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
+                </div>
 
-                  <div class="field">
-                    <%= f.label :email, class: "label" %><br />
-                    <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
-                  </div>
+                <div class="field">
+                  <%= f.label :email, class: "label" %><br />
+                  <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
+                </div>
 
-                  <div class="field">
-                    <%= f.label :password, class: "label" %><br />
-                    <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
-                  </div>
+                <div class="field">
+                  <%= f.label :password, class: "label" %><br />
+                  <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
+                </div>
 
-                  <div class="field">
-                    <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-                    <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
-                  </div>
+                <div class="field">
+                  <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
+                  <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
+                </div>
 
-                  <div class="actions">
-                    <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-                  </div>
-                <% end %>
-
-              </div>
+                <div class="actions">
+                  <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column">
-        </div>
+      </div>
+    </article>
+    <div class="columns is-centered">
+      <div class="column">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <script>
   document.addEventListener('DOMContentLoaded',() => {
@@ -84,20 +82,3 @@
 
   });
 </script>
-
-<style>
-  .drag-erea{
-    padding:180px 0;
-    width:100%;
-    margin: 0 auto 20px;
-    background: #f6f6f6;
-    text-align: center;
-  }
-  .drag-erea.drag{
-    background: #f0f0f0;
-  }
-
-  .drag-erea input {
-    margin:0 auto;
-  }
-</style>
