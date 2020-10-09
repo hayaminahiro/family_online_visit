@@ -523,7 +523,7 @@ div.under-line {
 
 #request-user p {
   position: absolute;
-  top: 52%;
+  top: 57%;
   left: 38%;
   -ms-transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
@@ -564,6 +564,7 @@ div.under-line {
   text-shadow: 2px 2px 3px #000;
 }
 
+//利用者登録申請のコメント
 .content-request {
   line-height: 30px;
 }
@@ -571,8 +572,13 @@ div.under-line {
 #layout-comment {
   display: -webkit-flex;
   display: flex;
-  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
-  align-items: center; /* 縦方向中央揃え */
-  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
-  justify-content: center; /* 横方向中央揃え */
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+//登録申請中のボタン
+#disabled-btn {
+  pointer-events: none;
 }
