@@ -6,6 +6,7 @@ class FacilitiesController < ApplicationController
   # ログインしてなければ閲覧不可
   before_action :authenticate_facility!, except: [:home, :facilities_used, :update_facilities_used, :new_connection, :create_connection]
   before_action :authenticate_user!, only: [:home, :facilities_used, :update_facilities_used]
+  before_action :index_access_limits, only: :index
 
   def index
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
@@ -113,6 +114,12 @@ class FacilitiesController < ApplicationController
   end
 
     private
+
+      def index_access_limits
+        until current_facility.admin?
+          redirect_to :root and return
+        end
+      end
 
       def set_facility
         @facility = Facility.find(params[:id])
