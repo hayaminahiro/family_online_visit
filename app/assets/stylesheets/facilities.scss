@@ -465,3 +465,59 @@ div.under-line {
 .btn-tab-user:hover {
   color: #FFF;
 }
+
+///タブ（お知らせ）
+.tab-information  {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 100px 70px;
+}
+
+//タブ（お知らせ）ボタン
+.btn-tab-information {
+  display: inline-block;
+  width: 230px;
+  text-align: center;
+  background-color: #f3a150;
+  border: 2px solid #f3a150;
+  font-size: 20px;
+  color: #f3a150;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.btn-tab-information span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-tab-information::before,
+.btn-tab-information::after {
+  content: "";
+  display: block;
+  background-color: #FFF;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: .2s;
+}
+.btn-tab-information::before {
+  left: 0;
+}
+.btn-tab-information::after {
+  right: 0;
+}
+
+.btn-tab-information:hover:before,
+.btn-tab-information:hover:after {
+  width: 0;
+  background-color: #FFF;
+}
+
+.btn-tab-information:hover {
+  color: #FFF;
+}
