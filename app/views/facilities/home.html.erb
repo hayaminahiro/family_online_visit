@@ -57,14 +57,17 @@
 
   <div class="column is-3" id="layout-comment">
     <p class="content-request has-text-weight-semibold is-size-6" style="color: #fff;">
-      ホームページをご利用される場合は<br>
-      施設を利用されている方との<br>
-      マッチングをおこなう必要があります。<br>
-      まずは、<font color="#FFD700">ご利用者様の登録申請</font><br>
+      ホームページをご利用<br>
+      される場合は施設を利用<br>
+      されている方との<br>
+      マッチングをおこなう<br>
+      必要があります。まずは<br>
+      <font color="#1E90FF">ご利用者様の登録申請</font><br>
       をおこなってください。<br>
-      申請が完了した場合、面会予約、<br>
-      ビデオ通話、写真・動画の閲覧<br>
-      などのメニューを使用することが<br>
+      申請が完了した場合、<br>
+      <font color="FFDD58">面会予約</font>、<font color="3173DC">ビデオ通話、</font><br>
+      <font color="#228B22">写真・動画の閲覧</font>などの<br>
+      メニューを使用することが<br>
       できるようになります。
     </p>
   </div>
@@ -182,71 +185,5 @@
 </div>
 
 <script>
-  ScrollReveal().reveal('.card', { delay: 100, distance: '50px', origin: 'bottom', duration: 800, viewFactor: 0.5 });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <!--<div class="top-btn">
-                <p id="explanation">ご利用前に<span id="span-color">ご入居者様の登録申請</span>をして下さい。<br>入力情報確認後、システム利用可能になります。</p>
-                <button class="button is-large is-rounded has-text-weight-bold">
-                  <% if @requests.present? && @requests.req_approval == "申請中" %>
-                    <%= link_to "入居者登録は #{@requests.req_approval} です", "#", class: "has-text-weight-bold is-size-5 is-disabled" , id: 'submit-btn' %>
-                  <% elsif @requests.present? %>
-                    <%= link_to "入居者登録は #{@requests.req_approval} です", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5" %>
-                  <% else %>
-                    <%= link_to "ご入居者様の登録申請", new_facility_user_request_resident_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5" %>
-                  <% end %>
-                </button><br>
-                <div class="notice-btn">
-                  <button class="button is-large is-warning is-rounded has-text-weight-bold">
-                    <%= link_to "お知らせ表示", top_notice_facility_informations_path(facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
-                  </button>
-                </div>
-              </div>-->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $("#open").on("click", function() {
-      $("div.modal").addClass("is-active");
-    })
-
-    $("#close, div.modal-background").on("click", function() {
-      $("div.modal").removeClass("is-active");
-    })
-  });
+  ScrollReveal().reveal('.card', { delay: 10, distance: '50px', origin: 'bottom', duration: 700, viewFactor: 0.2 });
 </script>
