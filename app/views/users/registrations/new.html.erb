@@ -35,9 +35,35 @@
                   </div>
 
                   <div class="field">
-                    <%= f.label :address, "あなたの住所", class: "label" %><br />
-                    <%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", autocomplete: "address", class: "fa input is-medium input-top" %>
+                    <!%= f.label :address, "あなたの住所", class: "label" %><br />
+                    <!%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", autocomplete: "address", class: "fa input is-medium input-top" %>
                   </div>
+
+                  <div class="field">
+                    <%= f.label :postcode, '郵便番号', class: "label" %><br />
+                    <%= f.text_field :postcode, autocomplete: 'postcode', class: 'fa input is-medium input-top', id: "address_zipcode" %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :prefecture_name, '都道府県', class: "label" %><br />
+                    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, { prompt: '選択してください' }, class: 'fa input is-medium input-top' %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :address_city, '市区町村', class: "label" %><br />
+                    <%= f.text_field :address_city, autocomplete: 'address_city', class: 'fa input is-medium input-top', id:"address_city" %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :address_street, '番地', class: "label" %><br />
+                    <%= f.text_field :address_street, autocomplete: 'address_street', class: 'fa input is-medium input-top', id: "address_street" %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :address_building, '建物', class: "label" %><br />
+                    <%= f.text_field :address_building, autocomplete: 'address_building', class: 'fa input is-medium input-top' %>
+                  </div>
+                  
 
                   <div class="field">
                     <%= f.label :phone, "電話番号", class: "label" %><br />

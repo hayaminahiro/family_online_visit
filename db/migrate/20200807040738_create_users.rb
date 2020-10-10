@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :resident_name1
       t.string :resident_name2
       t.string :phone, unique: true
-      # t.string :address
+      t.string :address
       t.timestamps
     end
   end
