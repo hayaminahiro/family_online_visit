@@ -22,16 +22,17 @@ class User < ApplicationRecord
   validates :password,                presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
   validates :password_confirmation,   presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
 
-  validates :address,                 presence: true
+  # validates :address,                 presence: true
   validates :phone,                   presence: true
 
   include JpPrefecture
   jp_prefecture :prefecture_code
 
+
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
   end
-
+    
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end

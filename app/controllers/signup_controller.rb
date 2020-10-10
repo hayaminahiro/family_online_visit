@@ -31,7 +31,7 @@ class SignupController < ApplicationController
       email: session[:email],
       password: session[:password],
       password_confirmation: session[:password_confirmation],
-      address: "神戸市", # 入力前の情報は、バリデーションに通る値を仮で入れる
+      # address: "神戸市", # 入力前の情報は、バリデーションに通る値を仮で入れる
       phone: "08022003300"
     )
     render 'step1' unless @user.valid?
@@ -39,15 +39,15 @@ class SignupController < ApplicationController
 
   def validates_step2
     # step2で入力された値をsessionに保存
-    session[:address] = user_add_params[:address]
-    session[:phone] = user_add_params[:phone]
+    # session[:address] = user_params[:address]
+    session[:phone] = user_params[:phone]
     # バリデーション用に、仮でインスタンスを作成する
     @user = User.new(
       name: session[:name], # sessionに保存された値をインスタンスに渡す
       email: session[:email],
       password: session[:password],
       password_confirmation: session[:password_confirmation],
-      address: session[:address], 
+      # address: session[:address], 
       phone: session[:phone]
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
@@ -60,7 +60,7 @@ class SignupController < ApplicationController
       email: session[:email],
       password: session[:password],
       password_confirmation: session[:password_confirmation],
-      address: session[:address],
+      # address: session[:address],
       phone: session[:phone]
     )
     if @user.save
@@ -83,7 +83,7 @@ class SignupController < ApplicationController
           :email,
           :password,
           :password_confirmation,
-          :address,
+          # :address,
           :phone,
           :postcode,
           :prefecture_name,
@@ -95,7 +95,7 @@ class SignupController < ApplicationController
 
       def user_add_params
       params.require(:user).permit(
-        :address,
+        # :address,
         :phone
       )
       end
