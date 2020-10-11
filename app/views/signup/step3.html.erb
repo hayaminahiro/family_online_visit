@@ -37,11 +37,11 @@
                 </div>
                 
                 <div class="column is-6 comfirm-page">
-                <%= form_for @user, url: signup_index_path, method: :post do |f| %>
+                <%= form_with model: @user, url: signup_index_path, local: true, method: :post do |f| %>
                   <%= render "users/shared/error_messages", resource: @user %>
 
                   <div class="comfirm">
-                    <%= f.label :name, "・あなたのお名前", class: "label" %><br />
+                    <%= f.label :name, "あなたのお名前", class: "label" %><br />
                     <div class="confirm-newuser"><%= session[:name] %>
                     </div>
                   </div>

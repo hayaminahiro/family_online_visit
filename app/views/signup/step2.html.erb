@@ -32,7 +32,7 @@
             <div class="button-position">
               <div class="columns is-centered">
                 <div class="column is-6 top-btn-position">
-                <%= form_for @user, url: step3_signup_index_path, method: :get do |f| %>
+                <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
                   <%= render "users/shared/error_messages", resource: @user %>
 
                   <div class="field">
