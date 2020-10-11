@@ -85,7 +85,7 @@ end
     name: name,
     email: email,
     password: password,
-    # address: "大阪府",
+    address: "大阪府",
     phone: "080222333"
   )
 end
