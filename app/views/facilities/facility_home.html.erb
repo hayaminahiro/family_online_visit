@@ -61,7 +61,7 @@
     <div class="panel-block">
     </div>
     <p class="panel-tabs">
-      <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
+      <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
       <% if current_facility.facility_admin == true %>
         <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
         <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')"><i class="far fa-user"></i>&nbsp;新規ユーザー</a>
@@ -83,14 +83,6 @@
     <div id="Aud" class="content-tab" style="display:none">
       <div class="columns">
         <div class="column is-offset-1 is-10 is-offset-1 table-container">
-          <table class="table is-hoverable is-fullwidth is-striped is-narrow" id="new-family-table">
-            <thead>
-              <tr>
-                <th>名前</th>
-                <th>利用者</th>
-              </tr>
-            </thead>
-          </table>
         </div>
       </div>
     </div>
