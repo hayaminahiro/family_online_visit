@@ -66,9 +66,9 @@
         <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
         <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')"><i class="far fa-user"></i>&nbsp;新規ユーザー</a>
       <% end %>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Res')"><i class="fas fa-user-friends"></i>&nbsp;利用者</a>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">お知らせ</a>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Inq')">お問い合わせ</a>
+      <a class="panel-tab is-size-5" onclick="openTab(event,'Res')"><i class="fas fa-user-friends"></i>&nbsp;利用者</a>
+      <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">お知らせ</a>
+      <a class="panel-tab is-size-5" onclick="openTab(event,'Inq')">お問い合わせ</a>
     </p>
     <div id="Web" class="content-tab" >
       <div class="has-text-centered" id="calendar-reservations">
@@ -145,10 +145,38 @@
       </div>
     </div>
     <div id="Mov" class="content-tab" style="display:none">
-      <div class="has-text-centered is-size-4">
-        システムからのお知らせが表示される<br>
-        今後実装予定
-      </div><br>
+      <div class="has-text-centered">
+        <div class="tab-information">
+          <div class="columns is-multiline has-text-left">
+            <div class="show-info-container">
+              <hr>
+              <h1 class="show-info-title"><%= @info_top.title %></h1>
+              <hr>
+              <div>
+                <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
+                <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                <hr>
+                <% if current_facility.admin? %>
+                  <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
+                  <%= render 'static_pages/edit_info' , { information: @info_top } %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-information">
+        <% unless current_facility.admin? %>
+          <%= link_to facility_informations_path(facility_id: current_facility), class: "btn-tab-information" do %>
+              <span class="icon">
+                <i class="fas fa-info-circle"></i>
+              </span>&nbsp;
+              <span>
+                お知らせ一覧
+              </span>
+            <% end %>
+        <% end %>
+        </div>
+      </div>
     </div>
     <div id="Inq" class="content-tab" style="display:none">
       <div class="has-text-centered is-size-4">

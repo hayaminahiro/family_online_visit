@@ -6,6 +6,7 @@ class FacilitiesController < ApplicationController
   # ログインしてなければ閲覧不可
   before_action :authenticate_facility!, except: [:home, :facilities_used, :update_facilities_used, :new_connection, :create_connection]
   before_action :authenticate_user!, only: [:home, :facilities_used, :update_facilities_used]
+  before_action :index_access_limits, only: :index
 
   def index
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
@@ -25,7 +26,7 @@ class FacilitiesController < ApplicationController
     end
     if @facility.update_attributes(facility_params)
       flash[:notice] = "「#{@facility.facility_name}」の施設情報を更新できました。"
-      redirect_to facilities_url
+      redirect_to @facility
     else
       render :edit
     end
@@ -39,6 +40,7 @@ class FacilitiesController < ApplicationController
     if params[:search].present?
       @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
+    @info_top = Information.find_by(status: "head")
   end
 
   def change_admin
@@ -114,6 +116,12 @@ class FacilitiesController < ApplicationController
 
     private
 
+      def index_access_limits
+        until current_facility.admin?
+          redirect_to :root and return
+        end
+      end
+
       def set_facility
         @facility = Facility.find(params[:id])
       end
@@ -127,7 +135,7 @@ class FacilitiesController < ApplicationController
       end
 
       def facility_params
-        params.require(:facility).permit(:facility_name, :email, :password,:password_confirmation)
+        params.require(:facility).permit(:image, :facility_name, :email, :password,:password_confirmation)
       end
 
       def admin_params

@@ -1,4 +1,4 @@
-<article class="panel is-success">
+<article class="panel is-success" style="min-height: 70vh;">
   <div class="level-info">
     <nav class="level">
       <!-- Left side -->
@@ -72,22 +72,16 @@
 
   <div id="Aud" class="content-tab" style="display:none">
     <div class="has-text-centered">
-      <div class="info-section">
-        <div class="card" id="info-card">
-          <div class="card-content">
-            <div class="content" id="info-content">
-              <p><%= l( @info_top.created_at, format: :hyphen) %></p>
-              <p class="has-text-weight-bold">
-                <%= @info_top.title %>
-              </p>
-              <%= @info_top.news.truncate(30) %>
-            </div>
+      <div class="columns is-multiline has-text-left" style="justify-content: center;">
+        <div class="show-info-container">
+          <hr>
+          <h1 class="show-info-title has-text-weight-bold is-size-5"><%= @info_top.title %></h1>
+          <hr>
+          <div>
+            <span class="show-info-sp"><i class="fa fa-calendar-alt"></i><%= l( @info_top.created_at, format: :dot) %></span><br>
+            <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+            <hr>
           </div>
-          <footer class="card-footer">
-            <div class="card-footer-item">
-              <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
-            </div>
-          </footer>
         </div>
       </div>
     </div>
@@ -95,7 +89,6 @@
 </article>
 
 <%= render 'new' %>
-<%= render 'edit' , { information: @info_top } %>
 
 <script>
   function openTab(evt, tabName) {
