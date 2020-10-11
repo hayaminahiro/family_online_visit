@@ -19,6 +19,7 @@
       <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
         <thead>
           <tr>
+            <th>画像</th>
             <th>施設名</th>
             <th>メールアドレス</th>
             <th>登録ユーザー数</th>
@@ -28,6 +29,13 @@
         </thead>
         <tbody>
           <tr>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <% if @facility.image? %>
+                  <%= image_tag @facility.image.url, :size => '150x150' %>
+                <% end %>
+              </div>
+            </td>
             <td class="is-vcentered">
               <div class="has-text-weight-semibold is-size-5">
                 <%= @facility.facility_name %>
