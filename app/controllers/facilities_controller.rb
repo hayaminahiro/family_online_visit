@@ -40,6 +40,7 @@ class FacilitiesController < ApplicationController
     if params[:search].present?
       @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
+    @info_top = Information.find_by(status: "head")
   end
 
   def change_admin
