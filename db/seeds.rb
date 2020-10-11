@@ -84,7 +84,9 @@ end
   User.create!(
     name: name,
     email: email,
-    password: password
+    password: password,
+    address: "大阪府",
+    phone: "080222333"
   )
 end
 

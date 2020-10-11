@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
 
+  resources :signup do
+    collection do
+      get 'step1'
+      get 'step2' # ここで、入力が終了
+      get 'step3'
+    end
+  end
+
   devise_for :facilities, controllers: {
       sessions:      'facilities/sessions',
       passwords:     'facilities/passwords',
