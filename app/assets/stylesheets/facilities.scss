@@ -21,7 +21,8 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 }
 
 .search-img {
-  background-image: url(/assets/remember.jpg);
+  // S3のオブジェクトURLで表示
+  background-image: url(https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/facility/image/4/remember.jpg);
   height: 400px;
   margin: 0 calc(50% - 50vw);
   background-size: cover;
@@ -466,6 +467,59 @@ div.under-line {
   color: #FFF;
 }
 
+.facility-photo {
+  float: right;
+  margin-top: 30px;
+}
+
+.image_input_btn {
+  display: block;
+  position: absolute;
+  background: powderblue;;
+  width: 120px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 12px;
+  border-radius: 5px;
+  padding: 1px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.image_input_comment {
+  display: block;
+  position: absolute;
+  background: white;
+  width: 282px;
+  height: 5px;
+  margin-top: -120px;
+  margin-left: 12px;
+  border-radius: 5px;
+  padding: 1px;
+  color: #DEDEDE;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.image_uploading {
+  display: flex;
+  padding: 10px 0 0 20px;
+}
+
+input#facility_image {
+  color: #ccc;
+  height: 200px;
+  margin: 30px 0 20px;
+  border-style: dashed;
+  border-width: 2px;
+  line-height: 200px;
+  text-align: center;
+  cursor: pointer;
+}
 ///タブ（お知らせ）
 .tab-information  {
   display: inline-block;

@@ -1,18 +1,27 @@
-<body class="image-layout">
-  <section class="hero login-hero-size">
-    <div class="container">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <div class="signup-title">
-              <strong class="new-title">施設情報編集</strong>
-            </div>
+<section class="hero login-hero-size", style="background: white;">
+  <div class="container">
+    <article class="media">
+      <div class="media-content">
+        <div class="content has-text-centered">
+          <div class="signup-title">
+            <strong class="new-title">施設情報編集</strong>
           </div>
-          <div class="button-position">
-            <div class="columns is-centered">
-              <div class="column is-6 top-btn-position">
-                <%= form_with model: @facility, local: true, method: :patch do |f| %>
+        </div>
+        <div class="button-position">
+          <div class="columns is-centered">
+            <div class="column is-6 top-btn-position">
+              <%= form_with model: @facility, local: true, method: :patch do |f| %>
                 <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
+                <div class="field">
+                  <div class="facility-photo">
+                    <% if @facility.image? %>
+                      <%= image_tag @facility.image.url, :size => '120x120' %>
+                    <% end %>
+                  </div>
+                  <%= f.label :image, "画像を選択", class: "image_input_btn" %>
+                  <%= f.file_field :image, value: "upload", class: "image_uploading" %>
+                  <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
+                </div>
 
                 <div class="field">
                   <%= f.label :facility_name,  class: "label" %><br />
@@ -37,17 +46,39 @@
                 <div class="actions">
                   <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
                 </div>
-                <% end %>
-
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column">
-        </div>
+      </div>
+    </article>
+    <div class="columns is-centered">
+      <div class="column">
       </div>
     </div>
-  </section>
-</body>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded',() => {
+
+    let uploadArea = document.getElementById('uploadArea');
+
+    uploadArea.addEventListener("dragover",(event) => {
+      event.preventDefault();
+      event.target.classList.add('drag');
+    });
+
+    uploadArea.addEventListener("dragleave",(event) => {
+      event.target.classList.remove('drag');
+    });
+
+    // 追加のdropイベント
+    uploadArea.addEventListener("drop",(event) => {
+      event.preventDefault();
+      let input = document.querySelectorAll('input[name="facility[image]"]');
+      input[0].files = event.dataTransfer.files; //取得したinput[type=file]にDropしたファイルを突っ込む
+    });
+
+  });
+</script>
