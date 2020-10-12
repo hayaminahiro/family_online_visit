@@ -24,7 +24,7 @@
                   <%= f.file_field :image, value: "upload", class: "image_uploading" %>
                   <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
                 </div>
-
+                <p><%= f.check_box :remove_image %>現在使用中の画像を削除してデフォルト画像に戻す</p>
                 <div class="field">
                   <%= f.label :facility_name,  class: "label" %><br />
                   <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
