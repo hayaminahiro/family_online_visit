@@ -14,7 +14,11 @@
                 <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
                 <div class="field">
                   <div class="facility-photo">
-                    <%= image_tag @facility.image.url, id: :img_prev, :size => '200x200' if @facility.image? %>
+                    <%  if @facility.image? %>
+                      <%= image_tag @facility.image.url, id: :img_prev, :size => '200x200' %>
+                    <% else %>
+                      <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '200x200' %>
+                    <% end %>
                   </div>
                   <%= f.label :image, "画像を選択", class: "image_input_btn" %>
                   <%= f.file_field :image, value: "upload", class: "image_uploading" %>
