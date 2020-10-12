@@ -14,9 +14,7 @@
                 <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
                 <div class="field">
                   <div class="facility-photo">
-                    <% if @facility.image? %>
-                      <%= image_tag @facility.image.url, :size => '120x120' %>
-                    <% end %>
+                    <%= image_tag @facility.image.url, id: :img_prev, :size => '200x200' if @facility.image? %>
                   </div>
                   <%= f.label :image, "画像を選択", class: "image_input_btn" %>
                   <%= f.file_field :image, value: "upload", class: "image_uploading" %>
@@ -80,5 +78,22 @@
       input[0].files = event.dataTransfer.files; //取得したinput[type=file]にDropしたファイルを突っ込む
     });
 
+  });
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".image_uploading").change(function(){
+      readURL(this);
+    });
   });
 </script>
