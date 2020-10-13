@@ -1,0 +1,21 @@
+<header class="modal-card-head" style="background-color: #48D1CC;">
+    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3"><%= modal_title(content) %></p>
+    <button class="delete js-content-form--close-button"></button>
+  </header>
+  <section class="modal-card-body">
+    <div class="field">
+      <%= render partial: 'shared/error_messages', locals: { obj: content } %>
+      <div class="form-group col-sm-5">
+        <%= f.label :name, class: "label is-size-4 has-text-weight-normal", id: "resident-modal-form" %>
+        <%= f.text_field :name, :placeholder => " \uf304 名前を入力", class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
+        <%= f.label :charge_worker, class: "label is-size-4 has-text-weight-normal", id: "resident-modal-form" %>
+        <%= f.text_field :charge_worker, :placeholder => " \uf4c4 担当職員を入力", class: "fa input is-link is-medium is-rounded" %>
+      </div><br>
+    </div>
+    <div class="has-text-centered">
+      <%= f.submit content.id.present? ? "編集する" : "登録する", class:"fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
+      <button type="button" class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold js-content-form--close-button" aria-label="close" id="close">
+          キャンセル
+      </button>
+    </div>
+  </section>
