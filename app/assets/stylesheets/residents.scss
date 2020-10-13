@@ -10,8 +10,15 @@
   // justify-content: flex-end;
   margin-bottom: 10px;
 }
-.head-button{
-  margin-right: 30px;
+.resident--create-button{
+  padding-top: 14px!important;
+  margin-left: 8px;
+}
+.resident--update-button{
+  padding-top: 10px!important;
+}
+#resident-modal-form{
+  margin-left: 20px;
 }
 .resident-title{
   background-color: rgb( 117, 150, 224 );
