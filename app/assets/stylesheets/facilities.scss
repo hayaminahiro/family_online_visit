@@ -77,7 +77,6 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   margin-bottom: 150px;
 }
 
-
 .card-position {
   margin-top: 30px;
 }
@@ -93,6 +92,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
     display: none;
   }
 }
+
 .facilities-used-label span {
   color: #333; /* 文字色を黒に */
   font-size: 14px; /* 文字サイズを14pxに */
@@ -100,6 +100,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
   padding: 5px 20px; /* 上下左右に余白をトル */
 }
+
 .facilities-used-label input:checked + span {
   color: #FFF; /* 文字色を白に */
   background: #f07700; /* 背景色を薄いオレンジに */
@@ -401,9 +402,11 @@ div.under-line {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-resident::before {
   left: 0;
 }
+
 .btn-tab-resident::after {
   right: 0;
 }
@@ -450,9 +453,11 @@ div.under-line {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-user::before {
   left: 0;
 }
+
 .btn-tab-user::after {
   right: 0;
 }
@@ -468,18 +473,16 @@ div.under-line {
 }
 
 .facility-photo {
-  float: right;
-  margin-top: 30px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .image_input_btn {
-  display: block;
   position: absolute;
   background: powderblue;;
   width: 120px;
   height: 30px;
-  margin-top: 10px;
-  margin-left: 12px;
+  margin: 420px 0 0 134px;
   border-radius: 5px;
   padding: 1px;
   color: white;
@@ -489,13 +492,9 @@ div.under-line {
 }
 
 .image_input_comment {
-  display: block;
   position: absolute;
-  background: white;
-  width: 282px;
-  height: 5px;
-  margin-top: -120px;
-  margin-left: 12px;
+  text-align: center;
+  margin-top: 120px;
   border-radius: 5px;
   padding: 1px;
   color: #DEDEDE;
@@ -507,19 +506,22 @@ div.under-line {
 
 .image_uploading {
   display: flex;
-  padding: 10px 0 0 20px;
+  float: left;
+  padding: 10px 0 0 10px;
 }
 
 input#facility_image {
   color: #ccc;
-  height: 200px;
-  margin: 30px 0 20px;
+  height: 250px;
+  width: 100%;
+  margin: 10px 0 20px 0;
   border-style: dashed;
   border-width: 2px;
   line-height: 200px;
   text-align: center;
   cursor: pointer;
 }
+
 ///タブ（お知らせ）
 .tab-information  {
   display: inline-block;
@@ -559,9 +561,11 @@ input#facility_image {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-information::before {
   left: 0;
 }
+
 .btn-tab-information::after {
   right: 0;
 }
@@ -692,4 +696,68 @@ input#facility_image {
 //登録申請中のボタン
 #disabled-btn {
   pointer-events: none;
+}
+
+#input-field {
+  width: 80% !important;
+  margin-left: 50px;
+}
+
+#btn-field {
+  width: 80% !important;
+  margin-left: 40px;
+  margin-top: 50px;
+}
+
+input#img_delete[type="checkbox"] {
+  display: none;
+}
+
+input#img_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#img_delete[type="checkbox"] + label.check_position:last-child { margin-bottom: 0; 
+}
+
+input#img_delete[type="checkbox"] + label.check_position:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input#img_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.img_update {
+  margin-top: 350px;
+}
+
+#img_delete {
+  font-weight: bold;
 }

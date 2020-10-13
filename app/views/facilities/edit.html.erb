@@ -1,91 +1,77 @@
-<section class="hero login-hero-size", style="background: white;">
-  <div class="container">
-    <article class="media">
-      <div class="media-content">
-        <div class="content has-text-centered">
-          <div class="signup-title">
-            <strong class="new-title">施設情報編集</strong>
-          </div>
-        </div>
-        <div class="button-position">
-          <div class="columns is-centered">
-            <div class="column is-6 top-btn-position">
-              <%= form_with model: @facility, local: true, method: :patch do |f| %>
-                <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
-                <div class="field">
-                  <div class="facility-photo">
-                    <%  if @facility.image? %>
-                      <%= image_tag @facility.image.url, id: :img_prev, :size => '200x200' %>
-                    <% else %>
-                      <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '200x200' %>
-                    <% end %>
-                  </div>
-                  <%= f.label :image, "画像を選択", class: "image_input_btn" %>
-                  <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-                  <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
-                </div>
-                <p><%= f.check_box :remove_image %>現在使用中の画像を削除してデフォルト画像に戻す</p>
-                <div class="field">
-                  <%= f.label :facility_name,  class: "label" %><br />
-                  <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
-                </div>
+<div class="content has-text-centered">
+  <div class="cp_tab" style="padding-top: 50px;">
+    <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+    <label for="tab1_1">イメージ画像の設定</label>
+    <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+    <label for="tab1_2">基本情報の設定</label>
+    <div class="cp_tabpanels">
 
-                <div class="field">
-                  <%= f.label :email, class: "label" %><br />
-                  <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
-                </div>
-
-                <div class="field">
-                  <%= f.label :password, class: "label" %><br />
-                  <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
-                </div>
-
-                <div class="field">
-                  <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-                  <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
-                </div>
-
-                <div class="actions">
-                  <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-                </div>
-              <% end %>
-            </div>
+      <div id="first_tab01" class="cp_tabpanel" style="padding-top: 20px;">
+        <div class="columns is-centered">
+          <div class="column is-6 top-btn-position is-centered">
+            <%= form_with model: @facility, local: true, method: :patch do |f| %>
+              <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
+              <div class="facility-photo">
+                <%  if @facility.image? %>
+                  <%= image_tag @facility.image.url, id: :img_prev, :size => '800x200' %>
+                <% else %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x200' %>
+                <% end %>
+              </div>
+              <div id="img_confirm">
+                <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
+                <%= f.file_field :image, value: "upload", class: "image_uploading" %>
+                <%= f.check_box :remove_image, id: "img_delete" %>
+                <label for="img_delete" class="check_position has-text-weight-bold" style="position:absolute; margin-top: 310px;">使用中の画像を削除してデフォルト画像に戻す。</label>
+              </div>
+              <div class="img_update">
+                <%= f.submit "イメージ画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
-    </article>
-    <div class="columns is-centered">
-      <div class="column">
+
+      <div id="second_tab01" class="cp_tabpanel" style="padding-top: 20px;">
+        <div class="columns is-centered">
+          <div class="column is-6 top-btn-position is-centered">
+            <%= form_with model: @facility, local: true, method: :patch do |f| %>
+              <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
+
+              <div class="field" id="input-field">
+                <%= f.label :facility_name,  class: "label" %><br />
+                <%= f.text_field :facility_name, :placeholder => "\uf304 お名前を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
+              </div>
+
+              <div class="field" id="input-field">
+                <%= f.label :email, class: "label" %><br />
+                <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
+              </div>
+
+              <div class="field" id="input-field">
+                <%= f.label :password, class: "label" %><br />
+                <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
+              </div>
+
+              <div class="field" id="input-field">
+                <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
+                <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
+              </div>
+
+              <div class="actions" id="btn-field">
+                <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+              </div>
+
+            <% end %>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
-</section>
+</div>
 
 <script>
-  document.addEventListener('DOMContentLoaded',() => {
-
-    let uploadArea = document.getElementById('uploadArea');
-
-    uploadArea.addEventListener("dragover",(event) => {
-      event.preventDefault();
-      event.target.classList.add('drag');
-    });
-
-    uploadArea.addEventListener("dragleave",(event) => {
-      event.target.classList.remove('drag');
-    });
-
-    // 追加のdropイベント
-    uploadArea.addEventListener("drop",(event) => {
-      event.preventDefault();
-      let input = document.querySelectorAll('input[name="facility[image]"]');
-      input[0].files = event.dataTransfer.files; //取得したinput[type=file]にDropしたファイルを突っ込む
-    });
-
-  });
-</script>
-
-<script type="text/javascript">
   $(function() {
     function readURL(input) {
       if (input.files && input.files[0]) {
