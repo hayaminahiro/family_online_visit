@@ -1,4 +1,3 @@
-<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
