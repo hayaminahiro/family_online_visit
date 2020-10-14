@@ -234,7 +234,7 @@ div.under-line {
 #vertical_tab_nav li{
   border-bottom: 1px solid #000;
   margin-bottom: 1px;
-  text-align: left;
+  text-align: center;
   padding: 0px;
 }
 #vertical_tab_nav li:last-child{
@@ -264,6 +264,12 @@ div.under-line {
 .home-default-image {
   height: 300px;
   width: 100%;
+}
+
+.hero-1 img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .image-outline {
@@ -315,7 +321,7 @@ div.under-line {
 
 .facility-home-title::after {
   content: '';
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.7);
   position: absolute;
   left: 0;
   right: 0;

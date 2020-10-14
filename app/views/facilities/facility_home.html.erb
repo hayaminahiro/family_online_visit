@@ -1,6 +1,15 @@
-<section class="hero">
+<section class="hero-1">
   <div class="facility-home-image">
-    <%= image_tag 'facility_image.jpg', class: "home-default-image" %>
+    <% month = Date.today.month %>
+    <% if month.in?([ 12, 1, 2 ]) %>
+      <%= image_tag 'winter.jpg', class: "home-default-image"%>
+    <% elsif month.in?([ 3, 4, 5 ]) %>
+      <%= image_tag 'spring.jpg', class: "home-default-image" %>
+    <% elsif month.in?([ 6, 7, 8 ]) %>
+      <%= image_tag 'summer.jpg', class: "home-default-image"%>
+    <% elsif month.in?([ 9, 10, 11 ]) %>
+      <%= image_tag 'autumn.jpg', class: "home-default-image"%>
+    <% end %>  
     <div class="image-outline">
       <%= image_tag 'facility_default.png', class: "facility-default-image" %>
     </div> 
@@ -17,10 +26,16 @@
   </div>
 </section>
 
-<div class="columns .is-variable is-0">
+<div class="columns .is-variable is-0" style="margin-right: 0px;">
   <div class="column is-2" style="padding-right: 0px; padding-top: 0px; margin-top:12px;">
     <section id="vertical_tab_nav">
       <ul>
+        <li>
+          <%= link_to facility_home_facility_path(id: current_facility) do %>
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>&nbsp;
+          <% end %>
         <li>
           <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility) %>
         </li>
@@ -39,6 +54,7 @@
       </ul>
     </section>
   </div>
+
   <div class="column is-10" style="background-color: #A9A9A9; padding-top: 0px; margin-top: 12px;">
     <article class="panel is-primary" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
@@ -50,7 +66,7 @@
         <p class="panel-tabs">
           <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
           <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">お知らせ</a>
+          <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">NEWS</a>
         </p>
 
         <div id="Web" class="content-tab" >
@@ -89,16 +105,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tab-information">
-              <%= link_to facility_informations_path(facility_id: current_facility), class: "btn-tab-information" do %>
-                  <span class="icon">
-                    <i class="fas fa-info-circle"></i>
-                  </span>&nbsp;
-                  <span>
-                    お知らせ一覧
-                  </span>
-              <% end %>
             </div>
           </div>
         </div>
