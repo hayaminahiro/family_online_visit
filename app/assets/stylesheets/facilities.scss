@@ -296,7 +296,42 @@ div.under-line {
   -ms-transform: translateX(-50%);
 }
 
+//施設ホーム画面（タブのパネル）
+#facility-contents {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  background-color: #fff;
+}
 
+//施設ホーム画面（タイトル・施設情報）
+.facility-home-title {
+  position: relative;
+  background-size: cover;
+  background-position: 50% 60%;
+  background-image: url('/assets/user_facility_home_application.jpg');
+  margin-top: 100px;
+}
+
+.facility-home-title::after {
+  content: '';
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.facility-home-title h1 {
+  margin: 0;
+  padding: .2em;
+  font-size:3.0rem;
+  color: #FFF;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
 
 .inline-block_home {
   display: inline-block;

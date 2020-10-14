@@ -7,14 +7,18 @@
   </div>
 </section>
 
-<section class="hero">
+<section class="facility-home-title">
   <div class="hero-body">
-    <div class="about-title is-size-3 has-text-centered">施設情報</div>
+    <div class="container">
+      <h1 class="title has-text-centered has-text-white is-size-1">
+        <%= current_facility.facility_name %>
+      </h1>
+    </div>
   </div>
 </section>
 
 <div class="columns .is-variable is-0">
-  <div class="column is-2">
+  <div class="column is-2" style="padding-right: 0px; padding-top: 0px; margin-top:12px;">
     <section id="vertical_tab_nav">
       <ul>
         <li>
@@ -35,19 +39,17 @@
       </ul>
     </section>
   </div>
-  <div class="column is-10">
-    <article class="panel is-primary" id="panel-content">
-      <nav class="panel">
+  <div class="column is-10" style="background-color: #A9A9A9; padding-top: 0px; margin-top: 12px;">
+    <article class="panel is-primary" id="facility-contents">
+      <nav class="panel" style="background-color: #fff;">
         <p class="panel-heading has-text-centered" style="font-size: 30px;">
-          <%= current_facility.facility_name %>
+          施設情報
         </p>
         <div class="panel-block">
         </div>
         <p class="panel-tabs">
           <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
           <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')"><i class="far fa-user"></i>&nbsp;新規ユーザー</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Res')"><i class="fas fa-user-friends"></i>&nbsp;利用者</a>
           <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">お知らせ</a>
         </p>
 
@@ -64,65 +66,6 @@
         <div id="Aud" class="content-tab" style="display:none">
           <div class="columns">
             <div class="column is-offset-1 is-10 is-offset-1 table-container">
-            </div>
-          </div>
-        </div>
-
-        <div id="Pic" class="content-tab" style="display:none">
-          <div class="columns">
-            <div class="column is-offset-1 is-10 is-offset-1 table-container">
-              <table class="table is-hoverable is-fullwidth is-striped is-narrow" id="new-family-table">
-                <thead>
-                  <tr>
-                    <th>名前</th>
-                    <th>住所</th>
-                    <th>TEL</th>
-                    <th>編集</th>
-                    <th>削除</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="has-text-centered">
-                <%= link_to facility_users_path(facility_id: current_facility), class: "btn-tab-user" do %>
-                  <span class="icon">
-                    <i class="far fa-user"></i>
-                  </span>&nbsp;
-                  <span>
-                    ご家族一覧
-                  </span>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="Res" class="content-tab" style="display:none">
-          <div class="has-text-centered">
-            <div class="tab-resident">
-              <img src="/static_pages1.jpg" width="400" height="300">
-            </div>
-            <div class="tab-resident">
-              <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-                施設利用者の新規登録、編集、退所する場合は<br>
-                こちらの<font color="#7596E0">利用者一覧</font>を押してください。
-              </p><br>
-              <%= link_to facility_residents_path(facility_id: current_facility), class: "btn-tab-resident" do %>
-                <span class="icon">
-                  <i class="fas fa-user-friends"></i>
-                </span>&nbsp;
-                <span>
-                  利用者一覧
-                </span>
-              <% end %>
             </div>
           </div>
         </div>
@@ -199,145 +142,6 @@
   </div>
 </div>-->
 
-<div class="about-title is-size-3 has-text-centered">施設情報</div>
-<article class="panel is-primary" id="panel-content">
-  <nav class="panel">
-    <p class="panel-heading has-text-centered" style="font-size: 30px;">
-      <%= current_facility.facility_name %>
-      <% if current_facility.facility_admin == true %>
-        <span class="has-text-right is-size-5">【&nbsp;<i class="far fa-user-circle"></i>&nbsp;管理者&nbsp;】</span>
-      <% elsif current_facility.facility_admin == false %>
-        <span class="has-text-right is-size-5">【&nbsp;<i class="fas fa-users"></i>&nbsp;一般&nbsp;】</span>
-      <% end %>
-    </p>
-    <div class="panel-block">
-    </div>
-    <p class="panel-tabs">
-      <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
-      <% if current_facility.facility_admin == true %>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
-        <a class="panel-tab is-size-5" onclick="openTab(event,'Pic')"><i class="far fa-user"></i>&nbsp;新規ユーザー</a>
-      <% end %>
-      <a class="panel-tab is-size-5" onclick="openTab(event,'Res')"><i class="fas fa-user-friends"></i>&nbsp;利用者</a>
-      <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">お知らせ</a>
-      <a class="panel-tab is-size-5" onclick="openTab(event,'Inq')">お問い合わせ</a>
-    </p>
-    <div id="Web" class="content-tab" >
-      <div class="has-text-centered" id="calendar-reservations">
-        <div class="is-centered">
-          <%= month_calendar(attribute: :calendar_day, events: @calendar_reservations) do |date, reservations| %>
-            <%= l(date, format: :short) %>
-          <% end %>
-        </div><br>
-      </div>
-    </div>
-    <% if current_facility.facility_admin == true %>
-    <div id="Aud" class="content-tab" style="display:none">
-      <div class="columns">
-        <div class="column is-offset-1 is-10 is-offset-1 table-container">
-        </div>
-      </div>
-    </div>
-    <div id="Pic" class="content-tab" style="display:none">
-      <div class="columns">
-        <div class="column is-offset-1 is-10 is-offset-1 table-container">
-          <table class="table is-hoverable is-fullwidth is-striped is-narrow" id="new-family-table">
-            <thead>
-              <tr>
-                <th>名前</th>
-                <th>住所</th>
-                <th>TEL</th>
-                <th>編集</th>
-                <th>削除</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="has-text-centered">
-            <%= link_to facility_users_path(facility_id: current_facility), class: "btn-tab-user" do %>
-              <span class="icon">
-                <i class="far fa-user"></i>
-              </span>&nbsp;
-              <span>
-                ご家族一覧
-              </span>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <div id="Res" class="content-tab" style="display:none">
-      <div class="has-text-centered">
-        <div class="tab-resident">
-          <img src="/static_pages1.jpg" width="400" height="300">
-        </div>
-        <div class="tab-resident">
-          <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-            施設利用者の新規登録、編集、退所する場合は<br>
-            こちらの<font color="#7596E0">利用者一覧</font>を押してください。
-          </p><br>
-          <%= link_to facility_residents_path(facility_id: current_facility), class: "btn-tab-resident" do %>
-            <span class="icon">
-              <i class="fas fa-user-friends"></i>
-            </span>&nbsp;
-            <span>
-              利用者一覧
-            </span>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div id="Mov" class="content-tab" style="display:none">
-      <div class="has-text-centered">
-        <div class="tab-information">
-          <div class="columns is-multiline has-text-left">
-            <div class="show-info-container">
-              <hr>
-              <h1 class="show-info-title"><%= @info_top.title %></h1>
-              <hr>
-              <div>
-                <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
-                <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-                <hr>
-                <% if current_facility.admin? %>
-                  <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
-                  <%= render 'static_pages/edit_info' , { information: @info_top } %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tab-information">
-        <% unless current_facility.admin? %>
-          <%= link_to facility_informations_path(facility_id: current_facility), class: "btn-tab-information" do %>
-              <span class="icon">
-                <i class="fas fa-info-circle"></i>
-              </span>&nbsp;
-              <span>
-                お知らせ一覧
-              </span>
-            <% end %>
-        <% end %>
-        </div>
-      </div>
-    </div>
-    <div id="Inq" class="content-tab" style="display:none">
-      <div class="has-text-centered is-size-4">
-        ユーザーからの問い合わせが表示される<br>
-        今後実装予定
-      </div><br>
-    </div>
-  </nav>
-</article>
 
 <script>
   function openTab(evt, tabName) {
