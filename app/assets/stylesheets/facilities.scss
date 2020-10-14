@@ -5,6 +5,7 @@
 .delete-message {
   font-size: 20px;
   color: #2e2f30;
+  text-align: center;
 }
 
 input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
@@ -707,6 +708,11 @@ input#facility_image {
   width: 80% !important;
   margin-left: 40px;
   margin-top: 50px;
+}
+
+#btn-delete-field {
+  width: 80% !important;
+  margin-left: 40px;
 }
 
 input#img_delete[type="checkbox"] {

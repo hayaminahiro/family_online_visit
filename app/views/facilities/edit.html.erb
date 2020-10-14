@@ -58,6 +58,11 @@
                 <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
               </div>
 
+              <div class="field" id="input-field">
+                <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
+                <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+              </div>
+
               <div class="actions" id="btn-field">
                 <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
               </div>
