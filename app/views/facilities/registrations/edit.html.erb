@@ -12,7 +12,7 @@
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "facilities/shared/error_messages", resource: resource %>
               <div class="facility-photo">
-                <%  if @facility.image? %>
+                <% if @facility.image? %>
                   <%= image_tag @facility.image.url, id: :img_prev, :size => '800x200' %>
                 <% else %>
                   <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x200' %>

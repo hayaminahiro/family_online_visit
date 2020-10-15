@@ -36,10 +36,11 @@
       <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
         <thead>
           <tr>
+            <th>画像</th>
             <th>施設名</th>
             <th>メールアドレス</th>
             <th>登録ユーザー数</th>
-            <th>施設情報</th>
+            <th>施設ホーム</th>
             <th>編集</th>
             <th>削除</th>
           </tr>
@@ -47,6 +48,15 @@
         <tbody>
           <% @facilities.each do |f| %>
           <tr>
+            <td class="is-vcentered">
+              <div class="index-img-center">
+                <% if f.image? %>
+                  <%= image_tag f.image.url, id: :img_prev, :size => '100x100' %>
+                <% else %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '100x100' %>
+                <% end %>
+              </div>
+            </td>
             <td class="is-vcentered">
               <div class="has-text-weight-semibold is-size-5">
                 <%= f.facility_name %>
@@ -62,17 +72,17 @@
                 <%= f.users.count %>
               </div>
             </td>
-            <td>
-              <%= link_to facility_path(f), class: "button is-link is-medium" do %>
+            <td class="is-vcentered">
+              <%= link_to facility_home_facility_path(f), class: "button is-link is-medium" do %>
               <span><i class="fas fa-laptop-house"></i></span>
               <% end %>
             </td>
-            <td>
+            <td class="is-vcentered">
               <%= link_to edit_facility_path(f), class: "button is-success is-medium" do %>
               <span><i class="fas fa-user-edit"></i></span>
               <% end %>
             </td>
-            <td>
+            <td class="is-vcentered">
               <%= link_to f, method: :delete, data: { confirm: "「#{f.facility_name}」を削除してよろしいですか?" },
                 class: "button is-danger is-medium" do %>
               <span><i class="far fa-trash-alt"></i></span>

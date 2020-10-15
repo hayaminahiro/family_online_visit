@@ -781,3 +781,8 @@ input#img_delete[type="checkbox"]:checked + label.check_position:before {
 .no_display {
   display: none;
 }
+
+.index-img-center {
+  display: flex;
+  align-items: center;
+}

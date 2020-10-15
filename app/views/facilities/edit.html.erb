@@ -12,7 +12,7 @@
             <%= form_with model: @facility, local: true, method: :patch do |f| %>
               <%= render partial: 'shared/error_messages', locals: { obj: @facility } %>
               <div class="facility-photo">
-                <%  if @facility.image? %>
+                <% if @facility.image? %>
                   <%= image_tag @facility.image.url, id: :img_prev, :size => '800x200' %>
                 <% else %>
                   <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x200' %>
