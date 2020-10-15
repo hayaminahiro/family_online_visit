@@ -33,9 +33,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # サムネイル画像/使い方の例 <%= image_tag @facility.image.url(:thumb) %>
   # サイズが大きいとエラーになる上、画質も落ちるので今回は未使用（size=>で直接指定）
-  version :thumb do
-    process resize_to_fit: [100, 100]
-  end
+  # version :thumb do
+  #   process resize_to_fit: [100, 100]
+  # end
 
   def filename
     original_filename if original_filename
