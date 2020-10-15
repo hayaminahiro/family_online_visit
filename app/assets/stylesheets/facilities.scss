@@ -225,7 +225,8 @@ div.under-line {
   height: auto;
   min-height: 100%;
   color: white;
-  background-color:#A9A9A9;;
+  background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
+  background: -moz-linear-gradient(top,#4E6F8B,#0A203F);
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: cover;

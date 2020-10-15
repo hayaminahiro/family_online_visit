@@ -21,7 +21,7 @@
 <section class="facility-home-title">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title has-text-right has-text-white is-size-1" id="title-scroll">
+      <h1 class="title has-text-right has-text-white is-size-2" id="title-scroll">
         <%= current_facility.facility_name %>
       </h1>
     </div>
@@ -57,10 +57,10 @@
     </section>
   </div>
 
-  <div class="column is-10" style="background-color: #A9A9A9; padding-top: 0px; margin-top: 12px;">
-    <article class="panel is-info" id="facility-contents">
+  <div class="column is-10" style="background-color: #537895; padding-top: 0px; margin-top: 12px;">
+    <article class="panel is-success" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
-        <p class="panel-heading has-text-centered" style="font-size: 30px;">
+        <p class="panel-heading has-text-centered" style="font-size: 30px; background: -webkit-linear-gradient(top,goldenrod,darkgoldenrod);">
           施設情報
         </p>
         <div class="panel-block">
@@ -84,6 +84,29 @@
         <div id="Aud" class="content-tab" style="display:none">
           <div class="columns">
             <div class="column is-offset-1 is-10 is-offset-1 table-container">
+              <table class="table is-striped is-hoverable is-fullwidth" style="margin-top: 50px;">
+                <thead>
+                  <tr>
+                    <th>申請日</th>
+                    <th>申請者</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% if @request_residents.present? %>
+                  <% @request_residents.each do |request_resident| %>
+                  <% @request_user = User.find(request_resident.user_id) %>
+                    <tr>
+                      <td><%= request_resident.created_at %></td>
+                      <td><%= @request_user.name %></td>
+                      <td>
+                        <%= link_to "申請者登録画面", user_facility_new_connection_path(current_facility, @facility), class: "button is-primary is-medium has-text-weight-bold" %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>  
+                <tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -169,7 +192,7 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('#title-scroll', { delay: 100, distance: '100%', origin: 'left', duration: 1500, viewFactor: 0.5 });
+    ScrollReveal().reveal('#title-scroll', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#vertical_tab_nav li', { delay: 100, distance: '100%', origin: 'top', duration: 1500, viewFactor: 0.5 });
   });
 </script>
