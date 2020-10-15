@@ -62,11 +62,13 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
 
   #アカウント登録後のリダイレクト先
   def after_sign_up_path_for(resource)
-    facility_path(resource)
+    # facility_path(resource)
+    facility_home_facility_path(current_facility)
   end
 
   #アカウント編集後のリダイレクト先
   def after_update_path_for(resource)
-    facility_path(resource)
+    # facility_path(resource)
+    facility_home_facility_path(current_facility)
   end
 end
