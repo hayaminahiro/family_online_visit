@@ -1,3 +1,5 @@
+<ul class="facility-background">
+</ul>
 <section class="hero-1">
   <div class="facility-home-image">
     <% month = Date.today.month %>
@@ -19,7 +21,7 @@
 <section class="facility-home-title">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title has-text-centered has-text-white is-size-1">
+      <h1 class="title has-text-right has-text-white is-size-1" id="title-scroll">
         <%= current_facility.facility_name %>
       </h1>
     </div>
@@ -56,7 +58,7 @@
   </div>
 
   <div class="column is-10" style="background-color: #A9A9A9; padding-top: 0px; margin-top: 12px;">
-    <article class="panel is-primary" id="facility-contents">
+    <article class="panel is-info" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
         <p class="panel-heading has-text-centered" style="font-size: 30px;">
           施設情報
@@ -167,7 +169,7 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('.inline-block_home', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#title-scroll', { delay: 100, distance: '100%', origin: 'left', duration: 1500, viewFactor: 0.5 });
+    ScrollReveal().reveal('#vertical_tab_nav li', { delay: 100, distance: '100%', origin: 'top', duration: 1500, viewFactor: 0.5 });
   });
 </script>
