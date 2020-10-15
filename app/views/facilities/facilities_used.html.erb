@@ -39,8 +39,12 @@
                 <% @facilities.each do |fa| %>
                   <div class="card card-style" style="position: relative;">
                     <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="/assets/remember.jpg" class="card-radius">
+                      <figure class="image">
+                        <% if fa.image? %>
+                          <%= image_tag fa.image.url %>
+                        <% else %>
+                          <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg" %>
+                        <% end %>
                       </figure>
                     </div>
                     <div class="card-content">
@@ -121,8 +125,12 @@
                 <% current_user.facilities.each do |fa| %>
                   <div class="card card-style">
                     <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="/assets/remember.jpg" class="card-radius">
+                      <figure class="image">
+                        <% if fa.image? %>
+                          <%= image_tag fa.image.url %>
+                        <% else %>
+                          <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg" %>
+                        <% end %>
                       </figure>
                     </div>
                     <div class="card-content">
