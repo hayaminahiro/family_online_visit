@@ -777,3 +777,7 @@ input#img_delete[type="checkbox"]:checked + label.check_position:before {
   float: left;
   padding-bottom: 14px;;
 }
+
+.no_display {
+  display: none;
+}
