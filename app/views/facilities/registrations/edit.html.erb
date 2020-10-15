@@ -30,8 +30,6 @@
                 <%= f.check_box :remove_image, id: "img_delete" %>
                 <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
               </div>
-
-              
               <div>
                 <%= f.submit "イメージ画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
               </div>
@@ -46,7 +44,7 @@
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "facilities/shared/error_messages", resource: resource %>
               <div class="field" id="input-field">
-                <%= f.label :facility_name,  class: "label" %><br />
+                <%= f.label :facility_name, class: "label" %><br />
                 <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
               </div>
               <div class="field" id="input-field">
