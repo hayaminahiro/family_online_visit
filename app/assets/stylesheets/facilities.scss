@@ -764,6 +764,16 @@ input#img_delete[type="checkbox"]:checked + label.check_position:before {
   margin-top: 350px;
 }
 
+
 #img_delete {
   font-weight: bold;
+}
+
+.img_confirm {
+  padding-top: 20px;
+}
+
+#img_lavel {
+  float: left;
+  padding-bottom: 14px;;
 }

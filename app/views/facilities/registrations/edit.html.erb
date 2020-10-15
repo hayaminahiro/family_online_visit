@@ -21,15 +21,19 @@
               <div id="img_confirm">
                 <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
                 <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-                <%= f.check_box :remove_image, id: "img_delete" %>
-                <label for="img_delete" class="check_position has-text-weight-bold" style="position:absolute; margin-top: 310px;">使用中の画像を削除してデフォルト画像に戻す。</label>
               </div>
-              <div class="img_update">
-                <%= f.submit "イメージ画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-              </div>
-              <div class="field" id="input-field">
-                <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
+              <div class="field">
+                <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
                 <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+              </div>
+              <div class="img_confirm">
+                <%= f.check_box :remove_image, id: "img_delete" %>
+                <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+              </div>
+
+              
+              <div>
+                <%= f.submit "イメージ画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
               </div>
             <% end %>
           </div>
@@ -62,7 +66,7 @@
                 <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
               </div>
               <div class="actions" id="btn-field">
-                <%= f.submit "編集", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                <%= f.submit "基本情報を変更する", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
               </div>
             <% end %>
             <p class="delete-message has-text-weight-bold" style="padding-right: 70px;">本当に宜しいですか？</p>
