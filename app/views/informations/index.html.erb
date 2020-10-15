@@ -12,23 +12,23 @@
       <div class="level-right">
         <div class="level-item">
           <%= form_with(url: facility_informations_path(current_facility), method: :get, local: true) do |f| %>
-          <div class="field is-grouped is-grouped-right">
-            <div class="control has-icons-left">
-              <%= f.text_field :search, :placeholder => "タイトルを入力..", class: "input is-rounded" %>
-              <span class="icon is-left">
-                <i class="fas fa-search" aria-hidden="true"></i>
-              </span>
+            <div class="field is-grouped is-grouped-right">
+              <div class="control has-icons-left">
+                <%= f.text_field :search, :placeholder => "タイトルを入力..", class: "input is-rounded" %>
+                <span class="icon is-left">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="control">
+                <%= f.submit "\uf002検索", class: "fa button is-success is-outlined is-rounded" %>
+              </div>
             </div>
-            <div class="control">
-              <%= f.submit "\uf002検索", class: "fa button is-success is-outlined is-rounded" %>
-            </div>
-          </div>
           <% end %>
-            <button class="button is-success is-rounded new-info" id="new">
-              <span class="icon is-small">
-                <i class="fas fa-bell"> new</i>
-              </span>
+          <%= link_to new_facility_information_path(current_facility) do %>
+            <button class="button is-success is-rounded new-info">
+              <span class="icon is-small"><i class="fas fa-bell">new</i></span>
             </button>
+          <% end %>
         </div>
       </div>
     </nav>
@@ -46,7 +46,7 @@
             </div>
             <div class="card-content">
               <div class="content" id="info-content">
-                <p><%= l( information.created_at, format: :hyphen) %></p>
+                <p><%= l(information.created_at, format: :hyphen) %></p>
                 <p class="has-text-weight-bold">
                   <%= information.title %>
                 </p>
@@ -54,10 +54,13 @@
               </div>
             </div>
             <footer class="card-footer">
-              <div class="card-footer-item"><button type="button" class="button is-success is-light is-medium" id=<%= information.id %>><i class="fas fa-edit"></i></button>
-                <%= render "notice_edit", {information: information, information_id: information.title} %>
+              <div class="card-footer-item">
+                <%= link_to edit_facility_information_path(current_facility, information) do %>
+                  <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
+                <% end %>
               </div>
-              <div class="card-footer-item"><%= link_to facility_information_url(current_facility, information), method: :delete,
+              <div class="card-footer-item">
+                <%= link_to facility_information_path(current_facility, information), method: :delete,
                       data: { confirm: "#{information.title}のお知らせを削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
                   <i class="far fa-trash-alt"></i>
                 <% end %>
