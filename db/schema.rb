@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_121255) do
+ActiveRecord::Schema.define(version: 2020_10_16_115643) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_121255) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "facility_id"
+    t.string "image"
     t.index ["facility_id"], name: "index_information_on_facility_id"
   end
 

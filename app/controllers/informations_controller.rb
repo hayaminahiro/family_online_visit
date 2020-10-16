@@ -16,6 +16,10 @@ class InformationsController < ApplicationController
     @information = Information.find(params[:id])
   end
 
+  def new
+    @information = Information.new
+  end
+
   def create
     @information = Information.new(information_params)
     @information.facility_id = params[:facility_id].to_i
@@ -25,6 +29,10 @@ class InformationsController < ApplicationController
       flash[:alert] = "新規作成できませんでした。入力内容をご確認ください"
     end
     redirect_to facility_informations_url
+  end
+
+  def edit
+    @information = Information.find(params[:id])
   end
 
   def update
