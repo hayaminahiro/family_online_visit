@@ -122,6 +122,10 @@ ActiveRecord::Schema.define(version: 2020_10_06_121255) do
     t.string "uid"
     t.string "meta"
     t.string "token"
+    t.integer "postal_code"
+    t.string "prefecture_name"
+    t.string "address_city"
+    t.string "address_street"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
