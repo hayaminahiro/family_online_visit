@@ -5,4 +5,7 @@ class Information < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
   enum status: { others: 0, head: 1 }
+
+  # モデル | ImageUploaderクラスとimageカラムを紐づける
+  mount_uploader :image, ImageUploader
 end
