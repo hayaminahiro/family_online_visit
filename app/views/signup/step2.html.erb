@@ -1,6 +1,7 @@
-<body class="image-layout">
-  <section class="" >
-    <div class="container-fruid">
+<ul class="image-layout">
+</ul>
+  <section class="hero login-hero-size" >
+    <div class="container is-fluid">
       <article class="media">
         <div class="media-content">
           <div class="content has-text-centered">
@@ -27,35 +28,24 @@
                   <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>    
                 </div>
               </div>
-            </div>
+            </div>            
           </div>
             <div class="button-position">
               <div class="columns is-centered">
-                <div class="column is-6 top-btn-position">
-                <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
-                  <%= render "users/shared/error_messages", resource: @user %>
-
-                  <div class="field">
-                    <%= f.label :address, "あなたの住所", class: "label" %><br />
-                    <%= f.text_field :address, :placeholder => "\uf2b9 住所を入力してください", value: session[:address], autocomplete: "address", class: "fa input is-medium input-top", :size=>"100px" %>
-                  </div>
-
-                  <form>
+                <div class="column is-6 top-btn-position has-text-black">
+                <%= render "users/shared/error_messages", resource: @user %>
+                <form>
                     <div>
-                      <label for="zip">郵便番号：</label><br />
-                      <input id="zip" type="text" size="10" class="input" />
+                      <label style="font-size:20px;font-weight:bold;" for="zip">郵便番号</label><br />
+                      <input style="margin-top:20px;" id="zip" type="text" size="10" class="input is-medium" />
                       <input id="search" type="button" value="検索" class="button" />
-                    </div>
-                    
-   
-                    
+                    </div>                                      
                   </form>
+                <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
                   
-                  
-
+                                                      
                   <div class="field">
-                    <%= f.label :postal_code, '郵便番号', class: "label" %><br />
-                    <%= f.text_field :postal_code, autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
+                    <%= f.hidden_field :postal_code, id: "zipcode", autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
                   </div>
 
                   <div class="field">
@@ -69,7 +59,7 @@
                   </div>
 
                   <div class="field">
-                    <%= f.label :address_street, '番地', for: "address3", class: "label" %><br />
+                    <%= f.label :address_street, '町域', for: "address3", class: "label" %><br />
                     <%= f.text_field :address_street, id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
                   </div>
                   
@@ -95,7 +85,6 @@
       </div>
     </div>
   </section>
-</body>
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
@@ -112,12 +101,16 @@ $(function() {
       // 中身が空でなければ、その値を［住所］欄に反映
       if (data.results) {
         var result = data.results[0];
+    $('#zipcode').val(result.zipcode);
 		$('#address1').val(result.address1);
 		$('#address2').val(result.address2);
 		$('#address3').val(result.address3);
       // 中身が空の場合は、エラーメッセージを反映
       } else {
-        $('#address').val('該当する住所が存在しません。');
+        $('#zipcode').val('該当する住所が存在しません。');
+        $('#address1').val('該当する住所が存在しません。');
+        $('#address2').val('該当する住所が存在しません。');
+        $('#address3').val('該当する住所が存在しません。');
       }
     });
   });
