@@ -1,6 +1,6 @@
 class FacilitiesController < ApplicationController
 
-  before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show, :facility_home]
+  before_action :set_facility, only: [:destroy, :correct_facility, :show, :facility_home]
   before_action :set_facility_id, only: [:change_admin, :home]
   before_action :set_user_id, only: [:facilities_used, :update_facilities_used]
   # ログインしてなければ閲覧不可
@@ -12,23 +12,6 @@ class FacilitiesController < ApplicationController
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
       @facilities = Facility.where('facility_name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    # passwordが空白でも編集できる
-    if params[:facility][:password].blank? && params[:facility][:password_confirmation].blank?
-      params[:facility].delete(:password)
-      params[:facility].delete(:password_confirmation)
-    end
-    if @facility.update_attributes(facility_params)
-      flash[:notice] = "「#{@facility.facility_name}」の施設情報を更新できました。"
-      redirect_to facility_home_facility_url
-    else
-      render :edit
     end
   end
 

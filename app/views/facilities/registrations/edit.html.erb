@@ -26,7 +26,7 @@
                 <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
                 <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
               </div>
-              <div class="field">
+              <div class="no_display">
                 <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
                 <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
               </div>
@@ -65,7 +65,7 @@
               </div>
               <div class="field" id="input-field">
                 <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
-                <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+                <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", class: "fa input is-medium input-top" %>
               </div>
               <div class="actions" id="btn-field">
                 <%= f.submit "基本情報を変更する", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
