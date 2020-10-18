@@ -1,7 +1,7 @@
 class InformationsController < ApplicationController
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, only: [:top_notice, :show]
-  before_action :authenticate_facility!, only: [:index, :create, :update, :destroy]
+  before_action :authenticate_facility!, only: [:index, :create, :new, :update, :destroy]
   before_action :set_information, only: [:show, :edit, :update, :destroy]
 
   def index

@@ -1,28 +1,86 @@
-<p>お知らせ新規投稿</p>
+<div class="container is-fluid" style="padding-top: 30px;">
+  <div class="notification">
+    <article class="media media-width">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info_aicon.jpg">
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p id="info-title">
+            <strong>お知らせ新規作成</strong>
+            <small>現在時刻<%= l(Time.zone.now, format: :short) %></small>
+          </p>
+        </div>
+        <p>ここから新規お知らせの投稿ができます。</p>
+        <%= form_with(model: @information, url: facility_informations_path(current_facility), method: :post, local: true) do |f| %>
+          <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
 
+          <article class="media">
+            <label class="media-left has-text-weight-bold">
+              <%= f.label :image %>
+            </label>
+            <div class="label-space">
+              <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, :size => '500x500' %>
+            </div>
+            <div class="drop-zone-area" style="padding-bottom: 0;">
+              <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
+              <%= f.file_field :image, value: "upload", class: "image_uploading", style: "height: 315px;" %>
+            </div>
+          </article>
 
-<%= form_with(model: @information, url: facility_informations_path(current_facility, @information), method: :post, local: true) do |f| %>
-  <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
-  <%= f.text_field :title, class: "fa input is-link is-medium is-rounded is-focused" %><br><br>
-  <%= f.text_area :news, class: "fa textarea is-link is-medium is-rounded is-focused" %>
+          <article class="media">
+            <label class="media-left has-text-weight-bold">
+              <%= f.label :title %>
+            </label>
+            <div class="media-content">
+              <div class="content">
+                <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+              </div>
+            </div>
+          </article>
 
-  <div class="facility-photo">
-    <% if @information.image? %>
-      <%= image_tag @information.image.url, id: :img_prev, :size => '800x200' %>
-    <% else %>
-      <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x200' %>
-    <% end %>
+          <article class="media">
+            <label class="media-left has-text-weight-bold">
+              <%= f.label :news %>
+            </label>
+            <div class="media-content">
+              <div class="content label-space">
+                <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %><br><br>
+              </div>
+            </div>
+          </article>
+
+          <article class="media">
+            <div class="media-content">
+              <div class="field has-text-centered is-large">
+                <div>
+                  <%= f.submit "お知らせを新規投稿する", class: "info-btn" %>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        <% end %>
+      </div>
+    </article>
   </div>
-  <div class="img_confirm">
-    <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
-    <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-    <%= f.check_box :remove_image, id: "img_delete" %>
-    <label for="img_delete" class="check_position has-text-weight-bold" style="position:absolute; margin-top: 310px;">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
-  </div>
-  <div class="img_update">
-    <%= f.submit "イメージ画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-  </div>
+</div>
 
-
-
-<% end %>
+<script>
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".image_uploading").change(function(){
+        readURL(this);
+    });
+  });
+</script>
