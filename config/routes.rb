@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       get 'step1'
       get 'step2' # ここで、入力が終了
       get 'step3'
-      get 'search'
     end
   end
 
