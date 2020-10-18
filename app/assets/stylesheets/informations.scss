@@ -6,6 +6,7 @@
 .panel{
   margin: 20px;
 }
+
 .panel-tabs a {
   border-bottom: 1px solid #dbdbdb;
   margin: 0px 30px 30px 30px;
@@ -14,18 +15,22 @@
   font-weight: bold;
   color: #afaaaa;
 }
+
 .level-info {
   align-items: center;
   justify-content: space-between;
   margin: 0px 30px 50px 30px;
 }
+
 .new-info{
   width: 90px;
   margin-left: 20px;
 }
+
 #info-container{
   padding-bottom: 50px;
 }
+
 .info-section{
   display:flex;
   flex-wrap: wrap;
@@ -33,24 +38,30 @@
   text-align: left;
   margin-bottom: 30px;
 }
+
 #info-card{
   width:300px;
   margin: 20px;
 }
+
 #info-content{
   height:180px;
 }
+
 // show.html.erb
 .show-info-container{
   margin: 80px;
 }
+
 .show-info-p{
   font-size: 18px;
   margin-top: 15px;
 }
+
 .show-info-sp{
   color:#7a7a7a;
 }
+
 .info-section {
   .card-content {
     background-color: transparent;
@@ -62,4 +73,55 @@
   .card-footer-item{
     height: 70px;
   }
+}
+
+// edit.html.erb
+input#information_image.image_uploading {
+  color: #ccc;
+  height: 253px;
+  width: 800px;
+  margin: 20px 0 20px 0;
+  border-style: dashed;
+  border-width: 2px;
+  line-height: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.info-btn {
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #13b1c0;
+  color: #13b1c0;
+  text-decoration: none;
+  padding: 9px 25px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 10px;
+}
+
+.info-btn:hover {
+  background: #51afbe;
+  color: #fff;
+}
+
+.label-space {
+  padding: 20px 0 0 32px;
+}
+
+.media-width {
+  width: 95%;
+}
+
+.drop-zone-area {
+  padding: 0 0 100px 40px;
+}
+
+label.fa.image_input_comment {
+  padding: 20px 0 0 390px;
+}
+
+#info-title {
+  margin-bottom: 28px;
 }

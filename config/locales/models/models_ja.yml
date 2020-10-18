@@ -35,6 +35,7 @@ ja:
         information:
           title: タイトル
           news: 本文
+          image: 画像
         resident:
           name: 入居者のお名前
           floor: 利用階

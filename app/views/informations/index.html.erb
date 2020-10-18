@@ -1,6 +1,7 @@
 <article class="panel is-success" style="min-height: 70vh;">
   <div class="level-info">
     <nav class="level">
+
       <!-- Left side -->
       <div class="level-left">
         <p class="panel-tabs">
@@ -8,6 +9,7 @@
           <a class="panel-tab" onclick="openTab(event,'Aud')">システムからのお知らせ</a>
         </p>
       </div>
+
       <!-- Right side -->
       <div class="level-right">
         <div class="level-item">
@@ -31,8 +33,10 @@
           <% end %>
         </div>
       </div>
+
     </nav>
   </div>
+
   <div id="Web" class="content-tab" >
     <div clsss="has-text-centered" id="info-container">
     <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
@@ -43,7 +47,7 @@
               <% if information.image? %>
                 <%= image_tag information.image.url, id: :img_prev, :size => '800x200' %>
               <% else %>
-                <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x200' %>
+                <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, :size => '500x200' %>
               <% end %>
             </div>
             <div class="card-content">
@@ -92,8 +96,6 @@
     </div>
   </div>
 </article>
-
-<%= render 'new' %>
 
 <script>
   function openTab(evt, tabName) {
