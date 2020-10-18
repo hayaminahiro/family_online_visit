@@ -500,7 +500,18 @@ div.under-line {
   padding: 1px;
   color: #DEDEDE;
   text-decoration: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.image_input_comment_user {
+  position: absolute;
   text-align: center;
+  margin-top: 120px;
+  border-radius: 5px;
+  padding: 1px;
+  color: #DEDEDE;
+  text-decoration: none;
   cursor: pointer;
   font-size: 25px;
 }
