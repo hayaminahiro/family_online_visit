@@ -28,7 +28,7 @@
                   <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>    
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
             <div class="button-position">
               <div class="columns is-centered">
@@ -42,8 +42,7 @@
                     </div>                                      
                   </form>
                 <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
-                  
-                                                      
+                                                                        
                   <div class="field">
                     <%= f.hidden_field :postal_code, id: "zipcode", autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
                   </div>
@@ -116,5 +115,3 @@ $(function() {
   });
 });
 </script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css">

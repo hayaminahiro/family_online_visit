@@ -17,7 +17,6 @@ class SignupController < ApplicationController
     @user = User.new # 新規インスタンス作成
   end
 
-
   # before_actionごとに、遷移元のページのデータをsessionに保管していきます
   # 仮でインスタンスを作成しバリデーションチェックを行います
   def validates_step1
