@@ -3,65 +3,63 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .page-display{
-    .page-number{
-      display: inline-block;
-     }
-     color: black;
+	.page-number{
+		display: inline-block;
+	}
+	color: black;
 }
 
 .signup-upper{
-    // background-color: white(204, 255, 255, 0.2);
-    margin-bottom: 20px;
-    // margin-top: -35px;
-    border-radius: 10%;
+	margin-bottom: 20px;
+	border-radius: 10%;
 }
 
 .signups-title{
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .comfirm-page{
-    margin-top: -10px;
+	margin-top: -10px;
 }
 
 .comfirm-hero-size {
-    margin-right: 200px;
-    margin-left: 200px;
-    margin-top: 50px;
-    background-color: rgba(204, 255, 255, 0.2);
-    color: blue;
-    border-radius: 2%;
+	margin-right: 200px;
+	margin-left: 200px;
+	margin-top: 50px;
+	background-color: rgba(204, 255, 255, 0.2);
+	color: blue;
+	border-radius: 2%;
   }
 
-  .confirm-newuser {
-    font-size: 30px;
-    color: black;
-    margin-top: -30px;
-    margin-bottom: 10px;
-    padding: 0.25em 0.5em;
-    background: #DDFFFF;
-    border: dashed 1px #5b8bd0;/*点線*/
-  }
+.confirm-newuser {
+	font-size: 30px;
+	color: black;
+	margin-top: -30px;
+	margin-bottom: 10px;
+	padding: 0.25em 0.5em;
+	background: #DDFFFF;
+	border: dashed 1px #5b8bd0;/*点線*/
+}
 
-  .confirm-message {
-      font-size: 20px;
-      color: black;
-  }
+.confirm-message {
+	font-size: 20px;
+	color: black;
+}
 
-  .confirm-new {
-      font-size: 30px;
-      color: black;
-      margin-top: 30px;
-  }
+.confirm-new {
+	font-size: 30px;
+	color: black;
+	margin-top: 30px;
+}
 
-  .confirm {
-      margin-top: 40px;
-  }
+.confirm {
+	margin-top: 40px;
+}
 
-  .basic_btn {
-      float: right;
-  }
+.basic_btn {
+	float: right;
+}
 
-  .field-signup {
-      margin-bottom: 30px;
-  }
+.field-signup {
+	margin-bottom: 30px;
+}
