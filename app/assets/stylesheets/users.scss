@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* 面会ルームのタイトル */
-
 .hero-1 {
   background-size: cover;
   background-position: center;
@@ -39,191 +38,240 @@
   margin-left: 50px;
 }
 
+
 /* ご家族マイページ */
-.my-page{
-  background-color: rgb(250,248,244);
-}
-.my-page-container{
-  width: 980px;
-  margin: auto;
-}
-.edit-main-image{
-  display: block;
-  margin-top: 20px;
-}
-.edit-my-image{
-  display: block;
-  width:150px;
-  border-radius: 30px;
-}
-.my-container-head{
-  position: relative;
-  height:500px;
-}
-.edit-main-image, .edit-my-image, .my-name, .my-email, #my-page-table{
-  position: absolute;
-}
-.edit-main-image{
-  // z-index: 0;
-  left: 0;
-  top: 0;
-}
-#edit-content{
-  margin-top: 0px;
-}
-.edit-my-image{
-  z-index: 1;
-  bottom: 60px;
-  left: 30px;
-}
-#my-page-table{
-  width: 300px;
-  z-index: 1;
-  bottom: 60px;
-  right: 10px;
-}
-.my-name{
-  z-index: 1;
-  bottom: 90px;
-  left: 240px;
-  font-size: 30px;
-  font-weight: 800;
-}
-.my-email{
-  z-index: 1;
-  bottom: 60px;
-  left: 240px;
-}
-.my-page-tab{
-  border-bottom: solid 1px #e0dccc;
-  margin-bottom: 13px;
-  border-top: solid 1px #e0dccc;
-}
-.facility-section{
-  display:flex;
-  flex-wrap: wrap;
-  // justify-content: center;
-  text-align: left;
-  margin-bottom: 30px;
-}
-#facility-card{
-  width:260px;
-  margin: 20px;
-}
-#facility-content{
-  height:110px;
-}
-.level-facility {
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 30px;
-}
-.under-section{
-}
-.my-container-under{
+.mypage-main-content {
+  margin: 0px;
   display: flex;
+  font-size: 2rem;
+  min-height: 100vh;
 }
-.under-section{
+
+mypage-aside {/*画面左*/
+  position: fixed;
+  width: 15.5%;
+  font-size:15px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: inset -1px 0px 0px 0px #DDDDDD;
+
+  .profile-section{
+    text-align: center;
+    margin: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(102, 97, 91, 0.3);
+  }
+
+  .mypage-side-link{
+    margin-top: 50px;
+  }
+
+  .user-profile-image{
+    width: 50px;
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  .panel-tab{
+    margin: 35px 0px;
+  }
+
+  .panel-tab.is-active{
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 30px 0px;
+  }
+
+  .panel-tab.is-active::after{
+    position: absolute;
+    border-right: 17px solid #f4f3ef;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    top: -5px;
+    right: 0px;
+  }
+
+  .panel-tab p{
+    font-size: 17px;
+    font-weight: lighter;
+    text-align: left;
+  }
+
+  .panel-tab.is-active p{
+    font-size: 17px;
+    font-weight: normal;
+    color:rgb(235,94,39);
+  }
+
+  i{
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 22px;
+    color: gray;
+    margin-left: 20px;
+    width: 92px;
+  }
+
+  .panel-tab.is-active i{
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 22px;
+    color: rgb(235,94,39);
+    margin-left: 20px;
+    width: 92px;
+  }
+}
+
+.mypage-links{
+  display: block;
+  color:black;
+  margin: 25px ;
+}
+
+mypage-main{/*画面中央*/
+  margin-left: 15.5%;
+  width: 100%;
+  background-color: rgb(244,243,238);
+  display: flex;
+
+  article{
+    margin: 0px 15px; height: 970px;
+  }
+
+  .Web-section{
+    margin-top: 30px;
+    margin-left: 10px; width: 1400px;
+    overflow: scroll; overflow-y: hidden;
+    height: 109px;
+  }
+
+  .card{
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+  }
+
+  #my-page-info-content{
+    padding: 21px 18px;
+
+    #web-media-section{
+      display: flex;
+      border-left: solid 1px rgb(238,236,228);
+    }
+  }
+
+  #Web{
+    .columns{
+      padding: 0;
+    }
+    .column {
+      width: 371px;
+      display: block;
+      flex-basis: 0;
+      flex-grow: 1;
+      flex-shrink: 1;
+      padding: 0px;
+      border-radius: 5px;
+      margin: 10px 15px;
+    }
+  }
+
+  sub{
+    padding: 10px;
+    width: 35%;
+    border-left: solid 1px rgb(254,252,245);
+  }
+
+  #mypage-reserve-table tr{
+    height: 30px;
+    line-height: 24px;
+    border-left: solid 3px darkgray;
+  }
+
+  #mypage-reserve-table th{
+    width: 20%;
+  }
+
+  #mypage-reserve-table figure {
+    margin: 0;
+    text-align: center;
+  }
+
+  #mypage-reserve-table i {
+    line-height: 2;
+    font-size: 24px;
+    color: #79c29a;
+    text-align: center;
+    display: block;
+  }
+
+  #edit-content{
+    margin-top: 0px;
+  }
+}
+
+#mypage-reservations-calendar {
+  height: 550px;
+  margin: 34px 21px 34px 15px;
+  padding: 35px;
+  font-size: 15px;
   flex: 2;
+
+  tr{
+    background-color: white;
+  }
+
+  .button.is-info.is-outlined {
+    background-color: transparent;
+    border-color:  rgb(231,125,66);
+    color: rgb(231,125,66);
+  }
+
+  #calendar-info .calendar-th {
+    background:#f39560;
+  }
 }
+
+
+#mypage-reservations-list{
+  flex: 1;
+  height: 550px;
+  margin: 35px 33px 13px 10px;
+  font-size: 17px;
+}
+
 .mypage-information{
   flex: 1;
-  padding-left: 40px;
-  border-left: solid 1px rgb(238,236,228);
+  display: flex;
 }
-.mypage-info-p{
-  background-color: #fdfae6;
-  padding: 10px;
-  border: solid 2px rgb(250,228,133);
-  margin: 0px 0px 15px 0px;
-  border-radius: 3px;
+
+#mypage-user-box{
+  width: 228px;
+  padding: 10px 10px 0px 10px;
+  margin: 8px 10px 8px 15px;
+  border: solid 1px #9daba6;
+
+  .media.media {
+    border-top: 0px;
+    display: flex;
+    padding-top: 0px;
+  }
+
+  .image.is-64x64 {
+    height: 64px;
+    width: 47px;
+  }
+
+  strong{
+    border-bottom: solid 1px rgb(201,199,193);
+  }
 }
-.mypage-info-span{
-  background-color: #4a86b6;
-  color: white;
-  font-size: 16px;
-  font-weight: 800;
-  display: inline-block;
-  border-radius: 3px;
-  margin-left: 8px;
-}
-#user-box{
-  margin-bottom: 10px;
-  padding: 10px;
-}
-// ツールチップ
-.cp_tooltip {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-  background: linear-gradient(transparent 70%, #b1f8b7 60%);
-  margin-left: 15px;
-}
-.cp_tooltip .cp_tooltiptext {
-	position: absolute;
-	z-index: 1;
-	top: -5px;
-	left: 105%;
-	visibility: hidden;
-	/*width: auto;*/
-	white-space: nowrap;
-	padding: 0.3em 0.5em;
-	transition: opacity 1s;
-	text-align: center;
-	opacity: 0;
-	color: #ffffff;
-	border-radius: 6px;
-	background-color: #6af188;
-}
-.cp_tooltip .cp_tooltiptext::after {
-	position: absolute;
-	top: 40%;
-	right: 100%;
-	margin-left: -5px;
-	content: ' ';
-	border: 5px solid transparent;
-	border-right-color: #6af188;
-}
-.cp_tooltip:hover .cp_tooltiptext {
-	visibility: visible;
-	opacity: 1;
-}
-.co_tooltip {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-  background: linear-gradient(transparent 70%, #9ec6f1 60%);
-  margin-left: 15px;
-}
-.co_tooltip .co_tooltiptext {
-	position: absolute;
-	z-index: 1;
-	top: -5px;
-	left: 105%;
-	visibility: hidden;
-	/*width: auto;*/
-	white-space: nowrap;
-	padding: 0.3em 0.5em;
-	transition: opacity 1s;
-	text-align: center;
-	opacity: 0;
-	color: #ffffff;
-	border-radius: 6px;
-	background-color: #2bb7e2;
-}
-.co_tooltip .co_tooltiptext::after {
-	position: absolute;
-	top: 40%;
-	right: 100%;
-	margin-left: -5px;
-	content: ' ';
-	border: 5px solid transparent;
-	border-right-color: #2bb7e2;
-}
-.co_tooltip:hover .co_tooltiptext {
-	visibility: visible;
-	opacity: 1;
-}
+
+
 // ログイン画面
 .google-sentence {
   font-size: 30px;
@@ -258,6 +306,7 @@
   margin-bottom: 20px;
 }
 
+
 /* ご家族編集画面 */
 .main-content {
   margin: 0px 100px;
@@ -265,6 +314,7 @@
   font-size: 2rem;
   min-height: 100vh;
 }
+
 aside {/*画面左*/
   width: 25%;
   font-size:15px;
@@ -272,35 +322,42 @@ aside {/*画面左*/
   display: flex;
   flex-direction: column;
 }
+
 main {/*画面中央*/
   width: 75%;
   margin: 0 auto;
 }
+
 .user-aside-link{
   display: block;
   color:black;
   margin: 10px;
 }
+
 .user-edit-table{
   background:rgba(224, 231, 231, 0.605);
 }
+
 #u-edit-table tr{
   height: 45px;
   line-height: 45px;
 }
+
 #u-edit-table th{
   background-color: rgb(241,244,248);
 }
+
 .edit-hr{
   margin: 0px;
 }
+
 .edit-link{
   margin-top: 30px;
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 700;
 }
+
 .edit-tfoot{
   margin: 10px 0px;
 }
-
