@@ -14,11 +14,14 @@
     <% end %>  
     <div class="image-outline">
       <%= image_tag 'facility_default.png', class: "facility-default-image" %>
-    </div> 
+      <p class="facility-name">
+        <%= current_facility.facility_name %>
+      </p>
+    </div>
   </div>
 </section>
 
-<section class="facility-home-title">
+<!--<section class="facility-home-title">
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-right has-text-white is-size-2" id="title-scroll">
@@ -26,7 +29,7 @@
       </h1>
     </div>
   </div>
-</section>
+</section>-->
 
 <div class="columns .is-variable is-0" style="margin-right: 0px;">
   <div class="column is-2" style="padding-right: 0px; padding-top: 0px; margin-top:12px;">
