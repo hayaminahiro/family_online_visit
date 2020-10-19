@@ -13,15 +13,16 @@
           <div class="column is-6 top-btn-position is-centered">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "facilities/shared/error_messages", resource: resource %>
+              <p>こちらから背景画像として使用される画像の登録・編集ができます。</p>
               <div class="facility-photo">
                 <% if @facility.image? %>
-                  <%= image_tag @facility.image.url, id: :img_prev, :size => '800x200' %>
+                  <%= image_tag @facility.image.url, id: :img_prev, :size => '800x500' %>
                 <% else %>
-                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x200' %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '800x500' %>
                 <% end %>
               </div>
               <div id="img_confirm">
-                <%= f.label :image, "\uf574", class: "fa image_input_comment_user" %>
+                <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
                 <%= f.file_field :image, value: "upload", class: "image_uploading" %>
               </div>
               <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
@@ -37,7 +38,7 @@
                 <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
               </div>
               <div>
-                <%= f.submit "イメージ画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                <%= f.submit "イメージ画像として登録", class: "info-btn" %>
               </div>
             <% end %>
           </div>
@@ -49,14 +50,15 @@
           <div class="column is-6 top-btn-position is-centered">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "facilities/shared/error_messages", resource: resource %>
+              <p>こちらからアイコンとして使用される画像の登録・編集ができます。</p>
               <div class="facility-photo">
                 <% if @facility.icon? %>
-                  <%= image_tag @facility.icon.url, id: :icon_prev, :size => '800x200' %>
+                  <%= image_tag @facility.icon.url, id: :icon_prev, class: "icon_circle" %>
                 <% else %>
-                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info_aicon.jpg", id: :icon_prev, :size => '500x200' %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_icon.jpg", id: :icon_prev, class: "icon_circle" %>
                 <% end %>
               </div>
-              <div id="img_confirm">
+              <div id="img_confirm" style="margin-right: 25px;">
                 <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
                 <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
               </div>
@@ -69,11 +71,11 @@
                 <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
               </div>
               <div class="img_confirm">
-                <%= f.check_box :remove_image, id: "img_delete" %>
-                <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+                <%= f.check_box :remove_icon, id: "icon_delete" %>
+                <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。</label>
               </div>
               <div>
-                <%= f.submit "アイコン画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                <%= f.submit "アイコン画像として登録", class: "info-btn" %>
               </div>
             <% end %>
           </div>
@@ -106,13 +108,13 @@
                 <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", class: "fa input is-medium input-top" %>
               </div>
               <div class="actions" id="btn-field">
-                <%= f.submit "基本情報を変更する", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+                <%= f.submit "基本情報を変更する", class: "info-btn" %>
+              </div>
+              <div class="actions" id="btn-delete-field">
+                <p class="delete_confirm">アカウント削除すると全データも削除されます。</p>
+                <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントを削除して本当によろしいですか？" }, method: :delete, class: "account-delete-btn", style: "margin-right: -300px;" %>
               </div>
             <% end %>
-            <p class="delete-message has-text-weight-bold" style="padding-right: 70px;">本当に宜しいですか？</p>
-            <div class="actions" id="btn-delete-field">
-              <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントを削除して本当によろしいですか？" }, method: :delete, class: "button is-danger is-medium is-fullwidth new-btn has-text-weight-bold" %>
-            </div>
           </div>
         </div>
       </div>

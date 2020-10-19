@@ -524,9 +524,9 @@ div.under-line {
 
 input#facility_image {
   color: #ccc;
-  height: 250px;
+  height: 240px;
   width: 100%;
-  margin: 10px 0 10px 0;
+  margin: 20px 0 20px 0;
   border-style: dashed;
   border-width: 2px;
   text-align: center;
@@ -739,6 +739,7 @@ input#facility_icon.image_uploading_icon {
   margin-left: 40px;
 }
 
+//イメージ画像のチェックボックス
 input#img_delete[type="checkbox"] {
   display: none;
 }
@@ -755,7 +756,7 @@ input#img_delete[type="checkbox"] + label {
   -ms-user-select: none;
 }
 
-input#img_delete[type="checkbox"] + label.check_position:last-child { margin-bottom: 0; 
+input#img_delete[type="checkbox"] + label.check_position:last-child { margin-bottom: 0;
 }
 
 input#img_delete[type="checkbox"] + label.check_position:before {
@@ -784,10 +785,55 @@ input#img_delete[type="checkbox"]:checked + label.check_position:before {
   transform: rotate(45deg);
 }
 
+//アイコンのチェックボックス
+input#icon_delete[type="checkbox"] {
+  display: none;
+}
+
+input#icon_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#icon_delete[type="checkbox"] + label.check_position:last-child { margin-bottom: 0;
+}
+
+input#icon_delete[type="checkbox"] + label.check_position:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input#icon_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 .img_update {
   margin-top: 350px;
 }
-
 
 #img_delete {
   font-weight: bold;
@@ -809,4 +855,41 @@ input#img_delete[type="checkbox"]:checked + label.check_position:before {
 .index-img-center {
   display: flex;
   align-items: center;
+}
+
+.icon_circle {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: 0 0;
+  border: solid 1px #EEEEEE;
+}
+
+img#icon_prev.icon_circle {
+  margin-bottom: 25px;
+}
+
+.account-delete-btn {
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #F14767;
+  color: #F14767;
+  text-decoration: none;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 100px;
+  float: right;
+}
+
+.account-delete-btn:hover {
+  background: #F14767;
+  color: #fff;
+}
+
+.delete_confirm {
+  float: right;
+  margin-right: -400px;
+  padding-top: 65px;
 }

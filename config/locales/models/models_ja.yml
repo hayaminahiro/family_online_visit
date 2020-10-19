@@ -28,6 +28,7 @@ ja:
         facility:
           id: ID
           image: 画像
+          icon: アイコン
           facility_name: 施設名
           email: メールアドレス
           password: パスワード
