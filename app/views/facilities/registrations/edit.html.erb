@@ -1,11 +1,13 @@
 <div class="content has-text-centered">
   <div class="cp_tab" style="padding-top: 50px;">
     <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
-    <label for="tab1_1">イメージ画像の設定</label>
+    <label for="tab1_1">イメージ画像設定</label>
     <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-    <label for="tab1_2">基本情報の設定</label>
-    <div class="cp_tabpanels">
+    <label for="tab1_2">アイコン画像設定</label>
+    <input type="radio" name="cp_tab" id="tab1_3" aria-controls="third_tab01">
+    <label for="tab1_3">アカウント設定</label>
 
+    <div class="cp_tabpanels">
       <div id="first_tab01" class="cp_tabpanel" style="padding-top: 20px;">
         <div class="columns is-centered">
           <div class="column is-6 top-btn-position is-centered">
@@ -43,6 +45,42 @@
       </div>
 
       <div id="second_tab01" class="cp_tabpanel" style="padding-top: 20px;">
+        <div class="columns is-centered">
+          <div class="column is-6 top-btn-position is-centered">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= render "facilities/shared/error_messages", resource: resource %>
+              <div class="facility-photo">
+                <% if @facility.icon? %>
+                  <%= image_tag @facility.icon.url, id: :icon_prev, :size => '800x200' %>
+                <% else %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info_aicon.jpg", id: :icon_prev, :size => '500x200' %>
+                <% end %>
+              </div>
+              <div id="img_confirm">
+                <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
+                <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
+              </div>
+              <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
+                <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
+                <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
+              </div>
+              <div class="no_display">
+                <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
+                <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+              </div>
+              <div class="img_confirm">
+                <%= f.check_box :remove_image, id: "img_delete" %>
+                <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+              </div>
+              <div>
+                <%= f.submit "アイコン画像として登録", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div id="third_tab01" class="cp_tabpanel" style="padding-top: 20px;">
         <div class="columns is-centered">
           <div class="column is-6 top-btn-position is-centered">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -96,6 +134,23 @@
     }
     $(".image_uploading").change(function(){
       readURL(this);
+    });
+  });
+</script>
+
+<script>
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#icon_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".image_uploading_icon").change(function(){
+        readURL(this);
     });
   });
 </script>

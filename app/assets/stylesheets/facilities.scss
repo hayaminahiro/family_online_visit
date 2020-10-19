@@ -526,12 +526,25 @@ input#facility_image {
   color: #ccc;
   height: 250px;
   width: 100%;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 10px 0;
   border-style: dashed;
   border-width: 2px;
-  line-height: 200px;
   text-align: center;
   cursor: pointer;
+}
+
+input#facility_icon.image_uploading_icon {
+  color: #ccc;
+  height: 250px;
+  width: 100%;
+  margin: 10px 0 10px 0;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
 }
 
 ///タブ（お知らせ）

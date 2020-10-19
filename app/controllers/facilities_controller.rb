@@ -118,7 +118,7 @@ class FacilitiesController < ApplicationController
       end
 
       def facility_params
-        params.require(:facility).permit(:image, :remove_image, :facility_name, :email, :password,:password_confirmation)
+        params.require(:facility).permit(:image, :remove_image, :icon, :remove_icon, :facility_name, :email, :password,:password_confirmation)
       end
 
       def admin_params
