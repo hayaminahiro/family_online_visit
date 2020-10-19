@@ -4,7 +4,7 @@ class SignupController < ApplicationController
   before_action :validates_step2, only: :step3 # step2のバリデーション
 
 
-  # 各アクションごとに新規インスタンスを作成します
+  # 各アクションごとに,新規インスタンスを作成します
   def step1
     @user = User.new # 新規インスタンス作成
   end
