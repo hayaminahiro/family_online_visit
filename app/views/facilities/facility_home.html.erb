@@ -14,9 +14,9 @@
     <% end %>  
     <div class="image-outline">
       <%= image_tag 'facility_default.png', class: "facility-default-image" %>
-      <p class="facility-name">
+      <div class="has-text-right" id="facility-name">
         <%= current_facility.facility_name %>
-      </p>
+      </div>
     </div>
   </div>
 </section>
@@ -31,8 +31,9 @@
   </div>
 </section>-->
 
-<div class="columns .is-variable is-0" style="margin-right: 0px;">
-  <div class="column is-2" style="padding-right: 0px; padding-top: 0px; margin-top:12px;">
+<div class="columns .is-variable is-0 is-desktop" style="margin-right: 0px; margin-top: -1.1rem;">
+  <div class="column is-2-desktop is-0-mobile" style="padding-right: 0px; padding-top: 0px; margin-top:12px; background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
+                                  background: -moz-linear-gradient(top,#4E6F8B,#0A203F);">
     <section id="vertical_tab_nav">
       <ul>
         <li>
@@ -60,7 +61,7 @@
     </section>
   </div>
 
-  <div class="column is-10" style="background-color: #537895; padding-top: 0px; margin-top: 12px;">
+  <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding-top: 0px; margin-top: 12px;">
     <article class="panel is-success" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
         <p class="panel-heading has-text-centered" style="font-size: 30px; background: -webkit-linear-gradient(top,goldenrod,darkgoldenrod);">
@@ -195,7 +196,8 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('#title-scroll', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('.facility-default-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#vertical_tab_nav li', { delay: 100, distance: '100%', origin: 'top', duration: 1500, viewFactor: 0.5 });
+    ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
   });
 </script>

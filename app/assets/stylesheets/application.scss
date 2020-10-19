@@ -19,3 +19,36 @@
 @import 'font-awesome';
 @import "bulma";
 
+//下タブ（タブレット、モバイル）
+@media screen and (max-width: 1000px) {
+  #vertical_tab_nav {
+    z-index: 20;
+    position: fixed;
+    bottom: 0;
+    height: 70px;
+    padding-top: 10px;
+    width: 100%;
+    background-color: black;
+  }
+
+  #vertical_tab_nav ul {
+    display: flex;
+  }
+
+  #vertical_tab_nav li {
+    flex: 1;
+  }
+
+  #vertical_tab_nav li a:hover {
+    background: #fff;
+    color: black;
+  }
+
+  footer {
+    margin-bottom: 70px;
+  }
+
+  .footer-layout {
+    height: 170px;
+  }
+}
