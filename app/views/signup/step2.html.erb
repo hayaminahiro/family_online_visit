@@ -5,27 +5,27 @@
       <article class="media">
         <div class="media-content">
           <div class="content has-text-centered">
-            <div class="signup-upper">  
+            <div class="signup-upper">
               <div class="signups-title">
-                <strong class="new-title">追加情報登録</strong><br>                         
-              </div>              
+                <strong class="new-title">追加情報登録</strong><br>
+              </div>
               <div class="page-display">
                 <div class="page-number">
                   <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
                   <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-inverse fa-stack-1x">1</i>    
+                  <i class="fa fa-inverse fa-stack-1x">1</i>
                 </div>
                 ・・・
                 <div class="page-number">
                   <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
                   <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
-                  <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">2</i>    
+                  <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">2</i>
                 </div>
                 ・・・
                 <div class="page-number">
                   <span class="fa-stack fa-lg" style="font-size: 1.5em; color: white;">
                   <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>    
+                  <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>
                 </div>
               </div>
             </div>
@@ -37,31 +37,31 @@
                 <form>
                     <div>
                       <label style="font-size:20px;font-weight:bold;" for="zip">郵便番号</label><br />
-                      <input style="margin-top:20px;" id="zip" type="text" size="10" class="input is-medium" />
+                      <input style="margin-top:20px;" id="zip" type="text" size="10" placeholder="&#xf1fa;郵便番号を入力してください", class="fa input is-medium" />
                       <input id="search" type="button" value="検索" class="button" />
-                    </div>                                      
+                    </div>
                   </form>
                 <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
-                                                                        
+
                   <div class="field">
                     <%= f.hidden_field :postal_code, id: "zipcode", autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
                   </div>
 
                   <div class="field">
                     <%= f.label :prefecture_name, '都道府県', for: "address1", class: "label" %><br />
-                    <%= f.text_field :prefecture_name, id: "address1", class: 'fa input is-medium input-top' %>
+                    <%= f.text_field :prefecture_name, :placeholder => "\uf015都道府県を入力してください", id: "address1", class: 'fa input is-medium input-top' %>
                   </div>
 
                   <div class="field">
                     <%= f.label :address_city, '市区町村', for: "address2", class: "label" %><br />
-                    <%= f.text_field :address_city, id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
+                    <%= f.text_field :address_city, :placeholder => "\uf015市区町村を入力してください", id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
                   </div>
 
                   <div class="field">
                     <%= f.label :address_street, '町域', for: "address3", class: "label" %><br />
-                    <%= f.text_field :address_street, id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
+                    <%= f.text_field :address_street, :placeholder => "\uf015町域を入力してください", id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
                   </div>
-                  
+
 
                   <div class="field">
                     <%= f.label :phone, "電話番号", class: "label" %><br />
