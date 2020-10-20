@@ -93,6 +93,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
     display: none;
   }
 }
+
 .facilities-used-label span {
   color: #333; /* 文字色を黒に */
   font-size: 14px; /* 文字サイズを14pxに */
@@ -100,6 +101,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
   padding: 5px 20px; /* 上下左右に余白をトル */
 }
+
 .facilities-used-label input:checked + span {
   color: #FFF; /* 文字色を白に */
   background: #f07700; /* 背景色を薄いオレンジに */
@@ -366,21 +368,6 @@ div.under-line {
   color: red;
 }
 
-#new-family-table {
-  margin-top: 50px;
-  padding-bottom: 30px;
-}
-
-#new-family-table th {
-  background-color: #FFDAB9;
-  font-size: 20px;
-  text-align: center;
-}
-
-#new-family-table td {
-  text-align: center;
-}
-
 //タブ（利用者）
 .tab-resident {
   display: inline-block;
@@ -420,9 +407,11 @@ div.under-line {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-resident::before {
   left: 0;
 }
+
 .btn-tab-resident::after {
   right: 0;
 }
@@ -469,9 +458,11 @@ div.under-line {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-user::before {
   left: 0;
 }
+
 .btn-tab-user::after {
   right: 0;
 }
@@ -539,6 +530,7 @@ input#facility_image {
   text-align: center;
   cursor: pointer;
 }
+
 ///タブ（お知らせ）
 .tab-information  {
   display: inline-block;
@@ -578,9 +570,11 @@ input#facility_image {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-information::before {
   left: 0;
 }
+
 .btn-tab-information::after {
   right: 0;
 }

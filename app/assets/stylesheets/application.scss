@@ -25,30 +25,41 @@
     z-index: 20;
     position: fixed;
     bottom: 0;
-    height: 70px;
-    padding-top: 10px;
+    height: 80px;
     width: 100%;
     background-color: black;
   }
 
   #vertical_tab_nav ul {
     display: flex;
+    font-weight: bold;
   }
 
   #vertical_tab_nav li {
     flex: 1;
+    margin-top: 0;
+  }
+
+  #vertical_tab_nav li a {
+    display: block;
+    height: 80px;
+    padding-top: 25px;
   }
 
   #vertical_tab_nav li a:hover {
-    background: #fff;
+    background: #EFEFEF;
     color: black;
   }
 
+  #vertical_tab_nav li:first-child {
+    display: none;
+  }
+
   footer {
-    margin-bottom: 70px;
+    margin-bottom: 80px;
   }
 
   .footer-layout {
-    height: 170px;
+    height: 180px;
   }
 }
