@@ -5,7 +5,11 @@
         <%= image_tag 'user_bg_default.png', class: "edit-main-image" %>
       </div>
       <div>
-        <%= image_tag 'user_default.png', class: "edit-my-image" %>
+        <% if current_user.image.present? %>
+          <div class="edit-my-image"><%= image_tag current_user.image.url %></div>
+        <% else %>
+          <%= image_tag 'user_default.png', class: "edit-my-image" %>
+        <% end %>
       </div>
       <p class="my-name"><%= current_user.name %></p>
       <p class="my-email"><%= current_user.email %></p>

@@ -28,7 +28,9 @@ class User < ApplicationRecord
   validates :address_street,          presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :phone,                   presence: true
 
-  
+  mount_uploader :image, ImageUploader
+
+
 
   # cookieでログイン情報を保持
   def remember_me
