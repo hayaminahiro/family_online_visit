@@ -82,12 +82,12 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   margin-top: 30px;
 }
 
-#submit-btn{
+#submit-btn {
   pointer-events: none;
 }
 
 /* facilities-usedページのcollection_checkboxを非表示にする */
-.facilities-used-label{
+.facilities-used-label {
   input[type="checkbox"], input[type="radio"] {
     vertical-align: baseline;
     display: none;
@@ -237,6 +237,7 @@ div.under-line {
   display: block;
   width: 100%;
 }
+
 #vertical_tab_nav ul {
   display: block;
   float: left;
@@ -366,115 +367,6 @@ div.under-line {
 
 .simple-calendar .wday-0 {
   color: red;
-}
-
-//タブ（利用者）
-.tab-resident {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 100px 70px;
-}
-
-//タブ（利用者）ボタン
-.btn-tab-resident {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  background-color: #7596E0;
-  border: 2px solid #7596E0;
-  font-size: 20px;
-  color: #7596E0;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.btn-tab-resident span {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-tab-resident::before,
-.btn-tab-resident::after {
-  content: "";
-  display: block;
-  background-color: #FFF;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: .2s;
-}
-
-.btn-tab-resident::before {
-  left: 0;
-}
-
-.btn-tab-resident::after {
-  right: 0;
-}
-
-.btn-tab-resident:hover:before,
-.btn-tab-resident:hover:after {
-  width: 0;
-  background-color: #FFF;
-}
-
-.btn-tab-resident:hover {
-  color: #FFF;
-}
-
-//タブ（ユーザー）ボタン
-.btn-tab-user {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  background-color: #00d1b2;
-  border: 2px solid #00d1b2;
-  font-size: 20px;
-  color: #00d1b2;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.btn-tab-user span {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-tab-user::before,
-.btn-tab-user::after {
-  content: "";
-  display: block;
-  background-color: #FFF;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: .2s;
-}
-
-.btn-tab-user::before {
-  left: 0;
-}
-
-.btn-tab-user::after {
-  right: 0;
-}
-
-.btn-tab-user:hover:before,
-.btn-tab-user:hover:after {
-  width: 0;
-  background-color: #FFF;
-}
-
-.btn-tab-user:hover {
-  color: #FFF;
 }
 
 .facility-photo {
