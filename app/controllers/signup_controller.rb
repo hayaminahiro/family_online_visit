@@ -91,15 +91,15 @@ class SignupController < ApplicationController
    # 許可するキーを設定します
     def user_params
     params.require(:user).permit(
-        :name,
-        :email,
-        :password,
-        :password_confirmation,
-        :postal_code,
-        :prefecture_name,
-        :address_city,
-        :address_street,
-        :phone
+      :name,
+      :email,
+      :password,
+      :password_confirmation,
+      :postal_code,
+      :prefecture_name,
+      :address_city,
+      :address_street,
+      :phone
     )
     end
 
