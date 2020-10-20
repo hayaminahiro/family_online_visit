@@ -85,7 +85,10 @@ end
     name: name,
     email: email,
     password: password,
-    address: "大阪府",
+    postal_code: "0001100",
+    prefecture_name: "大阪府",
+    address_city: "大阪市",
+    address_street: "南堀江",
     phone: "080222333"
   )
 end
