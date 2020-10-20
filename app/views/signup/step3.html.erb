@@ -1,11 +1,11 @@
 <ul class="image-layout">
 </ul>
-  <section class="" >
-    <div class="container is-fluid">      
+  <section class="hero login-hero-size">
+    <div class="container is-fluid">
       <div class="columns has-text-centered">
         <div class="column is-10 is-offset-1 has-text-black">
           <div class="step3-title is-size-2 has-text-weight-bold" style="margin-top:20px;">入力情報確認</div>
-          <div class="confirm-message">（入力項目を確認後、合っていれば新規作成ボタンを押してください）</div>                                    
+          <div class="confirm-message">（入力項目を確認後、合っていれば新規作成ボタンを押してください）</div>
           <div class="page-display">
             <div class="page-number">
               <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
@@ -25,9 +25,9 @@
                 <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">3</i></span>
             </div>
           </div>
-        </div>   
+        </div>
       </div>
-      <div class="columns">                
+      <div class="columns">
         <div class="column is-6 is-offset-3 comfirm-page">
           <%= form_with model: @user, url: signup_index_path, local: true, method: :post do |f| %>
             <%= render "users/shared/error_messages", resource: @user %>
@@ -48,8 +48,8 @@
               <%= f.label :password, class: "label" %><br />
               <div class="confirm-newuser"><%= session[:password] %>
               </div>
-            </div>                  
-            
+            </div>
+
             <div class="comfirm">
               <%= f.label :postal_code, "郵便番号", class: "label" %><br />
               <div class="confirm-newuser"><%= session[:postal_code] %>
@@ -90,6 +90,6 @@
       <div class="columns">
         <div class="column blank-frank" style="height:100px;">
         </div>
-      </div>        
+      </div>
     </div>
   </section>

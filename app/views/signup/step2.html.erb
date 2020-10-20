@@ -1,6 +1,6 @@
 <ul class="image-layout">
 </ul>
-  <section class="hero login-hero-size" >
+  <section class="hero login-hero-size">
     <div class="container is-fluid">
       <article class="media">
         <div class="media-content">
@@ -37,7 +37,7 @@
                 <form>
                     <div>
                       <label style="font-size:20px;font-weight:bold;" for="zip">郵便番号</label><br />
-                      <input style="margin-top:20px;" id="zip" type="text" size="10" placeholder="&#xf1fa;郵便番号を入力してください", class="fa input is-medium" />
+                      <input style="margin-top:20px;" id="zip" type="text" size="10" placeholder="&#xf1fa; 郵便番号を入力してください", class="fa input is-medium" />
                       <input id="search" type="button" value="検索" class="button" />
                     </div>
                   </form>
@@ -49,23 +49,23 @@
 
                   <div class="field">
                     <%= f.label :prefecture_name, '都道府県', for: "address1", class: "label" %><br />
-                    <%= f.text_field :prefecture_name, :placeholder => "\uf015都道府県を入力してください", id: "address1", class: 'fa input is-medium input-top' %>
+                    <%= f.text_field :prefecture_name, :placeholder => "\uf015 都道府県を入力してください", id: "address1", class: 'fa input is-medium input-top' %>
                   </div>
 
                   <div class="field">
                     <%= f.label :address_city, '市区町村', for: "address2", class: "label" %><br />
-                    <%= f.text_field :address_city, :placeholder => "\uf015市区町村を入力してください", id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
+                    <%= f.text_field :address_city, :placeholder => "\uf015 市区町村を入力してください", id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
                   </div>
 
                   <div class="field">
                     <%= f.label :address_street, '町域', for: "address3", class: "label" %><br />
-                    <%= f.text_field :address_street, :placeholder => "\uf015町域を入力してください", id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
+                    <%= f.text_field :address_street, :placeholder => "\uf015 町域を入力してください", id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
                   </div>
 
 
                   <div class="field">
                     <%= f.label :phone, "電話番号", class: "label" %><br />
-                    <%= f.text_field :phone, :placeholder => "\uf098電話番号を入力してください", value: session[:phone], autocomplete: "phone", class: "fa input is-medium input-top" %>
+                    <%= f.text_field :phone, :placeholder => "\uf098 電話番号を入力してください", value: session[:phone], autocomplete: "phone", class: "fa input is-medium input-top" %>
                   </div>
 
                   <div class="actions">
