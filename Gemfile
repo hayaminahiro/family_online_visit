@@ -48,7 +48,6 @@ gem 'font-awesome-sass', '~> 5.4.1'
 gem "bulma-rails"
 gem 'will_paginate-bulma'
 gem 'jquery-rails'
-gem 'jp_prefecture'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'mini_magick'

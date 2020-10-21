@@ -40,6 +40,10 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
+        postal_code: "郵便番号"
+        prefecture_name: "都道府県"
+        address_city: "市区町村"
+        address_street: "町域"
       facility:
         current_password: "現在のパスワード"
         name: 名前
