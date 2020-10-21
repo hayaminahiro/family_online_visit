@@ -4,16 +4,16 @@
   <div class="facility-home-image">
     <% month = Date.today.month %>
     <% if month.in?([ 12, 1, 2 ]) %>
-      <%= image_tag 'winter.jpg', class: "home-default-image"%>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "home-default-image"%>
     <% elsif month.in?([ 3, 4, 5 ]) %>
-      <%= image_tag 'spring.jpg', class: "home-default-image" %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "home-default-image" %>
     <% elsif month.in?([ 6, 7, 8 ]) %>
-      <%= image_tag 'summer.jpg', class: "home-default-image"%>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "home-default-image"%>
     <% elsif month.in?([ 9, 10, 11 ]) %>
-      <%= image_tag 'autumn.jpg', class: "home-default-image"%>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "home-default-image"%>
     <% end %>  
     <div class="image-outline">
-      <%= image_tag 'facility_default.png', class: "facility-default-image" %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "facility-default-image" %>
       <div class="has-text-right" id="facility-name">
         <%= current_facility.facility_name %>
       </div>
