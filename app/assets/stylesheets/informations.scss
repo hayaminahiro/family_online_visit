@@ -77,8 +77,8 @@
 
 input#information_image.image_uploading {
   color: #ccc;
-  height: 270px;
-  width: 800px;
+  height: 240px;
+  width: 100%;
   margin: 20px 0 20px 0;
   border-style: dashed;
   border-width: 2px;
@@ -97,7 +97,7 @@ input#information_image.image_uploading {
   background: #fff;
   cursor: pointer;
   font-weight: 700;
-  margin: 10px;
+  margin-top: 60px;
 }
 
 .info-btn:hover {
@@ -115,10 +115,6 @@ input#information_image.image_uploading {
 
 .drop-zone-area {
   padding: 0 0 100px 40px;
-}
-
-label.fa.image_input_comment {
-  padding: 40px 0 0 390px;
 }
 
 #info-title {

@@ -63,7 +63,7 @@ class InformationsController < ApplicationController
     private
 
       def information_params
-        params.require(:information).permit(:news, :title, :image, :remove_image)
+        params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
       end
 
       def set_information
