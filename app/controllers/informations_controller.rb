@@ -17,7 +17,12 @@ class InformationsController < ApplicationController
   end
 
   def new
-    @information = Information.new
+    if params[:image_cache].present?
+      @information = Information.new(information_params)
+    else
+      @information = Information.new
+    end
+
   end
 
   def create
