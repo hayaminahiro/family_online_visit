@@ -139,16 +139,19 @@ mypage-main{/*画面中央*/
   width: 100%;
   background-color: rgb(244,243,238);
   display: flex;
+  margin-bottom: -25px;
 
   article{
-    margin: 0px 15px; height: 970px;
+    height: 100%;
+    width: 100%;
   }
 
   .Web-section{
     margin-top: 30px;
-    margin-left: 10px; width: 1400px;
-    overflow: scroll; overflow-y: hidden;
-    height: 109px;
+    margin-left: 10px;
+    overflow: scroll;
+    overflow-y: hidden;
+    height: 100%;
   }
 
   .card{
@@ -162,12 +165,18 @@ mypage-main{/*画面中央*/
       display: flex;
       border-left: solid 1px rgb(238,236,228);
     }
+
+    .mypage-info-icon-image{
+      margin: 20px 0px 0px 10px;
+      border-radius: 100%;
+    }
   }
 
   #Web{
     .columns{
       padding: 0;
     }
+
     .column {
       width: 371px;
       display: block;
@@ -215,8 +224,8 @@ mypage-main{/*画面中央*/
 }
 
 #mypage-reservations-calendar {
-  height: 550px;
-  margin: 34px 21px 34px 15px;
+  height: 100%;
+  margin: 34px 8px 34px 15px;
   padding: 35px;
   font-size: 15px;
   border-radius: 6px;
@@ -237,11 +246,14 @@ mypage-main{/*画面中央*/
   }
 }
 
+.web-container{
+  display: flex;
+}
 
 #mypage-reservations-list{
   flex: 1;
-  height: 550px;
-  margin: 35px 33px 13px 10px;
+  height: 100%;
+  margin: 35px 16px 13px 10px;
   font-size: 17px;
   border-radius: 6px;
 }
@@ -362,4 +374,157 @@ main {/*画面中央*/
 
 .edit-tfoot{
   margin: 10px 0px;
+}
+
+
+
+// レスポンシブ
+@media screen and (max-width: 1000px) {
+  // マイページ
+  mypage-aside {
+    position: fixed;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    bottom: 0;
+    z-index: 50;
+
+    .mypage-side-link {
+      margin-top: 0px;
+      display: flex;
+    }
+
+    .profile-section {
+      display: none;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+
+  .mypage-main-content {
+    article {
+      background-color: rgb(239,238,232);
+      margin-bottom: 0px;
+    }
+
+    .Web-section {
+      margin-top: 15px;
+    }
+
+    .web-container{
+      display: block;
+    }
+  }
+
+
+  mypage-main {
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    margin-bottom: 0px;
+
+    #Web .columns {
+      padding: 0;
+      display: flex;
+      overflow: scroll;
+    }
+
+    #edit-content p span{
+      display: none;
+    }
+
+    #my-page-info-content {
+      padding: 13px 18px;
+
+      .mypage-info-icon-image{
+        margin: 15px 0px 0px 11px;
+        border-radius: 100%;
+      }
+    }
+  }
+
+  #mypage-reservations-calendar {
+    padding: 25px 25px 15px 25px;
+    margin: 15px;
+  }
+
+  #mypage-reservations-list {
+    margin: 15px;
+  }
+
+  #mypage-user-box .image.is-64x64 {
+    height: 40px;
+    width: 34px;
+  }
+
+  .media-left .image.is-48x48 {
+    height: 45px;
+    width: 40px;
+  }
+
+  footer {
+    height: 53px;
+
+    div{
+      display: none;
+    }
+  }
+
+  .footer-layout {
+    width: 100%;
+    height: 150px;
+    background-color: rgb(239,238,232);
+  }
 }

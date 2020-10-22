@@ -31,7 +31,7 @@
               <div class="card" style="display: flex; border-radius: 11px;">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"  style="border-radius:100%; margin: 19px 0px 0px 11px;">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"  class="mypage-info-icon-image">
                   </figure>
                   <small><%#= mypage_informations_name(facility_id) %></small> <!-- 施設アイコン画像が設定できるようになったら、名前→アイコン画像に修正する -->
                 </div>
@@ -50,7 +50,7 @@
                               <strong><%= information.title.truncate(14) %></strong><br>
                                 <small><%= information.facility.facility_name %></small>
                                 <br>
-                                <%= information.news.truncate(13) %>
+                                <span><%= information.news.truncate(13) %></span>
                               </p>
                             </div>
                           </div>
