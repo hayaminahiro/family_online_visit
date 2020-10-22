@@ -1,86 +1,105 @@
-<div class="content has-text-centered">
-  <div class="columns is-centered">
-    <div class="column is-6 top-btn-position is-centered">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "facilities/shared/error_messages", resource: resource %>
-        <p>こちらから背景画像として使用される画像の登録・編集ができます。</p>
-        <div class="facility-photo">
-          <% if @facility.image? %>
-            <%= image_tag @facility.image.url, id: :img_prev, :size => '800x500' %>
-          <% else %>
-            <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '800x500' %>
-          <% end %>
-        </div>
-        <div id="img_confirm">
-          <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
-          <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-        </div>
-        <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
-          <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
-          <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
-        </div>
-        <div class="no_display">
-          <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
-          <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
-        </div>
-        <div class="img_confirm">
-          <%= f.check_box :remove_image, id: "img_delete" %>
-          <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
-        </div>
-        <p>こちらからアイコンとして使用される画像の登録・編集ができます。</p>
-        <div class="facility-photo">
-          <% if @facility.icon? %>
-            <%= image_tag @facility.icon.url, id: :icon_prev, class: "icon_circle" %>
-          <% else %>
-            <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_icon.jpg", id: :icon_prev, class: "icon_circle" %>
-          <% end %>
-        </div>
-        <div id="img_confirm" style="margin-right: 25px;">
-          <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
-          <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
-        </div>
-        <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
-          <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
-          <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
-        </div>
-        <div class="no_display">
-          <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
-          <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
-        </div>
-        <div class="img_confirm">
-          <%= f.check_box :remove_icon, id: "icon_delete" %>
-          <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。</label>
-        </div>
-        <div class="field" id="input-field">
-          <%= f.label :facility_name,  class: "label" %><br />
-          <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
-        </div>
-        <div class="field" id="input-field">
-          <%= f.label :email, class: "label" %><br />
-          <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
-        </div>
-        <div class="field" id="input-field">
-          <%= f.label :password, class: "label" %><br />
-          <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
-        </div>
-        <div class="field" id="input-field">
-          <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-          <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
-        </div>
-        <div class="field" id="input-field">
-          <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
-          <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", class: "fa input is-medium input-top" %>
-        </div>
-        <div>
-          <%= f.submit "イメージ画像として登録", class: "info-btn" %>
-        </div>
-      <% end %>
-      <div class="actions" id="btn-delete-field">
-        <p class="delete_confirm">アカウント削除すると全データも削除されます。</p>
-        <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントを削除して本当によろしいですか？" }, method: :delete, class: "account-delete-btn", style: "margin-right: -300px;" %>
+<nav class="panel" id="panel-style">
+  <div class="content has-text-centered">
+    <div class="columns is-centered">
+      <div class="column is-10 top-btn-position is-centered">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "facilities/shared/error_messages", resource: resource %>
+
+          <h1 class="account-title" style="color: #401c00;">背景画像やアイコン、アカウントの編集ができます。</h1>
+          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">背景画像設定</h1>
+          <p class="title-description">こちらから背景画像として使用される画像の登録・編集ができます。</p>
+          <div class="facility-photo">
+            <% if @facility.image? %>
+              <%= image_tag @facility.image.url, id: :img_prev, :size => '500x500' %>
+            <% else %>
+              <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '500x500' %>
+            <% end %>
+          </div>
+          <div id="img_confirm">
+            <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
+            <%= f.file_field :image, value: "upload", class: "image_uploading" %>
+          </div>
+          <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
+            <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
+            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
+          </div>
+          <div class="no_display">
+            <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
+            <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+          </div>
+          <div class="img_confirm">
+            <%= f.check_box :remove_image, id: "img_delete" %>
+            <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+          </div>
+
+          <div class="position-control">
+            <h1>位置調整</h1>
+          </div>
+
+          <div style="text-align: left">
+            <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アイコン画像設定</h1>
+            <p class="title-description">こちらからアイコンとして使用される画像の登録・編集ができます。</p>
+          </div>
+          <div class="facility-photo">
+            <% if @facility.icon? %>
+              <%= image_tag @facility.icon.url, id: :icon_prev, class: "icon_circle" %>
+            <% else %>
+              <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_icon.jpg", id: :icon_prev, class: "icon_circle" %>
+            <% end %>
+          </div>
+          <div id="img_confirm" style="margin-right: 25px; margin-top: 0;">
+            <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
+            <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
+          </div>
+          <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
+            <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
+            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
+          </div>
+          <div class="no_display">
+            <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
+            <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+          </div>
+          <div class="img_confirm">
+            <%= f.check_box :remove_icon, id: "icon_delete" %>
+            <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。</label>
+          </div>
+
+          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アカウント設定</h1>
+          <p class="title-description">こちらからアカウントの設定・変更ができます。</p>
+
+          <div class="position-control">
+            <h1>位置調整</h1>
+          </div>
+
+          <div class="field" id="input-field">
+            <%= f.label :facility_name,  class: "label" %><br />
+            <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
+          </div>
+          <div class="field" id="input-field">
+            <%= f.label :email, class: "label" %><br />
+            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autofocus: true, autocomplete: "email", class: "fa input is-medium input-top" %>
+          </div>
+          <div class="field" id="input-field">
+            <%= f.label :password, class: "label" %><br />
+            <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
+          </div>
+          <div class="field" id="input-field">
+            <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
+            <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
+          </div>
+          <div class="field" id="input-field">
+            <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
+            <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", class: "fa input is-medium input-top" %>
+          </div>
+          <%= f.submit "設定を更新する", class: "info-btn has-text-centered", style: "margin: 30px 60px 0 0;"%>
+        <% end %>
       </div>
     </div>
   </div>
+</nav>
+
+<div class="actions" id="btn-delete-field">
+  <%= link_to "アカウント削除はこちら", registration_path(resource_name), data: { confirm: "アカウントを削除して本当によろしいですか？" }, method: :delete, class: "account-delete-btn" %>
 </div>
 
 

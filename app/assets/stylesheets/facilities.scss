@@ -475,7 +475,7 @@ div.under-line {
 
 .facility-photo {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 40px;
 }
 
 .image_input_btn {
@@ -524,8 +524,8 @@ div.under-line {
 
 input#facility_image {
   color: #ccc;
-  height: 240px;
-  width: 100%;
+  height: 250px;
+  width: 98%;
   margin: 20px 0 20px 0;
   border-style: dashed;
   border-width: 2px;
@@ -537,7 +537,7 @@ input#facility_icon.image_uploading_icon {
   color: #ccc;
   height: 250px;
   width: 100%;
-  margin: 10px 0 10px 0;
+  margin: 20px 0 0 0;
   border-style: dashed;
   border-width: 2px;
   text-align: center;
@@ -736,7 +736,6 @@ input#facility_icon.image_uploading_icon {
 
 #btn-delete-field {
   width: 80% !important;
-  margin-left: 40px;
 }
 
 //イメージ画像のチェックボックス
@@ -872,24 +871,53 @@ img#icon_prev.icon_circle {
 
 .account-delete-btn {
   text-align: center;
-  border-radius: 5px;
-  border: 2px solid #F14767;
-  color: #F14767;
+  color: #666666;
   text-decoration: none;
-  background: #fff;
   cursor: pointer;
-  font-weight: 700;
-  margin-top: 100px;
+  margin-top: 10px;
   float: right;
+  margin-bottom: 150px;
 }
-
 .account-delete-btn:hover {
-  background: #F14767;
-  color: #fff;
+  color: #cc0f35;
 }
 
 .delete_confirm {
   float: right;
-  margin-right: -400px;
+  //margin-right: -200px;
   padding-top: 65px;
 }
+
+#panel-style {
+  padding: 50px;
+  margin: 100px 50px 50px 50px;
+  background: #F5F5F5;
+}
+
+.account-title {
+  font-weight: 700;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.mini-title {
+  font-weight: 700;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+h1.mini-title {
+  padding-top: 50px;
+}
+
+.position-control {
+  visibility:hidden;
+}
+
+.title-description {
+  text-align: left;
+}
+
