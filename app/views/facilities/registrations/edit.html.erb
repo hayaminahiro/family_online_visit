@@ -4,7 +4,6 @@
       <div class="column is-10 top-btn-position is-centered">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= render "facilities/shared/error_messages", resource: resource %>
-
           <h1 class="account-title" style="color: #401c00;">背景画像やアイコン、アカウントの編集ができます。</h1>
           <h1 class="mini-title" style="font-size: 20px; color: #401c00;">背景画像設定</h1>
           <p class="title-description">こちらから背景画像として使用される画像の登録・編集ができます。</p>
@@ -18,28 +17,17 @@
           <div id="img_confirm">
             <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
             <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-          </div>
-          <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
-            <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
-            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
-          </div>
-          <div class="no_display">
-            <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
-            <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+            <%= f.hidden_field :image_cache %>
           </div>
           <div class="img_confirm">
             <%= f.check_box :remove_image, id: "img_delete" %>
-            <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+            <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">
+              使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。
+            </label>
           </div>
-
-          <div class="position-control">
-            <h1>位置調整</h1>
-          </div>
-
-          <div style="text-align: left">
-            <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アイコン画像設定</h1>
-            <p class="title-description">こちらからアイコンとして使用される画像の登録・編集ができます。</p>
-          </div>
+          <div class="position-control"><h1>位置調整</h1></div>
+          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アイコン画像設定</h1>
+          <p class="title-description">こちらからアイコンとして使用される画像の登録・編集ができます。</p>
           <div class="facility-photo">
             <% if @facility.icon? %>
               <%= image_tag @facility.icon.url, id: :icon_prev, class: "icon_circle" %>
@@ -50,27 +38,17 @@
           <div id="img_confirm" style="margin-right: 25px; margin-top: 0;">
             <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
             <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
-          </div>
-          <div class="no_display"> <!-- 現在のパスワードを表示させる為に存在 -->
-            <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください" %>
-            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください" %>
-          </div>
-          <div class="no_display">
-            <p><%= f.label :current_password %>(変更を反映するには現在のパスワードを入力)</p><br>
-            <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", autocomplete: "current-password", class: "fa input is-medium input-top" %>
+            <%= f.hidden_field :icon_cache %>
           </div>
           <div class="img_confirm">
             <%= f.check_box :remove_icon, id: "icon_delete" %>
-            <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。</label>
+            <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+              使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。
+            </label>
           </div>
-
           <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アカウント設定</h1>
           <p class="title-description">こちらからアカウントの設定・変更ができます。</p>
-
-          <div class="position-control">
-            <h1>位置調整</h1>
-          </div>
-
+          <div class="position-control"><h1>位置調整</h1></div>
           <div class="field" id="input-field">
             <%= f.label :facility_name,  class: "label" %><br />
             <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
@@ -101,7 +79,6 @@
 <div class="actions" id="btn-delete-field">
   <%= link_to "アカウント削除はこちら", registration_path(resource_name), data: { confirm: "アカウントを削除して本当によろしいですか？" }, method: :delete, class: "account-delete-btn" %>
 </div>
-
 
 <script>
   $(function() {

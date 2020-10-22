@@ -847,10 +847,6 @@ input#icon_delete[type="checkbox"]:checked + label.check_position:before {
   padding-bottom: 14px;;
 }
 
-.no_display {
-  display: none;
-}
-
 .index-img-center {
   display: flex;
   align-items: center;
@@ -878,6 +874,7 @@ img#icon_prev.icon_circle {
   float: right;
   margin-bottom: 150px;
 }
+
 .account-delete-btn:hover {
   color: #cc0f35;
 }
