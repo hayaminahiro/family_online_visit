@@ -1,72 +1,46 @@
-<div class="container is-fluid" style="padding-top: 30px;">
+<nav class="panel" id="panel-style">
   <div class="notification">
-    <article class="media media-width">
-      <figure class="media-left">
-        <p class="image is-64x64">
-          <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info_aicon.jpg">
-        </p>
-      </figure>
-      <div class="media-content">
-        <div class="content">
-          <p id="info-title">
-            <strong>お知らせ新規作成</strong>
-            <small>現在時刻<%= l(Time.zone.now, format: :short) %></small>
-          </p>
-        </div>
-        <p>ここから新規お知らせの投稿ができます。</p>
-        <%= form_with(model: @information, url: facility_informations_path(current_facility), method: :post, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
-
-          <article class="media">
-            <label class="media-left has-text-weight-bold">
-              <%= f.label :image %>
-            </label>
+    <div class="content has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-10 top-btn-position is-centered">
+          <h1 class="account-title" style="color: #401c00;">お知らせの新規投稿ができます。</h1>
+          <small style="float: right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
+          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせ画像設定</h1>
+          <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
+          <%= form_with(model: @information, url: facility_informations_path(current_facility), method: :post, local: true) do |f| %>
+            <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
             <div class="label-space">
               <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, :size => '500x500' %>
             </div>
-            <div class="drop-zone-area" style="padding-bottom: 0;">
+            <div class="drop-zone-area">
               <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
-              <%= f.file_field :image, value: "upload", class: "image_uploading", style: "height: 300px;" %>
+              <%= f.file_field :image, value: "upload", class: "image_uploading" %>
+              <%= f.hidden_field :image_cache %>
             </div>
-          </article>
-
-          <article class="media">
+            <div class="position-control"><h1>位置調整</h1></div>
             <label class="media-left has-text-weight-bold">
-              <%= f.label :title %>
-            </label>
-            <div class="media-content">
-              <div class="content">
-                <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
-              </div>
-            </div>
-          </article>
-
-          <article class="media">
-            <label class="media-left has-text-weight-bold">
-              <%= f.label :news %>
+              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせタイトル</h1>
             </label>
             <div class="media-content">
               <div class="content label-space">
-                <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %><br><br>
+                <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
               </div>
             </div>
-          </article>
-
-          <article class="media">
+            <label class="media-left has-text-weight-bold">
+              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">本文</h1>
+            </label>
             <div class="media-content">
-              <div class="field has-text-centered is-large">
-                <div>
-                  <%= f.submit "お知らせを新規投稿する", class: "info-btn" %>
-                </div>
+              <div class="content label-space">
+                <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
               </div>
             </div>
-          </article>
-
-        <% end %>
+            <%= f.submit "お知らせを新規投稿する", class: "info-btn" %>
+          <% end %>
+        </div>
       </div>
-    </article>
+    </div>
   </div>
-</div>
+</nav>
 
 <script>
   $(function() {
