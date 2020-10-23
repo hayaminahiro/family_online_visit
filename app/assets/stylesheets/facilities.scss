@@ -82,12 +82,12 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   margin-top: 30px;
 }
 
-#submit-btn{
+#submit-btn {
   pointer-events: none;
 }
 
 /* facilities-usedページのcollection_checkboxを非表示にする */
-.facilities-used-label{
+.facilities-used-label {
   input[type="checkbox"], input[type="radio"] {
     vertical-align: baseline;
     display: none;
@@ -218,10 +218,128 @@ div.under-line {
   margin-top: 30px;
 }
 
-//facility_home
-.facility-home-image {
-  width: auto;
+//facility_home（修正後）
+.facility-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
   height: auto;
+  min-height: 100%;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  background: #0A203F;
+}
+
+#vertical_tab_nav {
+  display: block;
+  width: 100%;
+}
+
+#vertical_tab_nav ul {
+  display: block;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+}
+
+#vertical_tab_nav li {
+  margin-bottom: 1px;
+  text-align: center;
+  padding: 0px;
+}
+
+#vertical_tab_nav li:last-child {
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
+
+#vertical_tab_nav li a {
+  display: block;
+  font-size: 14pt;
+  color: #fff;
+  text-decoration: none;
+  padding: 7%;
+}
+
+#vertical_tab_nav li a:hover {
+  background: black;
+  color: #fff;
+}
+
+//施設ホーム画面（背景画像）
+.facility-home-image {
+  position: relative;
+}
+
+.home-default-image {
+  height: 400px;
+  width: 100%;
+}
+
+.hero-1 img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.image-outline {
+  z-index: 1;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  top: 250px;
+  left: 50%;
+  background-color: rgba(0,0,0,0.7);
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+//施設の名前
+#facility-name {
+  z-index: 2;
+  display: block;
+  text-align: right;
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  color: #fff;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  padding-right: 50px;
+  font-size: 38px;
+}
+
+//施設のアイコン画像
+.facility-default-image {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  top: 25%;
+  left: 8%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+//施設ホーム画面（タブのパネル）
+#facility-contents {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  margin-right: 9px;
+  background-color: #fff;
 }
 
 .inline-block_home {
@@ -231,104 +349,6 @@ div.under-line {
   width: 420px;
   margin-right: 20px;
   margin-top: 70px;
-}
-
-//権限変更（一般）
-.general-change {
-  margin-top: 50px;
-  border: 1px solid transparent;
-  outline: none;
-  background: linear-gradient(25deg,#2bc0e4, #eaecc6);
-  color: #fff;
-  border-radius: 40px;
-  padding: 15px 30px;
-  overflow: hidden;
-  width: 200px;
-  transition: 
-    all        1.2s,
-    border     0.5s 1.2s,
-    box-shadow 0.3s 1.5s;
-  white-space: nowrap;
-  text-indent: 23px;
-  font-weight: bold;
-  span {
-    display: inline-block;
-    font-size: 25px;
-    transform: translateX(300px);
-    font-weight: normal;
-    opacity: 0;
-    transition: 
-      opacity 0.1s 0.5s,
-      transform 0.4s 0.5s;
-  }
-  i {
-    display: inline-block;
-    font-size: 40px;
-  }
-  &:hover {
-    text-indent: 0;
-    background: linear-gradient(25deg, #F13F79, #FFC778);
-    color: #fff;
-    width: 250px;
-    border: 5px solid #FA8072;
-    box-shadow: 3px 3px 2px rgba(black, 0.15);
-    span {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    #users {
-      display: none;
-    }
-  }
-}
-
-//権限変更（管理者）
-.admin-change {
-  margin-top: 50px;
-  border: 1px solid transparent;
-  outline: none;
-  background: linear-gradient(25deg, #F13F79, #FFC778);
-  color: #fff;
-  border-radius: 40px;
-  padding: 15px 30px;
-  overflow: hidden;
-  width: 200px;
-  transition: 
-    all        1.2s,
-    border     0.5s 1.2s,
-    box-shadow 0.3s 1.5s;
-  white-space: nowrap;
-  text-indent: 23px;
-  font-weight: bold;
-  span {
-    display: inline-block;
-    font-size: 25px;
-    transform: translateX(300px);
-    font-weight: normal;
-    opacity: 0;
-    transition: 
-      opacity 0.1s 0.5s,
-      transform 0.4s 0.5s;
-  }
-  i {
-    display: inline-block;
-    font-size: 40px;
-  }
-  &:hover {
-    text-indent: 0;
-    background: linear-gradient(25deg,#2bc0e4, #eaecc6);
-    color: #fff;
-    width: 250px;
-    border: 5px solid #B0E0E6;
-    box-shadow: 3px 3px 2px rgba(black, 0.15);
-    span {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    #admin {
-      display: none;
-    }
-  }
 }
 
 //calendar
@@ -347,130 +367,6 @@ div.under-line {
 
 .simple-calendar .wday-0 {
   color: red;
-}
-
-#new-family-table {
-  margin-top: 50px;
-  padding-bottom: 30px;
-}
-
-#new-family-table th {
-  background-color: #FFDAB9;
-  font-size: 20px;
-  text-align: center;
-}
-
-#new-family-table td {
-  text-align: center;
-}
-
-//タブ（利用者）
-.tab-resident {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 100px 70px;
-}
-
-//タブ（利用者）ボタン
-.btn-tab-resident {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  background-color: #7596E0;
-  border: 2px solid #7596E0;
-  font-size: 20px;
-  color: #7596E0;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.btn-tab-resident span {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-tab-resident::before,
-.btn-tab-resident::after {
-  content: "";
-  display: block;
-  background-color: #FFF;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: .2s;
-}
-
-.btn-tab-resident::before {
-  left: 0;
-}
-
-.btn-tab-resident::after {
-  right: 0;
-}
-
-.btn-tab-resident:hover:before,
-.btn-tab-resident:hover:after {
-  width: 0;
-  background-color: #FFF;
-}
-
-.btn-tab-resident:hover {
-  color: #FFF;
-}
-
-//タブ（ユーザー）ボタン
-.btn-tab-user {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  background-color: #00d1b2;
-  border: 2px solid #00d1b2;
-  font-size: 20px;
-  color: #00d1b2;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.btn-tab-user span {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-tab-user::before,
-.btn-tab-user::after {
-  content: "";
-  display: block;
-  background-color: #FFF;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: .2s;
-}
-
-.btn-tab-user::before {
-  left: 0;
-}
-
-.btn-tab-user::after {
-  right: 0;
-}
-
-.btn-tab-user:hover:before,
-.btn-tab-user:hover:after {
-  width: 0;
-  background-color: #FFF;
-}
-
-.btn-tab-user:hover {
-  color: #FFF;
 }
 
 .facility-photo {
@@ -918,4 +814,3 @@ h1.mini-title {
 .title-description {
   text-align: left;
 }
-
