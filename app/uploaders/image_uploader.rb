@@ -15,12 +15,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # storage :fog
 
   def store_dir
-    def store_dir
-      if model.present?
-        "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-      else
-        'uploads/content_image/'
-      end
+    if model.present?
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      'uploads/content_image/'
     end
   end
 
