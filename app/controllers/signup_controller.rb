@@ -61,7 +61,7 @@ class SignupController < ApplicationController
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
     render 'step2' unless @user.valid?
-  end 
+  end
 
   def create
     @user = User.new(
@@ -90,26 +90,16 @@ class SignupController < ApplicationController
   private
    # 許可するキーを設定します
     def user_params
-    params.require(:user).permit(
-      :name,
-      :email,
-      :password,
-      :password_confirmation,
-      :postal_code,
-      :prefecture_name,
-      :address_city,
-      :address_street,
-      :phone
-    )
-    end
-
-    def user_add_params
-    params.require(:user).permit(
-      :postal_code,
-      :prefecture_name,
-      :address_city,
-      :address_street,
-      :phone
-    )
+      params.require(:user).permit(
+        :name,
+        :email,
+        :password,
+        :password_confirmation,
+        :postal_code,
+        :prefecture_name,
+        :address_city,
+        :address_street,
+        :phone
+      )
     end
 end
