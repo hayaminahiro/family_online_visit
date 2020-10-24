@@ -40,11 +40,7 @@
                   <div class="card card-style" style="position: relative;">
                     <div class="card-image">
                       <figure class="image">
-                        <% if fa.image? %>
-                          <%= image_tag fa.image.url %>
-                        <% else %>
-                          <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg" %>
-                        <% end %>
+                        <%= facility_season_image(fa) %>
                       </figure>
                     </div>
                     <div class="card-content">
@@ -126,11 +122,7 @@
                   <div class="card card-style">
                     <div class="card-image">
                       <figure class="image">
-                        <% if fa.image? %>
-                          <%= image_tag fa.image.url %>
-                        <% else %>
-                          <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg" %>
-                        <% end %>
+                        <%= facility_season_image(fa) %>
                       </figure>
                     </div>
                     <div class="card-content">

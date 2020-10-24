@@ -22,7 +22,6 @@ class InformationsController < ApplicationController
     else
       @information = Information.new
     end
-
   end
 
   def create
