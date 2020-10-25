@@ -61,7 +61,7 @@
     </section>
   </div>
 
-  <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding-top: 0px; margin-top: 12px;">
+  <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding: 0px; margin-top: 12px;">
     <article class="panel is-success" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
         <p class="panel-heading has-text-centered" style="font-size: 30px; background: -webkit-linear-gradient(top,goldenrod,darkgoldenrod);">
@@ -78,7 +78,7 @@
         <div id="Web" class="content-tab" >
           <div class="has-text-centered" id="calendar-reservations">
             <div class="is-centered">
-              <%= month_calendar(attribute: :calendar_day, events: @calendar_reservations) do |date, reservations| %>
+              <%= month_calendar(attribute: :calendar_day, events: Reservation.calendar_reservation) do |date, reservations| %>
                 <%= l(date, format: :short) %>
               <% end %>
             </div><br>
