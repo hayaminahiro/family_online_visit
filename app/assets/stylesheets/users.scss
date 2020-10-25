@@ -67,10 +67,12 @@ mypage-aside {/*画面左*/
     margin-top: 50px;
   }
 
-  .user-profile-image{
-    width: 50px;
-    border-radius: 100px;
+  .user-profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
     display: inline-block;
+    object-fit: cover;
   }
 
   .panel-tab{

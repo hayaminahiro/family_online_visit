@@ -113,7 +113,7 @@ end
 end
 
 Information.create!(
-    facility_id: 2,
+    facility_id: 1,
     title: "当システムの利用方法",
     news: "ご利用前にご入居者様の・・・",
     status: 1

@@ -4,7 +4,7 @@
       <div>
         <div class="profile-section">
           <% if current_user.image.present? %>
-            <%= image_tag current_user.image.url, class: "profile-image" %>
+            <%= image_tag current_user.image.url, class: "user-profile-image" %>
           <% else %>
             <%= image_tag 'user_default.png', class: "user-profile-image" %>
           <% end %>

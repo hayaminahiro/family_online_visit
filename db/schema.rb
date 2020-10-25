@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_10_20_032210) do
+=======
+ActiveRecord::Schema.define(version: 2020_10_18_150720) do
+>>>>>>> 90df112cfa0145355c911071df403e4c2d16a00a
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_032210) do
     t.boolean "admin", default: false
     t.boolean "facility_admin", default: false
     t.string "image"
+    t.string "icon"
     t.index ["email"], name: "index_facilities_on_email", unique: true
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end
@@ -44,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_032210) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "facility_id"
+    t.string "image"
     t.index ["facility_id"], name: "index_information_on_facility_id"
   end
 
