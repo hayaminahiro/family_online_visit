@@ -69,7 +69,7 @@
           <div class="card" id="mypage-reservations-calendar">
             <div class="has-text-centered">
               <div class="is-centered">
-                <%= month_calendar(attribute: :calendar_day, events: Reservation.calendar_reservation) do |date, reservations| %>
+                <%= month_calendar(attribute: :calendar_day, events: calendar_reservation) do |date, reservations| %>
                   <%= l(date, format: :short) %>
                 <% end %>
               </div><br>
