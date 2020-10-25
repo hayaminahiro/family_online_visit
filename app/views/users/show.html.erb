@@ -3,11 +3,7 @@
     <nav class="">
       <div>
         <div class="profile-section">
-          <% if current_user.image.present? %>
-            <%= image_tag current_user.image.url, class: "user-profile-image" %>
-          <% else %>
-            <%= image_tag 'user_default.png', class: "user-profile-image" %>
-          <% end %>
+          <%= user_icon_image(current_user) %>
           <p class="has-text-centered"><%= current_user.name %></p>
         </div>
       </div>

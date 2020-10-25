@@ -30,8 +30,6 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-
-
   # cookieでログイン情報を保持
   def remember_me
     true
