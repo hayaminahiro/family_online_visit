@@ -427,13 +427,14 @@ input#facility_image {
   border-width: 2px;
   text-align: center;
   cursor: pointer;
+  padding: 10px;
 }
 
 input#facility_icon.image_uploading_icon {
   color: #ccc;
   height: 250px;
-  width: 100%;
-  margin: 20px 0 0 0;
+  width: 98%;
+  margin: 20px 0 20px 0;
   border-style: dashed;
   border-width: 2px;
   text-align: center;
@@ -733,10 +734,6 @@ input#icon_delete[type="checkbox"]:checked + label.check_position:before {
 
 #img_delete {
   font-weight: bold;
-}
-
-.img_confirm {
-  padding-top: 20px;
 }
 
 #img_lavel {

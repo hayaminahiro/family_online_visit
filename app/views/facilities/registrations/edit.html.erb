@@ -10,12 +10,12 @@
           <div class="facility-photo">
           <%= facility_season_image(current_facility) %>
           </div>
-          <div id="img_confirm">
+          <div class="drop-zone-area">
             <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
             <%= f.file_field :image, value: "upload", class: "image_uploading" %>
             <%= f.hidden_field :image_cache %>
           </div>
-          <div class="img_confirm">
+          <div class="drop-zone-area">
             <%= f.check_box :remove_image, id: "img_delete" %>
             <label for="img_delete" class="check_position has-text-weight-bold" id="img_lavel">
               使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。
@@ -27,12 +27,12 @@
           <div class="facility-photo">
             <%= facility_icon_image(current_facility) %>
           </div>
-          <div id="img_confirm" style="margin-right: 25px; margin-top: 0;">
+          <div id="drop-zone-area"style="padding-left: 40px;">
             <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
             <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
             <%= f.hidden_field :icon_cache %>
           </div>
-          <div class="img_confirm">
+          <div class="drop-zone-area">
             <%= f.check_box :remove_icon, id: "icon_delete" %>
             <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
               使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。

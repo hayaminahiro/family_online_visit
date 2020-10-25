@@ -10,11 +10,7 @@
           <%= form_with(model: @information, url: facility_information_path(current_facility, @information), method: :patch, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
             <div class="label-space">
-              <% if @information.image? %>
-                <%= image_tag @information.image.url, id: :img_prev, :size => '500x500' %>
-              <% else %>
-                <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, :size => '500x500' %>
-              <% end %>
+              <%= information_image(@information) %>
             </div>
             <div class="drop-zone-area">
               <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
