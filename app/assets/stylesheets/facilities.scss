@@ -351,6 +351,10 @@ div.under-line {
   margin-top: 70px;
 }
 
+.column.is-0-mobile {
+  margin-top: 12px;
+}
+
 //施設情報のタイトル
 .panel.is-success .panel-heading {
   font-size: 30px;
@@ -827,29 +831,38 @@ h1.mini-title {
 //【施設側ホームページ】
 @media screen and (max-width: 1000px) {
   .home-default-image {
-    height: 200px;
+    height: 250px;
   }
 
   .image-outline {
-    height: 75px;
-    top: 125px;
+    height: 80px;
+    top: 170px;
   }
 
   #facility-name {
-    font-size: 20px;
+    font-size: 27px;
   }
 
   .facility-default-image {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 
   .panel.is-success .panel-heading {
-    font-size: 18px;
+    font-size: 30px;
   }
 
   .panel-tabs a.facility-tab {
-    font-size: 15px;
+    font-size: 20px;
     margin: 0 10px;
+  }
+
+  #facility-contents {
+    margin-top: 0px;
+    padding: 20px;
+  }
+
+  .column.is-0-mobile {
+    margin-top: 2px;
   }
 }
