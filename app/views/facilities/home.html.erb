@@ -1,15 +1,20 @@
-<section class="hero is-medium">
-  <figure class="image is-3by1">
-    <%= image_tag 'facility_image.jpg', class: "facility-home-image" %>
-  </figure>
-</section>
-
-<section class="hero is-small is-info is-bold">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title has-text-right">
+<section class="hero-1">
+  <div class="facility-home-image">
+    <% month = Date.today.month %>
+    <% if month.in?([ 12, 1, 2 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "home-default-image"%>
+    <% elsif month.in?([ 3, 4, 5 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "home-default-image" %>
+    <% elsif month.in?([ 6, 7, 8 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "home-default-image"%>
+    <% elsif month.in?([ 9, 10, 11 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "home-default-image"%>
+    <% end %>  
+    <div class="image-outline">
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "facility-default-image" %>
+      <div class="has-text-right" id="facility-name">
         <%= @facility.facility_name %>
-      </h1>
+      </div>
     </div>
   </div>
 </section>
@@ -56,7 +61,7 @@
   </div>
 
   <div class="column is-3" id="layout-comment">
-    <p class="content-request has-text-weight-semibold is-size-6" style="color: #fff;">
+    <p class="content-request has-text-weight-semibold is-size-5" style="color: #fff;">
       ホームページをご利用<br>
       される場合は施設を利用<br>
       されている方との<br>
@@ -78,15 +83,15 @@
 
 <div class="columns .is-variable is-0" style="margin-top: 20px;">
   <div class="column is-3">
-    <div class="card" style="height: 450px;">
+    <div class="card" style="height: 500px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_reservation.jpg"), '#' %>
           <p><%= link_to "面会予約", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
-      <div class="card-content">
-        <div class="has-text-centered is-size-5">
+      <div class="card-content has-text-centered">
+        <div class="is-size-5">
           <%= link_to '#', class: "button is-rounded is-warning is-outlined" do %>
             <span class="icon">
               <i class="far fa-calendar-alt"></i>&nbsp;
@@ -97,23 +102,23 @@
           <% end %>  
         </div><br>
         <div class="content">
-          オンラインでの面会予約の日時<br>
-          の登録、編集、削除ができます。<br>
+          オンラインでの面会予約の日時の<br>
+          登録、編集、削除ができます。<br>
         </div>
       </div>
     </div>
   </div>
 
   <div class="column is-3">
-    <div class="card" style="height: 450px;">
+    <div class="card" style="height: 500px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_chat.jpg"), '#' %>
           <p><%= link_to "ビデオ通話", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
-      <div class="card-content">
-        <div class="has-text-centered is-size-5">
+      <div class="card-content has-text-centered">
+        <div class="is-size-5">
           <%= link_to '#', class: "button is-link is-rounded is-outlined" do %>
             <span class="icon">
               <i class="fas fa-video"></i>&nbsp;
@@ -131,15 +136,15 @@
   </div>
 
   <div class="column is-3">
-    <div class="card" style="height: 450px;">
+    <div class="card" style="height: 500px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_album.jpg"), new_facility_user_request_resident_path(current_user.id, facility_id: @facility) %>
           <p><%= link_to "写真・動画", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
-      <div class="card-content">
-        <div class="has-text-centered is-size-5">
+      <div class="card-content has-text-centered">
+        <div class="is-size-5">
           <%= link_to '#', class: "button is-rounded is-outlined is-success" do %>
             <span class="icon">
               <i class="fas fa-photo-video"></i>&nbsp;
@@ -150,23 +155,23 @@
           <% end %>  
         </div><br>
         <div class="content">
-          ご利用者様の写真の閲覧、<br>
-          動画の視聴をすることができます。
+          ご利用者様の写真の閲覧、動画<br>
+          の視聴をすることができます。
         </div>
       </div>
     </div>
   </div>
 
   <div class="column is-3">
-    <div class="card" style="height: 450px;">
+    <div class="card" style="height: 500px;">
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_+contact.jpg"), '#' %>
           <p><%= link_to "お問い合わせ", '#', :style=>"color: #fff;" %></p>
         </figure>
       </div>
-      <div class="card-content">
-        <div class="has-text-centered is-size-5">
+      <div class="card-content has-text-centered">
+        <div class="is-size-5">
           <%= link_to '#', class: "button is-primary is-rounded is-outlined" do %>
             <span class="icon">
               <i class="far fa-paper-plane"></i>&nbsp;
