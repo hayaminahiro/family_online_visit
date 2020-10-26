@@ -64,16 +64,17 @@
   <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding: 0px; margin-top: 12px;">
     <article class="panel is-success" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
-        <p class="panel-heading has-text-centered" style="font-size: 30px; background: -webkit-linear-gradient(top,goldenrod,darkgoldenrod);">
+        <p class="panel-heading has-text-centered">
           施設情報
         </p>
         <div class="panel-block">
         </div>
-        <p class="panel-tabs">
-          <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">NEWS</a>
-        </p>
+        <div class="panel-tabs">
+          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')">NEWS</a>
+        </div>
+
 
         <div id="Web" class="content-tab" >
           <div class="has-text-centered" id="calendar-reservations">
