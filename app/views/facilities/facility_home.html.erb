@@ -1,37 +1,11 @@
 <ul class="facility-background">
 </ul>
 
-<%= render 'facility_images' %>
+<%= render partial: 'facility_images', locals: { facility_name: current_facility.facility_name} %>
 
 <div class="columns .is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
-  <div class="column is-2-desktop is-0-mobile" style="padding-right: 0px; padding-top: 0px; background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
-                                  background: -moz-linear-gradient(top,#4E6F8B,#0A203F);">
-    <section id="vertical_tab_nav">
-      <ul>
-        <li>
-          <%= link_to facility_home_facility_path(id: current_facility) do %>
-            <span class="icon">
-              <i class="fas fa-home"></i>
-            </span>&nbsp;
-          <% end %>
-        <li>
-          <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility) %>
-        </li>
-        <li>
-          <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility) %>
-        </li>
-        <li>
-          <%= link_to_unless_current "予約状況一覧", "#" %>
-        </li>
-        <li>
-          <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility) %>
-        </li>
-        <li>
-          <%= link_to_unless_current "お問い合わせ", "#" %>
-        </li>
-      </ul>
-    </section>
-  </div>
+  
+  <%= render 'side_link' %>
 
   <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding: 0px;">
     <article class="panel is-success" id="facility-contents">
