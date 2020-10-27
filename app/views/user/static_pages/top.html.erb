@@ -42,7 +42,7 @@
                       <div class="card-content">
                         <p class="title is-4">
                           <% @facility = facility.id %>
-                          <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                          <%= link_to facility.facility_name, user_user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                         </p>
                         <%= link_to '#', class: "button is-outlined is-danger" do %>
                           <span>
@@ -70,7 +70,7 @@
                 利用したい施設を登録することで<br>
                 ビデオチャットの予約をすることができます。
               </p><br>
-              <%= link_to facilities_used_user_facilities_path(current_user), class: "btn-animation-facility" do %>
+              <%= link_to facilities_used_user_user_facilities_path(current_user), class: "btn-animation-facility" do %>
                 <span class="icon">
                   <i class="far fa-building"></i>
                 </span>&nbsp;
@@ -89,7 +89,7 @@
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 登録した施設、予約の確認、写真の閲覧ができます。<br>
               </p><br>
-              <%= link_to user_path(current_user), class: "btn-animation-login" do %>
+              <%= link_to user_user_path(current_user), class: "btn-animation-login" do %>
                 <span class="icon">
                   <i class="fas fa-home"></i>
                 </span>&nbsp;

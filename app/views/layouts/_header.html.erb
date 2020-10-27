@@ -117,7 +117,7 @@
         <div class="navbar-dropdown" style="background-color: #efefef;">
           <a class="navbar-item has-text-weight-bold is-size-6">
             <% if user_signed_in? %>
-            <%= link_to "マイページ", user_path(current_user), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <%= link_to "マイページ", user_user_path(current_user), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% elsif facility_signed_in? %>
             <%= link_to "マイページ", facility_path(current_facility), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% end %>
