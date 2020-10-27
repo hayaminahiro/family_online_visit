@@ -19,6 +19,10 @@
 @import 'font-awesome';
 @import "bulma";
 
+
+#tab-test{ /*パソコンサイズの時は表示しない*/
+  display: none;
+}
 //下タブ（タブレット、モバイル）
 @media screen and (max-width: 1000px) {
   #vertical_tab_nav {
@@ -87,4 +91,48 @@
       margin-bottom: 0px;
     }
   }
+
+
+
+/*下タブのテスト （レスポンシブサイズ）*/
+  #tab-test {
+    position: fixed;
+    display: block;
+    z-index: 20;
+    bottom: 0;
+    height: 55px;
+    width: 100%;
+    background-color: black;
+  }
+
+  #tab-test ul {
+    display: flex;
+    font-weight: bold;
+  }
+
+  #tab-test li {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .facility-default-image {
+    left: 12%;
+  }
+
+  #tab-test li a {
+    display: block;
+    height: 51px;
+    padding-top: 0px;
+  }
+
+  #tab-test li a:hover {
+    background: #EFEFEF;
+    color: black;
+  }
+
+  #tab-test li:first-child {
+    display: none;
+  }
 }
+
+
