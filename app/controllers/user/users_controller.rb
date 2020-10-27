@@ -26,6 +26,7 @@ class User::UsersController < User::Base
     @facilities = @facilities.where(id: current_user.facilities)
     @informations = Information.where(facility_id: current_user.facilities).where(status: "others")
     @requests = RequestResident.where(user_id: current_user) #申請履歴を表示させるために追加
+    render layout: 'test2'
   end
 
   def edit
