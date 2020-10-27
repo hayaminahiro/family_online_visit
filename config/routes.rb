@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#top'
+  root 'user/static_pages#top'
 
   resources :signup do
     collection do
@@ -34,22 +34,20 @@ Rails.application.routes.draw do
   end
 
   # ご家族目線のルーティング
-  resources :users do # /users/:id/~~~
-    resources :reservations # /users/:user_id/~~~
-    resources :facilities do # user_id, facility_id付与
-      collection do
-        get :facilities_used #利用施設の登録画面
-        patch :update_facilities_used
-        get :my_facilities #現在の利用施設
+  namespace :user do
+    resources :users do # /users/:id/~~~
+      resources :reservations # /users/:user_id/~~~
+      resources :facilities do # user_id, facility_id付与
+        collection do
+          get :facilities_used #利用施設の登録画面
+          patch :update_facilities_used
+          get :my_facilities #現在の利用施設
+        end
+        get :new_connection
+        patch :create_connection
+        get :home #施設のホーム画面
+        resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
       end
-      member do # /users/:user_id/facilities/:id/~~~
-        get :video_room # /users/:user_id/facilities/:id/video_room
-        patch :room_word_update
-      end
-      get :new_connection
-      patch :create_connection
-      get :home #施設のホーム画面
-      resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
     end
   end
 
