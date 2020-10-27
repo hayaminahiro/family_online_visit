@@ -1,0 +1,28 @@
+
+<!-- レスポンシブサイズにした時に使用されるタブ -->
+
+<div id="tab-test">
+  <ul>
+    <li>
+      <%= link_to "#" do %>
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>&nbsp;
+      <% end %>
+    <li>
+      <%= link_to_unless_current "利用者一覧", "#" %>
+    </li>
+    <li>
+      <%= link_to_unless_current "ご家族一覧", "#" %>
+    </li>
+    <li>
+      <%= link_to_unless_current "予約状況一覧", "#" %>
+    </li>
+    <li>
+      <%= link_to_unless_current "お知らせ", "#" %>
+    </li>
+    <li>
+      <%= link_to_unless_current "お問い合わせ", "#" %>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Online_Visit</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+  </head>
+
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css">
+
+
+<!--header表示あり  side_link（下タブ）の表示あり  footerの表示あり-->
+
+    <!--ここから下がcontent_forの範囲============================-->
+    <% content_for :content do %>
+        <%= render 'layouts/header' %>
+        <%= render 'layouts/side_link' %>
+
+        <div class="container" style="margin-top: 74px;">
+          <% if flash[:notice] %>
+          <div class="notification is-success is-size-5 has-text-weight-bold error-position">
+            <p class="notice"><%= notice %></p>
+          </div>
+          <% elsif flash[:alert] %>
+          <div class="notification is-danger is-size-5 has-text-weight-bold error-position">
+            <p class="alert"><%= alert %></p>
+          </div>
+          <% end %>
+        </div>
+
+        <%= yield %><!--各ページの表示内容が入る-->
+        <%= render 'layouts/footer' %>
+    <% end %>
+    <!--=========================================================-->
+    <%= render template: "layouts/application" %><!--application.html.erbとの紐付けに必要ということだと思います-->
+
+
+  </body>
+
+</html>
