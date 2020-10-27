@@ -15,12 +15,12 @@ module ApplicationHelper
     content.id.present? ? "入居者情報編集" : "入居者新規登録"
   end
 
-  alias :c :component
 
   def component(component_name, locals = {}, &block)
     render("residents/#{component_name}", locals, &block)
   end
 
+  alias :c :component
 
   def grouped_facility(information)
     information.group_by(&:facility_id)
