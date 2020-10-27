@@ -85,7 +85,10 @@ end
     name: name,
     email: email,
     password: password,
-    address: "大阪府",
+    postal_code: "0001100",
+    prefecture_name: "大阪府",
+    address_city: "大阪市",
+    address_street: "南堀江",
     phone: "080222333"
   )
 end
@@ -110,7 +113,7 @@ end
 end
 
 Information.create!(
-    facility_id: 2,
+    facility_id: 1,
     title: "当システムの利用方法",
     news: "ご利用前にご入居者様の・・・",
     status: 1

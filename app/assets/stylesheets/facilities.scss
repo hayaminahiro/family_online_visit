@@ -5,6 +5,7 @@
 .delete-message {
   font-size: 20px;
   color: #2e2f30;
+  text-align: center;
 }
 
 input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
@@ -22,7 +23,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
 
 .search-img {
   // S3のオブジェクトURLで表示
-  background-image: url(https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/facility/image/4/remember.jpg);
+  background-image: url(https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/remember.jpg);
   height: 400px;
   margin: 0 calc(50% - 50vw);
   background-size: cover;
@@ -77,22 +78,22 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   margin-bottom: 150px;
 }
 
-
 .card-position {
   margin-top: 30px;
 }
 
-#submit-btn{
+#submit-btn {
   pointer-events: none;
 }
 
 /* facilities-usedページのcollection_checkboxを非表示にする */
-.facilities-used-label{
+.facilities-used-label {
   input[type="checkbox"], input[type="radio"] {
     vertical-align: baseline;
     display: none;
   }
 }
+
 .facilities-used-label span {
   color: #333; /* 文字色を黒に */
   font-size: 14px; /* 文字サイズを14pxに */
@@ -100,6 +101,7 @@ input.button.is-danger.is-medium.is-fullwidth.new-btn.has-text-weight-bold {
   border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
   padding: 5px 20px; /* 上下左右に余白をトル */
 }
+
 .facilities-used-label input:checked + span {
   color: #FFF; /* 文字色を白に */
   background: #f07700; /* 背景色を薄いオレンジに */
@@ -216,10 +218,128 @@ div.under-line {
   margin-top: 30px;
 }
 
-//facility_home
-.facility-home-image {
-  width: auto;
+//facility_home（修正後）
+.facility-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
   height: auto;
+  min-height: 100%;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  background: #0A203F;
+}
+
+#vertical_tab_nav {
+  display: block;
+  width: 100%;
+}
+
+#vertical_tab_nav ul {
+  display: block;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+}
+
+#vertical_tab_nav li {
+  margin-bottom: 1px;
+  text-align: center;
+  padding: 0px;
+}
+
+#vertical_tab_nav li:last-child {
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
+
+#vertical_tab_nav li a {
+  display: block;
+  font-size: 14pt;
+  color: #fff;
+  text-decoration: none;
+  padding: 7%;
+}
+
+#vertical_tab_nav li a:hover {
+  background: black;
+  color: #fff;
+}
+
+//施設ホーム画面（背景画像）
+.facility-home-image {
+  position: relative;
+}
+
+.home-default-image {
+  height: 400px;
+  width: 100%;
+}
+
+.hero-1 img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.image-outline {
+  z-index: 1;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  top: 250px;
+  left: 50%;
+  background-color: rgba(0,0,0,0.7);
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+//施設の名前
+#facility-name {
+  z-index: 2;
+  display: block;
+  text-align: right;
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  color: #fff;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  padding-right: 50px;
+  font-size: 38px;
+}
+
+//施設のアイコン画像
+.facility-default-image {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  top: 25%;
+  left: 8%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+//施設ホーム画面（タブのパネル）
+#facility-contents {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  margin-right: 9px;
+  background-color: #fff;
 }
 
 .inline-block_home {
@@ -229,104 +349,6 @@ div.under-line {
   width: 420px;
   margin-right: 20px;
   margin-top: 70px;
-}
-
-//権限変更（一般）
-.general-change {
-  margin-top: 50px;
-  border: 1px solid transparent;
-  outline: none;
-  background: linear-gradient(25deg,#2bc0e4, #eaecc6);
-  color: #fff;
-  border-radius: 40px;
-  padding: 15px 30px;
-  overflow: hidden;
-  width: 200px;
-  transition: 
-    all        1.2s,
-    border     0.5s 1.2s,
-    box-shadow 0.3s 1.5s;
-  white-space: nowrap;
-  text-indent: 23px;
-  font-weight: bold;
-  span {
-    display: inline-block;
-    font-size: 25px;
-    transform: translateX(300px);
-    font-weight: normal;
-    opacity: 0;
-    transition: 
-      opacity 0.1s 0.5s,
-      transform 0.4s 0.5s;
-  }
-  i {
-    display: inline-block;
-    font-size: 40px;
-  }
-  &:hover {
-    text-indent: 0;
-    background: linear-gradient(25deg, #F13F79, #FFC778);
-    color: #fff;
-    width: 250px;
-    border: 5px solid #FA8072;
-    box-shadow: 3px 3px 2px rgba(black, 0.15);
-    span {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    #users {
-      display: none;
-    }
-  }
-}
-
-//権限変更（管理者）
-.admin-change {
-  margin-top: 50px;
-  border: 1px solid transparent;
-  outline: none;
-  background: linear-gradient(25deg, #F13F79, #FFC778);
-  color: #fff;
-  border-radius: 40px;
-  padding: 15px 30px;
-  overflow: hidden;
-  width: 200px;
-  transition: 
-    all        1.2s,
-    border     0.5s 1.2s,
-    box-shadow 0.3s 1.5s;
-  white-space: nowrap;
-  text-indent: 23px;
-  font-weight: bold;
-  span {
-    display: inline-block;
-    font-size: 25px;
-    transform: translateX(300px);
-    font-weight: normal;
-    opacity: 0;
-    transition: 
-      opacity 0.1s 0.5s,
-      transform 0.4s 0.5s;
-  }
-  i {
-    display: inline-block;
-    font-size: 40px;
-  }
-  &:hover {
-    text-indent: 0;
-    background: linear-gradient(25deg,#2bc0e4, #eaecc6);
-    color: #fff;
-    width: 250px;
-    border: 5px solid #B0E0E6;
-    box-shadow: 3px 3px 2px rgba(black, 0.15);
-    span {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    #admin {
-      display: none;
-    }
-  }
 }
 
 //calendar
@@ -347,139 +369,17 @@ div.under-line {
   color: red;
 }
 
-#new-family-table {
-  margin-top: 50px;
-  padding-bottom: 30px;
-}
-
-#new-family-table th {
-  background-color: #FFDAB9;
-  font-size: 20px;
-  text-align: center;
-}
-
-#new-family-table td {
-  text-align: center;
-}
-
-//タブ（利用者）
-.tab-resident {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 100px 70px;
-}
-
-//タブ（利用者）ボタン
-.btn-tab-resident {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  background-color: #7596E0;
-  border: 2px solid #7596E0;
-  font-size: 20px;
-  color: #7596E0;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.btn-tab-resident span {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-tab-resident::before,
-.btn-tab-resident::after {
-  content: "";
-  display: block;
-  background-color: #FFF;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: .2s;
-}
-.btn-tab-resident::before {
-  left: 0;
-}
-.btn-tab-resident::after {
-  right: 0;
-}
-
-.btn-tab-resident:hover:before,
-.btn-tab-resident:hover:after {
-  width: 0;
-  background-color: #FFF;
-}
-
-.btn-tab-resident:hover {
-  color: #FFF;
-}
-
-//タブ（ユーザー）ボタン
-.btn-tab-user {
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-  background-color: #00d1b2;
-  border: 2px solid #00d1b2;
-  font-size: 20px;
-  color: #00d1b2;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 4px;
-  position: relative;
-}
-
-.btn-tab-user span {
-  position: relative;
-  z-index: 1;
-}
-
-.btn-tab-user::before,
-.btn-tab-user::after {
-  content: "";
-  display: block;
-  background-color: #FFF;
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: .2s;
-}
-.btn-tab-user::before {
-  left: 0;
-}
-.btn-tab-user::after {
-  right: 0;
-}
-
-.btn-tab-user:hover:before,
-.btn-tab-user:hover:after {
-  width: 0;
-  background-color: #FFF;
-}
-
-.btn-tab-user:hover {
-  color: #FFF;
-}
-
 .facility-photo {
-  float: right;
-  margin-top: 30px;
+  width: 100%;
+  margin-top: 40px;
 }
 
 .image_input_btn {
-  display: block;
   position: absolute;
   background: powderblue;;
   width: 120px;
   height: 30px;
-  margin-top: 10px;
-  margin-left: 12px;
+  margin: 420px 0 0 134px;
   border-radius: 5px;
   padding: 1px;
   color: white;
@@ -489,37 +389,61 @@ div.under-line {
 }
 
 .image_input_comment {
-  display: block;
   position: absolute;
-  background: white;
-  width: 282px;
-  height: 5px;
-  margin-top: -120px;
-  margin-left: 12px;
+  text-align: center;
+  margin-top: 120px;
   border-radius: 5px;
   padding: 1px;
   color: #DEDEDE;
   text-decoration: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.image_input_comment_user {
+  position: absolute;
   text-align: center;
+  margin-top: 120px;
+  border-radius: 5px;
+  padding: 1px;
+  color: #DEDEDE;
+  text-decoration: none;
   cursor: pointer;
   font-size: 25px;
 }
 
 .image_uploading {
   display: flex;
-  padding: 10px 0 0 20px;
+  float: left;
+  padding: 10px 0 0 10px;
 }
 
 input#facility_image {
   color: #ccc;
-  height: 200px;
-  margin: 30px 0 20px;
+  height: 250px;
+  width: 98%;
+  margin: 20px 0 20px 0;
   border-style: dashed;
   border-width: 2px;
-  line-height: 200px;
   text-align: center;
   cursor: pointer;
+  padding: 10px;
 }
+
+input#facility_icon.image_uploading_icon {
+  color: #ccc;
+  height: 250px;
+  width: 98%;
+  margin: 20px 0 20px 0;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
 ///タブ（お知らせ）
 .tab-information  {
   display: inline-block;
@@ -559,9 +483,11 @@ input#facility_image {
   top: 0;
   transition: .2s;
 }
+
 .btn-tab-information::before {
   left: 0;
 }
+
 .btn-tab-information::after {
   right: 0;
 }
@@ -692,4 +618,196 @@ input#facility_image {
 //登録申請中のボタン
 #disabled-btn {
   pointer-events: none;
+}
+
+#input-field {
+  width: 60%;
+  text-align: justify;
+  margin: 0 20% 0 20%;
+}
+
+#btn-field {
+  width: 80% !important;
+  margin-left: 40px;
+  margin-top: 50px;
+}
+
+#btn-delete-field {
+  width: 80% !important;
+}
+
+//イメージ画像のチェックボックス
+input#img_delete[type="checkbox"] {
+  display: none;
+}
+
+input#img_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#img_delete[type="checkbox"] + label.check_position:last-child { margin-bottom: 0;
+}
+
+input#img_delete[type="checkbox"] + label.check_position:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input#img_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+//アイコンのチェックボックス
+input#icon_delete[type="checkbox"] {
+  display: none;
+}
+
+input#icon_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#icon_delete[type="checkbox"] + label.check_position:last-child { margin-bottom: 0;
+}
+
+input#icon_delete[type="checkbox"] + label.check_position:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input#icon_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.img_update {
+  margin-top: 350px;
+}
+
+#img_delete {
+  font-weight: bold;
+}
+
+#img_lavel {
+  float: left;
+  padding-bottom: 14px;;
+}
+
+.index-img-center {
+  display: flex;
+  align-items: center;
+}
+
+.icon_circle {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: 0 0;
+  border: solid 1px #EEEEEE;
+}
+
+img#icon_prev.icon_circle {
+  margin-bottom: 25px;
+}
+
+.account-delete-btn {
+  text-align: center;
+  color: #666666;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 10px;
+  float: right;
+  margin-bottom: 150px;
+}
+
+.account-delete-btn:hover {
+  color: #cc0f35;
+}
+
+.delete_confirm {
+  float: right;
+  //margin-right: -200px;
+  padding-top: 65px;
+}
+
+#panel-style {
+  padding: 50px;
+  margin: 100px 50px 50px 50px;
+  background: #F5F5F5;
+}
+
+.account-title {
+  font-weight: 700;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.mini-title {
+  font-weight: 700;
+  border-bottom: 1px solid #C0C0C0;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+h1.mini-title {
+  padding-top: 50px;
+}
+
+.position-control {
+  visibility:hidden;
+}
+
+.title-description {
+  text-align: left;
 }

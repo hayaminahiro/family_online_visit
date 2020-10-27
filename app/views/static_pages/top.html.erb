@@ -1,8 +1,11 @@
+<ul class="top-background">
+</ul>
+
 <section class="hero is-medium" id="hero-2">
-  <div class="main_img" style="background-image: url('/static_pages5.jpg')"></div>
-  <div class="main_img" style="background-image: url('/video_room.jpg')"></div>
-  <div class="main_img" style="background-image: url('/static_pages9.jpg')"></div>
-  <div class="main_img" style="background-image: url('/static_pages1.jpg')"></div>
+  <div class="main_img" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg')"></div>
+  <div class="main_img" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/video_room.jpg')"></div>
+  <div class="main_img" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages9.jpg')"></div>
+  <div class="main_img" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages1.jpg')"></div>
   <div class="hero-body">
     <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
       <h1 class="has-text-centered" style="font-size: 80px;">
@@ -59,7 +62,7 @@
 
           <div id="second_tab01" class="cp_tabpanel">
             <div class="inline-block_tab">
-              <img src="user_mypage.jpg" width="400" height="300">
+              <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_mypage.jpg" width="400" height="300">
             </div>&emsp;&emsp;
             <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
@@ -80,7 +83,7 @@
 
           <div id="third_tab01" class="cp_tabpanel">
             <div class="inline-block_tab">
-              <img src="facility_registration.jpg" width="400" height="300">
+              <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_registration.jpg" width="400" height="300">
             </div>&emsp;&emsp;
             <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
@@ -100,7 +103,7 @@
       </div>
     <% elsif !user_signed_in? && !facility_signed_in? %>
       <div class="about-title-2 is-size-3">Online Visitについて</div>
-      <div class="inline-block_content">
+      <div class="inline-block_content" style="margin-bottom: 80px; margin-top: 50px;" id="top-login-coments">
         <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
           これからの暮らしに欠かすことのできない要素として<br>
           オンラインをとらえ離れていてもすぐに繋がれる<br>
@@ -119,8 +122,8 @@
           </span>
         <% end %>
       </div>&emsp;&emsp;
-      <div class="inline-block_content">
-        <img src="static_pages5.jpg" width="400" height="300">
+      <div class="inline-block_content" style="margin-top: 50px;">
+        <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="400" height="300">
       </div>
     <% end %>
     <%= render 'system_information' %>
@@ -129,8 +132,8 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('.inline-block_content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
-    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#top-login-coments', { delay: 100, distance: '150px', origin: 'left', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '300px', origin: 'right', duration: 1500, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
   });
 </script>

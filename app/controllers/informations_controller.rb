@@ -1,7 +1,8 @@
 class InformationsController < ApplicationController
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, only: [:top_notice, :show]
-  before_action :authenticate_facility!, only: [:index, :create, :update, :destroy]
+  before_action :authenticate_facility!, only: [:index, :create, :new, :update, :destroy]
+  before_action :set_information, only: [:show, :edit, :update, :destroy]
 
   def index
     @info_top = Information.find_by(status: "head")
@@ -13,34 +14,45 @@ class InformationsController < ApplicationController
   end
 
   def show
-    @information = Information.find(params[:id])
+  end
+
+  def new
+    if params[:image_cache].present?
+      @information = Information.new(information_params)
+    else
+      @information = Information.new
+    end
   end
 
   def create
     @information = Information.new(information_params)
     @information.facility_id = params[:facility_id].to_i
     if  @information.save
-      flash[:notice] = "お知らせを新規作成できました"
+      flash[:notice] = "タイトル【#{@information.title}】/お知らせを新規作成できました。"
+      redirect_to facility_informations_url
     else
-      flash[:alert] = "新規作成できませんでした。入力内容をご確認ください"
+      render :new
     end
-    redirect_to facility_informations_url
+  end
+
+  def edit
   end
 
   def update
-    @information = Information.find(params[:id])
     @information.facility_id = params[:facility_id].to_i
     if @information.update(information_params)
-      flash[:notice] = "更新できました"
+      flash[:notice] = "タイトル【#{@information.title}】/お知らせを更新できました。"
+      if @information.status == "head"
+        redirect_to facility_home_facility_url
+      else
+        redirect_to facility_informations_url
+      end
     else
-      flash[:alert] = "更新できませんでした。入力内容をご確認ください"
+      render :edit
     end
-    return redirect_to facility_home_facility_url if @information.status == "head"
-    redirect_to facility_informations_url
   end
 
   def destroy
-    @information = Information.find(params[:id])
     @information.destroy
     flash[:alert] = "お知らせを削除しました"
     redirect_to facility_informations_url
@@ -52,10 +64,14 @@ class InformationsController < ApplicationController
     @informations = Information.where(facility_id: params[:facility_id].to_i).where(status: "others").order(id: "DESC")
   end
 
-  private
+    private
 
-  def information_params
-    params.require(:information).permit(:news, :title)
-  end
+      def information_params
+        params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
+      end
+
+      def set_information
+        @information = Information.find(params[:id])
+      end
 
 end

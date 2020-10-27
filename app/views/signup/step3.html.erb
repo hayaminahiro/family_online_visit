@@ -1,95 +1,98 @@
-<body class="image-layout">
-  <section class="" >
-    <div class="container-fruid">
-      <article class="media">
-        <div class="media-content">
-          <div class="content has-text-centered">
-            <div class="signup-upper">  
-              <div class="signups-title">
-                <strong class="new-title">入力情報確認</strong><br>
-                <div class="confirm-message">（入力項目を確認後、合っていれば新規作成ボタンを押してください）</div>                         
-              </div>              
-              <div class="page-display">
-                <div class="page-number">
-                  <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-inverse fa-stack-1x">1</i>    
-                </div>
-                ・・・
-                <div class="page-number">
-                  <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-inverse fa-stack-1x">2</i>    
-                </div>
-                ・・・
-                <div class="page-number">
-                  <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
-                  <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
-                  <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">3</i>    
-                </div>
-              </div>
-            </div>
+<ul class="image-layout">
+</ul>
+<section class="hero login-hero-size">
+  <div class="container is-fluid">
+    <div class="columns has-text-centered">
+      <div class="column is-10 is-offset-1 has-text-black">
+        <div class="step3-title is-size-2 has-text-weight-bold" style="margin-top:20px;">入力情報確認</div>
+        <div class="confirm-message">（入力項目を確認後、合っていれば新規作成ボタンを押してください）</div>
+        <div class="page-display">
+          <div class="page-number">
+            <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x">1</i>
+            </span>
           </div>
-            <div class="button-position">
-              <div class="columns is-centered">
-                <div class="column is-3 comfirm-btn">
-                <%= link_to "プロフ写真", step1_signup_index_path, class: "btn btn-warning" %>
-                </div>
-                
-                <div class="column is-6 comfirm-page">
-                <%= form_with model: @user, url: signup_index_path, local: true, method: :post do |f| %>
-                  <%= render "users/shared/error_messages", resource: @user %>
-
-                  <div class="comfirm">
-                    <%= f.label :name, "あなたのお名前", class: "label" %><br />
-                    <div class="confirm-newuser"><%= session[:name] %>
-                    </div>
-                  </div>
-
-                  <div class="comfirm">
-                    <%= f.label :email, class: "label" %><br />
-                    <div class="confirm-newuser"><%= session[:email] %>
-                    </div>
-                  </div>
-
-                  <div class="comfirm">
-                    <%= f.label :password, class: "label" %><br />
-                    <div class="confirm-newuser"><%= session[:password] %>
-                    </div>
-                  </div>                  
-                  
-                  <div class="comfirm">
-                    <%= f.label :address, "あなたの住所", class: "label" %><br />
-                    <div class="confirm-newuser"><%= session[:address] %>
-                    </div>
-                  </div>
-
-                  <div class="comfirm">
-                    <%= f.label :phone, "電話番号", class: "label" %><br />
-                    <div class="confirm-newuser"><%= session[:phone] %>
-                    </div>
-                  </div>
-
-                  <div class="comfirm">
-                    <%= f.submit "新規登録", class: "button is-link is-medium success-btn has-text-weight-bold", style: "width:45%;" %>
-                    <%= link_to "修正する", step1_signup_index_path, class: "button is-light is-medium basic_btn has-text-weight-bold", style: "width:45%;" %>
-                  </div>
-                <% end %>
-
-                </div>
-                <div class="column is-3 comfirm-btn">
-                </div>
-              </div>
-            </div>
-        </div>
-      </article>
-      <div class="columns is-centered">
-        <div class="column">
+          ・・・
+          <div class="page-number">
+            <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-inverse fa-stack-1x">2</i>
+            </span>
+          </div>
+          ・・・
+          <div class="page-number">
+            <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
+              <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
+              <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">3</i>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-</body>
+    <div class="columns">
+      <div class="column is-6 is-offset-3 comfirm-page">
+        <%= form_with model: @user, url: signup_index_path, local: true, method: :post do |f| %>
+          <%= render "users/shared/error_messages", resource: @user %>
 
+          <div class="comfirm">
+            <%= f.label :name, "あなたのお名前", class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:name] %>
+            </div>
+          </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css">
+          <div class="comfirm">
+            <%= f.label :email, class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:email] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.label :password, class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:password] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.label :postal_code, "郵便番号", class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:postal_code] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.label :prefecture_name, "都道府県", class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:prefecture_name] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.label :address_city, "市区町村", class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:address_city] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.label :address_street, "町域", class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:address_street] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.label :phone, "電話番号", class: "label" %><br />
+            <div class="confirm-newuser"><%= session[:phone] %>
+            </div>
+          </div>
+
+          <div class="comfirm">
+            <%= f.submit "新規登録", class: "button is-link is-medium success-btn has-text-weight-bold", style: "width:45%;" %>
+            <%= link_to "修正する", step1_signup_index_path, class: "button is-light is-medium basic_btn has-text-weight-bold", style: "width:45%;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column blank-frank" style="height:100px;">
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 class FacilitiesController < ApplicationController
 
-  before_action :set_facility, only: [:edit, :update, :destroy, :correct_facility, :show, :facility_home]
+  before_action :set_facility, only: [:destroy, :correct_facility, :show, :facility_home]
   before_action :set_facility_id, only: [:change_admin, :home]
   before_action :set_user_id, only: [:facilities_used, :update_facilities_used]
   # ログインしてなければ閲覧不可
@@ -15,32 +15,15 @@ class FacilitiesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-    # passwordが空白でも編集できる
-    if params[:facility][:password].blank? && params[:facility][:password_confirmation].blank?
-      params[:facility].delete(:password)
-      params[:facility].delete(:password_confirmation)
-    end
-    if @facility.update_attributes(facility_params)
-      flash[:notice] = "「#{@facility.facility_name}」の施設情報を更新できました。"
-      redirect_to @facility
-    else
-      render :edit
-    end
-  end
-
   def facility_home  #施設ルートのhome画面
     @facilities = Facility.all.where.not(admin: true)
     @registration_application = @facilities.where(id: current_facility.users)
-    @calendar_reservations = Reservation.where.not(calendar_day: nil)
     @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
     if params[:search].present?
       @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
     @info_top = Information.find_by(status: "head")
+    @request_residents = RequestResident.where(req_approval: "申請中").where(facility_id: current_facility)
   end
 
   def change_admin
@@ -135,7 +118,7 @@ class FacilitiesController < ApplicationController
       end
 
       def facility_params
-        params.require(:facility).permit(:image, :facility_name, :email, :password,:password_confirmation)
+        params.require(:facility).permit(:image, :remove_image, :icon, :remove_icon, :facility_name, :email, :password,:password_confirmation)
       end
 
       def admin_params

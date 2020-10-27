@@ -32,7 +32,9 @@
             <td class="is-vcentered">
               <div class="has-text-weight-semibold is-size-5">
                 <% if @facility.image? %>
-                  <%= image_tag @facility.image.url, :size => '150x150' %>
+                  <%= image_tag @facility.image.url, id: :img_prev, :size => '120x120' %>
+                <% else %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '120x120' %>
                 <% end %>
               </div>
             </td>
@@ -52,7 +54,7 @@
               </div>
             </td>
             <td class="is-vcentered">
-              <%= link_to edit_facility_path(@facility), class: "button is-success is-medium" do %>
+              <%= link_to "#", class: "button is-success is-medium" do %>
               <span><i class="fas fa-user-edit"></i></span>
               <% end %>
             </td>

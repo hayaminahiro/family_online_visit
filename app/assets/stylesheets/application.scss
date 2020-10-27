@@ -19,3 +19,72 @@
 @import 'font-awesome';
 @import "bulma";
 
+//下タブ（タブレット、モバイル）
+@media screen and (max-width: 1000px) {
+  #vertical_tab_nav {
+    z-index: 20;
+    position: fixed;
+    bottom: 0;
+    height: 55px;
+    width: 100%;
+    background-color: black;
+  }
+
+  #vertical_tab_nav ul {
+    display: flex;
+    font-weight: bold;
+  }
+
+  #vertical_tab_nav li {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .facility-default-image {
+    left: 12%;
+  }
+
+  #vertical_tab_nav li a {
+    display: block;
+    height: 51px;
+    padding-top: 0px;
+  }
+
+  #vertical_tab_nav li a:hover {
+    background: #EFEFEF;
+    color: black;
+  }
+
+  #vertical_tab_nav li:first-child {
+    display: none;
+  }
+
+  #facility-contents{
+    padding-bottom: 0px;
+
+    .panel {
+      margin: 0px;
+    }
+  }
+
+  .footer-layout {
+    height: 50px;
+  }
+
+  footer{
+    height: 50px;
+    margin-bottom: 55px;
+
+    .footer-content{
+      padding-top: 0px;
+      height: 50px;
+    }
+
+    .content h1 {
+      font-size: 2em;
+      line-height: 50px;
+      height: 50px;
+      margin-bottom: 0px;
+    }
+  }
+}
