@@ -1,35 +1,7 @@
 <ul class="facility-background">
 </ul>
-<section class="hero-1">
-  <div class="facility-home-image">
-    <% month = Date.today.month %>
-    <% if month.in?([ 12, 1, 2 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "home-default-image"%>
-    <% elsif month.in?([ 3, 4, 5 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "home-default-image" %>
-    <% elsif month.in?([ 6, 7, 8 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "home-default-image"%>
-    <% elsif month.in?([ 9, 10, 11 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "home-default-image"%>
-    <% end %>  
-    <div class="image-outline">
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "facility-default-image" %>
-      <div class="has-text-right" id="facility-name">
-        <%= current_facility.facility_name %>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!--<section class="facility-home-title">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title has-text-right has-text-white is-size-2" id="title-scroll">
-        <%= current_facility.facility_name %>
-      </h1>
-    </div>
-  </div>
-</section>-->
+<%= render 'facility_images' %>
 
 <div class="columns .is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
   <div class="column is-2-desktop is-0-mobile" style="padding-right: 0px; padding-top: 0px; background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
