@@ -34,20 +34,25 @@
     vertical-align: middle;
     text-align: center;
   }
+
   td {
     vertical-align: middle;
     text-align: center;
   }
+
   thead th{/*table内のヘッダーに対して*/
     color: white;
     font-size:20px;
   }
+
   thead tr{
     background-color: rgb( 117, 150, 224 )
   }
+
   .tr-head {/*table内のラベル対して*/
       background-color: rgb( 188, 214, 226 )
     }
+
   .text-color{
     color:white;
   }
