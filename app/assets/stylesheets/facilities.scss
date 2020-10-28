@@ -267,6 +267,10 @@ div.under-line {
   padding: 7%;
 }
 
+#vertical_tab_nav li span {
+  display: none;
+}
+
 #vertical_tab_nav li a:hover {
   background: black;
   color: #fff;
