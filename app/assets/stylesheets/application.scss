@@ -19,7 +19,12 @@
 @import 'font-awesome';
 @import "bulma";
 
-//下タブ（タブレット、モバイル）
+/*ページネーションの左右ラベルを非表示にする*/
+.pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
+  display: none;
+}
+
+/*下タブ（タブレット、モバイル）*/
 @media screen and (max-width: 1000px) {
   #vertical_tab_nav {
     z-index: 20;
