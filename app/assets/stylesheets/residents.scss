@@ -5,21 +5,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*入居者一覧画面*/
 .resident-head-button{
   display: flex;
-  // justify-content: flex-end;
   margin-bottom: 10px;
 }
+
 .resident--create-button{
   padding-top: 14px!important;
   margin-left: 8px;
 }
+
 .resident--update-button{
   padding-top: 10px!important;
 }
+
 #resident-modal-form{
   margin-left: 20px;
 }
+
 .resident-title{
   background-color: rgb( 117, 150, 224 );
 }
@@ -48,6 +52,7 @@
     color:white;
   }
 }
+
 .pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
   display: none;
 }
