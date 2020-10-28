@@ -56,13 +56,13 @@ class ResidentsController < ApplicationController
       redirect_to facility_residents_path
   end
 
-  private
+    private
 
-    def resident_params
-      params.require(:resident).permit(:name, :charge_worker)
-    end
+      def resident_params
+        params.require(:resident).permit(:name, :charge_worker)
+      end
 
-    def set_resident
-      @resident = Resident.find(params[:id])
-    end
+      def set_resident
+        @resident = Resident.find(params[:id])
+      end
 end
