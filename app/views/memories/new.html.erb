@@ -13,6 +13,7 @@
               <%#= information_image(@information) %>
             </div>
 
+
             <% if @memory.images? %>
               <%= image_tag @memory.images[0].url, id: :img_prev_0, :size => '300x300' %>
             <% else %>
@@ -40,6 +41,8 @@
               <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_1" %>
               <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_2" %>
               <%= f.hidden_field :images_cache %>
+              <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+              <%= f.text_field :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input" %>
             </div>
             <div class="position-control"><h1>位置調整</h1></div>
             <label class="media-left has-text-weight-bold">
@@ -47,7 +50,7 @@
             </label>
             <div class="media-content">
               <div class="content label-space">
-                <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+                <%#= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
               </div>
             </div>
             <label class="media-left has-text-weight-bold">
@@ -55,7 +58,7 @@
             </label>
             <div class="media-content">
               <div class="content label-space">
-                <%= f.text_area :message, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
+                <%#= f.text_area :message, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
               </div>
             </div>
             <%= f.submit "お知らせを新規投稿する", class: "info-btn" %>

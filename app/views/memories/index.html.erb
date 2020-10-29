@@ -1,17 +1,29 @@
 <h1>思い出写真一覧</h1>
 
+<%#= form_with(url: facility_informations_path(current_facility), method: :get, local: true) do |f| %>
+  <% @memories.each do |m| %>
+    <%= m.title %>
+    <%= m.message %>
+    <%= m.id %>
+    <% if m.images? %>
 
-<% @memories.each do |m| %>
-  <% if m.images? %>
 
 
-    <%= image_tag m.images[0].url, id: :img_prev, :size => '200x200' if m.images[0].present? %>
-    <%= image_tag m.images[1].url, id: :img_prev, :size => '200x200' if m.images[1].present? %>
-    <%= image_tag m.images[2].url, id: :img_prev, :size => '200x200' if m.images[2].present? %>
-    <%= image_tag m.images[3].url, id: :img_prev, :size => '200x200' if m.images[3].present? %>
-    <%= image_tag m.images[4].url, id: :img_prev, :size => '200x200' if m.images[4].present? %>
-    <p>============</p>
+      <%= image_tag m.images[0].url, id: :img_prev, :size => '200x200' if m.images[0].present? %>
+      <%= image_tag m.images[1].url, id: :img_prev, :size => '200x200' if m.images[1].present? %>
+      <%= image_tag m.images[2].url, id: :img_prev, :size => '200x200' if m.images[2].present? %>
+      <%= image_tag m.images[3].url, id: :img_prev, :size => '200x200' if m.images[3].present? %>
+      <%= image_tag m.images[4].url, id: :img_prev, :size => '200x200' if m.images[4].present? %>
+
+
+      <p>============</p>
+      <%= link_to facility_resident_memory_path(current_facility, @resident, m), method: :delete,
+                  data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+
+
+    <% end %>
 
   <% end %>
-
-<% end %>
+<%# end %>

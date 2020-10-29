@@ -1,9 +1,11 @@
 class MemoriesController < ApplicationController
 
   def index
-    @resident = Resident.find(params[:resident_id])
-    @resident.facility_id = current_facility.id
+    # raise
+    @resident = current_facility.residents.find(params[:resident_id])
+    # @resident.facility_id = current_facility.id
     @memories = @resident.memories
+    # raise
   end
 
   def show
@@ -23,14 +25,35 @@ class MemoriesController < ApplicationController
     @resident = current_facility.residents.find(params[:resident_id])
     @memory = @resident.memories.new(memories_params)
     if @memory.save
-      flash[:notice] = "成功"
+      flash[:notice] = "#{@resident.name}さんの思い出アルバムを投稿しました。"
       # redirect_to facility_resident_path(id: @resident.id)
       redirect_to facility_resident_memories_path
     else
       render :new
     end
-
   end
+
+  def destroy
+    # raise
+    @resident = current_facility.residents.find(params[:resident_id])
+    @memories = @resident.memories
+    # raise
+    @memories.each do |m|
+      m.delete
+    end
+
+
+    # @memories.find(29).delete
+    flash[:alert] = "思い出アルバムを削除しました"
+    redirect_to facility_resident_memories_path
+  end
+
+  # def destroy
+  #   @information.destroy
+  #   flash[:alert] = "お知らせを削除しました"
+  #   redirect_to facility_informations_url
+  # end
+
 
     private
 
