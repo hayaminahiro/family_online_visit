@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-line'
 gem 'dotenv-rails'
+gem 'simple_calendar', '~> 2.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -46,6 +47,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'font-awesome-sass', '~> 5.4.1'
 gem "bulma-rails"
 gem 'will_paginate-bulma'
+gem 'jquery-rails'
+gem 'carrierwave'
+gem 'fog-aws'
+gem 'mini_magick'
+gem "dropzonejs-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,6 +70,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 group :test do

@@ -1,0 +1,78 @@
+// Place all the styles related to the signup controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.page-display{
+  .page-number{
+    display: inline-block;
+  }
+  color: black;
+}
+
+.signup-upper{
+  margin-bottom: 20px;
+  border-radius: 10%;
+}
+
+.signups-title{
+  margin-bottom: 20px;
+}
+
+.comfirm-page{
+  margin-top: -10px;
+}
+
+.comfirm-hero-size {
+  margin-right: 200px;
+  margin-left: 200px;
+  margin-top: 50px;
+  background-color: rgba(204, 255, 255, 0.2);
+  color: blue;
+  border-radius: 2%;
+}
+
+.confirm-newuser {
+  font-size: 30px;
+  color: black;
+  margin-top: -30px;
+  margin-bottom: 10px;
+  padding: 0.25em 0.5em;
+  background: #DDFFFF;
+}
+
+.confirm-message {
+  font-size: 20px;
+  color: black;
+}
+
+.confirm-new {
+  font-size: 30px;
+  color: black;
+  margin-top: 30px;
+}
+
+.confirm {
+  margin-top: 40px;
+}
+
+.basic_btn {
+  float: right;
+}
+
+.field-signup {
+  margin-bottom: 30px;
+}
+
+input.font-awesome {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+
+input.font-awesome {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}

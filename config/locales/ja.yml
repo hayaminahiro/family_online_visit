@@ -41,7 +41,7 @@ ja:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
       middle: "%Y年%m月"
-      short: "%-m/%-d"
+      short: "%-d"
     month_names:
     - 
     - 1月
@@ -115,7 +115,7 @@ ja:
       empty: を入力してください
       equal_to: は%{count}にしてください
       even: は偶数にしてください
-      exclusion: は予約されています
+      exclusion: は不正な値です
       greater_than: は%{count}より大きい値にしてください
       greater_than_or_equal_to: は%{count}以上の値にしてください
       inclusion: は一覧にありません
