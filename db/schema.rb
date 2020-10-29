@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_160630) do
+ActiveRecord::Schema.define(version: 2020_10_18_150720) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
     t.string "facility_name"
     t.boolean "admin", default: false
     t.boolean "facility_admin", default: false
+    t.string "image"
+    t.string "icon"
     t.index ["email"], name: "index_facilities_on_email", unique: true
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end
@@ -43,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "facility_id"
+    t.string "image"
     t.index ["facility_id"], name: "index_information_on_facility_id"
   end
 
@@ -53,6 +56,19 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
     t.datetime "updated_at", null: false
     t.index ["resident_id"], name: "index_relatives_on_resident_id"
     t.index ["user_id"], name: "index_relatives_on_user_id"
+  end
+
+  create_table "request_residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "req_name"
+    t.string "req_phone"
+    t.string "req_address"
+    t.integer "req_approval", default: 0
+    t.bigint "user_id"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_request_residents_on_facility_id"
+    t.index ["user_id"], name: "index_request_residents_on_user_id"
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -108,6 +124,10 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
     t.string "uid"
     t.string "meta"
     t.string "token"
+    t.integer "postal_code"
+    t.string "prefecture_name"
+    t.string "address_city"
+    t.string "address_street"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -117,6 +137,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_160630) do
   add_foreign_key "information", "facilities"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
+  add_foreign_key "request_residents", "facilities"
+  add_foreign_key "request_residents", "users"
   add_foreign_key "reservations", "users"
   add_foreign_key "residents", "facilities"
 end

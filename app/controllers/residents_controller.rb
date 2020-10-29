@@ -1,9 +1,14 @@
 class ResidentsController < ApplicationController
+  before_action :set_resident, only: [:edit, :update, :destroy]
+
   def index
       @residents = Resident.all.where(facility_id: current_facility.id).paginate(page: params[:page], per_page: 30)
     if params[:search].present?
       @residents = @residents.where(facility_id: current_facility.id).where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
     end
+  end
+
+  def new
     @resident = Resident.new
   end
 
@@ -12,25 +17,26 @@ class ResidentsController < ApplicationController
     @resident.facility_id = current_facility.id
     if @resident.save
       flash[:notice] = "入居者を新規登録できました"
-    else
-      flash[:alert] = "入居者登録できませんでした。入力内容をご確認ください"
-    end
       redirect_to facility_residents_path
+    else
+      render :new
+    end
+  end
+
+  def edit
   end
 
   def update
-    @resident = Resident.find(params[:id])
     @resident.facility_id = current_facility.id
     if @resident.update(resident_params)
       flash[:notice] = "入居者情報を更新できました"
-    else
-      flash[:alert] = "更新できませんでした。入力内容をご確認ください"
-    end
       redirect_to facility_residents_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @resident = Resident.find(params[:id])
     @resident.facility_id = current_facility.id
     @resident.destroy
     flash[:alert] = "入居者情報を削除しました"
@@ -50,9 +56,13 @@ class ResidentsController < ApplicationController
       redirect_to facility_residents_path
   end
 
-  private
+    private
 
-  def resident_params
-    params.require(:resident).permit(:name, :charge_worker)
-  end
+      def resident_params
+        params.require(:resident).permit(:name, :charge_worker)
+      end
+
+      def set_resident
+        @resident = Resident.find(params[:id])
+      end
 end
