@@ -7,21 +7,47 @@
           <span class="icon">
             <i class="fas fa-home"></i>
           </span>&nbsp;
+          HOME
         <% end %>
       <li>
-        <%= link_to "利用者一覧", facility_residents_path(facility_id: current_facility) %>
+        <%= link_to facility_residents_path(facility_id: current_facility) do %>
+          <span class="icon">
+            <i class="fas fa-id-badge"></i>
+          </span>&nbsp;
+          利用者一覧
+        <% end %>
       </li>
       <li>
-        <%= link_to "ご家族一覧", facility_users_path(facility_id: current_facility) %>
+        <%= link_to facility_users_path(facility_id: current_facility) do %>
+          <span class="icon">
+            <i class="fas fa-user-friends"></i>
+          </span>&nbsp;
+          ご家族一覧
+        <% end %>
       </li>
       <li>
-        <%= link_to "予約状況一覧", "#" %>
+        <%= link_to "#" do %>
+          <span class="icon">
+            <i class="fas fa-calendar-check"></i>
+          </span>&nbsp;
+          予約状況
+        <% end %>
       </li>
       <li>
-        <%= link_to "お知らせ", facility_informations_path(facility_id: current_facility) %>
+        <%= link_to facility_informations_path(facility_id: current_facility) do %>
+          <span class="icon">
+            <i class="far fa-bell"></i>
+          </span>&nbsp;
+          お知らせ
+        <% end %>
       </li>
       <li>
-        <%= link_to "お問い合わせ", "#" %>
+        <%= link_to "#" do %>
+          <span class="icon">
+            <i class="fas fa-phone"></i>
+          </span>&nbsp;
+          お問い合わせ
+        <% end %>
       </li>
     </ul>
   </section>

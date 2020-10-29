@@ -627,3 +627,37 @@ p.content1 {
     background: none;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .main_img {
+    height: 370px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #hero-2 {
+    height: 350px;
+  }
+
+  p.content1 {
+    font-size: 12px;
+  }
+
+  .inline-block_content {
+    width: 290px;
+  }
+
+  .btn-animation-login {
+    width: 120px;
+    font-size: 15px;
+    padding: 5px 10px;
+  }
+
+  .inline-block_content img {
+    height: 280px;
+    object-fit: cover;
+  }
+
+}
