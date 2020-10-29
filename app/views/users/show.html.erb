@@ -22,17 +22,13 @@
         <div class="Web-section">
           <div class="columns">
             <% grouped_facility(@informations).each do |facility_id, other| %>
-              <% @infors = Information.mypage_informations(facility_id) %>
               <div class="card-content" id="my-page-info-content">
                 <div class="card" style="display: flex; border-radius: 11px;">
                   <div class="media-left">
-                    <figure class="image is-48x48">
-                      <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"  class="mypage-info-icon-image">
-                    </figure>
-                    <small><%#= mypage_informations_name(facility_id) %></small> <!-- 施設アイコン画像が設定できるようになったら、名前→アイコン画像に修正する -->
+                    <small><%= mypage_informations_icon(facility_id) %></small>
                   </div>
                   <div class="media-content" id="web-media-section">
-                    <% @infors.last(2).each do |information| %>
+                    <% mypage_informations(facility_id).last(2).each do |information| %>
                     <div class="mypage-information">
                       <div>
                         <div class="box" id="mypage-user-box">
@@ -65,7 +61,7 @@
           <div class="card" id="mypage-reservations-calendar">
             <div class="has-text-centered">
               <div class="is-centered">
-                <%= month_calendar(attribute: :calendar_day, events: Reservation.calendar_reservation) do |date, reservations| %>
+                <%= month_calendar(attribute: :calendar_day, events: calendar_reservation) do |date, reservations| %>
                   <%= l(date, format: :short) %>
                 <% end %>
               </div><br>
