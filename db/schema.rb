@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_150720) do
+ActiveRecord::Schema.define(version: 2020_10_28_054953) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 2020_10_18_150720) do
     t.index ["user_id"], name: "index_facility_users_on_user_id"
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "news"
@@ -47,6 +53,16 @@ ActiveRecord::Schema.define(version: 2020_10_18_150720) do
     t.bigint "facility_id"
     t.string "image"
     t.index ["facility_id"], name: "index_information_on_facility_id"
+  end
+
+  create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "message"
+    t.string "images"
+    t.bigint "resident_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resident_id"], name: "index_memories_on_resident_id"
   end
 
   create_table "relatives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -135,6 +151,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_150720) do
   add_foreign_key "facility_users", "facilities"
   add_foreign_key "facility_users", "users"
   add_foreign_key "information", "facilities"
+  add_foreign_key "memories", "residents"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
   add_foreign_key "request_residents", "facilities"

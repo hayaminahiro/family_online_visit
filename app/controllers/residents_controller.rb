@@ -7,6 +7,12 @@ class ResidentsController < ApplicationController
     @resident = Resident.new
   end
 
+  def show
+    @resident = Resident.find(params[:id])
+    @resident.facility_id = current_facility.id
+    @memories = @resident.memories
+  end
+
   def create
     @resident = Resident.new(resident_params)
     @resident.facility_id = current_facility.id

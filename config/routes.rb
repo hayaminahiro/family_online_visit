@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     patch :change_admin # /facilities/:facility_id/change_admin
     resources :residents do # /facilities/:facility_id/residents/:id/~~~
       collection { post :import } # CSVインポート機能
+      resources :memories
     end
     resources :users do
       member do

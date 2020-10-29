@@ -2,6 +2,7 @@ class Resident < ApplicationRecord
   belongs_to :facility
   has_many :relatives, dependent: :destroy
   has_many :users, through: :relatives
+  has_many :memories, dependent: :destroy
 
   validates :name, presence: true
   validates :charge_worker, presence: true

@@ -54,6 +54,7 @@
             <th style="width: 25%;">入居者名</th>
             <th style="width: 25%;">ご家族名</th>
             <th style="width: 25%;">担当者名</th>
+            <th style="width: 25%;">思い出</th>
             <th style="width: 8%;">編集</th>
             <th style="width: 8%;">退所</th>
             <th style="width: 8%;">削除</th>
@@ -63,7 +64,13 @@
           <% @residents.each do |resident| %>
           <tr class="is-size-5">
             <td><%= resident.name %></td>
-            <td><%#= resident.users %></td>
+            <td><%= resident.id %></td>
+<!--            <td><%#= resident.users %></td>-->
+            <td>
+              <%= link_to facility_resident_path(current_facility, resident) do %>
+              こちら
+              <% end %>
+            </td>
             <td><%= resident.charge_worker %></td>
             <td>
               <button type="button" class="button is-success" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
@@ -90,6 +97,8 @@
   </div>
 </div>
 <%= render 'new' %>
+
+<%console%>
 
 <script>
   function openTab(evt, tabName) {
