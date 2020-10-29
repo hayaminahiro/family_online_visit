@@ -54,9 +54,32 @@
                 <td>千葉県佐倉市００−００</td>
               </tr>
               <tr>
-                <th>プロフィール画像</th>
-                <td><%= f.file_field :image %></td>
+                <th>現在のプロフィール画像</th>
+                <td style="height:auto;">
+                  <div class="user-icon-edit">
+                    <%= user_icon_edit(@user) %>
+                  </div>
+                </td>
               </tr>
+              <tr>
+                <th>プロフィール画像を変更</th>
+                <td>
+                <%= f.file_field :image, id: :user_img %>
+                <%= f.hidden_field :image_cache %>
+                </td>
+              </tr>
+              <% if @user.persisted? && @user.image? %>
+                <tr>
+                  <th>画像を削除</th>
+                  <td>
+                  <div style="margin-top:10px;">
+                    <%= f.check_box :remove_image, id: "icon_delete" %>
+                    <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                    </label>
+                  </div>
+                  </td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -122,4 +145,20 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
   }
+</script>
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#user_img").change(function(){
+        readURL(this);
+    });
+  });
 </script>
