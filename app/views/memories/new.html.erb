@@ -32,7 +32,7 @@
               <%= image_tag "", id: :img_prev_2, :size => '300x300' %>
             <% end %>
 
-            <%#= image_tag @memory.images[0] %>
+            <%= f.check_box :remove_images, id: "img_delete" %>
 
 
             <div class="drop-zone-area">
@@ -44,6 +44,7 @@
               <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
               <%= f.text_field :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input" %>
             </div>
+
             <div class="position-control"><h1>位置調整</h1></div>
             <label class="media-left has-text-weight-bold">
               <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせタイトル</h1>

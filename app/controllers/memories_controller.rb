@@ -1,11 +1,8 @@
 class MemoriesController < ApplicationController
 
   def index
-    # raise
     @resident = current_facility.residents.find(params[:resident_id])
-    # @resident.facility_id = current_facility.id
     @memories = @resident.memories
-    # raise
   end
 
   def show
@@ -16,9 +13,6 @@ class MemoriesController < ApplicationController
   def new
     @resident = current_facility.residents.find(params[:resident_id])
     @memory = @resident.memories.new
-    # @resident.facility_id = current_facility.id
-    # @resident = Resident.new
-    # @images = @item.images.build
   end
 
   def create
@@ -34,31 +28,19 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
-    # raise
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memories = @resident.memories
-    # raise
-    @memories.each do |m|
-      m.delete
-    end
-
-
-    # @memories.find(29).delete
+    resident = current_facility.residents.find(params[:resident_id])
+    memories = resident.memories
+    @memory = memories.find(params[:id])
+    @memory.delete
+    @memory.remove_images!
     flash[:alert] = "思い出アルバムを削除しました"
     redirect_to facility_resident_memories_path
   end
 
-  # def destroy
-  #   @information.destroy
-  #   flash[:alert] = "お知らせを削除しました"
-  #   redirect_to facility_informations_url
-  # end
-
-
     private
 
       def memories_params
-        params.require(:memory).permit(:title, :message, {images: []})
+        params.require(:memory).permit(:title, :message, {images: []}, {remove_images: []}, :images_cache)
       end
 
 end
