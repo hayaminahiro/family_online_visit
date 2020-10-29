@@ -12,11 +12,33 @@
             <div class="label-space">
               <%#= information_image(@information) %>
             </div>
+
+            <% if @memory.images? %>
+              <%= image_tag @memory.images[0].url, id: :img_prev_0, :size => '300x300' %>
+            <% else %>
+              <%= image_tag "", id: :img_prev_0, :size => '300x300' %>
+            <% end %>
+
+            <% if @memory.images? %>
+              <%= image_tag @memory.images[1].url, id: :img_prev_1, :size => '300x300' %>
+            <% else %>
+              <%= image_tag "", id: :img_prev_1, :size => '300x300' %>
+            <% end %>
+
+            <% if @memory.images? %>
+              <%= image_tag @memory.images[2].url, id: :img_prev_2, :size => '300x300' %>
+            <% else %>
+              <%= image_tag "", id: :img_prev_2, :size => '300x300' %>
+            <% end %>
+
+            <%#= image_tag @memory.images[0] %>
+
+
             <div class="drop-zone-area">
-              <%= f.label :images, "\uf574", class: "fa image_input_comment" %>
-              <%= f.file_field :images, multiple: true %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading" %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading" %>
+              <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
+              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_0" %>
+              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_1" %>
+              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_2" %>
               <%= f.hidden_field :images_cache %>
             </div>
             <div class="position-control"><h1>位置調整</h1></div>
@@ -50,12 +72,42 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('#img_prev').attr('src', e.target.result);
+                    $('#img_prev_0').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $(".image_uploading").change(function(){
+        $(".image_uploading_0").change(function(){
+            readURL(this);
+        });
+    });
+
+    $(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_prev_1').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".image_uploading_1").change(function(){
+            readURL(this);
+        });
+    });
+
+    $(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_prev_2').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".image_uploading_2").change(function(){
             readURL(this);
         });
     });

@@ -1,6 +1,9 @@
 class MemoriesController < ApplicationController
 
   def index
+    @resident = Resident.find(params[:resident_id])
+    @resident.facility_id = current_facility.id
+    @memories = @resident.memories
   end
 
   def show
@@ -21,10 +24,12 @@ class MemoriesController < ApplicationController
     @memory = @resident.memories.new(memories_params)
     if @memory.save
       flash[:notice] = "成功"
+      # redirect_to facility_resident_path(id: @resident.id)
+      redirect_to facility_resident_memories_path
     else
       render :new
     end
-    redirect_to facility_resident_memory_url
+
   end
 
     private
