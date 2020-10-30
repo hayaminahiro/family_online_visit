@@ -130,10 +130,12 @@
   </div>
 </section>
 
+<%= render 'facility_under_tab' if facility_signed_in? %>
+
 <script>
   $(function(){
     ScrollReveal().reveal('#top-login-coments', { delay: 100, distance: '150px', origin: 'left', duration: 2000, viewFactor: 0.5 });
-    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '300px', origin: 'right', duration: 1500, viewFactor: 0.5 });
-    ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'right', duration: 800, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content', { delay: 100, distance: '300px', origin: 'bottom', duration: 1500, viewFactor: 0.5 });
+    ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'bottom', duration: 800, viewFactor: 0.5 });
   });
 </script>
