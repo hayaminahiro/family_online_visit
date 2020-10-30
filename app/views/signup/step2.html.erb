@@ -1,88 +1,86 @@
 <ul class="image-layout">
 </ul>
-<section class="">
-  <div class="container is-fluid">
-        <div class="content has-text-centered">
-          <div class="signup-upper">
-            <div class="signups-title">
-              <strong class="new-title">追加情報登録</strong><br>
+<div class="container is-fluid">
+      <div class="content has-text-centered">
+        <div class="signup-upper">
+          <div class="signups-title">
+            <strong class="new-title">追加情報登録</strong><br>
+          </div>
+          <div class="page-display">
+            <div class="page-number">
+              <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-inverse fa-stack-1x">1</i>
+              </span>
             </div>
-            <div class="page-display">
-              <div class="page-number">
-                <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-inverse fa-stack-1x">1</i>
-                </span>
-              </div>
-              ・・・
-              <div class="page-number">
-                <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
-                  <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
-                  <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">2</i>
-                </span>
-              </div>
-              ・・・
-              <div class="page-number">
-                <span class="fa-stack fa-lg" style="font-size: 1.5em; color: white;">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>
-                </span>
-              </div>
+            ・・・
+            <div class="page-number">
+              <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
+                <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
+                <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">2</i>
+              </span>
+            </div>
+            ・・・
+            <div class="page-number">
+              <span class="fa-stack fa-lg" style="font-size: 1.5em; color: white;">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>
+              </span>
             </div>
           </div>
         </div>
-          <div class="button-position">
-            <div class="columns is-centered">
-              <div class="column is-4-desktop is-12-mobile top-btn-position has-text-black">
-              <%= render "users/shared/error_messages", resource: @user %>
-              <form>
-                  <div>
-                    <label style="font-size:20px;font-weight:bold;" for="zip">郵便番号</label><br />
-                    <input style="margin-top:20px;" id="zip" type="text" size="10" placeholder="&#xf1fa; 郵便番号を入力", class="fa input is-medium" />
-                    <input id="search" type="button" value="検索" class="button" />
-                  </div>
-                </form>
-              <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
-
-                <div class="field">
-                  <%= f.hidden_field :postal_code, id: "zipcode", autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
+      </div>
+        <div class="button-position">
+          <div class="columns is-centered">
+            <div class="column is-4-desktop is-12-mobile top-btn-position has-text-black">
+            <%= render "users/shared/error_messages", resource: @user %>
+            <form>
+                <div>
+                  <label style="font-size:20px;font-weight:bold;" for="zip">郵便番号</label><br />
+                  <input style="margin-top:20px;margin-bottom:10px;" id="zip" type="text" size="10" placeholder="&#xf1fa; 郵便番号を入力", class="fa input is-medium" />
+                  <input id="search" type="button" value="郵便番号から住所検索" class="button is-success" />
                 </div>
+              </form>
+            <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
 
-                <div class="field">
-                  <%= f.label :prefecture_name, '都道府県', for: "address1", class: "label" %><br />
-                  <%= f.text_field :prefecture_name, :placeholder => "\uf015 都道府県を入力", id: "address1", class: 'fa input is-medium input-top' %>
-                </div>
-
-                <div class="field">
-                  <%= f.label :address_city, '市区町村', for: "address2", class: "label" %><br />
-                  <%= f.text_field :address_city, :placeholder => "\uf015 市区町村を入力", id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
-                </div>
-
-                <div class="field">
-                  <%= f.label :address_street, '町域', for: "address3", class: "label" %><br />
-                  <%= f.text_field :address_street, :placeholder => "\uf015 町域を入力", id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
-                </div>
-
-
-                <div class="field">
-                  <%= f.label :phone, "電話番号", class: "label" %><br />
-                  <%= f.text_field :phone, :placeholder => "\uf098 電話番号を入力", value: session[:phone], autocomplete: "phone", class: "fa input is-medium input-top" %>
-                </div>
-
-                <div class="actions">
-                  <%= f.submit "次へ", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
-                </div>
-              <% end %>
-
+              <div class="field">
+                <%= f.hidden_field :postal_code, id: "zipcode", autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
               </div>
+
+              <div class="field">
+                <%= f.label :prefecture_name, '都道府県', for: "address1", class: "label" %><br />
+                <%= f.text_field :prefecture_name, :placeholder => "\uf015 都道府県を入力", id: "address1", class: 'fa input is-medium input-top' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :address_city, '市区町村', for: "address2", class: "label" %><br />
+                <%= f.text_field :address_city, :placeholder => "\uf015 市区町村を入力", id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :address_street, '町域', for: "address3", class: "label" %><br />
+                <%= f.text_field :address_street, :placeholder => "\uf015 町域を入力", id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
+              </div>
+
+
+              <div class="field">
+                <%= f.label :phone, "電話番号", class: "label" %><br />
+                <%= f.text_field :phone, :placeholder => "\uf098 電話番号を入力", value: session[:phone], autocomplete: "phone", class: "fa input is-medium input-top" %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "次へ", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+              </div>
+            <% end %>
+
             </div>
           </div>
-    <div class="columns is-centered">
-      <div class="column">
-      </div>
+        </div>
+  <div class="columns is-centered">
+    <div class="column">
     </div>
   </div>
-</section>
+</div>
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>

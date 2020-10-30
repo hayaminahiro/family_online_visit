@@ -716,20 +716,6 @@ input#icon_delete[type="checkbox"] + label.check_position:before {
   transition: all .12s, border-color .08s;
 }
 
-input#icon_edit_delete[type="checkbox"] + label.check_position:before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #0d47a1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: .6;
-  -webkit-transition: all .12s, border-color .08s;
-  transition: all .12s, border-color .08s;
-}
-
 input#icon_delete[type="checkbox"]:checked + label.check_position:before {
   width: 10px;
   top: -5px;
