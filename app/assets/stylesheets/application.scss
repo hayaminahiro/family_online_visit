@@ -24,6 +24,11 @@
   display: none;
 }
 
+//ユーザー下タブ
+#user_tab_nav {
+  display: none;
+}
+
 /*下タブ（タブレット、モバイル）*/
 @media screen and (max-width: 1000px) {
 
@@ -90,6 +95,7 @@
   //ユーザー下タブ
   #user_tab_nav {
     z-index: 20;
+    display: block;
     text-align:center;
     position: fixed;
     bottom: 0;
@@ -112,7 +118,7 @@
     display: block;
     height: 51px;
     color: #fff;
-    padding-top: 0px;
+    padding-top: 8px;
     font-size: 10px;
   }
 
@@ -120,11 +126,12 @@
     font-size: 26px;
     display: block;
     margin: 5px auto;
+    margin-top: 2px;
   }
 
   #user_tab_nav li i {
     display: block;
-    line-height: 27px;
+    line-height: 20px;
   }
 
   //フッター
@@ -149,3 +156,4 @@
     }
   }
 }
+

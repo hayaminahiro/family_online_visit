@@ -8,10 +8,10 @@
   <div class="main_img" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages1.jpg')"></div>
   <div class="hero-body">
     <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
-      <h1 class="has-text-centered" style="font-size: 80px;">
+      <h1 class="has-text-centered">
         <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
       </h1>
-      <p class="is-size-3">
+      <p class="sub-title">
         大切な人と結ぶ出会いの時間
       </p>
     </div>
@@ -102,8 +102,11 @@
         </div>
       </div>
     <% elsif !user_signed_in? && !facility_signed_in? %>
-      <div class="about-title-2 is-size-3">Online Visitについて</div>
-      <div class="inline-block_content" style="margin-bottom: 80px; margin-top: 50px;" id="top-login-coments">
+      <div class="about-title-2">Online Visitについて</div>
+      <div class="inline-block_content" id="top-login-coments">
+        <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="400" height="300">
+      </div>
+      <div class="inline-block_content" style="margin-top: 50px;">
         <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
           これからの暮らしに欠かすことのできない要素として<br>
           オンラインをとらえ離れていてもすぐに繋がれる<br>
@@ -121,9 +124,6 @@
             ログイン
           </span>
         <% end %>
-      </div>&emsp;&emsp;
-      <div class="inline-block_content" style="margin-top: 50px;">
-        <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="400" height="300">
       </div>
     <% end %>
     <%= render 'system_information' %>
@@ -134,7 +134,7 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('#top-login-coments', { delay: 100, distance: '150px', origin: 'left', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('#top-login-coments', { delay: 100, distance: '150px', origin: 'right', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content', { delay: 100, distance: '300px', origin: 'bottom', duration: 1500, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'bottom', duration: 800, viewFactor: 0.5 });
   });

@@ -239,6 +239,14 @@ a.button.is-success.is-rounded.is-large.has-text-weight-bold.center-login {
   position: relative;
 }
 
+#hero-2 h1 {
+  font-size: 80px;
+}
+
+#hero-2 p {
+  font-size: 32px;
+}
+
 .hero-3 {
   background-color: #FFDEAD;
 }
@@ -352,7 +360,10 @@ footer {
   vertical-align: top;
   height: 267px;
   width: 420px;
-  margin-right: 20px;
+  margin-right: 55px;
+  margin-bottom: 80px;
+  margin-top: 50px;
+  margin-left: 55px;
 }
 
 //トップページご家族ログイン後
@@ -529,9 +540,11 @@ p.content1 {
           appearance: none;
 	display: none;
 }
+
 .cp_tab .cp_tabpanel {
   display: none;
 }
+
 .cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
 .cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
 .cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3),
@@ -540,6 +553,7 @@ p.content1 {
 .cp_tab > input:nth-child(11):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(6) {
 	display: block;
 }
+
 .cp_tab > label {
 	position: relative;
 	display: inline-block;
@@ -549,21 +563,25 @@ p.content1 {
 	border: 1px solid transparent;
 	border-bottom: 0;
 }
+
 .cp_tab > label:hover,
 .cp_tab > input:focus + label {
 	color: #0066cc;
 }
+
 .cp_tab > input:checked + label {
 	margin-bottom: -1px;
 	border-color: #cccccc;
 	border-bottom: 1px solid #efefef;
 	border-radius: 6px 6px 0 0;
 }
+
 .cp_tab .cp_tabpanel {
 	padding: 0.5em 1em;
   border-top: 1px solid #cccccc;
   padding-top: 100px;
 }
+
 @media (max-width: 480px) {
 	.cp_tab {
 		width: 100%;
@@ -596,6 +614,7 @@ p.content1 {
   padding-bottom: 7px;
   margin-bottom: 50px;
   margin-top: 0px;
+  font-size: 32px;
 }
 
 //ヘッダー（一般職員アイコン）
@@ -628,6 +647,7 @@ p.content1 {
   }
 }
 
+//タブレット
 @media screen and (max-width: 1000px) {
   .main_img {
     height: 370px;
@@ -647,6 +667,7 @@ p.content1 {
 
   .inline-block_content {
     width: 290px;
+    margin: 10px 20px;
   }
 
   .btn-animation-login {
@@ -660,4 +681,41 @@ p.content1 {
     object-fit: cover;
   }
 
+  //メニュータブ
+  .cp_tab > label {
+    padding: 10px 44px;
+  }
+}
+
+//スマートフォン
+@media screen and (max-width: 500px) {
+
+  //アプリタイトル
+  #hero-2 h1 {
+    font-size: 45px;
+  }
+
+  //サブタイトル
+  #hero-2 p {
+    font-size: 18px;
+  }
+
+  //アプリについて（項目）
+  .about-title-2 {
+    font-size: 20px;
+  }
+
+  .inline-block_content {
+    margin: 0px;
+  }
+
+  //お知らせ
+  #panel-content {
+    margin: 0px;
+  }
+
+  //メニュータブ
+  .cp_tab > label {
+    padding: 10px 10px;
+  }
 }
