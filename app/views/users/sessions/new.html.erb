@@ -8,7 +8,7 @@
         <div class="columns is-centered">
           <div class="column is-4-desktop is-12-mobile top-btn-position">
 
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= form_with model: @user, url: user_session_path, id: "new_user", class: "new_user", local: true do |f| %>
               <div class="field">
                 <%= f.label :email, class: "label" %><br />
                 <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力", autofocus: true, autocomplete: "email", class: "fa input is-medium is-info input-top-user" %>
