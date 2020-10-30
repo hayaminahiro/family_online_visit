@@ -167,8 +167,12 @@ mypage-main{/*画面中央*/
     }
 
     .mypage-info-icon-image{
-      margin: 20px 0px 0px 10px;
+      margin: 13px 0px 0px 15px;
+      width: 60px;
+      height: 60px;
       border-radius: 100%;
+      display: inline-block;
+      object-fit: cover;
     }
   }
 
@@ -487,9 +491,17 @@ main {/*画面中央*/
     #my-page-info-content {
       padding: 13px 18px;
 
+      .media-left {
+        margin-right: 8px;
+      }
+
       .mypage-info-icon-image{
-        margin: 15px 0px 0px 11px;
+        margin: 5px 0px 0px 11px;
+        width: 60px;
+        height: 60px;
         border-radius: 100%;
+        display: inline-block;
+        object-fit: cover;
       }
     }
   }

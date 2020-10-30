@@ -11,7 +11,6 @@
       </h1>
     </div>
   </div>
-
   <div class="hero-foot">
     <nav class="tabs is-boxed is-fullwidth is-large">
       <div class="container">
@@ -26,13 +25,13 @@
 
 <div class="container section">
   <div id="WebDev" class="content-tab">
-
-
     <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
     <div class="resident-head-button">
       <!--CSVインポート-->
       <%= render partial: 'csv_import' %>
-      <div class="head-button"><button type="button" class="button is-info is-rounded is-size-5 has-text-weight-bold" id="new"><i class="fas fa-user-plus"></i></button></div>
+      <div class=" js-contents--create-button">
+        <%= link_to "\uf234", new_facility_resident_path(current_facility), remote: true, class: "resident--create-button fa button is-info is-rounded is-size-5" %>
+      </div>
       <div style="margin-left:auto;">
         <%= form_with(url: user_facility_residents_path(current_facility), method: :get, local: true) do |f| %>
         <div class="field is-grouped is-grouped-right">
@@ -66,15 +65,15 @@
             <td><%#= resident.users %></td>
             <td><%= resident.charge_worker %></td>
             <td>
-              <button type="button" class="button is-success" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
+              <div class=" js-contents--edit-button">
+                <%= link_to "\uf4ff", edit_facility_resident_path(current_facility, resident), remote: true, class: "fa button is-success resident--update-button" %>
+              </div>
             </td>
             <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
             <td>
-              <%= link_to facility_resident_path(current_facility, resident), method: :delete,
-                data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
+              <%= link_to facility_resident_path(current_facility, resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
               <i class="far fa-trash-alt"></i>
               <% end %>
-              <%= render 'edit', {resident: resident, resident_id: (resident.name + resident.id.to_s)} %>
             </td>
           </tr>
           <% end %>
@@ -83,13 +82,21 @@
       <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
     </div>
   </div>
+
   <div id="WebAud" class="content-tab" style="display:none">
     <p>
       退所者一覧<br>
       Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
   </div>
 </div>
-<%= render 'new' %>
+
+<!--モーダル表示-->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <div class="js-contents--content-form"></div>
+  </div>
+</div>
 
 <script>
   function openTab(evt, tabName) {
