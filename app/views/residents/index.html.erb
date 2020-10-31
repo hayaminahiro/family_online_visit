@@ -7,7 +7,7 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title is-1 has-text-white">
-        入居者一覧
+        利用者一覧
       </h1>
     </div>
   </div>
@@ -51,10 +51,10 @@
       <table class="table is-striped is-fullwidth" id="table-residents">
         <thead>
           <tr class="has-text-weight-bold">
-            <th style="width: 25%;">入居者名</th>
+            <th style="width: 25%;">利用者名</th>
             <th style="width: 25%;">ご家族名</th>
             <th style="width: 25%;">担当者名</th>
-            <th style="width: 25%;">思い出</th>
+            <th style="width: 25%;">思い出アルバム</th>
             <th style="width: 8%;">編集</th>
             <th style="width: 8%;">退所</th>
             <th style="width: 8%;">削除</th>
@@ -64,14 +64,17 @@
           <% @residents.each do |resident| %>
           <tr class="is-size-5">
             <td><%= resident.name %></td>
-            <td><%= resident.id %></td>
-<!--            <td><%#= resident.users %></td>-->
             <td>
-              <%= link_to facility_resident_path(current_facility, resident) do %>
-              こちら
+              <% resident.users.each do |user| %>
+                <%= user.name %>
               <% end %>
             </td>
             <td><%= resident.charge_worker %></td>
+            <td>
+              <%= link_to facility_resident_memories_path(current_facility, resident), class:"button is-link" do %>
+                <i class="fas fa-images"></i>
+              <% end %>
+            </td>
             <td>
               <button type="button" class="button is-success" id="<%= resident.id %>"><i class="fas fa-user-edit"></i></button>
             </td>
@@ -79,7 +82,7 @@
             <td>
               <%= link_to facility_resident_path(current_facility, resident), method: :delete,
                 data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
-              <i class="far fa-trash-alt"></i>
+                <i class="far fa-trash-alt"></i>
               <% end %>
               <%= render 'edit', {resident: resident, resident_id: (resident.name + resident.id.to_s)} %>
             </td>
