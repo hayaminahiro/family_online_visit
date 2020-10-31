@@ -566,7 +566,7 @@ p.content1 {
 
 .cp_tab > label:hover,
 .cp_tab > input:focus + label {
-	color: #0066cc;
+	color: #006fcc;
 }
 
 .cp_tab > input:checked + label {
@@ -717,5 +717,18 @@ p.content1 {
   //メニュータブ
   .cp_tab > label {
     padding: 10px 10px;
+    font-size: 2px;
+    border: none;
   }
+
+  .cp_tab > label i {
+    font-size: 30px;
+    display: block;
+  }
+
+  .cp_tab > input:checked + label {
+    border-bottom: 2px solid #006fcc;
+    border-radius: 0;
+  }
+
 }

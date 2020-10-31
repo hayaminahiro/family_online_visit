@@ -19,7 +19,7 @@
 </section>
 
 <section class="hero is-medium has-text-centered" id="hero-4">
-  <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
+  <div class="hero-body">
     <% if user_signed_in? %>
       <div class="cp_tab">
         <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
@@ -27,24 +27,24 @@
         <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
         <label for="tab1_2"><i class="fas fa-building"></i>&nbsp;施設登録</label>
         <input type="radio" name="cp_tab" id="tab1_3" aria-controls="third_tab01">
-        <label for="tab1_3"><i class="fas fa-home"></i>&nbsp;マイページ</label>
+        <label for="tab1_3"><i class="fas fa-house-user"></i>&nbsp;マイページ</label>
 
         <div class="cp_tabpanels">
           <div id="first_tab01" class="cp_tabpanel">
             <article class="panel" id="panel-content">
-              <div class="columns is-multiline">
+              <div class="columns is-multiline is-narrow-mobile">
                 <% current_user.facilities.each do |facility| %>
-                  <div class="column is-3" style="width: 25%">
+                  <div class="column is-4">
                     <div class="card">
                       <figure class="image is-4by3">
-                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                        <%= facility_season_image(facility) %>
                       </figure>
                       <div class="card-content">
                         <p class="title is-4">
                           <% @facility = facility.id %>
                           <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                         </p>
-                        <%= link_to '#', class: "button is-outlined is-danger" do %>
+                        <%= link_to '#', class: "button is-danger is-light" do %>
                           <span>
                             登録解除
                           </span>&nbsp;
@@ -103,10 +103,10 @@
       </div>
     <% elsif !user_signed_in? && !facility_signed_in? %>
       <div class="about-title-2">Online Visitについて</div>
-      <div class="inline-block_content" id="top-login-coments">
+      <div class="inline-block_content">
         <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="400" height="300">
       </div>
-      <div class="inline-block_content" style="margin-top: 50px;">
+      <div class="inline-block_content" id="top-login-coments" style="margin-top: 50px;">
         <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
           これからの暮らしに欠かすことのできない要素として<br>
           オンラインをとらえ離れていてもすぐに繋がれる<br>
