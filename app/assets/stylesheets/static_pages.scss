@@ -372,7 +372,10 @@ footer {
   vertical-align: top;
   height: 267px;
   width: 420px;
-  margin-right: 20px;
+  margin-right: 55px;
+  margin-bottom: 80px;
+  margin-top: 50px;
+  margin-left: 55px;
 }
 
 p.content1 {
@@ -647,8 +650,10 @@ p.content1 {
   }
 }
 
-//タブレット
+//タブレット〜モバイル
 @media screen and (max-width: 1000px) {
+
+  //トップ画面背景画像
   .main_img {
     height: 370px;
   }
@@ -661,22 +666,28 @@ p.content1 {
     height: 350px;
   }
 
+  //補足コメント
   p.content1 {
     font-size: 12px;
   }
 
+  //トップ画面の画像と文のレイアウト
   .inline-block_content {
     width: 290px;
     margin: 10px 20px;
   }
 
-  .btn-animation-login {
-    width: 120px;
-    font-size: 15px;
-    padding: 5px 10px;
+  .inline-block_content img {
+    height: 280px;
+    object-fit: cover;
   }
 
-  .inline-block_content img {
+  .inline-block_tab {
+    width: 290px;
+    margin: 10px 10px
+  }
+
+  .inline-block_tab img {
     height: 280px;
     object-fit: cover;
   }
@@ -687,7 +698,7 @@ p.content1 {
   }
 }
 
-//スマートフォン
+//モバイル
 @media screen and (max-width: 500px) {
 
   //アプリタイトル
@@ -714,7 +725,7 @@ p.content1 {
     margin: 0px;
   }
 
-  //メニュータブ
+  //ログイン後、トップ画面のメニュータブ
   .cp_tab > label {
     padding: 10px 10px;
     font-size: 2px;
@@ -730,5 +741,4 @@ p.content1 {
     border-bottom: 2px solid #006fcc;
     border-radius: 0;
   }
-
 }

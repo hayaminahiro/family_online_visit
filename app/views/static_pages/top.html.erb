@@ -25,7 +25,7 @@
         <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
         <label for="tab1_1"><i class="far fa-building"></i>&nbsp;施設（登録済）</label>
         <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-        <label for="tab1_2"><i class="fas fa-building"></i>&nbsp;施設登録</label>
+        <label for="tab1_2"><i class="fas fa-search-plus"></i>&nbsp;施設登録</label>
         <input type="radio" name="cp_tab" id="tab1_3" aria-controls="third_tab01">
         <label for="tab1_3"><i class="fas fa-house-user"></i>&nbsp;マイページ</label>
 
@@ -44,14 +44,16 @@
                           <% @facility = facility.id %>
                           <%= link_to facility.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                         </p>
-                        <%= link_to '#', class: "button is-danger is-light" do %>
-                          <span>
-                            登録解除
-                          </span>&nbsp;
-                          <span class="icon">
-                            <i class="fas fa-times"></i>
-                          </span>
-                        <% end %>
+                        <div class="has-text-right">
+                          <%= link_to '#', class: "button is-small is-danger is-light is-rounded" do %>
+                            <span>
+                              解除
+                            </span>&nbsp;
+                            <span class="icon">
+                              <i class="fas fa-times"></i>
+                            </span>
+                          <% end %>
+                        </div>  
                       </div>
                     </div>
                   </div>
@@ -61,10 +63,10 @@
           </div>
 
           <div id="second_tab01" class="cp_tabpanel">
-            <div class="inline-block_tab">
+            <div class="inline-block_content">
               <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_mypage.jpg" width="400" height="300">
-            </div>&emsp;&emsp;
-            <div class="inline-block_tab">
+            </div>
+            <div class="inline-block_tab" style="margin-top: 25px;">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 介護施設、病院、保育園などを様々なジャンルから<br>
                 利用したい施設を登録することで<br>
@@ -72,7 +74,7 @@
               </p><br>
               <%= link_to facilities_used_user_facilities_path(current_user), class: "btn-animation-facility" do %>
                 <span class="icon">
-                  <i class="far fa-building"></i>
+                  <i class="fas fa-search-plus"></i>
                 </span>&nbsp;
                 <span>
                   施設登録
@@ -82,16 +84,16 @@
           </div>
 
           <div id="third_tab01" class="cp_tabpanel">
-            <div class="inline-block_tab">
+            <div class="inline-block_content">
               <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_registration.jpg" width="400" height="300">
-            </div>&emsp;&emsp;
-            <div class="inline-block_tab">
+            </div>
+            <div class="inline-block_tab" style="margin-top: 25px;">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
                 登録した施設、予約の確認、写真の閲覧ができます。<br>
               </p><br>
               <%= link_to user_path(current_user), class: "btn-animation-login" do %>
                 <span class="icon">
-                  <i class="fas fa-home"></i>
+                  <i class="fas fa-house-user"></i>
                 </span>&nbsp;
                 <span>
                   マイページ
@@ -106,7 +108,7 @@
       <div class="inline-block_content">
         <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="400" height="300">
       </div>
-      <div class="inline-block_content" id="top-login-coments" style="margin-top: 50px;">
+      <div class="inline-block_content" id="top-coments" style="margin-top: 25px;">
         <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
           これからの暮らしに欠かすことのできない要素として<br>
           オンラインをとらえ離れていてもすぐに繋がれる<br>
@@ -134,7 +136,7 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('#top-login-coments', { delay: 100, distance: '150px', origin: 'right', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('#top-coments', { delay: 100, distance: '150px', origin: 'right', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content', { delay: 100, distance: '300px', origin: 'bottom', duration: 1500, viewFactor: 0.5 });
     ScrollReveal().reveal('#panel-content-user', { delay: 100, distance: '50px', origin: 'bottom', duration: 800, viewFactor: 0.5 });
   });
