@@ -362,7 +362,7 @@ footer {
   width: 420px;
   margin-right: 55px;
   margin-bottom: 80px;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: 55px;
 }
 
@@ -696,6 +696,10 @@ p.content1 {
   .cp_tab > label {
     padding: 10px 44px;
   }
+
+  .cp_tab .cp_tabpanel {
+    padding-top: 60px;
+  }
 }
 
 //モバイル
@@ -727,7 +731,7 @@ p.content1 {
 
   //ログイン後、トップ画面のメニュータブ
   .cp_tab > label {
-    padding: 10px 10px;
+    padding: 10px 23px;
     font-size: 2px;
     border: none;
   }
