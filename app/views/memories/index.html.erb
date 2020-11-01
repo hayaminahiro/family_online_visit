@@ -15,7 +15,6 @@
       <li class="tab4__item"><span class="tab4__link" data-tab-body="2">行事ごとの写真</span></li>
     </ul>
     <div class="tab4-body">
-
       <div class="tab4-body__item tab4-body__item--1 on">
         <% @memories.each do |m| %>
 
@@ -31,8 +30,9 @@
 
       <div class="tab4-body__item tab4-body__item--2 card-controller">
         <% @memories.each do |m| %>
-            <section class="photo-card is-pulled-left">
-              <img class="photo-card-img" src="http://webcreatorbox.com/sample/images/bear.jpg" alt="">
+          <div class="card-float" style="display: inline-block;">
+            <section class="photo-card" style="display: inline-block">
+              <%= image_tag m.images[0].url, id: :img_prev if m.images[0].present? %>
               <div class="photo-card-content">
                 <p class="photo-card-title"><%= m.title %></p>
                 <p class="photo-card-text"><%= m.message %></p>
@@ -44,6 +44,7 @@
                 <p class="photo-card-text">2020/09/08</p> <!--行事日入力カラム追加-->
               </div>
             </section>
+          </div>
         <% end %>
       </div>
 
