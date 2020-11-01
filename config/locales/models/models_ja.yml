@@ -8,7 +8,7 @@ ja:
       reservation: 予約
       comment: お問い合わせ
       # notification: 通知
-      # memorie: 生活記録
+      memory: 生活記録
     attributes:
         user:
           id: ID
@@ -49,11 +49,10 @@ ja:
         comment:
           message: メッセージ
         # notification: 通知
-        # memorie: 生活記録
-        #   photo_title: 写真タイトル
-        #   photo: 写真
-        #   worker_message: 職員メッセージ
-        #   family_message: ご家族メッセージ
+        memory:
+          title: タイトル
+          images: 写真
+          message: メッセージ
         request_resident:
           req_name: 入居者様名
           req_phone: ご家族様連絡先

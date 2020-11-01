@@ -8,7 +8,7 @@
           <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせ画像設定</h1>
           <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
           <%= form_with(model: @memory, url: facility_resident_memories_path(current_facility, @resident), method: :post, local: true) do |f| %>
-            <%#= render partial: 'shared/error_messages', locals: { obj: @information } %>
+            <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
             <div class="label-space">
               <%#= information_image(@information) %>
             </div>
