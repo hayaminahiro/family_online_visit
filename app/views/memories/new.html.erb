@@ -32,6 +32,12 @@
               <%= image_tag "", id: :img_prev_2, :size => '300x300' %>
             <% end %>
 
+            <% if @memory.images? %>
+              <%= image_tag @memory.images[3].url, id: :img_prev_3, :size => '300x300' %>
+            <% else %>
+              <%= image_tag "", id: :img_prev_3, :size => '300x300' %>
+            <% end %>
+
             <%= f.check_box :remove_images, id: "img_delete" %>
 
 
@@ -40,6 +46,7 @@
               <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_0" %>
               <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_1" %>
               <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_2" %>
+              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_3" %>
               <%= f.hidden_field :images_cache %>
               <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
               <%= f.text_field :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input" %>
@@ -115,4 +122,20 @@
             readURL(this);
         });
     });
+
+    $(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_prev_3').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".image_uploading_3").change(function(){
+            readURL(this);
+        });
+    });
+
 </script>

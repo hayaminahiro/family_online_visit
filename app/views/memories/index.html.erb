@@ -1,30 +1,69 @@
-<h1>思い出写真一覧</h1>
+<div class="glovalNavigation">
+  <h1 class="has-text-weight-bold"><%= @resident.name %>さんの思い出アルバム</h1>
+</div>
 
-<%#= form_with(url: facility_informations_path(current_facility), method: :get, local: true) do |f| %>
-  <% @memories.each do |m| %>
-    <%= m.title %>
-    <%= m.message %>
-    <%= m.id %>
-    <% if m.images? %>
-
-
-
-      <%= image_tag m.images[0].url, id: :img_prev, :size => '200x200' if m.images[0].present? %>
-      <%= image_tag m.images[1].url, id: :img_prev, :size => '200x200' if m.images[1].present? %>
-      <%= image_tag m.images[2].url, id: :img_prev, :size => '200x200' if m.images[2].present? %>
-      <%= image_tag m.images[3].url, id: :img_prev, :size => '200x200' if m.images[3].present? %>
-      <%= image_tag m.images[4].url, id: :img_prev, :size => '200x200' if m.images[4].present? %>
-
-
-      <p>============</p>
-      <%= link_to facility_resident_memory_path(current_facility, @resident, m), method: :delete,
-                  data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
-        <i class="far fa-trash-alt"></i>
-      <% end %>
-      <%#= m.check_box :remove_images, id: "img_delete" %>
-
-
+<div class="main-index photo-scroll">
+  <div id="insert-photo">
+    <%= link_to new_facility_resident_memory_path(current_facility, @resident), class:"button is-link is-pulled-right" do %>
+      <i class="fas fa-images has-text-weight-bold">&ensp;新しい写真を投稿</i>
     <% end %>
+  </div>
 
-  <% end %>
-<%# end %>
+  <div class="content">
+    <ul class="tab4">
+      <li class="tab4__item"><span class="tab4__link on" data-tab-body="1">全ての写真</span></li>
+      <li class="tab4__item"><span class="tab4__link" data-tab-body="2">行事ごとの写真</span></li>
+    </ul>
+    <div class="tab4-body">
+
+      <div class="tab4-body__item tab4-body__item--1 on">
+        <% @memories.each do |m| %>
+
+          <% if m.images? %>
+            <%= image_tag m.images[0].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[0].present? %>
+            <%= image_tag m.images[1].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[1].present? %>
+            <%= image_tag m.images[2].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[2].present? %>
+            <%= image_tag m.images[3].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[3].present? %>
+            <%= image_tag m.images[4].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[4].present? %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="tab4-body__item tab4-body__item--2 card-controller">
+        <% @memories.each do |m| %>
+            <section class="photo-card is-pulled-left">
+              <img class="photo-card-img" src="http://webcreatorbox.com/sample/images/bear.jpg" alt="">
+              <div class="photo-card-content">
+                <p class="photo-card-title"><%= m.title %></p>
+                <p class="photo-card-text"><%= m.message %></p>
+              </div>
+              <div class="photo-card-link">
+                <%= link_to facility_resident_memory_path(current_facility, @resident, m), class:"folder" do %>
+                  <i class="fas fa-folder-open fa-3x"></i>
+                <% end %>
+                <p class="photo-card-text">2020/09/08</p> <!--行事日入力カラム追加-->
+              </div>
+            </section>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("turbolinks:load", function () {
+    var $tab__link = $('.tab4__link')
+    var $tab_body_item = $('.tab4-body__item')
+    $tab__link.on('click', function (e) {
+      var target = $(e.currentTarget)
+      //タブの表示非表示
+      $tab__link.removeClass('on')
+      target.addClass('on')
+      //タブの中身の表示非表示
+      var num = target.data('tab-body')
+      $tab_body_item.removeClass('on')
+      $('.tab4-body__item--' + num).addClass('on')
+    })
+  })
+</script>
