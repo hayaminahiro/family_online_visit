@@ -93,64 +93,20 @@
 </nav>
 
 <script>
+  for ( let i=0; i<8; i++ ){
     $(function() {
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#img_prev_0').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $(`#img_prev_${i}`).attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
         }
-        $(".image_uploading_0").change(function(){
-            readURL(this);
-        });
+      }
+      $(`.image_uploading_${i}`).change(function(){
+          readURL(this);
+      });
     });
-
-    $(function() {
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#img_prev_1').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $(".image_uploading_1").change(function(){
-            readURL(this);
-        });
-    });
-
-    $(function() {
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#img_prev_2').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $(".image_uploading_2").change(function(){
-            readURL(this);
-        });
-    });
-
-    $(function() {
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#img_prev_3').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $(".image_uploading_3").change(function(){
-            readURL(this);
-        });
-    });
-
+  }
 </script>
