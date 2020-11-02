@@ -6,10 +6,16 @@
 
   <div class="content">
     <section class="photo-card-show">
-      <%= image_tag @memory.images[0].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[0].present? %>
-      <%= image_tag @memory.images[1].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[1].present? %>
-      <%= image_tag @memory.images[2].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[2].present? %>
-      <%= image_tag @memory.images[3].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[3].present? %>
+      <%= image_tag @memory.images[0].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[0].present? %>
+      <%= image_tag @memory.images[1].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[1].present? %>
+      <%= image_tag @memory.images[2].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[2].present? %>
+      <%= image_tag @memory.images[3].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[3].present? %>
+      <%= image_tag @memory.images[0].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[0].present? %>
+      <%= image_tag @memory.images[1].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[1].present? %>
+      <%= image_tag @memory.images[2].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[2].present? %>
+      <%= image_tag @memory.images[3].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[3].present? %>
+      <%#= image_tag @memory.images[3].url, id: :img_prev, :size => '300x300', class: "img-interval" if @memory.images[3].present? %>
+      <%#= image_tag @memory.images[3].url, id: :img_prev, :size => '300x300', class: "img-interval" if @memory.images[3].present? %>
       <div class="photo-card-link-show">
         <h4><%= @memory.title %></h4>
         <p><%= @memory.message %></p>
