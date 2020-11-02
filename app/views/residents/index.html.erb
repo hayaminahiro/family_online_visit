@@ -24,8 +24,14 @@
 </section>
 
 <div class="container section">
-  <div id="WebDev" class="content-tab">
+  <div id="WebDev" class="resident-content-tab">
     <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+
+    <!--CSVインポートエラーログ-->
+    <% if params[:error_residents] %>
+      <a id="error">インポートエラーログ <%= "#{params[:error_residents].count}件" %></a>
+    <% end %>
+
     <div class="resident-head-button">
       <!--CSVインポート-->
       <%= render partial: 'csv_import' %>
@@ -98,7 +104,41 @@
   </div>
 </div>
 
+<!-- モーダル・インポートエラー -->
+<% if params[:error_residents] %>
+  <div class="modal" id="error_modal">
+    <div class="modal-background">
+      <div class="modal-card">
+        <div class="modal-card-head">
+          <h4 class="modal-card-title">エラーデータログ</h4>
+          <button class="delete" aria-label="close" id="close"></button>
+        </div>
+        <div class="modal-card-body">
+        <% num = 1 %>
+          <% params[:error_residents].each do |resident| %>
+            <%= "#{num}件目" %><br>
+            <%= resident %><br><br>
+            <% num+= 1 %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <script>
+  // エラーモーダル表示
+  $(document).ready(function() {
+    $("#error").on("click", function() {
+      $("div#error_modal").addClass("is-active");
+    })
+
+    $("#close, div.modal-background").on("click", function() {
+      $("div#error_modal").removeClass("is-active");
+    })
+  });
+
+  // タブ切り替え
   function openTab(evt, tabName) {
     var i, x, tablinks;
     x = document.getElementsByClassName("content-tab");
