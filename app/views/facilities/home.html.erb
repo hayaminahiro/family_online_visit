@@ -1,4 +1,4 @@
-<%= render partial: 'facility_images', locals: { facility_name: @facility.facility_name} %>
+<%= render partial: 'facility_images', locals: { facility: @facility} %>
 
 <section class="hero is-small">
   <div class="hero-body">
@@ -6,14 +6,14 @@
       <div class="has-text-centered">
         <%= image_tag 'user_default.png', class: "facility-user-image" %>
       </div>
-      <div class="has-text-centered is-size-4">
+      <div class="has-text-centered user-name-layout">
         ようこそ<%= current_user.name %>さん
       </div>
     </div>
   </div>
 </section>
 
-<div class="about-title is-size-3 has-text-centered">お知らせ</div>
+<div class="about-title has-text-centered">お知らせ</div>
 
 <section class="hero" style="background-color: #F5F5F5;">
   <article class="panel" id="panel-content">
@@ -23,7 +23,7 @@
   </article>
 </section>
 
-<div class="about-title is-size-3 has-text-centered">登録申請</div>
+<div class="about-title has-text-centered">登録申請</div>
 
 <div class="columns .is-variable is-0" style="background-color: #A9A9A9;">
   <div class="column is-9" style="padding: 0px; padding-bottom: 20px;">
@@ -42,7 +42,7 @@
   </div>
 
   <div class="column is-3" id="layout-comment">
-    <p class="content-request has-text-weight-semibold is-size-5" style="color: #fff;">
+    <p class="content-request has-text-weight-semibold">
       ホームページをご利用<br>
       される場合は施設を利用<br>
       されている方との<br>
@@ -57,10 +57,22 @@
       できるようになります。
     </p>
   </div>
+
+  <div class="column is-3" id="layout-comment-tablet">
+    <p class="content-request has-text-weight-semibold has-text-left">
+      ホームページをご利用される場合は施設を<br>
+      利用されている方とのマッチングを<br>
+      おこなう必要があります。<br>
+      まずは<font color="#1E90FF">ご利用者様の登録申請</font>をおこなってください。<br>
+      申請が完了した場合、<br>
+      <font color="FFDD58">面会予約</font>、<font color="3173DC">ビデオ通話、</font><font color="#228B22">写真・動画の閲覧</font>などの<br>
+      メニューを使用することができるようになります。
+    </p>
+  </div>
 </div>
 
 
-<div class="about-title is-size-3 has-text-centered">Memu</div>
+<div class="about-title has-text-centered">Memu</div>
 
 <div class="columns .is-variable is-0" style="margin-top: 20px;">
   <div class="column is-3">
@@ -73,7 +85,7 @@
       </div>
       <div class="card-content has-text-centered">
         <div class="is-size-5">
-          <%= link_to '#', class: "button is-rounded is-warning is-outlined" do %>
+          <%= link_to '#', class: "button menu-btn is-rounded is-warning is-outlined" do %>
             <span class="icon">
               <i class="far fa-calendar-alt"></i>&nbsp;
             </span>
@@ -83,8 +95,7 @@
           <% end %>  
         </div><br>
         <div class="content">
-          オンラインでの面会予約の日時の<br>
-          登録、編集、削除ができます。<br>
+          オンラインでの面会予約の日時の登録、編集、削除ができます。<br>
         </div>
       </div>
     </div>
@@ -100,7 +111,7 @@
       </div>
       <div class="card-content has-text-centered">
         <div class="is-size-5">
-          <%= link_to '#', class: "button is-link is-rounded is-outlined" do %>
+          <%= link_to '#', class: "button menu-btn is-link is-rounded is-outlined" do %>
             <span class="icon">
               <i class="fas fa-video"></i>&nbsp;
             </span>
@@ -110,8 +121,7 @@
           <% end %>  
         </div><br>
         <div class="content">
-          施設利用者とのビデオ通話<br>
-          ができます。
+          施設利用者とのビデオ通話ができます。
         </div>
       </div>
     </div>
@@ -127,7 +137,7 @@
       </div>
       <div class="card-content has-text-centered">
         <div class="is-size-5">
-          <%= link_to '#', class: "button is-rounded is-outlined is-success" do %>
+          <%= link_to '#', class: "button menu-btn is-rounded is-outlined is-success" do %>
             <span class="icon">
               <i class="fas fa-photo-video"></i>&nbsp;
             </span>
@@ -137,8 +147,7 @@
           <% end %>  
         </div><br>
         <div class="content">
-          ご利用者様の写真の閲覧、動画<br>
-          の視聴をすることができます。
+          ご利用者様の写真の閲覧、動画の視聴をすることができます。
         </div>
       </div>
     </div>
@@ -154,7 +163,7 @@
       </div>
       <div class="card-content has-text-centered">
         <div class="is-size-5">
-          <%= link_to '#', class: "button is-primary is-rounded is-outlined" do %>
+          <%= link_to '#', class: "button menu-btn is-primary is-rounded is-outlined" do %>
             <span class="icon">
               <i class="far fa-paper-plane"></i>&nbsp;
             </span>
@@ -164,8 +173,7 @@
           <% end %>
         </div><br>
         <div class="content">
-          施設に問い合わせをする<br>
-          ことができます。
+          施設に問い合わせをすることができます。
         </div>
       </div>
     </div>

@@ -558,6 +558,11 @@ input#facility_icon.image_uploading_icon {
   border-radius: 50%;
 }
 
+//挨拶とユーザの名前
+.user-name-layout {
+  font-size: 22px;
+}
+
 //登録申請
 #request-user {
   overflow:hidden;
@@ -621,7 +626,13 @@ input#facility_icon.image_uploading_icon {
 
 //利用者登録申請のコメント
 .content-request {
+  font-size: 20px;
+  color: #fff;
   line-height: 30px;
+}
+
+#layout-comment-tablet {
+  display: none;
 }
 
 //登録申請のレイアウト
@@ -872,8 +883,85 @@ h1.mini-title {
     margin-right: 0px;
     margin-bottom: 65px;
   }
+  
+  //登録申請ボタン
+  #request-user p {
+    top: 25%;
+    left: 50%;
+  }
 
-  footer {
-    margin-bottom: 55px;
-  } 
+  //タブレットでの説明文
+  #layout-comment-tablet {
+    display: block;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-left: 25%;
+  }
+
+  //デスクトップとモバイルでの説明文
+  #layout-comment {
+    display: none;
+  }
+
+  //メニュー項目
+  #home-images p {
+    font-size: 40px;
+  }
+
+  //メニューボタン
+  .button.menu-btn {
+    font-size: 25px;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  //ユーザアイコン
+  .facility-user-image {
+    width: 60px;
+  }
+
+  //ユーザーの名前
+  .user-name-layout {
+    font-size: 16px;
+  }
+
+  //登録申請ボタン
+  #request-user p {
+    top: 26%;
+  }
+
+  .btn-shine {
+    font-size: 19px;
+    width: 200px;
+  }
+
+  //登録申請の説明文
+  .content-request {
+    font-size: 16px;
+  }
+  
+  //タブレットでの説明文
+  #layout-comment-tablet {
+    display: none;
+  }
+
+  //デスクトップとモバイルでの説明文
+  #layout-comment {
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  //メニュー項目
+  #home-images p {
+    font-size: 27px;
+  }
+
+  //メニューボタン
+  .button.menu-btn {
+    font-size: 1rem;
+  }
 }

@@ -597,6 +597,7 @@ p.content1 {
 
 .about-title {
   border-bottom: 1px solid #ccc;
+  font-size: 30px;
   padding-bottom: 7px;
   margin-bottom: 50px;
   margin-top: 100px;
@@ -744,5 +745,11 @@ p.content1 {
   .cp_tab > input:checked + label {
     border-bottom: 2px solid #006fcc;
     border-radius: 0;
+  }
+
+  //項目タイトル
+  .about-title {
+    font-size: 22px;
+    margin-top: 50px;
   }
 }
