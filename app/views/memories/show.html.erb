@@ -22,6 +22,7 @@
 
 <%= @memory.title %>
 <%= @memory.message %>
+<%= @memory.images[0].identifier %>
 
 <%= link_to facility_resident_memory_path(current_facility, @resident, @memory), method: :delete,
             data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
