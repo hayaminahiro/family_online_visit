@@ -1,33 +1,34 @@
-<h1>思い出アルバムSHOWページ</h1>
-<%# @memory.each do |m| %>
+<div class="glovalNavigation">
+  <h1 class="has-text-weight-bold"><%= @resident.name %>さんの思い出カード</h1>
+</div>
 
-  <%# if m.images? %>
-    <%#= image_tag m.images[0].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[0].present? %>
-    <%#= image_tag m.images[1].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[1].present? %>
-    <%#= image_tag m.images[2].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[2].present? %>
-    <%#= image_tag m.images[3].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[3].present? %>
-    <%#= image_tag m.images[4].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[4].present? %>
-    <%# if @collection.present? %>
-    <%#= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-    <%# end %>
+<div class="main-show">
 
-  <%# end %>
-<%# end %>
+  <div class="content">
+    <section class="photo-card-show">
+      <%= image_tag @memory.images[0].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[0].present? %>
+      <%= image_tag @memory.images[1].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[1].present? %>
+      <%= image_tag @memory.images[2].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[2].present? %>
+      <%= image_tag @memory.images[3].url, id: :img_prev, :size => '550x550', class: "img-interval" if @memory.images[3].present? %>
+      <div class="photo-card-link-show">
+        <h4><%= @memory.title %></h4>
+        <p><%= @memory.message %></p>
+        <%#= @memory.images[0].identifier %>
+        <p class="photo-card-text-show">行事日: 2020/09/08（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
+        <%= link_to edit_facility_resident_memory_path(current_facility, @resident, @memory) do %>
+          <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
+        <% end %>
+        <%= link_to facility_resident_memory_path(current_facility, @resident, @memory), method: :delete,
+                    data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </section>
+  </div>
 
-<%= image_tag @memory.images[0].url, id: :img_prev, :size => '400x400', class: "img-interval" if @memory.images[0].present? %>
-<%= image_tag @memory.images[1].url, id: :img_prev, :size => '400x400', class: "img-interval" if @memory.images[1].present? %>
-<%= image_tag @memory.images[2].url, id: :img_prev, :size => '400x400', class: "img-interval" if @memory.images[2].present? %>
-<%= image_tag @memory.images[3].url, id: :img_prev, :size => '400x400', class: "img-interval" if @memory.images[3].present? %>
-<%= image_tag @memory.images[4].url, id: :img_prev, :size => '400x400', class: "img-interval" if @memory.images[4].present? %>
+</div>
 
-<%= @memory.title %>
-<%= @memory.message %>
-<%= @memory.images[0].identifier %>
 
-<%= link_to facility_resident_memory_path(current_facility, @resident, @memory), method: :delete,
-            data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
-  <i class="far fa-trash-alt"></i>
-<% end %>
-<%#= @memory.check_box :remove_images, id: "img_delete" %>
 
-<% console%>
+
+

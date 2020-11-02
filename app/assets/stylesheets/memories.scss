@@ -37,7 +37,7 @@
   }
 }
 
-//カードのデザイン
+//indexカードのデザイン
 .photo-card {
   margin: 50px 50px 20px 50px;
   width: 310px;
@@ -175,12 +175,11 @@
   overflow: scroll;
 }
 
-// レスポンシブ
+// レスポンシブindex
 @media screen and (max-width: 1000px) {
   .glovalNavigation {
     font-weight: 700;
     padding-bottom: 5px;
-    //text-align: left;
     border-bottom: 1px solid;
     color: #401c00;
     margin: 100px 5% 0 5%;
@@ -229,4 +228,134 @@
   .card-float {
     float: left;
   }
+}
+
+//思い出showページ
+.main-show {
+  min-height: 110vh;
+
+  .content {
+    text-align: center;
+    margin: 20px 10px 0 0;
+    padding: 15px;
+  }
+
+  .img-interval {
+    margin-top: 10px;
+  }
+}
+
+//showカードのデザイン
+.photo-card-show {
+  margin: 0 50px 20px 50px;
+  //width: 1000px;
+  height: 1020px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+}
+
+.photo-card-img-show {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-card-content-show {
+  padding: 20px;
+}
+
+.photo-card-title-show {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.photo-card-text-show {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.photo-card-link-show {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.photo-card-link-show a {
+  text-decoration: none;
+  color: #0bd;
+  margin: 0 10px;
+}
+
+.photo-card-link-show a:hover {
+  color: #0090aa;
+}
+
+// レスポンシブshow
+@media screen and (max-width: 1024px) {
+  //思い出showページ
+  .main-show {
+    min-height: 110vh;
+
+    .content {
+      text-align: center;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .img-interval {
+      margin-top: 10px;
+    }
+  }
+
+  .photo-card-show {
+    margin: 50px 0;
+    min-height: 170vh;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+  }
+
+  .photo-card-img-show {
+    border-radius: 5px 5px 0 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .photo-card-content-show {
+    padding: 20px;
+  }
+
+  .photo-card-title-show {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+
+  .photo-card-text-show {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .photo-card-link-show {
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding: 20px;
+  }
+
+  .photo-card-link-show a {
+    text-decoration: none;
+    color: #0bd;
+    margin: 0 10px;
+  }
+
+  .photo-card-link-show a:hover {
+    color: #0090aa;
+  }
+
 }
