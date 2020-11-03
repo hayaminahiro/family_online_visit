@@ -43,16 +43,16 @@
             </span>&nbsp;
           <% end %>
         <li>
-          <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility) %>
+          <%= link_to_unless_current "利用者一覧", residents_path %>
         </li>
         <li>
-          <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility) %>
+          <%= link_to_unless_current "ご家族一覧", users_path %>
         </li>
         <li>
           <%= link_to_unless_current "予約状況一覧", "#" %>
         </li>
         <li>
-          <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility) %>
+          <%= link_to_unless_current "お知らせ", informations_path %>
         </li>
         <li>
           <%= link_to_unless_current "お問い合わせ", "#" %>
@@ -104,7 +104,7 @@
                       <td><%= request_resident.created_at %></td>
                       <td><%= @request_user.name %></td>
                       <td>
-                        <%= link_to "申請者登録画面", user_facility_new_connection_path(current_facility, @facility), class: "button is-primary is-medium has-text-weight-bold" %>
+                        <%= link_to "申請者登録画面", new_relative_path(@facility), class: "button is-primary is-medium has-text-weight-bold" %>
                       </td>
                     </tr>
                   <% end %>
@@ -144,7 +144,7 @@
 <!--<div class="about-title is-size-3 has-text-centered">権限変更</div>
 <div class="has-text-centered">
   <div class="inline-block_home">
-    <%= image_tag 'authority_change.jpg', class: "facility-home-image" %>
+    <%#= image_tag 'authority_change.jpg', class: "facility-home-image" %>
   </div>&emsp;&emsp;&emsp;
   <div class="inline-block_home">
     <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
@@ -153,27 +153,27 @@
       ボタンをクリックすることで、管理者または一般職員<br>
       の表示切り替えをすることができます。
     </p>
-    <% if facility_signed_in? %>
-      <% if current_facility.facility_admin == true %>
-        <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-          <%= f.hidden_field :facility_admin, :value => false %>
-          <%= f.button :type => "submit", class: "general-change" do %>
+    <%# if facility_signed_in? %>
+      <%# if current_facility.facility_admin == true %>
+        <%#= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+          <%#= f.hidden_field :facility_admin, :value => false %>
+          <%#= f.button :type => "submit", class: "general-change" do %>
             <i class="far fa-user-circle" id="users"></i>
             <span><i class="fas fa-users"></i>&nbsp;</span>
             <span>一般</span>
-          <% end %>
-        <% end %>
-      <% elsif current_facility.facility_admin == false %>
-        <%= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-          <%= f.hidden_field :facility_admin, :value => true %>
-          <%= f.button :type => "submit", class: "admin-change" do %>
+          <%# end %>
+        <%# end %>
+      <%# elsif current_facility.facility_admin == false %>
+        <%#= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
+          <%#= f.hidden_field :facility_admin, :value => true %>
+          <%#= f.button :type => "submit", class: "admin-change" do %>
             <i class="fas fa-users" id="admin"></i>
             <span><i class="far fa-user-circle"></i>&nbsp;</span>
             <span>管理者</span>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
+          <%# end %>
+        <%# end %>
+      <%# end %>
+    <%# end %>
   </div>
 </div>-->
 

@@ -7,7 +7,7 @@
           <small style="float: right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
           <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせ画像設定</h1>
           <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
-          <%= form_with(model: @information, url: facility_informations_path(current_facility), method: :post, local: true) do |f| %>
+          <%= form_with(model: @information, url: informations_path, method: :post, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
             <div class="label-space">
               <%= information_image(@information) %>

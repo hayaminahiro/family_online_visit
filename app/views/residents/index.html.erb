@@ -36,10 +36,10 @@
       <!--CSVインポート-->
       <%= render partial: 'csv_import' %>
       <div class=" js-contents--create-button">
-        <%= link_to "\uf234", new_facility_resident_path(current_facility), remote: true, class: "resident--create-button fa button is-info is-rounded is-size-5" %>
+        <%= link_to "\uf234", new_resident_path, remote: true, class: "resident--create-button fa button is-info is-rounded is-size-5" %>
       </div>
       <div style="margin-left:auto;">
-        <%= form_with(url: user_facility_residents_path(current_facility), method: :get, local: true) do |f| %>
+        <%= form_with(url: residents_path(current_facility), method: :get, local: true) do |f| %>
         <div class="field is-grouped is-grouped-right">
           <div class="control">
             <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
@@ -72,12 +72,12 @@
             <td><%= resident.charge_worker %></td>
             <td>
               <div class=" js-contents--edit-button">
-                <%= link_to "\uf4ff", edit_facility_resident_path(current_facility, resident), remote: true, class: "fa button is-success resident--update-button" %>
+                <%= link_to "\uf4ff", edit_resident_path(resident), remote: true, class: "fa button is-success resident--update-button" %>
               </div>
             </td>
             <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
             <td>
-              <%= link_to facility_resident_path(current_facility, resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
+              <%= link_to resident_path(resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
               <i class="far fa-trash-alt"></i>
               <% end %>
             </td>
