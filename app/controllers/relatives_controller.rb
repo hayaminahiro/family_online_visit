@@ -8,15 +8,13 @@ class RelativesController < ApplicationController
     @user = User.find(params[:user_id].to_i)
     @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
     if (params[:user][:resident_ids] == ["", ""]) == true
-      @user.update_attributes(residents_connection_params)
       flash[:alert] = "登録する入居者を選択してください。"
-      redirect_to facility_url(current_facility)
     else
       @user.update_attributes(residents_connection_params)
       flash[:notice] = "入居者登録しました。"
-      redirect_to facility_url(current_facility)
       @request_resident.承認済! #enumの値を「申請中→承認済」に更新
     end
+    redirect_to facility_url(current_facility)
   end
 
   def index #承認済み申請一覧
