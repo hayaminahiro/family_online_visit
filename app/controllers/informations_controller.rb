@@ -26,8 +26,7 @@ class InformationsController < ApplicationController
     @information = Information.new(information_params)
     @information.facility_id = current_facility.id
     if @information.save
-      flash[:notice] = "タイトル【#{@information.title}】/お知らせを新規作成できました。"
-      redirect_to informations_url
+      redirect_to informations_url, notice: "タイトル【#{@information.title}】/お知らせを新規作成できました。"
     else
       render :new
     end
@@ -39,11 +38,7 @@ class InformationsController < ApplicationController
     @information.facility_id = current_facility.id
     if @information.update(information_params)
       flash[:notice] = "タイトル【#{@information.title}】/お知らせを更新できました。"
-      if @information.status == "head"
-        redirect_to facility_home_facility_url
-      else
-        redirect_to informations_url
-      end
+      @information.status == "head" ? redirect_to(facility_home_facility_url) : redirect_to(informations_url)
     else
       render :edit
     end
@@ -51,8 +46,7 @@ class InformationsController < ApplicationController
 
   def destroy
     @information.destroy
-    flash[:alert] = "お知らせを削除しました"
-    redirect_to informations_url
+    redirect_to informations_url, alert: "お知らせを削除しました"
   end
 
   # 家族向けお知らせ表示ページ
