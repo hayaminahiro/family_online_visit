@@ -1,8 +1,6 @@
 class SignupController < ApplicationController
-  
   before_action :validates_step1, only: :step2 # step1のバリデーション
   before_action :validates_step2, only: :step3 # step2のバリデーション
-
 
   # 各アクションごとに,新規インスタンスを作成します
   def step1
@@ -76,11 +74,11 @@ class SignupController < ApplicationController
       phone: session[:phone]
     )
     if @user.save
-   # ログインするための情報を保管
+    # ログインするための情報を保管
       session[:id] = @user.id
       sign_in User.find(session[:id]) unless user_signed_in?
       flash[:notice] = "新規ユーザーを登録しました"
-      redirect_to root_path
+      redirect_to root_url
     else
       flash[:alert] = "登録できませんでした。"
       render 'step1'
@@ -88,7 +86,7 @@ class SignupController < ApplicationController
   end
 
   private
-   # 許可するキーを設定します
+    # 許可するキーを設定します
     def user_params
       params.require(:user).permit(
         :name,

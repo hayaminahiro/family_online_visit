@@ -1,11 +1,9 @@
 class ResidentsController < ApplicationController
-  before_action :set_resident, only: [:edit, :update, :destroy]
+  before_action :set_resident, only: %i[edit update destroy]
 
   def index
-      @residents = Resident.all.where(facility_id: current_facility.id).paginate(page: params[:page], per_page: 30)
-    if params[:search].present?
-      @residents = @residents.where(facility_id: current_facility.id).where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
-    end
+    return @residents = current_facility.residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
+    @residents = current_facility.residents.paginate(page: params[:page], per_page: 30)
   end
 
   def new
@@ -18,7 +16,7 @@ class ResidentsController < ApplicationController
       @resident.facility_id = current_facility.id
       if @resident.save
         flash[:notice] = "入居者を新規登録できました"
-        redirect_to facility_residents_url
+        redirect_to residents_url
       else
         render :new
       end
@@ -32,22 +30,21 @@ class ResidentsController < ApplicationController
         unless registered_count == 0
           flash[:notice] = "#{registered_count}件登録しました"
         end
-        redirect_to facility_residents_url(error_residents: @errors)
+        redirect_to residents_url(error_residents: @errors)
       else
         flash[:alert] = "CSVファイルのみ有効です"
-        redirect_to facility_residents_url
+        redirect_to residents_url
       end
     end
   end
 
-  def edit
-  end
+  def edit;end
 
   def update
     @resident.facility_id = current_facility.id
     if @resident.update(resident_params)
       flash[:notice] = "入居者情報を更新できました"
-      redirect_to facility_residents_url
+      redirect_to residents_url
     else
       render :edit
     end
@@ -57,7 +54,7 @@ class ResidentsController < ApplicationController
     @resident.facility_id = current_facility.id
     @resident.destroy
     flash[:alert] = "入居者情報を削除しました"
-    redirect_to facility_residents_url
+    redirect_to residents_url
   end
 
     private

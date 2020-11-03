@@ -1,24 +1,28 @@
 class RequestResidentsController < ApplicationController
-  def new #入居者登録申請画面
+  def new #入居者登録申請
     @request = RequestResident.new
-    @requests = RequestResident.order(created_at: :desc).find_by(user_id: current_user.id)
+    @requests = current_user.request_residents.order(created_at: :desc).where(facility_id: params[:facility_id].to_i).first
   end
 
   def create
     @request = RequestResident.new(request_params)
-    @request.facility_id = params[:facility_id].to_i
-    @request.user_id = current_user.id
+    @request.facility_id, @request.user_id = params[:facility_id].to_i, current_user.id
     if @request.save(context: :create_request)
       flash[:notice] = "入居者申請できました"
-      redirect_to user_facility_home_url
+      redirect_to facility_home_url(@request.facility_id)
     else
       render 'new'
     end
   end
 
-  def index #登録済み申請一覧
-    @request_residents = RequestResident.where(req_approval: "登録済").where(facility_id: current_facility)
-  end
+  # def show #自身の申請内容の確認
+  # end
+
+  # def index #自身の申請一覧
+  # end
+
+  # def destroy #申請取り消し
+  # end
 
     private
 
