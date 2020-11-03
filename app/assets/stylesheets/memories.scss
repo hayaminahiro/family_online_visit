@@ -357,5 +357,61 @@
   .photo-card-link-show a:hover {
     color: #0090aa;
   }
-
 }
+
+//思い出newページ
+#memory-panel-style {
+  padding: 50px;
+  margin: 100px 50px 50px 50px;
+  background: #F5F5F5;
+}
+
+.panel {
+  .top-btn-positions {
+    margin-top: 420px;
+  }
+
+  .memory-title {
+    font-weight: 700;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #401c00;
+  }
+
+  .photo-size {
+    width: 250px; height: 165px; object-fit: cover;
+  }
+
+  .memory-title-mini {
+    font-weight: 700;
+    border-bottom: 1px solid #C0C0C0;
+    padding: 50px 0 5px 0;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 20px;
+    color: #401c00;
+  }
+
+  .memory-label {
+    padding: 20px 0 0 32px;
+  }
+
+  .message-input {
+    height: 100px;
+  }
+
+  .message-btn {
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #13b1c0;
+    color: #13b1c0;
+    text-decoration: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 60px;
+  }
+}
+

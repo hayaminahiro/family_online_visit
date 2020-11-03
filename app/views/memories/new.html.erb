@@ -1,97 +1,68 @@
-<nav class="panel" id="panel-style">
+<nav class="panel" id="memory-panel-style">
   <div class="notification">
     <div class="content has-text-centered">
       <div class="columns is-centered">
-        <div class="column is-10 top-btn-position is-centered">
-          <h1 class="account-title" style="color: #401c00;">思い出アルバムの新規投稿ができます。</h1>
-          <small style="float: right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
-          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">思い出アルバムの画像選定</h1>
-          <p class="title-description">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
+        <div class="column is-10 is-centered">
+          <h1 class="memory-title">思い出アルバムの新規投稿ができます。</h1>
+          <small class="is-pulled-right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
+          <h1 class="memory-title-mini">思い出アルバムの画像選定</h1>
+          <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
           <%= form_with(model: @memory, url: facility_resident_memories_path(current_facility, @resident), method: :post, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-            <div class="label-space">
-              <%#= information_image(@information) %>
-            </div>
 
-            <% if @memory.images[0].present? %>
-              <%= image_tag @memory.images[0].url, id: :img_prev_0, :size => '300x300' %>
-            <% else %>
-              <%= image_tag "", id: :img_prev_0, :size => '300x300' %>
-            <% end %>
-
-            <% if @memory.images[1].present? %>
-              <%= image_tag @memory.images[1].url, id: :img_prev_1, :size => '300x300' %>
-            <% else %>
-              <%= image_tag "", id: :img_prev_1, :size => '300x300' %>
-            <% end %>
-
-            <% if @memory.images[2].present? %>
-              <%= image_tag @memory.images[2].url, id: :img_prev_2, :size => '300x300' %>
-            <% else %>
-              <%= image_tag "", id: :img_prev_2, :size => '300x300' %>
-            <% end %>
-
-            <% if @memory.images[3].present? %>
-              <%= image_tag @memory.images[3].url, id: :img_prev_3, :size => '300x300' %>
-            <% else %>
-              <%= image_tag "", id: :img_prev_3, :size => '300x300' %>
+            <% num = 0  %>
+            <% while num < 8 %>
+              <% if @memory.images[num].present? %>
+                <%= image_tag @memory.images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
+              <% else %>
+                <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_#{num}", class: "photo-size" %>
+              <% end %>
+              <% num += 1 %>
             <% end %>
 
             <%= f.check_box :remove_images, id: "img_delete" %>
 
-            <div class="drop-zone-area">
+            <% num = 0  %>
+            <% while num < 8 %>
               <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_0" %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_1" %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_2" %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_3" %>
+              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num}" %>
               <%#= f.hidden_field :memory, :images, multiple: true, value: @memory.identifier %>
-
-
-            </div>
-
-            <% if @memory.images[0].present? %>
-              <%= f.hidden_field :images, multiple: true, value: @memory.images[0].identifier %>
+              <% num += 1 %>
             <% end %>
 
-            <% if @memory.images[1].present? %>
-              <%= f.hidden_field :images, multiple: true, value: @memory.images[1].identifier %>
+            <% num = 0  %>
+            <% while num < 8 %>
+              <% if @memory.images[num].present? %>
+                <%= f.hidden_field :images, multiple: true, value: @memory.images[num].identifier %>
+              <% end %>
+              <% num += 1 %>
             <% end %>
 
-            <% if @memory.images[2].present? %>
-              <%= f.hidden_field :images, multiple: true, value: @memory.images[2].identifier %>
-            <% end %>
-
-            <% if @memory.images[3].present? %>
-              <%= f.hidden_field :images, multiple: true, value: @memory.images[3].identifier %>
-            <% end %>
-
-            <div class="position-control"><h1>位置調整</h1></div>
             <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">出来事の日付（行事日等）</h1>
+              <h1 class="memory-title-mini">出来事の日付（行事日等）</h1>
             </label>
             <div class="media-content">
-              <div class="content label-space">
+              <div class="content memory-label">
                 <%= f.date_field :event_date, class: "fa input" %>
               </div>
             </div>
             <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">思い出画像タイトル</h1>
+              <h1 class="memory-title-mini">思い出画像タイトル</h1>
             </label>
             <div class="media-content">
-              <div class="content label-space">
+              <div class="content memory-label">
                 <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
               </div>
             </div>
             <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">ご家族へのメッセージ</h1>
+              <h1 class="memory-title-mini">ご家族へのメッセージ</h1>
             </label>
             <div class="media-content">
-              <div class="content label-space">
-                <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input", style: "height: 100px;" %>
+              <div class="content memory-label">
+                <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
               </div>
             </div>
-            <%= f.submit "思い出アルバムを新規投稿する", class: "info-btn" %>
+            <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
           <% end %>
         </div>
       </div>
