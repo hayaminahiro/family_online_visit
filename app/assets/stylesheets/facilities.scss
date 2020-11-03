@@ -281,7 +281,7 @@ div.under-line {
   position: relative;
 }
 
-.home-default-image {
+.home-image {
   height: 400px;
   width: 100%;
 }
@@ -323,7 +323,7 @@ div.under-line {
 }
 
 //施設のアイコン画像
-.facility-default-image {
+.facility-icon-image {
   z-index: 2;
   display: block;
   position: absolute;
@@ -648,6 +648,26 @@ input#facility_icon.image_uploading_icon {
 //登録申請中のボタン
 #disabled-btn {
   pointer-events: none;
+  color: #FFF;
+  display: inline-block;
+  font-weight: lighter;
+  font-size: 25px;
+  line-height: 60px;
+  width: 350px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  outline: 4px solid;
+  outline-color: rgba(255, 255, 255, 0.5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+//メニュー説明文
+.menu-content {
+  text-align: left;
 }
 
 #input-field {
@@ -845,7 +865,7 @@ h1.mini-title {
 //resposiveデザイン
 //【施設側ホームページ】
 @media screen and (max-width: 1000px) {
-  .home-default-image {
+  .home-image {
     height: 250px;
   }
 
@@ -858,7 +878,7 @@ h1.mini-title {
     font-size: 27px;
   }
 
-  .facility-default-image {
+  .facility-icon-image {
     width: 50px;
     height: 50px;
   }
@@ -886,7 +906,7 @@ h1.mini-title {
   
   //登録申請ボタン
   #request-user p {
-    top: 25%;
+    top: 24%;
     left: 50%;
   }
 
@@ -914,6 +934,12 @@ h1.mini-title {
   .button.menu-btn {
     font-size: 25px;
   }
+
+  //メニュー説明文
+  .menu-content {
+    font-size: 23px;
+    text-align: center;
+  }
 }
 
 //モバイル
@@ -936,7 +962,13 @@ h1.mini-title {
 
   .btn-shine {
     font-size: 19px;
-    width: 200px;
+    width: auto;
+  }
+
+  //申請中の登録申請ボタン
+  #disabled-btn {
+    font-size: 19px;
+    width: auto;
   }
 
   //登録申請の説明文
@@ -963,5 +995,16 @@ h1.mini-title {
   //メニューボタン
   .button.menu-btn {
     font-size: 1rem;
+  }
+
+  //メニュー説明文
+  .menu-content {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .card-content.menu-card {
+    padding-left: 12%;
+    padding-right: 12%;
   }
 }
