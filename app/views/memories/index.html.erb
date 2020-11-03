@@ -41,7 +41,7 @@
                 <%= link_to facility_resident_memory_path(current_facility, @resident, m), class:"folder" do %>
                   <i class="fas fa-folder-open fa-3x"></i>
                 <% end %>
-                <p class="photo-card-text">2020/09/08</p> <!--行事日入力カラム追加-->
+                <p class="photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p> <!--行事日入力カラム追加-->
               </div>
             </section>
           </div>

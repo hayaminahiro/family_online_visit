@@ -50,6 +50,7 @@ ja:
           message: メッセージ
         # notification: 通知
         memory:
+          event_date: 行事日
           title: タイトル
           images: 写真
           message: メッセージ

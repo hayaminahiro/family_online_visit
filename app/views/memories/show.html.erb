@@ -20,7 +20,7 @@
         <h4><%= @memory.title %></h4>
         <p><%= @memory.message %></p>
         <%#= @memory.images[0].identifier %>
-        <p class="photo-card-text-show">行事日: 2020/09/08（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
+        <p class="photo-card-text-show">行事日: <%= l(@memory.event_date, format: :long) %>（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
         <%= link_to edit_facility_resident_memory_path(current_facility, @resident, @memory) do %>
           <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
         <% end %>

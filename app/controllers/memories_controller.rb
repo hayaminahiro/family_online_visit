@@ -42,7 +42,7 @@ class MemoriesController < ApplicationController
     private
 
       def memories_params
-        params.require(:memory).permit(:title, :message, {images: []}, {remove_images: []}, :images_cache)
+        params.require(:memory).permit(:title, :message, :event_date, {images: []}, {remove_images: []}, :images_cache)
       end
 
 end

@@ -6,6 +6,7 @@ class Memory < ApplicationRecord
   # validates :images,  presence: true
   validates :title,   presence: true, length: {maximum: 20}
   validates :message, presence: true, length: {minimum: 10}
+  validates :event_date, presence: true
 
   # 複数形
   mount_uploaders :images, ImageUploader

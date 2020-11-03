@@ -3,10 +3,10 @@
     <div class="content has-text-centered">
       <div class="columns is-centered">
         <div class="column is-10 top-btn-position is-centered">
-          <h1 class="account-title" style="color: #401c00;">お知らせの新規投稿ができます。</h1>
+          <h1 class="account-title" style="color: #401c00;">思い出アルバムの新規投稿ができます。</h1>
           <small style="float: right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
-          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせ画像設定</h1>
-          <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
+          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">思い出アルバムの画像選定</h1>
+          <p class="title-description">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
           <%= form_with(model: @memory, url: facility_resident_memories_path(current_facility, @resident), method: :post, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
             <div class="label-space">
@@ -47,8 +47,7 @@
               <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_3" %>
               <%#= f.hidden_field :memory, :images, multiple: true, value: @memory.identifier %>
 
-              <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
-              <%= f.text_field :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input" %>
+
             </div>
 
             <% if @memory.images[0].present? %>
@@ -69,22 +68,30 @@
 
             <div class="position-control"><h1>位置調整</h1></div>
             <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせタイトル</h1>
+              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">出来事の日付（行事日等）</h1>
             </label>
             <div class="media-content">
               <div class="content label-space">
-                <%#= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+                <%= f.date_field :event_date, class: "fa input" %>
               </div>
             </div>
             <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">本文</h1>
+              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">思い出画像タイトル</h1>
             </label>
             <div class="media-content">
               <div class="content label-space">
-                <%#= f.text_area :message, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
+                <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
               </div>
             </div>
-            <%= f.submit "お知らせを新規投稿する", class: "info-btn" %>
+            <label class="media-left has-text-weight-bold">
+              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">ご家族へのメッセージ</h1>
+            </label>
+            <div class="media-content">
+              <div class="content label-space">
+                <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input", style: "height: 100px;" %>
+              </div>
+            </div>
+            <%= f.submit "思い出アルバムを新規投稿する", class: "info-btn" %>
           <% end %>
         </div>
       </div>
