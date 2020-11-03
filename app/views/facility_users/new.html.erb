@@ -1,0 +1,202 @@
+<section class="hero is-medium" id="hero-2">
+  <div class="hero-body search-img">
+    <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
+        <h1 class="has-text-centered has-text-weight-bold search-title">
+          ご利用施設検索
+        </h1>
+        <div class="container">
+          <%= form_with(url: new_facility_user_path, method: :get, local: true) do |f| %>
+            <div class="field is-grouped is-grouped-centered">
+              <div class="control search-input">
+                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-black" %>
+              </div>
+              <div class="control">
+                <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-link search-btn" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="hero is-medium has-text-centered" id="hero-4">
+  <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
+    <div class="cp_tab">
+      <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+      <label for="tab1_1"><i class="fas fa-search-location"></i>&nbsp;検索結果</label>
+      <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+      <label for="tab1_2"><i class="fas fa-home"></i>&nbsp;登録施設へ</label>
+
+      <div class="cp_tabpanels">
+        <div id="first_tab01" class="cp_tabpanel" style="padding: 10px">
+          <article class="panel">
+            <div class="columns is-multiline">
+              <div class="field" style="padding: 20px;">
+                <% if @facility_users.blank? %>
+                    <p class="title is-6 result">検索結果はありません。</p>
+                <% end %>
+                <% @facility_users.each do |fa| %>
+                  <div class="card card-style" style="position: relative;">
+                    <div class="card-image">
+                      <figure class="image">
+                        <%= facility_season_image(fa) %>
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <div class="under-line"><%= fa.facility_name %></div>
+                          <!-- カード全体どこからでもモーダル表示できるように見えないBOX設置 -->
+                          <a><div class="hidden <%= fa.id %>"></div></a>
+                          <span class="tag is-danger is-light is-rounded tag-position">未登録</span>
+
+                          <!-- 登録施設 モーダル表示 -->
+                          <div class="modal" id=<%= fa.facility_name %>>
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                              <header class="modal-card-head" style="background-color: #e3dcca;">
+                                <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の登録</p>
+                                <button class="delete" aria-label="close" id="close"></button>
+                              </header>
+                              <%= form_with model: current_user, url: facility_user_path(current_user), local: true do |f| %>
+                                <section class="modal-card-body">
+                                  <div class="field">
+                                    <p class="title-in-modal"><%= fa.facility_name %></p>
+                                    <p class="modal-description">本システムのご利用には、施設の登録が必要です。</p>
+                                    <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>にチェックを入れて更新ボタンから登録して下さい。</p>
+                                    <label class="facilities-used-label">
+                                      <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
+                                      <% current_user.facilities.each do |fa| %>
+                                        <div style="display: none">
+                                          <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
+                                          <%= fa.facility_name %>
+                                        </diV>
+                                      <% end %>
+                                    </label>
+                                  </div>
+                                </section>
+                                <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                                    <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                                </footer>
+                              <% end %>
+                            </div>
+                          </div>
+
+                          <script>
+                            $(document).ready(function () {
+                              $(".<%= fa.id %>").on("click", function () {
+                                $("div#<%= fa.facility_name %>").addClass("is-active");
+                              })
+
+                              $("#close, div.modal-background").on("click", function () {
+                                $("div#<%= fa.facility_name %>").removeClass("is-active");
+                              })
+                            });
+                          </script>
+
+                        </div>
+                      </div>
+                      <div class="content">
+                        <p class="title is-6">各施設紹介/お知らせetc</p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </article>
+          <div id="under-pagination">
+            <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" if @facility_users.present? %>
+          </div>
+        </div>
+
+        <div id="second_tab01" class="cp_tabpanel" style="padding: 10px;">
+          <article class="panel">
+            <div class="columns is-multiline">
+              <div class="field" style="padding: 20px;">
+                <% if current_user.facilities.blank? %>
+                  <p class="title is-6 result">現在の登録施設はありません。</p>
+                <% end %>
+                <% current_user.facilities.each do |fa| %>
+                  <div class="card card-style">
+                    <div class="card-image">
+                      <figure class="image">
+                        <%= facility_season_image(fa) %>
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <div class="under-line">
+                            <!-- <span class="tag is-warning tag-position">承認済</span> -->
+                            <% @facility = fa.id %>
+                            <span id="here">こちらから</span>
+                            <i class="far fa-hand-point-right" style="color: royalblue;"></i>
+                            <%= link_to fa.facility_name, facility_home_path(@facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                          </div>
+
+                          <!-- 登録施設 モーダル表示 -->
+                          <div class="modal" id=<%= fa.facility_name %>>
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                              <header class="modal-card-head" style="background-color: #e3dcca;">
+                                <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                                <button class="delete" aria-label="close" id="close"></button>
+                              </header>
+                              <%= form_with model: current_user, url: facility_user_path(current_user), local: true do |f| %>
+                                <section class="modal-card-body">
+                                  <div class="field">
+                                    <p class="title-in-modal"><%= fa.facility_name %></p>
+                                    <p class="modal-description">ここから施設の登録を解除することができます。</p>
+                                    <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>のチェックを外して更新ボタンから登録解除して下さい。</p>
+                                    <label class="facilities-used-label">
+                                      <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
+                                      <!-- 更新しようとしている施設「id: fa」を除く施設一覧を隠して更新させる -->
+                                      <div style="display: none">
+                                        <% current_user.facilities.where.not(id: fa).each do |hidden_fa| %>
+                                          <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(hidden_fa), :name => 'user[facility_ids][]' }, hidden_fa.id %><span>登録 ✔</span>
+                                          <%= hidden_fa.facility_name %>
+                                        <% end %>
+                                      </div>
+                                    </label>
+                                  </div>
+                                </section>
+                                <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                                    <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                                </footer>
+                              <% end %>
+                            </div>
+                          </div>
+
+                          <script>
+                            $(document).ready(function () {
+                              $("#<%= fa.id %>").on("click", function () {
+                                $("div#<%= fa.facility_name %>").addClass("is-active");
+                              })
+
+                              $("#close, div.modal-background").on("click", function () {
+                                $("div#<%= fa.facility_name %>").removeClass("is-active");
+                              })
+                            });
+                          </script>
+
+                        </div>
+                      </div>
+                      <div class="content">
+                        <p class="title is-6">各施設紹介/お知らせetc</p>
+                      </div>
+                    </div>
+                    <button class="button tag is-danger is-light is-rounded cancel-btn" id=<%= fa.id %>>
+                        解除
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
