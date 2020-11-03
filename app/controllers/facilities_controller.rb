@@ -28,8 +28,7 @@ class FacilitiesController < ApplicationController
 
   def destroy
     @facility.destroy
-    flash[:notice] = "「#{@facility.facility_name}」の施設情報を削除しました。"
-    redirect_to facilities_url
+    redirect_to facilities_url, alert: "「#{@facility.facility_name}」の施設情報を削除しました。"
   end
 
     private

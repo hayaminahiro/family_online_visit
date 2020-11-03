@@ -77,10 +77,9 @@ class SignupController < ApplicationController
     # ログインするための情報を保管
       session[:id] = @user.id
       sign_in User.find(session[:id]) unless user_signed_in?
-      flash[:notice] = "新規ユーザーを登録しました"
-      redirect_to root_url
+      redirect_to root_url, notice: "新規ユーザーを登録しました"
     else
-      flash[:alert] = "登録できませんでした。"
+      flash.now[:alert] = "登録できませんでした。"
       render 'step1'
     end
   end

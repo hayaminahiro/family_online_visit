@@ -15,8 +15,7 @@ class ResidentsController < ApplicationController
       @resident = Resident.new(resident_params)
       @resident.facility_id = current_facility.id
       if @resident.save
-        flash[:notice] = "入居者を新規登録できました"
-        redirect_to residents_url
+        redirect_to residents_url, notice: "入居者を新規登録できました"
       else
         render :new
       end
@@ -32,8 +31,7 @@ class ResidentsController < ApplicationController
         end
         redirect_to residents_url(error_residents: @errors)
       else
-        flash[:alert] = "CSVファイルのみ有効です"
-        redirect_to residents_url
+        redirect_to residents_url, alert: "CSVファイルのみ有効です"
       end
     end
   end
@@ -43,8 +41,7 @@ class ResidentsController < ApplicationController
   def update
     @resident.facility_id = current_facility.id
     if @resident.update(resident_params)
-      flash[:notice] = "入居者情報を更新できました"
-      redirect_to residents_url
+      redirect_to residents_url, notice: "入居者情報を更新できました"
     else
       render :edit
     end
@@ -53,8 +50,7 @@ class ResidentsController < ApplicationController
   def destroy
     @resident.facility_id = current_facility.id
     @resident.destroy
-    flash[:alert] = "入居者情報を削除しました"
-    redirect_to residents_url
+    redirect_to residents_url, alert: "入居者情報を削除しました"
   end
 
     private

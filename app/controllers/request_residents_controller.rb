@@ -8,8 +8,7 @@ class RequestResidentsController < ApplicationController
     @request = RequestResident.new(request_params)
     @request.facility_id, @request.user_id = params[:facility_id].to_i, current_user.id
     if @request.save(context: :create_request)
-      flash[:notice] = "入居者申請できました"
-      redirect_to facility_home_url(@request.facility_id)
+      redirect_to facility_home_url(@request.facility_id), notice: "入居者申請できました"
     else
       render 'new'
     end
