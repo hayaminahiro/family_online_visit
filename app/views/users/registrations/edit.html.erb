@@ -64,8 +64,19 @@
               <tr>
                 <th>プロフィール画像を変更</th>
                 <td>
-                <%= f.file_field :image, id: :user_img %>
-                <%= f.hidden_field :image_cache %>
+                  <div class="container">
+                    <%= f.label :image, "\uf574ファイルをドラッグ＆ドロップ", class: "fa image_input_comment_useredit", style: "position: absolute;
+                      text-align: center;
+                      margin-top: 80px;
+                      border-radius: 5px;
+                      padding: 1px;
+                      color: #DEDEDE;
+                      text-decoration: none;
+                      font-size: 25px;width:100%;" %>
+                    <%= f.file_field :image, value: "upload", class: "user_img", style: "height:150px;width:100%;border-style: dashed;
+                      border-width:2px;margin: 20px 0 20px 0;padding:10px;" %>
+                    <%= f.hidden_field :image_cache %>
+                  </div>
                 </td>
               </tr>
               <% if @user.persisted? && @user.image? %>
@@ -157,7 +168,7 @@
         reader.readAsDataURL(input.files[0]);
         }
     }
-    $("#user_img").change(function(){
+    $(".user_img").change(function(){
         readURL(this);
     });
   });
