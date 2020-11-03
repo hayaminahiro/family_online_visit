@@ -9,69 +9,64 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :facilities, controllers: {
-      sessions:      'facilities/sessions',
-      passwords:     'facilities/passwords',
-      registrations: 'facilities/registrations'
-  }
+  # devise（施設・ご家族） ==================================================================================
+    devise_for :facilities, controllers: {
+        sessions:      'facilities/sessions',
+        passwords:     'facilities/passwords',
+        registrations: 'facilities/registrations'
+    }
 
-  devise_for :users, controllers: {
-      sessions:      'users/sessions',
-      passwords:     'users/passwords',
-      registrations: 'users/registrations',
-      omniauth_callbacks: "users/omniauth_callbacks"
-  }
+    devise_for :users, controllers: {
+        sessions:      'users/sessions',
+        passwords:     'users/passwords',
+        registrations: 'users/registrations',
+        omniauth_callbacks: "users/omniauth_callbacks"
+    }
 
-  devise_scope :facility do
-    get "facility_sign_in", :to => "facilities/sessions#new"
-    get "facility_sign_out", :to => "facilities/sessions#destroy"
-  end
-
-  devise_scope :user do
-    get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy"
-    get "privacy", :to => "users/sessions#privacy"
-  end
-
-  # ご家族目線のルーティング
-  resources :users do # /users/:id/~~~
-    resources :reservations # /users/:user_id/~~~
-    resources :facilities do # user_id, facility_id付与
-      collection do
-        get :facilities_used #利用施設の登録画面
-        patch :update_facilities_used
-        get :my_facilities #現在の利用施設
-      end
-      member do # /users/:user_id/facilities/:id/~~~
-        get :video_room # /users/:user_id/facilities/:id/video_room
-        patch :room_word_update
-      end
-      get :new_connection
-      patch :create_connection
-      get :home #施設のホーム画面
-      resources :residents # /users/:user_id/facilities/:facility_id/~~~(施設を介した入居者)
+    devise_scope :facility do
+      get "facility_sign_in", :to => "facilities/sessions#new"
+      get "facility_sign_out", :to => "facilities/sessions#destroy"
     end
-  end
 
-  # 施設目線のルーティング
-  resources :facilities do # /facilities/:id/~~~
-    member do
-      get :facility_home #施設ルートのホーム画面
+    devise_scope :user do
+      get "sign_in", :to => "users/sessions#new"
+      get "sign_out", :to => "users/sessions#destroy"
+      get "privacy", :to => "users/sessions#privacy"
     end
-    patch :change_admin # /facilities/:facility_id/change_admin
-    resources :residents # /facilities/:facility_id/residents/:id/~~~
+
+
+  # 施設 ==================================================================================
+    resources :facilities do
+      get   :home                       # ユーザログイン後の各施設のホーム画面
+      get   :facility_home, on: :member # 施設ログイン後のホーム画面
+    end
+
+  # ご家族 ================================================================================
     resources :users do
       member do
-        get :video_room # /facilities/:facility_id/users/:id/video_room
-        patch :room_word_update  #Room_Name登録のため追加
-      end
-      resources :request_residents #入居者登録申請画面
-    end
-    resources :informations do # /facilities/:facility_id/informations/~~~
-      collection do
-        get :top_notice # お知らせ表示
+        get   :video_room
+        patch :room_word_update         # Room_Name登録のため追加
       end
     end
-  end
+
+  # 利用施設登録 ==========================================================================
+    resources :facility_users, only: %i[new update]
+
+  # 入居者 ================================================================================
+    resources :residents
+
+  # 入居者申請 ============================================================================
+    resources :request_residents, only: %i[new create index]
+
+  # 入居者登録 ============================================================================
+    resources :relatives, only: %i[new update index]
+
+  # お知らせ ==============================================================================
+    resources :informations do
+      get :top_notice, on: :collection
+    end
+
+  # 予約 ==================================================================================
+    resources :reservations
 
 end
