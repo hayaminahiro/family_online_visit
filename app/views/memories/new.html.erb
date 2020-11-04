@@ -2,7 +2,7 @@
   <div class="notification">
     <div class="content has-text-centered">
       <div class="columns is-centered">
-        <div class="column is-10 is-centered">
+        <div class="column is-12 is-centered">
           <h1 class="memory-title">思い出アルバムの新規投稿ができます。</h1>
           <small class="is-pulled-right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
           <h1 class="memory-title-mini">思い出アルバムの画像選定</h1>
@@ -12,31 +12,30 @@
 
             <% num = 0  %>
             <% while num < 8 %>
-              <% if @memory.images[num].present? %>
-                <%= image_tag @memory.images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
-              <% else %>
-                <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_#{num}", class: "photo-size" %>
-              <% end %>
+              <div class="card memory-card-position">
+                <div class="card-image">
+<!--                  <figure  class="image is-3by2">-->
+                    <% if @memory.images[num].present? %>
+                      <%= image_tag @memory.images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
+                    <% else %>
+                      <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_#{num}", class: "photo-size" %>
+                    <% end %>
+<!--                  </figure>-->
+                </div>
+                <div class="card-content">
+                  <div class="content">
+                    <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
+                    <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num}" %>
+                    <% if @memory.images[num].present? %>
+                      <%= f.hidden_field :images, multiple: true, value: @memory.images[num].identifier %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
               <% num += 1 %>
             <% end %>
 
             <%= f.check_box :remove_images, id: "img_delete" %>
-
-            <% num = 0  %>
-            <% while num < 8 %>
-              <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
-              <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num}" %>
-              <%#= f.hidden_field :memory, :images, multiple: true, value: @memory.identifier %>
-              <% num += 1 %>
-            <% end %>
-
-            <% num = 0  %>
-            <% while num < 8 %>
-              <% if @memory.images[num].present? %>
-                <%= f.hidden_field :images, multiple: true, value: @memory.images[num].identifier %>
-              <% end %>
-              <% num += 1 %>
-            <% end %>
 
             <label class="media-left has-text-weight-bold">
               <h1 class="memory-title-mini">出来事の日付（行事日等）</h1>

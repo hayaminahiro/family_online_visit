@@ -380,7 +380,9 @@
   }
 
   .photo-size {
-    width: 250px; height: 165px; object-fit: cover;
+    width: 332px;
+    height: 220px;
+    object-fit: cover;
   }
 
   .memory-title-mini {
@@ -413,5 +415,12 @@
     font-weight: 700;
     margin-top: 60px;
   }
+
+  //カード
+  .memory-card-position {
+    margin: 5px 2.5px; display: inline-block;
+  }
+
+
 }
 
