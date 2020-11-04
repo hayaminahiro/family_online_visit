@@ -23,19 +23,40 @@
 }
 
 /* ご家族一覧 */
-#family-table th {
+#user-table th {
   background-color: #FFDAB9;
   font-size: 20px;
-  text-align: center; 
+  text-align: center;
+  vertical-align: middle;
 }
 
-#family-table td {
+#user-table td {
   text-align: center;
+  vertical-align: middle;
+}
+
+//User Name
+.user-table-tag {
+  font-size: 17px;
 }
 
 .hero .tabs ul {
   margin-right: 30px;
-  margin-left: 50px;
+  margin-left: 30px;
+}
+
+.tabs a {
+  font-size: 20px;
+}
+
+
+//検索フォーム
+.search-user.input {
+  font-size: 20px;
+}
+
+.search-btn-user.button {
+  font-size: 20px;
 }
 
 
@@ -537,7 +558,30 @@ main {/*画面中央*/
   }
 
   //ご家族一覧テーブル（th）
-  #family-table th {
-    font-size: 11px;
+  #user-table th {
+    font-size: 16px;
   }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  //ご家族一覧検索フォーム
+  .search-user.input {
+    font-size: 16px;
+  }
+
+  .search-btn-user.button {
+    font-size: 16px;
+  }
+
+  .user-table-tag {
+    font-size: 14px;
+  }
+
+  //タブタイトル
+  .tabs a {
+    font-size: 14px;
+  }
+
 }
