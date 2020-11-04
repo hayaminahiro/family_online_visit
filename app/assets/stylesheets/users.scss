@@ -67,10 +67,18 @@ mypage-aside {/*画面左*/
     margin-top: 50px;
   }
 
-  .user-profile-image {
+  img#img_prev.user-profile-image {
     width: 90px;
     height: 90px;
     border-radius: 100%;
+    display: inline-block;
+    object-fit: cover;
+  }
+
+  td#img_prev.user-edit-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
     display: inline-block;
     object-fit: cover;
   }
