@@ -530,4 +530,14 @@ main {/*画面中央*/
     height: 45px;
     width: 40px;
   }
+
+  //ご家族一覧のタイトルレイアウト
+  .column.is-0-mobile {
+    margin-top: 0px;
+  }
+
+  //ご家族一覧テーブル（th）
+  #family-table th {
+    font-size: 11px;
+  }
 }

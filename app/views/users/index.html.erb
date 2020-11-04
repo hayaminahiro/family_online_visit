@@ -1,6 +1,6 @@
 <%= render partial: 'facility_images', locals: { facility: current_facility} %>
 
-<div class="columns .is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
 
   <%= render 'side_link' %>
 
@@ -54,8 +54,8 @@
                 <th>名前</th>
                 <th>入居者登録</th>
                 <th>面会予約</th>
-                <th>Room Nameの設定</th>
-                <th>Room Name</th>
+                <th>Roomの設定</th>
+                <th>Room</th>
                 <th>面会</th>
                 <th>編集</th>
                 <th>削除</th>
@@ -187,5 +187,11 @@
     ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#vertical_tab_nav li', { delay: 100, distance: '100%', origin: 'top', duration: 1500, viewFactor: 0.5 });
     ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('html,body').animate({ scrollTop: 250 }, '1');
   });
 </script>
