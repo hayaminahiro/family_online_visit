@@ -370,6 +370,12 @@ div.under-line {
   font-size: 23px;
 }
 
+//施設情報タブのクリック時
+.panel-tabs a.facility-tab.is-active {
+  color: #48c774;
+  border-bottom-width: medium;
+}
+
 //calendar
 #calendar-reservations {
   margin: 50px 30px;
@@ -1006,5 +1012,17 @@ h1.mini-title {
   .card-content.menu-card {
     padding-left: 12%;
     padding-right: 12%;
+  }
+
+  //施設側ホーム画面の情報タブ
+  .panel-tabs a.facility-tab {
+    font-size: 2px;
+  }
+
+  .panel-tabs a.facility-tab i {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    margin-bottom: 3px;
   }
 }
