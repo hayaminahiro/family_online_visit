@@ -14,7 +14,7 @@
         <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "home-image"%>
       <% end %>
     <% end %>  
-    <div class="image-outline">
+    <div class="image-outline" id="scroll-position">
       <% if facility.image? %>
         <%= image_tag facility.icon.url, class: "facility-icon-image" %>
       <% else %>
