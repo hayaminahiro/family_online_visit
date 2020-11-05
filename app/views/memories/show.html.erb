@@ -1,21 +1,17 @@
 <div class="glovalNavigation">
-  <h1 class="has-text-weight-bold"><%= @resident.name %>さんの思い出カード</h1>
+  <h1 class="has-text-weight-bold"><%= @resident.name %>さんの思い出アルバム</h1>
 </div>
 
 <div class="main-show">
-
   <div class="content">
     <section class="photo-card-show">
-      <%= image_tag @memory.images[0].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[0].present? %>
-      <%= image_tag @memory.images[1].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[1].present? %>
-      <%= image_tag @memory.images[2].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[2].present? %>
-      <%= image_tag @memory.images[3].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[3].present? %>
-      <%= image_tag @memory.images[0].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[0].present? %>
-      <%= image_tag @memory.images[1].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[1].present? %>
-      <%= image_tag @memory.images[2].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[2].present? %>
-      <%= image_tag @memory.images[3].url, id: :img_prev, :size => '350x350', class: "img-interval" if @memory.images[3].present? %>
-      <%#= image_tag @memory.images[3].url, id: :img_prev, :size => '300x300', class: "img-interval" if @memory.images[3].present? %>
-      <%#= image_tag @memory.images[3].url, id: :img_prev, :size => '300x300', class: "img-interval" if @memory.images[3].present? %>
+
+      <% num = 0  %>
+        <% while num < 8 %>
+        <%= image_tag @memory.images[num].url, id: :img_prev, class: "img-interval show-photo-size" if @memory.images[num].present? %>
+        <% num += 1 %>
+      <% end %>
+
       <div class="photo-card-link-show">
         <h4><%= @memory.title %></h4>
         <p><%= @memory.message %></p>
@@ -28,8 +24,11 @@
                     data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
           <i class="far fa-trash-alt"></i>
         <% end %>
+        <%= link_to resident_memories_path(@resident), class:"button is-link is-light is-medium" do %>
+          <i class="fas fa-images"></i>&nbsp;思い出画像一覧
+        <% end %>
       </div>
+
     </section>
   </div>
-
 </div>
