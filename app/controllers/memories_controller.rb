@@ -1,12 +1,12 @@
 class MemoriesController < ApplicationController
   before_action :set_resident, only: %i[index new create]
+  before_action :set_memory, only: %i[show destroy]
 
   def index
     @memories = current_facility.residents.includes(:memories).where(id: params[:resident_id])
   end
 
   def show
-    @memory = Memory.find(params[:id])
   end
 
   def new
@@ -24,7 +24,6 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
-    @memory = Memory.find(params[:id])
     @memory.delete
     @memory.remove_r_images!
     redirect_to memories_url(resident_id: params[:resident_id]), alert: "思い出アルバムを削除しました"
@@ -38,5 +37,9 @@ class MemoriesController < ApplicationController
 
       def set_resident
         @resident = Resident.find(params[:resident_id])
+      end
+
+      def set_memory
+        @memory = Memory.find(params[:id])
       end
 end
