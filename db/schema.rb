@@ -13,18 +13,17 @@
 ActiveRecord::Schema.define(version: 2020_11_02_223434) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "facility_name"
     t.string "email", default: "", null: false
+    t.boolean "admin", default: false
+    t.string "image"
+    t.string "icon"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "facility_name"
-    t.boolean "admin", default: false
-    t.boolean "facility_admin", default: false
-    t.string "image"
-    t.string "icon"
     t.index ["email"], name: "index_facilities_on_email", unique: true
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end
@@ -38,32 +37,34 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
     t.index ["user_id"], name: "index_facility_users_on_user_id"
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "facility_id"
     t.string "title"
     t.text "news"
     t.integer "status", default: 0, null: false
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "facility_id"
-    t.string "image"
     t.index ["facility_id"], name: "index_information_on_facility_id"
   end
 
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "message"
-    t.string "images"
+    t.string "r_images"
     t.bigint "resident_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "event_date"
     t.index ["resident_id"], name: "index_memories_on_resident_id"
+  end
+
+  create_table "my_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "memory_id"
+    t.string "r_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memory_id"], name: "index_my_images_on_memory_id"
   end
 
   create_table "relatives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -76,12 +77,12 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
   end
 
   create_table "request_residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "facility_id"
     t.string "req_name"
     t.string "req_phone"
     t.string "req_address"
     t.integer "req_approval", default: 0
-    t.bigint "user_id"
-    t.bigint "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_request_residents_on_facility_id"
@@ -100,11 +101,11 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
   end
 
   create_table "residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "facility_id"
     t.string "name", null: false
     t.string "charge_worker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "facility_id"
     t.index ["facility_id"], name: "index_residents_on_facility_id"
   end
 
@@ -121,30 +122,27 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
     t.string "password"
     t.string "room_name"
     t.boolean "admin", default: false
-    t.boolean "floor_authority", default: false
-    t.string "resident_name1"
-    t.string "resident_name2"
     t.string "phone"
     t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "postal_code"
+    t.string "prefecture_name"
+    t.string "address_city"
+    t.string "address_street"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.string "token"
+    t.string "meta"
+    t.string "uid"
+    t.string "provider"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "provider"
-    t.string "uid"
-    t.string "meta"
-    t.string "token"
-    t.integer "postal_code"
-    t.string "prefecture_name"
-    t.string "address_city"
-    t.string "address_street"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -153,6 +151,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
   add_foreign_key "facility_users", "users"
   add_foreign_key "information", "facilities"
   add_foreign_key "memories", "residents"
+  add_foreign_key "my_images", "memories"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
   add_foreign_key "request_residents", "facilities"
