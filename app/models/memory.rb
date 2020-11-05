@@ -9,6 +9,6 @@ class Memory < ApplicationRecord
   validates :event_date, presence: true
 
   # 複数形
-  mount_uploaders :images, ImageUploader
-  serialize :images, JSON
+  mount_uploaders :r_images, ImageUploader
+  serialize :r_images, JSON
 end
