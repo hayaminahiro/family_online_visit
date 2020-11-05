@@ -1,9 +1,9 @@
 class MemoriesController < ApplicationController
 
   def index
-    @resident = current_facility.residents.find(params[:resident_id])
-    @residents = Resident.all
-    @memories = @resident.memories.order(id: "DESC").paginate(page: params[:page], per_page: 10)
+    @resident = current_facility.residents.find(params[:id])
+    # @residents = Resident.all
+    @memories = @resident.memories
   end
 
   def show

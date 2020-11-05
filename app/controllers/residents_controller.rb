@@ -1,9 +1,12 @@
 class ResidentsController < ApplicationController
+  before_action :set_resident, only: %i[edit update destroy]
+
   def index
-      @residents = Resident.all.where(facility_id: current_facility.id).paginate(page: params[:page], per_page: 30)
-    if params[:search].present?
-      @residents = @residents.where(facility_id: current_facility.id).where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
-    end
+    return @residents = current_facility.residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
+    @residents = current_facility.residents.paginate(page: params[:page], per_page: 30)
+  end
+
+  def new
     @resident = Resident.new
   end
 
@@ -14,51 +17,76 @@ class ResidentsController < ApplicationController
   end
 
   def create
-    @resident = Resident.new(resident_params)
-    @resident.facility_id = current_facility.id
-    if @resident.save
-      flash[:notice] = "入居者を新規登録できました"
+    if params[:commit] == "登録する"
+      @resident = Resident.new(resident_params)
+      @resident.facility_id = current_facility.id
+      if @resident.save
+        redirect_to residents_url, notice: "入居者を新規登録できました"
+      else
+        render :new
+      end
     else
-      flash[:alert] = "入居者登録できませんでした。入力内容をご確認ください"
+      # 入居者一覧からのCSVインポート
+      if params[:file].content_type == "text/csv"
+        registered_count = import_residents
+        unless @errors.count == 0
+          flash[:alert] = "#{@errors.count}件登録に失敗しました"
+        end
+        unless registered_count == 0
+          flash[:notice] = "#{registered_count}件登録しました"
+        end
+        redirect_to residents_url(error_residents: @errors)
+      else
+        redirect_to residents_url, alert: "CSVファイルのみ有効です"
+      end
     end
-      redirect_to facility_residents_path
   end
 
+  def edit;end
+
   def update
-    @resident = Resident.find(params[:id])
     @resident.facility_id = current_facility.id
     if @resident.update(resident_params)
-      flash[:notice] = "入居者情報を更新できました"
+      redirect_to residents_url, notice: "入居者情報を更新できました"
     else
-      flash[:alert] = "更新できませんでした。入力内容をご確認ください"
+      render :edit
     end
-      redirect_to facility_residents_path
   end
 
   def destroy
-    @resident = Resident.find(params[:id])
     @resident.facility_id = current_facility.id
     @resident.destroy
-    flash[:alert] = "入居者情報を削除しました"
-    redirect_to facility_residents_path
+    redirect_to residents_url, alert: "入居者情報を削除しました"
   end
 
-  def import
-    Resident.current_facility = current_facility
-    if params[:file].blank?
-      flash[:alert] = "ファイルが選択されていません"
-    elsif File.extname(params[:file].original_filename) != ".csv"
-      flash[:alert] = "インポート可能なファイルではありません"
-    else
-      Resident.import(params[:file])
-      flash[:notice] = "CSVファイルをインポートしました"
-    end
-      redirect_to facility_residents_path
-  end
+    private
 
-  private
+      def resident_params
+        params.require(:resident).permit(:name, :charge_worker)
+      end
 
-  def resident_params
-    params.require(:resident).permit(:name, :charge_worker)
-  end
+      def set_resident
+        @resident = Resident.find(params[:id])
+      end
+
+      # CSVインポート
+      def import_residents
+        # 登録処理前のレコード数
+        current_user_count = ::Resident.count
+        residents = []
+        @errors = []
+        CSV.foreach(params[:file].path, headers: true) do |row|
+          resident = Resident.new({ id: row["id"], name: row["name"], charge_worker: row["charge_worker"], facility_id: current_facility.id})
+          if resident.valid?
+              residents << ::Resident.new({id: row["id"], name: row["name"], charge_worker: row["charge_worker"], facility_id: current_facility.id})
+          else
+            @errors << resident.errors.full_messages.join(',')
+            Rails.logger.warn(resident.errors.inspect)
+          end
+        end
+        # importメソッドでバルクインサートできる
+        ::Resident.import(residents)
+        # 何レコード登録できたかを返す
+        ::Resident.count - current_user_count
+      end
 end
