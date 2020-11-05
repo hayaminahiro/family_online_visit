@@ -5,7 +5,6 @@
   <%= render 'shared/side_link' %>
 
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
-
     <section class="resident-title hero">
       <div class="hero-body">
         <div class="container has-text-centered">
@@ -84,6 +83,7 @@
                   <% end %>
                 </td>
               </tr>
+              <% end %>
             </tbody>
           </table>
           <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
@@ -141,8 +141,10 @@
       $("div#error_modal").removeClass("is-active");
     })
   });
+</script>  
 
-  // タブ切り替え
+<script>
+  // タブ切り替え  
   function openTab(evt, tabName) {
     var i, x, tablinks;
     x = document.getElementsByClassName("content-tab");

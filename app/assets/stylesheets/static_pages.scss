@@ -361,7 +361,7 @@ footer {
   height: 267px;
   width: 420px;
   margin-right: 55px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   margin-top: 20px;
   margin-left: 55px;
 }
@@ -676,6 +676,7 @@ p.content1 {
   .inline-block_content {
     width: 290px;
     margin: 10px 20px;
+    margin-bottom: 90px;
   }
 
   .inline-block_content img {
@@ -700,6 +701,7 @@ p.content1 {
 
   .cp_tab .cp_tabpanel {
     padding-top: 60px;
+    margin-bottom: 20px;
   }
 }
 
@@ -723,6 +725,10 @@ p.content1 {
 
   .inline-block_content {
     margin: 0px;
+  }
+
+  #top-coments {
+    margin-bottom: 80px;
   }
 
   //お知らせ
