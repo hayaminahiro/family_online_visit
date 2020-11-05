@@ -35,8 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "#{@user.name}のデータを削除しました。"
-    redirect_to users_url
+    redirect_to users_url, alert: "#{@user.name}のデータを削除しました。"
   end
 
   # GET /resource/cancel

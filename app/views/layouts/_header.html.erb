@@ -44,7 +44,7 @@
 
           <%if facility_signed_in? %>
             <p class="navbar-item">
-                <%= link_to_unless_current "利用者一覧", facility_residents_path(facility_id: current_facility), class: "links" %>
+                <%= link_to_unless_current "利用者一覧", residents_path, class: "links" %>
             </p>
           <% end %>
 

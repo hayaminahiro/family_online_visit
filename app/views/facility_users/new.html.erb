@@ -5,7 +5,7 @@
           ご利用施設検索
         </h1>
         <div class="container">
-          <%= form_with(url: facilities_used_user_facilities_path, method: :get, local: true) do |f| %>
+          <%= form_with(url: new_facility_user_path, method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-centered">
               <div class="control search-input">
                 <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-black" %>
@@ -33,10 +33,10 @@
           <article class="panel">
             <div class="columns is-multiline">
               <div class="field" style="padding: 20px;">
-                <% if @facilities.blank? %>
+                <% if @facility_users.blank? %>
                     <p class="title is-6 result">検索結果はありません。</p>
                 <% end %>
-                <% @facilities.each do |fa| %>
+                <% @facility_users.each do |fa| %>
                   <div class="card card-style" style="position: relative;">
                     <div class="card-image">
                       <figure class="image">
@@ -59,17 +59,17 @@
                                 <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の登録</p>
                                 <button class="delete" aria-label="close" id="close"></button>
                               </header>
-                              <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
+                              <%= form_with model: current_user, url: facility_user_path(current_user), local: true do |f| %>
                                 <section class="modal-card-body">
                                   <div class="field">
                                     <p class="title-in-modal"><%= fa.facility_name %></p>
                                     <p class="modal-description">本システムのご利用には、施設の登録が必要です。</p>
                                     <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>にチェックを入れて更新ボタンから登録して下さい。</p>
                                     <label class="facilities-used-label">
-                                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
+                                      <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
                                       <% current_user.facilities.each do |fa| %>
                                         <div style="display: none">
-                                          <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
+                                          <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %>
                                           <%= fa.facility_name %>
                                         </diV>
                                       <% end %>
@@ -107,7 +107,7 @@
             </div>
           </article>
           <div id="under-pagination">
-            <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" if @facilities.present? %>
+            <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" if @facility_users.present? %>
           </div>
         </div>
 
@@ -129,11 +129,11 @@
                       <div class="media">
                         <div class="media-content">
                           <div class="under-line">
-                            <!-- <span class="tag is-warning tag-position">登録済</span> -->
+                            <!-- <span class="tag is-warning tag-position">承認済</span> -->
                             <% @facility = fa.id %>
                             <span id="here">こちらから</span>
                             <i class="far fa-hand-point-right" style="color: royalblue;"></i>
-                            <%= link_to fa.facility_name, user_facility_home_path(current_user.id, facility_id: @facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                            <%= link_to fa.facility_name, facility_home_path(@facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
                           </div>
 
                           <!-- 登録施設 モーダル表示 -->
@@ -144,18 +144,18 @@
                                 <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
                                 <button class="delete" aria-label="close" id="close"></button>
                               </header>
-                              <%= form_with model: @user, url: update_facilities_used_user_facilities_path(@user), local: true do |f| %>
+                              <%= form_with model: current_user, url: facility_user_path(current_user), local: true do |f| %>
                                 <section class="modal-card-body">
                                   <div class="field">
                                     <p class="title-in-modal"><%= fa.facility_name %></p>
                                     <p class="modal-description">ここから施設の登録を解除することができます。</p>
                                     <p class="modal-sub-description"><span class="span-check">「登録する ✔️」</span>のチェックを外して更新ボタンから登録解除して下さい。</p>
                                     <label class="facilities-used-label">
-                                      <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
+                                      <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(fa), :name => 'user[facility_ids][]' }, fa.id %><span>登録する ✔</span>&ensp;
                                       <!-- 更新しようとしている施設「id: fa」を除く施設一覧を隠して更新させる -->
                                       <div style="display: none">
                                         <% current_user.facilities.where.not(id: fa).each do |hidden_fa| %>
-                                          <%= f.check_box :facility_ids, { :checked => @user.facilities.include?(hidden_fa), :name => 'user[facility_ids][]' }, hidden_fa.id %><span>登録 ✔</span>
+                                          <%= f.check_box :facility_ids, { :checked => current_user.facilities.include?(hidden_fa), :name => 'user[facility_ids][]' }, hidden_fa.id %><span>登録 ✔</span>
                                           <%= hidden_fa.facility_name %>
                                         <% end %>
                                       </div>

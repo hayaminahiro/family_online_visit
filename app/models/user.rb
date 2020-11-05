@@ -27,8 +27,7 @@ class User < ApplicationRecord
   validates :address_city,            presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :address_street,          presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :phone,                   presence: true
-
-  
+  validates :room_name,               presence: true, on: :room_word_update
 
   # cookieでログイン情報を保持
   def remember_me

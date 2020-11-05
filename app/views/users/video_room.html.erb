@@ -48,7 +48,7 @@
     </div><br>
     <div class="has-text-centered">
       <% if current_facility %>
-        <%= link_to "戻る", facility_users_path(@facility), class: "button is-large is-outlined is-dark" %>
+        <%= link_to "戻る", users_path(@facility), class: "button is-large is-outlined is-dark" %>
       <% elsif current_user%>
         <%= link_to "戻る", user_path(@user), class: "button is-large is-outlined is-dark" %>
       <% end %> 
