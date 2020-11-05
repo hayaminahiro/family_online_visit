@@ -76,7 +76,7 @@
             </td>
             <td><%= resident.charge_worker %></td>
             <td>
-              <%= link_to memories_path, class:"button is-link" do %>
+              <%= link_to memories_path(resident_id: resident), class:"button is-link" do %>
                 <i class="fas fa-images"></i>
               <% end %>
             </td>
