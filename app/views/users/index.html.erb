@@ -1,15 +1,15 @@
-<%= render partial: 'facility_images', locals: { facility: current_facility} %>
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
 
 <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
 
-  <%= render 'side_link' %>
+  <%= render 'shared/side_link' %>
 
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
 
     <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title has-text-centered is-size-3">
+          <h1 class="title is-size-3">
             ご家族一覧
           </h1>
         </div>
@@ -54,7 +54,7 @@
                 <th>名前</th>
                 <th>利用者</th>
                 <th>面会予約</th>
-                <th>Roomの設定</th>
+                <th>Room設定</th>
                 <th>Room Name</th>
                 <th>面会</th>
                 <th>編集</th>
@@ -192,6 +192,6 @@
 
 <script>
   $(document).ready(function(){
-    $('html,body').animate({ scrollTop: 250 }, '0.5');
+    $('html,body').animate({ scrollTop: 250 }, 1000, 'swing');
   });
 </script>

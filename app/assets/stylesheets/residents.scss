@@ -6,26 +6,44 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /*入居者一覧画面*/
-.resident-head-button{
+.resident-head-button {
   display: flex;
   margin-bottom: 10px;
 }
 
-.resident--create-button{
+.button.resident--create-button {
   padding-top: 14px!important;
-  margin-left: 8px;
+  font-size: 20px;
 }
 
-.resident--update-button{
+.resident--update-button {
   padding-top: 10px!important;
 }
 
-#resident-modal-form{
+#resident-modal-form {
   margin-left: 20px;
 }
 
-.resident-title{
+.resident-title {
   background-color: rgb( 117, 150, 224 );
+}
+
+.residents-search {
+  margin-left: auto;
+}
+
+//csv-input
+#file-js-example {
+  font-size: 0.7em;
+  width: 78%;
+}
+
+.file.has-name .file-cta {
+  width: 40%;
+}
+
+.button.csv-btn {
+  font-size: 20px;
 }
 
 /* テーブル内の位置調整と装飾 */
@@ -40,12 +58,12 @@
     text-align: center;
   }
 
-  thead th{/*table内のヘッダーに対して*/
+  thead th {/*table内のヘッダーに対して*/
     color: white;
     font-size:20px;
   }
 
-  thead tr{
+  thead tr {
     background-color: rgb( 117, 150, 224 )
   }
 
@@ -53,7 +71,62 @@
       background-color: rgb( 188, 214, 226 )
     }
 
-  .text-color{
+  .text-color {
     color:white;
+  }
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+
+  #file-js-example {
+    width: 78%;
+  }
+
+  .resident-head-button {
+    position: relative;
+    margin-top: 70px;
+  }
+
+  .residents-search {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    left: 55%;
+    bottom: 71px;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  #file-js-example {
+    font-size: 15px;
+    width: 46%;
+  }
+
+  .button.csv-btn {
+    z-index: 1;
+    position: absolute;
+    font-size: 16px;
+    top: 15%;
+    right: 23%;
+  }
+
+  .file.has-name .file-cta {
+    width: 25%;
+  }
+
+  .button.resident--create-button {
+    z-index: 1;
+    position: absolute;
+    padding-top: 11px !important;
+    font-size: 16px;
+    left: 80%;
+    top: 15%;
+  }
+
+  .residents-search {
+    right: 4%;
   }
 }
