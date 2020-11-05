@@ -9,23 +9,20 @@
           <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
           <%= form_with(model: @memory, url: facility_resident_memories_path(current_facility, @resident), method: :post, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-
             <% num = 0  %>
             <% while num < 8 %>
               <div class="card memory-card-position">
                 <div class="card-image">
-<!--                  <figure  class="image is-3by2">-->
-                    <% if @memory.images[num].present? %>
-                      <%= image_tag @memory.images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
-                    <% else %>
-                      <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_#{num}", class: "photo-size" %>
-                    <% end %>
-<!--                  </figure>-->
+                  <% if @memory.images[num].present? %>
+                    <%= image_tag @memory.images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
+                  <% else %>
+                    <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_#{num}", class: "photo-size" %>
+                  <% end %>
                 </div>
-                <div class="card-content">
+                <div class="card-content card-drop-area">
                   <div class="content">
                     <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
-                    <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num}" %>
+                    <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num} drop-area" %>
                     <% if @memory.images[num].present? %>
                       <%= f.hidden_field :images, multiple: true, value: @memory.images[num].identifier %>
                     <% end %>
