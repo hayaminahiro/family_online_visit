@@ -4,7 +4,7 @@
 
 <div class="main-index photo-scroll">
   <div id="insert-photo">
-    <%= link_to new_memory_path(current_facility, @resident), class:"button is-link is-pulled-right" do %>
+    <%= link_to new_memory_path(resident_id: @resident), class:"button is-link is-pulled-right" do %>
       <i class="fas fa-images has-text-weight-bold">&ensp;新しい写真を投稿</i>
     <% end %>
   </div>
@@ -17,34 +17,32 @@
     <div class="tab4-body">
       <div class="tab4-body__item tab4-body__item--1 on">
         <% @memories.each do |m| %>
-
-          <% if m.images? %>
-            <%= image_tag m.images[0].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[0].present? %>
-            <%= image_tag m.images[1].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[1].present? %>
-            <%= image_tag m.images[2].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[2].present? %>
-            <%= image_tag m.images[3].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[3].present? %>
-            <%= image_tag m.images[4].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[4].present? %>
+          <% m.memories.each do |resident_memory| %>
+            <% resident_memory.r_images.each do |ww| %>
+              <%= image_tag ww.url, id: :img_prev, :size => '400x400', class: "img-interval" if resident_memory.r_images.present? %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
 
       <div class="tab4-body__item tab4-body__item--2 card-controller">
         <% @memories.each do |m| %>
-          <div class="card-float" style="display: inline-block;">
-            <section class="photo-card" style="display: inline-block">
-              <%= image_tag m.images[0].url, id: :img_prev if m.images[0].present? %>
-              <div class="photo-card-content">
-                <p class="photo-card-title"><%= m.title %></p>
-                <p class="photo-card-text"><%= m.message %></p>
-              </div>
-              <div class="photo-card-link">
-                <%= link_to facility_resident_memory_path(current_facility, @resident, m), class:"folder" do %>
-                  <i class="fas fa-folder-open fa-3x"></i>
-                <% end %>
-                <p class="photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p> <!--行事日入力カラム追加-->
-              </div>
-            </section>
-          </div>
+          <% m.memories.each do |resident_memory| %><!--residentのmemoriesをeachしている-->
+            <div class="card-float" style="display: inline-block;">
+              <section class="photo-card" style="display: inline-block">
+                <div class="photo-card-content">
+                  <p class="photo-card-title"><%= resident_memory.title %></p>
+                  <p class="photo-card-text"><%= resident_memory.message %></p>
+                </div>
+                <div class="photo-card-link">
+                  <%= link_to memory_path(resident_memory), class:"folder" do %>
+                    <i class="fas fa-folder-open fa-3x"></i>
+                  <% end %>
+                  <p class="photo-card-text">行事日: <%= l(resident_memory.event_date, format: :long) %></p> <!--行事日入力カラム追加-->
+                </div>
+              </section>
+            </div>
+          <% end %>
         <% end %>
       </div>
 

@@ -7,25 +7,22 @@
           <small class="is-pulled-right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
           <h1 class="memory-title-mini">思い出アルバムの画像選定</h1>
           <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
-          <%= form_with(model: @memory, url: facility_resident_memories_path(current_facility, @resident), method: :post, local: true) do |f| %>
+          <%= form_with(model: @memory, url: memories_path(resident_id: @resident), method: :post, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
             <% num = 0  %>
-            <% while num < 8 %>
+            <% while (num < 8) %>
               <div class="card memory-card-position">
                 <div class="card-image">
-                  <% if @memory.images[num].present? %>
-                    <%= image_tag @memory.images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
+                  <% if @memory.r_images[num].present? %>
+                    <%= image_tag @memory.r_images[num].url, id: :"img_prev_#{num}", class: "photo-size" %>
                   <% else %>
                     <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_#{num}", class: "photo-size" %>
                   <% end %>
                 </div>
                 <div class="card-content card-drop-area">
                   <div class="content">
-                    <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
-                    <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num} drop-area" %>
-                    <% if @memory.images[num].present? %>
-                      <%= f.hidden_field :images, multiple: true, value: @memory.images[num].identifier %>
-                    <% end %>
+                    <%= f.label :r_images, "\uf574", class: "fa image_input_comment" %>
+                    <%= f.file_field :r_images, multiple: true, value: "upload", class: "image_uploading_#{num} drop-area" %>
                   </div>
                 </div>
               </div>
