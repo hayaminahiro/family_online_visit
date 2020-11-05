@@ -7,7 +7,7 @@
           <small class="is-pulled-right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
           <h1 class="memory-title-mini">思い出アルバムの画像選定</h1>
           <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
-          <%= form_with(model: @memory, url: facility_resident_memories_path(current_facility, @resident), method: :post, local: true) do |f| %>
+          <%= form_with(model: @memory, url: resident_memories_path(@resident), method: :post, local: true) do |f| %>
             <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
             <% num = 0  %>
             <% while num < 8 %>

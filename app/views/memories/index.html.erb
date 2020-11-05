@@ -4,7 +4,7 @@
 
 <div class="main-index photo-scroll">
   <div id="insert-photo">
-    <%= link_to new_memory_path(current_facility, @resident), class:"button is-link is-pulled-right" do %>
+    <%= link_to new_resident_memory_path( @resident), class:"button is-link is-pulled-right" do %>
       <i class="fas fa-images has-text-weight-bold">&ensp;新しい写真を投稿</i>
     <% end %>
   </div>
@@ -38,7 +38,7 @@
                 <p class="photo-card-text"><%= m.message %></p>
               </div>
               <div class="photo-card-link">
-                <%= link_to facility_resident_memory_path(current_facility, @resident, m), class:"folder" do %>
+                <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
                   <i class="fas fa-folder-open fa-3x"></i>
                 <% end %>
                 <p class="photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p> <!--行事日入力カラム追加-->

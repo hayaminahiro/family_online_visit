@@ -1,8 +1,8 @@
 class MemoriesController < ApplicationController
 
   def index
-    @resident = current_facility.residents.find(params[:id])
-    # @residents = Resident.all
+    @resident = current_facility.residents.find(params[:resident_id])
+    @residents = Resident.all
     @memories = @resident.memories
   end
 
@@ -23,7 +23,7 @@ class MemoriesController < ApplicationController
     if @memory.save
       flash[:notice] = "#{@resident.name}さんの思い出アルバムを投稿しました。"
       # redirect_to facility_resident_path(id: @resident.id)
-      redirect_to facility_resident_memories_path
+      redirect_to resident_memories_path
     else
       render :new
     end
@@ -36,7 +36,7 @@ class MemoriesController < ApplicationController
     @memory.delete
     @memory.remove_images!
     flash[:alert] = "思い出アルバムを削除しました"
-    redirect_to facility_resident_memories_path
+    redirect_to resident_memories_path
   end
 
     private
