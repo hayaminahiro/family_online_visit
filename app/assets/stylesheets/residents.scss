@@ -6,6 +6,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /*入居者一覧画面*/
+
+.resident-content-tab {
+  #error {
+    color: #d42a31;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding-left: 12px;
+  }
+}
+
 .resident-head-button {
   display: flex;
   margin-bottom: 10px;

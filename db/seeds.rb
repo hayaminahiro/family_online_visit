@@ -77,6 +77,8 @@ hoiku.save!
   )
 end
 
+puts "施設を作成しました！"
+
 40.times do |n|
   name = "sampleご家族-#{n+1}"
   email = "sample#{n+1}@email.com"
@@ -93,6 +95,8 @@ end
   )
 end
 
+puts "ご家族ユーザを作成しました！"
+
 40.times do |n|
   name = "入居者-#{n+1}"
   Resident.create!(
@@ -101,6 +105,8 @@ end
     charge_worker: "担当者-#{n+1}"
   )
 end
+
+puts "入居者を作成しました！"
 
 31.times do |n|
   name = "タイトル-#{n+1}"
@@ -118,3 +124,5 @@ Information.create!(
     news: "ご利用前にご入居者様の・・・",
     status: 1
 )
+
+puts "お知らせを作成しました！"
