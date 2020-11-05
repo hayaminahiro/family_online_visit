@@ -23,6 +23,7 @@
                   <div class="content">
                     <%#= f.label :images, "\uf574", class: "fa image_input_comment" %>
                     <%= f.file_field :images, multiple: true, value: "upload", class: "image_uploading_#{num} drop-area" %>
+
                     <% if @memory.images[num].present? %>
                       <%= f.hidden_field :images, multiple: true, value: @memory.images[num].identifier %>
                     <% end %>

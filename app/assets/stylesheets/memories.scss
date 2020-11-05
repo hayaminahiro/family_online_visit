@@ -32,6 +32,18 @@
     margin: 5px;
   }
 
+  .index-photo-size {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .card-photo-size {
+    width: 350px;
+    height: 200px;
+    object-fit: cover;
+  }
+
   a.folder {
     color: burlywood;
   }
@@ -154,17 +166,6 @@
 
 .tab4-body__item.on {
   opacity: 1;
-}
-.aaa {
-  .tab4-body__item {
-    position: absolute;
-    width: 100%;
-    margin: 30px 15px !important;
-    //margin: 30px 15px 30px 90px !important;
-    text-align: center;
-    opacity: 0;
-    transition: all 0.6s ease-out;
-  }
 }
 
 //スクロール機能

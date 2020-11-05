@@ -16,15 +16,14 @@
     </ul>
     <div class="tab4-body">
       <div class="tab4-body__item tab4-body__item--1 on">
-        <% @memories.each do |m| %>
-
-          <% if m.images? %>
-            <%= image_tag m.images[0].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[0].present? %>
-            <%= image_tag m.images[1].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[1].present? %>
-            <%= image_tag m.images[2].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[2].present? %>
-            <%= image_tag m.images[3].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[3].present? %>
-            <%= image_tag m.images[4].url, id: :img_prev, :size => '400x400', class: "img-interval" if m.images[4].present? %>
+        <% num = 0  %>
+        <% while num < 8 %>
+          <% @memories.each do |m| %>
+            <% if m.images? %>
+              <%= image_tag m.images[num].url, id: :img_prev, class: "img-interval index-photo-size" if m.images[num].present? %>
+            <% end %>
           <% end %>
+          <% num += 1 %>
         <% end %>
       </div>
 
@@ -32,7 +31,7 @@
         <% @memories.each do |m| %>
           <div class="card-float" style="display: inline-block;">
             <section class="photo-card" style="display: inline-block">
-              <%= image_tag m.images[0].url, id: :img_prev if m.images[0].present? %>
+              <%= image_tag m.images[0].url, id: :img_prev, class: "card-photo-size" if m.images[0].present? %>
               <div class="photo-card-content">
                 <p class="photo-card-title"><%= m.title %></p>
                 <p class="photo-card-text"><%= m.message %></p>

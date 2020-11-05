@@ -36,6 +36,7 @@ class MemoriesController < ApplicationController
     @resident = current_facility.residents.find(params[:resident_id])
     @memories = @resident.memories
     @memory = @memories.find(params[:id])
+    raise
     if @memory.update(memories_params)
       redirect_to resident_memory_url, notice: "#{@resident.name}さんの思い出アルバムを編集しました。"
     else
