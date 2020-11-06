@@ -869,10 +869,9 @@ h1.mini-title {
 }
 
 //resposiveデザイン
-//【施設側ホームページ】
 @media screen and (max-width: 1000px) {
 
-  //背景画像
+  //背景画像【施設側ホームページ】
   .home-image {
     height: 280px;
   }
@@ -913,7 +912,7 @@ h1.mini-title {
     margin-bottom: 65px;
   }
   
-  //登録申請ボタン
+  //登録申請ボタン【ユーザー側施設ホーム】
   #request-user p {
     top: 24%;
     left: 50%;
@@ -948,6 +947,17 @@ h1.mini-title {
   .menu-content {
     font-size: 23px;
     text-align: center;
+  }
+
+  //検索フォーム【施設登録画面】
+  .field.is-grouped > .control:not(:last-child) {
+    width: 70%;
+  }
+
+  //タイトル
+  #hero-2 h1.search-title {
+    font-size: 45px;
+    margin-top: 50px;
   }
 }
 
