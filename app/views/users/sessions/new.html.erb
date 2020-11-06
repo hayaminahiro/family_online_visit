@@ -1,69 +1,69 @@
-<body class="image-layout-user">
-  <div class="container is-fluid">
-    <div class="login-title-user has-text-centered">
-      <strong class="new-title">ログイン</strong>
-    </div>
-    <div class="button-position">
-      <div class="columns is-centered">
-        <div class="column is-4-desktop is-12-mobile top-btn-position">
-
-          <%= form_with model: @user, url: user_session_path, id: "new_user", class: "new_user", local: true do |f| %>
-            <div class="field">
-              <%= f.label :email, class: "label" %><br />
-              <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力", autofocus: true, autocomplete: "email", class: "fa input is-medium is-info input-top-user" %>
-            </div>
-
-            <div class="field">
-              <%= f.label :password, class: "label" %><br />
-              <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "current-password", class: "fa input is-medium is-info input-top" %>
-            </div>
-
-            <% if devise_mapping.rememberable? %>
-              <div class="field">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
-              </div>
-            <% end %>
-
-            <div class="actions">
-              <%= f.submit "ログイン", class: "button is-success is-medium is-fullwidth new-btn has-text-weight-bold" %>
-            </div><br>
-
-          <% end %>
-          <!--
-          <div class="google-login">
-            <%= link_to image_tag("btn_google_signin_dark_focus_web.png"), user_google_oauth2_omniauth_authorize_path %><br>
-          </div>
-          -->
-          <div class="to-new-userpage1 has-text-left">
-            <%= render "users/shared/links" %>
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-        </div>
-        <div class="column is-4-desktop is-12-mobile has-text-centered">
-          <div>
-            <span class="is-size-5 has-text-black has-text-centered has-text-weight-bold line-login-sentence" style="padding:1em;">
-              LINEでログイン<i class="fas fa-hand-point-down"></i>
-            </span>
-            <div class="line-login">
-              <%= link_to image_tag("btn_base.png"), user_line_omniauth_authorize_path, :onmouseover => "btn_login_hover.png" %>
-            </div>
-          </div>
-          <!--
-          <div class="google-privacy has-text-centered">
-            <%= link_to "privacy policy", privacy_path, class: "button is-large is-warning has-text-weight-bold" %>
-          </div>-->
-        </div>
-        <div class="column">
-        </div>
-      </div>
-    </div>
+<ul class="image-layout-user">
+</ul>
+<div class="container is-fluid">
+  <div class="login-title-user has-text-centered">
+    <strong class="new-title">ログイン</strong>
+  </div>
+  <div class="button-position">
     <div class="columns is-centered">
+      <div class="column is-4-desktop is-12-mobile top-btn-position">
+
+        <%= form_with model: @user, url: user_session_path, id: "new_user", class: "new_user", local: true do |f| %>
+          <div class="field">
+            <%= f.label :email, class: "label" %><br />
+            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力", autofocus: true, autocomplete: "email", class: "fa input is-medium is-info input-top-user" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password, class: "label" %><br />
+            <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "current-password", class: "fa input is-medium is-info input-top" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "ログイン", class: "button is-success is-medium is-fullwidth new-btn has-text-weight-bold" %>
+          </div><br>
+
+        <% end %>
+        <!--
+        <div class="google-login">
+          <%= link_to image_tag("btn_google_signin_dark_focus_web.png"), user_google_oauth2_omniauth_authorize_path %><br>
+        </div>
+        -->
+        <div class="to-new-userpage1 has-text-left">
+          <%= render "users/shared/links" %>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+      </div>
+      <div class="column is-4-desktop is-12-mobile has-text-centered">
+        <div>
+          <span class="is-size-5 has-text-black has-text-centered has-text-weight-bold line-login-sentence" style="padding:1em;">
+            LINEでログイン<i class="fas fa-hand-point-down"></i>
+          </span>
+          <div class="line-login">
+            <%= link_to image_tag("btn_base.png"), user_line_omniauth_authorize_path, :onmouseover => "btn_login_hover.png" %>
+          </div>
+        </div>
+        <!--
+        <div class="google-privacy has-text-centered">
+          <%= link_to "privacy policy", privacy_path, class: "button is-large is-warning has-text-weight-bold" %>
+        </div>-->
+      </div>
       <div class="column">
       </div>
     </div>
   </div>
-</body>
+  <div class="columns is-centered">
+    <div class="column">
+    </div>
+  </div>
+</div>
