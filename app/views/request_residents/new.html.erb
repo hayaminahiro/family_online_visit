@@ -5,7 +5,7 @@
     <% if @requests.present? && @requests.facility_id == params[:facility_id].to_i %>
       <p>※入居者登録は<span style="color: red;"><%= @requests.req_approval %></span>です。追加申請の際はご入力ください。</p>
     <% end %>
-    <%= form_with(model: @request, url: facility_user_request_residents_path(current_user, facility_id: params[:facility_id]), local: true) do |f| %>
+    <%= form_with(model: @request, url: request_residents_path(facility_id: params[:facility_id]), local: true) do |f| %>
     <%= render "users/shared/error_messages", resource: @request %>
     <table class="table is-narrow user-edit-table is-bordered" id="req-new-table">
       <tfoot>

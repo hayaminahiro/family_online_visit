@@ -44,8 +44,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
        # redirect_to edit_user_path(@profile.user.id) and return
      end
    end
-   flash[:notice] = "ログインしました"
-   redirect_to root_path
+   redirect_to root_path, notice: "ログインしました"
  end
 
 
