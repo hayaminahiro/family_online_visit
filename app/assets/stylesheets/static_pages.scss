@@ -583,6 +583,7 @@ p.content1 {
 	padding: 0.5em 1em;
   border-top: 1px solid #cccccc;
   padding-top: 100px;
+  margin-bottom: 60px;
 }
 
 @media (max-width: 480px) {
@@ -701,7 +702,7 @@ p.content1 {
 
   .cp_tab .cp_tabpanel {
     padding-top: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 105px;
   }
 }
 
@@ -745,6 +746,7 @@ p.content1 {
 
   .cp_tab > label i {
     font-size: 30px;
+    margin-bottom: 6px;
     display: block;
   }
 
