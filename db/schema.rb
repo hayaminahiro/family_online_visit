@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_223434) do
+ActiveRecord::Schema.define(version: 2020_11_06_160505) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "event_date"
+    t.string "image1"
+    t.string "image2"
+    t.string "image3"
+    t.string "image4"
+    t.string "image5"
+    t.string "image6"
+    t.string "image7"
+    t.string "image8"
     t.index ["resident_id"], name: "index_memories_on_resident_id"
   end
 
@@ -145,6 +153,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_223434) do
     t.string "prefecture_name"
     t.string "address_city"
     t.string "address_street"
+    t.text "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
