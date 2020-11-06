@@ -57,7 +57,7 @@
                 <th>現在のプロフィール画像</th>
                 <td>
                   <div class="user-icon-edits">
-                    <%= user_icon_edit(current_user) %>
+                    <%= user_icon_edit(@user) %>
                   </div>
                 </td>
               </tr>
@@ -65,16 +65,16 @@
                 <th>プロフィール画像を変更</th>
                 <td>
                   <div class="container">
-                    <%= f.label :image, "\uf574ファイルをドラッグ＆ドロップ", class: "fa image_input_comment_useredit", style: "position: absolute;
+                    <%= f.file_field :image, value: "upload", class: "user_img", style: "
+                      height:150px;
+                      width:100%;
+                      border-style: dashed;
+                      border-width:2px;margin: 20px 0 20px 0;padding:10px;
                       text-align: center;
-                      margin-top: 80px;
                       border-radius: 5px;
-                      padding: 1px;
                       color: #DEDEDE;
                       text-decoration: none;
-                      font-size: 25px;width:100%;" %>
-                    <%= f.file_field :image, value: "upload", class: "user_img", style: "height:150px;width:100%;border-style: dashed;
-                      border-width:2px;margin: 20px 0 20px 0;padding:10px;" %>
+                      font-size: 15px;" %>
                     <%= f.hidden_field :image_cache %>
                   </div>
                 </td>
@@ -83,11 +83,11 @@
                 <tr>
                   <th>画像を削除</th>
                   <td>
-                  <div style="margin-top:10px;">
-                    <%= f.check_box :remove_image, id: "icon_delete" %>
-                    <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
-                    </label>
-                  </div>
+                    <div style="margin-top:10px;">
+                      <%= f.check_box :remove_image, id: "icon_delete" %>
+                      <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                      </label>
+                    </div>
                   </td>
                 </tr>
               <% end %>
