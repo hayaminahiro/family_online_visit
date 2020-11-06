@@ -195,23 +195,26 @@ mypage-main{/*画面中央*/
     z-index: 1;
     display: block;
     position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 250px;
+    width: 95px;
+    height: 95px;
+    top: 46%;
     left: 50%;
     border-radius: 50%;
     background-color: #fff;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
   }
 
   .user-icon-image {
     z-index: 2;
     display: block;
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
-    top: 25%;
-    left: 8%;
+    top: 0%;
+    left: 51%;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -457,11 +460,12 @@ main {/*画面中央*/
 @media screen and (max-width: 1000px) {
   // マイページ
   mypage-aside {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 57px;
     line-height: 58px;
-    z-index: 50;
+    z-index: 1;
+    top: 225px;
     border-bottom: 1px solid #C0C0C0;
 
     .mypage-side-link {
@@ -553,7 +557,7 @@ main {/*画面中央*/
     display: flex;
     
     .hero-image-user {
-      margin-top: 55px;
+      margin-bottom: 77px;
     }
 
     #Web .columns {
