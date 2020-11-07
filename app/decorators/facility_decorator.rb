@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module FacilityDecorator
-  def facility_season_image(facility)
+  def facility_season_image
+    facility = Facility.find(id)
     if facility.image?
       image_tag facility.image.url, id: :img_prev, :size => '500x500'
     else
@@ -18,7 +19,8 @@ module FacilityDecorator
     end
   end
 
-  def facility_icon_image(facility)
+  def facility_icon_image
+    facility = Facility.find(id)
     if facility.icon?
       image_tag facility.icon.url, id: :icon_prev, class: "icon_circle"
     else
