@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module UserDecorator
-  # facility_idごとにグループ分けする
+  # facility_idごとにグループ分け
   def grouped_facility
     informations = Information.where(facility_id: current_user.facilities).where(status: "others")
     informations.group_by(&:facility_id)
   end
 
-  # 自分が登録している施設のお知らせで、statusがothersであるものを全て取得する
+  # 自分が登録している施設のお知らせで、statusがothersであるものを全て取得
   def mypage_informations(id)
     Information.where(facility_id: id).where(status: "others")
   end
