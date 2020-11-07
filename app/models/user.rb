@@ -33,6 +33,7 @@ class User < ApplicationRecord
   def remember_me
     true
   end
+
   # パスワード入力なしでご家族情報編集可能にするため追加
   def update_without_current_password(params, *options)
     params.delete(:current_password)
