@@ -50,6 +50,7 @@
 mypage-aside {/*画面左*/
   position: fixed;
   width: 15.5%;
+  height: 100%;
   font-size:15px;
   display: flex;
   flex-direction: column;
@@ -135,7 +136,7 @@ mypage-aside {/*画面左*/
 }
 
 mypage-main{/*画面中央*/
-  margin-left: 15.5%;
+  padding-left: 15.5%;
   width: 100%;
   background-color: rgb(244,243,238);
   display: flex;
@@ -161,16 +162,29 @@ mypage-main{/*画面中央*/
   #my-page-info-content{
     padding: 21px 18px;
 
+    .media-left {
+      margin-right: 8px;
+      width: 71px;
+    }
+
     #web-media-section{
       display: flex;
       border-left: solid 1px rgb(238,236,228);
     }
 
-    .mypage-info-icon-image{
+    .mypage-facility-icon-image{
       margin: 13px 0px 0px 15px;
       width: 60px;
       height: 60px;
       border-radius: 100%;
+      display: inline-block;
+      object-fit: cover;
+    }
+
+    .mypage-info-icon-image{
+      margin: 3px 10px 0px 0px;
+      width: 45px;
+      height: 45px;
       display: inline-block;
       object-fit: cover;
     }
@@ -260,6 +274,11 @@ mypage-main{/*画面中央*/
   margin: 35px 16px 13px 10px;
   font-size: 17px;
   border-radius: 6px;
+
+  .card-content {
+    background-color: transparent;
+    padding: 1.5rem;
+  }
 }
 
 .mypage-information{
@@ -268,8 +287,8 @@ mypage-main{/*画面中央*/
 }
 
 #mypage-user-box{
-  width: 228px;
-  padding: 10px 10px 0px 10px;
+  width: 188px;
+  padding: 8px 10px 7px 10px;
   margin: 8px 10px 8px 15px;
   border: solid 1px #9daba6;
 
@@ -474,7 +493,7 @@ main {/*画面中央*/
 
 
   mypage-main {
-    margin-left: 0;
+    padding-left: 0px;
     width: 100%;
     display: flex;
 
@@ -492,14 +511,24 @@ main {/*画面中央*/
       padding: 13px 18px;
 
       .media-left {
-        margin-right: 8px;
+        margin-right: 0px;
+        margin-left: 5px;
+      }
+
+      .mypage-facility-icon-image{
+        margin: 10px 0px 0px 9px;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        display: inline-block;
+        object-fit: cover;
       }
 
       .mypage-info-icon-image{
-        margin: 5px 0px 0px 11px;
-        width: 60px;
-        height: 60px;
-        border-radius: 100%;
+        margin-right: 8px;
+        margin-top: 0px;
+        width: 40px;
+        height: 40px;
         display: inline-block;
         object-fit: cover;
       }

@@ -12,10 +12,17 @@ module UserDecorator
     Information.where(facility_id: id).where(status: "others")
   end
 
-  # 施設のiconを表示
-  def mypage_informations_icon(id)
+  # 施設iconを表示
+  def mypage_facilities_icon(id)
     facility = Facility.find(id)
-    return image_tag facility.icon.url, class: "mypage-info-icon-image" if facility.icon?
-    image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "mypage-info-icon-image"
+    return image_tag facility.icon.url, class: "mypage-facility-icon-image" if facility.icon?
+    image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "mypage-facility-icon-image"
+  end
+
+  # お知らせiconを表示
+  def mypage_informations_icon(id)
+    # facility = Facility.find(id)
+    return image_tag id.image.url, class: "mypage-info-icon-image" if id.image?
+    image_tag 'https://bulma.io/images/placeholders/128x128.png', class: "mypage-info-icon-image"
   end
 end
