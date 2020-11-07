@@ -25,4 +25,8 @@ module FacilityDecorator
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', id: :icon_prev, class: "icon_circle"
     end
   end
+
+  def reservation_calendar
+    Reservation.where.not(calendar_day: nil)
+  end
 end

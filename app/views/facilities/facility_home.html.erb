@@ -78,7 +78,7 @@
         <div id="Web" class="content-tab" >
           <div class="has-text-centered" id="calendar-reservations">
             <div class="is-centered">
-              <%= month_calendar(attribute: :calendar_day, events: @calendar) do |date, reservations| %>
+              <%= month_calendar(attribute: :calendar_day, events: current_facility.reservation_calendar) do |date, reservations| %>
                 <%= l(date, format: :short) %>
               <% end %>
             </div><br>

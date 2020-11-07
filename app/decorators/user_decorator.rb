@@ -25,4 +25,8 @@ module UserDecorator
     return image_tag id.image.url, class: "mypage-info-icon-image" if id.image?
     image_tag 'https://bulma.io/images/placeholders/128x128.png', class: "mypage-info-icon-image"
   end
+
+  def reservation_calendar
+    Reservation.where.not(calendar_day: nil)
+  end
 end
