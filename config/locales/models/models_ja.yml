@@ -52,7 +52,7 @@ ja:
         memory:
           event_date: 行事日
           title: タイトル
-          images: 写真
+          image0: 画像１
           message: メッセージ
         request_resident:
           req_name: 入居者様名

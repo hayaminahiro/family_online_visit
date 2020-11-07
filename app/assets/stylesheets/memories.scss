@@ -402,6 +402,10 @@
     color: #401c00;
   }
 
+  .mandatory {
+    margin: 0 0 2px 30px;
+  }
+
   .memory-label {
     padding: 20px 0 0 32px;
   }
@@ -437,6 +441,15 @@
         border-color: #ccc;
         cursor: pointer;
       }
+
+      .drop-area-mandatory {
+        padding: 20px;
+        border-style: dashed;
+        border-width: 2px;
+        border-color: crimson;
+        cursor: pointer;
+      }
+
     }
   }
 

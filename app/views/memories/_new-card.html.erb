@@ -14,7 +14,7 @@
     </div>
     <div class="card-content card-drop-area">
       <div class="content">
-        <%= f.file_field :image0, value: "upload", class: "image_uploading_0 drop-area" %>
+        <%= f.file_field :image0, value: "upload", class: "image_uploading_0 drop-area-mandatory" %>
         <% if @memory.image0.present? %>
           <%= f.hidden_field :"image0_cache" %>
         <% end %>
