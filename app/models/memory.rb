@@ -8,7 +8,19 @@ class Memory < ApplicationRecord
   validates :message, presence: true, length: {minimum: 10}
   validates :event_date, presence: true
 
-  # 複数形
-  mount_uploaders :images, ImageUploader
-  serialize :images, JSON
+  # モデル | ImageUploaderクラスとimageカラムを紐づける
+  mount_uploader :image0, ImageUploader
+  mount_uploader :image1, ImageUploader
+  mount_uploader :image2, ImageUploader
+  mount_uploader :image3, ImageUploader
+  mount_uploader :image4, ImageUploader
+  mount_uploader :image5, ImageUploader
+  mount_uploader :image6, ImageUploader
+  mount_uploader :image7, ImageUploader
+
+  # num = 0
+  # while num < 8
+  #   mount_uploader :"image#{num}", ImageUploader
+  #   num += 1
+  # end
 end
