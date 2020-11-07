@@ -25,14 +25,14 @@
       <div id="Web" class="content-tab">
         <div class="Web-section">
           <div class="columns">
-            <% grouped_facility(@informations).each do |facility_id, other| %>
+            <% current_user.grouped_facility.each do |facility_id, other| %>
               <div class="card-content" id="my-page-info-content">
                 <div class="card" style="display: flex; border-radius: 11px;">
                   <div class="media-left">
-                    <small><%= mypage_informations_icon(facility_id) %></small>
+                    <small><%= current_user.mypage_informations_icon(facility_id) %></small>
                   </div>
                   <div class="media-content" id="web-media-section">
-                    <% mypage_informations(facility_id).last(2).each do |information| %>
+                    <% current_user.mypage_informations(facility_id).last(2).each do |information| %>
                     <div class="mypage-information">
                       <div>
                         <div class="box" id="mypage-user-box">
@@ -65,7 +65,7 @@
           <div class="card" id="mypage-reservations-calendar">
             <div class="has-text-centered">
               <div class="is-centered">
-                <%= month_calendar(attribute: :calendar_day, events: calendar_reservation) do |date, reservations| %>
+                <%= month_calendar(attribute: :calendar_day, events: @calendar) do |date, reservations| %>
                   <%= l(date, format: :short) %>
                 <% end %>
               </div><br>
