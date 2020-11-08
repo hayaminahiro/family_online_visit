@@ -8,7 +8,7 @@
           <h1 class="mini-title" style="font-size: 20px; color: #401c00;">背景画像設定</h1>
           <p class="title-description">こちらから背景画像として使用される画像の登録・編集ができます。</p>
           <div class="facility-photo">
-          <%= current_facility.facility_season_image %>
+          <%= @facility.facility_season_image %>
           </div>
           <div class="drop-zone-area">
             <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
@@ -25,7 +25,7 @@
           <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アイコン画像設定</h1>
           <p class="title-description">こちらからアイコンとして使用される画像の登録・編集ができます。</p>
           <div class="facility-photo">
-            <%= current_facility.facility_icon_image %>
+            <%= @facility.facility_icon_image %>
           </div>
           <div id="drop-zone-area"style="padding-left: 40px;">
             <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
