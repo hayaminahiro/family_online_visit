@@ -1,26 +1,21 @@
 class MemoriesController < ApplicationController
+  before_action :set_resident, only: %i[index show new create edit update destroy]
+  before_action :set_memories, only: %i[index show edit update]
+  before_action :set_memory, only: %i[show edit update]
 
   def index
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memories = @resident.memories.order(updated_at: "DESC")
   end
 
   def show
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memories = @resident.memories
-    @memory = @memories.find(params[:id])
   end
 
   def new
-    @resident = current_facility.residents.find(params[:resident_id])
     @memory = @resident.memories.new
-
   end
 
   def create
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memory = @resident.memories.new(memories_params)
-    if @memory.save
+    memory = @resident.memories.new(memories_params)
+    if memory.save
       redirect_to resident_memories_url, notice: "#{@resident.name}さんの思い出アルバムを投稿しました。"
     else
       render :new
@@ -28,15 +23,9 @@ class MemoriesController < ApplicationController
   end
 
   def edit
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memories = @resident.memories
-    @memory = @memories.find(params[:id])
   end
 
   def update
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memories = @resident.memories
-    @memory = @memories.find(params[:id])
     if @memory.update(memories_params)
       redirect_to resident_memory_url, notice: "#{@resident.name}さんの思い出アルバムを編集しました。"
     else
@@ -49,10 +38,22 @@ class MemoriesController < ApplicationController
     memories = resident.memories
     @memory = memories.find(params[:id])
     @memory.delete
-    redirect_to resident_memories_url, alert: "思い出アルバムを削除しました"
+    redirect_to resident_memories_url, alert: "#{resident.name}さんの思い出アルバムを削除しました"
   end
 
     private
+
+      def set_resident
+        @resident = current_facility.residents.find(params[:resident_id])
+      end
+
+      def set_memories
+        @memories = @resident.memories.order(updated_at: "DESC")
+      end
+
+      def set_memory
+        @memory = @memories.find(params[:id])
+      end
 
       def memories_params
         params.require(:memory).permit(:title, :message, :event_date,
