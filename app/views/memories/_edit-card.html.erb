@@ -5,16 +5,13 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image0.present? %>
-        <%= image_tag @memory.image0.url, id: :"img_prev_0", class: "photo-size" %>
+        <%= image_tag @memory.image0.url, id: "img_prev_0", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_0", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_0", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">
-      <%= f.check_box :remove_image0, id: "img0_delete" %>
-      <label for="" class="check_position is-pulled-left">
-        <p class="img-delete-label">画像削除不可(変更は可能)</p>
-      </label>
+      <div class="blank-area"></div>
       <div class="content">
         <%= f.file_field :image0, class: "image_uploading_0 drop-area-mandatory" %>
         <% if @memory.image0.present? %>
@@ -28,9 +25,9 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image1.present? %>
-        <%= image_tag @memory.image1.url, id: :"img_prev_1", class: "photo-size" %>
+        <%= image_tag @memory.image1.url, id: "img_prev_1", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_1", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_1", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">
@@ -51,9 +48,9 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image2.present? %>
-        <%= image_tag @memory.image2.url, id: :"img_prev_2", class: "photo-size" %>
+        <%= image_tag @memory.image2.url, id: "img_prev_2", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_2", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_2", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">
@@ -74,9 +71,9 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image3.present? %>
-        <%= image_tag @memory.image3.url, id: :"img_prev_3", class: "photo-size" %>
+        <%= image_tag @memory.image3.url, id: "img_prev_3", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_3", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_3", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">
@@ -97,9 +94,9 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image4.present? %>
-        <%= image_tag @memory.image4.url, id: :"img_prev_4", class: "photo-size" %>
+        <%= image_tag @memory.image4.url, id: "img_prev_4", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_4", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_4", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">
@@ -120,9 +117,9 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image5.present? %>
-        <%= image_tag @memory.image5.url, id: :"img_prev_5", class: "photo-size" %>
+        <%= image_tag @memory.image5.url, id: "img_prev_5", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_5", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_5", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">
@@ -143,9 +140,9 @@
   <div class="card memory-card-position">
     <div class="card-image">
       <% if @memory.image6.present? %>
-        <%= image_tag @memory.image6.url, id: :"img_prev_6", class: "photo-size" %>
+        <%= image_tag @memory.image6.url, id: "img_prev_6", class: "photo-size" %>
       <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: :"img_prev_6", class: "photo-size" %>
+        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_6", class: "photo-size" %>
       <% end %>
     </div>
     <div class="card-content card-drop-area">

@@ -38,12 +38,6 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.index ["user_id"], name: "index_facility_users_on_user_id"
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "news"
@@ -58,7 +52,6 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "message"
-    t.string "images"
     t.bigint "resident_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
