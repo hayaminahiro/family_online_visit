@@ -65,16 +65,7 @@
                 <th>プロフィール画像を変更</th>
                 <td>
                   <div class="container">
-                    <%= f.file_field :image, value: "upload", class: "user_img", style: "
-                      height:150px;
-                      width:100%;
-                      border-style: dashed;
-                      border-width:2px;margin: 20px 0 20px 0;padding:10px;
-                      text-align: center;
-                      border-radius: 5px;
-                      color: #DEDEDE;
-                      text-decoration: none;
-                      font-size: 15px;" %>
+                    <%= f.file_field :image, value: "upload", class: "user_img user-icon-field" %>
                     <%= f.hidden_field :image_cache %>
                   </div>
                 </td>
