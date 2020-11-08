@@ -353,6 +353,10 @@
     text-align: center;
     border-top: 1px solid #eee;
     padding: 20px;
+
+    .memories-index-btn {
+      margin-top: 20px;
+    }
   }
 
   .photo-card-link-show a {
@@ -505,6 +509,43 @@
           -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
         }
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #memory-panel-style {
+    padding: 0;
+    margin: 0;
+  }
+
+  .panel {
+    .notice-pad {
+      padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+    }
+
+    .max-width {
+      padding: 20px 10px 80px 10px;
+    }
+
+    .memory-title {
+      font-size: 26px;
+    }
+
+  }
+
+  //カード
+  .memory-card-position {
+    .card-drop-area {
+
+      .drop-area {
+        padding: 19px !important;
+      }
+
+      .drop-area-mandatory {
+        padding: 19px !important;
       }
 
     }

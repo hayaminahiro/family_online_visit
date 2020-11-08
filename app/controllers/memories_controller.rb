@@ -14,8 +14,8 @@ class MemoriesController < ApplicationController
   end
 
   def create
-    memory = @resident.memories.new(memories_params)
-    if memory.save
+    @memory = @resident.memories.new(memories_params)
+    if @memory.save
       redirect_to resident_memories_url, notice: "#{@resident.name}さんの思い出アルバムを投稿しました。"
     else
       render :new
