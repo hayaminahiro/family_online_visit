@@ -49,7 +49,6 @@ class MemoriesController < ApplicationController
     memories = resident.memories
     @memory = memories.find(params[:id])
     @memory.delete
-    # @memory.remove_images!
     redirect_to resident_memories_url, alert: "思い出アルバムを削除しました"
   end
 

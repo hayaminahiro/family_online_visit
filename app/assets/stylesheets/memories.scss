@@ -450,7 +450,59 @@
         cursor: pointer;
       }
 
+      .img-delete-label {
+        margin-top: -2px;
+      }
+
+      //チェックボックスのデザイン
+      @for $i from 0 through 7 {
+        input#img#{$i}_delete[type="checkbox"] {
+          display: none;
+        }
+
+        input#img#{$i}_delete[type="checkbox"] + label {
+          display: block;
+          position: relative;
+          padding-left: 30px;
+          margin: 0 0 4px 23px;
+          color: #333;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
+
+        input#img#{$i}_delete[type="checkbox"] + label.check_position:last-child {
+          margin-bottom: 0;
+        }
+
+        input#img#{$i}_delete[type="checkbox"] + label.check_position:before {
+          content: '';
+          display: block;
+          width: 20px;
+          height: 20px;
+          border: 1px solid #0d47a1;
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: .6;
+          -webkit-transition: all .12s, border-color .08s;
+          transition: all .12s, border-color .08s;
+        }
+
+        input#img#{$i}_delete[type="checkbox"]:checked + label.check_position:before {
+          width: 10px;
+          top: -5px;
+          left: 5px;
+          border-radius: 0;
+          opacity: 1;
+          border-top-color: transparent;
+          border-left-color: transparent;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+
     }
   }
-
 }
