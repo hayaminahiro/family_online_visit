@@ -1,7 +1,3 @@
-// Place all the styles related to the memories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 //思い出indexページ
 .glovalNavigation {
   font-weight: 700;
@@ -171,7 +167,6 @@
 //スクロール機能
 .photo-scroll {
   width: 100%;
-  //height: 100%;
   min-height: 110vh;
   overflow: scroll;
 }
@@ -510,7 +505,6 @@
           transform: rotate(45deg);
         }
       }
-
     }
   }
 }
@@ -534,7 +528,6 @@
     .memory-title {
       font-size: 26px;
     }
-
   }
 
   //カード
@@ -548,7 +541,6 @@
       .drop-area-mandatory {
         padding: 19px !important;
       }
-
     }
   }
 }
