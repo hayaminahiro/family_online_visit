@@ -377,7 +377,7 @@ div.under-line {
 
 //施設情報タブタイトル
 .panel-tabs a .facility-tab {
-  font-size: 23px;
+  font-size: 18px;
 }
 
 //施設情報タブのクリック時
@@ -878,6 +878,23 @@ h1.mini-title {
   text-align: left;
 }
 
+//タブレット
+@media screen and (max-width: 1050px) {
+
+  //施設側ホーム画面の情報タブ
+  .panel-tabs a.facility-tab {
+    font-size: 2px;
+    margin: 0 50px;
+  }
+
+  .panel-tabs a.facility-tab i {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    margin-bottom: 3px;
+  }
+}
+
 //resposiveデザイン
 @media screen and (max-width: 1000px) {
 
@@ -903,11 +920,6 @@ h1.mini-title {
 
   .panel.is-success .panel-heading {
     font-size: 30px;
-  }
-
-  .panel-tabs a.facility-tab {
-    font-size: 20px;
-    margin: 0 10px;
   }
 
   #facility-contents {
@@ -1066,14 +1078,7 @@ h1.mini-title {
 
   //施設側ホーム画面の情報タブ
   .panel-tabs a.facility-tab {
-    font-size: 2px;
-  }
-
-  .panel-tabs a.facility-tab i {
-    font-size: 30px;
-    display: block;
-    text-align: center;
-    margin-bottom: 3px;
+    margin: 0 20px;
   }
 
   //【施設登録画面】
