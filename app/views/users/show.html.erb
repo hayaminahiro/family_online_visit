@@ -19,28 +19,26 @@
       <div id="Web" class="content-tab">
         <div class="Web-section">
           <div class="columns">
-            <% grouped_facility(@informations).each do |facility_id, other| %>
+            <% current_user.grouped_facility.each do |facility_id, other| %>
               <div class="card-content" id="my-page-info-content">
                 <div class="card" style="display: flex; border-radius: 11px;">
                   <div class="media-left">
-                    <small><%= mypage_informations_icon(facility_id) %></small>
+                    <small><%= current_user.mypage_facilities_icon(facility_id) %></small>
                   </div>
                   <div class="media-content" id="web-media-section">
-                    <% mypage_informations(facility_id).last(2).each do |information| %>
+                    <% current_user.mypage_informations(facility_id).last(2).each do |information| %>
                     <div class="mypage-information">
                       <div>
                         <div class="box" id="mypage-user-box">
                           <div class="media">
-                              <figure class="image is-64x64" style="margin-right: 10px;">
-                                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                              </figure>
+                            <%= current_user.mypage_informations_icon(information) %>
                             <div class="media-content">
                               <div class="content" id="edit-content">
                                 <p class="is-size-7">
-                                <strong><%= information.title.truncate(14) %></strong><br>
+                                <strong><%= information.title.truncate(9) %></strong><br>
                                   <small><%= information.facility.facility_name %></small>
                                   <br>
-                                  <span><%= information.news.truncate(13) %></span>
+                                  <span><%= information.news.truncate(10) %></span>
                                 </p>
                               </div>
                             </div>
@@ -59,7 +57,7 @@
           <div class="card" id="mypage-reservations-calendar">
             <div class="has-text-centered">
               <div class="is-centered">
-                <%= month_calendar(attribute: :calendar_day, events: calendar_reservation) do |date, reservations| %>
+                <%= month_calendar(attribute: :calendar_day, events: current_user.reservation_calendar) do |date, reservations| %>
                   <%= l(date, format: :short) %>
                 <% end %>
               </div><br>
