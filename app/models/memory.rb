@@ -3,7 +3,7 @@ class Memory < ApplicationRecord
 
   validates :image0,  presence: true
   validates :title,   presence: true, length: {maximum: 20}
-  validates :message, presence: true, length: {minimum: 10}
+  validates :message, presence: true
   validates :event_date, presence: true
 
   # モデル | ImageUploaderクラスとimageカラムを紐づける
