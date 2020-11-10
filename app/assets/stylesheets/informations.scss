@@ -145,6 +145,7 @@ input#information_image.image_uploading {
 //タブレット
 @media screen and (max-width: 1200px) {
 
+  //タグ
   .panel-tabs a.infomation-tab {
     font-size: 2px;
   }
@@ -182,6 +183,25 @@ input#information_image.image_uploading {
   .new-info {
     margin-left: 35%;
     margin-top: 20px;
+  }
+
+  //お知らせ新規作成画面
+  #panel-style {
+    margin: 0px;
+  }
+
+  //プレビュー画像
+  .label-space {
+    padding: 0px;
+  }
+
+  //画像選択蘭
+  .drop-zone-area {
+    padding: 0px;
+  }
+
+  #notification-mobile {
+    padding: 1.25rem 0.5rem 1.25rem 0.5rem;
   }
 }
 
