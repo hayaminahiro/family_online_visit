@@ -1,48 +1,55 @@
-<nav class="panel" id="panel-style">
-  <div class="notification">
-    <div class="content has-text-centered">
-      <div class="columns is-centered">
-        <div class="column is-10 top-btn-position is-centered">
-          <h1 class="account-title" style="color: #401c00;">お知らせの編集ができます。</h1>
-          <small style="float: right">最終更新 <%= l(@information.updated_at, format: :short) %></small>
-          <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせ画像設定</h1>
-          <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
-          <%= form_with(model: @information, url: information_path, method: :patch, local: true) do |f| %>
-            <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
-            <div class="label-space">
-              <%= @information.information_image %>
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <nav class="panel" id="panel-style">
+      <div class="notification" id="notification-mobile">
+        <div class="content has-text-centered">
+          <div class="columns is-centered">
+            <div class="column is-10 top-btn-position is-centered">
+              <h1 class="account-title" style="color: #401c00;">お知らせの編集ができます。</h1>
+              <small style="float: right">最終更新 <%= l(@information.updated_at, format: :short) %></small>
+              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせ画像設定</h1>
+              <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
+              <%= form_with(model: @information, url: information_path, method: :patch, local: true) do |f| %>
+                <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
+                <div class="label-space">
+                  <%= @information.information_image %>
+                </div>
+                <div class="drop-zone-area">
+                  <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
+                  <%= f.file_field :image, value: "upload", class: "image_uploading" %>
+                  <%= f.check_box :remove_image, id: "img_delete" %>
+                  <label for="img_delete" class="check_position has-text-weight-bold" style="position:absolute; margin-top: 280px;">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+                  <%= f.hidden_field :image_cache %>
+                </div>
+                <div class="position-control"><h1>位置調整</h1></div>
+                <label class="media-left has-text-weight-bold">
+                  <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせタイトル</h1>
+                </label>
+                <div class="media-content">
+                  <div class="content label-space">
+                    <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+                  </div>
+                </div>
+                <label class="media-left has-text-weight-bold">
+                  <h1 class="mini-title" style="font-size: 20px; color: #401c00;">本文</h1>
+                </label>
+                <div class="media-content">
+                  <div class="content label-space">
+                    <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
+                  </div>
+                </div>
+                <%= f.submit "お知らせを更新する", class: "info-btn" %>
+              <% end %>
             </div>
-            <div class="drop-zone-area">
-              <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
-              <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-              <%= f.check_box :remove_image, id: "img_delete" %>
-              <label for="img_delete" class="check_position has-text-weight-bold" style="position:absolute; margin-top: 280px;">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
-              <%= f.hidden_field :image_cache %>
-            </div>
-            <div class="position-control"><h1>位置調整</h1></div>
-            <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせタイトル</h1>
-            </label>
-            <div class="media-content">
-              <div class="content label-space">
-                <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
-              </div>
-            </div>
-            <label class="media-left has-text-weight-bold">
-              <h1 class="mini-title" style="font-size: 20px; color: #401c00;">本文</h1>
-            </label>
-            <div class="media-content">
-              <div class="content label-space">
-                <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
-              </div>
-            </div>
-            <%= f.submit "お知らせを更新する", class: "info-btn" %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
   </div>
-</nav>
+</div>    
 
 <script>
   $(function() {

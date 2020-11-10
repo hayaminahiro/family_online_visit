@@ -135,7 +135,7 @@ input#information_image.image_uploading {
 }
 
 .drop-zone-area {
-  padding: 0 0 100px 40px;
+  padding: 0 0 100px 33px;
 }
 
 #info-title {
@@ -155,6 +155,29 @@ input#information_image.image_uploading {
     display: block;
     text-align: center;
     margin-bottom: 3px;
+  }
+
+  //画像選択アイコン
+  .fa.image_input_comment {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  //お知らせ新規作成画面
+  #panel-style {
+    margin: 0px 50px 50px 50px;
+  }
+
+  //プレビュー画像
+  .label-space {
+    padding: 0px;
+  }
+
+  //画像選択欄
+  .drop-zone-area {
+    padding: 0px 15px 100px 15px;
   }
 }
 
@@ -185,23 +208,29 @@ input#information_image.image_uploading {
     margin-top: 20px;
   }
 
-  //お知らせ新規作成画面
+  //お知らせ新規作成・編集画面
   #panel-style {
     margin: 0px;
   }
 
-  //プレビュー画像
-  .label-space {
+  //画像選択欄
+  .drop-zone-area {
     padding: 0px;
   }
 
-  //画像選択蘭
-  .drop-zone-area {
-    padding: 0px;
+  //画像選択アイコン
+  .fa.image_input_comment {
+    display: none;
+  }
+
+  //ファイル選択位置
+  input#information_image.image_uploading {
+    line-height: 200px;
   }
 
   #notification-mobile {
     padding: 1.25rem 0.5rem 1.25rem 0.5rem;
   }
+
 }
 
