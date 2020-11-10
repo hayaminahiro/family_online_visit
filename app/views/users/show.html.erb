@@ -2,7 +2,7 @@
   <mypage-aside>
     <div>
       <div class="profile-section">
-        <%= user_icon_image(current_user) %>
+        <%= current_user.user_icon_image %>
         <p class="has-text-centered"><%= current_user.name %></p>
       </div>
     </div>
