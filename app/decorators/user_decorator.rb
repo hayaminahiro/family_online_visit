@@ -28,4 +28,21 @@ module UserDecorator
   def reservation_calendar
     Reservation.where.not(calendar_day: nil)
   end
+
+  # マイページ表示用
+  def user_icon_image
+    if image?
+      image_tag image.url, id: :img_prev, class: "user-profile-image"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-profile-image"
+    end
+  end
+  # ユーザー編集画面用
+  def user_icon_edit
+    if image?
+      image_tag image.url, id: :img_prev, class: "user-edit-image"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-edit-image"
+    end
+  end
 end

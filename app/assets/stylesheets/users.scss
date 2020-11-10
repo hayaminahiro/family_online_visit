@@ -47,6 +47,27 @@
   min-height: 100vh;
 }
 
+.user-icon-field {
+  height:150px;
+  width:100%;
+  border-style: dashed;
+  border-width:2px;margin: 20px 0 20px 0;padding:10px;
+  text-align: center;
+  border-radius: 5px;
+  color: #DEDEDE;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+img#img_prev.user-edit-image {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  display: inline-block;
+  object-fit: cover;
+  margin-top:20px;
+}
+
 mypage-aside {/*画面左*/
   position: fixed;
   width: 15.5%;
@@ -68,10 +89,26 @@ mypage-aside {/*画面左*/
     margin-top: 50px;
   }
 
-  .user-profile-image{
-    width: 50px;
-    border-radius: 100px;
+  img#img_prev.user-profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
     display: inline-block;
+    object-fit: cover;
+  }
+
+  input#user_image.user_img {
+    color: #ccc;
+    height: 250px!important;
+    width: 100%;
+    margin: 20px 0 20px 0;
+    border-style: dashed;
+    border-width: 2px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
   }
 
   .panel-tab{
@@ -321,6 +358,8 @@ mypage-main{/*画面中央*/
 .google-privacy {
   text-align: center;
   color: black;
+  margin-bottom: 100px;
+  margin-top: 50px;
 }
 
 // プライバシーポリシー画面
