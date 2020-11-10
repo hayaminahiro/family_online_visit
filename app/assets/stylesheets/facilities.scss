@@ -161,10 +161,12 @@ a.btn-gradient:hover {
   color: #FF4F02;
 }
 
-input.fa.button.is-medium.is-focused.has-text-weight-semibold.orange-btn {
+input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
   background: orange;
   color: #401c00;
-}
+  margin-left: 28%;
+  font-size: 20px;
+}  
 
 .under-line {
   border-bottom: 1px solid;
@@ -216,6 +218,14 @@ div.under-line {
 
 .card-position {
   margin-top: 30px;
+}
+
+//背景画像（施設登録）
+#hero-5 {
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  position: relative;
 }
 
 //facility_home（修正後）
@@ -955,9 +965,15 @@ h1.mini-title {
   }
 
   //タイトル
-  #hero-2 h1.search-title {
-    font-size: 45px;
-    margin-top: 50px;
+  #hero-5 h1.search-title {
+    font-size: 40px;
+    margin-top: 10%;
+    margin-bottom: 10px;
+  }
+
+  //モーダル
+  input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
+    margin-left: 32%;
   }
 }
 
@@ -1058,5 +1074,40 @@ h1.mini-title {
     display: block;
     text-align: center;
     margin-bottom: 3px;
+  }
+
+  //【施設登録画面】
+  .card.card-style.search-mobile {
+    margin: 20px 10px;
+    width: 92%;
+  }
+
+  //モーダル
+  input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
+    font-size: 17px;
+    margin-left: 17%;
+  }
+
+  //検索フォーム
+  #hero-5 h1.search-title  {
+    font-size: 24px;
+    margin: 0px 0px 10px 0px;
+  }
+
+  .is-medium.input, .is-medium.textarea {
+    height: 95%;
+  }
+
+  .button.search-btn {
+    height: 95%;
+  }
+
+  //背景画像
+  #hero-5 {
+    height: 50%;
+  }
+
+  .search-img {
+    height: 100%;
   }
 }

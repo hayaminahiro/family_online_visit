@@ -1,4 +1,4 @@
-<section class="hero is-medium" id="hero-2">
+<section class="hero is-medium" id="hero-5">
   <div class="hero-body search-img">
     <div class="container has-text-centered" style="font-family: 'Quicksand', sans-serif;">
         <h1 class="has-text-weight-bold search-title">
@@ -16,12 +16,12 @@
             </div>
           <% end %>
         </div>
-      </div>
+    </div>
   </div>
 </section>
 
 <section class="hero is-medium has-text-centered" id="hero-4">
-  <div class="hero-body" style="padding-top:100px; padding-bottom: 100px;">
+  <div class="hero-body">
     <div class="cp_tab">
       <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
       <label for="tab1_1"><i class="fas fa-search-location"></i>&nbsp;検索結果</label>
@@ -37,7 +37,7 @@
                     <p class="title is-6 result">検索結果はありません。</p>
                 <% end %>
                 <% @facility_users.each do |fa| %>
-                  <div class="card card-style" style="position: relative;">
+                  <div class="card card-style search-mobile" style="position: relative;">
                     <div class="card-image">
                       <figure class="image">
                         <%= fa.facility_season_image %>
@@ -76,8 +76,8 @@
                                     </label>
                                   </div>
                                 </section>
-                                <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
-                                    <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                                <footer class="modal-card-foot">
+                                    <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-focused has-text-weight-semibold orange-btn" %>
                                 </footer>
                               <% end %>
                             </div>
@@ -119,7 +119,7 @@
                   <p class="title is-6 result">現在の登録施設はありません。</p>
                 <% end %>
                 <% @registered_facilities.each do |fa| %>
-                  <div class="card card-style">
+                  <div class="card card-style search-mobile">
                     <div class="card-image">
                       <figure class="image">
                         <%= fa.facility_season_image %>
@@ -162,8 +162,8 @@
                                     </label>
                                   </div>
                                 </section>
-                                <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
-                                    <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                                <footer class="modal-card-foot">
+                                  <%= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                                 </footer>
                               <% end %>
                             </div>
