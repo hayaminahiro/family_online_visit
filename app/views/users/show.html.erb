@@ -1,23 +1,17 @@
 <div class="mypage-main-content">
   <mypage-aside>
-    <nav class="">
-      <div>
-        <div class="profile-section">
-          <%# if current_user.user_profile.image? %>
-            <%#= image_tag current_user.user_profile.image.url, class: "profile-image" %>
-          <%# else %>
-            <%= image_tag 'user_default.png', class: "user-profile-image" %>
-          <%# end %>
-          <p class="has-text-centered"><%= current_user.name %></p>
-        </div>
+    <div>
+      <div class="profile-section">
+        <%= current_user.user_icon_image %>
+        <p class="has-text-centered"><%= current_user.name %></p>
       </div>
-      <div class="mypage-side-link">
-        <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>予約</p></a>
-        <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>写真</p></a>
-        <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>動画</p></a>
-        <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="fas fa-phone-volume"></i><p>お問い合わせ</p></a>
-      </div>
-    </nav>
+    </div>
+    <div class="mypage-side-link">
+      <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>予約</p></a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>写真</p></a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>動画</p></a>
+      <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="fas fa-phone-volume"></i><p>お問い合わせ</p></a>
+    </div>
   </mypage-aside>
 
   <mypage-main>

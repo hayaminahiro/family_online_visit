@@ -35,7 +35,7 @@ h2 {
   background-position: center 50%;
   background-size: cover;
   //家族と青空
-  background-image: url('/signup-pic2.jpg');
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
 }
 
 .image-layout::before {
@@ -58,6 +58,34 @@ h2 {
   height: auto;
   min-height: 100%;
   color: white;
+}
+
+.image-layout-user {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+  background-color: #3ecd85;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  z-index: -1;
+  //家族と青空
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
+}
+
+.image-layout-user::before {
+  /* 透過した黒を重ねる */
+  background-color: rgba(0, 0, 0, 0);
+  /* どの範囲に重ねるかを指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
 }
 
 .btn-flat-border {
@@ -187,8 +215,12 @@ p.navbar-item {
   margin-top: -25px;
 }
 
+.input-top-user {
+  margin-top: -25px;
+}
+
 .new-btn {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   margin-top: 20px;
 }
 
@@ -202,12 +234,21 @@ p.navbar-item {
 }
 
 .to-new-userpage {
+  margin-top: 50px;
+  margin-bottom: -30px;
+}
+
+.to-new-userpage1 {
   margin-top: 20px;
   margin-bottom: -30px;
 }
 
 .login-title {
   margin-top: 50px;
+}
+
+.login-title-user {
+  margin-top: 100px;
 }
 
 .signup-title {

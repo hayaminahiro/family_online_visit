@@ -6,7 +6,7 @@
         <hr class="edit-hr">
         <a class="panel-tab is-active user-aside-link" onclick="openTab(event,'Web')">アカウント設定</a>
         <a class="panel-tab user-aside-link" onclick="openTab(event,'Aud')">パスワード変更</a>
-        <p class="edit-link">施設</phas-text-weight-bold>
+        <p class="edit-link">施設</p>
         <hr class="edit-hr">
         <a class="panel-tab user-aside-link" onclick="openTab(event,'Faci')">登録施設変更</a>
         <p class="edit-link">入居者</p>
@@ -49,14 +49,39 @@
                 <th>電話番号</th>
                 <td>080-4990-4484</td>
               </tr>
-              <tr clas>
+              <tr>
                 <th>住所</th>
                 <td>千葉県佐倉市００−００</td>
               </tr>
               <tr>
-                <th>プロフィール画像</th>
-                <td></td>
+                <th>現在のプロフィール画像</th>
+                <td>
+                  <div>
+                    <%= @user.user_icon_edit %>
+                  </div>
+                </td>
               </tr>
+              <tr>
+                <th>プロフィール画像を変更</th>
+                <td>
+                  <div class="container">
+                    <%= f.file_field :image, value: "upload", class: "user_img user-icon-field" %>
+                    <%= f.hidden_field :image_cache %>
+                  </div>
+                </td>
+              </tr>
+              <% if @user.persisted? && @user.image? %>
+                <tr>
+                  <th>画像を削除</th>
+                  <td>
+                    <div style="margin-top:10px;">
+                      <%= f.check_box :remove_image, id: "icon_delete" %>
+                      <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -122,4 +147,20 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
   }
+</script>
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(".user_img").change(function(){
+        readURL(this);
+    });
+  });
 </script>
