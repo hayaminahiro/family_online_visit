@@ -960,7 +960,7 @@ h1.mini-title {
   }
 
   //検索フォーム【施設登録画面】
-  .field.is-grouped > .control:not(:last-child) {
+  #input-mobile.field.is-grouped > .control:not(:last-child) {
     width: 70%;
   }
 
