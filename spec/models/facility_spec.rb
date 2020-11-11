@@ -4,7 +4,7 @@ RSpec.describe Facility, type: :model do
   let(:facility) { create(:facility) }
 
   describe 'validations' do
-    # 名前、メールアドレス、パスワード、郵便番号、都道府県、市町村、建物名があれば有効な状態であること
+    # 名前、メールアドレス、パスワードがあれば有効な状態であること
     it "is valid with a name, email, and password" do
       expect(facility).to be_valid
     end
