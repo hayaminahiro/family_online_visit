@@ -69,6 +69,10 @@
     text-align: center;
   }
 
+  tr {
+    font-size: 17px;
+  }
+
   thead th {/*table内のヘッダーに対して*/
     color: white;
     font-size:20px;
@@ -106,6 +110,12 @@
     left: 55%;
     bottom: 71px;
   }
+
+  #table-residents {
+    thead th {
+      font-size: 16px;
+    }
+  }
 }
 
 //モバイル
@@ -139,5 +149,11 @@
 
   .residents-search {
     right: 4%;
+  }
+
+  #table-residents {
+    tr {
+      font-size: 14px;
+    }
   }
 }

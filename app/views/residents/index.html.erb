@@ -55,18 +55,18 @@
           <table class="table is-striped is-fullwidth" id="table-residents">
             <thead>
               <tr class="has-text-weight-bold">
-                <th style="width: 25%;">利用者名</th>
-                <th style="width: 25%;">ご家族名</th>
-                <th style="width: 25%;">担当者名</th>
-                <th style="width: 25%;">思い出アルバム</th>
-                <th style="width: 8%;">編集</th>
-                <th style="width: 8%;">退所</th>
-                <th style="width: 8%;">削除</th>
+                <th>利用者名</th>
+                <th>ご家族名</th>
+                <th>担当者名</th>
+                <th>思い出アルバム</th>
+                <th>編集</th>
+                <th>退所</th>
+                <th>削除</th>
               </tr>
             </thead>
             <tbody>
               <% @residents.each do |resident| %>
-              <tr class="is-size-5">
+              <tr class="has-text-weight-semibold">
                 <td><%= resident.name %></td>
                 <td>
                   <% resident.users.each do |user| %>
