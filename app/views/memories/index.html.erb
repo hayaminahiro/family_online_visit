@@ -18,23 +18,23 @@
       <!--全てのの写真-->
       <div class="tab4-body__item tab4-body__item--1 on">
         <% @memories.each do |m| %>
-          <%= image_tag m.image0.url, class: "img-interval index-photo-size" if m.image0? %>
-          <%= image_tag m.image1.url, class: "img-interval index-photo-size" if m.image1? %>
-          <%= image_tag m.image2.url, class: "img-interval index-photo-size" if m.image2? %>
-          <%= image_tag m.image3.url, class: "img-interval index-photo-size" if m.image3? %>
-          <%= image_tag m.image4.url, class: "img-interval index-photo-size" if m.image4? %>
-          <%= image_tag m.image5.url, class: "img-interval index-photo-size" if m.image5? %>
-          <%= image_tag m.image6.url, class: "img-interval index-photo-size" if m.image6? %>
-          <%= image_tag m.image7.url, class: "img-interval index-photo-size" if m.image7? %>
+          <%= m.image00 %>
+          <%= m.image01 %>
+          <%= m.image02 %>
+          <%= m.image03 %>
+          <%= m.image04 %>
+          <%= m.image05 %>
+          <%= m.image06 %>
+          <%= m.image07 %>
         <% end %>
       </div>
 
       <!--行事ごとの写真-->
       <div class="tab4-body__item tab4-body__item--2 card-controller">
         <% @memories.each do |m| %>
-          <div class="card-float" style="display: inline-block;">
-            <section class="photo-card" style="display: inline-block">
-              <%= image_tag m.image0.url, class: "card-photo-size" if m.image0.present? %>
+          <div class="card-float card-inline-block">
+            <section class="photo-card card-inline-block">
+              <%= m.card_image %>
               <div class="photo-card-content">
                 <p class="photo-card-title"><%= m.title %></p>
                 <p class="photo-card-text"><%= m.message %></p>
