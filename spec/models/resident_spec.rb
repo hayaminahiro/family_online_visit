@@ -5,7 +5,7 @@ RSpec.describe Resident, type: :model do
 
   describe 'validations' do
     # 名前、担当者名があれば有効な状態であること
-    it "is valid with a name, email, and password" do
+    it "is valid with a name and charge_worker" do
       expect(resident).to be_valid
     end
 

@@ -5,7 +5,7 @@ RSpec.describe Information, type: :model do
 
   describe 'validations' do
     # タイトル、本文があれば有効な状態であること
-    it "is valid with a name, email, and password" do
+    it "is valid with a title and news" do
       expect(information).to be_valid
     end
 
