@@ -8,7 +8,7 @@
 }
 
 #panel-info {
-  margin-top: 90px;
+  margin-top: 25px;
   min-height: 70vh;
   background: #F5F5F5;
 }
@@ -149,6 +149,18 @@ input#information_image.image_uploading {
   margin-bottom: 28px;
 }
 
+.level-left {
+  padding-top: 30px;
+}
+
+.level-right {
+  padding-top: 30px;
+}
+
+#info-layout {
+  display: none;
+}
+
 //タブレット
 @media screen and (max-width: 1200px) {
 
@@ -172,9 +184,13 @@ input#information_image.image_uploading {
 
 @media screen and (max-width: 1000px) {
 
-  //お知らせ新規作成画面
-  #panel-style {
-    margin: 0px 50px 50px 50px;
+  //タグ（お知らせ一覧）
+  #panel-info {
+    margin-top: 20px;
+  }
+
+  .level-right {
+    padding-top: 0px;
   }
 
   //プレビュー画像
@@ -186,15 +202,15 @@ input#information_image.image_uploading {
   .drop-zone-area {
     padding: 0px 15px 100px 15px;
   }
+
+  //panel調整
+  #info-layout {
+    display: block;
+  }
 }
 
 //モバイル
 @media screen and (max-width: 500px) {
-
-  //タグ
-  #panel-info {
-    margin-top: 30px;
-  }
 
   .panel-tabs a {
     margin: 0px 10px;
@@ -217,7 +233,7 @@ input#information_image.image_uploading {
 
   //お知らせ新規作成・編集画面
   #panel-style {
-    margin: 0px;
+    margin: 10px;
   }
 
   //画像選択欄

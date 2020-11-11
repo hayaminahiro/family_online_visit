@@ -101,6 +101,14 @@
         </div>
       </div>
     </article>
+
+    <section class="hero is-small" id="info-layout">
+      <div class="hero-body">
+        <div class="container">
+        </div>
+      </div>  
+    </section>
+    
   </div>
 </div>
 
@@ -118,4 +126,12 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
   }
+</script>
+
+<script>
+  $(function(){
+    ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('#vertical_tab_nav li', { delay: 100, distance: '100%', origin: 'top', duration: 1500, viewFactor: 0.5 });
+    ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+  });
 </script>
