@@ -62,6 +62,13 @@
 #info-card {
   width:300px;
   margin: 20px;
+
+  .info-photo-size {
+    width: 332px;
+    height: 210px;
+    object-fit: cover;
+  }
+
 }
 
 #info-content {

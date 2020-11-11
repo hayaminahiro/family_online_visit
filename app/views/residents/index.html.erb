@@ -1,9 +1,7 @@
 <%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
 
 <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
-
   <%= render 'shared/side_link' %>
-
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
     <section class="resident-title hero">
       <div class="hero-body">
@@ -57,9 +55,10 @@
           <table class="table is-striped is-fullwidth" id="table-residents">
             <thead>
               <tr class="has-text-weight-bold">
-                <th style="width: 25%;">入居者名</th>
+                <th style="width: 25%;">利用者名</th>
                 <th style="width: 25%;">ご家族名</th>
                 <th style="width: 25%;">担当者名</th>
+                <th style="width: 25%;">思い出アルバム</th>
                 <th style="width: 8%;">編集</th>
                 <th style="width: 8%;">退所</th>
                 <th style="width: 8%;">削除</th>
@@ -69,8 +68,17 @@
               <% @residents.each do |resident| %>
               <tr class="is-size-5">
                 <td><%= resident.name %></td>
-                <td><%#= resident.users %></td>
+                <td>
+                  <% resident.users.each do |user| %>
+                    <%= user.name %>
+                  <% end %>
+                </td>
                 <td><%= resident.charge_worker %></td>
+                <td>
+                  <%= link_to resident_memories_path(resident), class:"button is-link" do %>
+                    <i class="fas fa-images"></i>
+                  <% end %>
+                </td>
                 <td>
                   <div class=" js-contents--edit-button">
                     <%= link_to "\uf4ff", edit_resident_path(resident), remote: true, class: "fa button is-success resident--update-button" %>

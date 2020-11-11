@@ -53,7 +53,9 @@ Rails.application.routes.draw do
     resources :facility_users, only: %i[new update]
 
   # 入居者 ================================================================================
-    resources :residents
+    resources :residents do
+      resources :memories # 思い出アルバム
+    end
 
   # 入居者申請 ============================================================================
     resources :request_residents, only: %i[new create index]

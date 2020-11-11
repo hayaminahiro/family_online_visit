@@ -43,16 +43,16 @@
       </div>
 
       <div id="Web" class="content-tab" >
-        <div clsss="has-text-centered" id="info-container">
+        <div class="has-text-centered" id="info-container">
         <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
           <div class="info-section">
             <% @informations.each do |information| %>
               <div class="card" id="info-card">
                 <div class="card-image">
                   <% if information.image? %>
-                    <%= image_tag information.image.url, id: :img_prev, :size => '800x200' %>
+                    <%= image_tag information.image.url, id: :img_prev, class: "info-photo-size" %>
                   <% else %>
-                    <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, :size => '500x200' %>
+                    <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, class: "info-photo-size" %>
                   <% end %>
                 </div>
                 <div class="card-content">
