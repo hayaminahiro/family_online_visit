@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_150720) do
+ActiveRecord::Schema.define(version: 2020_11_06_160505) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 2020_10_18_150720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_information_on_facility_id"
+  end
+
+  create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "resident_id"
+    t.string "title"
+    t.string "message"
+    t.date "event_date"
+    t.string "image0"
+    t.string "image1"
+    t.string "image2"
+    t.string "image3"
+    t.string "image4"
+    t.string "image5"
+    t.string "image6"
+    t.string "image7"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resident_id"], name: "index_memories_on_resident_id"
   end
 
   create_table "relatives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -109,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_150720) do
     t.string "prefecture_name"
     t.string "address_city"
     t.string "address_street"
+    t.text "image"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -131,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_150720) do
   add_foreign_key "facility_users", "facilities"
   add_foreign_key "facility_users", "users"
   add_foreign_key "information", "facilities"
+  add_foreign_key "memories", "residents"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
   add_foreign_key "request_residents", "facilities"
