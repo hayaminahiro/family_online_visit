@@ -20,5 +20,12 @@ module AppName
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
+    config.generators do |g|  #不要なテストファイルを作成しない時に使用
+      g.test_framework :rspec,
+            view_specs: false,
+            helper_specs: false,
+            controller_specs: false,
+            routing_specs: false
+    end
   end
 end
