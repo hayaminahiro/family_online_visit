@@ -18,8 +18,6 @@ ja:
           password_confirmation: パスワード再入力
           room_name: ルームネーム
           admin: 管理者権限
-          resident_name1: 入居者の名前1
-          resident_name2: 入居者の名前2
           phone: 電話番号
           address: 住所
           created_at: 作成日
