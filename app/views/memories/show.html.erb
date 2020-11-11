@@ -7,14 +7,14 @@
     <section class="photo-card-show">
 
       <!--画像部分-->
-      <%= image_tag @memory.image0.url, class: "img-interval show-photo-size" if @memory.image0? %>
-      <%= image_tag @memory.image1.url, class: "img-interval show-photo-size" if @memory.image1? %>
-      <%= image_tag @memory.image2.url, class: "img-interval show-photo-size" if @memory.image2? %>
-      <%= image_tag @memory.image3.url, class: "img-interval show-photo-size" if @memory.image3? %>
-      <%= image_tag @memory.image4.url, class: "img-interval show-photo-size" if @memory.image4? %>
-      <%= image_tag @memory.image5.url, class: "img-interval show-photo-size" if @memory.image5? %>
-      <%= image_tag @memory.image6.url, class: "img-interval show-photo-size" if @memory.image6? %>
-      <%= image_tag @memory.image7.url, class: "img-interval show-photo-size" if @memory.image7? %>
+      <%= @memory.image00_s %>
+      <%= @memory.image01_s %>
+      <%= @memory.image02_s %>
+      <%= @memory.image03_s %>
+      <%= @memory.image04_s %>
+      <%= @memory.image05_s %>
+      <%= @memory.image06_s %>
+      <%= @memory.image07_s %>
 
       <!--タイトル/メッセージ部分-->
       <div class="photo-card-link-show">
