@@ -31,19 +31,17 @@ class FacilitiesController < ApplicationController
     redirect_to facilities_url, alert: "「#{@facility.facility_name}」の施設情報を削除しました。"
   end
 
-    private
+  private
 
-      def index_access_limits
-        until current_facility.admin?
-          redirect_to :root and return
-        end
-      end
+    def index_access_limits
+      redirect_to :root and return until current_facility.admin?
+    end
 
-      def set_facility
-        @facility = Facility.find(params[:id])
-      end
+    def set_facility
+      @facility = Facility.find(params[:id])
+    end
 
-      def set_facility_id
-        @facility = Facility.find(params[:facility_id])
-      end
+    def set_facility_id
+      @facility = Facility.find(params[:facility_id])
+    end
 end

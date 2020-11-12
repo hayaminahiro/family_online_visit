@@ -23,7 +23,7 @@ class RequestResidentsController < ApplicationController
   # def destroy #申請取り消し
   # end
 
-    private
+  private
 
     def request_params
       params.require(:request_resident).permit(:req_name, :req_phone, :req_address, :req_approval)

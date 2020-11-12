@@ -47,25 +47,25 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-    private
+  private
 
-      def admin_params
-        params.permit(:floor_authority)
-      end
+    def admin_params
+      params.permit(:floor_authority)
+    end
 
-      def room_params
-        params.require(:user).permit(:room_name)
-      end
+    def room_params
+      params.require(:user).permit(:room_name)
+    end
 
-      def set_user
-        @user = User.find(params[:id])
-      end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-      # def set_facility_id
-      #   @facility = Facility.find(params[:facility_id])
-      # end
+    # def set_facility_id
+    #   @facility = Facility.find(params[:facility_id])
+    # end
 
-      def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-      end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end

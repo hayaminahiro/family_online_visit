@@ -21,9 +21,9 @@ class RelativesController < ApplicationController
     @approvals = RequestResident.where(req_approval: "承認済").where(facility_id: current_facility)
   end
 
-    private
+  private
 
-      def residents_connection_params
-        params.require(:user).permit(resident_ids: [])
-      end
+    def residents_connection_params
+      params.require(:user).permit(resident_ids: [])
+    end
 end

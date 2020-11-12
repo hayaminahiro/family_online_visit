@@ -55,14 +55,14 @@ class InformationsController < ApplicationController
     @informations = Information.where(facility_id: params[:facility_id].to_i).where(status: "others").order(id: "DESC")
   end
 
-    private
+  private
 
-      def information_params
-        params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
-      end
+    def information_params
+      params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
+    end
 
-      def set_information
-        @information = Information.find(params[:id])
-      end
+    def set_information
+      @information = Information.find(params[:id])
+    end
 
 end

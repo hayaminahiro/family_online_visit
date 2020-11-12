@@ -17,10 +17,10 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :name,                    presence: true, length: {maximum: 20}  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
+  validates :name,                    presence: true, length: { maximum: 20 }  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
   validates :email,                   presence: true , uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :password,                presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
-  validates :password_confirmation,   presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
+  validates :password,                presence: true, length: { minimum: 6, maximum: 128 },on: :save_to_session_before_phone
+  validates :password_confirmation,   presence: true, length: { minimum: 6, maximum: 128 },on: :save_to_session_before_phone
 
   validates :postal_code,             presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :prefecture_name,         presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
@@ -59,14 +59,14 @@ class User < ApplicationRecord
     else
       user = User.new(
         name: auth.info.name,
-        email: auth.info.email,
+        email: auth.info.email
       )
       sns = SnsCredential.new(
         uid: auth.uid,
         provider: auth.provider
       )
     end
-    return { user: user ,sns: sns}
+    return { user: user ,sns: sns }
   end
 
   def self.with_sns_data(auth, snscredential)
@@ -74,10 +74,10 @@ class User < ApplicationRecord
     unless user.present?
       user = User.new(
         name: auth.info.name,
-        email: auth.info.email,
+        email: auth.info.email
       )
     end
-    return {user: user}
+    return { user: user }
   end
 
   def self.find_oauth(auth)
@@ -91,7 +91,7 @@ class User < ApplicationRecord
       user = without_sns_data(auth)[:user]
       sns = without_sns_data(auth)[:sns]
     end
-    return { user: user ,sns: sns}
+    return { user: user ,sns: sns }
   end
 
   def set_values(omniauth)
