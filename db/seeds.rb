@@ -67,8 +67,8 @@ hoiku.save!
 
 # passwordは未設定(動き確認する為のseed)
 40.times do |n|
-  name = "sample施設-#{ n + 1 }"
-  email = "facility#{ n + 1 }@email.com"
+  name = "sample施設-#{n + 1}"
+  email = "facility#{n + 1}@email.com"
   password = "password"
   Facility.create!(
     facility_name: name,
@@ -80,8 +80,8 @@ end
 puts "施設を作成しました！"
 
 40.times do |n|
-  name = "sampleご家族-#{ n + 1 }"
-  email = "sample#{ n + 1 }@email.com"
+  name = "sampleご家族-#{n + 1}"
+  email = "sample#{n + 1}@email.com"
   password = "password"
   User.create!(
     name: name,
@@ -98,22 +98,22 @@ end
 puts "ご家族ユーザを作成しました！"
 
 40.times do |n|
-  name = "入居者-#{ n + 1 }"
+  name = "入居者-#{n + 1}"
   Resident.create!(
     facility_id: 2,
     name: name,
-    charge_worker: "担当者-#{ n + 1 }"
+    charge_worker: "担当者-#{n + 1}"
   )
 end
 
 puts "入居者を作成しました！"
 
 31.times do |n|
-  name = "タイトル-#{ n + 1 }"
+  name = "タイトル-#{n + 1}"
   Information.create!(
     facility_id: 2,
     title: name,
-    news: "お知らせ-#{ n + 1 }",
+    news: "お知らせ-#{n + 1}",
     status: 0
   )
 end
