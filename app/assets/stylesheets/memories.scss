@@ -176,7 +176,7 @@
 }
 
 // レスポンシブindex
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 750px) {
   .glovalNavigation {
     font-weight: 700;
     padding-bottom: 5px;
@@ -206,8 +206,8 @@
     }
 
     .photo-card {
-      margin: 50px 50px 20px -90px;
-      width: 280px;
+      margin: 50px 50px 20px -110px;
+      width: 320px;
       background: #fff;
       border-radius: 5px;
       box-shadow: 0 2px 5px #ccc;

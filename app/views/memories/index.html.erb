@@ -30,7 +30,7 @@
       </div>
 
       <!--行事ごとの写真-->
-      <div class="tab4-body__item tab4-body__item--2 card-controller">
+      <div class="tab4-body__item tab4-body__item--2 card-controller" style="padding-bottom: 40px;">
         <% @memories.each do |m| %>
           <div class="card-float card-inline-block">
             <section class="photo-card card-inline-block">
@@ -43,7 +43,7 @@
                 <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
                   <i class="fas fa-folder-open fa-3x"></i>
                 <% end %>
-                <p class="photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
+                <p class= photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
               </div>
             </section>
           </div>
