@@ -15,8 +15,8 @@
         <nav class="tabs is-boxed is-fullwidth is-large">
           <div class="container">
             <ul>
-              <li class="tab is-active has-text-weight-bold" onclick="openTab(event,'WebDev')"><a>利用中</a></li>
-              <li class="tab has-text-weight-bold" onclick="openTab(event,'WebAud')"><a>退所</a></li>
+              <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight--semibold">利用中</a></li>
+              <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight--semibold">退所</a></li>
             </ul>
           </div>
         </nav>
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <div id="WebAud" class="content-tab" style="display:none">
+      <div id="WebAud" class="resident-content-tab" style="display:none">
         <p>
           退所者一覧<br>
           Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
@@ -149,13 +149,13 @@
       $("div#error_modal").removeClass("is-active");
     })
   });
-</script>  
+</script>
 
 <script>
-  // タブ切り替え  
+  //タブの切替
   function openTab(evt, tabName) {
     var i, x, tablinks;
-    x = document.getElementsByClassName("content-tab");
+    x = document.getElementsByClassName("resident-content-tab");
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";
     }
