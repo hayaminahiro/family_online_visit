@@ -7,8 +7,8 @@ class InformationsController < ApplicationController
   def index
     @info_top = Information.find_by(status: "head")
     @information = Information.new
-
     return @informations = current_facility.informations.where(status: "others").where('title LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(id: "DESC") if params[:search].present?
+
     @informations = current_facility.informations.where(status: "others").order(id: "DESC").paginate(page: params[:page], per_page: 9)
   end
 

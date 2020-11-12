@@ -8,6 +8,7 @@ class FacilitiesController < ApplicationController
 
   def index
     return @facilities = Facility.where('facility_name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
+
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
   end
 

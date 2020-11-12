@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def index
     return @users = current_facility.users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
+
     @users = current_facility.users.paginate(page: params[:page], per_page: 30).order(:id)
   end
 
