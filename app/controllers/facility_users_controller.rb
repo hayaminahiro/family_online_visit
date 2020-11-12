@@ -7,9 +7,7 @@ class FacilityUsersController < ApplicationController
   end
 
   def update
-    if params[:user].present?
-      params[:user][:facility_ids].delete("0")
-    end
+    params[:user][:facility_ids].delete("0") if params[:user].present?
     if params[:user].blank?
       flash[:alert] = "新しく施設を登録して下さい。"
     elsif params[:user][:facility_ids].map(&:to_i).sort == current_user.facilities.ids.sort
