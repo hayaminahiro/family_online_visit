@@ -12,7 +12,7 @@ class InformationsController < ApplicationController
     @informations = current_facility.informations.where(status: "others").order(id: "DESC").paginate(page: params[:page], per_page: 9)
   end
 
-  def show;end
+  def show; end
 
   def new
     if params[:image_cache].present?
@@ -32,7 +32,7 @@ class InformationsController < ApplicationController
     end
   end
 
-  def edit;end
+  def edit; end
 
   def update
     @information.facility_id = current_facility.id

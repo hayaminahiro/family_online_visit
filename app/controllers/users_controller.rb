@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @informations = Information.where(facility_id: current_user.facilities).where(status: "others")
   end
 
-  def edit;end
+  def edit; end
 
   def update
     # passwordが空白でも編集できる
