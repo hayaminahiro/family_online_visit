@@ -28,12 +28,8 @@ class ResidentsController < ApplicationController
     elsif params[:file].content_type == "text/csv"
       # 入居者一覧からのCSVインポート
       registered_count = import_residents
-      unless @errors.count == 0
-        flash[:alert] = "#{@errors.count}件登録に失敗しました"
-      end
-      unless registered_count == 0
-        flash[:notice] = "#{registered_count}件登録しました"
-      end
+      flash[:alert] = "#{@errors.count}件登録に失敗しました" unless @errors.count == 0
+      flash[:notice] = "#{registered_count}件登録しました" unless registered_count == 0
       redirect_to residents_url(error_residents: @errors)
     else
       redirect_to residents_url, alert: "CSVファイルのみ有効です"

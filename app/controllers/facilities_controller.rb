@@ -19,9 +19,7 @@ class FacilitiesController < ApplicationController
     @facilities = Facility.all.where.not(admin: true)
     @registration_application = @facilities.where(id: current_facility.users)
     @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
-    if params[:search].present?
-      @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id)
-    end
+    @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
     @info_top = Information.find_by(status: "head")
     @request_residents = RequestResident.where(req_approval: "申請中").where(facility_id: current_facility)
   end
