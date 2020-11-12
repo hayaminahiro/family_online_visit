@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # deviseサインアップ・編集用コントローラー
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: :create
