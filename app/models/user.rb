@@ -94,6 +94,7 @@ class User < ApplicationRecord
     return { user: user, sns: sns }
   end
 
+  # Naming/AccessorMethodName →"def values(omniauth)" or "def values"
   def set_values(omniauth)
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
     credentials = omniauth['credentials']
@@ -106,6 +107,7 @@ class User < ApplicationRecord
     # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
+  # Naming/AccessorMethodName →"def values_by_raw_info(raw_info)" or "def values_by_raw_info"
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
