@@ -52,13 +52,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
       # devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[attribute]) #facility_idsを追加
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[attribute]) # facility_idsを追加
     end
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
       # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-      devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute image remove_image image_cache]) #facility_idsを追加
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute image remove_image image_cache]) # facility_idsを追加
     end
 
     def update_resource(resource, params)

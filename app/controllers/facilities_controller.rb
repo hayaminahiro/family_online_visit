@@ -11,11 +11,11 @@ class FacilitiesController < ApplicationController
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
   end
 
-  def home #各施設のホーム画面
+  def home # 各施設のホーム画面
     @requests = current_user.request_residents.order(created_at: :desc).where(facility_id: @facility.id).first
   end
 
-  def facility_home  #施設ルートのhome画面
+  def facility_home  # 施設ルートのhome画面
     @facilities = Facility.all.where.not(admin: true)
     @registration_application = @facilities.where(id: current_facility.users)
     @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
