@@ -12,12 +12,12 @@ class FacilityUsersController < ApplicationController
     end
     if params[:user].blank?
       flash[:alert] = "新しく施設を登録して下さい。"
-    elsif params[:user][:facility_ids].map{&:to_i}.sort == current_user.facilities.ids.sort
+    elsif params[:user][:facility_ids].map(&:to_i).sort == current_user.facilities.ids.sort
       flash[:alert] = "登録施設が更新されていません。登録チェック ✔️ を確認して更新して下さい。"
-    elsif params[:user][:facility_ids].map{&:to_i}.count > current_user.facilities.ids.count
+    elsif params[:user][:facility_ids].map(&:to_i).count > current_user.facilities.ids.count
       current_user.update_attributes(facilities_used_params)
       flash[:notice] = "新しく施設を登録しました。"
-    elsif params[:user][:facility_ids].map{&:to_i}.count < current_user.facilities.ids.count
+    elsif params[:user][:facility_ids].map(&:to_i).count < current_user.facilities.ids.count
       current_user.update_attributes(facilities_used_params)
       flash[:notice] = "登録施設を解除しました。"
     end
