@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
   def google_oauth2
     callback_for(:google)
   end
-
 
   def callback_for(provider)
     @omniauth = request.env['omniauth.auth']
@@ -57,7 +55,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       redirect_to root_path, notice: "ログインしました"
     end
-
 
     def fake_email(uid, provider)
         return "#{auth.uid}-#{auth.provider}@example.com"
