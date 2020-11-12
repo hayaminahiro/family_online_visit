@@ -8,7 +8,7 @@
   </div>
 </section>
 
-<section class="hero-image-user">
+<section class="edit-image-user">
   <div class="user-home-image">
     <% month = Date.today.month %>
     <% if month.in?([ 12, 1, 2 ]) %>
@@ -21,7 +21,7 @@
       <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
     <% end %>
     <div class="user-icon-outline">
-      <%= @user.user_icon_mobile %>
+      <%= @user.user_icon_edit_responsive %>
     </div>
   </div>
 </section>
@@ -39,24 +39,24 @@
         <a class="panel-tab user-aside-link" onclick="openTab(event,'Faci')">登録施設変更</a>
         <p class="edit-link">入居者</p>
         <hr class="edit-hr">
-        <a class="panel-tab user-aside-link" onclick="openTab(event,'Resi')">登録入居者変更</a>
+        <a class="panel-tab user-aside-link" onclick="openTab(event,'Resi')">登録利用者変更</a>
       </div>
     </nav>
   </aside>
 
   <edit-aside>
     <div class="edit-side-link">
-      <a class="panel-tab is-active edit-links" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>アカウント設定</p></a>
-      <a class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Aud')"><i class="fas fa-phone-volume"></i><p>パスワード変更</p></a>
-      <a class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>登録施設変更</p></a>
-      <a class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>登録入居者変更</p></a>
+      <div class="panel-tab is-active edit-links" onclick="openTab(event,'Web')"><i class="far fa-user"></i><p>アカウント</p></div>
+      <div class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Aud')"><i class="fas fa-key"></i><p>パスワード</p></div>
+      <div class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Faci')"><i class="far fa-building"></i><p>登録施設</p></div>
+      <div class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-user-friends"></i><p>登録利用者</p></div>
     </div>
   </edit-aside>
   <main>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
     <article class="panel is-success">
-      <div id="Web" class="content-tab" >
+      <div id="Web" class="content-tab">
         <div>
           <table class="table is-fullwidth is-narrow user-edit-table" id="u-edit-table">
             <thead>

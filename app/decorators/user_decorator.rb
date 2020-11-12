@@ -37,6 +37,7 @@ module UserDecorator
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-profile-image"
     end
   end
+
   # ユーザー編集画面用
   def user_icon_edit
     if image?
@@ -46,7 +47,16 @@ module UserDecorator
     end
   end
 
-  def user_icon_mobile
+  # レスポンシブ
+  def user_icon_responsive
+    if image?
+      image_tag image.url, class: "user-icon-image"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "user-icon-image"
+    end
+  end
+
+  def user_icon_edit_responsive
     if image?
       image_tag image.url, id: :img_prev, class: "user-icon-image", onClick:"$('.user_img').click()"
     else
