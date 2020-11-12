@@ -19,8 +19,8 @@ class User < ApplicationRecord
 
   validates :name,                    presence: true, length: { maximum: 20 }  # 施設側からの家族（user）の編集で空白でエラーが出なかったため追加
   validates :email,                   presence: true , uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :password,                presence: true, length: { minimum: 6, maximum: 128 },on: :save_to_session_before_phone
-  validates :password_confirmation,   presence: true, length: { minimum: 6, maximum: 128 },on: :save_to_session_before_phone
+  validates :password,                presence: true, length: { minimum: 6, maximum: 128 }, on: :save_to_session_before_phone
+  validates :password_confirmation,   presence: true, length: { minimum: 6, maximum: 128 }, on: :save_to_session_before_phone
 
   validates :postal_code,             presence: true, exclusion: { in: %w[該当する住所が存在しません。] }
   validates :prefecture_name,         presence: true, exclusion: { in: %w[該当する住所が存在しません。] }
@@ -66,7 +66,7 @@ class User < ApplicationRecord
         provider: auth.provider
       )
     end
-    return { user: user ,sns: sns }
+    return { user: user, sns: sns }
   end
 
   def self.with_sns_data(auth, snscredential)
