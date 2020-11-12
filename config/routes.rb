@@ -11,14 +11,14 @@ Rails.application.routes.draw do
 
   # devise（施設・ご家族） ==================================================================================
     devise_for :facilities, controllers: {
-        sessions:      'facilities/sessions',
-        passwords:     'facilities/passwords',
+        sessions: 'facilities/sessions',
+        passwords: 'facilities/passwords',
         registrations: 'facilities/registrations'
     }
 
     devise_for :users, controllers: {
-        sessions:      'users/sessions',
-        passwords:     'users/passwords',
+        sessions: 'users/sessions',
+        passwords: 'users/passwords',
         registrations: 'users/registrations',
         omniauth_callbacks: "users/omniauth_callbacks"
     }
@@ -37,14 +37,14 @@ Rails.application.routes.draw do
 
   # 施設 ==================================================================================
     resources :facilities do
-      get   :home                       # ユーザログイン後の各施設のホーム画面
-      get   :facility_home, on: :member # 施設ログイン後のホーム画面
+      get :home                       # ユーザログイン後の各施設のホーム画面
+      get :facility_home, on: :member # 施設ログイン後のホーム画面
     end
 
   # ご家族 ================================================================================
     resources :users do
       member do
-        get   :video_room
+        get :video_room
         patch :room_word_update         # Room_Name登録のため追加
       end
     end
