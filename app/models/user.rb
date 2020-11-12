@@ -91,7 +91,7 @@ class User < ApplicationRecord
       user = without_sns_data(auth)[:user]
       sns = without_sns_data(auth)[:sns]
     end
-    return { user: user ,sns: sns }
+    return { user: user, sns: sns }
   end
 
   def set_values(omniauth)
