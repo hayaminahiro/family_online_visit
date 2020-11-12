@@ -34,7 +34,6 @@ Rails.application.routes.draw do
       get 'privacy', to: "users/sessions#privacy"
     end
 
-
   # 施設 ==================================================================================
     resources :facilities do
       get :home                       # ユーザログイン後の各施設のホーム画面
@@ -70,5 +69,4 @@ Rails.application.routes.draw do
 
   # 予約 ==================================================================================
     resources :reservations
-
 end

@@ -6,7 +6,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   password = Devise.friendly_token.first(7)
 
-
   # GET /resource/sign_up
   def new
     super
