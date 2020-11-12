@@ -6,7 +6,8 @@ class RequestResidentsController < ApplicationController
 
   def create
     @request = RequestResident.new(request_params)
-    @request.facility_id, @request.user_id = params[:facility_id].to_i, current_user.id
+    @request.facility_id = params[:facility_id].to_i
+    @request.user_id = current_user.id
     if @request.save(context: :create_request)
       redirect_to facility_home_url(@request.facility_id), notice: "入居者申請できました"
     else
