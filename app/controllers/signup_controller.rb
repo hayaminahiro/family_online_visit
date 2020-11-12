@@ -85,6 +85,7 @@ class SignupController < ApplicationController
   end
 
   private
+
     # 許可するキーを設定します
     def user_params
       params.require(:user).permit(
