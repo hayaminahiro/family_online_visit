@@ -1,7 +1,35 @@
+<section class="hero is-small" id="edit-title">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered is-size-5">
+        プロフィール編集
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="hero-image-user">
+  <div class="user-home-image">
+    <% month = Date.today.month %>
+    <% if month.in?([ 12, 1, 2 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"%>
+    <% elsif month.in?([ 3, 4, 5 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image" %>
+    <% elsif month.in?([ 6, 7, 8 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"%>
+    <% elsif month.in?([ 9, 10, 11 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
+    <% end %>
+    <div class="user-icon-outline">
+      <%= @user.user_icon_mobile %>
+    </div>
+  </div>
+</section>
+
 <div class="main-content">
   <aside>
     <nav class="">
-      <div class="">
+      <div class="edit-side-tab">
         <p class="edit-link">アカウント</p>
         <hr class="edit-hr">
         <a class="panel-tab is-active user-aside-link" onclick="openTab(event,'Web')">アカウント設定</a>
@@ -15,6 +43,15 @@
       </div>
     </nav>
   </aside>
+
+  <edit-aside>
+    <div class="edit-side-link">
+      <a class="panel-tab is-active edit-links" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>アカウント設定</p></a>
+      <a class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Aud')"><i class="fas fa-phone-volume"></i><p>パスワード変更</p></a>
+      <a class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>登録施設変更</p></a>
+      <a class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>登録入居者変更</p></a>
+    </div>
+  </edit-aside>
   <main>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
@@ -148,6 +185,7 @@
     evt.currentTarget.className += " is-active";
   }
 </script>
+
 <script type="text/javascript">
   $(function() {
     function readURL(input) {

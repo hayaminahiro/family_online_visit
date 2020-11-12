@@ -45,4 +45,12 @@ module UserDecorator
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-edit-image"
     end
   end
+
+  def user_icon_mobile
+    if image?
+      image_tag image.url, id: :img_prev, class: "user-icon-image", onClick:"$('.user_img').click()"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-icon-image", onClick:"$('.user_img').click()"
+    end
+  end
 end

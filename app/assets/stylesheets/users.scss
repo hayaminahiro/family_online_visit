@@ -251,8 +251,8 @@ mypage-main{/*画面中央*/
     width: 95px;
     height: 95px;
     border-radius: 50%;
-    top: 0%;
-    left: 51%;
+    top: 3%;
+    left: 50%;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -458,24 +458,149 @@ mypage-main{/*画面中央*/
 
 
 /* ご家族編集画面 */
+/*背景画像*/
+.hero-image-user {
+  background-size: cover;
+  background-position: center;
+  display: none;
+}
+  
+.hero-image-user img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+  
+.user-home-image {
+  position: relative;
+}
+  
+.mypage-image {
+  height: 170px;
+  width: 100%;
+}
+
+  /*アイコン*/
+.user-icon-outline{
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  top: 46%;
+  left: 50%;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+.user-icon-image {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  top: 3%;
+  left: 51%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+#edit-title {
+  display: none;
+}
+
 .main-content {
   margin: 0px 100px;
   display: flex;
   font-size: 2rem;
   min-height: 100vh;
+  padding-top: 50px;
 }
 
 aside {/*画面左*/
-  width: 25%;
+  width: 50%;
   font-size:15px;
   min-width: 250px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
-main {/*画面中央*/
-  width: 75%;
-  margin: 0 auto;
+//モバイルタグ
+edit-aside {
+  position: fixed;
+  width: 15.5%;
+  height: 100%;
+  font-size:15px;
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: inset -1px 0px 0px 0px #DDDDDD;
+
+  .panel-tab{
+    margin: 35px 0px;
+  }
+
+  .panel-tab.is-active{
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 30px 0px;
+  }
+
+  .panel-tab.is-active::after{
+    position: absolute;
+    border-right: 17px solid #f4f3ef;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    top: -5px;
+    right: 0px;
+  }
+
+  .panel-tab p{
+    font-size: 17px;
+    font-weight: lighter;
+    text-align: left;
+  }
+
+  .panel-tab.is-active p{
+    font-size: 17px;
+    font-weight: normal;
+    color:rgb(235,94,39);
+  }
+
+  i{
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 22px;
+    color: gray;
+    margin-left: 20px;
+    width: 92px;
+  }
+
+  .panel-tab.is-active i{
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 22px;
+    color: rgb(235,94,39);
+    margin-left: 20px;
+    width: 92px;
+  }
+}
+
+.edit-links{
+  display: block;
+  color:black;
+  margin: 25px ;
 }
 
 .user-aside-link{
@@ -761,5 +886,117 @@ main {/*画面中央*/
   //タグ
   mypage-aside {
     top: 225px
+  }
+
+  //ユーザ編集画面
+  //背景画像
+  .hero-image-user {
+    display: block;
+  }
+
+  .mypage-image {
+    height: 160px;
+  }
+
+  //ユーザー（アイコン）
+  .user-icon-outline {
+    display: block;
+    width: 120px;
+    height: 120px;
+    top: 26%;
+  }
+
+  .user-icon-image {
+    display: block;
+    width: 113px;
+    height: 113px;
+  }
+
+  #edit-title {
+    display: block;
+  }
+
+  .main-content {
+    display: block;
+    margin: 0px 0px;
+    padding-top: 0px;
+  }
+
+  aside {
+    .edit-side-tab {
+      display: none;
+    }
+  }
+
+  edit-aside {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    z-index: 1;
+    top: 299px;
+    border-bottom: 1px solid #C0C0C0;
+
+    .edit-side-link {
+      margin-top: 0px;
+      display: flex;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+      margin-bottom: 26px;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      top: 15px;
+      font-size: 10px;
+      text-align: center;
+      width: 100%;
+    }
   }
 }
