@@ -43,6 +43,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in(:user, @profile)
           # redirect_to edit_user_path(@profile.user.id) and return
         end
+          # Style/IdenticalConditionalBranches(rubocop) ⬇️⬇️これに書き換えても大丈夫なら変更
+        # @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+        # unless @profile
+        #   @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+        #   email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+        #   @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+        # end
+        # @profile.set_values(@omniauth)
+        # sign_in(:user, @profile)
+
       end
       redirect_to root_path, notice: "ログインしました"
     end
