@@ -3,11 +3,9 @@ class MemoriesController < ApplicationController
   before_action :set_memories, only: %i[index show edit update]
   before_action :set_memory, only: %i[show edit update]
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def new
     @memory = @resident.memories.new
@@ -22,8 +20,7 @@ class MemoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @memory.update(memories_params)
@@ -61,5 +58,4 @@ class MemoriesController < ApplicationController
                                       :remove_image0, :remove_image1, :remove_image2, :remove_image3, :remove_image4, :remove_image5, :remove_image6, :remove_image7,
                                       :image0_cache, :image1_cache, :image2_cache, :image3_cache, :image4_cache, :image5_cache, :image6_cache, :image7_cache)
     end
-
 end
