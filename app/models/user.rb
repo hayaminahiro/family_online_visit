@@ -22,10 +22,10 @@ class User < ApplicationRecord
   validates :password,                presence: true, length: { minimum: 6, maximum: 128 },on: :save_to_session_before_phone
   validates :password_confirmation,   presence: true, length: { minimum: 6, maximum: 128 },on: :save_to_session_before_phone
 
-  validates :postal_code,             presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
-  validates :prefecture_name,         presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
-  validates :address_city,            presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
-  validates :address_street,          presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
+  validates :postal_code,             presence: true, exclusion: { in: %w[該当する住所が存在しません。] }
+  validates :prefecture_name,         presence: true, exclusion: { in: %w[該当する住所が存在しません。] }
+  validates :address_city,            presence: true, exclusion: { in: %w[該当する住所が存在しません。] }
+  validates :address_street,          presence: true, exclusion: { in: %w[該当する住所が存在しません。] }
   validates :phone,                   presence: true
 
   mount_uploader :image, ImageUploader
