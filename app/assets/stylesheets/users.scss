@@ -515,7 +515,8 @@ main {/*画面中央*/
 
 
 // レスポンシブ
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
+
   // マイページ
   mypage-aside {
     position: absolute;
@@ -699,6 +700,9 @@ main {/*画面中央*/
     height: 45px;
     width: 40px;
   }
+}
+
+@media screen and (max-width: 1000px) {
 
   //ご家族一覧のタイトルレイアウト
   .column.is-0-mobile {
