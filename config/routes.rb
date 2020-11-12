@@ -24,14 +24,14 @@ Rails.application.routes.draw do
     }
 
     devise_scope :facility do
-      get "facility_sign_in", :to => "facilities/sessions#new"
-      get "facility_sign_out", :to => "facilities/sessions#destroy"
+      get 'facility_sign_in', to: "facilities/sessions#new"
+      get 'facility_sign_out', to: "facilities/sessions#destroy"
     end
 
     devise_scope :user do
-      get "sign_in", :to => "users/sessions#new"
-      get "sign_out", :to => "users/sessions#destroy"
-      get "privacy", :to => "users/sessions#privacy"
+      get 'sign_in', to: "users/sessions#new"
+      get 'sign_out', to: "users/sessions#destroy"
+      get 'privacy', to: "users/sessions#privacy"
     end
 
 
