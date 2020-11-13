@@ -462,7 +462,7 @@ mypage-main{/*画面中央*/
 .edit-image-user {
   background-size: cover;
   background-position: center;
-  display: none;
+  display: block;
 }
   
 .edit-image-user img {
@@ -476,7 +476,7 @@ mypage-main{/*画面中央*/
 }
   
 .mypage-image {
-  height: 170px;
+  height: 220px;
   width: 100%;
 }
 
@@ -515,7 +515,6 @@ mypage-main{/*画面中央*/
 }
 
 .main-content {
-  margin: 0px 100px;
   display: flex;
   font-size: 2rem;
   min-height: 100vh;
@@ -534,66 +533,75 @@ aside {/*画面左*/
 //モバイルタグ
 edit-aside {
   position: fixed;
-  width: 15.5%;
+  display: flex;
+  width: 30%;
   height: 100%;
+  top: 74px;
   font-size:15px;
-  display: none;
   flex-direction: column;
-  background-color: white;
+  background: linear-gradient(to bottom, rgba(247, 240, 231, 0.6) 20%, rgba(247, 240, 231, 1) 90%);
   box-shadow: inset -1px 0px 0px 0px #DDDDDD;
 
-  .panel-tab{
+  .edit-menu-title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 100px;
+    font-size: 30px;
+  }
+
+  .panel-tab {
     margin: 35px 0px;
   }
 
-  .panel-tab.is-active{
+  .panel-tab.is-active {
     position: relative;
     display: block;
     width: auto;
     height: auto;
-    margin: 30px 0px;
   }
 
-  .panel-tab.is-active::after{
-    position: absolute;
-    border-right: 17px solid #f4f3ef;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    content: "";
-    top: -5px;
-    right: 0px;
-  }
-
-  .panel-tab p{
-    font-size: 17px;
+  .panel-tab p {
+    font-size: 20px;
     font-weight: lighter;
     text-align: left;
   }
 
-  .panel-tab.is-active p{
-    font-size: 17px;
+  .panel-tab.is-active p {
+    font-size: 20px;
     font-weight: normal;
     color:rgb(235,94,39);
   }
 
-  i{
+  i {
     text-align: center;
     float: left;
     line-height: 23px;
-    font-size: 22px;
+    font-size: 30px;
     color: gray;
-    margin-left: 20px;
+    margin-left: 30%;
     width: 92px;
   }
 
-  .panel-tab.is-active i{
+  .panel-tab.is-active i {
     text-align: center;
     float: left;
-    line-height: 23px;
-    font-size: 22px;
+    font-size: 30px;
     color: rgb(235,94,39);
-    margin-left: 20px;
+    margin-left: 30%;
     width: 92px;
+  }
+}
+
+main {
+
+  #user-edit-layout {
+    z-index: 0;
+    position: absolute;
+    display: flex;
+    width: 30%;
+    height: 100%;
+    flex-direction: column;
+    background-color: white;
   }
 }
 
@@ -857,8 +865,9 @@ edit-aside {
 
   .user-icon-image {
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 115px;
+    height: 115px;
+    top: 2%;
   }
 
   //タグ
@@ -886,7 +895,6 @@ edit-aside {
     .panel-tab.is-active {
       margin: 0px;
       width: 25%;
-      margin-bottom: 26px;
     }
 
     .panel-tab.is-active::after {
@@ -1018,6 +1026,7 @@ edit-aside {
     display: block;
     width: 93px;
     height: 93px;
+    top: 4%;
   }
 
   #edit-title {
