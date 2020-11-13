@@ -57,5 +57,5 @@ class MemoriesController < ApplicationController
                                      :image0, :image1, :image2, :image3, :image4, :image5, :image6, :image7,
                                      :remove_image0, :remove_image1, :remove_image2, :remove_image3, :remove_image4, :remove_image5, :remove_image6, :remove_image7,
                                      :image0_cache, :image1_cache, :image2_cache, :image3_cache, :image4_cache, :image5_cache, :image6_cache, :image7_cache)
-  end
+    end
 end
