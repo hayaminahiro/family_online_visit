@@ -1,5 +1,6 @@
 class RequestResidentsController < ApplicationController
-  def new # 入居者登録申請
+  # 入居者登録申請
+  def new
     @request = RequestResident.new
     @requests = current_user.request_residents.order(created_at: :desc).where(facility_id: params[:facility_id].to_i).first
   end
