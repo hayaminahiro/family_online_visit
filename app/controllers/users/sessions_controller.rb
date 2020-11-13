@@ -19,8 +19,7 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
-  def privacy
-  end
+  def privacy; end
 
   protected
 

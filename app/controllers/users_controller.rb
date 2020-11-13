@@ -41,8 +41,7 @@ class UsersController < ApplicationController
     redirect_to users_url(current_facility), notice: "#{@user.name}を削除しました。"
   end
 
-  def video_room
-  end
+  def video_room; end
 
   def new_admin
     @user = User.new
