@@ -49,10 +49,6 @@ class UsersController < ApplicationController
 
     private
 
-      def admin_params
-        params.permit(:floor_authority)
-      end
-
       def room_params
         params.require(:user).permit(:room_name)
       end
