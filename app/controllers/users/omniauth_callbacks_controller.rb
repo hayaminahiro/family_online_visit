@@ -42,8 +42,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
         @profile.set_values(@omniauth)
         sign_in(:user, @profile)
-
-          # Style/IdenticalConditionalBranches(rubocop) ⬇️⬇️これに書き換えても大丈夫なら変更
+        # Style/IdenticalConditionalBranches(rubocop) ⬇️⬇️これに書き換えても大丈夫なら変更
         # @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
         # unless @profile
         #   @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
@@ -58,8 +57,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     def fake_email(uid, provider)
-        return "#{auth.uid}-#{auth.provider}@example.com"
-        # ↑"#{auth.uid}-#{auth.provider}@example.com"ここはreturnがなくて良さそう
+      # ↓"#{auth.uid}-#{auth.provider}@example.com"ここはreturnがなくて良さそう
+      return "#{auth.uid}-#{auth.provider}@example.com"
     end
 
   # You should configure your model like this:
