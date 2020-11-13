@@ -34,6 +34,7 @@ h2 {
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: cover;
+  z-index: -1;
   //家族と青空
   background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
 }
@@ -248,7 +249,7 @@ p.navbar-item {
 }
 
 .login-title {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .login-title-user {
@@ -257,6 +258,10 @@ p.navbar-item {
 
 .signup-title {
   margin-top: 50px;
+}
+
+.signup-title-facility {
+  margin-top: 100px;
 }
 
 .admin-btn {
