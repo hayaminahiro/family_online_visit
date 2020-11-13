@@ -36,5 +36,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def filename
     original_filename if original_filename
+    # original_filenameのみの記述で問題なければ修正
   end
 end
