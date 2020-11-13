@@ -75,9 +75,6 @@ Naming/AccessorMethodName:
   Exclude:
     - 'app/models/user.rb'
 
-Style/AsciiComments:
-  Enabled: false
-
 # "クラス内のクラス"を定義する際の形式を強制
 Style/ClassAndModuleChildren:
   Exclude:
