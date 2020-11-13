@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   # 施設 ==================================================================================
   resources :facilities do
-    get :home                       # ユーザログイン後の各施設のホーム画面
+    get :home # ユーザログイン後の各施設のホーム画面
     get :facility_home, on: :member # 施設ログイン後のホーム画面
   end
 
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :video_room
-      patch :room_word_update         # Room_Name登録のため追加
+      patch :room_word_update # Room_Name登録のため追加
     end
   end
 
