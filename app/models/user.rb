@@ -66,7 +66,7 @@ class User < ApplicationRecord
         provider: auth.provider
       )
     end
-    return { user: user, sns: sns }
+    { user: user, sns: sns }
   end
 
   def self.with_sns_data(auth, snscredential)
@@ -77,8 +77,7 @@ class User < ApplicationRecord
         email: auth.info.email
       )
     end
-    return { user: user }
-    # ↑{ user: user }ここはreturnがなくていいかも
+    { user: user }
   end
 
   def self.find_oauth(auth)
@@ -92,8 +91,7 @@ class User < ApplicationRecord
       user = without_sns_data(auth)[:user]
       sns = without_sns_data(auth)[:sns]
     end
-    return { user: user, sns: sns }
-    # ↑{ user: user, sns: sns }ここはreturnがなくていいかも
+    { user: user, sns: sns }
   end
 
   # Naming/AccessorMethodName →"def values(omniauth)" or "def values"
