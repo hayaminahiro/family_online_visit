@@ -64,5 +64,4 @@ class InformationsController < ApplicationController
     def set_information
       @information = Information.find(params[:id])
     end
-
 end

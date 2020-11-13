@@ -1,5 +1,4 @@
 class ImageUploader < CarrierWave::Uploader::Base
-
   include CarrierWave::MiniMagick
 
   # 開発環境はローカル/本番環境はS3に保存
@@ -38,5 +37,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   def filename
     original_filename if original_filename
   end
-
 end
