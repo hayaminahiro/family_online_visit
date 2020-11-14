@@ -1,5 +1,5 @@
 class FacilitiesController < ApplicationController
-  before_action :set_facility, only: %i[destroy correct_facility show facility_home]
+  before_action :set_facility, only: %i[destroy show facility_home]
   before_action :set_facility_id, only: :home
   # ログインしてなければ閲覧不可
   before_action :authenticate_facility!, except: :home
@@ -11,6 +11,8 @@ class FacilitiesController < ApplicationController
 
     @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
   end
+
+  def show; end
 
   # 各施設のホーム画面
   def home
