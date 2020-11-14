@@ -1,12 +1,14 @@
 class AddImagesToMemories < ActiveRecord::Migration[5.2]
   def change
-    add_column :memories, :image0, :string, after: :event_date
-    add_column :memories, :image1, :string, after: :image0
-    add_column :memories, :image2, :string, after: :image1
-    add_column :memories, :image3, :string, after: :image2
-    add_column :memories, :image4, :string, after: :image3
-    add_column :memories, :image5, :string, after: :image4
-    add_column :memories, :image6, :string, after: :image5
-    add_column :memories, :image7, :string, after: :image6
+    change_table :memories, bulk: true do |t|
+      t.string :image0, after: :event_date
+      t.string :image1, after: :image0
+      t.string :image2, after: :image1
+      t.string :image3, after: :image2
+      t.string :image4, after: :image3
+      t.string :image5, after: :image4
+      t.string :image6, after: :image5
+      t.string :image7, after: :image6
+    end
   end
 end
