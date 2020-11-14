@@ -5,7 +5,7 @@ module FacilityDecorator
     if image?
       image_tag image.url, id: :img_prev, size: '500x500'
     else
-      month = Date.today.month
+      month = Time.zone.today.month
       if month.in?([12, 1, 2])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', id: :img_prev, size: '500x500'
       elsif month.in?([3, 4, 5])
