@@ -1,0 +1,546 @@
+//思い出indexページ
+.glovalNavigation {
+  font-weight: 700;
+  padding-bottom: 5px;
+  text-align: left;
+  border-bottom: 1px solid;
+  color: #401c00;
+  margin: 100px 5% 0 5%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.main-index {
+  min-height: 110vh;
+
+  #insert-photo {
+    margin: 10px 100px 0 0;
+  }
+
+  .content {
+    text-align: center;
+    margin: 20px 10px 0 0;
+    padding-top: 50px;
+  }
+
+  .img-interval {
+    margin: 5px;
+  }
+
+  .index-photo-size {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .card-photo-size {
+    width: 350px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  a.folder {
+    color: burlywood;
+  }
+}
+
+//indexカードのデザイン
+.photo-card {
+  margin: 50px 50px 20px 50px;
+  width: 310px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+}
+
+.photo-card-img {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-card-content {
+  padding: 20px;
+}
+
+.photo-card-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.photo-card-text {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.photo-card-link {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding: 20px;
+}
+
+.photo-card-link a {
+  text-decoration: none;
+  color: #0bd;
+  margin: 0 10px;
+}
+
+.photo-card-link a:hover {
+  color: #0090aa;
+}
+
+//タブのデザイン
+.tab4 {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  background-color: #fff !important;
+  margin: 0 !important;
+}
+
+.tab4__item {
+  flex: 1;
+  list-style: none;
+}
+
+.tab4__link {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: #401c00;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.tab4__link:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #13b1c0;
+  transition: all 0.4s ease-out;
+}
+
+.tab4__link:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #13b1c0;
+  transition: all 0.4s ease-out;
+}
+
+.tab4__link.on:before {
+  width: 20%;
+}
+
+.tab4__link.on:after {
+  width: 20%;
+}
+
+.tab4-body {
+  position: relative;
+  height: 120px;
+}
+
+.tab4-body__item {
+  position: absolute;
+  width: 100%;
+  margin: 30px 15px;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.6s ease-out;
+}
+
+.tab4-body__item.on {
+  opacity: 1;
+}
+
+//スクロール機能
+.photo-scroll {
+  width: 100%;
+  min-height: 110vh;
+  overflow: scroll;
+}
+
+// レスポンシブindex
+@media screen and (max-width: 1000px) {
+  .glovalNavigation {
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+    color: #401c00;
+    margin: 100px 5% 0 5%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .main-index {
+    min-height: 100vh;
+
+    .content {
+      text-align: center;
+      margin: 20px 10px 0 0;
+      padding-right: 30px;
+    }
+
+    .img-interval {
+      margin: 5px;
+    }
+
+    a.folder {
+      color: burlywood;
+    }
+
+    .photo-card {
+      margin: 50px 50px 20px -90px;
+      width: 280px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px #ccc;
+    }
+  }
+
+  .photo-scroll {
+    width: 100%;
+    min-height: 110vh;
+    overflow: scroll;
+    margin-bottom: 30px;
+  }
+
+  .card-controller {
+    margin-left: 140px;
+  }
+
+  .card-float {
+    float: left;
+  }
+}
+
+//思い出showページ
+.main-show {
+  min-height: 110vh;
+
+  .content {
+    text-align: center;
+    margin: 20px 10px 0 0;
+    padding: 15px;
+  }
+
+  .img-interval {
+    margin-top: 20px;
+  }
+}
+
+//showカードのデザイン
+.photo-card-show {
+  margin: 0 50px 20px 50px;
+  //width: 1000px;
+  height: 1020px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+
+  .show-photo-size {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+  }
+}
+
+.photo-card-img-show {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-card-content-show {
+  padding: 20px;
+}
+
+.photo-card-title-show {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.photo-card-text-show {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.photo-card-link-show {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.photo-card-link-show a {
+  text-decoration: none;
+  color: #0bd;
+  margin: 0 10px;
+}
+
+.photo-card-link-show a:hover {
+  color: #0090aa;
+}
+
+// レスポンシブshow
+@media screen and (max-width: 1024px) {
+  //思い出showページ
+  .main-show {
+    min-height: 110vh;
+
+    .content {
+      text-align: center;
+      margin: 0;
+      padding: 15px;
+    }
+
+    .img-interval {
+      margin-top: 10px;
+    }
+  }
+
+  .photo-card-show {
+    margin: 50px 0;
+    min-height: 275vh;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+  }
+
+  .photo-card-img-show {
+    border-radius: 5px 5px 0 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .photo-card-content-show {
+    padding: 20px;
+  }
+
+  .photo-card-title-show {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+
+  .photo-card-text-show {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .photo-card-link-show {
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding: 20px;
+
+    .memories-index-btn {
+      margin-top: 20px;
+    }
+  }
+
+  .photo-card-link-show a {
+    text-decoration: none;
+    color: #0bd;
+    margin: 0 10px;
+  }
+
+  .photo-card-link-show a:hover {
+    color: #0090aa;
+  }
+}
+
+//思い出newページ
+#memory-panel-style {
+  padding: 50px;
+  margin: 100px 50px 50px 50px;
+  background: #F5F5F5;
+}
+
+.panel {
+  .top-btn-positions {
+    margin-top: 420px;
+  }
+
+  .memory-title {
+    font-weight: 700;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #401c00;
+  }
+
+  .photo-size {
+    width: 332px;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .memory-title-mini {
+    font-weight: 700;
+    border-bottom: 1px solid #C0C0C0;
+    padding: 50px 0 5px 0;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 20px;
+    color: #401c00;
+  }
+
+  .mandatory {
+    margin: 0 0 2px 30px;
+  }
+
+  .memory-label {
+    padding: 20px 0 0 32px;
+  }
+
+  .message-input {
+    height: 100px;
+  }
+
+  .message-btn {
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #13b1c0;
+    color: #13b1c0;
+    text-decoration: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 60px;
+  }
+
+  //カード
+  .memory-card-position {
+    margin: 5px 2.5px; display: inline-block;
+
+    .card-drop-area {
+      padding: 0 1px 3px 1px;
+
+      .drop-area {
+        padding: 20px;
+        border-style: dashed;
+        border-width: 2px;
+        border-color: #ccc;
+        cursor: pointer;
+      }
+
+      .drop-area-mandatory {
+        padding: 20px;
+        border-style: dashed;
+        border-width: 2px;
+        border-color: crimson;
+        cursor: pointer;
+      }
+
+      .img-delete-label {
+        margin-top: -2px;
+      }
+
+      .blank-area {
+        padding: 14px;
+      }
+
+      //チェックボックスのデザイン
+      @for $i from 0 through 7 {
+        input#img#{$i}_delete[type="checkbox"] {
+          display: none;
+        }
+
+        input#img#{$i}_delete[type="checkbox"] + label {
+          display: block;
+          position: relative;
+          padding-left: 30px;
+          margin: 0 0 4px 23px;
+          color: #333;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
+
+        input#img#{$i}_delete[type="checkbox"] + label.check_position:last-child {
+          margin-bottom: 0;
+        }
+
+        input#img#{$i}_delete[type="checkbox"] + label.check_position:before {
+          content: '';
+          display: block;
+          width: 20px;
+          height: 20px;
+          border: 1px solid #0d47a1;
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: .6;
+          -webkit-transition: all .12s, border-color .08s;
+          transition: all .12s, border-color .08s;
+        }
+
+        input#img#{$i}_delete[type="checkbox"]:checked + label.check_position:before {
+          width: 10px;
+          top: -5px;
+          left: 5px;
+          border-radius: 0;
+          opacity: 1;
+          border-top-color: transparent;
+          border-left-color: transparent;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+//思い出new・editページのレスポンシブ対応
+@media screen and (max-width: 1024px) {
+  #memory-panel-style {
+    padding: 0;
+    margin: 0;
+  }
+
+  .panel {
+    .notice-pad {
+      padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+    }
+
+    .max-width {
+      padding: 20px 10px 80px 10px;
+    }
+
+    .memory-title {
+      font-size: 26px;
+    }
+  }
+
+  //カード
+  .memory-card-position {
+    .card-drop-area {
+
+      .drop-area {
+        padding: 19px !important;
+      }
+
+      .drop-area-mandatory {
+        padding: 19px !important;
+      }
+    }
+  }
+}

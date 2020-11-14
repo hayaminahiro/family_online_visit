@@ -1,0 +1,18 @@
+<nav class="panel" id="memory-panel-style">
+  <div class="notification notice-pad">
+    <div class="content has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-12 is-centered max-width">
+          <h1 class="memory-title">思い出アルバムの編集ができます。</h1>
+          <small class="is-pulled-right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
+          <h1 class="memory-title-mini">思い出アルバムの画像選定/編集</h1>
+          <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定/編集できます。</p>
+          <div class="has-text-left">
+            <button class="button tag is-danger is-light is-rounded mandatory">画像１の登録は必須になります。</button>
+          </div>
+          <%= render 'edit-card' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
