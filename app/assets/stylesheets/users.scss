@@ -87,7 +87,7 @@ img#img_prev.user-edit-image {
   border-radius: 50%;
   display: inline-block;
   object-fit: cover;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 mypage-aside {/*画面左*/
@@ -462,7 +462,7 @@ mypage-main{/*画面中央*/
 .edit-image-user {
   background-size: cover;
   background-position: center;
-  display: block;
+  display: none;
 }
   
 .edit-image-user img {
@@ -539,7 +539,7 @@ edit-aside {
   top: 74px;
   font-size:15px;
   flex-direction: column;
-  background: linear-gradient(to bottom, rgba(247, 240, 231, 0.6) 20%, rgba(247, 240, 231, 1) 90%);
+  background: linear-gradient(to bottom, rgba(247, 240, 231, 0.8) 0%, rgba(242, 79, 79, 1) 100%);
   box-shadow: inset -1px 0px 0px 0px #DDDDDD;
 
   .edit-menu-title {
@@ -547,10 +547,11 @@ edit-aside {
     font-weight: bold;
     margin-top: 100px;
     font-size: 30px;
+    color: gray;
   }
 
   .panel-tab {
-    margin: 35px 0px;
+    margin: 13% 22%;
   }
 
   .panel-tab.is-active {
@@ -561,14 +562,15 @@ edit-aside {
   }
 
   .panel-tab p {
-    font-size: 20px;
-    font-weight: lighter;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: bold;
     text-align: left;
   }
 
   .panel-tab.is-active p {
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 1.1em;
+    font-weight: bold;
     color:rgb(235,94,39);
   }
 
@@ -576,72 +578,58 @@ edit-aside {
     text-align: center;
     float: left;
     line-height: 23px;
-    font-size: 30px;
-    color: gray;
-    margin-left: 30%;
+    font-size: 2.1em;
+    color: #fff;
     width: 92px;
   }
 
   .panel-tab.is-active i {
     text-align: center;
     float: left;
-    font-size: 30px;
+    font-size: 2.1em;
     color: rgb(235,94,39);
-    margin-left: 30%;
     width: 92px;
   }
 }
 
-main {
-
-  #user-edit-layout {
-    z-index: 0;
-    position: absolute;
-    display: flex;
-    width: 30%;
-    height: 100%;
-    flex-direction: column;
-    background-color: white;
-  }
-}
-
-.edit-links{
+.edit-links {
   display: block;
   color:black;
   margin: 25px ;
 }
 
-.user-aside-link{
+.user-aside-link {
   display: block;
   color:black;
   margin: 10px;
 }
 
-.user-edit-table{
+.user-edit-table {
   background:rgba(224, 231, 231, 0.605);
+  width: 100%;
 }
 
-#u-edit-table tr{
+#u-edit-table tr {
   height: 45px;
   line-height: 45px;
 }
 
-#u-edit-table th{
+#u-edit-table th {
   background-color: rgb(241,244,248);
 }
 
-.edit-hr{
+.edit-hr {
   margin: 0px;
 }
 
-.edit-link{
+.edit-link {
   margin-top: 30px;
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 700;
 }
 
-.edit-tfoot{
+.edit-tfoot {
   margin: 10px 0px;
 }
 
@@ -879,11 +867,16 @@ main {
     line-height: 58px;
     z-index: 1;
     top: 299px;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
     border-bottom: 1px solid #C0C0C0;
 
     .edit-side-link {
       margin-top: 0px;
       display: flex;
+    }
+
+    .edit-menu-title {
+      display: none;
     }
 
     .panel-tab {
@@ -914,6 +907,7 @@ main {
 
     .panel-tab i {
       width: 100%;
+      color: gray;
       text-align: center;
       margin-left: 0px;
       line-height: 34px;
@@ -935,6 +929,7 @@ main {
 
     .panel-tab p {
       position: absolute;
+      color: gray;
       top: 15px;
       font-size: 10px;
       text-align: center;
