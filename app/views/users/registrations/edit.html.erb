@@ -22,6 +22,8 @@
     <% end %>
     <div class="user-icon-outline">
       <%= @user.user_icon_edit_responsive %>
+      <%= image_tag 'user_edit_image.jpg', class: "edit-image-icon" %>
+      <%= image_tag 'user_edit_image.jpg', class: "edit-image-background" %>
     </div>
   </div>
 </section>
@@ -60,7 +62,7 @@
     <%= render "users/shared/error_messages", resource: resource %>
     <article class="panel is-success">
       <div id="Web" class="content-tab">
-        <div>
+        <div class="table-layout">
           <table class="table is-fullwidth is-narrow user-edit-table" id="u-edit-table">
             <thead>
               <tr>
@@ -93,7 +95,7 @@
                 <th>住所</th>
                 <td>千葉県佐倉市００−００</td>
               </tr>
-              <tr>
+              <tr class="image-change">
                 <th>現在のプロフィール画像</th>
                 <td>
                   <div>
@@ -101,7 +103,7 @@
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr class="image-change">
                 <th>プロフィール画像を変更</th>
                 <td>
                   <div class="container">
@@ -111,7 +113,7 @@
                 </td>
               </tr>
               <% if @user.persisted? && @user.image? %>
-                <tr>
+                <tr class="image-change">
                   <th>画像を削除</th>
                   <td>
                     <div style="margin-top:10px;">
@@ -122,11 +124,11 @@
                   </td>
                 </tr>
               <% end %>
-              <tr>
+              <tr class="image-change">
                 <th>現在の背景画像</th>
                 <td></td>
               </tr>
-              <tr>
+              <tr class="image-change">
                 <th>背景画像を変更</th>
                 <td></td>
               </tr>

@@ -510,6 +510,16 @@ mypage-main{/*画面中央*/
   -ms-transform: translateX(-50%);
 }
 
+//アイコン変更イメージ
+.edit-image-icon {
+  display: none;
+}
+
+//背景変更イメージ
+.edit-image-background {
+  display: none;
+}
+
 #edit-title {
   display: none;
 }
@@ -522,7 +532,7 @@ mypage-main{/*画面中央*/
 }
 
 aside {/*画面左*/
-  width: 50%;
+  width: 40%;
   font-size:15px;
   min-width: 250px;
   display: flex;
@@ -550,7 +560,12 @@ edit-aside {
     color: gray;
   }
 
+  .edit-side-link {
+    width: 100%;
+  }
+
   .panel-tab {
+    width: 100%;
     margin: 13% 22%;
   }
 
@@ -590,6 +605,10 @@ edit-aside {
     color: rgb(235,94,39);
     width: 92px;
   }
+}
+
+main {
+  width: 50%;
 }
 
 .edit-links {
@@ -825,6 +844,7 @@ edit-aside {
   //ユーザー編集画面
   .main-content {
     display: block;
+    min-height: fit-content;
     margin: 0px;
   }
 
@@ -936,6 +956,10 @@ edit-aside {
       width: 100%;
     }
   }
+
+  main {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -948,6 +972,10 @@ edit-aside {
   //ご家族一覧テーブル（th）
   #user-table th {
     font-size: 16px;
+  }
+
+  .table-layout {
+    margin-bottom: 50px;
   }
 }
 
@@ -999,7 +1027,7 @@ edit-aside {
     top: 225px
   }
 
-  //ユーザ編集画面
+  //【ユーザ編集画面】
   //背景画像
   .edit-image-user {
     display: block;
@@ -1024,8 +1052,39 @@ edit-aside {
     top: 4%;
   }
 
+  //アイコン変更イメージ
+  .edit-image-icon {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 53%;
+    right: -4%;
+    z-index: 3;
+    border-radius: 50%;
+  }
+
+  //背景変更イメージ
+  .edit-image-background {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 34%;
+    left: 173%;
+    z-index: 3;
+    border-radius: 50%;
+  }
+
   #edit-title {
     display: block;
+    background: linear-gradient(to bottom, rgba(247, 240, 231, 0.8) 0%, rgba(242, 79, 79, 0.8) 100%);
+
+    h1 {
+      color: #fff;
+    }
   }
 
   .main-content {
@@ -1104,5 +1163,9 @@ edit-aside {
       text-align: center;
       width: 100%;
     }
+  }
+
+  #u-edit-table tr.image-change {
+    display: none;
   }
 }
