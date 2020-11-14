@@ -92,12 +92,6 @@ Style/ClassAndModuleChildren:
     - 'app/controllers/users/unlocks_controller.rb'
     - 'test/test_helper.rb'
 
-Style/Documentation:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 Style/MixinUsage:
   Exclude:
     - 'bin/setup'
@@ -139,9 +133,6 @@ Style/RedundantSelf:
 Style/StderrPuts:
   Exclude:
     - 'bin/yarn'
-
-Style/StringLiterals:
-  Enabled: false
 
 Layout/LineLength:
   Max: 220

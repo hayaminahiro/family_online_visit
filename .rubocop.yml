@@ -1,26 +1,37 @@
 inherit_from: .rubocop_todo.yml
 
-# require:
-#   - rubocop-rails
+require:
+  - rubocop-rails
 
-# AllCops:
-#   # Rubyのバージョンを指定
-#   # TargetRubyVersion: 2.5.3
+AllCops:
+  # Rubyのバージョンを指定
+  TargetRubyVersion: 2.5.3
 
-#   # 除外ディレクトリ
-#   Exclude:
-#     - bin/*
-#     # - db/schema.rb
-#     # - vendor/**/*
+  # 除外ディレクトリ
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - vendor/**/*
+    - app/models/user.rb
+    - db/seeds.rb
 
-# # "Method has too many lines"を無視
-# # Metrics/MethodLength:
-# #   Enabled: false
+# 日本語でのコメントを許可
+Style/AsciiComments:
+  Enabled: false
 
-# # "Block has too many lines"を無視(rspecテストのため)
-# # Metrics/BlockLength:
-# #   Enabled: false
+# update_attributeについて
+Rails/ActiveRecordAliases:
+  Enabled: false
 
-# # 日本語でのコメントを許可
-# Style/AsciiComments:
-#   Enabled: false
+# pathの書き方を/path/aa/bbで書ける
+Rails/FilePath:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
