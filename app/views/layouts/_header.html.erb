@@ -58,35 +58,12 @@
             <p class="navbar-item">
               <%= link_to_unless_current "ビデオ通話", "#", class: "links" %>
             </p>
-
-          <% elsif facility_signed_in? && current_facility.facility_admin == true %>
-            <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
-              <%= link_to_unless_current "ご家族一覧", facility_users_path(facility_id: current_facility), class: "links" %>
-            </p>
-
-          <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
-              <%= link_to_unless_current "予約状況一覧", "#", class: "links" %>
-            </p>
-
-            <!--管理者のみ閲覧可能-->
-            <p class="navbar-item">
-              <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>
-            </p>
           <% end %>
 
             <!--全ユーザー閲覧可能-->
           <p class="navbar-item">
             <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
           </p>
-
-          <!--<% if facility_signed_in? && current_facility.admin== false && current_facility.facility_admin == true %>-->
-            <!--管理者のみ閲覧可能-->
-            <!--<p class="navbar-item">
-              <%= link_to_unless_current "お知らせ", facility_informations_path(facility_id: current_facility), class: "links" %>
-            </p>
-          <% end %>-->
 
           <% if facility_signed_in? && current_facility.admin? %>
             <!--システム全体管理者のみ閲覧可能-->
@@ -100,19 +77,7 @@
       <% if user_signed_in?  || facility_signed_in? %>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link has-text-weight-bold more">
-        <% if facility_signed_in? %>
-          <% if current_facility.facility_admin == true %>
-            <div class="admin-icon">
-              <i class="fas fa-user-circle fa-2x"></i>
-            </div>
-          <% elsif current_facility.facility_admin == false %>
-            <div class="general-icon">
-              <i class="fas fa-user-circle fa-2x"></i>
-            </div>
-          <% end %>
-        <% else %>
-          <font color="#4DADA1"><i class="fas fa-user-circle fa-2x"></i></font>
-        <% end %>
+          <font color="#4DADA1"><i class="fas fa-user-circle fa-2x"></i></font> <!--ログインしたユーザ or 施設ごとにアイコン表示を変えたい-->
         </a>
         <div class="navbar-dropdown" style="background-color: #efefef;">
           <a class="navbar-item has-text-weight-bold is-size-6">
