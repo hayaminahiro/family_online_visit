@@ -9,77 +9,58 @@
     <% end %>
   </div>
   <div class="content">
-    <ul class="tab4">
-      <li class="tab4__item"><span class="tab4__link on" data-tab-body="1">全ての写真</span></li>
-      <li class="tab4__item"><span class="tab4__link" data-tab-body="2">行事ごとの写真</span></li>
-    </ul>
-    <div class="tab4-body">
 
-      <!--全てのの写真-->
-      <div class="tab4-body__item tab4-body__item--1 on">
-        <% @memories.each do |m| %>
+    <div class="cp_tab">
+      <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+      <label for="tab1_1">全ての写真</label>
+      <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+      <label for="tab1_2">行事ごとの写真</label>
 
-          <% if m.image0? %>
-            <%= m.image00 %>
+      <div class="cp_tabpanels">
+        <div id="first_tab01" class="cp_tabpanel">
+          <!--全てのの写真-->
+          <% @memories.each do |m| %>
+            <% if m.image0? %>
+              <% memory_id = m.image0.url.split("/")[4]  %>
+              <% column = m.image0.url.split("/")[3]  %>
+              <%= link_to solo_image_resident_memories_path(@resident, memory_id: memory_id, column: column) do %>
+                <%= m.image00 %>
+              <% end %>
+            <% end %>
 
-            <% a =m.image0.url.split("/")[4]  %>
-            <% b = m.image0.url.split("/")[3]  %>
-            <% x = a + b %>
-            <%= x %>
 
-            <%= link_to "テスト", solo_image_resident_memories_path(current_facility, @resident, image: x) %>
 
+            <%#= m.image01 %>
+            <%#= m.image02 %>
+            <%#= m.image03 %>
+            <%#= m.image04 %>
+            <%#= m.image05 %>
+            <%#= m.image06 %>
+            <%#= m.image07 %>
           <% end %>
+        </div>
+        <div id="second_tab01" class="cp_tabpanel">
+          <% @memories.each do |m| %>
 
-          <%= m.image01 %>
-          <%= m.image02 %>
-          <%= m.image03 %>
-          <%= m.image04 %>
-          <%= m.image05 %>
-          <%= m.image06 %>
-          <%= m.image07 %>
-        <% end %>
+            <div class="card-float card-inline-block">
+              <section class="photo-card card-inline-block">
+                <%= m.card_image %>
+                <div class="photo-card-content">
+                  <p class="photo-card-title"><%= m.title %></p>
+                  <p class="photo-card-text"><%= m.message %></p>
+                </div>
+                <div class="photo-card-link">
+                  <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
+                    <i class="fas fa-folder-open fa-3x"></i>
+                  <% end %>
+                  <p class= photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
+                </div>
+              </section>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <!--行事ごとの写真-->
-      <div class="tab4-body__item tab4-body__item--2 card-controller" style="padding-bottom: 40px;">
-        <% @memories.each do |m| %>
-
-          <div class="card-float card-inline-block">
-            <section class="photo-card card-inline-block">
-              <%= m.card_image %>
-              <div class="photo-card-content">
-                <p class="photo-card-title"><%= m.title %></p>
-                <p class="photo-card-text"><%= m.message %></p>
-              </div>
-              <div class="photo-card-link">
-                <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
-                  <i class="fas fa-folder-open fa-3x"></i>
-                <% end %>
-                <p class= photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
-              </div>
-            </section>
-          </div>
-        <% end %>
-      </div>
-
     </div>
   </div>
 </div>
 
-<script>
-  document.addEventListener("turbolinks:load", function () {
-    var $tab__link = $('.tab4__link')
-    var $tab_body_item = $('.tab4-body__item')
-    $tab__link.on('click', function (e) {
-      var target = $(e.currentTarget)
-      //タブの表示非表示
-      $tab__link.removeClass('on')
-      target.addClass('on')
-      //タブの中身の表示非表示
-      var num = target.data('tab-body')
-      $tab_body_item.removeClass('on')
-      $('.tab4-body__item--' + num).addClass('on')
-    })
-  })
-</script>

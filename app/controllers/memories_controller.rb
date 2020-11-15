@@ -48,9 +48,8 @@ class MemoriesController < ApplicationController
   def solo_image
     @resident = current_facility.residents.find(params[:resident_id])
     @memories = @resident.memories.order(updated_at: "DESC")
-    @image = params[:image]
-
-    # @memory = params(:memory)
+    @memory_id = params[:memory_id]
+    @column = params[:column]
   end
 
     private
