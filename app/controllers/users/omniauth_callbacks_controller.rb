@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def google_oauth2
-    callback_for(:google)
-  end
-
   def callback_for(provider)
     @omniauth = request.env['omniauth.auth']
     info = User.find_oauth(@omniauth)
@@ -12,7 +8,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-      # set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
     else
       @sns = info[:sns]
       render template: "devise/registrations/new"
@@ -51,7 +46,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # end
         # @profile.set_values(@omniauth)
         # sign_in(:user, @profile)
-
       end
       redirect_to root_path, notice: "ログインしました"
     end
