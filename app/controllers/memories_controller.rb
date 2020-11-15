@@ -4,6 +4,10 @@ class MemoriesController < ApplicationController
   before_action :set_memory, only: %i[show edit update]
 
   def index
+    # raise
+    #
+    # @memories.find(8).remove_image0!
+    # @memories.find(8).save!
   end
 
   def show
@@ -39,6 +43,14 @@ class MemoriesController < ApplicationController
     @memory = memories.find(params[:id])
     @memory.delete
     redirect_to resident_memories_url, alert: "#{resident.name}さんの思い出アルバムを削除しました"
+  end
+
+  def solo_image
+    @resident = current_facility.residents.find(params[:resident_id])
+    @memories = @resident.memories.order(updated_at: "DESC")
+    @image = params[:image]
+
+    # @memory = params(:memory)
   end
 
     private

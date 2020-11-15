@@ -18,7 +18,19 @@
       <!--全てのの写真-->
       <div class="tab4-body__item tab4-body__item--1 on">
         <% @memories.each do |m| %>
-          <%= m.image00 %>
+
+          <% if m.image0? %>
+            <%= m.image00 %>
+
+            <% a =m.image0.url.split("/")[4]  %>
+            <% b = m.image0.url.split("/")[3]  %>
+            <% x = a + b %>
+            <%= x %>
+
+            <%= link_to "テスト", solo_image_resident_memories_path(current_facility, @resident, image: x) %>
+
+          <% end %>
+
           <%= m.image01 %>
           <%= m.image02 %>
           <%= m.image03 %>
@@ -32,6 +44,7 @@
       <!--行事ごとの写真-->
       <div class="tab4-body__item tab4-body__item--2 card-controller" style="padding-bottom: 40px;">
         <% @memories.each do |m| %>
+
           <div class="card-float card-inline-block">
             <section class="photo-card card-inline-block">
               <%= m.card_image %>

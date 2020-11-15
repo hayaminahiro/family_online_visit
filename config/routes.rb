@@ -54,7 +54,9 @@ Rails.application.routes.draw do
 
   # 入居者 ================================================================================
     resources :residents do
-      resources :memories # 思い出アルバム
+      resources :memories do # 思い出アルバム
+        get '/solo_image/:image', on: :collection, to: 'memories#solo_image', as: :solo_image
+      end
     end
 
   # 入居者申請 ============================================================================
