@@ -64,4 +64,11 @@ class User < ApplicationRecord
     self.raw_info = raw_info.to_json
     self.save!
   end
+
+  #search定義
+  def self.search(search, facility)
+    return facility.users unless search
+
+    facility.users.where('name LIKE ?', "%#{search}%").order(:id)
+  end
 end

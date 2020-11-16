@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   before_action :authenticate_facility!, only: %i[room_word_update index video_room edit update destroy]
 
   def index
-    return @users = current_facility.users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
-    @users = current_facility.users.paginate(page: params[:page], per_page: 30).order(:id)
+    @users = User.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
   end
 
   def room_word_update
