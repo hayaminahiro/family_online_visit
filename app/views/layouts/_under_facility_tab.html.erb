@@ -12,7 +12,7 @@
             <% end %>
           </li>  
           <li>
-            <%= link_to facility_residents_path(facility_id: current_facility) do %>
+            <%= link_to residents_path do %>
               <span class="icon">
                 <i class="fas fa-id-badge"></i>
               </span>&nbsp;
@@ -20,7 +20,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to facility_users_path(facility_id: current_facility) do %>
+            <%= link_to users_path do %>
               <span class="icon">
                 <i class="fas fa-user-friends"></i>
               </span>&nbsp;
@@ -36,7 +36,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to facility_informations_path(facility_id: current_facility) do %>
+            <%= link_to informations_path do %>
               <span class="icon">
                 <i class="far fa-bell"></i>
               </span>&nbsp;

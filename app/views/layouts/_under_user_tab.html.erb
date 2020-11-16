@@ -16,9 +16,18 @@
           <li>
             <%= link_to user_session_path do %>
               <span class="icon">
-                <i class="far fa-user-circle"></i>
+                <i class="far fa-user"></i>
               </span>&nbsp;
               ログイン
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to facility_session_path do %>
+              <span class="icon">
+                <i class="far fa-user-circle"></i>
+              </span>&nbsp;
+              施設ログイン
             <% end %>
           </li>
         <% end %>
@@ -43,11 +52,11 @@
           </li>
 
           <li>
-            <%= link_to "#" do %>
+            <%= link_to edit_user_registration_path(resource_name) do %>
               <span class="icon">
-                <i class="fas fa-phone"></i>
+                <i class="fas fa-user-cog"></i>
               </span>&nbsp;
-              お問い合わせ
+              設定
             <% end %>
           </li>
 
