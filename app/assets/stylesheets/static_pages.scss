@@ -245,11 +245,11 @@ p.navbar-item {
 }
 
 .login-title {
-  margin-top: 100px;
+  margin-top: 185px;
 }
 
 .login-title-user {
-  margin-top: 100px;
+  margin-top: 185px;
 }
 
 .signup-title {
@@ -257,11 +257,7 @@ p.navbar-item {
 }
 
 .signup-title-facility {
-  margin-top: 100px;
-}
-
-.admin-btn {
-  margin-top: 100px;
+  margin-top: 185px;
 }
 
 .center-login {
@@ -746,6 +742,23 @@ p.content1 {
     padding-top: 60px;
     margin-bottom: 105px;
   }
+
+  //【ユーザーログイン画面】
+  //タイトルレイアウト
+  .login-title-user {
+    margin-top: 154px;
+  }
+
+  //【施設ログイン画面】
+  //タイトルレイアウト
+  .login-title {
+    margin-top: 154px;
+  }
+
+  //【施設新規登録画面】
+  .signup-title-facility {
+    margin-top: 154px;
+  }
 }
 
 //モバイル
@@ -801,5 +814,31 @@ p.content1 {
   .about-title {
     font-size: 22px;
     margin-top: 50px;
+  }
+
+  //【施設ログイン画面】
+  //タイトルレイアウト
+  .login-title {
+    margin-top: 130px;
+  }
+
+  //【施設新規登録画面】
+  .signup-title-facility {
+    margin-top: 130px;
+  }
+
+  //【ユーザログイン画面】
+  .login-title-user {
+    margin-top: 130px;
+  }
+
+  //【ユーザー新規登録画面】
+  .signups-title {
+    margin-top: 54px;
+  }
+
+  //施設ログイン、施設新規登録
+  .new-title {
+    font-size: 27px;
   }
 }
