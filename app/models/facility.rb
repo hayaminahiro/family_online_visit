@@ -20,4 +20,11 @@ class Facility < ApplicationRecord
   # モデル | ImageUploaderクラスとimageカラムを紐づける
   mount_uploader :image, ImageUploader
   mount_uploader :icon, ImageUploader
+
+    #search定義
+    def self.search(search)
+      return where.not(admin: true).order(:id) unless search
+
+      where('facility_name LIKE ?', "%#{search}%").order(:id)
+    end
 end

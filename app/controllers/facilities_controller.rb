@@ -7,8 +7,7 @@ class FacilitiesController < ApplicationController
   before_action :index_access_limits, only: :index
 
   def index
-    return @facilities = Facility.where('facility_name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
-    @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
+    @facilities = Facility.search(params[:search]).paginate(page: params[:page], per_page: 30)
   end
 
   def home #各施設のホーム画面
