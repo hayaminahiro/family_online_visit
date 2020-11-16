@@ -15,6 +15,11 @@ div.notification.is-danger.error-count {
   margin-bottom: 0;
 }
 
+.notification {
+  width: 100%;
+  font-size: 20px;
+}
+
 //施設・家族ユーザー共通
 
 //入力フィールド
@@ -65,4 +70,25 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
   margin-top: -80px;
   padding-bottom: 50px;
   width: 100%;
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+
+  //エラーメッセージ
+  .notification {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  //エラーメッセージ
+  .notification {
+    width: 80%;
+    font-size: 15px;
+  }
 }

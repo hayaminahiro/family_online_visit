@@ -24,11 +24,11 @@
     <%= render 'layouts/header' %>
     <div class="container" style="margin-top: 74px;">
       <% if flash[:notice] %>
-      <div class="notification is-success is-size-5 has-text-weight-bold error-position">
+      <div class="notification is-success has-text-weight-bold error-position">
         <p class="notice"><%= notice %></p>
       </div>
       <% elsif flash[:alert] %>
-      <div class="notification is-danger is-size-5 has-text-weight-bold error-position">
+      <div class="notification is-danger has-text-weight-bold error-position">
         <p class="alert"><%= alert %></p>
       </div>
       <% end %>
