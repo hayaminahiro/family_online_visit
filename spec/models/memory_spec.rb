@@ -17,7 +17,7 @@ RSpec.describe Memory, type: :model do
     end
 
     # タイトルが20文字以上であれば登録できないこと
-    it "is invalid if the title is longer than 50 characters" do
+    it "is invalid if the title is longer than 20 characters" do
       memory.title = "あ" * 21
       memory.valid?
       expect(memory.errors[:title]).to include("は20文字以内で入力してください")

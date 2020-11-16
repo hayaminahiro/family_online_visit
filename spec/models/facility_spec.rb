@@ -17,7 +17,7 @@ RSpec.describe Facility, type: :model do
     end
 
     # 名前が20文字以上であれば登録できないこと
-    it "is invalid if the name is longer than 50 characters" do
+    it "is invalid if the name is longer than 20 characters" do
       facility.facility_name = "あ" * 21
       facility.valid?
       expect(facility.errors[:facility_name]).to include("は20文字以内で入力してください")

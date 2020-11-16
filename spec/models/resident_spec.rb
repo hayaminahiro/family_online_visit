@@ -17,7 +17,7 @@ RSpec.describe Resident, type: :model do
     end
 
     # 名前が20文字以上であれば登録できないこと
-    it "is invalid if the name is longer than 50 characters" do
+    it "is invalid if the name is longer than 20 characters" do
       resident.name = "あ" * 21
       resident.valid?
       expect(resident.errors[:name]).to include("は20文字以内で入力してください")
@@ -31,7 +31,7 @@ RSpec.describe Resident, type: :model do
     end
 
     # 担当者名が20文字以上であれば登録できないこと
-    it "is invalid if the charge_worker is longer than 50 characters" do
+    it "is invalid if the charge_worker is longer than 20 characters" do
       resident.charge_worker = "あ" * 21
       resident.valid?
       expect(resident.errors[:charge_worker]).to include("は20文字以内で入力してください")

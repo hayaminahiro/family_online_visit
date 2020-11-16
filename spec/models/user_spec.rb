@@ -4,8 +4,8 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
   describe 'validations' do
-    # 名前、メールアドレス、パスワード、郵便番号、都道府県、市町村、建物名があれば有効な状態であること
-    it "is valid with a name, email, and password" do
+    # 名前、メールアドレス、パスワード、郵便番号、都道府県、住所、建物名があれば有効な状態であること
+    it "is valid with a name, email, password, postal_code, prefecture_name, address_city and address_street" do
       expect(user).to be_valid
     end
 
@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     end
 
     # 名前が20文字以上であれば登録できないこと
-    it "is invalid if the name is longer than 50 characters" do
+    it "is invalid if the name is longer than 20 characters" do
       user.name = "あ" * 21
       user.valid?
       expect(user.errors[:name]).to include("は20文字以内で入力してください")
