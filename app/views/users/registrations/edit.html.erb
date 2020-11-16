@@ -22,6 +22,16 @@
     <% end %>
     <div class="user-icon-outline">
       <%= @user.user_icon_edit_responsive %>
+      <div class="user-edit-icon-back">
+        <div class="user-edit-icon-image">
+          <i class="fas fa-camera"></i>
+        </div>
+      </div>
+      <div class="user-edit-background-back">
+        <div class="user-edit-backgroung-image">
+          <i class="fas fa-camera"></i>
+        </div>  
+      </div>
       <%= image_tag 'user_edit_image.jpg', class: "edit-image-icon" %>
       <%= image_tag 'user_edit_image.jpg', class: "edit-image-background" %>
     </div>
@@ -49,7 +59,10 @@
   <edit-aside>
     <div class="edit-menu-title">
       プロフィール編集
-    </div>
+      <div class="profile-section">
+        <%= current_user.user_icon_image %>
+      </div>
+    </div> 
     <div class="edit-side-link">
       <div class="panel-tab is-active edit-links" onclick="openTab(event,'Web')"><i class="far fa-user"></i><p>アカウント</p></div>
       <div class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Aud')"><i class="fas fa-key"></i><p>パスワード</p></div>
@@ -57,6 +70,7 @@
       <div class="panel-tab edit-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-user-friends"></i><p>登録利用者</p></div>
     </div>
   </edit-aside>
+
   <main>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>

@@ -462,7 +462,8 @@ mypage-main{/*画面中央*/
 .edit-image-user {
   background-size: cover;
   background-position: center;
-  display: none;
+  width: 70%;
+  margin-left: auto;
 }
   
 .edit-image-user img {
@@ -528,7 +529,7 @@ mypage-main{/*画面中央*/
   display: flex;
   font-size: 2rem;
   min-height: 100vh;
-  padding-top: 50px;
+  padding-top: 3%;
 }
 
 aside {/*画面左*/
@@ -549,15 +550,33 @@ edit-aside {
   top: 74px;
   font-size:15px;
   flex-direction: column;
-  background: linear-gradient(to bottom, rgba(247, 240, 231, 0.8) 0%, rgba(242, 79, 79, 1) 100%);
+  background: linear-gradient(to bottom, rgba(247, 240, 231, 1), rgba(242, 79, 79, 1) 100%);
   box-shadow: inset -1px 0px 0px 0px #DDDDDD;
 
   .edit-menu-title {
     text-align: center;
     font-weight: bold;
-    margin-top: 100px;
+    margin-top: 34px;
+    padding: 0px 67px;
     font-size: 30px;
     color: gray;
+  }
+
+  //サイドタグ内のユーザーアイコン
+  img#img_prev.user-profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: inline-block;
+    object-fit: cover;
+  }
+
+  //サイドタグ内のアイコンレイアウト
+  .profile-section{
+    text-align: center;
+    margin-top: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(102, 97, 91, 0.3);
   }
 
   .edit-side-link {
@@ -566,7 +585,7 @@ edit-aside {
 
   .panel-tab {
     width: 100%;
-    margin: 13% 22%;
+    margin: 10% 22%;
   }
 
   .panel-tab.is-active {
@@ -845,7 +864,8 @@ main {
   .main-content {
     display: block;
     min-height: fit-content;
-    margin: 0px;
+    padding-top: 8%;
+    margin: 0px 0px 100px 0px;
   }
 
   aside {
@@ -857,6 +877,7 @@ main {
   //背景画像
   .edit-image-user {
     display: block;
+    width: 100%;
   }
 
   .mypage-image {
@@ -1053,7 +1074,7 @@ main {
   }
 
   //アイコン変更イメージ
-  .edit-image-icon {
+  .user-edit-icon-back {
     position: absolute;
     display: block;
     height: 27px;
@@ -1063,19 +1084,47 @@ main {
     right: -4%;
     z-index: 3;
     border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+
+    //カメラマーク
+    .user-edit-icon-image i {
+      position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 25%;
+      right: -21%;
+      z-index: 4;
+    }
   }
 
   //背景変更イメージ
-  .edit-image-background {
+  .user-edit-background-back {
     position: absolute;
     display: block;
     height: 27px;
     width: 27px;
     object-fit: cover;
-    top: 34%;
-    left: 173%;
+    top: 40px;
+    left: 167px;
     z-index: 3;
     border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+
+    //カメラマーク
+    .user-edit-backgroung-image i {
+      position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 5px;
+      left: 6px;
+      z-index: 4;
+    }
   }
 
   #edit-title {
@@ -1089,7 +1138,7 @@ main {
 
   .main-content {
     display: block;
-    margin: 0px 0px;
+    margin: 70px 0px;
     padding-top: 0px;
   }
 
