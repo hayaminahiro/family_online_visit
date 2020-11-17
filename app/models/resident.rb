@@ -9,8 +9,7 @@ class Resident < ApplicationRecord
 
   #search定義
   def self.search(search, facility)
-    return facility.residents.includes(:users) unless search
-
+    facility.residents.includes(:users) unless search
     facility.residents.includes(:users).where('name LIKE ?', "%#{search}%").order(:id)
   end
 end
