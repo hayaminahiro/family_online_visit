@@ -18,11 +18,11 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,                    presence: true, length: {maximum: 20}  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
-  validates :email,                   presence: true , uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email,                   presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :password,                presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
   validates :password_confirmation,   presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
 
-  validates :postal_code,             presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
+  validates :postal_code,             presence: true, length: { is: 7 }, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :prefecture_name,         presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :address_city,            presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :address_street,          presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
