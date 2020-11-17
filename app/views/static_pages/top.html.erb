@@ -66,10 +66,10 @@
             <div class="inline-block_content">
               <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_mypage.jpg" width="400" height="300">
             </div>
-            <div class="inline-block_tab" style="margin-top: 25px;">
+            <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-                介護施設、病院、保育園などを様々なジャンルから<br>
-                利用したい施設を登録することで<br>
+                介護施設、病院、保育園などを様々な<br>
+                ジャンルから利用したい施設を登録することで<br>
                 ビデオチャットの予約をすることができます。
               </p><br>
               <%= link_to new_facility_user_path, class: "btn-animation-facility" do %>
@@ -87,9 +87,10 @@
             <div class="inline-block_content">
               <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_registration.jpg" width="400" height="300">
             </div>
-            <div class="inline-block_tab" style="margin-top: 25px;">
+            <div class="inline-block_tab">
               <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-                登録した施設、予約の確認、写真の閲覧ができます。<br>
+                登録した施設、ご予約の確認、お問い合わせ、<br>
+                利用者様の写真・動画の閲覧ができます。<br>
               </p><br>
               <%= link_to user_path(current_user), class: "btn-animation-login" do %>
                 <span class="icon">
@@ -106,7 +107,7 @@
     <% elsif !user_signed_in? && !facility_signed_in? %>
       <div class="about-title-2">Online Visitについて</div>
       <div class="inline-block_content">
-        <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="400" height="300">
+        <img src="https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/static_pages5.jpg" width="auto" height="auto">
       </div>
       <div class="inline-block_content" id="top-coments" style="margin-top: 25px;">
         <p class="content1 has-text-left is-size-9 has-text-weight-semibold">

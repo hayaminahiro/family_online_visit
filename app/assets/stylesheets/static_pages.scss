@@ -399,7 +399,7 @@ footer {
   height: 267px;
   width: 420px;
   margin-right: 55px;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
   margin-top: 20px;
   margin-left: 55px;
 }
@@ -412,7 +412,7 @@ footer {
   width: 420px;
   margin-right: 55px;
   margin-bottom: 80px;
-  margin-top: 50px;
+  margin-top: 75px;
   margin-left: 55px;
 }
 
@@ -690,6 +690,22 @@ p.content1 {
   }
 }
 
+@media screen and (max-width: 1050px) {
+
+  .inline-block_content {
+    width: 38%;
+  }
+
+  .inline-block_tab {
+    width: 38%;
+    margin-top: 25px;
+  }
+
+  .cp_tab .cp_tabpanel {
+    margin-bottom: 20px;
+  }
+}
+
 //タブレット〜モバイル
 @media screen and (max-width: 1000px) {
 
@@ -724,8 +740,8 @@ p.content1 {
   }
 
   .inline-block_tab {
-    width: 290px;
-    margin: 10px 10px
+    width: auto;
+    margin: 0px 10px 0px 10px
   }
 
   .inline-block_tab img {
@@ -740,7 +756,7 @@ p.content1 {
 
   .cp_tab .cp_tabpanel {
     padding-top: 60px;
-    margin-bottom: 105px;
+    margin-bottom: 85px;
   }
 
   //【ユーザーログイン画面】
@@ -783,6 +799,11 @@ p.content1 {
     margin: 0px;
   }
 
+  .inline-block_tab {
+    height: auto;
+    margin-top: 40px;
+  }
+
   #top-coments {
     margin-bottom: 80px;
   }
@@ -808,6 +829,10 @@ p.content1 {
   .cp_tab > input:checked + label {
     border-bottom: 2px solid #006fcc;
     border-radius: 0;
+  }
+
+  .cp_tab .cp_tabpanel {
+    margin-bottom: 70px;
   }
 
   //項目タイトル
