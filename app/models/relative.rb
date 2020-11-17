@@ -4,8 +4,8 @@ class Relative < ApplicationRecord
 
   #search定義
   def self.search(search, facility)
-    return facility.residents.where('name LIKE ?', "") unless search
+    return facility.residents.where('name LIKE ?', "%#{search}%").order(:id) if search.present?
 
-    facility.residents.where('name LIKE ?', "%#{search}%").order(:id)
+    facility.residents.where('name LIKE ?', "")
   end
 end
