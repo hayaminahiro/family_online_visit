@@ -25,6 +25,6 @@ class Facility < ApplicationRecord
     def self.search(search)
       return where.not(admin: true).order(:id) unless search
 
-      where('facility_name LIKE ?', "%#{search}%").order(:id)
+      where('facility_name LIKE ?', "%#{search}%").where.not(admin: true).order(:id)
     end
 end
