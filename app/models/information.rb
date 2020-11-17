@@ -11,8 +11,7 @@ class Information < ApplicationRecord
 
   #search定義
   def self.search(search, facility)
-    return facility.informations.where(status: "others").order(id: "DESC") unless search
-
+    facility.informations.where(status: "others").order(id: "DESC") unless search
     facility.informations.where(status: "others").where('title LIKE ?', "%#{search}%").order(id: "DESC")
   end
 end
