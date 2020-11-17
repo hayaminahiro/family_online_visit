@@ -1,18 +1,9 @@
 <section class="hero-1">
   <div class="facility-home-image">
-    <% month = Date.today.month %>
-    <% if facility.image? %>
-      <%= image_tag facility.image.url, class: "home-image" %>
-    <% else %>
-      <% if month.in?([ 12, 1, 2 ]) %>
-        <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "home-image"%>
-      <% elsif month.in?([ 3, 4, 5 ]) %>
-        <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "home-image" %>
-      <% elsif month.in?([ 6, 7, 8 ]) %>
-        <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "home-image"%>
-      <% elsif month.in?([ 9, 10, 11 ]) %>
-        <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "home-image"%>
-      <% end %>
+    <% if current_page?('/facilities/edit.user') %>
+      <%= facility.facility_edit_background_image %>
+    <% else %>  
+      <%= facility.facility_background_image %>
     <% end %>  
     <div class="image-outline" id="scroll-position">
       <% if facility.image? %>
@@ -24,5 +15,25 @@
         <%= facility.facility_name %>
       </div>
     </div>
+
+    <% if current_page?('/facilities/edit.user') %>
+      <div class="facility-icon-outline">
+        <%= facility.facility_icon_edit_responsive %>
+        <div class="user-edit-icon-back">
+          <div class="user-edit-icon-image">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+        <div class="user-edit-background-back">
+          <div class="user-edit-backgroung-image">
+            <i class="fas fa-camera"></i>
+          </div>  
+        </div>
+      </div>
+    <% else %>
+      <div class="facility-icon-outline">
+        <%= facility.facility_icon_responsive %>
+      </div>
+    <% end %>  
   </div>
 </section>

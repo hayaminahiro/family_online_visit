@@ -1,3 +1,15 @@
+<section class="hero is-small" id="facility-edit-title">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered is-size-5">
+        プロフィール編集
+      </h1>
+    </div>
+  </div>
+</section>
+
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
 <nav class="panel" id="panel-style">
   <div class="content has-text-centered">
     <div class="columns is-centered">
@@ -105,11 +117,5 @@
     $(".image_uploading_icon").change(function(){
       readURL(this);
     });
-  });
-</script>
-
-<script>
-  $(document).ready(function(){
-    $('html,body').animate({ scrollTop: 0 }, '1');
   });
 </script>

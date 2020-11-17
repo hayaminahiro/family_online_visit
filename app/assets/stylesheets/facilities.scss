@@ -347,6 +347,22 @@ div.under-line {
   -ms-transform: translateX(-50%);
 }
 
+//モバイル表示の施設アイコン
+.facility-icon-outline {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  top: 46%;
+  left: 50%;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
 //施設ホーム画面（タブのパネル）
 #facility-contents {
   padding-top: 20px;
@@ -845,6 +861,11 @@ img#icon_prev.icon_circle {
   padding-top: 65px;
 }
 
+//施設編集タイトル
+#facility-edit-title {
+  display: none;
+}
+
 #panel-style {
   padding: 50px;
   margin: 25px 20px 25px 20px;
@@ -892,6 +913,12 @@ h1.mini-title {
     display: block;
     text-align: center;
     margin-bottom: 3px;
+  }
+
+  //【施設編集画面】
+  //インプット欄のレイアウト
+  #input-field {
+    margin-bottom: 20px;
   }
 }
 
@@ -994,10 +1021,11 @@ h1.mini-title {
 
   //施設ホーム画面背景画像
   .home-image {
-    height: 300px;
+    height: 150px;
   }
   
   .image-outline {
+    display: none;
     height: 55px;
     top: 245px;
   }
@@ -1011,6 +1039,29 @@ h1.mini-title {
   //施設アイコン
   .facility-icon-image {
     top: 6%;
+  }
+
+  //モバイル表示の施設アイコンの背景
+  .facility-icon-outline {
+    display: block;
+    width: 100px;
+    height: 100px;
+    top: 42%;
+  }
+
+  //モバイル表示施設デフォルトアイコン
+  .default-icon-image {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    top: 0%;
+  }
+
+  .panel.is-success .panel-heading {
+    font-size: 24px;
   }
 
   //ユーザアイコン
@@ -1119,5 +1170,67 @@ h1.mini-title {
   //【利用施設登録画面】
   p.title.is-6.result {
     margin: 50px;
+  }
+
+  //【施設編集画面】
+  //施設編集タイトル
+  #facility-edit-title {
+    display: block;
+    background: linear-gradient(to bottom, rgba(78, 111, 139, 0.8) 10%, rgba(10, 32, 63, 0.8) 90%);
+  }
+
+  #facility-edit-title h1 {
+    color: #fff;
+  }
+
+  //サブタイトル
+  .account-title {
+    display: none;
+  }
+
+  //メニュータイトル
+  .mini-title {
+    display: none;
+  }
+
+  //コメント
+  .title-description {
+    display: none;
+  }
+
+  //現在の背景画像
+  .facility-photo {
+    display: none;
+  }
+
+  //背景画像のファイル選択
+  .drop-zone-area {
+    display: none;
+  }
+
+  //アイコンのファイル選択
+  #drop-zone-area {
+    display: none;
+  }
+
+  //位置調整
+  .position-control {
+    display: none;
+  }
+
+  //施設編集インプット欄
+  #panel-style {
+    padding: 0px;
+  }
+
+  //インプット欄の幅
+  #input-field {
+    width: 70%;
+    margin: 0px auto;
+  }
+
+  //パネル
+  .top-btn-position {
+    margin-top: 48px;
   }
 }
