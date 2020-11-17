@@ -21,27 +21,348 @@
           <!--全てのの写真-->
           <% @memories.each do |m| %>
             <% if m.image0? %>
-              <% memory_id = m.image0.url.split("/")[4]  %>
-              <% column = m.image0.url.split("/")[3]  %>
-              <%= link_to solo_image_resident_memories_path(@resident, memory_id: memory_id, column: column) do %>
-                <%= m.image00 %>
-              <% end %>
+              <% memory_id = m.image0.url.split("/")[4] %>
+              <% column = m.image0.url.split("/")[3] %>
+              <% id_column = m.image0.url.split("/")[4] + m.image0.url.split("/")[3] %>
+              <% column_id = m.image0.url.split("/")[3] + m.image0.url.split("/")[4] %>
+              <% url = m.image0.url.split("/")[5] %>
+              <a><%= image_tag m.image0.url, class: "img-interval index-photo-size", id: id_column if m.image0? %></a>
+
+              <!-- 画像00 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像1(#{url})は削除できません。" } do %>
+                      <%= m.image00 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
+            <% if m.image1? %>
+              <% memory_id = m.image1.url.split("/")[4] %>
+              <% column = m.image1.url.split("/")[3] %>
+              <% id_column = m.image1.url.split("/")[4] + m.image1.url.split("/")[3] %>
+              <% column_id = m.image1.url.split("/")[3] + m.image1.url.split("/")[4] %>
+              <% url = m.image1.url.split("/")[5] %>
+              <a><%= image_tag m.image1.url, class: "img-interval index-photo-size", id: id_column if m.image1? %></a>
+
+              <!-- 画像01 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像2(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image01 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
             <% end %>
 
 
+            <% if m.image2? %>
+              <% memory_id = m.image2.url.split("/")[4] %>
+              <% column = m.image2.url.split("/")[3] %>
+              <% id_column = m.image2.url.split("/")[4] + m.image2.url.split("/")[3] %>
+              <% column_id = m.image2.url.split("/")[3] + m.image2.url.split("/")[4] %>
+              <% url = m.image2.url.split("/")[5] %>
+              <a><%= image_tag m.image2.url, class: "img-interval index-photo-size", id: id_column if m.image2? %></a>
 
-            <%#= m.image01 %>
-            <%#= m.image02 %>
-            <%#= m.image03 %>
-            <%#= m.image04 %>
-            <%#= m.image05 %>
-            <%#= m.image06 %>
-            <%#= m.image07 %>
+              <!-- 画像02 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像3(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image02 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
+            <% if m.image3? %>
+              <% memory_id = m.image3.url.split("/")[4] %>
+              <% column = m.image3.url.split("/")[3] %>
+              <% id_column = m.image3.url.split("/")[4] + m.image3.url.split("/")[3] %>
+              <% column_id = m.image3.url.split("/")[3] + m.image3.url.split("/")[4] %>
+              <% url = m.image3.url.split("/")[5] %>
+              <a><%= image_tag m.image3.url, class: "img-interval index-photo-size", id: id_column if m.image3? %></a>
+
+              <!-- 画像03 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像4(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image03 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
+            <% if m.image4? %>
+              <% memory_id = m.image4.url.split("/")[4] %>
+              <% column = m.image4.url.split("/")[3] %>
+              <% id_column = m.image4.url.split("/")[4] + m.image4.url.split("/")[3] %>
+              <% column_id = m.image4.url.split("/")[3] + m.image4.url.split("/")[4] %>
+              <% url = m.image4.url.split("/")[5] %>
+              <a><%= image_tag m.image4.url, class: "img-interval index-photo-size", id: id_column if m.image4? %></a>
+
+              <!-- 画像04 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像5(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image04 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
+            <% if m.image5? %>
+              <% memory_id = m.image5.url.split("/")[4] %>
+              <% column = m.image5.url.split("/")[3] %>
+              <% id_column = m.image5.url.split("/")[4] + m.image5.url.split("/")[3] %>
+              <% column_id = m.image5.url.split("/")[3] + m.image5.url.split("/")[4] %>
+              <% url = m.image5.url.split("/")[5] %>
+              <a><%= image_tag m.image5.url, class: "img-interval index-photo-size", id: id_column if m.image5? %></a>
+
+              <!-- 画像05 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像6(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image05 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
+            <% if m.image6? %>
+              <% memory_id = m.image6.url.split("/")[4] %>
+              <% column = m.image6.url.split("/")[3] %>
+              <% id_column = m.image6.url.split("/")[4] + m.image6.url.split("/")[3] %>
+              <% column_id = m.image6.url.split("/")[3] + m.image6.url.split("/")[4] %>
+              <% url = m.image6.url.split("/")[5] %>
+              <a><%= image_tag m.image6.url, class: "img-interval index-photo-size", id: id_column if m.image6? %></a>
+
+              <!-- 画像06 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像7(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image06 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
+            <% if m.image7? %>
+              <% memory_id = m.image7.url.split("/")[4] %>
+              <% column = m.image7.url.split("/")[3] %>
+              <% id_column = m.image7.url.split("/")[4] + m.image7.url.split("/")[3] %>
+              <% column_id = m.image7.url.split("/")[3] + m.image7.url.split("/")[4] %>
+              <% url = m.image7.url.split("/")[5] %>
+              <a><%= image_tag m.image7.url, class: "img-interval index-photo-size", id: id_column if m.image7? %></a>
+
+              <!-- 画像07 モーダル表示 -->
+              <div class="modal" id="<%= column_id %>">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head" style="background-color: #e3dcca;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                  </header>
+                  <%#= form_with model: current_user, url: "#", local: true do |f| %>
+                  <section class="modal-card-body">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像8(#{url})を削除してよろしいですか？。" } do %>
+                      <%= m.image07 %>
+                    <% end %>
+                  </section>
+                  <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
+                  </footer>
+                  <%# end %>
+                </div>
+              </div>
+
+              <script>
+                $(document).ready(function () {
+                  $("#<%= id_column %>").on("click", function () {
+                    $("div#<%= column_id %>").addClass("is-active");
+                  })
+                  $("#close, div.modal-background").on("click", function () {
+                    $("div#<%= column_id %>").removeClass("is-active");
+                  })
+                });
+              </script>
+            <% end %>
+
           <% end %>
         </div>
+
+        <!--行事ごとの写真(カード)のタブ-->
         <div id="second_tab01" class="cp_tabpanel">
           <% @memories.each do |m| %>
-
             <div class="card-float card-inline-block">
               <section class="photo-card card-inline-block">
                 <%= m.card_image %>
@@ -59,8 +380,8 @@
             </div>
           <% end %>
         </div>
+
       </div>
     </div>
   </div>
 </div>
-

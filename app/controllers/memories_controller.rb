@@ -1,13 +1,9 @@
 class MemoriesController < ApplicationController
-  before_action :set_resident, only: %i[index show new create edit update destroy]
-  before_action :set_memories, only: %i[index show edit update]
+  before_action :set_resident, only: %i[index show new create edit update destroy delete_image]
+  before_action :set_memories, only: %i[index show edit update delete_image]
   before_action :set_memory, only: %i[show edit update]
 
   def index
-    # raise
-    #
-    # @memories.find(8).remove_image0!
-    # @memories.find(8).save!
   end
 
   def show
@@ -45,11 +41,44 @@ class MemoriesController < ApplicationController
     redirect_to resident_memories_url, alert: "#{resident.name}さんの思い出アルバムを削除しました"
   end
 
-  def solo_image
-    @resident = current_facility.residents.find(params[:resident_id])
-    @memories = @resident.memories.order(updated_at: "DESC")
-    @memory_id = params[:memory_id]
-    @column = params[:column]
+  def delete_image
+    memory_id = params[:memory_id].to_i
+    memory = @memories.find(memory_id)
+    column = params[:column]
+    url = memory.image0.url.split("/")[5]
+
+    case column
+    when "image1"
+      memory.remove_image1!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像2(#{url})を削除しました"
+    when "image2"
+      memory.remove_image2!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像3(#{url})を削除しました"
+    when "image3"
+      memory.remove_image3!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像4(#{url})を削除しました"
+    when "image4"
+      memory.remove_image4!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像5(#{url})を削除しました"
+    when "image5"
+      memory.remove_image5!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像6(#{url})を削除しました"
+    when "image6"
+      memory.remove_image6!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像7(#{url})を削除しました"
+    when "image7"
+      memory.remove_image7!
+      memory.save!
+      redirect_to resident_memories_url, alert: "画像8(#{url})を削除しました"
+    else
+      redirect_to resident_memories_url
+    end
   end
 
     private

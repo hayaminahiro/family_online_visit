@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   # 入居者 ================================================================================
     resources :residents do
       resources :memories do # 思い出アルバム
-        get '/solo_image/:memory_id/:column', on: :collection, to: 'memories#solo_image', as: :solo_image
+        delete '/delete_image/:memory_id/:column', on: :collection, to: 'memories#delete_image', as: :delete_image
       end
     end
 
