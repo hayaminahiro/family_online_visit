@@ -54,6 +54,7 @@ Lint/UselessAssignment:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/models/user.rb'
+    - 'app/models/facility.rb'
 
 Metrics/AbcSize:
   Max: 55
