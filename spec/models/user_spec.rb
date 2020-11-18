@@ -149,5 +149,6 @@ RSpec.describe User, type: :model do
   #     expect(user.errors[:address_street]).to include("は50文字以内で入力してください")
   #   end
   # end
+
   end
 end
