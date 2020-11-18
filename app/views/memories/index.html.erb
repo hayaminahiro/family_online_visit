@@ -32,18 +32,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像1(#{url})は削除できません。" } do %>
-                      <%= m.image00 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image00 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像1(#{url})は削除できません。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -74,18 +81,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像2(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image01 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image01 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像2(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -117,18 +131,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像3(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image02 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image02 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像3(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -159,18 +180,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像4(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image03 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image03 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像4(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -201,18 +229,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像5(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image04 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image04 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像5(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -243,18 +278,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像6(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image05 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image05 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像6(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -285,18 +327,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像7(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image06 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image06 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像7(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
@@ -327,18 +376,25 @@
               <div class="modal" id="<%= column_id %>">
                 <div class="modal-background"></div>
                 <div class="modal-card">
-                  <header class="modal-card-head" style="background-color: #e3dcca;">
-                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">ご利用施設の解除</p>
+                  <header class="modal-card-head" style="background-color: #e3dcca; padding-right: 30px;">
+                    <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00; margin: 5px;">データ詳細</p>
                     <button class="delete" aria-label="close" id="close"></button>
                   </header>
                   <%#= form_with model: current_user, url: "#", local: true do |f| %>
-                  <section class="modal-card-body">
-                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                                method: :delete, data: { confirm: "画像8(#{url})を削除してよろしいですか？。" } do %>
-                      <%= m.image07 %>
-                    <% end %>
+                  <section class="modal-card-body" style="padding-bottom: 15px;">
+                    <%= m.image07 %>
+                  </section>
+                  <section class="modal-card-body" style="border-top: 1px solid #dbdbdb; background: #f7f3e8;">
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">画像名</span><%= url %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">出来事の日付（行事日等）</span><%= m.event_date%></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">思い出画像タイトル</span><%= m.title %></p>
+                    <p><span class="has-text-weight-bold" style="color: #401c00; padding-right: 15px;">ご家族へのメッセージ</span><%= m.message %></p>
                   </section>
                   <footer class="modal-card-foot" style="float: right; padding-left: 200px;">
+                    <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+                                method: :delete, data: { confirm: "画像8(#{url})を削除してよろしいですか？。" }, class: "button is-danger is-medium" do %>
+                      <span><i class="far fa-trash-alt"></i></span>
+                    <% end %>
                     <%#= f.submit "\uf044 登録施設を更新する", class: "fa button is-medium is-focused has-text-weight-semibold orange-btn" %>
                   </footer>
                   <%# end %>
