@@ -1,9 +1,7 @@
 class FacilityUsersController < ApplicationController
   def new
-    @facility_users = Facility.all.where.not(admin: true)
     @registered_facilities = current_user.facilities
-    return @facility_users = @facility_users.where('facility_name LIKE ?', "%#{params[:search]}%").where.not(id: current_user.facilities).paginate(page: params[:page], per_page: 12).order(:id) if params[:search].present?
-    @facility_users = @facility_users.where('facility_name LIKE ?', "")
+    @facility_users = FacilityUser.search(params[:search], Facility.all, current_user).paginate(page: params[:page], per_page: 12)
   end
 
   def update

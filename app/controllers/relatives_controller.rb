@@ -1,7 +1,6 @@
 class RelativesController < ApplicationController
   def new #家族から申請された内容を確認
-    return @residents = current_facility.residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 9).order(:id) if params[:search].present?
-    @residents = current_facility.residents.where('name LIKE ?', "")
+    @residents = Relative.search(params[:search], current_facility).paginate(page: params[:page], per_page: 9)
   end
 
   def update #家族からの申請を承認・否認
