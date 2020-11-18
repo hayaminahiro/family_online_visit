@@ -71,7 +71,11 @@
         </div>
         <p class="panel-tabs">
           <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
+        <% if @request_residents.present? %>
+          <a class="panel-tab is-size-5" id="red-btn" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請<%= "#{@request_residents.count}件" %></a>
+        <% else %>
           <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
+        <% end %>
           <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">NEWS</a>
         </p>
 
@@ -93,7 +97,7 @@
                   <tr>
                     <th>申請日</th>
                     <th>申請者</th>
-                    <th></th>
+                    <th><%= link_to "申請一覧", new_relative_path, class: "button is-primary is-medium has-text-weight-bold" %></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -104,7 +108,7 @@
                       <td><%= request_resident.created_at %></td>
                       <td><%= @request_user.name %></td>
                       <td>
-                        <%= link_to "申請者登録画面", new_relative_path, class: "button is-primary is-medium has-text-weight-bold" %>
+                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-medium has-text-weight-bold" %>
                       </td>
                     </tr>
                   <% end %>
