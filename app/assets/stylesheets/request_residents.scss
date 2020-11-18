@@ -39,7 +39,29 @@
 
 #req-new-table td {
   vertical-align: middle;
+  text-align: center;
   height: 50px;
+}
+
+#req-new-table{
+  .r-check-box{
+    padding-left: 20px;
+    display:inline-block;
+    text-align: left;
+    width: 200px;
+    height: 30px;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  .r-check-box::-webkit-scrollbar {
+    display:none;
+  }
+
+  .tag-apply{
+    text-align: left;
+    padding: 0 30px;
+  }
 }
 
 #req-index-table{
