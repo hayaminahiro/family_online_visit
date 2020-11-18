@@ -7,9 +7,7 @@ class FacilitiesController < ApplicationController
   before_action :index_access_limits, only: :index
 
   def index
-    return @facilities = Facility.where('facility_name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
-
-    @facilities = Facility.where.not(admin: true).paginate(page: params[:page], per_page: 30).order(:id)
+    @facilities = Facility.search(params[:search]).paginate(page: params[:page], per_page: 30)
   end
 
   def show; end
@@ -21,10 +19,6 @@ class FacilitiesController < ApplicationController
 
   # 施設ルートのhome画面
   def facility_home
-    @facilities = Facility.all.where.not(admin: true)
-    @registration_application = @facilities.where(id: current_facility.users)
-    @users = @facility.users.paginate(page: params[:page], per_page: 30).order(:id)
-    @users = @users.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
     @info_top = Information.find_by(status: "head")
     @request_residents = RequestResident.where(req_approval: "申請中").where(facility_id: current_facility)
   end

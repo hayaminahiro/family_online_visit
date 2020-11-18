@@ -3,6 +3,7 @@ admin = Facility.create!(
   facility_name: "管理者ユーザー",
   email: "facility_admin@email.com",
   password: "password",
+  password_confirmation: "password",
   admin: true
 )
 admin.save!
@@ -12,56 +13,64 @@ home = Facility.create!(
   id: 2,
   facility_name: "老人ホーム-A",
   email: "home-a@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 home.save!
 
 home = Facility.create!(
   facility_name: "老人ホーム-B",
   email: "home-b@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 home.save!
 
 home = Facility.create!(
   facility_name: "老人ホーム-C",
   email: "home-c@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 home.save!
 
 home = Facility.create!(
   facility_name: "老人ホーム-D",
   email: "home-d@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 home.save!
 
 home = Facility.create!(
   facility_name: "老人ホーム-E",
   email: "home-e@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 home.save!
 
 home = Facility.create!(
   facility_name: "老人ホーム-F",
   email: "home-f@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 home.save!
 
 hospital = Facility.create!(
   facility_name: "病院-B",
   email: "hospital@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 hospital.save!
 
 hoiku = Facility.create!(
   facility_name: "保育園-C",
   email: "hoiku@email.com",
-  password: "password"
+  password: "password",
+  password_confirmation: "password"
 )
 hoiku.save!
 
@@ -73,7 +82,8 @@ hoiku.save!
   Facility.create!(
     facility_name: name,
     email: email,
-    password: password
+    password: password,
+    password_confirmation: "password"
   )
 end
 
@@ -87,7 +97,7 @@ puts "施設を作成しました！"
     name: name,
     email: email,
     password: password,
-    postal_code: "0001100",
+    postal_code: "1234567",
     prefecture_name: "大阪府",
     address_city: "大阪市",
     address_street: "南堀江",
