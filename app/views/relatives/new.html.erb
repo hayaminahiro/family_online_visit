@@ -1,11 +1,10 @@
-<% requests = RequestResident.where(facility_id:current_facility) %>
-<% requests.each do |request| %>
+<% @requests.each do |request| %>
   <% if request.req_approval == "申請中" %>
     <div class="req-new-container">
       <div class="req-new-section">
       <nav class="level">
         <div class="level-left">
-          <h1 class="has-text-weight-bold is-size-3">入居者申請</h1>
+          <h1 class="has-text-weight-bold is-size-3">申請一覧</h1>
         </div>
         <div class="level-right">
           <div class="new-c-container">
@@ -34,7 +33,7 @@
         <table class="table is-narrow user-edit-table is-bordered" id="req-new-table">
           <tbody>
             <tr>
-              <th>入居者名</th>
+              <th>利用者名</th>
               <td>
                 <%= request.req_name %>
               </td>
@@ -54,25 +53,28 @@
             <tr>
               <th>紐付け</th>
               <td>
-                <%= form_with(model: request_user, url: relative_path(current_facility, user_id: request_user)) do |f| %>
-                  <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                    <%= b.label { b.check_box + " " + b.text } %>
-                  <% end %><br><br>
-                  <%= f.collection_check_boxes :resident_ids, request_user.residents, :id, :name, style: 'display:none' do |b| %>
-                    <span class="tag is-warning"><%= b.label { b.text } %>承認済</span>
-                <% end %>
+                  <%= form_with(model: request_user, url: relative_path(current_facility, user_id: request_user)) do |f| %>
+                <div>
+                    <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                      <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                    <% end %><br>
+                </div>
+                <div class="tag-apply">
+                    <%= f.collection_check_boxes :resident_ids, request_user.residents, :id, :name, style: 'display:none' do |b| %>
+                      <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% end %>
+                </div>
+                <div>
+                    <%= f.submit "承認する", class: "button is-primary new-btn has-text-weight-bold" ,style: "display: inline-block; margin: 15px auto;" %>
+                    <%= link_to relative_path(request), method: :delete,
+                      data: { confirm: "#{request_user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-small" do %>
+                      <i class="far fa-window-close"></i>
+                    <% end %>
+                </div>
+                  <% end %>
               </td>
             </tr>
           </tbody>
-          <tfoot>
-            <tr>
-              <th><abbr title="Position"></abbr></th>
-              <td>
-              <%= f.submit "承認する", class: "button is-primary new-btn has-text-weight-bold" %>
-                <% end %>
-              </td>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
