@@ -4,6 +4,10 @@ class MemoriesController < ApplicationController
   before_action :set_memory, only: %i[show edit update]
 
   def index
+    @resident = current_facility.residents.find(params[:resident_id])
+    @memories = @resident.memories.order(updated_at: "DESC")
+    # @memory = @memories.find(1).image0.url.split("/")[4].to_i
+    # raise
   end
 
   def show
