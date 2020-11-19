@@ -56,6 +56,7 @@
                                   method: :delete, data: { confirm: "画像1(#{url})は削除できません。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image0, class: "image_uploading_0_#{id} drop-zone" %>
                       <%= f.submit "\uf302 画像変更", class: "fa button img-update-btn" %>
                     </footer>
@@ -128,6 +129,7 @@
                                   method: :delete, data: { confirm: "画像2(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image1_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image1, class: "image_uploading_1_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
@@ -200,6 +202,7 @@
                                   method: :delete, data: { confirm: "画像3(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image2_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image2, class: "image_uploading_2_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
@@ -272,6 +275,7 @@
                                   method: :delete, data: { confirm: "画像4(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image3_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image3, class: "image_uploading_3_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
@@ -344,6 +348,7 @@
                                   method: :delete, data: { confirm: "画像5(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image4_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image4, class: "image_uploading_4_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
@@ -416,6 +421,7 @@
                                   method: :delete, data: { confirm: "画像6(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image5_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image5, class: "image_uploading_5_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
@@ -488,6 +494,7 @@
                                   method: :delete, data: { confirm: "画像7(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image6_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image6, class: "image_uploading_6_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
@@ -560,6 +567,7 @@
                                   method: :delete, data: { confirm: "画像8(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
                         <span><i class="far fa-trash-alt"></i></span>
                       <% end %>
+                      <%= f.hidden_field :image7_cache %> <!--変更なしの際のエラー解消-->
                       <%= f.file_field :image7, class: "image_uploading_7_#{id} drop-zone" %>
                       <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
                     </footer>
