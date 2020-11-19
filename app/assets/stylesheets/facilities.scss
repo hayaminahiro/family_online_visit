@@ -833,7 +833,7 @@ input#icon_delete[type="checkbox"]:checked + label.check_position:before {
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  object-position: 0 0;
+  object-position: 50% 50%;
   border: solid 1px #EEEEEE;
 }
 

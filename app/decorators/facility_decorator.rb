@@ -21,7 +21,7 @@ module FacilityDecorator
   #施設ログイン時の背景画像の表示
   def facility_background_image
     if image?
-      image_tag facility.image.url, class: "home-image"
+      image_tag image.url, class: "home-image"
     else
       month = Date.today.month
       if month.in?([ 12, 1, 2 ])
@@ -39,7 +39,7 @@ module FacilityDecorator
   #施設編集（モバイル）背景画像
   def facility_edit_background_image
     if image?
-      image_tag facility.image.url, id: :img_prev, class: "home-image", onClick:"$('.image_uploading').click()"
+      image_tag image.url, id: :img_prev, class: "home-image", onClick:"$('.image_uploading').click()"
     else
       month = Date.today.month
       if month.in?([ 12, 1, 2 ])
