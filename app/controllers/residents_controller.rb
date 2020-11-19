@@ -2,8 +2,7 @@ class ResidentsController < ApplicationController
   before_action :set_resident, only: %i[edit update destroy]
 
   def index
-    return @residents = current_facility.residents.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 30).order(:id) if params[:search].present?
-    @residents = current_facility.residents.paginate(page: params[:page], per_page: 30)
+    @residents = Resident.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
   end
 
   def new
