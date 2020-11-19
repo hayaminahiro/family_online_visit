@@ -32,8 +32,6 @@ class MemoriesController < ApplicationController
   def update
     if @memory.update(memories_params)
       redirect_to resident_memory_url, notice: "#{@resident.name}さんの思い出アルバムを編集しました。"
-    elsif params.present?
-      redirect_to resident_memory_url, alert: "画像が指定されていません。"
     else
       render :edit
     end
