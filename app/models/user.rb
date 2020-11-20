@@ -30,6 +30,11 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   validates :room_name,               presence: true, on: :room_word_update
+  validate :check_relative_invalid, on: :relative_update
+
+  def check_relative_invalid
+    errors.add(:resident_ids, "にチェックがありません") if resident_ids == []
+  end
 
   # cookieでログイン情報を保持
   def remember_me
