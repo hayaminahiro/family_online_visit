@@ -72,7 +72,7 @@
         <p class="panel-tabs">
           <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
         <% if @request_residents.present? %>
-          <a class="panel-tab is-size-5" id="red-btn" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請<%= "#{@request_residents.count}件" %></a>
+          <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請<sup><%= "#{@request_residents.count}" %></sup></a>
         <% else %>
           <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
         <% end %>
