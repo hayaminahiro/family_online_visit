@@ -1,5 +1,5 @@
 class RelativesController < ApplicationController
-  before_action :set_request, only: %i[show update index destroy]
+  before_action :set_request, only: %i[show update destroy]
   before_action :set_residents, only: %i[new show update update_relatives]
 
   def new #家族から申請された内容を確認
