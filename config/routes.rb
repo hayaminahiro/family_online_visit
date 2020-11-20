@@ -61,7 +61,9 @@ Rails.application.routes.draw do
     resources :request_residents, only: %i[new create index]
 
   # 入居者登録 ============================================================================
-    resources :relatives, except: %i[create edit]
+    resources :relatives, except: %i[create edit] do
+      patch :update_relatives, on: :collection
+    end
 
   # お知らせ ==============================================================================
     resources :informations do
