@@ -2,39 +2,6 @@
 
 module MemoryDecorator
 
-  # showページ
-  def image00_s
-    image_tag image0.url, class: "img-interval show-photo-size" if image0?
-  end
-
-  def image01_s
-    image_tag image1.url, class: "img-interval show-photo-size" if image1?
-  end
-
-  def image02_s
-    image_tag image2.url, class: "img-interval show-photo-size" if image2?
-  end
-
-  def image03_s
-    image_tag image3.url, class: "img-interval show-photo-size" if image3?
-  end
-
-  def image04_s
-    image_tag image4.url, class: "img-interval show-photo-size" if image4?
-  end
-
-  def image05_s
-    image_tag image5.url, class: "img-interval show-photo-size" if image5?
-  end
-
-  def image06_s
-    image_tag image6.url, class: "img-interval show-photo-size" if image6?
-  end
-
-  def image07_s
-    image_tag image7.url, class: "img-interval show-photo-size" if image7?
-  end
-
   # new/editページ
   def image00_photo
     if image0.present?
