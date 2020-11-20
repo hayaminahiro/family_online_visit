@@ -4,35 +4,60 @@
 
 <div class="main-show">
   <div class="content">
-    <section class="photo-card-show">
+    <!--画像部分-->
+    <%= image_tag @memory.image0.url, class: "img-interval show-photo-size" if @memory.image0? %>
+    <%= image_tag @memory.image1.url, class: "img-interval show-photo-size" if @memory.image1? %>
+    <%= image_tag @memory.image2.url, class: "img-interval show-photo-size" if @memory.image2? %>
+    <%= image_tag @memory.image3.url, class: "img-interval show-photo-size" if @memory.image3? %>
+    <%= image_tag @memory.image4.url, class: "img-interval show-photo-size" if @memory.image4? %>
+    <%= image_tag @memory.image5.url, class: "img-interval show-photo-size" if @memory.image5? %>
+    <%= image_tag @memory.image6.url, class: "img-interval show-photo-size" if @memory.image6? %>
+    <%= image_tag @memory.image7.url, class: "img-interval show-photo-size" if @memory.image7? %>
 
-      <!--画像部分-->
-      <%= image_tag @memory.image0.url, class: "img-interval show-photo-size" if @memory.image0? %>
-      <%= image_tag @memory.image1.url, class: "img-interval show-photo-size" if @memory.image1? %>
-      <%= image_tag @memory.image2.url, class: "img-interval show-photo-size" if @memory.image2? %>
-      <%= image_tag @memory.image3.url, class: "img-interval show-photo-size" if @memory.image3? %>
-      <%= image_tag @memory.image4.url, class: "img-interval show-photo-size" if @memory.image4? %>
-      <%= image_tag @memory.image5.url, class: "img-interval show-photo-size" if @memory.image5? %>
-      <%= image_tag @memory.image6.url, class: "img-interval show-photo-size" if @memory.image6? %>
-      <%= image_tag @memory.image7.url, class: "img-interval show-photo-size" if @memory.image7? %>
+    <!--タイトル/メッセージ部分-->
+    <div class="photo-card-link-show">
+      <h4 style="color: #401c00;"><%= @memory.title %></h4>
+      <p style="word-break: break-all;"><%= @memory.message %></p>
+      <p class="photo-card-text-show">行事日: <%= l(@memory.event_date, format: :long) %>（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
+      <%= link_to edit_resident_memory_path(@resident, @memory) do %>
+        <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
+      <% end %>
+      <%= link_to resident_memory_path(@resident, @memory), method: :delete,
+                  data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+      <%= link_to resident_memories_path(@resident), class:"button is-link is-light is-medium memories-index-btn" do %>
+        <i class="fas fa-images"></i>&nbsp;思い出画像一覧
+      <% end %>
+    </div>
+  </div>
 
-      <!--タイトル/メッセージ部分-->
-      <div class="photo-card-link-show">
-        <h4><%= @memory.title %></h4>
-        <p><%= @memory.message %></p>
-        <p class="photo-card-text-show">行事日: <%= l(@memory.event_date, format: :long) %>（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
-        <%= link_to edit_resident_memory_path(@resident, @memory) do %>
-          <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
-        <% end %>
-        <%= link_to resident_memory_path(@resident, @memory), method: :delete,
-                    data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
-          <i class="far fa-trash-alt"></i>
-        <% end %>
-        <%= link_to resident_memories_path(@resident), class:"button is-link is-light is-medium memories-index-btn" do %>
-          <i class="fas fa-images"></i>&nbsp;思い出画像一覧
-        <% end %>
-      </div>
+  <div class="otherNavigation">
+    <h1 class="has-text-weight-bold">タイトル名【<%= @memory.title %>】が同じ画像を表示</h1>
+  </div>
 
-    </section>
+  <div class="content">
+    <!--同じ行事タイトルの画像一覧を表示させる-->
+    <% @memories.each do |m| %>
+      <% if m.title == @memory.title %>
+        <% if @memory.id != m.id %>
+
+          <%= image_tag m.image0.url, class: "img-interval show-photo-size" if m.image0? %>
+          <%= image_tag m.image1.url, class: "img-interval show-photo-size" if m.image1? %>
+          <%= image_tag m.image2.url, class: "img-interval show-photo-size" if m.image2? %>
+          <%= image_tag m.image3.url, class: "img-interval show-photo-size" if m.image3? %>
+          <%= image_tag m.image4.url, class: "img-interval show-photo-size" if m.image4? %>
+          <%= image_tag m.image5.url, class: "img-interval show-photo-size" if m.image5? %>
+          <%= image_tag m.image6.url, class: "img-interval show-photo-size" if m.image6? %>
+          <%= image_tag m.image7.url, class: "img-interval show-photo-size" if m.image7? %>
+
+        <% end %>
+
+
+      <% end %>
+    <% end %>
   </div>
 </div>
+
+
+

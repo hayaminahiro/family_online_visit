@@ -155,84 +155,6 @@
   color: #0090aa;
 }
 
-//タブのデザイン
-.tab4 {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  background-color: #fff !important;
-  margin: 0 !important;
-}
-
-.tab4__item {
-  flex: 1;
-  list-style: none;
-}
-
-.tab4__link {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  color: #401c00;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.tab4__link:before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #13b1c0;
-  transition: all 0.4s ease-out;
-}
-
-.tab4__link:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #13b1c0;
-  transition: all 0.4s ease-out;
-}
-
-.tab4__link.on:before {
-  width: 20%;
-}
-
-.tab4__link.on:after {
-  width: 20%;
-}
-
-.tab4-body {
-  position: relative;
-  height: 120px;
-}
-
-.tab4-body__item {
-  position: absolute;
-  width: 100%;
-  margin: 30px 15px;
-  text-align: center;
-  opacity: 0;
-  transition: all 0.6s ease-out;
-}
-
-.tab4-body__item.on {
-  opacity: 1;
-}
-
-//スクロール機能
-.photo-scroll {
-  width: 100%;
-  min-height: 110vh;
-  overflow: scroll;
-}
-
 // レスポンシブindex
 @media screen and (max-width: 750px) {
   .glovalNavigation {
@@ -290,35 +212,38 @@
 
 //思い出showページ
 .main-show {
-  min-height: 110vh;
+  min-height: 50vh;
 
   .content {
     text-align: center;
     margin: 20px 10px 0 0;
     padding: 15px;
+
+    .show-photo-size {
+      width: 350px;
+      height: 250px;
+      object-fit: cover;
+    }
   }
 
   .img-interval {
     margin-top: 20px;
   }
-}
 
-//showカードのデザイン
-.photo-card-show {
-  margin: 0 50px 20px 50px;
-  //width: 1000px;
-  height: 1020px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px #ccc;
-
-  .show-photo-size {
-    width: 350px;
-    height: 250px;
-    object-fit: cover;
+  .otherNavigation {
+    font-weight: 200;
+    padding-bottom: 5px;
+    text-align: left;
+    border-bottom: 1px solid;
+    color: #401c00;
+    margin: 30px 5% 0 5%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
   }
 }
 
+//showメッセージ部分
 .photo-card-img-show {
   border-radius: 5px 5px 0 0;
   max-width: 100%;
