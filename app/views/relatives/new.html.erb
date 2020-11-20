@@ -80,6 +80,6 @@
         </div>
       <% end %>
     <% end %>
-    <%= f.submit "まとめて承認", class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
+    <%= f.submit "まとめて承認", class: "button is-primary is-light has-text-weight-bold", id: "req-submit" if @requests.present? %>
   <% end %>
 </div>
