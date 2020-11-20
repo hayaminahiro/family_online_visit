@@ -97,7 +97,10 @@
                   <tr>
                     <th>申請日</th>
                     <th>申請者</th>
-                    <th><%= link_to "申請一覧", new_relative_path, class: "button is-primary is-medium has-text-weight-bold" %></th>
+                    <th>
+                      <%= link_to "申請一覧", new_relative_path, class: "button is-primary is-outlined is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>
+                      <%= link_to "(承認済申請)", relatives_path, class: "button is-small is-size-6", style: "width: 45%;" %>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -108,7 +111,7 @@
                       <td><%= request_resident.created_at %></td>
                       <td><%= @request_user.name %></td>
                       <td>
-                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-medium has-text-weight-bold" %>
+                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>
                       </td>
                     </tr>
                   <% end %>
