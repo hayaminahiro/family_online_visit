@@ -589,10 +589,20 @@ edit-aside {
     margin: 10% 25% 10% 33%;
   }
 
-  .panel-tab p:hover {
-    color: #fff;
-    border-bottom: 3px solid;
-    margin-bottom: -3px;
+  //サイドタグのホバーアニメーション
+  .panel-tab p:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 0;
+    border-bottom: solid 2px;
+    margin-bottom: -2px;
+    transition: 0.5s;
+  }
+
+  .panel-tab p:hover::after {
+    width: 90%;
   }
 
   .panel-tab.is-active {
@@ -609,6 +619,8 @@ edit-aside {
     text-align: left;
     padding-bottom: 12px;
     width: 175px;
+    transition: 0s;
+    position: relative;
   }
 
   .panel-tab.is-active p {
@@ -985,6 +997,14 @@ main {
       font-size: 10px;
       text-align: center;
       width: 100%;
+    }
+
+    .panel-tab p:after {
+      display: none;
+    }
+
+    .panel-tab p:hover::after  {
+      display: none;
     }
   }
 
