@@ -8,7 +8,7 @@
           <%= form_with(url: new_facility_user_path, method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-centered" id="input-mobile">
               <div class="control search-input">
-                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力してください", class: "fa input is-focused is-medium is-black" %>
+                <%= f.text_field :search, :placeholder => "\uf304 ご利用の施設名を入力", class: "fa input search-facility is-focused is-medium is-black" %>
               </div>
               <div class="control">
                 <%= f.submit "\uf002検索", class: "fa button is-focused is-medium is-link search-btn" %>

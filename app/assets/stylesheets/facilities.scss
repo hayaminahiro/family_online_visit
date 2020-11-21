@@ -1166,6 +1166,11 @@ h1.mini-title {
     height: 100%;
   }
 
+  //検索フォームのプレイスフォルダー
+  input.search-facility::placeholder {
+    font-size: 0.7em;
+  }
+
   //【利用施設登録画面】
   p.title.is-6.result {
     margin: 50px;
