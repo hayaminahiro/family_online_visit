@@ -13,18 +13,18 @@
 ActiveRecord::Schema.define(version: 2020_11_06_160505) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "facility_name"
     t.string "email", default: "", null: false
-    t.boolean "admin", default: false
-    t.string "image"
-    t.string "icon"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "facility_name"
+    t.boolean "admin", default: false
     t.boolean "facility_admin", default: false
+    t.string "image"
+    t.string "icon"
     t.index ["email"], name: "index_facilities_on_email", unique: true
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end
@@ -39,20 +39,22 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   end
 
   create_table "information", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "facility_id"
     t.string "title"
     t.text "news"
     t.integer "status", default: 0, null: false
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "facility_id"
+    t.string "image"
     t.index ["facility_id"], name: "index_information_on_facility_id"
   end
 
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "resident_id"
     t.string "title"
-    t.string "message"
+    t.text "message"
+    t.bigint "resident_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date "event_date"
     t.string "image0"
     t.string "image1"
@@ -62,8 +64,6 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.string "image5"
     t.string "image6"
     t.string "image7"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["resident_id"], name: "index_memories_on_resident_id"
   end
 
@@ -77,12 +77,12 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   end
 
   create_table "request_residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "facility_id"
     t.string "req_name"
     t.string "req_phone"
     t.string "req_address"
     t.integer "req_approval", default: 0
+    t.bigint "user_id"
+    t.bigint "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_request_residents_on_facility_id"
@@ -101,11 +101,11 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   end
 
   create_table "residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "facility_id"
     t.string "name", null: false
     t.string "charge_worker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "facility_id"
     t.index ["facility_id"], name: "index_residents_on_facility_id"
   end
 
@@ -122,28 +122,31 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.string "password"
     t.string "room_name"
     t.boolean "admin", default: false
+    t.boolean "floor_authority", default: false
+    t.string "resident_name1"
+    t.string "resident_name2"
     t.string "phone"
     t.string "address"
-    t.integer "postal_code"
-    t.string "prefecture_name"
-    t.string "address_city"
-    t.string "address_street"
-    t.text "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string "token"
-    t.string "meta"
-    t.string "uid"
-    t.string "provider"
+    t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "meta"
+    t.string "token"
+    t.integer "postal_code"
+    t.string "prefecture_name"
+    t.string "address_city"
+    t.string "address_street"
+    t.text "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

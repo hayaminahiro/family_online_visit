@@ -17,7 +17,7 @@
     <!--タイトル/メッセージ部分-->
     <div class="photo-card-link-show">
       <h4 style="color: #401c00;"><%= @memory.title %></h4>
-      <p style="word-break: break-all;"><%= @memory.message %></p>
+      <p style="word-break: break-all; width: 80%; margin: auto; padding-bottom: 20px;"><%= @memory.message %></p>
       <p class="photo-card-text-show">行事日: <%= l(@memory.event_date, format: :long) %>（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
       <%= link_to edit_resident_memory_path(@resident, @memory) do %>
         <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="otherNavigation">
-    <h1 class="has-text-weight-bold">タイトル名【<%= @memory.title %>】が同じ画像を表示</h1>
+    <h1 class="has-text-weight-bold">タイトル名【<%= @memory.title %>】と同じ画像を表示</h1>
   </div>
 
   <div class="content">
