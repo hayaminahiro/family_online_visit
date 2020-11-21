@@ -28,7 +28,6 @@
     width: 100px;
     vertical-align: middle;
     text-align: center;
-    background-color: rgb(250,248,242);
     font-weight: 500;
   }
 
@@ -72,6 +71,31 @@
   height: 100vh;
 }
 
+.req-index-container{
+  height: 100vh;
+  width: 100%;
+}
+
 #req-index-table{
-  margin: 20px 30px 20px 30px;
+  margin: 0px 30px 20px 0px;
+
+  th{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #ce5c5c;
+    letter-spacing: 3px;
+    background-color: #1e8db7;
+    color: white;
+    font-weight: 400;
+  }
+
+  td{
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(2n+1) td {
+    background-color: #fbfbfb;
+  }
 }

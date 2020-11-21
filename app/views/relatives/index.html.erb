@@ -1,24 +1,36 @@
-<h1>承認済み申請一覧</h1>
-<table class="table is-striped is-hoverable is-fullwidth" id="req-index-table">
-  <thead>
-    <tr>
-      <th>申請日</th>
-      <th>申請者</th>
-      <th>入居者</th>
-      <th>電話番号</th>
-      <th>住所</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @approvals.each do |approval| %>
-  <% @request_user = User.find(approval.user_id) %>
-    <tr>
-      <td><%= approval.created_at %></td>
-      <td><%= @request_user.name %></td>
-      <td><%= approval.req_name %></td>
-      <td><%= approval.req_phone %></td>
-      <td><%= approval.req_address %></td>
-    </tr>
-  <% end %>
-  <tbody>
-</table>
+<div class="req-index-container">
+  <div style="margin: 60px;">
+      <div>
+        <h1>※承認済み申請一覧が表示されます。</h1>
+      </div>
+    <table class="table is-bordered is-fullwidth" id="req-index-table">
+      <thead>
+        <tr>
+          <th rowspan="2" width="10%">申請日</th>
+          <th rowspan="2" width="20%">申請者</th>
+          <th rowspan="2" width="20%">登録</th>
+          <th colspan="5" width="50%">申請内容</th>
+        </tr>
+        <tr>
+          <th colspan="2" width="20%" class="is-size-6">利用者名</th>
+          <th colspan="1" width="10%" class="is-size-6">電話番号</th>
+          <th colspan="2" width="20%" class="is-size-6">住所</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @approvals.each do |approval| %>
+      <% @request_user = User.find(approval.user_id) %>
+        <tr>
+          <td><%= l(approval.created_at, format: :dot) %></td>
+          <td><%= @request_user.name %></td>
+          <td><%= approval.req_address %></td>
+          <td colspan="2"><%= approval.req_name %></td>
+          <td><%= approval.req_phone %></td>
+          <td colspan="2"><%= approval.req_address %></td>
+        </tr>
+      <% end %>
+      <tbody>
+    </table>
+  </div>
+</div>
