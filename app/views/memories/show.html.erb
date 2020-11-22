@@ -33,13 +33,13 @@
   </div>
 
   <div class="otherNavigation">
-    <h1 class="has-text-weight-bold">タイトル名【<%= @memory.title %>】と同じ画像を表示</h1>
+    <h1 class="has-text-weight-bold">行事日【<%= l(@memory.event_date, format: :long) %>】と同じ画像を表示</h1>
   </div>
 
   <div class="content">
     <!--同じ行事タイトルの画像一覧を表示させる-->
     <% @memories.each do |m| %>
-      <% if m.title == @memory.title %>
+      <% if m.event_date == @memory.event_date %>
         <% if @memory.id != m.id %>
 
           <%= image_tag m.image0.url, class: "img-interval show-photo-size" if m.image0? %>
@@ -52,8 +52,6 @@
           <%= image_tag m.image7.url, class: "img-interval show-photo-size" if m.image7? %>
 
         <% end %>
-
-
       <% end %>
     <% end %>
   </div>

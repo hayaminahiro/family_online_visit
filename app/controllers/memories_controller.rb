@@ -6,8 +6,6 @@ class MemoriesController < ApplicationController
   def index
     @resident = current_facility.residents.find(params[:resident_id])
     @memories = @resident.memories.order(updated_at: "DESC")
-    # @memory = @memories.find(1).image0.url.split("/")[4].to_i
-    # raise
   end
 
   def show
@@ -15,9 +13,12 @@ class MemoriesController < ApplicationController
 
   def new
     @memory = @resident.memories.new
+    @add_images = params[:add_images].to_i
+    @memories = @resident.memories.order(updated_at: "DESC")
   end
 
   def create
+    @memories = @resident.memories.order(updated_at: "DESC")
     @memory = @resident.memories.new(memories_params)
     if @memory.save
       redirect_to resident_memories_url, notice: "#{@resident.name}さんの思い出アルバムを投稿しました。"

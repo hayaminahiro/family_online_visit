@@ -139,23 +139,44 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <%= f.date_field :event_date, class: "fa input" %>
+      <% if @add_images == 0 %>
+        <%= f.date_field :event_date, class: "fa input" %>
+      <% else %>
+        <% @memories.each do |m| %>
+          <p style="font-size: 20px; float: left"><%= l(m.event_date, format: :long) if m.id == @add_images %></p>
+          <%= f.hidden_field :event_date, :value => m.event_date %>
+        <% end %>
+      <% end %>
     </div>
   </div>
+
   <label class="media-left has-text-weight-bold">
-    <h1 class="memory-title-mini">思い出画像タイトル</h1>
+    <h1 class="memory-title-mini" style="margin-top: 50px;">思い出画像タイトル</h1>
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+      <% if @add_images == 0 %>
+        <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+      <% else %>
+        <% @memories.each do |m| %>
+          <%= f.text_field :title, :value => m.title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" if m.id == @add_images %>
+        <% end %>
+      <% end %>
     </div>
   </div>
+
   <label class="media-left has-text-weight-bold">
     <h1 class="memory-title-mini">ご家族へのメッセージ</h1>
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
+      <% if @add_images == 0 %>
+        <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
+      <% else %>
+        <% @memories.each do |m| %>
+          <%= f.text_area :message, :value => m.message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" if m.id == @add_images %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
