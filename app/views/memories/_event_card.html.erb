@@ -10,11 +10,9 @@
         <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
           <i class="fas fa-folder-open fa-3x"></i>
         <% end %>
-
-        <%= link_to new_resident_memory_path(@resident, add_images: m), class: "button is-link is-pulled-right" do %>
-          <i class="fas fa-images has-text-weight-bold"> 画像を追加</i>
+        <%= link_to new_resident_memory_path(@resident, add_images: m), class: "folder" do %>
+          <i class="fas fa-folder-plus fa-3x"></i>
         <% end %>
-
         <p class= photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
       </div>
     </section>
