@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
 
-  VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,                    presence: true, length: {maximum: 20}  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
   validates :email,                   presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
@@ -29,7 +29,7 @@ class User < ApplicationRecord
   validates :phone,                   presence: true
 
   mount_uploader :image, ImageUploader
-  validates :room_name,               presence: true, on: :room_word_update
+  validates :room_name, presence: true, on: :room_word_update
 
   # cookieでログイン情報を保持
   def remember_me
@@ -50,6 +50,7 @@ class User < ApplicationRecord
 
   def set_values(omniauth)
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
+
     credentials = omniauth['credentials']
     info = omniauth['info']
 
@@ -60,6 +61,7 @@ class User < ApplicationRecord
     # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
+  # Naming/AccessorMethodName →"def values_by_raw_info(raw_info)" or "def values_by_raw_info"
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!

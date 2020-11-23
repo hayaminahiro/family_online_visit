@@ -54,16 +54,16 @@ RSpec.describe Facility, type: :model do
     # 重複したメールアドレスなら無効な状態であること
     it "is invalid if email is duplicated" do
       Facility.create(
-        facility_name:                   "Sumner",
-        email:                  "tester@example.com",
-        password:               "dottle-nouveau",
-        password_confirmation:  "dottle-nouveau",
+        facility_name: "Sumner",
+        email: "tester@example.com",
+        password: "dottle-nouveau",
+        password_confirmation: "dottle-nouveau"
       )
       other_facility = Facility.new(
-        facility_name:                   "Sumner2",
-        email:                  "tester@example.com",
-        password:               "dottle-nouveau",
-        password_confirmation:  "dottle-nouveau",
+        facility_name: "Sumner2",
+        email: "tester@example.com",
+        password: "dottle-nouveau",
+        password_confirmation: "dottle-nouveau"
       )
       other_facility.valid?
       expect(other_facility.errors[:email]).to include("は既に使用されています。")

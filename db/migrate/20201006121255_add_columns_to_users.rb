@@ -1,8 +1,10 @@
 class AddColumnsToUsers < ActiveRecord::Migration[5.2]
   def change
-    add_column :users, :postal_code, :integer, after: :address
-    add_column :users, :prefecture_name, :string, after: :postal_code
-    add_column :users, :address_city, :string, after: :prefecture_name
-    add_column :users, :address_street, :string, after: :address_city
+    change_table :users, bulk: true do |t|
+      t.integer :postal_code, after: :address
+      t.string :prefecture_name, after: :postal_code
+      t.string :address_city, after: :prefecture_name
+      t.string :address_street, after: :address_city
+    end
   end
 end

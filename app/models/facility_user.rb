@@ -3,7 +3,7 @@ class FacilityUser < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :facility, optional: true
 
-  #search定義
+  # search定義
   def self.search(search, all, user)
     return all.where(['facility_name LIKE ?', "%#{search}%"]).where.not(admin: true, id: user.facilities).order(:id) if search.present?
 

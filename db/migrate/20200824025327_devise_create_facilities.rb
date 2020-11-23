@@ -32,12 +32,11 @@ class DeviseCreateFacilities < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.index :email,                unique: true
+      t.index :reset_password_token, unique: true
       t.timestamps null: false
     end
 
-    add_index :facilities, :email,                unique: true
-    add_index :facilities, :reset_password_token, unique: true
     # add_index :facilities, :confirmation_token,   unique: true
     # add_index :facilities, :unlock_token,         unique: true
   end

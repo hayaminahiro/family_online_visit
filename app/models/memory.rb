@@ -2,7 +2,7 @@ class Memory < ApplicationRecord
   belongs_to :resident
 
   validates :image0,  presence: true
-  validates :title,   presence: true, length: {maximum: 20}
+  validates :title,   presence: true, length: { maximum: 20 }
   validates :message, presence: true
   validates :event_date, presence: true
 

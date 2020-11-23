@@ -3,5 +3,5 @@ module ResidentsHelper
     render("residents/#{component_name}", locals, &block)
   end
 
-  alias :c :component
+  alias c component
 end

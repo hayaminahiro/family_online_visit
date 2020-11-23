@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @informations = Information.where(facility_id: current_user.facilities).where(status: "others")
   end
 
-  def edit;end
+  def edit; end
 
   def update
     # passwordが空白でも編集できる
@@ -39,28 +39,27 @@ class UsersController < ApplicationController
     redirect_to users_url(current_facility), notice: "#{@user.name}を削除しました。"
   end
 
-  def video_room
-  end
+  def video_room; end
 
   def new_admin
     @user = User.new
   end
 
-    private
+  private
 
-      def room_params
-        params.require(:user).permit(:room_name)
-      end
+    def room_params
+      params.require(:user).permit(:room_name)
+    end
 
-      def set_user
-        @user = User.find(params[:id])
-      end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-      # def set_facility_id
-      #   @facility = Facility.find(params[:facility_id])
-      # end
+    # def set_facility_id
+    #   @facility = Facility.find(params[:facility_id])
+    # end
 
-      def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-      end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end

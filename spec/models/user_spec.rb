@@ -54,26 +54,26 @@ RSpec.describe User, type: :model do
     # 重複したメールアドレスなら無効な状態であること
     it "is invalid if email is duplicated" do
       User.create(
-        name:                   "Sumner",
-        email:                  "tester@example.com",
-        phone:                  "08012345678",
-        password:               "dottle-nouveau",
-        password_confirmation:  "dottle-nouveau",
-        postal_code:            "1234567",
-        prefecture_name:        "Tokyo",
-        address_city:           "tyuuou",
-        address_street:         "nihonbashi"
+        name: "Sumner",
+        email: "tester@example.com",
+        phone: "08012345678",
+        password: "dottle-nouveau",
+        password_confirmation: "dottle-nouveau",
+        postal_code: "1234567",
+        prefecture_name: "Tokyo",
+        address_city: "tyuuou",
+        address_street: "nihonbashi"
       )
       other_user = User.new(
-        name:                   "Sumner2",
-        email:                  "tester@example.com",
-        phone:                  "08012345678",
-        password:               "dottle-nouveau",
-        password_confirmation:  "dottle-nouveau",
-        postal_code:            "1234567",
-        prefecture_name:        "Tokyo",
-        address_city:           "tyuuou",
-        address_street:         "nihonbashi"
+        name: "Sumner2",
+        email: "tester@example.com",
+        phone: "08012345678",
+        password: "dottle-nouveau",
+        password_confirmation: "dottle-nouveau",
+        postal_code: "1234567",
+        prefecture_name: "Tokyo",
+        address_city: "tyuuou",
+        address_street: "nihonbashi"
       )
       other_user.valid?
       expect(other_user.errors[:email]).to include("は既に使用されています。")
@@ -130,9 +130,9 @@ RSpec.describe User, type: :model do
 
     # 建物名がなければ無効な状態であること
     it "is invalid without a address_street" do
-      user.address_street  = ''
+      user.address_street = ''
       user.valid?
-      expect(user.errors[:address_street ]).to include("を入力してください")
+      expect(user.errors[:address_street]).to include("を入力してください")
     end
 
   #   # 市町村名が51文字以上であれば登録できないこと
@@ -149,5 +149,6 @@ RSpec.describe User, type: :model do
   #     expect(user.errors[:address_street]).to include("は50文字以内で入力してください")
   #   end
   # end
+
   end
 end
