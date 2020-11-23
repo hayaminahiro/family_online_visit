@@ -7,7 +7,7 @@ class Resident < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :charge_worker, presence: true, length: { maximum: 20 }
 
-  #search定義
+  # search定義
   def self.search(search, facility)
     facility.residents.includes(:users) unless search
     facility.residents.includes(:users).where('name LIKE ?', "%#{search}%").order(:id)

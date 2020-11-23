@@ -9,14 +9,14 @@ class InformationsController < ApplicationController
     @informations = Information.search(params[:search], current_facility).paginate(page: params[:page], per_page: 9)
   end
 
-  def show;end
+  def show; end
 
   def new
-    if params[:image_cache].present?
-      @information = Information.new(information_params)
-    else
-      @information = Information.new
-    end
+    @information = if params[:image_cache].present?
+                     Information.new(information_params)
+                   else
+                     Information.new
+                   end
   end
 
   def create
@@ -29,7 +29,7 @@ class InformationsController < ApplicationController
     end
   end
 
-  def edit;end
+  def edit; end
 
   def update
     @information.facility_id = current_facility.id
@@ -52,14 +52,13 @@ class InformationsController < ApplicationController
     @informations = Information.where(facility_id: params[:facility_id].to_i).where(status: "others").order(id: "DESC")
   end
 
-    private
+  private
 
-      def information_params
-        params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
-      end
+    def information_params
+      params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
+    end
 
-      def set_information
-        @information = Information.find(params[:id])
-      end
-
+    def set_information
+      @information = Information.find(params[:id])
+    end
 end
