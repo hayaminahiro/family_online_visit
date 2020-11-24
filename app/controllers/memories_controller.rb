@@ -28,6 +28,7 @@ class MemoriesController < ApplicationController
   end
 
   def edit
+    @add_images = params[:add_images].to_i
   end
 
   def update
