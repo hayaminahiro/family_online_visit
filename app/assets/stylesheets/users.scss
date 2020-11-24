@@ -23,19 +23,41 @@
 }
 
 /* ご家族一覧 */
-#family-table th {
+#user-table th {
   background-color: #FFDAB9;
   font-size: 20px;
-  text-align: center; 
+  text-align: center;
+  vertical-align: middle;
 }
 
-#family-table td {
+#user-table td {
   text-align: center;
+  vertical-align: middle;
+  padding: 15px 5px;
+}
+
+//User Name
+.user-table-tag {
+  font-size: 17px;
 }
 
 .hero .tabs ul {
   margin-right: 30px;
-  margin-left: 50px;
+  margin-left: 30px;
+}
+
+.tabs a {
+  font-size: 20px;
+}
+
+
+//検索フォーム
+.search-user.input {
+  font-size: 20px;
+}
+
+.search-btn-user.button {
+  font-size: 20px;
 }
 
 
@@ -65,7 +87,7 @@ img#img_prev.user-edit-image {
   border-radius: 50%;
   display: inline-block;
   object-fit: cover;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 mypage-aside {/*画面左*/
@@ -182,6 +204,58 @@ mypage-main{/*画面中央*/
   article{
     height: 100%;
     width: 100%;
+  }
+
+
+  /*背景画像*/
+  .hero-image-user {
+    background-size: cover;
+    background-position: center;
+  }
+    
+  .hero-image-user img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+    
+  .user-home-image {
+    position: relative;
+  }
+    
+  .mypage-image {
+    height: 170px;
+    width: 100%;
+  }
+
+    /*アイコン*/
+  .user-icon-outline{
+    z-index: 1;
+    display: none;
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    top: 46%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: #fff;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+
+  .user-icon-image {
+    z-index: 2;
+    display: none;
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
   }
 
   .Web-section{
@@ -384,72 +458,256 @@ mypage-main{/*画面中央*/
 
 
 /* ご家族編集画面 */
+/*背景画像*/
+.edit-image-user {
+  background-size: cover;
+  background-position: center;
+  width: 70%;
+  margin-left: auto;
+}
+  
+.edit-image-user img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+  
+.user-home-image {
+  position: relative;
+}
+  
+.mypage-image {
+  height: 220px;
+  width: 100%;
+}
+
+  /*アイコン*/
+.user-icon-outline{
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  top: 46%;
+  left: 50%;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+.user-icon-image {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+//アイコン変更イメージ
+.edit-image-icon {
+  display: none;
+}
+
+//背景変更イメージ
+.edit-image-background {
+  display: none;
+}
+
+#edit-title {
+  display: none;
+}
+
 .main-content {
-  margin: 0px 100px;
   display: flex;
   font-size: 2rem;
   min-height: 100vh;
+  padding-top: 3%;
 }
 
 aside {/*画面左*/
-  width: 25%;
+  width: 40%;
   font-size:15px;
   min-width: 250px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
-main {/*画面中央*/
-  width: 75%;
-  margin: 0 auto;
+//モバイルタグ
+edit-aside {
+  position: fixed;
+  display: flex;
+  width: 30%;
+  height: 100%;
+  top: 74px;
+  font-size:15px;
+  flex-direction: column;
+  background: linear-gradient(to bottom, rgba(247, 240, 231, 1), rgba(242, 79, 79, 1) 100%);
+  box-shadow: inset -1px 0px 0px 0px #DDDDDD;
+
+  .edit-menu-title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 34px;
+    padding: 0px 67px;
+    font-size: 30px;
+    color: gray;
+  }
+
+  //サイドタグ内のユーザーアイコン
+  img#img_prev.user-profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: inline-block;
+    object-fit: cover;
+  }
+
+  //サイドタグ内のアイコンレイアウト
+  .profile-section{
+    text-align: center;
+    margin-top: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(102, 97, 91, 0.3);
+  }
+
+  .edit-side-link {
+    width: 100%;
+  }
+
+  .panel-tab {
+    width: auto;
+    padding-bottom: 20px;
+    margin: 10% 25% 10% 33%;
+  }
+
+  //サイドタグのホバーアニメーション
+  .panel-tab p:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 0;
+    border-bottom: solid 2px;
+    margin-bottom: -2px;
+    transition: 0.5s;
+  }
+
+  .panel-tab p:hover::after {
+    width: 90%;
+  }
+
+  .panel-tab.is-active {
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  .panel-tab p {
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 12px;
+    width: 175px;
+    transition: 0s;
+    position: relative;
+    cursor : pointer;
+  }
+
+  .panel-tab.is-active p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color:rgb(235,94,39);
+  }
+
+  i {
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 2.1em;
+    color: #fff;
+    width: 70px;
+  }
+
+  .panel-tab.is-active i {
+    text-align: center;
+    float: left;
+    font-size: 2.1em;
+    color: rgb(235,94,39);
+    width: 70px;
+  }
 }
 
-.user-aside-link{
+main {
+  width: 50%;
+}
+
+.edit-links {
+  display: block;
+  color:black;
+  margin: 25px ;
+}
+
+.user-aside-link {
   display: block;
   color:black;
   margin: 10px;
 }
 
-.user-edit-table{
+.user-edit-table {
   background:rgba(224, 231, 231, 0.605);
+  width: 100%;
 }
 
-#u-edit-table tr{
+#u-edit-table tr {
   height: 45px;
   line-height: 45px;
 }
 
-#u-edit-table th{
+#u-edit-table th {
   background-color: rgb(241,244,248);
 }
 
-.edit-hr{
+.edit-hr {
   margin: 0px;
 }
 
-.edit-link{
+.edit-link {
   margin-top: 30px;
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 700;
 }
 
-.edit-tfoot{
+.edit-tfoot {
   margin: 10px 0px;
 }
 
 
 
 // レスポンシブ
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
+
   // マイページ
   mypage-aside {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 57px;
     line-height: 58px;
-    bottom: 0;
-    z-index: 50;
+    z-index: 1;
+    top: 299px;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+    border-bottom: 1px solid #C0C0C0;
 
     .mypage-side-link {
       margin-top: 0px;
@@ -469,6 +727,7 @@ main {/*画面中央*/
     .panel-tab.is-active {
       margin: 0px;
       width: 25%;
+      margin-bottom: 26px;
     }
 
     .panel-tab.is-active::after {
@@ -503,12 +762,14 @@ main {/*画面中央*/
       font-size: 12px;
       text-align: center;
       width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
     }
 
     .panel-tab p {
       position: absolute;
       top: 15px;
-      font-size: 12px;
+      font-size: 10px;
       text-align: center;
       width: 100%;
     }
@@ -535,6 +796,29 @@ main {/*画面中央*/
     padding-left: 0px;
     width: 100%;
     display: flex;
+    
+    .hero-image-user {
+      margin-bottom: 77px;
+    }
+
+    //背景画像
+    .mypage-image {
+      height: 225px;
+    }
+
+    //ユーザー（アイコン）
+    .user-icon-outline {
+      display: block;
+      width: 120px;
+      height: 120px;
+      top: 54%;
+    }
+
+    .user-icon-image {
+      display: block;
+      width: 120px;
+      height: 120px;
+    }
 
     #Web .columns {
       padding: 0;
@@ -597,5 +881,371 @@ main {/*画面中央*/
   .media-left .image.is-48x48 {
     height: 45px;
     width: 40px;
+  }
+
+  //ユーザー編集画面
+  .main-content {
+    display: block;
+    min-height: fit-content;
+    padding-top: 8%;
+    margin: 0px 0px 100px 0px;
+  }
+
+  aside {
+    .edit-side-tab {
+      display: none;
+    }
+  }
+
+  //背景画像
+  .edit-image-user {
+    display: block;
+    width: 100%;
+  }
+
+  .mypage-image {
+    height: 225px;
+  }
+
+  //ユーザー（アイコン）
+  .user-icon-outline {
+    display: block;
+    width: 120px;
+    height: 120px;
+    top: 54%;
+  }
+
+  .user-icon-image {
+    display: block;
+    width: 115px;
+    height: 115px;
+    top: 2%;
+  }
+
+  //タグ
+  edit-aside {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    z-index: 1;
+    top: 299px;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+    border-bottom: 1px solid #C0C0C0;
+
+    .edit-side-link {
+      margin-top: 0px;
+      display: flex;
+    }
+
+    .edit-menu-title {
+      display: none;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      color: gray;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      color: gray;
+      top: 15px;
+      font-size: 10px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .panel-tab p:after {
+      display: none;
+    }
+
+    .panel-tab p:hover::after  {
+      display: none;
+    }
+  }
+
+  main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  //ご家族一覧のタイトルレイアウト
+  .column.is-0-mobile {
+    margin-top: 0px;
+  }
+
+  //ご家族一覧テーブル（th）
+  #user-table th {
+    font-size: 16px;
+  }
+
+  .table-layout {
+    margin-bottom: 50px;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  //ご家族一覧検索フォーム
+  .search-user.input {
+    font-size: 16px;
+    left: 8%;
+  }
+
+  .search-btn-user.button {
+    font-size: 16px;
+    left: 10%;
+  }
+
+  .user-table-tag {
+    font-size: 14px;
+  }
+
+  //タブタイトル
+  .tabs a {
+    font-size: 14px;
+  }
+
+  mypage-main {
+
+    //マイページ（背景画像）
+    .mypage-image {
+      height: 150px;
+    }
+
+    //ユーザー（アイコン）
+    .user-icon-outline {
+      width: 100px;
+      height: 100px;
+      top: 36%;
+    }
+
+    .user-icon-image {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  //タグ
+  mypage-aside {
+    top: 225px
+  }
+
+  //【ユーザ編集画面】
+  //背景画像
+  .edit-image-user {
+    display: block;
+  }
+
+  .mypage-image {
+    height: 150px;
+  }
+
+  //ユーザー（アイコン）
+  .user-icon-outline {
+    display: block;
+    width: 100px;
+    height: 100px;
+    top: 42%;
+  }
+
+  .user-icon-image {
+    display: block;
+    width: 93px;
+    height: 93px;
+    top: 4%;
+  }
+
+  //アイコン変更イメージ
+  .user-edit-icon-back {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 53%;
+    right: -4%;
+    z-index: 3;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+
+    //カメラマーク
+    .user-edit-icon-image i {
+      position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 25%;
+      right: -21%;
+      z-index: 4;
+    }
+  }
+
+  //背景変更イメージ
+  .user-edit-background-back {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 40px;
+    left: 167px;
+    z-index: 3;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+
+    //カメラマーク
+    .user-edit-backgroung-image i {
+      position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 5px;
+      left: 6px;
+      z-index: 4;
+    }
+  }
+
+  #edit-title {
+    display: block;
+    background: linear-gradient(to bottom, rgba(247, 240, 231, 0.8) 0%, rgba(242, 79, 79, 0.8) 100%);
+
+    h1 {
+      color: #fff;
+    }
+  }
+
+  .main-content {
+    display: block;
+    margin: 70px 0px;
+    padding-top: 0px;
+  }
+
+  edit-aside {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    z-index: 1;
+    top: 299px;
+    border-bottom: 1px solid #C0C0C0;
+
+    .edit-side-link {
+      margin-top: 0px;
+      display: flex;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+      margin-bottom: 26px;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      top: 15px;
+      font-size: 10px;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  #u-edit-table tr.image-change {
+    display: none;
   }
 }
