@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "message"
+    t.integer "add_image_id"
     t.bigint "resident_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

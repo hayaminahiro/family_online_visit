@@ -134,18 +134,23 @@
     </div>
   </div>
 
+  <!--追加元の画像カードに紐付け用のidをもたせる-->
+  <% @memory.add_image_id = @add_images if @add_images.present? %>
+  <%= f.hidden_field :add_image_id, :value => @memory.add_image_id %>
+
   <label class="media-left has-text-weight-bold">
     <h1 class="memory-title-mini">出来事の日付（行事日等）</h1>
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <% if @add_images == 0 %>
+      <% if @add_images == 0 || @memory.add_image_id == 0 %>
         <%= f.date_field :event_date, class: "fa input" %>
       <% else %>
-        <% @memories.each do |m| %>
-          <p style="font-size: 20px; float: left"><%= l(m.event_date, format: :long) if m.id == @add_images %></p>
-          <%= f.hidden_field :event_date, :value => m.event_date %>
+        <% @memories.map do |m| %>
+          <% @memory = m if m.id == @add_images %>
         <% end %>
+        <%= f.date_field :event_date, readonly: true, :value => @memory.event_date, class: "fa input" %>
+        <%= f.hidden_field :event_date, :value => @memory.event_date %>
       <% end %>
     </div>
   </div>
@@ -155,12 +160,13 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <% if @add_images == 0 %>
+      <% if @add_images == 0 || @memory.add_image_id == 0 %>
         <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
       <% else %>
-        <% @memories.each do |m| %>
-          <%= f.text_field :title, :value => m.title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" if m.id == @add_images %>
+        <% @memories.map do |m| %>
+          <% @memory = m if m.id == @add_images %>
         <% end %>
+        <%= f.text_field :title, :value => @memory.title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
       <% end %>
     </div>
   </div>
@@ -170,15 +176,17 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <% if @add_images == 0 %>
+      <% if @add_images == 0 || @memory.add_image_id == 0 %>
         <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
       <% else %>
-        <% @memories.each do |m| %>
-          <%= f.text_area :message, :value => m.message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" if m.id == @add_images %>
+        <% @memories.map do |m| %>
+          <% @memory = m if m.id == @add_images %>
         <% end %>
+        <%= f.text_area :message, :value => @memory.message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
       <% end %>
     </div>
   </div>
+
   <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
 <% end %>
 

@@ -3,6 +3,7 @@ class CreateMemories < ActiveRecord::Migration[5.2]
     create_table :memories do |t|
       t.string :title
       t.text :message
+      t.integer :add_image_id
       t.references :resident, foreign_key: true
       t.timestamps
     end
