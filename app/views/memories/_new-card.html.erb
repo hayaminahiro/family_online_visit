@@ -1,6 +1,10 @@
 <%= form_with(model: @memory, url: resident_memories_path(@resident), method: :post, local: true) do |f| %>
   <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
 
+  <!--追加元の画像カードに紐付け用のidをもたせる-->
+  <% @memory.add_image_id = @add_images if @add_images.present? %>
+  <%= f.hidden_field :add_image_id, :value => @memory.add_image_id %>
+
   <!--image0-->
   <div class="card memory-card-position">
     <div class="card-image">
@@ -133,10 +137,6 @@
       </div>
     </div>
   </div>
-
-  <!--追加元の画像カードに紐付け用のidをもたせる-->
-  <% @memory.add_image_id = @add_images if @add_images.present? %>
-  <%= f.hidden_field :add_image_id, :value => @memory.add_image_id %>
 
   <label class="media-left has-text-weight-bold">
     <h1 class="memory-title-mini">出来事の日付（行事日等）</h1>
