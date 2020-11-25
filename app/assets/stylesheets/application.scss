@@ -166,3 +166,11 @@
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+
+  //メッセージレイアウト
+  .notification {
+    padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+  }
+}
