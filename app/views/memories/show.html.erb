@@ -38,7 +38,7 @@
   </div>
   <div class="content">
     <% @memories.each do |m| %>
-      <% if @memory.event_date == m.event_date %>
+      <% if @memory.event_date == m.event_date && @memory.id != m.id %>
         <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
           <%= image_tag m.image0.url, class: "img-interval show-photo-size" if m.image0? %>
         <% end %>
