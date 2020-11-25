@@ -230,12 +230,7 @@
       .res-footer {
         padding: 40px 10px 40px 55px;
       }
-
-
     }
-
-
-
   }
 
   .photo-scroll {
@@ -315,6 +310,14 @@
   text-align: center;
   border-top: 1px solid #eee;
   padding-top: 30px;
+
+  .memories-index-btn {
+    margin-top: 20px;
+  }
+
+  a.folder {
+    color: burlywood;
+  }
 }
 
 .photo-card-link-show a {
@@ -344,14 +347,6 @@
     }
   }
 
-  .photo-card-show {
-    margin: 50px 0;
-    min-height: 275vh;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px #ccc;
-  }
-
   .photo-card-img-show {
     border-radius: 5px 5px 0 0;
     max-width: 100%;
@@ -379,10 +374,6 @@
     text-align: center;
     border-top: 1px solid #eee;
     padding: 20px;
-
-    .memories-index-btn {
-      margin-top: 20px;
-    }
   }
 
   .photo-card-link-show a {

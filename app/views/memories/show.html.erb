@@ -26,9 +26,14 @@
                   data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
         <i class="far fa-trash-alt"></i>
       <% end %>
-      <%= link_to resident_memories_path(@resident), class:"button is-link is-light is-medium memories-index-btn" do %>
+      <div class="memories-index-btn">
+      <%= link_to resident_memories_path(@resident), class:"button is-link is-light is-medium" do %>
         <i class="fas fa-images"></i>&nbsp;思い出画像一覧
       <% end %>
+      <%= link_to new_resident_memory_path(@resident, add_images: @memory), class: "folder" do %>
+        <i class="fas fa-folder-plus fa-3x"></i>
+      <% end %>
+      </div>
     </div>
   </div>
 
