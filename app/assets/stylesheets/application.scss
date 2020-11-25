@@ -19,6 +19,12 @@
 @import 'font-awesome';
 @import "bulma";
 
+//ヘッダーアイコンの画像
+.navbar-item img {
+  max-height: 100%;
+  object-fit: cover;
+}
+
 /*ページネーションの左右ラベルを非表示にする*/
 .pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
   display: none;

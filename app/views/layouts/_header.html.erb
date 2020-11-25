@@ -49,8 +49,20 @@
       <% if user_signed_in?  || facility_signed_in? %>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-weight-bold more">
-          <!--ログインしたユーザ or 施設ごとにアイコン表示を変えたい-->
-            <font color="#4DADA1"><i class="fas fa-user-circle fa-2x"></i></font>
+            <!--ヘッダーのアイコン（ ユーザー ・ 施設 ）-->
+            <% if user_signed_in? %>
+              <% if current_user.image? %>
+                <%= image_tag current_user.image.url, class: "header-icon" %>
+              <% else %>
+                <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "header-icon" %>
+              <% end %>
+            <% elsif facility_signed_in? %>
+              <% if current_facility.icon? %>
+                <%= image_tag current_facility.icon.url, class: "header-icon" %>
+              <% else %>
+                <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "header-icon" %>
+              <% end %>
+            <% end %>    
           </a>
           <div class="navbar-dropdown" style="background-color: #efefef;">
             <a class="navbar-item">

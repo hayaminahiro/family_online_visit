@@ -34,9 +34,9 @@ module UserDecorator
   # マイページ表示用
   def user_icon_image
     if image?
-      image_tag image.url, id: :img_prev, class: "user-profile-image"
+      image_tag image.url, class: "user-profile-image"
     else
-      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-profile-image"
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "user-profile-image"
     end
   end
 
@@ -63,6 +63,15 @@ module UserDecorator
       image_tag image.url, id: :img_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
     else
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
+    end
+  end
+
+  # ヘッダー内のアイコン
+  def user_header_icon
+    if image?
+      image_tag image.url, id: :img_prev, class: "user-icon-header"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "user-icon-header"
     end
   end
 end
