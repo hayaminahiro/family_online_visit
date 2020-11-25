@@ -146,9 +146,7 @@
       <% if @add_images == 0 || @memory.add_image_id == 0 %>
         <%= f.date_field :event_date, class: "fa input" %>
       <% else %>
-        <% @memories.map do |m| %>
-          <% @memory = m if m.id == @add_images %>
-        <% end %>
+        <% @memories.each {|m| @memory = m if m.id == @add_images } %>
         <%= f.date_field :event_date, readonly: true, :value => @memory.event_date, class: "fa input" %>
         <%= f.hidden_field :event_date, :value => @memory.event_date %>
       <% end %>
@@ -156,16 +154,14 @@
   </div>
 
   <label class="media-left has-text-weight-bold">
-    <h1 class="memory-title-mini" style="margin-top: 50px;">思い出画像タイトル</h1>
+    <h1 class="memory-title-mini">思い出画像タイトル</h1>
   </label>
   <div class="media-content">
     <div class="content memory-label">
       <% if @add_images == 0 || @memory.add_image_id == 0 %>
         <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
       <% else %>
-        <% @memories.map do |m| %>
-          <% @memory = m if m.id == @add_images %>
-        <% end %>
+        <% @memories.each {|m| @memory = m if m.id == @add_images } %>
         <%= f.text_field :title, :value => @memory.title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
       <% end %>
     </div>
@@ -179,9 +175,7 @@
       <% if @add_images == 0 || @memory.add_image_id == 0 %>
         <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
       <% else %>
-        <% @memories.map do |m| %>
-          <% @memory = m if m.id == @add_images %>
-        <% end %>
+        <% @memories.each {|m| @memory = m if m.id == @add_images } %>
         <%= f.text_area :message, :value => @memory.message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
       <% end %>
     </div>

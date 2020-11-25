@@ -16,8 +16,8 @@
 
     <!--タイトル/メッセージ部分-->
     <div class="photo-card-link-show">
-      <h4 style="color: #401c00;"><%= @memory.title %></h4>
-      <p style="word-break: break-all; width: 80%; margin: auto; padding-bottom: 20px;"><%= @memory.message %></p>
+      <h4 class="title-brown"><%= @memory.title %></h4>
+      <p class="message-title"><%= @memory.message %></p>
       <p class="photo-card-text-show">行事日: <%= l(@memory.event_date, format: :long) %>（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
       <%= link_to edit_resident_memory_path(@resident, @memory) do %>
         <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
@@ -55,11 +55,10 @@
   <div class="otherNavigation">
     <h1 class="has-text-weight-bold">行事日【<%= l(@memory.event_date, format: :long) %>】と同じ画像を表示</h1>
   </div>
-  <div class="content" style="margin-bottom: 50px;">
-    <% @memories.each do |m| %>
+  <div class="content show-bottom-control">
+    <% @memories.map do |m| %>
       <% if m.event_date == @memory.event_date %>
         <% if @memory.id != m.id %>
-
           <%= image_tag m.image0.url, class: "img-interval show-photo-size" if m.image0? %>
           <%= image_tag m.image1.url, class: "img-interval show-photo-size" if m.image1? %>
           <%= image_tag m.image2.url, class: "img-interval show-photo-size" if m.image2? %>
@@ -68,7 +67,6 @@
           <%= image_tag m.image5.url, class: "img-interval show-photo-size" if m.image5? %>
           <%= image_tag m.image6.url, class: "img-interval show-photo-size" if m.image6? %>
           <%= image_tag m.image7.url, class: "img-interval show-photo-size" if m.image7? %>
-
         <% end %>
       <% end %>
     <% end %>

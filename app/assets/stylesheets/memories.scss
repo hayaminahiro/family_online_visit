@@ -253,6 +253,10 @@
 .main-show {
   min-height: 50vh;
 
+  .show-bottom-control {
+    margin-bottom: 50px;
+  }
+
   .content {
     text-align: center;
     margin: 20px 10px 0 0;
@@ -263,6 +267,10 @@
       height: 250px;
       object-fit: cover;
     }
+  }
+
+  .show-bottom-control {
+    margin-bottom: 50px;
   }
 
   .img-interval {
@@ -311,6 +319,17 @@
   border-top: 1px solid #eee;
   padding-top: 30px;
 
+  .title-brown {
+    color: #401c00;
+  }
+
+  .message-title {
+    word-break: break-all;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+
   .memories-index-btn {
     margin-top: 20px;
   }
@@ -340,6 +359,10 @@
       text-align: center;
       margin: 0;
       padding: 15px;
+    }
+
+    .show-bottom-control {
+      margin-bottom: 50px;
     }
 
     .img-interval {
@@ -417,7 +440,7 @@
     font-weight: 700;
     border-bottom: 1px solid #C0C0C0;
     padding: 50px 0 5px 0;
-    margin-bottom: 20px;
+    margin: 50px 0 20px 0;
     text-align: left;
     font-size: 20px;
     color: #401c00;
