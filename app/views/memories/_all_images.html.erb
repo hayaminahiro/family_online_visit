@@ -12,7 +12,7 @@
     <!-- 画像00 モーダル表示 -->
     <div class="modal" id="<%= column_id %>">
       <div class="modal-background"></div>
-      <div class="modal-card">
+      <div class="modal-card modal-width">
         <header class="modal-card-head modal-title-back">
           <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3 title-color">画像データ詳細</p>
           <button class="delete" aria-label="close" id="close"></button>
@@ -28,7 +28,7 @@
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">思い出画像タイトル</span><%= m.title %></p>
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">ご家族へのメッセージ</span><%= m.message %></p>
           </section>
-          <footer class="modal-card-foot footer-position">
+          <footer class="modal-card-foot footer-position res-footer">
             <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
                         method: :delete, data: { confirm: "画像1(#{url})は削除できません。" }, class: "button is-medium delete-btn" do %>
               <span><i class="far fa-trash-alt"></i></span>

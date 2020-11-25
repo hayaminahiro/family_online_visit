@@ -195,6 +195,26 @@
       border-radius: 5px;
       box-shadow: 0 2px 5px #ccc;
     }
+
+    //モーダルデザイン
+    .modal-width {
+      width: 90%;
+
+      .content-back {
+
+        .word-break {
+          word-break: break-all;
+          padding-left: 0;
+        }
+      }
+
+      .res-footer {
+        padding: 40px 10px 40px 10px;
+      }
+    }
+
+
+
   }
 
   .photo-scroll {
