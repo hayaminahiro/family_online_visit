@@ -50,7 +50,7 @@
   <div class="otherNavigation">
     <h1 class="has-text-weight-bold">行事日【<%= l(@memory.event_date, format: :long) %>】と同じ画像を表示</h1>
   </div>
-  <div class="content">
+  <div class="content" style="margin-bottom: 50px;">
     <% @memories.each do |m| %>
       <% if m.event_date == @memory.event_date %>
         <% if @memory.id != m.id %>

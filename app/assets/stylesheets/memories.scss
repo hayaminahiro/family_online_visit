@@ -106,6 +106,10 @@
   }
 }
 
+.bottom-control {
+  margin-bottom: 30px;
+}
+
 //indexカードのデザイン
 .photo-card {
   margin: 50px 50px 20px 50px;
@@ -174,7 +178,6 @@
     .content {
       text-align: center;
       margin: 20px 10px 0 0;
-      padding-right: 30px;
     }
 
     .img-interval {
@@ -186,7 +189,7 @@
     }
 
     .photo-card {
-      margin: 50px 50px 20px -110px;
+      margin: 50px 50px 20px 13px;
       width: 320px;
       background: #fff;
       border-radius: 5px;
