@@ -149,7 +149,7 @@
     height: 70px;
   }
 
-  footer{
+  footer {
     height: 70px;
     margin-bottom: 55px;
 
@@ -172,5 +172,12 @@
   //メッセージレイアウト
   .notification {
     padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+  }
+
+  footer {
+
+    .content h1 {
+      font-size: 18px;
+    }
   }
 }
