@@ -1,0 +1,75 @@
+<div class="columns" id="under-link">
+  <div class="column is-0-desktop is-0-mobile" style="padding-right: 0px; padding-top: 0px; background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
+                                                    background: -moz-linear-gradient(top,#4E6F8B,#0A203F);">
+    <section id="user_tab_nav">
+      <ul>
+        <li>
+          <%= link_to root_path do %>
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>&nbsp;
+            TOP
+          <% end %>
+        </li>
+
+        <% unless user_signed_in? || facility_signed_in? %>  
+          <li>
+            <%= link_to user_session_path do %>
+              <span class="icon">
+                <i class="far fa-user"></i>
+              </span>&nbsp;
+              ログイン
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to facility_session_path do %>
+              <span class="icon">
+                <i class="far fa-user-circle"></i>
+              </span>&nbsp;
+              施設ログイン
+            <% end %>
+          </li>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to new_facility_user_path do %>
+              <span class="icon">
+                <i class="fas fa-search-plus"></i>
+              </span>&nbsp;
+              施設登録
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <span class="icon">
+                <i class="fas fa-house-user"></i>
+              </span>&nbsp;
+              マイページ
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to edit_user_registration_path(resource_name) do %>
+              <span class="icon">
+                <i class="fas fa-user-cog"></i>
+              </span>&nbsp;
+              設定
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to sign_out_path do %>
+              <span class="icon">
+                <i class="fas fa-sign-out-alt"></i>
+              </span>&nbsp;
+              ログアウト
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+</div>

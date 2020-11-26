@@ -3,17 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // index.html.erb
-.panel{
+.panel {
   margin: 20px;
+}
+
+#panel-info {
+  margin-top: 25px;
+  min-height: 70vh;
+  background: #F5F5F5;
 }
 
 .panel-tabs a {
   border-bottom: 1px solid #dbdbdb;
-  margin: 0 30px 30px 30px;
+  margin: 0 30px 10px 10px;
   padding: 0.5em;
   font-size: 18px;
   font-weight: bold;
   color: #afaaaa;
+}
+
+.panel-tabs a.infomation-tab.is-active {
+  color: #48c774;
+  border-bottom-width: medium;
+}
+
+.info-menu {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
 }
 
 .level-info {
@@ -22,16 +42,16 @@
   margin: 0px 30px 50px 30px;
 }
 
-.new-info{
+.new-info {
   width: 90px;
   margin-left: 20px;
 }
 
-#info-container{
+#info-container {
   padding-bottom: 50px;
 }
 
-.info-section{
+.info-section {
   display:flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,7 +59,7 @@
   margin-bottom: 30px;
 }
 
-#info-card{
+#info-card {
   width:300px;
   margin: 20px;
 
@@ -51,21 +71,22 @@
 
 }
 
-#info-content{
+#info-content {
   height:180px;
 }
 
 // show.html.erb
-.show-info-container{
+.show-info-container {
   margin: 80px;
 }
 
-.show-info-p{
+.show-info-p {
   font-size: 18px;
   margin-top: 15px;
+  text-align: justify;
 }
 
-.show-info-sp{
+.show-info-sp {
   color:#7a7a7a;
 }
 
@@ -74,10 +95,11 @@
     background-color: transparent;
     padding: 10px 20px;
   }
-  .card-footer{
+  .card-footer {
     height: 70px;
+    margin-bottom: 0px;
   }
-  .card-footer-item{
+  .card-footer-item {
     height: 70px;
   }
 }
@@ -121,10 +143,126 @@ input#information_image.image_uploading {
 }
 
 .drop-zone-area {
-  padding: 0 0 100px 40px;
+  padding: 0 0 100px 33px;
 }
 
 #info-title {
   margin-bottom: 28px;
 }
 
+.level-left {
+  padding-top: 30px;
+}
+
+.level-right {
+  padding-top: 30px;
+}
+
+#info-layout {
+  display: none;
+}
+
+//タブレット
+@media screen and (max-width: 1200px) {
+
+  //タグ
+  .panel-tabs a.infomation-tab {
+    font-size: 2px;
+  }
+
+  .panel-tabs a.infomation-tab i {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    margin-bottom: 3px;
+  }
+
+  //画像選択アイコン
+  .fa.image_input_comment {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  //タグ（お知らせ一覧）
+  #panel-info {
+    margin-top: 20px;
+  }
+
+  .level-right {
+    padding-top: 0px;
+  }
+
+  //プレビュー画像
+  .label-space {
+    padding: 0px;
+  }
+
+  //画像選択欄
+  .drop-zone-area {
+    padding: 0px 15px 100px 15px;
+  }
+
+  //panel調整
+  #info-layout {
+    display: block;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  .panel-tabs a {
+    margin: 0px 10px;
+  }
+
+  //検索フォーム
+  .info-menu {
+    display: block;
+  }
+
+  .level-info {
+    margin: 20px 2px 30px 0px;
+  }
+
+  //お知らせ新規作成ボタン
+  .new-info {
+    margin-left: 35%;
+    margin-top: 20px;
+  }
+
+  //お知らせ新規作成・編集画面
+  #panel-style {
+    margin: 10px;
+  }
+
+  //画像選択欄
+  .drop-zone-area {
+    padding: 0px;
+  }
+
+  //画像選択アイコン
+  .fa.image_input_comment {
+    display: none;
+  }
+
+  //ファイル選択位置
+  input#information_image.image_uploading {
+    line-height: 200px;
+  }
+
+  #notification-mobile {
+    padding: 1.25rem 0.5rem 1.25rem 0.5rem;
+  }
+
+  //更新ボタン
+  .info-btn {
+    margin-top: 40px;
+  }
+
+  //システムからのお知らせレイアウト
+  .show-info-container {
+    margin: 60px;
+  }
+}

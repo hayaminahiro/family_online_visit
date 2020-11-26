@@ -5,7 +5,7 @@
         <div class="container">
           <%= link_to root_path, class: "navbar-item" do %>
             <i class="fas fa-photo-video fa-2x font-awe-video"></i>
-            <h1 class="is-size-3 is-2" style="font-family: 'Quicksand', sans-serif;">
+            <h1 class="is-size-3 s-2" style="font-family: 'Quicksand', sans-serif;">
               <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
             </h1>
           <% end %>
@@ -91,7 +91,7 @@
             <% if user_signed_in? %>
             <%= link_to "設定", edit_user_registration_path(resource_name), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% elsif facility_signed_in? %>
-            <%= link_to "設定", edit_facility_registration_path(resource_name), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <%= link_to "設定", edit_facility_registration_path, :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
             <% end %>
           </a>
           <hr class="navbar-divider">

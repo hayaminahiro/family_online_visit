@@ -2,23 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.page-display{
+.page-display {
   .page-number{
     display: inline-block;
   }
   color: black;
 }
 
-.signup-upper{
+.signup-upper {
   margin-bottom: 20px;
   border-radius: 10%;
 }
 
-.signups-title{
+.signups-title {
+  margin-top: 111px;
   margin-bottom: 20px;
 }
 
-.comfirm-page{
+.comfirm-page {
   margin-top: -10px;
 }
 
@@ -75,4 +76,14 @@ input.font-awesome {
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+
+  //【ユーザ新規登録画面】
+  //タイトルレイアウト
+  .signups-title {
+    margin-top: 80px;
+  }
 }

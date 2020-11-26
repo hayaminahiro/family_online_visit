@@ -74,7 +74,7 @@ class SignupController < ApplicationController
       phone: session[:phone]
     )
     if @user.save
-    # ログインするための情報を保管
+      # ログインするための情報を保管
       session[:id] = @user.id
       sign_in User.find(session[:id]) unless user_signed_in?
       redirect_to root_url, notice: "新規ユーザーを登録しました"
@@ -85,6 +85,7 @@ class SignupController < ApplicationController
   end
 
   private
+
     # 許可するキーを設定します
     def user_params
       params.require(:user).permit(
