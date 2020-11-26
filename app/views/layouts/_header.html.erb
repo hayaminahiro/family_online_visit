@@ -26,11 +26,7 @@
         <% if user_signed_in? || facility_signed_in? %>
           <% if user_signed_in? %>
             <p class="navbar-item">
-              <%= link_to root_path, class: "links" do %>
-                <span class="icon">
-                  <i class="fas fa-home"></i>
-                </span>&nbsp;
-              <% end %>
+              <%= link_to "TOP", root_path, class: "links" %>
             </p>
             <p class="navbar-item">
               <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
