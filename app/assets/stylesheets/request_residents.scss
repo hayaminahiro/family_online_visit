@@ -16,7 +16,7 @@
   vertical-align: middle;
 
   th{
-    width: 100px;
+    width: 150px;
     vertical-align: middle;
     text-align: center;
     background-color: rgb(250,248,242);
@@ -31,7 +31,7 @@
 }
 
 .req-new-body{
-  background-color: #faf8f3;
+  background-color: rgb(245,245,245);
   text-align: center;
 
   .field.is-grouped.is-grouped-right{
@@ -46,10 +46,22 @@
     margin-right: 0.75rem;
     width: 100%;
   }
+
+  .card{
+    background-color: rgb(245,245,245);
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 94%;
+    position: relative;
+    margin: auto;
+    margin: 0px auto;
+    padding: 0px 0px 23px 0px;
+    margin-top: 20px;
+  }
 }
 
 .req-new-container{
   margin: 0px;
   padding-top: 30px;
-  background-color: rgb(250,248,243);
+  background-color: rgb(245,245,245);
 }

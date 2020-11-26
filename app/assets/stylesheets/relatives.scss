@@ -2,6 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.relative-new-body{
+  text-align: center;
+
+  .field.is-grouped.is-grouped-right{
+    justify-content: center;
+    width: 812px;
+    margin: auto;
+    padding-top: 21px;
+  }
+
+  .field.is-grouped > .control:not(:last-child) {
+    margin-top: 0px;
+    margin-right: 0.75rem;
+    width: 100%;
+  }
+
+  .card{
+    background-color: rgb(245,245,245);
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 94%;
+    position: relative;
+    margin: auto;
+    margin: 0px auto;
+    padding: 0px 0px 23px 0px;
+    margin-top: 20px;
+  }
+}
+
+.relative-new-container{
+  margin: 0px;
+  background-color: rgb(245,245,245);
+}
+
 .req-new-section{
   width: 90%;
   margin: auto;
@@ -25,10 +59,11 @@
   vertical-align: middle;
 
   th{
-    width: 100px;
+    width: 180px;
     vertical-align: middle;
     text-align: center;
     font-weight: 500;
+    background-color: aliceblue;
   }
 
   td {
@@ -66,13 +101,13 @@
 }
 
 .req-show-body{
-  background-color: #faf8f3;
+  background-color: rgb(245,245,245);
   text-align: center;
   height: 100vh;
 }
 
 .req-index-container{
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -97,5 +132,96 @@
 
   tr:nth-child(2n+1) td {
     background-color: #fbfbfb;
+  }
+}
+
+// confirm
+.relative-confirm-body{
+  text-align: center;
+  margin-top: 95px;
+
+  .field.is-grouped.is-grouped-right{
+    justify-content: center;
+    width: 812px;
+    margin: auto;
+    padding-top: 21px;
+  }
+
+  .field.is-grouped > .control:not(:last-child) {
+    margin-top: 0px;
+    margin-right: 0.75rem;
+    width: 100%;
+  }
+
+  .card{
+    background-color: whitesmoke;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 94%;
+    position: relative;
+    margin: auto;
+    margin: 0px auto;
+    padding: 0px 0px 23px 0px;
+    margin-top: 20px;
+    width: 80%;
+  }
+}
+
+#req-confirm-table{
+  margin: auto;
+  padding-top: 20px;
+  height: 100%;
+  vertical-align: middle;
+  width: 100%;
+
+  th{
+    width: 180px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 500;
+    background-color: #f0fffc96;
+    border-right: solid 1px #92a09394;
+  }
+
+  td {
+    vertical-align: middle;
+    text-align: center;
+    height: 40px;
+  }
+
+  .r-check-box{
+    padding-left: 20px;
+    display:inline-block;
+    text-align: left;
+    width: 190px;
+    height: 30px;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  .r-check-box::-webkit-scrollbar {
+    display:none;
+  }
+
+  .tag-apply{
+    text-align: left;
+    padding: 0 30px;
+  }
+}
+
+.req-confirm-section{
+  width: 90%;
+  margin: auto;
+
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
+    display: block;
+    padding: 15px;
+    width: 70%;
   }
 }
