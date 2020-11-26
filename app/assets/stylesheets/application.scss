@@ -41,6 +41,11 @@
     display: inline-block;
   }
 
+  //ハンバーガー
+  .navbar-burger {
+    margin-top: 11px;
+  }
+
   //施設下タブ
   #facility_tab_nav {
     display: block;
@@ -168,6 +173,11 @@
 }
 
 @media screen and (max-width: 500px) {
+
+  //ハンバーガー
+  .navbar-burger {
+    margin-top: 0px;
+  }
 
   //メッセージレイアウト
   .notification {
