@@ -15,4 +15,22 @@ class Memory < ApplicationRecord
   mount_uploader :image5, ImageUploader
   mount_uploader :image6, ImageUploader
   mount_uploader :image7, ImageUploader
+
+  def delete_image(column)
+    if column == "image1"
+      remove_image1!
+    elsif column == "image2"
+      remove_image2!
+    elsif column == "image3"
+      remove_image3!
+    elsif column == "image4"
+      remove_image4!
+    elsif column == "image5"
+      remove_image5!
+    elsif column == "image6"
+      remove_image6!
+    else
+      remove_image7!
+    end
+  end
 end

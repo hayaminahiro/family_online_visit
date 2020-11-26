@@ -43,25 +43,13 @@ class MemoriesController < ApplicationController
     memory_id = params[:memory_id].to_i
     memory = @memories.find(memory_id)
     column = params[:column]
-
-    case column
-    when "image1"
-      memory.remove_image1!
-    when "image2"
-      memory.remove_image2!
-    when "image3"
-      memory.remove_image3!
-    when "image4"
-      memory.remove_image4!
-    when "image5"
-      memory.remove_image5!
-    when "image6"
-      memory.remove_image6!
-    else "image7"
-      memory.remove_image7!
-    end
+    memory.delete_image(column)
     memory.save!
-    redirect_to resident_memories_url, alert: "画像を削除しました。"
+    if column != "image0"
+      redirect_to resident_memories_url, alert: "画像を削除しました。"
+    else
+      redirect_to resident_memories_url, alert: "画像1は削除できません。"
+    end
   end
 
   private
@@ -84,14 +72,6 @@ class MemoriesController < ApplicationController
 
     def memories_params
       params.require(:memory).permit(:add_image_id, :title, :message, :event_date,
-                                     :image0, :image1, :image2, :image3, :image4, :image5, :image6, :image7,
-                                     :remove_image0, :remove_image1, :remove_image2, :remove_image3, :remove_image4, :remove_image5, :remove_image6, :remove_image7,
-                                     :image0_cache, :image1_cache, :image2_cache, :image3_cache, :image4_cache, :image5_cache, :image6_cache, :image7_cache)
-    end
-
-
-    def memories_params
-      params.require(:memory).permit(:title, :message, :event_date,
                                      :image0, :image1, :image2, :image3, :image4, :image5, :image6, :image7,
                                      :remove_image0, :remove_image1, :remove_image2, :remove_image3, :remove_image4, :remove_image5, :remove_image6, :remove_image7,
                                      :image0_cache, :image1_cache, :image2_cache, :image3_cache, :image4_cache, :image5_cache, :image6_cache, :image7_cache)

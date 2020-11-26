@@ -31,7 +31,7 @@
           </section>
           <footer class="modal-card-foot footer-position res-footer">
             <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像1(#{url})は削除できません。" }, class: "button is-medium delete-btn" do %>
+                        method: :delete, data: { confirm: "画像1(#{url})は削除できません。"}, class: "button is-medium delete-btn" do %>
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
