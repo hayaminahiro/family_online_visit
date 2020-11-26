@@ -24,43 +24,68 @@
   display: none;
 }
 
+#under-link {
+  display: none;
+}
+
 /*下タブ（タブレット、モバイル）*/
 @media screen and (max-width: 1000px) {
-  #vertical_tab_nav {
-    z-index: 20;
-    position: fixed;
-    bottom: 0;
-    height: 55px;
-    width: 100%;
-    background-color: black;
+
+  #under-link {
+    display: inline-block;
   }
 
-  #vertical_tab_nav ul {
+  //施設下タブ
+  #facility_tab_nav {
+    display: block;
+    z-index: 20;
+    text-align:center;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
+    background: -moz-linear-gradient(top,#4E6F8B,#0A203F);
+  }
+
+  #facility_tab_nav ul {
     display: flex;
     font-weight: bold;
   }
 
-  #vertical_tab_nav li {
+  #facility_tab_nav li {
     flex: 1;
-    margin-top: 0;
   }
 
-  .facility-default-image {
+  .facility-icon-image {
     left: 12%;
   }
 
-  #vertical_tab_nav li a {
+  #facility_tab_nav li a {
     display: block;
+    color: #fff;
     height: 51px;
     padding-top: 0px;
+    font-size: 10px;
   }
 
-  #vertical_tab_nav li a:hover {
+  #facility_tab_nav li span {
+    font-size: 26px;
+    display: block;
+    margin: 8px auto;
+  }
+
+  #facility_tab_nav li i {
+    display: block;
+    line-height: 27px;
+  }
+
+  #facility_tab_nav li a:hover {
     background: #EFEFEF;
     color: black;
   }
 
-  #vertical_tab_nav li:first-child {
+  #facility_tab_nav li:last-child {
     display: none;
   }
 
@@ -72,23 +97,65 @@
     }
   }
 
+  //ユーザー下タブ
+  #user_tab_nav {
+    z-index: 20;
+    display: block;
+    text-align:center;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background: linear-gradient(to bottom, #ffffff, #f7f0e7);
+  }
+
+  #user_tab_nav ul {
+    display: flex;
+    font-weight: bold;
+  }
+
+  #user_tab_nav li {
+    flex: 1;
+  }
+
+  #user_tab_nav li a {
+    display: block;
+    height: 51px;
+    color: gray;
+    padding-top: 8px;
+    font-size: 10px;
+  }
+
+  #user_tab_nav li span {
+    font-size: 26px;
+    display: block;
+    margin: 5px auto;
+    margin-top: 2px;
+  }
+
+  #user_tab_nav li i {
+    display: block;
+    line-height: 20px;
+  }
+
+  //フッター
   .footer-layout {
-    height: 50px;
+    height: 70px;
   }
 
   footer{
-    height: 50px;
+    height: 70px;
     margin-bottom: 55px;
 
     .footer-content{
       padding-top: 0px;
-      height: 50px;
+      height: 70px;
     }
 
     .content h1 {
       font-size: 2em;
-      line-height: 50px;
-      height: 50px;
+      line-height: 70px;
+      height: 70px;
       margin-bottom: 0px;
     }
   }

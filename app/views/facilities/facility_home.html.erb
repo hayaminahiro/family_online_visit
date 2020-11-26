@@ -1,79 +1,24 @@
 <ul class="facility-background">
 </ul>
-<section class="hero-1">
-  <div class="facility-home-image">
-    <% month = Date.today.month %>
-    <% if month.in?([ 12, 1, 2 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "home-default-image"%>
-    <% elsif month.in?([ 3, 4, 5 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "home-default-image" %>
-    <% elsif month.in?([ 6, 7, 8 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "home-default-image"%>
-    <% elsif month.in?([ 9, 10, 11 ]) %>
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "home-default-image"%>
-    <% end %>
-    <div class="image-outline">
-      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "facility-default-image" %>
-      <div class="has-text-right" id="facility-name">
-        <%= current_facility.facility_name %>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!--<section class="facility-home-title">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title has-text-right has-text-white is-size-2" id="title-scroll">
-        <%= current_facility.facility_name %>
-      </h1>
-    </div>
-  </div>
-</section>-->
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
 
-<div class="columns .is-variable is-0 is-desktop" style="margin-right: 0px; margin-top: -1.1rem;">
-  <div class="column is-2-desktop is-0-mobile" style="padding-right: 0px; padding-top: 0px; margin-top:12px; background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
-                                  background: -moz-linear-gradient(top,#4E6F8B,#0A203F);">
-    <section id="vertical_tab_nav">
-      <ul>
-        <li>
-          <%= link_to facility_home_facility_path(id: current_facility) do %>
-            <span class="icon">
-              <i class="fas fa-home"></i>
-            </span>&nbsp;
-          <% end %>
-        <li>
-          <%= link_to_unless_current "利用者一覧", residents_path %>
-        </li>
-        <li>
-          <%= link_to_unless_current "ご家族一覧", users_path %>
-        </li>
-        <li>
-          <%= link_to_unless_current "予約状況一覧", "#" %>
-        </li>
-        <li>
-          <%= link_to_unless_current "お知らせ", informations_path %>
-        </li>
-        <li>
-          <%= link_to_unless_current "お問い合わせ", "#" %>
-        </li>
-      </ul>
-    </section>
-  </div>
-
-  <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding: 0px; margin-top: 12px;">
+<div class="columns .is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding: 0px;">
     <article class="panel is-success" id="facility-contents">
       <nav class="panel" style="background-color: #fff;">
-        <p class="panel-heading has-text-centered" style="font-size: 30px; background: -webkit-linear-gradient(top,goldenrod,darkgoldenrod);">
+        <p class="panel-heading has-text-centered">
           施設情報
         </p>
         <div class="panel-block">
         </div>
-        <p class="panel-tabs">
-          <a class="panel-tab is-active is-size-5" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Aud')"><i class="fas fa-plus-circle"></i>&nbsp;登録申請</a>
-          <a class="panel-tab is-size-5" onclick="openTab(event,'Mov')">NEWS</a>
-        </p>
+        <div class="panel-tabs">
+          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;登録申請</a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;NEWS</a>
+        </div>
+
 
         <div id="Web" class="content-tab" >
           <div class="has-text-centered" id="calendar-reservations">
@@ -141,42 +86,6 @@
     </article>
   </div>
 </div>
-<!--<div class="about-title is-size-3 has-text-centered">権限変更</div>
-<div class="has-text-centered">
-  <div class="inline-block_home">
-    <%#= image_tag 'authority_change.jpg', class: "facility-home-image" %>
-  </div>&emsp;&emsp;&emsp;
-  <div class="inline-block_home">
-    <p class="content1 has-text-left is-size-9 has-text-weight-semibold">
-      表示されているボタンは現在の役職設定になっています。<br>
-      権限を変更したい場合は、ボタンにカーソルを合わせ<br>
-      ボタンをクリックすることで、管理者または一般職員<br>
-      の表示切り替えをすることができます。
-    </p>
-    <%# if facility_signed_in? %>
-      <%# if current_facility.facility_admin == true %>
-        <%#= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-          <%#= f.hidden_field :facility_admin, :value => false %>
-          <%#= f.button :type => "submit", class: "general-change" do %>
-            <i class="far fa-user-circle" id="users"></i>
-            <span><i class="fas fa-users"></i>&nbsp;</span>
-            <span>一般</span>
-          <%# end %>
-        <%# end %>
-      <%# elsif current_facility.facility_admin == false %>
-        <%#= form_with(model: @facility, url: facility_change_admin_path(current_facility.id), local: true, method: :patch) do |f| %>
-          <%#= f.hidden_field :facility_admin, :value => true %>
-          <%#= f.button :type => "submit", class: "admin-change" do %>
-            <i class="fas fa-users" id="admin"></i>
-            <span><i class="far fa-user-circle"></i>&nbsp;</span>
-            <span>管理者</span>
-          <%# end %>
-        <%# end %>
-      <%# end %>
-    <%# end %>
-  </div>
-</div>-->
-
 
 <script>
   function openTab(evt, tabName) {
@@ -196,8 +105,7 @@
 
 <script>
   $(function(){
-    ScrollReveal().reveal('.facility-default-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
-    ScrollReveal().reveal('#vertical_tab_nav li', { delay: 100, distance: '100%', origin: 'top', duration: 1500, viewFactor: 0.5 });
+    ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
   });
 </script>

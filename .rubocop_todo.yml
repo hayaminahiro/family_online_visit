@@ -1,0 +1,142 @@
+# ABC順？に並びかえないと指摘
+Bundler/OrderedGems:
+  Exclude:
+    - 'Gemfile'
+
+# sessions:〜〜箇所のインデント指摘
+Layout/FirstHashElementIndentation:
+  Exclude:
+    - 'config/routes.rb'
+
+# private下のインデント指摘
+Layout/IndentationConsistency:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/facilities/passwords_controller.rb'
+    - 'app/controllers/facilities/registrations_controller.rb'
+    - 'app/controllers/facilities_controller.rb'
+    - 'app/controllers/facility_users_controller.rb'
+    - 'app/controllers/informations_controller.rb'
+    - 'app/controllers/memories_controller.rb'
+    - 'app/controllers/relatives_controller.rb'
+    - 'app/controllers/request_residents_controller.rb'
+    - 'app/controllers/residents_controller.rb'
+    - 'app/controllers/signup_controller.rb'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/controllers/users_controller.rb'
+    - 'app/models/facility.rb'
+
+# private下のインデント指摘
+Layout/IndentationWidth:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/facilities/passwords_controller.rb'
+    - 'app/controllers/facilities/registrations_controller.rb'
+    - 'app/controllers/facilities_controller.rb'
+    - 'app/controllers/facility_users_controller.rb'
+    - 'app/controllers/informations_controller.rb'
+    - 'app/controllers/memories_controller.rb'
+    - 'app/controllers/relatives_controller.rb'
+    - 'app/controllers/request_residents_controller.rb'
+    - 'app/controllers/residents_controller.rb'
+    - 'app/controllers/signup_controller.rb'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/controllers/users_controller.rb'
+    - 'config/initializers/carrierwave.rb'
+    - 'app/models/facility.rb'
+
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+
+# 余計な変数ありの指摘
+Lint/UselessAssignment:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/models/user.rb'
+    - 'app/models/facility.rb'
+
+Metrics/AbcSize:
+  Max: 55
+
+Metrics/BlockLength:
+  Max: 139
+
+Metrics/CyclomaticComplexity:
+  Max: 9
+
+Metrics/MethodLength:
+  Max: 19
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# インデント指摘とset_が使われているという指摘
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/models/user.rb'
+
+# "クラス内のクラス"を定義する際の形式を強制
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/facilities/confirmations_controller.rb'
+    - 'app/controllers/facilities/omniauth_callbacks_controller.rb'
+    - 'app/controllers/facilities/passwords_controller.rb'
+    - 'app/controllers/facilities/registrations_controller.rb'
+    - 'app/controllers/facilities/sessions_controller.rb'
+    - 'app/controllers/facilities/unlocks_controller.rb'
+    - 'app/controllers/users/confirmations_controller.rb'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/controllers/users/passwords_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/controllers/users/sessions_controller.rb'
+    - 'app/controllers/users/unlocks_controller.rb'
+    - 'test/test_helper.rb'
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'
+
+# 正規表現の箇所を指摘
+Style/MutableConstant:
+  Exclude:
+    - 'app/models/user.rb'
+    - 'app/models/facility.rb'
+
+# 日付の箇所を"_"で区切ってという指摘
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/RedundantBegin:
+  Exclude:
+    - 'bin/yarn'
+
+# 修正をコメントアウトで残してあります
+Style/RedundantCondition:
+  Exclude:
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/uploaders/image_uploader.rb'
+
+Style/RedundantInterpolation:
+  Exclude:
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+
+Style/RedundantReturn:
+  Exclude:
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+
+# self.save!を指摘されている
+Style/RedundantSelf:
+  Exclude:
+    - 'app/models/user.rb'
+
+Style/StderrPuts:
+  Exclude:
+    - 'bin/yarn'
+
+Layout/LineLength:
+  Max: 220

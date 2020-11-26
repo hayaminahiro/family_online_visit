@@ -1,0 +1,39 @@
+<section class="hero-1">
+  <div class="facility-home-image">
+    <% if current_page?('/facilities/edit') %>
+      <%= facility.facility_edit_background_image %>
+    <% else %>  
+      <%= facility.facility_background_image %>
+    <% end %>  
+    <div class="image-outline" id="scroll-position">
+      <% if facility.icon? %>
+        <%= image_tag facility.icon.url, class: "facility-icon-image" %>
+      <% else %>
+        <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "facility-icon-image" %>
+      <% end %>  
+      <div class="has-text-right" id="facility-name">
+        <%= facility.facility_name %>
+      </div>
+    </div>
+
+    <% if current_page?('/facilities/edit') %>
+      <div class="facility-icon-outline">
+        <%= facility.facility_icon_edit_responsive %>
+        <div class="user-edit-icon-back">
+          <div class="user-edit-icon-image">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+        <div class="user-edit-background-back">
+          <div class="user-edit-backgroung-image">
+            <i class="fas fa-camera"></i>
+          </div>  
+        </div>
+      </div>
+    <% else %>
+      <div class="facility-icon-outline">
+        <%= facility.facility_icon_responsive %>
+      </div>
+    <% end %>  
+  </div>
+</section>
