@@ -67,4 +67,104 @@ module MemoryDecorator
     end
   end
 
+  def memory_id
+    if image0?
+      image0.url.split("/")[4].to_i
+    elsif image1?
+      image1.url.split("/")[4].to_i
+    elsif image2?
+      image2.url.split("/")[4].to_i
+    elsif image3?
+      image3.url.split("/")[4].to_i
+    elsif image4?
+      image4.url.split("/")[4].to_i
+    elsif image5?
+      image5.url.split("/")[4].to_i
+    elsif image6?
+      image6.url.split("/")[4].to_i
+    elsif image7?
+      image7.url.split("/")[4].to_i
+    end
+  end
+
+  def column
+    if image0?
+      image0.url.split("/")[3]
+    elsif image1?
+      image1.url.split("/")[3]
+    elsif image2?
+      image2.url.split("/")[3]
+    elsif image3?
+      image3.url.split("/")[3]
+    elsif image4?
+      image4.url.split("/")[3]
+    elsif image5?
+      image5.url.split("/")[3]
+    elsif image6?
+      image6.url.split("/")[3]
+    elsif image7?
+      image7.url.split("/")[3]
+    end
+  end
+
+  def id_column
+    if image0?
+      image0.url.split("/")[4] + image0.url.split("/")[3]
+    elsif image1?
+      image1.url.split("/")[4] + image1.url.split("/")[3]
+    elsif image2?
+      image2.url.split("/")[4] + image2.url.split("/")[3]
+    elsif image3?
+      image3.url.split("/")[4] + image3.url.split("/")[3]
+    elsif image4?
+      image4.url.split("/")[4] + image4.url.split("/")[3]
+    elsif image5?
+      image5.url.split("/")[4] + image5.url.split("/")[3]
+    elsif image6?
+      image6.url.split("/")[4] + image6.url.split("/")[3]
+    elsif image7?
+      image7.url.split("/")[4] + image7.url.split("/")[3]
+    end
+  end
+
+  def column_id
+    if image0?
+      image0.url.split("/")[3] + image0.url.split("/")[4]
+    elsif image1?
+      image1.url.split("/")[3] + image1.url.split("/")[4]
+    elsif image2?
+      image2.url.split("/")[3] + image2.url.split("/")[4]
+    elsif image3?
+      image3.url.split("/")[3] + image3.url.split("/")[4]
+    elsif image4?
+      image4.url.split("/")[3] + image4.url.split("/")[4]
+    elsif image5?
+      image5.url.split("/")[3] + image5.url.split("/")[4]
+    elsif image6?
+      image6.url.split("/")[3] + image6.url.split("/")[4]
+    elsif image7?
+      image7.url.split("/")[3] + image7.url.split("/")[4]
+    end
+  end
+
+  def url
+    if image0?
+      image0.url.split("/")[5]
+    elsif image1?
+      image1.url.split("/")[5]
+    elsif image2?
+      image2.url.split("/")[5]
+    elsif image3?
+      image3.url.split("/")[5]
+    elsif image4?
+      image4.url.split("/")[5]
+    elsif image5?
+      image5.url.split("/")[5]
+    elsif image6?
+      image6.url.split("/")[5]
+    elsif image7?
+      image7.url.split("/")[5]
+    end
+  end
+
 end
