@@ -1,14 +1,14 @@
 <div class="req-index-container">
   <div style="margin: 60px;">
       <div>
-        <h1>※承認済み申請一覧が表示されます。</h1>
+        <h1>※過去の申請一覧が表示されます。</h1>
       </div>
     <table class="table is-bordered is-fullwidth" id="req-index-table">
       <thead>
         <tr>
           <th rowspan="2" width="10%">申請日</th>
           <th rowspan="2" width="20%">申請者</th>
-          <th rowspan="2" width="20%">登録</th>
+          <th rowspan="2" width="20%">承認/否認</th>
           <th colspan="5" width="50%">申請内容</th>
         </tr>
         <tr>
@@ -24,7 +24,9 @@
         <tr>
           <td><%= l(approval.created_at, format: :dot) %></td>
           <td><%= @request_user.name %></td>
-          <td><%= approval.req_address %></td>
+          <td>
+            <%= approval.approval_status %>
+          </td>
           <td colspan="2"><%= approval.req_name %></td>
           <td><%= approval.req_phone %></td>
           <td colspan="2"><%= approval.req_address %></td>
