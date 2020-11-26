@@ -18,23 +18,28 @@ class RelativesController < ApplicationController
     end
   end
 
+  def confirm
+    @requests = acceptance_params
+    @residents = Relative.search(params[:search], current_facility)
+  end
+
   def update_relatives
     residents_connection_params.each do |id, item|
       @request_user = User.find(id)
-      @request_user.attributes = item
-      @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: id)
+      if item[:resident_ids].map(&:to_i).reject{|e| e == 0}.count == @request_user.resident_ids.count
+        req_resident = RequestResident.order("id DESC").find_by(user_id: id)
+        req_resident.否認済!
+      else
+        req_resident = RequestResident.order("id DESC").find_by(user_id: id)
+        req_resident.承認済!
+        @request_user.update_attributes(item)
+      end
     end
-
-    if @request_user.save(context: :relative_update)
-      @request_resident.承認済! #enumの値を「申請中→承認済」に更新
-      redirect_to facility_home_facility_url(current_facility), notice: "入居者登録しました。"
-    else
-      render :new
-    end
+    redirect_to facility_home_facility_url(current_facility), notice: "まとめて承認しました。"
   end
 
   def index #承認済み申請一覧
-    @approvals = RequestResident.where(req_approval: "承認済").where(facility_id: current_facility)
+    @approvals = RequestResident.where.not(req_approval: "申請中").where(facility_id: current_facility)
   end
 
   def show
@@ -52,8 +57,12 @@ class RelativesController < ApplicationController
         params.require(:user).permit(resident_ids: [])
       end
 
-      def residents_connection_params
+      def acceptance_params
         params.require(:facility).permit(request_residents:[resident_ids:[]])[:request_residents]
+      end
+
+      def residents_connection_params
+        params.require(:aa).permit!
       end
 
       def set_request
