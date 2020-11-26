@@ -180,8 +180,11 @@
       <% end %>
     </div>
   </div>
-
-  <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
+  <% if @add_images == 0 || @memory.add_image_id == 0 %>
+    <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
+  <% else %>
+    <%= f.submit "思い出アルバムを追加する", class: "message-btn" %>
+  <% end %>
 <% end %>
 
 <script>
