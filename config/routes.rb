@@ -63,6 +63,7 @@ Rails.application.routes.draw do
   # 入居者登録 ============================================================================
     resources :relatives, except: %i[create edit] do
       patch :update_relatives, on: :collection
+      patch :confirm, on: :member
     end
 
   # お知らせ ==============================================================================
