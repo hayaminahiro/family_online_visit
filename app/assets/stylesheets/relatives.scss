@@ -19,7 +19,6 @@
   }
 
   .card{
-    background-color: rgb(245,245,245);
     box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
     color: #4a4a4a;
     max-width: 94%;
@@ -33,23 +32,6 @@
 
 .relative-new-container{
   margin: 0px;
-  background-color: rgb(245,245,245);
-}
-
-.req-new-section{
-  width: 90%;
-  margin: auto;
-
-  .req-name{
-    margin-left: 15px;
-  }
-
-  #level-bottom{
-    margin-bottom: 0px;
-    text-align: left;
-    display: block;
-    padding: 15px;
-  }
 }
 
 #req-new-table{
@@ -101,9 +83,18 @@
 }
 
 .req-show-body{
-  background-color: rgb(245,245,245);
   text-align: center;
   height: 100vh;
+
+  .card{
+    background-color: white;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    width: 65%;
+    margin: auto;
+  }
 }
 
 .req-index-container{
@@ -154,7 +145,6 @@
   }
 
   .card{
-    background-color: whitesmoke;
     box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
     color: #4a4a4a;
     max-width: 94%;
@@ -223,5 +213,35 @@
     display: block;
     padding: 15px;
     width: 70%;
+  }
+}
+
+.relative-show-body{
+  text-align: center;
+  height: 100vh;
+
+  .card{
+    width: 100%;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+  }
+}
+
+.relative-new-section{
+  width: 70%;
+  margin: auto;
+
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
+    display: block;
+    padding: 15px;
   }
 }

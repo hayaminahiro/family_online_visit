@@ -7,7 +7,7 @@
 }
 
 #req-table{
-  width: 50%;
+  width: 100%;
   margin: auto;
   margin-top: 50px;
   padding-top: 20px;
@@ -48,7 +48,6 @@
   }
 
   .card{
-    background-color: rgb(245,245,245);
     box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
     color: #4a4a4a;
     max-width: 94%;
@@ -63,5 +62,20 @@
 .req-new-container{
   margin: 0px;
   padding-top: 30px;
-  background-color: rgb(245,245,245);
+}
+
+.req-new-section{
+  width: 90%;
+  margin: auto;
+
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
+    display: block;
+    padding: 15px;
+  }
 }
