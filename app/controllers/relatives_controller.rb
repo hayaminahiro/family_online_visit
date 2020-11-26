@@ -6,15 +6,21 @@ class RelativesController < ApplicationController
   end
 
   def update #家族からの申請を承認・否認
-    @user = User.find(params[:user_id].to_i)
-    @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
-
-    @user.attributes = connection_params
-    if @user.save(context: :relative_update)
-      @request_resident.承認済! #enumの値を「申請中→承認済」に更新
-      redirect_to facility_home_facility_url(current_facility), notice: "入居者登録しました。"
+    if params[:denial].present?
+      request = RequestResident.find(params[:denial])
+      request.否認済! #enumの値を「申請中→否認」に更新
+      redirect_to facility_home_facility_url(current_facility), notice: "[#{request.req_name}][#{request.req_phone}][#{request.req_address}]の申請を否認しました。"
     else
-      render :show
+      @user = User.find(params[:user_id].to_i)
+      @request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
+
+      @user.attributes = connection_params
+      if @user.save(context: :relative_update)
+        @request_resident.承認済! #enumの値を「申請中→承認済」に更新
+        redirect_to facility_home_facility_url(current_facility), notice: "入居者登録しました。"
+      else
+        render :show
+      end
     end
   end
 
@@ -46,10 +52,7 @@ class RelativesController < ApplicationController
     @user = User.find(@request.user_id)
   end
 
-  def destroy
-    @request.否認済! #enumの値を「申請中→否認」に更新
-    redirect_to facility_home_facility_url(current_facility), notice: "[#{@request.req_name}][#{@request.req_phone}][#{@request.req_address}]の申請を否認しました。"
-  end
+  def destroy; end
 
     private
 
