@@ -38,8 +38,8 @@ class MemoriesController < ApplicationController
   def destroy
     resident = current_facility.residents.find(params[:resident_id])
     memories = resident.memories
-    @memory = memories.find(params[:id])
-    @memory.delete
+    memory = memories.find(params[:id])
+    memory.delete
     redirect_to resident_memories_url, alert: "#{resident.name}さんの思い出アルバムを削除しました"
   end
 
@@ -51,26 +51,20 @@ class MemoriesController < ApplicationController
     case column
     when "image1"
       memory.remove_image1!
-      memory.save!
     when "image2"
       memory.remove_image2!
-      memory.save!
     when "image3"
       memory.remove_image3!
-      memory.save!
     when "image4"
       memory.remove_image4!
-      memory.save!
     when "image5"
       memory.remove_image5!
-      memory.save!
     when "image6"
       memory.remove_image6!
-      memory.save!
     else "image7"
       memory.remove_image7!
-      memory.save!
     end
+    memory.save!
     redirect_to resident_memories_url, alert: "画像を削除しました。"
   end
 
