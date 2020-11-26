@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   end
 
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "resident_id"
     t.string "title"
     t.text "message"
     t.date "event_date"
@@ -61,7 +62,6 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.string "image6"
     t.string "image7"
     t.integer "add_image_id"
-    t.bigint "resident_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resident_id"], name: "index_memories_on_resident_id"
