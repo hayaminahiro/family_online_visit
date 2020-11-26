@@ -4,7 +4,9 @@
       <div class="columns is-centered">
         <div class="column is-12 is-centered max-width">
           <h1 class="memory-title">思い出アルバムの編集ができます。</h1>
-          <small class="is-pulled-right">現在時刻 <%= l(Time.zone.now, format: :short) %></small>
+          <small class="is-pulled-right">
+            現在時刻&nbsp;<span id="app"><%= l(Date.current) %>&nbsp;<clock></clock></span>
+          </small>
           <h1 class="memory-title-mini">思い出アルバムの画像選定/編集</h1>
           <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定/編集できます。</p>
           <div class="has-text-left">
@@ -16,3 +18,26 @@
     </div>
   </div>
 </nav>
+
+<script>
+  Vue.component('clock', {
+    data: function() {
+      return {
+        time: '12:34:56'
+      }
+    },
+    mounted: function() {
+      let timerID = setInterval(this.refresh ,500);
+    },
+    methods: {
+      refresh: function () {
+        let now = new Date();
+        this.time = `${now.getHours()}:${now.getMinutes()}`
+      }
+    },
+    template: '<span>{{ time }}</span>'
+  })
+  var app = new Vue({
+    el: "#app"
+  })
+</script>
