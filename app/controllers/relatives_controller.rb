@@ -10,7 +10,7 @@ class RelativesController < ApplicationController
   def update
     if params[:denial].present?
       request = RequestResident.find(params[:denial])
-      # enumの値を「申請中→否認」に更新
+      # enumの値を「申請中→否認済」に更新
       request.否認済!
       redirect_to facility_home_facility_url(current_facility), notice: "[#{request.req_name}][#{request.req_phone}][#{request.req_address}]の申請を否認しました。"
     else
@@ -36,11 +36,10 @@ class RelativesController < ApplicationController
   def update_relatives
     residents_connection_params.each do |id, item|
       @request_user = User.find(id)
+      req_resident = RequestResident.order("id DESC").find_by(user_id: id)
       if item[:resident_ids].map(&:to_i).reject{|e| e == 0}.count == @request_user.resident_ids.count
-        req_resident = RequestResident.order("id DESC").find_by(user_id: id)
         req_resident.否認済!
       else
-        req_resident = RequestResident.order("id DESC").find_by(user_id: id)
         req_resident.承認済!
         @request_user.update_attributes(item)
       end
@@ -70,7 +69,7 @@ class RelativesController < ApplicationController
     end
 
     def residents_connection_params
-      params.require(:aa).permit!
+      params.require(:update_relatives).permit!
     end
 
     def set_request

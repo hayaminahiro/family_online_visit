@@ -1,38 +1,29 @@
-<div>
-  <div class="relative-new-body">
-    <%= form_with(url: new_relative_path, method: :get, local: true) do |f| %>
-      <div class="field is-grouped is-grouped-right">
-        <div class="control has-icons-left">
-          <%= f.text_field :search, :placeholder => "入居者を入力..", class: "input is-rounded" %>
-          <span class="icon is-left">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </span>
-        </div>
-        <div class="control">
-          <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
-        </div>
+<div class="relative-new-body">
+  <%= form_with(url: new_relative_path, method: :get, local: true) do |f| %>
+    <div class="field is-grouped is-grouped-right">
+      <div class="control has-icons-left">
+        <%= f.text_field :search, :placeholder => "入居者を入力..", class: "input is-rounded" %>
+        <span class="icon is-left">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </span>
       </div>
-    <% end %>
+      <div class="control">
+        <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
+      </div>
+    </div>
+  <% end %>
 
-    <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
-    <%#= form_with(model: current_facility, url: update_relatives_relatives_path, local: true) do |f| %>
-      <% @requests.each do |request| %>
-      <%# binding.pry %>
-        <% if request.req_approval == "申請中" %>
+  <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
+    <% @requests.each do |request| %>
+      <% if request.req_approval == "申請中" %>
         <div class="card">
           <div class="relative-new-container">
             <div class="req-new-section">
             <nav class="level" id="level-bottom">
-              <%# <div class="level-left"> %>
-                <p class="has-text-weight-bold is-size-5">
-                  <% @r_user = User.find(request.user_id) %>
-                  <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
-                </p>
-              <%# </div> %>
-              <div class="level-right">
-                <div class="new-c-container">
-                </div>
-              </div>
+              <p class="has-text-weight-bold is-size-5">
+                <% @r_user = User.find(request.user_id) %>
+                <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+              </p>
             </nav>
               <table class="table is-narrow user-edit-table is-bordered" id="req-new-table">
                 <tbody>
@@ -84,9 +75,8 @@
             </div>
           </div>
         </div>
-        <% end %>
       <% end %>
-      <%= f.submit "確認画面へ", class: "button is-link is-light has-text-weight-bold", id: "req-submit" if @requests.present? %>
     <% end %>
-  </div>
+    <%= f.submit "確認画面へ", class: "button is-link is-light has-text-weight-bold", id: "req-submit" if @requests.present? %>
+  <% end %>
 </div>

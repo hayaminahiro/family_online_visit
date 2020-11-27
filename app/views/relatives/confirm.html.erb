@@ -1,73 +1,66 @@
-<div>
-  <div class="relative-confirm-body">
-    <%#= form_with(model: current_facility, url: update_relatives_relatives_path, params: @requests, local: true) do |f| %>
-      <% @requests.each do |params, r_ids| %>
-        <% requests = RequestResident.where(user_id: params[0]).where(facility_id:current_facility).where(req_approval: "申請中") %>
-        <% requests.each do |request| %>
-          <div class="card">
-            <div class="relative-new-container">
-              <div class="req-confirm-section">
-              <nav class="level" id="level-bottom">
-                  <p class="has-text-weight-bold is-size-5">
-                    <% @r_user = User.find(request.user_id) %>
-                    <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
-                  </p>
-                <div class="level-right">
-                  <div class="new-c-container">
-                  </div>
-                </div>
-              </nav>
-                <table class="table is-narrow user-edit-table is-bordered" id="req-confirm-table">
-                  <tbody>
-                    <tr>
-                      <th>利用者名</th>
-                      <td>
-                        <%= simple_format(request.req_name) %>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>連絡先</th>
-                      <td>
-                        <%= simple_format(request.req_phone) %>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>住所</th>
-                      <td>
-                        <%= simple_format(request.req_address) %>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>紐付け</th>
-                      <td>
-                        <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
+<div class="relative-confirm-body">
+  <% @requests.each do |params, r_ids| %>
+    <% requests = RequestResident.where(user_id: params[0]).where(facility_id:current_facility).where(req_approval: "申請中") %>
+    <% requests.each do |request| %>
+      <div class="card">
+        <div class="relative-new-container">
+          <div class="req-confirm-section">
+          <nav class="level" id="level-bottom">
+            <p class="has-text-weight-bold is-size-5">
+              <% @r_user = User.find(request.user_id) %>
+              <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+            </p>
+          </nav>
+            <table class="table is-narrow user-edit-table is-bordered" id="req-confirm-table">
+              <tbody>
+                <tr>
+                  <th>利用者名</th>
+                  <td>
+                    <%= simple_format(request.req_name) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>連絡先</th>
+                  <td>
+                    <%= simple_format(request.req_phone) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>住所</th>
+                  <td>
+                    <%= simple_format(request.req_address) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>紐付け</th>
+                  <td>
+                    <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
 
-                          <p>登録済み入居者</p>
-                            <% @r_user.residents.each do |resident| %>
-                              <%= resident.name %>
-                            <% end %><br><br>
+                      <p>登録済み入居者</p>
+                        <% @r_user.residents.each do |resident| %>
+                          <%= resident.name %>
+                        <% end %><br><br>
 
-                          <p>↓↓</p>
-                          <p>承認後の紐付けの確認</p>
-                            <% ss = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
+                      <p>↓↓</p>
+                      <p>承認後の紐付けの確認</p>
+                        <% ss = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
 
-                              <% if ss.count == @r_user.residents.count %>
-                                <p style="color: red; font-weight: bold;">申請を否認します</p>
-                              <% else %>
-                                <% ss.each do |s| %>
-                                  <% resident_later = Resident.find(s) %>
-                                  <span style="color:#34a0ef; font-size: 18px; font-weight: 600;"><%= resident_later.name %></span>
-                                <% end %>
-                              <% end %>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                          <% if ss.count == @r_user.residents.count %>
+                            <p style="color: red; font-weight: bold;">申請を否認します</p>
+                          <% else %>
+                            <% ss.each do |s| %>
+                              <% resident_later = Resident.find(s) %>
+                              <span style="color:#34a0ef; font-size: 18px; font-weight: 600;"><%= resident_later.name %></span>
+                            <% end %>
+                          <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        <% end %>
-      <% end %>
-    <%= link_to 'まとめて承認', update_relatives_relatives_path(aa: @requests), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
-  </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @requests), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
 </div>
