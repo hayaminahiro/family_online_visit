@@ -28,11 +28,14 @@
             <p class="navbar-item">
               <%= link_to "TOP", root_path, class: "links" %>
             </p>
+          <% elsif facility_signed_in? %>
             <p class="navbar-item">
-              <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+              <%= link_to "HOME", facility_home_facility_path(id: current_facility), class: "links" %>
             </p>
           <% end %>
-
+          <p class="navbar-item">
+            <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+          </p>
           <% if facility_signed_in? && current_facility.admin? %>
             <!--システム全体管理者のみ閲覧可能-->
             <p class="navbar-item">
@@ -61,20 +64,16 @@
             <% end %>    
           </a>
           <div class="navbar-dropdown" style="background-color: #efefef;">
-            <a class="navbar-item">
-              <% if user_signed_in? %>
-                <%= link_to "マイページ", user_path(current_user), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
-              <% end %>
-            </a>
-            <a class="navbar-item has-text-weight-bold is-size-6">
-              <% if user_signed_in? %>
-                <%= link_to "設定", edit_user_registration_path(resource_name), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
-              <% elsif facility_signed_in? %>
-                <%= link_to "設定", edit_facility_registration_path, class: "navbar-item has-text-weight-bold is-size-6" %>
-              <% end %>
-            </a>
+            <% if user_signed_in? %>
+              <%= link_to "マイページ", user_path(current_user), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <% end %>
+            <% if user_signed_in? %>
+              <%= link_to "設定", edit_user_registration_path(resource_name), :style=>"color: #595a5a;", class: "navbar-item has-text-weight-bold is-size-6" %>
+            <% elsif facility_signed_in? %>
+              <%= link_to "設定", edit_facility_registration_path, class: "navbar-item has-text-weight-bold is-size-6" %>
+            <% end %>
             <hr class="navbar-divider">
-            <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-6" %>
+              <%= link_to "ログアウト", sign_out_path, class: "navbar-item has-text-weight-bold is-size-6" %>
           </div>
         </div>
       <% else %>
