@@ -52,21 +52,21 @@
 
                       <%= f.fields_for "request_residents[]", @r_user do |i| %>
                       <div style="text-align: center; margin-top: 15px;">
-                          <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                            <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
-                          <% end %><br>
+                        <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                          <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                        <% end %><br>
                       </div>
                       <div class="tag-apply">
-                          <%= i.collection_check_boxes :resident_ids, @r_user.residents, :id, :name, style: 'display:none' do |b| %>
-                            <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
-                          <% end %>
+                        <%= i.collection_check_boxes :resident_ids, @r_user.residents, :id, :name, style: 'display:none' do |b| %>
+                          <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                        <% end %>
                       </div>
                       <div style="text-align: right;">
-                          <%= link_to relative_path(request), method: :delete,
-                            data: { confirm: "#{@r_user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-small" do %>
-                            <i class="far fa-window-close"></i>
-                          <% end %>
+                        <%= link_to relative_path(request, denial: request), method: :patch,
+                          data: { confirm: "#{@r_user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-small" do %>
+                          <i class="far fa-window-close"></i>
                         <% end %>
+                      <% end %>
                       </div>
                     </td>
                   </tr>
