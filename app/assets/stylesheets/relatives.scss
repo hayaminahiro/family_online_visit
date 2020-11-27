@@ -155,6 +155,19 @@
     margin-top: 20px;
     width: 80%;
   }
+
+  .registered-name{
+    font-size: 18px;
+    font-weight: 200;
+    margin-right: 10px;
+  }
+
+  .approval-name{
+    color:#34a0ef;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 10px;
+  }
 }
 
 #req-confirm-table{
@@ -227,6 +240,32 @@
     max-width: 100%;
     position: relative;
     margin: auto;
+  }
+
+  .propriety{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  #approval-btn{
+    margin: 0 30px 0 0;
+    width: 150px;
+    height: 40px;
+    border: solid 1px;
+    letter-spacing: 11px;
+    text-indent: 1em;
+  }
+
+  #denial-btn{
+    background-color: #feecf0;
+    color: #cc0f35;
+    height: 40px;
+    width: 150px; border: solid 1px;
+    font-size: initial;
+    font-weight: 500;
+    letter-spacing: 11px;
+    text-indent: 1em;
   }
 }
 

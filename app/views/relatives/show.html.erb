@@ -51,29 +51,21 @@
                   <%= render partial: 'shared/error_messages', locals: { obj: @user } if @user.present? %>
                   <%= form_with(model: @user, url: relative_path(user_id: @user), local: true) do |f| %>
                   <div style="text-align: left; margin-top: 15px;">
-                      <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                        <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
-                      <% end %><br>
+                    <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                      <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                    <% end %><br>
                   </div>
                   <div class="tag-apply">
-                      <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, style: 'display:none' do |b| %>
-                        <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
-                      <% end %>
+                    <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, style: 'display:none' do |b| %>
+                      <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% end %>
                   </div>
-                  <div style="display: flex; justify-content: center; margin: 20px;">
-                      <%= f.submit "承認", class: "button is-primary is-light is-midium has-text-weight-bold" ,style: "margin: 0 30px 0 0; width: 150px;
-      height: 40px; border: solid 1px; letter-spacing: 11px; text-indent: 1em;" %>
-                      <%= link_to relative_path(denial: @request), method: :patch,
-                        data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", style:"background-color: #feecf0;
-      color: #cc0f35;
-      height: 40px;
-      width: 150px; border: solid 1px;
-      font-size: initial;
-      font-weight: 500;
-      letter-spacing: 11px;
-      text-indent: 1em;" do %>
-                        否認
-                      <% end %>
+                  <div class="propriety">
+                    <%= f.submit "承認", class: "button is-primary is-light is-midium has-text-weight-bold", id: "approval-btn" %>
+                    <%= link_to relative_path(denial: @request), method: :patch,
+                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"denial-btn" do %>
+                      否認
+                    <% end %>
                   </div>
                     <% end %>
                 </td>

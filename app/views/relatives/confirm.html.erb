@@ -36,23 +36,21 @@
                   <td>
                     <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
 
-                      <p>登録済み入居者</p>
-                        <% @r_user.residents.each do |resident| %>
-                          <%= resident.name %>
-                        <% end %><br><br>
-
-                      <p>↓↓</p>
-                      <p>承認後の紐付けの確認</p>
-                        <% ss = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
-
-                          <% if ss.count == @r_user.residents.count %>
-                            <p style="color: red; font-weight: bold;">申請を否認します</p>
-                          <% else %>
-                            <% ss.each do |s| %>
-                              <% resident_later = Resident.find(s) %>
-                              <span style="color:#34a0ef; font-size: 18px; font-weight: 600;"><%= resident_later.name %></span>
-                            <% end %>
-                          <% end %>
+                    <p class="is-size-7">（登録済み入居者）</p>
+                    <% @r_user.residents.each do |resident| %>
+                      <span class="registered-name"><%= resident.name %></span>
+                    <% end %><br><br>
+                    <p>↓↓</p>
+                    <p class="is-size-7">（承認後の入居者）</p>
+                    <% ss = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
+                    <% if ss.count == @r_user.residents.count %>
+                      <p style="color: red; font-weight: bold;">申請を否認します</p>
+                    <% else %>
+                      <% ss.each do |s| %>
+                        <% resident_later = Resident.find(s) %>
+                        <span class="approval-name"><%= resident_later.name %></span>
+                      <% end %>
+                    <% end %>
                   </td>
                 </tr>
               </tbody>
