@@ -3,9 +3,9 @@
 module RequestResidentDecorator
   def approval_status
     if req_approval == "承認済"
-      "<span style= 'color: #e41414;'>#{req_approval}</span>".html_safe
+      tag.span(req_approval, style: 'color: #e41414;')
     else
-      "<span style= 'color: #a2b9ca;'>#{req_approval}</span>".html_safe
+      tag.span(req_approval, style: 'color: #a2b9ca;')
     end
   end
 end

@@ -4,8 +4,7 @@ class RelativesController < ApplicationController
   before_action :denial, only: :update
 
   # 家族から申請された内容を確認
-  def new
-  end
+  def new; end
 
   # 家族からの申請を承認・否認
   def update
@@ -29,7 +28,7 @@ class RelativesController < ApplicationController
     residents_connection_params.each do |id, item|
       request_user = User.find(id)
       req_resident = RequestResident.order("id DESC").find_by(user_id: id)
-      if item[:resident_ids].map(&:to_i).reject{|e| e == 0}.count == request_user.resident_ids.count
+      if item[:resident_ids].map(&:to_i).reject(&:zero?).count == request_user.resident_ids.count
         req_resident.否認済!
       else
         req_resident.承認済!
@@ -57,7 +56,7 @@ class RelativesController < ApplicationController
     end
 
     def acceptance_params
-      params.require(:facility).permit(request_residents:[resident_ids:[]])[:request_residents]
+      params.require(:facility).permit(request_residents: [resident_ids: []])[:request_residents]
     end
 
     def residents_connection_params
@@ -69,16 +68,16 @@ class RelativesController < ApplicationController
     end
 
     def set_residents
-      @requests = RequestResident.where(facility_id:current_facility).where(req_approval: "申請中")
+      @requests = RequestResident.where(facility_id: current_facility).where(req_approval: "申請中")
       @residents = Relative.search(params[:search], current_facility)
     end
 
     def denial
-      if params[:denial].present?
-        request = RequestResident.find(params[:denial])
-        # enumの値を「申請中→否認済」に更新
-        request.否認済!
-        redirect_to facility_home_facility_url(current_facility), notice: "[#{request.req_name}][#{request.req_phone}][#{request.req_address}]の申請を否認しました。"
-      end
+      return if params[:denial].blank?
+
+      request = RequestResident.find(params[:denial])
+      # enumの値を「申請中→否認済」に更新
+      request.否認済!
+      redirect_to facility_home_facility_url(current_facility), notice: "[#{request.req_name}][#{request.req_phone}][#{request.req_address}]の申請を否認しました。"
     end
 end
