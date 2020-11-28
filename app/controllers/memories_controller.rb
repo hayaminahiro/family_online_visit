@@ -1,6 +1,6 @@
 class MemoriesController < ApplicationController
-  before_action :set_resident, only: %i[index show new create edit update destroy delete_image]
-  before_action :set_memories, only: %i[index show new create edit update delete_image]
+  before_action :set_resident
+  before_action :set_memories, except: :destroy
   before_action :set_memory, only: %i[show edit update]
   before_action :add_images, only: %i[new edit]
 
