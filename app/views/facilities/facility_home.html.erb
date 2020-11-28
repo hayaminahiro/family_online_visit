@@ -13,12 +13,12 @@
         </p>
         <div class="panel-block">
         </div>
-        <div class="panel-tabs">
-          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
-          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;登録申請</a>
-          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;NEWS</a>
-        </div>
 
+        <p class="panel-tabs">
+          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;カレンダー</a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;登録申請<%= current_facility.request_count(@request_residents) %></a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;NEWS</a>
+        </p>
 
         <div id="Web" class="content-tab" >
           <div class="has-text-centered" id="calendar-reservations">
@@ -38,7 +38,10 @@
                   <tr>
                     <th>申請日</th>
                     <th>申請者</th>
-                    <th></th>
+                    <th>
+                      <%= link_to "申請一覧", new_relative_path, class: "button is-primary is-outlined is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>
+                      <%= link_to "(過去の申請)", relatives_path, class: "button is-small is-size-6", style: "width: 45%; margin-left: 20px;" %>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,7 +52,7 @@
                       <td><%= request_resident.created_at %></td>
                       <td><%= @request_user.name %></td>
                       <td>
-                        <%= link_to "申請者登録画面", new_relative_path, class: "button is-primary is-medium has-text-weight-bold" %>
+                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>
                       </td>
                     </tr>
                   <% end %>

@@ -2,46 +2,86 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.field_with_errors {
+  display: inline;
+}
+
+#req-table{
+  width: 100%;
+  margin: auto;
+  margin-top: 50px;
+  padding-top: 20px;
+  height: 100%;
+  vertical-align: middle;
+
+  th{
+    width: 150px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgb(250,248,242);
+    font-weight: 500;
+  }
+
+  td{
+    vertical-align: middle;
+    text-align: center;
+    height: 40px;
+  }
+}
+
+.req-new-body{
+  background-color: rgb(245,245,245);
+  text-align: center;
+
+  .field.is-grouped.is-grouped-right{
+    justify-content: center;
+    width: 812px;
+    margin: auto;
+    padding-top: 21px;
+  }
+
+  .field.is-grouped > .control:not(:last-child) {
+    margin-top: 0px;
+    margin-right: 0.75rem;
+    width: 100%;
+  }
+
+  .card{
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 94%;
+    position: relative;
+    margin: auto;
+    margin: 0px auto;
+    padding: 0px 0px 23px 0px;
+    margin-top: 20px;
+  }
+}
+
 .req-new-container{
   margin: 0px;
   padding-top: 30px;
-  background-color: rgb(250,248,243);
-  height: 100vh;
 }
 
 .req-new-section{
-  width: 70%;
+  width: 90%;
   margin: auto;
-}
 
-#new-hr{
-    background-color: rgb(198,186,175);
-    border: none;
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
     display: block;
-    height: 1px;
-    margin: 1rem 0;
+    padding: 15px;
+  }
 }
 
-#req-new-table {
-  margin: auto;
-  padding-top: 20px;
-  width: 1000px;
-  height: 400px;
-  vertical-align: middle;
-}
-
-#req-new-table th{
-  width: 100px;
-  vertical-align: middle;
-  text-align: center;
-  background-color: rgb(250,248,242);
-}
-
-#req-new-table td {
-  vertical-align: middle;
-  height: 50px;
-}
-
-#req-index-table{
-  margin: 20px 30px 20px 30px;
+#req-edit-tfoot{
+    margin: 10px 0px;
+    border: solid 1px;
+    letter-spacing: 5px;
+    font-size: 15px;
 }

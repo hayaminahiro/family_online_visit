@@ -9,7 +9,7 @@ module UserDecorator
 
   # 自分が登録している施設のお知らせで、statusがothersであるものを全て取得
   def mypage_informations(id)
-    Information.where(facility_id: id).where(status: "others")
+    Information.where(facility_id: id).where(status: "others").includes(:facility)
   end
 
   # 施設iconを表示
