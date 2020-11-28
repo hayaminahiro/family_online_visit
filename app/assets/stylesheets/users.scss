@@ -111,7 +111,7 @@ mypage-aside {/*画面左*/
     margin-top: 50px;
   }
 
-  img#img_prev.user-profile-image {
+  img.user-profile-image {
     width: 90px;
     height: 90px;
     border-radius: 100%;
@@ -563,7 +563,7 @@ edit-aside {
   }
 
   //サイドタグ内のユーザーアイコン
-  img#img_prev.user-profile-image {
+  img.user-profile-image {
     width: 90px;
     height: 90px;
     border-radius: 50%;
