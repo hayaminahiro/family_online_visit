@@ -44,7 +44,7 @@ class MemoriesController < ApplicationController
     memory = @memories.find(memory_id)
     column = params[:column]
     memory.delete_image(column)
-    memory.save!
+    memory.save
     if column != "image0"
       redirect_to resident_memories_url, alert: "画像を削除しました。"
     else

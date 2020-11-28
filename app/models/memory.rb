@@ -17,17 +17,18 @@ class Memory < ApplicationRecord
   mount_uploader :image7, ImageUploader
 
   def delete_image(column)
-    if column == "image1"
+    case column
+    when "image1"
       remove_image1!
-    elsif column == "image2"
+    when "image2"
       remove_image2!
-    elsif column == "image3"
+    when "image3"
       remove_image3!
-    elsif column == "image4"
+    when "image4"
       remove_image4!
-    elsif column == "image5"
+    when "image5"
       remove_image5!
-    elsif column == "image6"
+    when "image6"
       remove_image6!
     else
       remove_image7!
