@@ -523,10 +523,6 @@
         margin-top: -2px;
       }
 
-      .blank-area {
-        padding: 14px;
-      }
-
       //チェックボックスのデザイン
       @for $i from 0 through 7 {
         input#img#{$i}_delete[type="checkbox"] {

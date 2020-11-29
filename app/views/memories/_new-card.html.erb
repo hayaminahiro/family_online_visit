@@ -11,7 +11,9 @@
       <%= @memory.image00_photo %>
     </div>
     <div class="card-content card-drop-area">
-      <div class="blank-area"></div>
+      <div class="has-text-left">
+        <button class="button tag is-danger is-light is-rounded mandatory">トップ画像の登録は必須になります。</button>
+      </div>
       <div class="content">
         <%= f.file_field :image0, class: "image_uploading_0 drop-area-mandatory" %>
         <%= f.hidden_field :image0_cache if @memory.image0.present? %>
