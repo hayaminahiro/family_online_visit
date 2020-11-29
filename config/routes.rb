@@ -57,10 +57,10 @@ Rails.application.routes.draw do
   end
 
   # 入居者申請 ============================================================================
-  resources :request_residents, only: %i[new create index]
+  resources :request_residents
 
   # 入居者登録 ============================================================================
-  resources :relatives, except: %i[create edit] do
+  resources :relatives, except: %i[create] do
     patch :update_relatives, on: :collection
     patch :confirm, on: :member
   end
