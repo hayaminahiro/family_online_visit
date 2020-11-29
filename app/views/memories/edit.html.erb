@@ -29,12 +29,20 @@
     methods: {
       refresh: function () {
         let now = new Date();
-        this.time = `${now.getHours()}:${now.getMinutes()}`
+        if (now.getHours() > 10 && now.getMinutes() > 10) {
+          this.time = `${now.getHours()}:${now.getMinutes()}`;
+        } else if (now.getHours() < 10 && now.getMinutes() > 10) {
+          this.time = `0${now.getHours()}:${now.getMinutes()}`;
+        } else if (now.getHours() > 10 && now.getMinutes() < 10) {
+          this.time = `${now.getHours()}:0${now.getMinutes()}`;
+        } else {
+          this.time = `0${now.getHours()}:0${now.getMinutes()}`;
+        }
       }
     },
     template: '<span>{{ time }}</span>'
-  })
+  });
   var app = new Vue({
     el: "#app"
-  })
+  });
 </script>
