@@ -2,8 +2,8 @@
   <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
 
   <!--追加元の画像カードに紐付け用のidをもたせる-->
-  <% @memory.add_image_id = @add_images if @add_images.present? %>
-  <%= f.hidden_field :add_image_id, :value => @memory.add_image_id %>
+  <% @memory.add_image = @add_images if @add_images.present? %>
+  <%= f.hidden_field :add_image, :value => @memory.add_image %>
 
   <!--image0-->
   <div class="card memory-card-position">
@@ -145,7 +145,7 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <% if @add_images == 0 || @memory.add_image_id == 0 %>
+      <% if @add_images == 0 || @memory.add_image == 0 %>
         <%= f.date_field :event_date, class: "fa input" %>
       <% else %>
         <% @memories.each {|m| @memory = m if m.id == @add_images } %>
@@ -160,7 +160,7 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <% if @add_images == 0 || @memory.add_image_id == 0 %>
+      <% if @add_images == 0 || @memory.add_image == 0 %>
         <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
       <% else %>
         <% @memories.each {|m| @memory = m if m.id == @add_images } %>
@@ -174,7 +174,7 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <% if @add_images == 0 || @memory.add_image_id == 0 %>
+      <% if @add_images == 0 || @memory.add_image == 0 %>
         <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
       <% else %>
         <% @memories.each {|m| @memory = m if m.id == @add_images } %>
@@ -182,7 +182,7 @@
       <% end %>
     </div>
   </div>
-  <% if @add_images == 0 || @memory.add_image_id == 0 %>
+  <% if @add_images == 0 || @memory.add_image == 0 %>
     <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
   <% else %>
     <%= f.submit "思い出アルバムを追加する", class: "message-btn" %>
