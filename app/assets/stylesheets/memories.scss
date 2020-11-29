@@ -1,4 +1,9 @@
 //思い出indexページ
+#hero-memory {
+  position: relative;
+  background: #efefef;
+}
+
 .glovalNavigation {
   font-weight: 700;
   padding-bottom: 5px;
@@ -344,6 +349,18 @@
 
   a.folder {
     color: burlywood;
+  }
+
+  .edit-btn {
+    border: solid 1px #92ad92 !important;
+  }
+
+  .delete-btn {
+    border: solid 1px #d08d9a !important;
+  }
+
+  .index-btn {
+    border: solid 1px #9d9dbd !important;
   }
 }
 
