@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_11_06_160505) do
+
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
     t.string "email", default: "", null: false
@@ -111,7 +112,6 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.string "name", null: false
     t.string "email", null: false
     t.string "password"
-    t.string "room_name"
     t.boolean "admin", default: false
     t.string "phone"
     t.string "address"
