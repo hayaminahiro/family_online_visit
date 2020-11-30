@@ -2,6 +2,17 @@
   margin-top: 100px;
 }
 
+//Online Visit
+h1.title-header {
+  font-size: 32px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+//Online Visit（アイコン）
+nav.navbar i {
+  font-size: 32px;
+}
+
 h2 {
   color: white !important;
 }
@@ -181,6 +192,15 @@ p.navbar-item {
   font-size: 17px;
   background-color: #efefef;
   font-family: 'Quicksand', sans-serif;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+//ヘッダー内のアイコン
+.header-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .dark-top {
@@ -779,6 +799,16 @@ p.content1 {
 
 //モバイル
 @media screen and (max-width: 500px) {
+
+  //Online Visit
+  h1.title-header {
+    font-size: 18px;
+  }
+
+  //Online Visit（アイコン）
+  nav.navbar i {
+    font-size: 18px;
+  }
 
   //アプリタイトル
   #hero-2 h1 {

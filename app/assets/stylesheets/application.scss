@@ -19,6 +19,12 @@
 @import 'font-awesome';
 @import "bulma";
 
+//ヘッダーアイコンの画像
+.navbar-item img {
+  max-height: 100%;
+  object-fit: cover;
+}
+
 /*ページネーションの左右ラベルを非表示にする*/
 .pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
   display: none;
@@ -33,6 +39,11 @@
 
   #under-link {
     display: inline-block;
+  }
+
+  //ハンバーガー
+  .navbar-burger {
+    margin-top: 11px;
   }
 
   //施設下タブ
@@ -143,7 +154,7 @@
     height: 70px;
   }
 
-  footer{
+  footer {
     height: 70px;
     margin-bottom: 55px;
 
@@ -157,6 +168,26 @@
       line-height: 70px;
       height: 70px;
       margin-bottom: 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  //ハンバーガー
+  .navbar-burger {
+    margin-top: 0px;
+  }
+
+  //メッセージレイアウト
+  .notification {
+    padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+  }
+
+  footer {
+
+    .content h1 {
+      font-size: 18px;
     }
   }
 }

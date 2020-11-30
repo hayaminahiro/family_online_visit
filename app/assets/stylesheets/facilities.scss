@@ -370,6 +370,15 @@ div.under-line {
   margin-top: 30px;
   margin-right: 20px;
   background-color: #fff;
+
+  sup{
+    color: white;
+    border: solid 2px;
+    border-radius: 50%;
+    padding: 1px 7px;
+    background-color: #4bd3e0;
+    font-weight: 700;
+  }
 }
 
 .inline-block_home {

@@ -1,80 +1,82 @@
-<% requests = RequestResident.where(facility_id:current_facility) %>
-<% requests.each do |request| %>
-  <% if request.req_approval == "申請中" %>
-    <div class="req-new-container">
-      <div class="req-new-section">
-      <nav class="level">
-        <div class="level-left">
-          <h1 class="has-text-weight-bold is-size-3">入居者申請</h1>
-        </div>
-        <div class="level-right">
-          <div class="new-c-container">
-            <%= form_with(url: new_relative_path, method: :get, local: true) do |f| %>
-              <div class="field is-grouped is-grouped-right">
-                <div class="control has-icons-left">
-                  <%= f.text_field :search, :placeholder => "入居者を入力..", class: "input is-rounded" %>
-                  <span class="icon is-left">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                  </span>
-                </div>
-                <div class="control">
-                  <%= f.submit "\uf002検索", class: "fa button is-primary is-outlined is-rounded" %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </nav>
-        <hr id="new-hr">
-        <p class="has-text-weight-bold is-size-5">
-          <% request_user = User.find(request.user_id) %>
-          <hr>
-          <%= request_user.name %>様からの申請
-        </p>
-        <table class="table is-narrow user-edit-table is-bordered" id="req-new-table">
-          <tbody>
-            <tr>
-              <th>入居者名</th>
-              <td>
-                <%= request.req_name %>
-              </td>
-            </tr>
-            <tr>
-              <th>連絡先</th>
-              <td>
-                <%= request.req_phone %>
-              </td>
-            </tr>
-            <tr>
-              <th>住所</th>
-              <td>
-                <%= request.req_address %>
-              </td>
-            </tr>
-            <tr>
-              <th>紐付け</th>
-              <td>
-                <%= form_with(model: request_user, url: relative_path(current_facility, user_id: request_user)) do |f| %>
-                  <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                    <%= b.label { b.check_box + " " + b.text } %>
-                  <% end %><br><br>
-                  <%= f.collection_check_boxes :resident_ids, request_user.residents, :id, :name, style: 'display:none' do |b| %>
-                    <span class="tag is-warning"><%= b.label { b.text } %>承認済</span>
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th><abbr title="Position"></abbr></th>
-              <td>
-              <%= f.submit "承認する", class: "button is-primary new-btn has-text-weight-bold" %>
-                <% end %>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+<div class="relative-new-body">
+  <%= form_with(url: new_relative_path, method: :get, local: true) do |f| %>
+    <div class="field is-grouped is-grouped-right">
+      <div class="control has-icons-left">
+        <%= f.text_field :search, :placeholder => "入居者を入力..", class: "input is-rounded" %>
+        <span class="icon is-left">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="control">
+        <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
       </div>
     </div>
   <% end %>
-<% end %>
+
+  <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
+    <% @requests.each do |request| %>
+      <% if request.req_approval == "申請中" %>
+        <div class="card">
+          <div class="relative-new-container">
+            <div class="req-new-section">
+            <nav class="level" id="level-bottom">
+              <p class="has-text-weight-bold is-size-5">
+                <% @r_user = User.find(request.user_id) %>
+                <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+              </p>
+            </nav>
+              <table class="table is-narrow user-edit-table is-bordered" id="req-new-table">
+                <tbody>
+                  <tr>
+                    <th>利用者名</th>
+                    <td>
+                      <%= simple_format(request.req_name) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>連絡先</th>
+                    <td>
+                      <%= simple_format(request.req_phone) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>住所</th>
+                    <td>
+                      <%= simple_format(request.req_address) %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>紐付け</th>
+                    <td>
+                      <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
+
+                      <%= f.fields_for "request_residents[]", @r_user do |i| %>
+                      <div style="text-align: center; margin-top: 15px;">
+                        <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                          <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                        <% end %><br>
+                      </div>
+                      <div class="tag-apply">
+                        <%= i.collection_check_boxes :resident_ids, @r_user.residents, :id, :name, style: 'display:none' do |b| %>
+                          <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                        <% end %>
+                      </div>
+                      <div style="text-align: right;">
+                        <%= link_to relative_path(request, denial: request), method: :patch,
+                          data: { confirm: "#{@r_user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-small" do %>
+                          <i class="far fa-window-close"></i>
+                        <% end %>
+                      <% end %>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= f.submit "確認画面へ", class: "button is-link is-light has-text-weight-bold", id: "req-submit" if @requests.present? %>
+  <% end %>
+</div>

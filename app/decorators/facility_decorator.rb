@@ -83,4 +83,8 @@ module FacilityDecorator
   def reservation_calendar
     Reservation.where.not(calendar_day: nil)
   end
+
+  def request_count(requests)
+    requests.present? ? tag.sup(requests.count) : nil
+  end
 end
