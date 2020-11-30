@@ -20,8 +20,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image0.url, id: "img_prev_0_#{memory_id}", class: "img-interval index-photo-size" if m.image0? %>
-            <%= f.file_field :image0, class: "image_uploading_0_#{memory_id} modal-input" %>
+            <%= image_tag m.image0.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image0? %>
+            <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -31,45 +31,17 @@
           </section>
           <footer class="modal-card-foot footer-position res-footer">
             <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像1(#{url})は削除できません。"}, class: "button is-medium delete-btn" do %>
+                        method: :delete, data: { confirm: "トップ画像(#{url})は削除できません。"}, class: "button is-medium delete-btn" do %>
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image0, class: "image_uploading_0_#{memory_id} drop-zone" %>
+            <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf302 画像変更", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_0_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_0_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image1? %>
@@ -93,8 +65,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image1.url, id: "img_prev_1_#{memory_id}", class: "img-interval index-photo-size" if m.image1? %>
-            <%= f.file_field :image1, class: "image_uploading_1_#{memory_id} modal-input" %>
+            <%= image_tag m.image1.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image1? %>
+            <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -109,41 +81,13 @@
             <% end %>
             <!--変更なしの際のエラー解消-->
             <%= f.hidden_field :image1_cache %>
-            <%= f.file_field :image1, class: "image_uploading_1_#{memory_id} drop-zone" %>
+            <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_1_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_1_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image2? %>
@@ -167,8 +111,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image2.url, id: "img_prev_2_#{memory_id}", class: "img-interval index-photo-size" if m.image2? %>
-            <%= f.file_field :image2, class: "image_uploading_2_#{memory_id} modal-input" %>
+            <%= image_tag m.image2.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image2? %>
+            <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -182,41 +126,13 @@
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image2_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image2, class: "image_uploading_2_#{memory_id} drop-zone" %>
+            <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_2_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_2_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image3? %>
@@ -240,8 +156,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image3.url, id: "img_prev_3_#{memory_id}", class: "img-interval index-photo-size" if m.image3? %>
-            <%= f.file_field :image3, class: "image_uploading_3_#{memory_id} modal-input" %>
+            <%= image_tag m.image3.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image3? %>
+            <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -255,41 +171,13 @@
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image3_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image3, class: "image_uploading_3_#{memory_id} drop-zone" %>
+            <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_3_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_3_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image4? %>
@@ -313,8 +201,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image4.url, id: "img_prev_4_#{memory_id}", class: "img-interval index-photo-size" if m.image4? %>
-            <%= f.file_field :image4, class: "image_uploading_4_#{memory_id} modal-input" %>
+            <%= image_tag m.image4.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image4? %>
+            <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -328,41 +216,13 @@
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image4_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image4, class: "image_uploading_4_#{memory_id} drop-zone" %>
+            <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_4_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_4_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image5? %>
@@ -386,8 +246,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image5.url, id: "img_prev_5_#{memory_id}", class: "img-interval index-photo-size" if m.image5? %>
-            <%= f.file_field :image5, class: "image_uploading_5_#{memory_id} modal-input" %>
+            <%= image_tag m.image5.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image5? %>
+            <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -401,41 +261,13 @@
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image5_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image5, class: "image_uploading_5_#{memory_id} drop-zone" %>
+            <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_5_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_5_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image6? %>
@@ -459,8 +291,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image6.url, id: "img_prev_6_#{memory_id}", class: "img-interval index-photo-size" if m.image6? %>
-            <%= f.file_field :image6, class: "image_uploading_6_#{memory_id} modal-input" %>
+            <%= image_tag m.image6.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image6? %>
+            <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -474,41 +306,13 @@
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image6_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image6, class: "image_uploading_6_#{memory_id} drop-zone" %>
+            <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_6_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_6_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 
   <% if m.image7? %>
@@ -532,8 +336,8 @@
         <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
           <section class="modal-card-body image-position">
-            <%= image_tag m.image7.url, id: "img_prev_7_#{memory_id}", class: "img-interval index-photo-size" if m.image7? %>
-            <%= f.file_field :image7, class: "image_uploading_7_#{memory_id} modal-input" %>
+            <%= image_tag m.image7.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image7? %>
+            <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
           </section>
           <section class="modal-card-body content-back">
             <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
@@ -547,41 +351,13 @@
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
             <%= f.hidden_field :image7_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image7, class: "image_uploading_7_#{memory_id} drop-zone" %>
+            <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
             <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
           </footer>
         <% end %>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#<%= id_column %>").on("click", function () {
-          $("div#<%= column_id %>").addClass("is-active");
-        })
-        $("#close, div.modal-background").on("click", function () {
-          $("div#<%= column_id %>").removeClass("is-active");
-        })
-      });
-    </script>
-
-    <script>
-      $(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $("#img_prev_7_<%= memory_id %>").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $(".image_uploading_7_<%= memory_id %>").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
   <% end %>
 <% end %>
 <div class="bottom-control">&nbsp;</div>
