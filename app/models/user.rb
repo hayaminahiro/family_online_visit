@@ -15,25 +15,32 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
 
-  VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,                    presence: true, length: {maximum: 20}  #施設側からの家族（user）の編集で空白でエラーが出なかったため追加
-  validates :email,                   presence: true , uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  validates :email,                   presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :password,                presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
   validates :password_confirmation,   presence: true, length: {minimum: 6, maximum: 128},on: :save_to_session_before_phone
 
-  validates :postal_code,             presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
+  validates :postal_code,             presence: true, length: { is: 7 }, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :prefecture_name,         presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :address_city,            presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :address_street,          presence: true, exclusion: { in: %w(該当する住所が存在しません。) }
   validates :phone,                   presence: true
 
-  
+  mount_uploader :image, ImageUploader
+  validates :room_name, presence: true, on: :room_word_update
+  validate :check_relative_invalid, on: :relative_update
+
+  def check_relative_invalid
+    errors.add(:resident_ids, "にチェックがありません") if resident_ids == []
+  end
 
   # cookieでログイン情報を保持
   def remember_me
     true
   end
+
   # パスワード入力なしでご家族情報編集可能にするため追加
   def update_without_current_password(params, *options)
     params.delete(:current_password)
@@ -46,54 +53,9 @@ class User < ApplicationRecord
     result
   end
 
-  def self.without_sns_data(auth)
-    user = User.where(email: auth.info.email).first
-    if user.present?
-      sns = SnsCredential.create(
-        uid: auth.uid,
-        provider: auth.provider,
-        user_id: user.id
-      )
-    else
-      user = User.new(
-        name: auth.info.name,
-        email: auth.info.email,
-      )
-      sns = SnsCredential.new(
-        uid: auth.uid,
-        provider: auth.provider
-      )
-    end
-    return { user: user ,sns: sns}
-  end
-
-  def self.with_sns_data(auth, snscredential)
-    user = User.where(id: snscredential.user_id).first
-    unless user.present?
-      user = User.new(
-        name: auth.info.name,
-        email: auth.info.email,
-      )
-    end
-    return {user: user}
-  end
-
-  def self.find_oauth(auth)
-    uid = auth.uid
-    provider = auth.provider
-    snscredential = SnsCredential.where(uid: uid, provider: provider).first
-    if snscredential.present?
-      user = with_sns_data(auth, snscredential)[:user]
-      sns = snscredential
-    else
-      user = without_sns_data(auth)[:user]
-      sns = without_sns_data(auth)[:sns]
-    end
-    return { user: user ,sns: sns}
-  end
-
   def set_values(omniauth)
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
+
     credentials = omniauth['credentials']
     info = omniauth['info']
 
@@ -104,8 +66,15 @@ class User < ApplicationRecord
     # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
+  # Naming/AccessorMethodName →"def values_by_raw_info(raw_info)" or "def values_by_raw_info"
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+
+  #search定義
+  def self.search(search, facility)
+    facility.users unless search
+    facility.users.where('name LIKE ?', "%#{search}%").order(:id)
   end
 end

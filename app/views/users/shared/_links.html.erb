@@ -3,14 +3,14 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-<div class="has-text-weight-bold field">
-  <span class="user-side">
-    新規ユーザーの方 <i class="fas fa-hand-point-right"></i>
-  </span>
-  <button type="button" class="button is-link is-focused is-medium is-rounded has-text-weight-semibold">
-    <%= link_to "アカウント登録", step1_signup_index_path, class: 'account-link' %>
-  </button>
-</div><br />
+  <div class="has-text-weight-bold field">
+    <!--<span class="user-side">
+      新規ユーザーの方 <i class="fas fa-hand-point-down"></i>
+    </span>-->
+    <button type="button" class="button is-link is-focused is-medium is-fullwidth has-text-weight-semibold" style="margin-top:-50px;">
+      <%= link_to "新規アカウント登録", step1_signup_index_path, class: 'account-link' %>
+    </button>
+  </div><br />
 <% end %>
 
 <!--

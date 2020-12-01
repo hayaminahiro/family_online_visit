@@ -8,7 +8,7 @@ ja:
       reservation: 予約
       comment: お問い合わせ
       # notification: 通知
-      # memorie: 生活記録
+      memory: 生活記録
     attributes:
         user:
           id: ID
@@ -18,11 +18,9 @@ ja:
           password_confirmation: パスワード再入力
           room_name: ルームネーム
           admin: 管理者権限
-          floor_authority: 職員権限
-          resident_name1: 入居者の名前1
-          resident_name2: 入居者の名前2
           phone: 電話番号
           address: 住所
+          resident_ids: 利用者
           created_at: 作成日
           updated_at: 更新日
         facility:
@@ -49,11 +47,11 @@ ja:
         comment:
           message: メッセージ
         # notification: 通知
-        # memorie: 生活記録
-        #   photo_title: 写真タイトル
-        #   photo: 写真
-        #   worker_message: 職員メッセージ
-        #   family_message: ご家族メッセージ
+        memory:
+          event_date: 行事日
+          title: タイトル
+          image0: 画像１
+          message: メッセージ
         request_resident:
           req_name: 入居者様名
           req_phone: ご家族様連絡先

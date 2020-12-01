@@ -16,7 +16,7 @@
 <div class="container section">
   <div id="WebDev" class="content-tab">
     <div class="table-container">
-      <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
+      <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="user-table">
         <thead>
           <tr>
             <th>画像</th>
@@ -68,7 +68,7 @@
         </tbody>
       </table>
     </div>
-    <%= link_to "申請者登録画面", user_facility_new_connection_path(current_facility, @facility), class: "button is-primary is-medium has-text-weight-bold" %>
-    <%= link_to "申請一覧(登録済)", facility_user_request_residents_path(current_facility, @facility), class: "button is-small" %>
+    <%= link_to "申請者登録画面", new_relative_path, class: "button is-primary is-medium has-text-weight-bold" %>
+    <%= link_to "申請一覧(承認済)", relatives_path, class: "button is-small" %>
   </div>
 </div>

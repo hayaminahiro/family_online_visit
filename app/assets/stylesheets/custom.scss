@@ -11,8 +11,18 @@
   padding: 15px;
 }
 
+//ヘッダー下
+#layout-message {
+  margin-top: 74px;
+}
+
 div.notification.is-danger.error-count {
   margin-bottom: 0;
+}
+
+.notification {
+  width: 100%;
+  font-size: 20px;
 }
 
 //施設・家族ユーザー共通
@@ -49,11 +59,15 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
 
 .line-login {
   position: relative;
-  margin-top: -30px;
+  padding-top: 20px;
+}
+
+.line-login-sentence {
+  margin-top: -40px;
 }
 
 .user-side {
-  padding-bottom: 10px;
+  padding-bottom: 50px;
   padding-right: 20px;
 }
 
@@ -61,4 +75,36 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
   margin-top: -80px;
   padding-bottom: 50px;
   width: 100%;
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+
+  //エラーメッセージ
+  .notification {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  //共通エラーメッセージ
+  .error-position {
+    margin-top: 60px;
+    margin-bottom: 5px;
+  }
+
+  //エラーメッセージ
+  .notification {
+    width: 80%;
+    font-size: 15px;
+  }
+
+  //ヘッダー下
+  #layout-message {
+    margin-top: 52px;
+  }
 }
