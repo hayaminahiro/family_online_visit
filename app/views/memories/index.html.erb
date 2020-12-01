@@ -1,0 +1,35 @@
+<section class="hero is-medium has-text-centered" id="hero-memory">
+  <div class="glovalNavigation">
+    <h1 class="has-text-weight-bold"><%= @resident.name %>さんの思い出アルバム</h1>
+  </div>
+
+  <div class="main-index">
+    <div id="insert-photo">
+      <%= link_to new_resident_memory_path(@resident), class: "button is-link is-pulled-right" do %>
+        <i class="fas fa-images has-text-weight-bold">&ensp;新しい写真を投稿</i>
+      <% end %>
+    </div>
+    <div class="content">
+      <div class="cp_tab">
+        <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+        <label for="tab1_1">全ての写真</label>
+        <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+        <label for="tab1_2">行事ごとの写真</label>
+
+        <div class="cp_tabpanels">
+
+          <!--全ての写真のタブ-->
+          <div id="first_tab01" class="cp_tabpanel all-render">
+            <%= render 'all_images' %>
+          </div>
+
+          <!--行事ごとの写真(カード)のタブ-->
+          <div id="second_tab01" class="cp_tabpanel event-render">
+            <%= render 'event_card' %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,4 @@
 class ImageUploader < CarrierWave::Uploader::Base
-
   include CarrierWave::MiniMagick
 
   # 開発環境はローカル/本番環境はS3に保存
@@ -23,7 +22,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # デフォルト画像は1200x5000に収まるようリサイズ
@@ -37,6 +36,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def filename
     original_filename if original_filename
+    # original_filenameのみの記述で問題なければ修正
   end
-
 end

@@ -1,52 +1,62 @@
 <div class="mypage-main-content">
   <mypage-aside>
-    <nav class="">
-      <div>
-        <div class="profile-section">
-          <%# if current_user.user_profile.image? %>
-            <%#= image_tag current_user.user_profile.image.url, class: "profile-image" %>
-          <%# else %>
-            <%= image_tag 'user_default.png', class: "user-profile-image" %>
-          <%# end %>
-          <p class="has-text-centered"><%= current_user.name %></p>
-        </div>
+    <div>
+      <div class="profile-section">
+        <%= current_user.user_icon_image %>
+        <p class="has-text-centered"><%= current_user.name %></p>
       </div>
-      <div class="mypage-side-link">
-        <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>予約</p></a>
-        <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>写真</p></a>
-        <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>動画</p></a>
-        <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="fas fa-phone-volume"></i><p>お問い合わせ</p></a>
-      </div>
-    </nav>
+    </div>
+    <div class="mypage-side-link">
+      <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>予約</p></a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>写真</p></a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>動画</p></a>
+      <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="fas fa-phone-volume"></i><p>お問い合わせ</p></a>
+    </div>
   </mypage-aside>
 
   <mypage-main>
     <article>
+      <section class="hero-image-user">
+        <div class="user-home-image">
+        <% month = Date.today.month %>
+        <% if month.in?([ 12, 1, 2 ]) %>
+          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"%>
+        <% elsif month.in?([ 3, 4, 5 ]) %>
+          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image" %>
+        <% elsif month.in?([ 6, 7, 8 ]) %>
+          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"%>
+        <% elsif month.in?([ 9, 10, 11 ]) %>
+          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
+        <% end %>
+          <div class="user-icon-outline">
+            <%= current_user.user_icon_responsive %>
+          </div>
+        </div>
+      </section>
+
       <div id="Web" class="content-tab">
         <div class="Web-section">
           <div class="columns">
-            <% grouped_facility(@informations).each do |facility_id, other| %>
+            <% current_user.grouped_facility.each do |facility_id, other| %>
               <div class="card-content" id="my-page-info-content">
                 <div class="card" style="display: flex; border-radius: 11px;">
                   <div class="media-left">
-                    <small><%= mypage_informations_icon(facility_id) %></small>
+                    <small><%= current_user.mypage_facilities_icon(facility_id) %></small>
                   </div>
                   <div class="media-content" id="web-media-section">
-                    <% mypage_informations(facility_id).last(2).each do |information| %>
+                    <% current_user.mypage_informations(facility_id).last(2).each do |information| %>
                     <div class="mypage-information">
                       <div>
                         <div class="box" id="mypage-user-box">
                           <div class="media">
-                              <figure class="image is-64x64" style="margin-right: 10px;">
-                                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                              </figure>
+                            <%= current_user.mypage_informations_icon(information) %>
                             <div class="media-content">
                               <div class="content" id="edit-content">
                                 <p class="is-size-7">
-                                <strong><%= information.title.truncate(14) %></strong><br>
+                                <strong><%= information.title.truncate(9) %></strong><br>
                                   <small><%= information.facility.facility_name %></small>
                                   <br>
-                                  <span><%= information.news.truncate(13) %></span>
+                                  <span><%= information.news.truncate(10) %></span>
                                 </p>
                               </div>
                             </div>
@@ -65,7 +75,7 @@
           <div class="card" id="mypage-reservations-calendar">
             <div class="has-text-centered">
               <div class="is-centered">
-                <%= month_calendar(attribute: :calendar_day, events: calendar_reservation) do |date, reservations| %>
+                <%= month_calendar(attribute: :calendar_day, events: current_user.reservation_calendar) do |date, reservations| %>
                   <%= l(date, format: :short) %>
                 <% end %>
               </div><br>

@@ -2,6 +2,17 @@
   margin-top: 100px;
 }
 
+//Online Visit
+h1.title-header {
+  font-size: 32px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+//Online Visit（アイコン）
+nav.navbar i {
+  font-size: 32px;
+}
+
 h2 {
   color: white !important;
 }
@@ -34,8 +45,9 @@ h2 {
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: cover;
+  z-index: -1;
   //家族と青空
-  background-image: url('/signup-pic2.jpg');
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
 }
 
 .image-layout::before {
@@ -58,6 +70,34 @@ h2 {
   height: auto;
   min-height: 100%;
   color: white;
+}
+
+.image-layout-user {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+  background-color: #3ecd85;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  z-index: -1;
+  //家族と青空
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
+}
+
+.image-layout-user::before {
+  /* 透過した黒を重ねる */
+  background-color: rgba(0, 0, 0, 0);
+  /* どの範囲に重ねるかを指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
 }
 
 .btn-flat-border {
@@ -138,10 +178,6 @@ p#explanation {
   text-align: center;
 }
 
-footer.modal-card-foot {
-  padding-left: 450px;
-}
-
 .notice-btn {
   margin-top: 30px;
 }
@@ -156,6 +192,15 @@ p.navbar-item {
   font-size: 17px;
   background-color: #efefef;
   font-family: 'Quicksand', sans-serif;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+//ヘッダー内のアイコン
+.header-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .dark-top {
@@ -191,8 +236,12 @@ p.navbar-item {
   margin-top: -25px;
 }
 
+.input-top-user {
+  margin-top: -25px;
+}
+
 .new-btn {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   margin-top: 20px;
 }
 
@@ -206,20 +255,29 @@ p.navbar-item {
 }
 
 .to-new-userpage {
+  margin-top: 50px;
+  margin-bottom: -30px;
+}
+
+.to-new-userpage1 {
   margin-top: 20px;
   margin-bottom: -30px;
 }
 
 .login-title {
-  margin-top: 50px;
+  margin-top: 185px;
+}
+
+.login-title-user {
+  margin-top: 185px;
 }
 
 .signup-title {
   margin-top: 50px;
 }
 
-.admin-btn {
-  margin-top: 100px;
+.signup-title-facility {
+  margin-top: 185px;
 }
 
 .center-login {
@@ -239,13 +297,21 @@ a.button.is-success.is-rounded.is-large.has-text-weight-bold.center-login {
   position: relative;
 }
 
+#hero-2 h1 {
+  font-size: 80px;
+}
+
+#hero-2 p {
+  font-size: 32px;
+}
+
 .hero-3 {
   background-color: #FFDEAD;
 }
 
 html {
   position: relative;
-  min-height: 120vh;
+  min-height: 105vh;
   padding-bottom: 100px;
   box-sizing: border-box;
 }
@@ -352,7 +418,10 @@ footer {
   vertical-align: top;
   height: 267px;
   width: 420px;
-  margin-right: 20px;
+  margin-right: 55px;
+  margin-bottom: 120px;
+  margin-top: 20px;
+  margin-left: 55px;
 }
 
 //トップページご家族ログイン後
@@ -361,7 +430,10 @@ footer {
   vertical-align: top;
   height: 267px;
   width: 420px;
-  margin-right: 20px;
+  margin-right: 55px;
+  margin-bottom: 80px;
+  margin-top: 75px;
+  margin-left: 55px;
 }
 
 p.content1 {
@@ -529,9 +601,11 @@ p.content1 {
           appearance: none;
 	display: none;
 }
+
 .cp_tab .cp_tabpanel {
   display: none;
 }
+
 .cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
 .cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
 .cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3),
@@ -540,6 +614,7 @@ p.content1 {
 .cp_tab > input:nth-child(11):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(6) {
 	display: block;
 }
+
 .cp_tab > label {
 	position: relative;
 	display: inline-block;
@@ -549,21 +624,26 @@ p.content1 {
 	border: 1px solid transparent;
 	border-bottom: 0;
 }
+
 .cp_tab > label:hover,
 .cp_tab > input:focus + label {
-	color: #0066cc;
+	color: #006fcc;
 }
+
 .cp_tab > input:checked + label {
 	margin-bottom: -1px;
 	border-color: #cccccc;
 	border-bottom: 1px solid #efefef;
 	border-radius: 6px 6px 0 0;
 }
+
 .cp_tab .cp_tabpanel {
 	padding: 0.5em 1em;
   border-top: 1px solid #cccccc;
   padding-top: 100px;
+  margin-bottom: 60px;
 }
+
 @media (max-width: 480px) {
 	.cp_tab {
 		width: 100%;
@@ -576,6 +656,7 @@ p.content1 {
 
 .about-title {
   border-bottom: 1px solid #ccc;
+  font-size: 30px;
   padding-bottom: 7px;
   margin-bottom: 50px;
   margin-top: 100px;
@@ -596,6 +677,7 @@ p.content1 {
   padding-bottom: 7px;
   margin-bottom: 50px;
   margin-top: 0px;
+  font-size: 32px;
 }
 
 //ヘッダー（一般職員アイコン）
@@ -625,5 +707,193 @@ p.content1 {
 @media all and (-ms-high-contrast:none){
   .admin-icon {
     background: none;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+
+  .inline-block_content {
+    width: 38%;
+  }
+
+  .inline-block_tab {
+    width: 38%;
+    margin-top: 25px;
+  }
+
+  .cp_tab .cp_tabpanel {
+    margin-bottom: 20px;
+  }
+}
+
+//タブレット〜モバイル
+@media screen and (max-width: 1000px) {
+
+  //トップ画面背景画像
+  .main_img {
+    height: 370px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #hero-2 {
+    height: 350px;
+  }
+
+  //補足コメント
+  p.content1 {
+    font-size: 12px;
+  }
+
+  //トップ画面の画像と文のレイアウト
+  .inline-block_content {
+    width: 290px;
+    margin: 10px 20px;
+    margin-bottom: 90px;
+  }
+
+  .inline-block_content img {
+    height: 280px;
+    object-fit: cover;
+  }
+
+  .inline-block_tab {
+    width: auto;
+    margin: 0px 10px 0px 10px
+  }
+
+  .inline-block_tab img {
+    height: 280px;
+    object-fit: cover;
+  }
+
+  //メニュータブ
+  .cp_tab > label {
+    padding: 10px 44px;
+  }
+
+  .cp_tab .cp_tabpanel {
+    padding-top: 60px;
+    margin-bottom: 85px;
+  }
+
+  //【ユーザーログイン画面】
+  //タイトルレイアウト
+  .login-title-user {
+    margin-top: 154px;
+  }
+
+  //【施設ログイン画面】
+  //タイトルレイアウト
+  .login-title {
+    margin-top: 154px;
+  }
+
+  //【施設新規登録画面】
+  .signup-title-facility {
+    margin-top: 154px;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+
+  //Online Visit
+  h1.title-header {
+    font-size: 18px;
+  }
+
+  //Online Visit（アイコン）
+  nav.navbar i {
+    font-size: 18px;
+  }
+
+  //アプリタイトル
+  #hero-2 h1 {
+    font-size: 45px;
+  }
+
+  //サブタイトル
+  #hero-2 p {
+    font-size: 18px;
+  }
+
+  //アプリについて（項目）
+  .about-title-2 {
+    font-size: 20px;
+  }
+
+  .inline-block_content {
+    margin: 0px;
+  }
+
+  .inline-block_tab {
+    height: auto;
+    margin-top: 40px;
+  }
+
+  #top-coments {
+    margin-bottom: 80px;
+  }
+
+  //お知らせ
+  #panel-content {
+    margin: 0px;
+  }
+
+  //ログイン後、トップ画面のメニュータブ
+  .cp_tab > label {
+    padding: 10px 23px;
+    font-size: 2px;
+    border: none;
+  }
+
+  .cp_tab > label i {
+    font-size: 30px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .cp_tab > input:checked + label {
+    border-bottom: 2px solid #006fcc;
+    border-radius: 0;
+  }
+
+  .cp_tab .cp_tabpanel {
+    margin-bottom: 70px;
+  }
+
+  //項目タイトル
+  .about-title {
+    font-size: 22px;
+    margin-top: 50px;
+  }
+
+  //【施設ログイン画面】
+  //タイトルレイアウト
+  .login-title {
+    margin-top: 130px;
+  }
+
+  //【施設新規登録画面】
+  .signup-title-facility {
+    margin-top: 130px;
+  }
+
+  //【ユーザログイン画面】
+  .login-title-user {
+    margin-top: 130px;
+  }
+
+  //【ユーザー新規登録画面】
+  .signups-title {
+    margin-top: 54px;
+  }
+
+  //施設ログイン、施設新規登録
+  .new-title {
+    font-size: 27px;
   }
 }

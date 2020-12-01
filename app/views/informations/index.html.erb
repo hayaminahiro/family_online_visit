@@ -1,101 +1,110 @@
-<article class="panel is-success" style="min-height: 70vh; margin-top: 90px; background: #F5F5F5;">
-  <div class="level-info">
-    <nav class="level" style="padding: 40px 100px 0 0;">
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
 
-      <!-- Left side -->
-      <div class="level-left">
-        <p class="panel-tabs">
-          <a class="panel-tab is-active" onclick="openTab(event,'Web')">お知らせ</a>
-          <a class="panel-tab" onclick="openTab(event,'Aud')">システムからのお知らせ</a>
-        </p>
-      </div>
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <article class="panel is-success" id="panel-info">
+      <div class="level-info">
+        <nav class="level">
 
-      <!-- Right side -->
-      <div class="level-right">
-        <div class="level-item">
-          <%= form_with(url: facility_informations_path(current_facility), method: :get, local: true) do |f| %>
-            <div class="field is-grouped is-grouped-right">
-              <div class="control has-icons-left">
-                <%= f.text_field :search, :placeholder => "タイトルを入力..", class: "input is-rounded" %>
-                <span class="icon is-left">
-                  <i class="fas fa-search" aria-hidden="true"></i>
-                </span>
-              </div>
-              <div class="control">
-                <%= f.submit "\uf002検索", class: "fa button is-success is-outlined is-rounded" %>
-              </div>
-            </div>
-          <% end %>
-          <%= link_to new_facility_information_path(current_facility) do %>
-            <button class="button is-success is-rounded new-info">
-              <span class="icon is-small"><i class="fas fa-bell">new</i></span>
-            </button>
-          <% end %>
-        </div>
-      </div>
+          <!-- Left side -->
+          <div class="level-left">
+            <p class="panel-tabs">
+              <a class="panel-tab is-active infomation-tab" onclick="openTab(event,'Web')"><i class="fas fa-info-circle"></i>&nbsp;お知らせ</a>
+              <a class="panel-tab infomation-tab" onclick="openTab(event,'Aud')"><i class="far fa-bell"></i>&nbsp;システムからのお知らせ</a>
+            </p>
+          </div>
 
-    </nav>
-  </div>
-
-  <div id="Web" class="content-tab" >
-    <div clsss="has-text-centered" id="info-container">
-    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-      <div class="info-section">
-        <% @informations.each do |information| %>
-          <div class="card" id="info-card">
-            <div class="card-image">
-              <% if information.image? %>
-                <%= image_tag information.image.url, id: :img_prev, :size => '800x200' %>
-              <% else %>
-                <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, :size => '500x200' %>
+          <!-- Right side -->
+          <div class="level-right">
+            <div class="info-menu">
+              <%= form_with(url: informations_path, method: :get, local: true) do |f| %>
+                <div class="field is-grouped is-grouped-right">
+                  <div class="control has-icons-left">
+                    <%= f.text_field :search, :placeholder => "タイトルを入力..", class: "input is-rounded" %>
+                    <span class="icon is-left">
+                      <i class="fas fa-search" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  <div class="control">
+                    <%= f.submit "\uf002検索", class: "fa button is-success is-outlined is-rounded" %>
+                  </div>
+                </div>
+              <% end %>
+              <%= link_to new_information_path do %>
+                <button class="button is-success is-rounded new-info">
+                  <span class="icon is-small"><i class="fas fa-bell">new</i></span>
+                </button>
               <% end %>
             </div>
-            <div class="card-content">
-              <div class="content" id="info-content">
-                <p><%= l(information.created_at, format: :hyphen) %></p>
-                <p class="has-text-weight-bold">
-                  <%= information.title %>
-                </p>
-                <%= information.news.truncate(30) %>
+          </div>
+        </nav>
+      </div>
+
+      <div id="Web" class="content-tab" >
+        <div class="has-text-centered" id="info-container">
+        <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+          <div class="info-section">
+            <% @informations.each do |information| %>
+              <div class="card" id="info-card">
+                <div class="card-image">
+                  <% if information.image? %>
+                    <%= image_tag information.image.url, id: :img_prev, class: "info-photo-size" %>
+                  <% else %>
+                    <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/info.jpg", id: :img_prev, class: "info-photo-size" %>
+                  <% end %>
+                </div>
+                <div class="card-content">
+                  <div class="content" id="info-content">
+                    <p><%= l(information.created_at, format: :hyphen) %></p>
+                    <p class="has-text-weight-bold">
+                      <%= information.title %>
+                    </p>
+                    <%= information.news.truncate(30) %>
+                  </div>
+                </div>
+                <footer class="card-footer">
+                  <div class="card-footer-item">
+                    <%= link_to edit_information_path(information) do %>
+                      <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
+                    <% end %>
+                  </div>
+                  <div class="card-footer-item">
+                    <%= link_to information_path(information), method: :delete,
+                          data: { confirm: "#{information.title}のお知らせを削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
+                      <i class="far fa-trash-alt"></i>
+                    <% end %>
+                  </div>
+                </footer>
+              </div>
+            <% end %>
+          </div>
+        <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+        </div>
+      </div>
+
+      <div id="Aud" class="content-tab" style="display:none">
+        <div class="has-text-centered">
+          <div class="columns is-multiline has-text-left" style="justify-content: center;">
+            <div class="show-info-container">
+              <hr>
+              <h1 class="show-info-title has-text-weight-bold is-size-5"><%= @info_top.title %></h1>
+              <hr>
+              <div>
+                <span class="show-info-sp"><i class="fa fa-calendar-alt"></i><%= l( @info_top.created_at, format: :dot) %></span><br>
+                <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                <hr>
               </div>
             </div>
-            <footer class="card-footer">
-              <div class="card-footer-item">
-                <%= link_to edit_facility_information_path(current_facility, information) do %>
-                  <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
-                <% end %>
-              </div>
-              <div class="card-footer-item">
-                <%= link_to facility_information_path(current_facility, information), method: :delete,
-                      data: { confirm: "#{information.title}のお知らせを削除してよろしいですか？" }, class:"button is-danger is-light is-medium" do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              </div>
-            </footer>
-          </div>
-        <% end %>
-      </div>
-    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-    </div>
-  </div>
-
-  <div id="Aud" class="content-tab" style="display:none">
-    <div class="has-text-centered">
-      <div class="columns is-multiline has-text-left" style="justify-content: center;">
-        <div class="show-info-container">
-          <hr>
-          <h1 class="show-info-title has-text-weight-bold is-size-5"><%= @info_top.title %></h1>
-          <hr>
-          <div>
-            <span class="show-info-sp"><i class="fa fa-calendar-alt"></i><%= l( @info_top.created_at, format: :dot) %></span><br>
-            <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-            <hr>
           </div>
         </div>
       </div>
-    </div>
+    </article>
+
+    <%= render 'responsive_layout' %> <!--レスポンシブ対応のため記述-->
+
   </div>
-</article>
+</div>
 
 <script>
   function openTab(evt, tabName) {
@@ -111,4 +120,11 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
   }
+</script>
+
+<script>
+  $(function(){
+    ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+  });
 </script>

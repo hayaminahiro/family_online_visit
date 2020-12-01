@@ -1,0 +1,187 @@
+<%= form_with(model: @memory, url: resident_memory_path(@resident), method: :patch, local: true) do |f| %>
+  <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
+
+  <!--追加元の画像カードに紐付け用のidをもたせる-->
+  <% @memory.add_image = @add_images if @add_images.present? %>
+  <%= f.hidden_field :add_image, :value => @memory.add_image %>
+
+  <!--image0-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image00_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <div class="has-text-left">
+        <button class="button tag is-danger is-light is-rounded mandatory">トップ画像の登録は必須になります。</button>
+      </div>
+      <div class="content">
+        <%= f.file_field :image0, class: "image_uploading_0 drop-area-mandatory" %>
+        <%= f.hidden_field :image0_cache if @memory.image0.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image1-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image01_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image1, id: "img1_delete" %>
+      <label for="img1_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image1, class: "image_uploading_1 drop-area" %>
+        <%= f.hidden_field :image1_cache if @memory.image1.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image2-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image02_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image2, id: "img2_delete" %>
+      <label for="img2_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image2, class: "image_uploading_2 drop-area" %>
+        <%= f.hidden_field :image2_cache if @memory.image2.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image3-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image03_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image3, id: "img3_delete" %>
+      <label for="img3_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image3, class: "image_uploading_3 drop-area" %>
+        <%= f.hidden_field :image3_cache if @memory.image3.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image4-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image04_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image4, id: "img4_delete" %>
+      <label for="img4_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image4, class: "image_uploading_4 drop-area" %>
+        <%= f.hidden_field :image4_cache if @memory.image4.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image5-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image05_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image5, id: "img5_delete" %>
+      <label for="img5_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image5, class: "image_uploading_5 drop-area" %>
+        <%= f.hidden_field :image5_cache if @memory.image5.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image6-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image06_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image6, id: "img6_delete" %>
+      <label for="img6_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image6, class: "image_uploading_6 drop-area" %>
+        <%= f.hidden_field :image6_cache if @memory.image6.present? %>
+      </div>
+    </div>
+  </div>
+
+  <!--image7-->
+  <div class="card memory-card-position">
+    <div class="card-image">
+      <%= @memory.image07_photo %>
+    </div>
+    <div class="card-content card-drop-area">
+      <%= f.check_box :remove_image7, id: "img7_delete" %>
+      <label for="img7_delete" class="check_position is-pulled-left">
+        <p class="img-delete-label">画像を削除</p>
+      </label>
+      <div class="content">
+        <%= f.file_field :image7, class: "image_uploading_7 drop-area" %>
+        <%= f.hidden_field :image7_cache if @memory.image7.present? %>
+      </div>
+    </div>
+  </div>
+
+  <label class="media-left has-text-weight-bold">
+    <h1 class="memory-title-mini">出来事の日付（行事日等）</h1>
+  </label>
+  <div class="media-content">
+    <div class="content memory-label">
+      <%= f.date_field :event_date, class: "fa input" %>
+    </div>
+  </div>
+  <label class="media-left has-text-weight-bold">
+    <h1 class="memory-title-mini">思い出画像タイトル</h1>
+  </label>
+  <div class="media-content">
+    <div class="content memory-label">
+      <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+    </div>
+  </div>
+  <label class="media-left has-text-weight-bold">
+    <h1 class="memory-title-mini">ご家族へのメッセージ</h1>
+  </label>
+  <div class="media-content">
+    <div class="content memory-label">
+      <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
+    </div>
+  </div>
+  <%= f.submit "思い出アルバムを編集する", class: "message-btn" %>
+<% end %>
+
+<script>
+  for ( let i=0; i<8; i++ ){
+    $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $(`#img_prev_${i}`).attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $(`.image_uploading_${i}`).change(function(){
+          readURL(this);
+      });
+    });
+  }
+</script>

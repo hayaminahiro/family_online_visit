@@ -1,26 +1,66 @@
+<section class="hero is-small" id="edit-title">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered is-size-5">
+        プロフィール編集
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="edit-image-user">
+  <div class="user-home-image">
+    <% month = Date.today.month %>
+    <% if month.in?([ 12, 1, 2 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"%>
+    <% elsif month.in?([ 3, 4, 5 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image" %>
+    <% elsif month.in?([ 6, 7, 8 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"%>
+    <% elsif month.in?([ 9, 10, 11 ]) %>
+      <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
+    <% end %>
+    <div class="user-icon-outline">
+      <%= @user.user_icon_edit_responsive %>
+      <div class="user-edit-icon-back">
+        <div class="user-edit-icon-image">
+          <i class="fas fa-camera"></i>
+        </div>
+      </div>
+      <div class="user-edit-background-back">
+        <div class="user-edit-backgroung-image">
+          <i class="fas fa-camera"></i>
+        </div>  
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="main-content">
   <aside>
-    <nav class="">
-      <div class="">
-        <p class="edit-link">アカウント</p>
-        <hr class="edit-hr">
-        <a class="panel-tab is-active user-aside-link" onclick="openTab(event,'Web')">アカウント設定</a>
-        <a class="panel-tab user-aside-link" onclick="openTab(event,'Aud')">パスワード変更</a>
-        <p class="edit-link">施設</phas-text-weight-bold>
-        <hr class="edit-hr">
-        <a class="panel-tab user-aside-link" onclick="openTab(event,'Faci')">登録施設変更</a>
-        <p class="edit-link">入居者</p>
-        <hr class="edit-hr">
-        <a class="panel-tab user-aside-link" onclick="openTab(event,'Resi')">登録入居者変更</a>
-      </div>
-    </nav>
   </aside>
+
+  <edit-aside>
+    <div class="edit-menu-title">
+      プロフィール編集
+      <div class="profile-section">
+        <%= current_user.user_icon_image %>
+      </div>
+    </div> 
+    <div class="edit-side-link">
+      <div class="panel-tab is-active edit-links" onclick="openTab(event,'Web')"><i class="far fa-user"></i><p>アカウント</p></div>
+      <div class="panel-tab edit-links" onclick="openTab(event,'Aud')"><i class="fas fa-key"></i><p>パスワード</p></div>
+      <div class="panel-tab edit-links" onclick="openTab(event,'Faci')"><i class="far fa-building"></i><p>登録施設</p></div>
+      <div class="panel-tab edit-links" onclick="openTab(event,'Resi')"><i class="fas fa-user-friends"></i><p>登録利用者</p></div>
+    </div>
+  </edit-aside>
+
   <main>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
     <article class="panel is-success">
-      <div id="Web" class="content-tab" >
-        <div>
+      <div id="Web" class="content-tab">
+        <div class="table-layout">
           <table class="table is-fullwidth is-narrow user-edit-table" id="u-edit-table">
             <thead>
               <tr>
@@ -49,12 +89,45 @@
                 <th>電話番号</th>
                 <td>080-4990-4484</td>
               </tr>
-              <tr clas>
+              <tr>
                 <th>住所</th>
                 <td>千葉県佐倉市００−００</td>
               </tr>
-              <tr>
-                <th>プロフィール画像</th>
+              <tr class="image-change">
+                <th>現在のプロフィール画像</th>
+                <td>
+                  <div>
+                    <%= @user.user_icon_edit %>
+                  </div>
+                </td>
+              </tr>
+              <tr class="image-change">
+                <th>プロフィール画像を変更</th>
+                <td>
+                  <div class="container">
+                    <%= f.file_field :image, value: "upload", class: "user_img user-icon-field" %>
+                    <%= f.hidden_field :image_cache %>
+                  </div>
+                </td>
+              </tr>
+              <% if @user.persisted? && @user.image? %>
+                <tr class="image-change">
+                  <th>画像を削除</th>
+                  <td>
+                    <div style="margin-top:10px;">
+                      <%= f.check_box :remove_image, id: "icon_delete" %>
+                      <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              <tr class="image-change">
+                <th>現在の背景画像</th>
+                <td></td>
+              </tr>
+              <tr class="image-change">
+                <th>背景画像を変更</th>
                 <td></td>
               </tr>
             </tbody>
@@ -122,4 +195,21 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
   }
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(".user_img").change(function(){
+        readURL(this);
+    });
+  });
 </script>

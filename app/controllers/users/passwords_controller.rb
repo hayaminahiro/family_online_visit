@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # パスワード忘れたとき用処理のコントローラー
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new

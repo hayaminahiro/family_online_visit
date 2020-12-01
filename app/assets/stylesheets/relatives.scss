@@ -1,0 +1,286 @@
+// Place all the styles related to the relatives controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.relative-new-body{
+  text-align: center;
+
+  .field.is-grouped.is-grouped-right{
+    justify-content: center;
+    width: 812px;
+    margin: auto;
+    padding-top: 21px;
+  }
+
+  .field.is-grouped > .control:not(:last-child) {
+    margin-top: 0px;
+    margin-right: 0.75rem;
+    width: 100%;
+  }
+
+  .card{
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 94%;
+    position: relative;
+    margin: auto;
+    margin: 0px auto;
+    padding: 0px 0px 23px 0px;
+    margin-top: 20px;
+  }
+}
+
+.relative-new-container{
+  margin: 0px;
+}
+
+#req-new-table{
+  margin: auto;
+  padding-top: 20px;
+  height: 100%;
+  vertical-align: middle;
+
+  th{
+    width: 180px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 500;
+    background-color: aliceblue;
+  }
+
+  td {
+    vertical-align: middle;
+    text-align: center;
+    height: 40px;
+  }
+
+  .r-check-box{
+    padding-left: 20px;
+    display:inline-block;
+    text-align: left;
+    width: 190px;
+    height: 30px;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  .r-check-box::-webkit-scrollbar {
+    display:none;
+  }
+
+  .tag-apply{
+    text-align: left;
+    padding: 0 30px;
+  }
+}
+
+#req-submit{
+  display: inline-block;
+  margin: 40px auto;
+  width: 450px;
+  margin-left: 100px;
+  border: solid 1px;
+}
+
+.req-show-body{
+  text-align: center;
+  height: 100vh;
+
+  .card{
+    background-color: white;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    width: 65%;
+    margin: auto;
+  }
+}
+
+.req-index-container{
+  height: 100%;
+  width: 100%;
+}
+
+#req-index-table{
+  margin: 0px 30px 20px 0px;
+
+  th{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #ce5c5c;
+    letter-spacing: 3px;
+    background-color: #1e8db7;
+    color: white;
+    font-weight: 400;
+  }
+
+  td{
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  tr:nth-child(2n+1) td {
+    background-color: #fbfbfb;
+  }
+}
+
+// confirm
+.relative-confirm-body{
+  text-align: center;
+  margin-top: 95px;
+
+  .field.is-grouped.is-grouped-right{
+    justify-content: center;
+    width: 812px;
+    margin: auto;
+    padding-top: 21px;
+  }
+
+  .field.is-grouped > .control:not(:last-child) {
+    margin-top: 0px;
+    margin-right: 0.75rem;
+    width: 100%;
+  }
+
+  .card{
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 94%;
+    position: relative;
+    margin: auto;
+    margin: 0px auto;
+    padding: 0px 0px 23px 0px;
+    margin-top: 20px;
+    width: 80%;
+  }
+
+  .registered-name{
+    font-size: 18px;
+    font-weight: 200;
+    margin-right: 10px;
+  }
+
+  .approval-name{
+    color:#34a0ef;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+}
+
+#req-confirm-table{
+  margin: auto;
+  padding-top: 20px;
+  height: 100%;
+  vertical-align: middle;
+  width: 100%;
+
+  th{
+    width: 180px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 500;
+    background-color: #f0fffc96;
+    border-right: solid 1px #92a09394;
+  }
+
+  td {
+    vertical-align: middle;
+    text-align: center;
+    height: 40px;
+  }
+
+  .r-check-box{
+    padding-left: 20px;
+    display:inline-block;
+    text-align: left;
+    width: 190px;
+    height: 30px;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  .r-check-box::-webkit-scrollbar {
+    display:none;
+  }
+
+  .tag-apply{
+    text-align: left;
+    padding: 0 30px;
+  }
+}
+
+.req-confirm-section{
+  width: 90%;
+  margin: auto;
+
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
+    display: block;
+    padding: 15px;
+    width: 70%;
+  }
+}
+
+.relative-show-body{
+  text-align: center;
+  height: 100vh;
+
+  .card{
+    width: 100%;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+  }
+
+  .propriety{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  #approval-btn{
+    margin: 0 30px 0 0;
+    width: 150px;
+    height: 40px;
+    border: solid 1px;
+    letter-spacing: 11px;
+    text-indent: 1em;
+  }
+
+  #denial-btn{
+    background-color: #feecf0;
+    color: #cc0f35;
+    height: 40px;
+    width: 150px; border: solid 1px;
+    font-size: initial;
+    font-weight: 500;
+    letter-spacing: 11px;
+    text-indent: 1em;
+  }
+}
+
+.relative-new-section{
+  width: 70%;
+  margin: auto;
+
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
+    display: block;
+    padding: 15px;
+  }
+}
