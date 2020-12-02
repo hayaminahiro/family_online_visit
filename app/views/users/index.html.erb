@@ -59,6 +59,7 @@
             </thead>
             <tbody>
               <% @users.each do |user| %>
+              <% room = user.rooms.find_by(facility_id: current_facility.id) %>
               <tr>
                 <td class="is-vcentered">
                   <div class="has-text-weight-semibold user-table-tag">
@@ -72,12 +73,12 @@
                   <%= link_to "予約", '#', class: "button is-link is-rounded has-text-weight-semibold" %>
                 </td>
                 <td>
-                  <button class="button is-primary" id=<%= user.id %>>
+                  <!--<button class="button is-primary" id=<%= user.id %>>
                     <span><i class="fas fa-key"></i></span>
-                  </button>
+                  </button>-->
 
                   <!-- Room Name モーダル表示 -->
-                  <div class="modal" id=<%= user.name %>>
+                  <!--<div class="modal" id=<%= user.name %>>
                     <div class="modal-background"></div>
                     <div class="modal-card">
                       <header class="modal-card-head" style="background-color: #48D1CC;">
@@ -103,7 +104,7 @@
                       </footer>
                       <% end %>
                     </div>
-                  </div>
+                  </div>-->
 
                   <script>
                     $(document).ready(function () {
@@ -117,10 +118,31 @@
                     });
                   </script>
                   <!-- ここまで -->
+                  <% if room.present? %>
+                    <div class=" js-contents--edit-button">
+                      <%= link_to edit_user_room_path(user, id: room.id), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
+                        <i class="fas fa-key"></i>
+                      <% end %>
+                    </div>  
+                  <% else %>
+                    <div class=" js-contents--create-button">
+                      <%= link_to new_user_room_path(user), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
+                        <i class="fas fa-key"></i>
+                      <% end %>
+                    </div>  
+                  <% end %>  
 
+                  <!--モーダル表示-->
+                  <div class="modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                      <div class="js-contents--content-form"></div>
+                    </div>
+                  </div>
                 </td>
                 <td class="is-vcentered">
                   <div class="has-text-weight-semibold user-table-tag">
+                    <%= room.room_name if room.present? %>
                   </div>
                 </td>
                 <td>
