@@ -1,11 +1,20 @@
 <% @memories.each do |m| %>
   <% if m.image0? %>
-    <% memory_id = m.image0.url.split("/")[4].to_i %>
-    <% column = m.image0.url.split("/")[3] %>
-    <% id_column = m.image0.url.split("/")[4] + m.image0.url.split("/")[3] %>
-    <% column_id = m.image0.url.split("/")[3] + m.image0.url.split("/")[4] %>
-    <% url = m.image0.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image0.url.split("/")[6].to_i %>
+      <% column = m.image0.url.split("/")[5] %>
+      <% id_column = m.image0.url.split("/")[6] + m.image0.url.split("/")[5] %>
+      <% column_id = m.image0.url.split("/")[5] + m.image0.url.split("/")[6] %>
+      <% url = m.image0.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image0.url.split("/")[4].to_i %>
+      <% column = m.image0.url.split("/")[3] %>
+      <% id_column = m.image0.url.split("/")[4] + m.image0.url.split("/")[3] %>
+      <% column_id = m.image0.url.split("/")[3] + m.image0.url.split("/")[4] %>
+      <% url = m.image0.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image0.url, class: "img-interval index-photo-size", id: id_column if m.image0? %>
 
@@ -37,12 +46,21 @@
   <% end %>
 
   <% if m.image1? %>
-    <% memory_id = m.image1.url.split("/")[4].to_i %>
-    <% column = m.image1.url.split("/")[3] %>
-    <% id_column = m.image1.url.split("/")[4] + m.image1.url.split("/")[3] %>
-    <% column_id = m.image1.url.split("/")[3] + m.image1.url.split("/")[4] %>
-    <% url = m.image1.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image1.url.split("/")[6].to_i %>
+      <% column = m.image1.url.split("/")[5] %>
+      <% id_column = m.image1.url.split("/")[6] + m.image1.url.split("/")[5] %>
+      <% column_id = m.image1.url.split("/")[5] + m.image1.url.split("/")[6] %>
+      <% url = m.image1.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image1.url.split("/")[4].to_i %>
+      <% column = m.image1.url.split("/")[3] %>
+      <% id_column = m.image1.url.split("/")[4] + m.image1.url.split("/")[3] %>
+      <% column_id = m.image1.url.split("/")[3] + m.image1.url.split("/")[4] %>
+      <% url = m.image1.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image1.url, class: "img-interval index-photo-size", id: id_column if m.image1? %>
 
@@ -75,12 +93,21 @@
   <% end %>
 
   <% if m.image2? %>
-    <% memory_id = m.image2.url.split("/")[4].to_i %>
-    <% column = m.image2.url.split("/")[3] %>
-    <% id_column = m.image2.url.split("/")[4] + m.image2.url.split("/")[3] %>
-    <% column_id = m.image2.url.split("/")[3] + m.image2.url.split("/")[4] %>
-    <% url = m.image2.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image2.url.split("/")[6].to_i %>
+      <% column = m.image2.url.split("/")[5] %>
+      <% id_column = m.image2.url.split("/")[6] + m.image2.url.split("/")[5] %>
+      <% column_id = m.image2.url.split("/")[5] + m.image2.url.split("/")[6] %>
+      <% url = m.image2.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image2.url.split("/")[4].to_i %>
+      <% column = m.image2.url.split("/")[3] %>
+      <% id_column = m.image2.url.split("/")[4] + m.image2.url.split("/")[3] %>
+      <% column_id = m.image2.url.split("/")[3] + m.image2.url.split("/")[4] %>
+      <% url = m.image2.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image2.url, class: "img-interval index-photo-size", id: id_column if m.image2? %>
 
@@ -112,12 +139,21 @@
   <% end %>
 
   <% if m.image3? %>
-    <% memory_id = m.image3.url.split("/")[4].to_i %>
-    <% column = m.image3.url.split("/")[3] %>
-    <% id_column = m.image3.url.split("/")[4] + m.image3.url.split("/")[3] %>
-    <% column_id = m.image3.url.split("/")[3] + m.image3.url.split("/")[4] %>
-    <% url = m.image3.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image3.url.split("/")[6].to_i %>
+      <% column = m.image3.url.split("/")[5] %>
+      <% id_column = m.image3.url.split("/")[6] + m.image3.url.split("/")[5] %>
+      <% column_id = m.image3.url.split("/")[5] + m.image3.url.split("/")[6] %>
+      <% url = m.image3.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image3.url.split("/")[4].to_i %>
+      <% column = m.image3.url.split("/")[3] %>
+      <% id_column = m.image3.url.split("/")[4] + m.image3.url.split("/")[3] %>
+      <% column_id = m.image3.url.split("/")[3] + m.image3.url.split("/")[4] %>
+      <% url = m.image3.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image3.url, class: "img-interval index-photo-size", id: id_column if m.image3? %>
 
@@ -149,12 +185,21 @@
   <% end %>
 
   <% if m.image4? %>
-    <% memory_id = m.image4.url.split("/")[4].to_i %>
-    <% column = m.image4.url.split("/")[3] %>
-    <% id_column = m.image4.url.split("/")[4] + m.image4.url.split("/")[3] %>
-    <% column_id = m.image4.url.split("/")[3] + m.image4.url.split("/")[4] %>
-    <% url = m.image4.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image4.url.split("/")[6].to_i %>
+      <% column = m.image4.url.split("/")[5] %>
+      <% id_column = m.image4.url.split("/")[6] + m.image4.url.split("/")[5] %>
+      <% column_id = m.image4.url.split("/")[5] + m.image4.url.split("/")[6] %>
+      <% url = m.image4.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image4.url.split("/")[4].to_i %>
+      <% column = m.image4.url.split("/")[3] %>
+      <% id_column = m.image4.url.split("/")[4] + m.image4.url.split("/")[3] %>
+      <% column_id = m.image4.url.split("/")[3] + m.image4.url.split("/")[4] %>
+      <% url = m.image4.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image4.url, class: "img-interval index-photo-size", id: id_column if m.image4? %>
 
@@ -186,12 +231,21 @@
   <% end %>
 
   <% if m.image5? %>
-    <% memory_id = m.image5.url.split("/")[4].to_i %>
-    <% column = m.image5.url.split("/")[3] %>
-    <% id_column = m.image5.url.split("/")[4] + m.image5.url.split("/")[3] %>
-    <% column_id = m.image5.url.split("/")[3] + m.image5.url.split("/")[4] %>
-    <% url = m.image5.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image5.url.split("/")[6].to_i %>
+      <% column = m.image5.url.split("/")[5] %>
+      <% id_column = m.image5.url.split("/")[6] + m.image5.url.split("/")[5] %>
+      <% column_id = m.image5.url.split("/")[5] + m.image5.url.split("/")[6] %>
+      <% url = m.image5.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image5.url.split("/")[4].to_i %>
+      <% column = m.image5.url.split("/")[3] %>
+      <% id_column = m.image5.url.split("/")[4] + m.image5.url.split("/")[3] %>
+      <% column_id = m.image5.url.split("/")[3] + m.image5.url.split("/")[4] %>
+      <% url = m.image5.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image5.url, class: "img-interval index-photo-size", id: id_column if m.image5? %>
 
@@ -223,12 +277,21 @@
   <% end %>
 
   <% if m.image6? %>
-    <% memory_id = m.image6.url.split("/")[4].to_i %>
-    <% column = m.image6.url.split("/")[3] %>
-    <% id_column = m.image6.url.split("/")[4] + m.image6.url.split("/")[3] %>
-    <% column_id = m.image6.url.split("/")[3] + m.image6.url.split("/")[4] %>
-    <% url = m.image6.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image6.url.split("/")[6].to_i %>
+      <% column = m.image6.url.split("/")[5] %>
+      <% id_column = m.image6.url.split("/")[6] + m.image6.url.split("/")[5] %>
+      <% column_id = m.image6.url.split("/")[5] + m.image6.url.split("/")[6] %>
+      <% url = m.image6.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image6.url.split("/")[4].to_i %>
+      <% column = m.image6.url.split("/")[3] %>
+      <% id_column = m.image6.url.split("/")[4] + m.image6.url.split("/")[3] %>
+      <% column_id = m.image6.url.split("/")[3] + m.image6.url.split("/")[4] %>
+      <% url = m.image6.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image6.url, class: "img-interval index-photo-size", id: id_column if m.image6? %>
 
@@ -260,12 +323,21 @@
   <% end %>
 
   <% if m.image7? %>
-    <% memory_id = m.image7.url.split("/")[4].to_i %>
-    <% column = m.image7.url.split("/")[3] %>
-    <% id_column = m.image7.url.split("/")[4] + m.image7.url.split("/")[3] %>
-    <% column_id = m.image7.url.split("/")[3] + m.image7.url.split("/")[4] %>
-    <% url = m.image7.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% if Rails.env.production? %>
+      <% memory_id = m.image7.url.split("/")[6].to_i %>
+      <% column = m.image7.url.split("/")[5] %>
+      <% id_column = m.image7.url.split("/")[6] + m.image7.url.split("/")[5] %>
+      <% column_id = m.image7.url.split("/")[5] + m.image7.url.split("/")[6] %>
+      <% url = m.image7.url.split("/")[7] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% else %>
+      <% memory_id = m.image7.url.split("/")[4].to_i %>
+      <% column = m.image7.url.split("/")[3] %>
+      <% id_column = m.image7.url.split("/")[4] + m.image7.url.split("/")[3] %>
+      <% column_id = m.image7.url.split("/")[3] + m.image7.url.split("/")[4] %>
+      <% url = m.image7.url.split("/")[5] %>
+      <% @memory = @memories.find(memory_id) %>
+    <% end %>
 
     <%= image_tag m.image7.url, class: "img-interval index-photo-size", id: id_column if m.image7? %>
 
