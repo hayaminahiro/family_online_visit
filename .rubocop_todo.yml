@@ -78,6 +78,10 @@ Naming/AccessorMethodName:
   Exclude:
     - 'app/models/user.rb'
 
+Style/SymbolProc:
+  Exclude:
+    - 'app/mailers/request_mailer.rb'
+
 # "クラス内のクラス"を定義する際の形式を強制
 Style/ClassAndModuleChildren:
   Exclude:
