@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.relative-container{
+  margin: 0px;
+  padding-top: 30px;
+}
+
 .relative-new-body{
   text-align: center;
 
@@ -32,9 +37,29 @@
 
 .relative-new-container{
   margin: 0px;
+
+  .new-denial-btn{
+    margin-right: 8px;
+  }
 }
 
-#req-new-table{
+.relative-new-section{
+  width: 90%;
+  margin: auto;
+
+  .req-name{
+    margin-left: 15px;
+  }
+
+  #level-bottom{
+    margin-bottom: 0px;
+    text-align: left;
+    display: block;
+    padding: 15px;
+  }
+}
+
+#relative-table{
   margin: auto;
   padding-top: 20px;
   height: 100%;
@@ -97,12 +122,16 @@
   }
 }
 
-.req-index-container{
+.relative-index-container{
   height: 100%;
   width: 100%;
+
+  .relative-index-section{
+    margin: 60px;
+  }
 }
 
-#req-index-table{
+#relative-index-table{
   margin: 0px 30px 20px 0px;
 
   th{
@@ -170,7 +199,7 @@
   }
 }
 
-#req-confirm-table{
+#relative-confirm-table{
   margin: auto;
   padding-top: 20px;
   height: 100%;
@@ -212,7 +241,7 @@
   }
 }
 
-.req-confirm-section{
+.relative-confirm-section{
   width: 90%;
   margin: auto;
 
@@ -231,7 +260,7 @@
 
 .relative-show-body{
   text-align: center;
-  height: 100vh;
+  // height: 100vh;
 
   .card{
     width: 100%;
@@ -269,12 +298,12 @@
   }
 }
 
-.relative-new-section{
+.relative-section{
   width: 70%;
   margin: auto;
 
   .req-name{
-    margin-left: 15px;
+    margin: 0 15px 0 15px;
   }
 
   #level-bottom{
@@ -282,5 +311,54 @@
     text-align: left;
     display: block;
     padding: 15px;
+  }
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+  .relative-new-body {
+    .field.is-grouped.is-grouped-right {
+      width: 65%;
+    }
+
+    #relative-table .r-check-box {
+      width: 145px;
+    }
+
+    #req-submit {
+      margin: 30px auto 50px auto;
+    }
+  }
+
+  .relative-section {
+    width: 90%;
+
+    #relative-table .r-check-box {
+      width: 155px;
+    }
+  }
+
+  .relative-show-body {
+    margin-bottom: 50px;
+
+    .field.is-grouped.is-grouped-right {
+      justify-content: center;
+    }
+
+    .field.is-grouped > .control:not(:last-child) {
+      width: 75%;
+    }
+  }
+
+  .relative-index-container{
+    .relative-index-section{
+      margin: 25px;
+    }
+  }
+
+  .relative-confirm-body {
+    #req-submit {
+      margin-left: 0px;
+    }
   }
 }

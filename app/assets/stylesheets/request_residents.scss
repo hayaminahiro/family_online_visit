@@ -85,3 +85,10 @@
     letter-spacing: 5px;
     font-size: 15px;
 }
+
+//タブレット
+@media screen and (max-width: 1000px) {
+  .req-show-body .card{
+    width: 100%;
+  }
+}
