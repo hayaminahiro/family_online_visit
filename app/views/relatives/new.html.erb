@@ -18,14 +18,18 @@
       <% if request.req_approval == "申請中" %>
         <div class="card">
           <div class="relative-new-container">
-            <div class="req-new-section">
+            <div class="relative-new-section">
             <nav class="level" id="level-bottom">
               <p class="has-text-weight-bold is-size-5">
                 <% @r_user = User.find(request.user_id) %>
-                <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+                <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span>
+                  <%= link_to request_mail_preview_path(denial: request), method: :get, class:"is-size-5" do %>
+                    <i class="far fa-envelope"></i>
+                  <% end %>
+                </h1>
               </p>
             </nav>
-              <table class="table is-narrow user-edit-table is-bordered" id="req-new-table">
+              <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
                 <tbody>
                   <tr>
                     <th>利用者名</th>
@@ -61,10 +65,10 @@
                           <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
                         <% end %>
                       </div>
-                      <div style="text-align: right;">
+                      <div style="display: block; text-align: end;">
                         <%= link_to relative_path(request, denial: request), method: :patch,
-                          data: { confirm: "#{@r_user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-small" do %>
-                          <i class="far fa-window-close"></i>
+                          data: { confirm: "#{@r_user.name}の申請を否認してよろしいですか？" }, class:"has-text-danger is-size-5 new-denial-btn" do %>
+                          <i class="fas fa-times"></i>
                         <% end %>
                       <% end %>
                       </div>
