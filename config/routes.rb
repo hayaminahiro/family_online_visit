@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
 
+  # メール機能 ============================================================================
+  get '/request_mail/preview', to: 'request_mails#preview_mail'
+  post '/request_mail/create', to: 'request_mails#send_mail'
+
+  # 新規ユーザ作成（施設・ご家族） ========================================================
   resources :signup do
     collection do
       get 'step1'
@@ -9,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # devise（施設・ご家族） ==================================================================================
+  # devise（施設・ご家族） ================================================================
   devise_for :facilities, controllers: {
       sessions: 'facilities/sessions',
       passwords: 'facilities/passwords',
