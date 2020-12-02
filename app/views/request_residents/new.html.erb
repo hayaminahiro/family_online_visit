@@ -2,43 +2,43 @@
   <div class="req-new-container">
     <div class="req-new-section">
       <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
-      <% if @requests.present? && @requests.facility_id == params[:facility_id].to_i %>
-        <p>※利用者登録は<span style="color: red;"><%= @requests.req_approval %></span>です。追加申請の際はご入力ください。</p>
+      <% if @request_resident&.req_approval == "承認済" && @request_resident.facility_id == params[:facility_id].to_i %>
+        <p>※利用者登録は<span style="color: red;"><%= @request_resident.req_approval %></span>です。追加申請の際はご入力ください。</p>
       <% end %>
       <%= form_with(model: @request, url: request_residents_path(facility_id: params[:facility_id]), local: true) do |f| %>
       <%= render "users/shared/error_messages", resource: @request %>
-    <div class="card">
-      <table class="table is-narrow user-edit-table is-bordered" id="req-table">
-        <tfoot>
-          <tr>
-            <th><abbr title="Position"></abbr></th>
-            <td><%= f.submit "申請", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
-            </td>
-          </tr>
-        </tfoot>
-        <tbody>
-          <tr>
-            <th>利用者名</th>
-            <td>
-              <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered", style: "margin: 20px 3px;" %>
-            </td>
-          </tr>
-          <tr>
-            <th>連絡先</th>
-            <td>
-              <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
-            </td>
-          </tr>
-          <tr>
-            <th>住所</th>
-            <td>
-              <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
-              <%= f.hidden_field :req_approval %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <div class="card">
+          <table class="table is-narrow user-edit-table is-bordered" id="req-table">
+            <tfoot>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td><%= f.submit "申請", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
+                </td>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                <th>利用者名</th>
+                <td>
+                  <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered", style: "margin: 20px 3px;" %>
+                </td>
+              </tr>
+              <tr>
+                <th>連絡先</th>
+                <td>
+                  <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
+                </td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td>
+                  <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
+                  <%= f.hidden_field :req_approval %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       <% end %>
     </div>
   </div>
