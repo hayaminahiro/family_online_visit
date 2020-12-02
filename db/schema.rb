@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_160505) do
+ActiveRecord::Schema.define(version: 2020_11_30_074039) do
+
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
     t.string "email", default: "", null: false
@@ -72,6 +73,15 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.datetime "updated_at", null: false
     t.index ["resident_id"], name: "index_relatives_on_resident_id"
     t.index ["user_id"], name: "index_relatives_on_user_id"
+  end
+
+  create_table "request_mails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "facility_id"
+    t.string "title"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_request_mails_on_facility_id"
   end
 
   create_table "request_residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -145,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
   add_foreign_key "memories", "residents"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
+  add_foreign_key "request_mails", "facilities"
   add_foreign_key "request_residents", "facilities"
   add_foreign_key "request_residents", "users"
   add_foreign_key "reservations", "users"
