@@ -1,17 +1,17 @@
 <div class="relative-confirm-body">
-  <% @requests.each do |params, r_ids| %>
-    <% requests = RequestResident.where(user_id: params[0]).where(facility_id:current_facility).where(req_approval: "申請中") %>
+  <% @request_residents.each do |params, r_ids| %>
+    <% requests = RequestResident.where(user_id: params[0]).where(facility_id: current_facility).where(req_approval: "申請中") %>
     <% requests.each do |request| %>
       <div class="card">
         <div class="relative-new-container">
-          <div class="req-confirm-section">
+          <div class="relative-confirm-section">
           <nav class="level" id="level-bottom">
             <p class="has-text-weight-bold is-size-5">
               <% @r_user = User.find(request.user_id) %>
               <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
             </p>
           </nav>
-            <table class="table is-narrow user-edit-table is-bordered" id="req-confirm-table">
+            <table class="table is-narrow user-edit-table is-bordered" id="relative-confirm-table">
               <tbody>
                 <tr>
                   <th>利用者名</th>
@@ -44,7 +44,7 @@
                     <p class="is-size-7">（承認後の入居者）</p>
                     <% ss = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
                     <% if ss.count == @r_user.residents.count %>
-                      <p style="color: red; font-weight: bold;">申請を否認します</p>
+                      <p style="color: red; font-weight: bold;">申請を保留します</p>
                     <% else %>
                       <% ss.each do |s| %>
                         <% resident_later = Resident.find(s) %>
@@ -60,5 +60,5 @@
       </div>
     <% end %>
   <% end %>
-  <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @requests), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
+  <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @request_residents), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
 </div>
