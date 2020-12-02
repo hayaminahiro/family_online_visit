@@ -1,9 +1,9 @@
-<div class="req-index-container">
-  <div style="margin: 60px;">
+<div class="relative-index-container">
+  <div class="relative-index-section">
     <div>
       <h1>※過去の申請一覧が表示されます。</h1>
     </div>
-    <table class="table is-bordered is-fullwidth" id="req-index-table">
+    <table class="table is-bordered is-fullwidth" id="relative-index-table">
       <thead>
         <tr>
           <th rowspan="2" width="10%">申請日</th>
@@ -23,7 +23,13 @@
       <% @request_user = User.find(approval.user_id) %>
         <tr>
           <td><%= l(approval.created_at, format: :dot) %></td>
-          <td><%= @request_user.name %></td>
+          <td>
+            <% if approval == RequestResident.order(id: :desc).where(facility_id: current_facility).find_by(user_id: approval.user_id) %>
+              <%= link_to @request_user.name, edit_relative_path(approval), class: "is-small is-size-6", style: "width: 45%;" %>
+            <% else %>
+              <%= @request_user.name %>
+            <% end %>
+          </td>
           <td>
             <%= approval.approval_status %>
           </td>
