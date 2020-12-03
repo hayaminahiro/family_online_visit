@@ -1,18 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[room_word_update edit update destroy video_room]
+  before_action :set_user, only: %i[edit update destroy video_room]
   # before_action :set_facility_id, only: %i[index video_room]
   # ログインしてなければ閲覧不可
-  before_action :authenticate_user!, except: %i[room_word_update index video_room edit update destroy]
-  before_action :authenticate_facility!, only: %i[room_word_update index video_room edit update destroy]
+  before_action :authenticate_user!, except: %i[index video_room edit update destroy]
+  before_action :authenticate_facility!, only: %i[index video_room edit update destroy]
 
   def index
     @users = User.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
-  end
-
-  def room_word_update
-    @user.attributes = room_params
-    @user.save(context: :room_word_update) ? flash[:notice] = "Room Nameを登録しました。" : flash[:alert] = "登録できませんでした。"
-    redirect_to users_url(current_facility)
   end
 
   def show
@@ -39,7 +33,9 @@ class UsersController < ApplicationController
     redirect_to users_url(current_facility), notice: "#{@user.name}を削除しました。"
   end
 
-  def video_room; end
+  def video_room
+    @room = Room.find_by(user_id: @user.id, facility_id: current_facility.id)
+  end
 
   def new_admin
     @user = User.new
