@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[create edit update]
+  before_action :set_room, only: %i[edit update]
   before_action :set_user, only: %i[new create edit update]
 
   def new
