@@ -1,22 +1,22 @@
 <%= form_with(model: @memory, url: resident_memories_path(@resident), method: :post, local: true) do |f| %>
   <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
 
+  <!--追加元の画像カードに紐付け用のidをもたせる-->
+  <% @memory.add_image = @add_images if @add_images.present? %>
+  <%= f.hidden_field :add_image, :value => @memory.add_image %>
+
   <!--image0-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image0.present? %>
-        <%= image_tag @memory.image0.url, id: "img_prev_0", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_0", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image00_photo %>
     </div>
     <div class="card-content card-drop-area">
-      <div class="blank-area"></div>
+      <div class="has-text-left">
+        <button class="button tag is-danger is-light is-rounded mandatory">トップ画像の登録は必須になります。</button>
+      </div>
       <div class="content">
         <%= f.file_field :image0, class: "image_uploading_0 drop-area-mandatory" %>
-        <% if @memory.image0.present? %>
-          <%= f.hidden_field :image0_cache %>
-        <% end %>
+        <%= f.hidden_field :image0_cache if @memory.image0.present? %>
       </div>
     </div>
   </div>
@@ -24,11 +24,7 @@
   <!--image1-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image1.present? %>
-        <%= image_tag @memory.image1.url, id: "img_prev_1", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_1", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image01_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image1, id: "img1_delete" %>
@@ -37,9 +33,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image1, class: "image_uploading_1 drop-area" %>
-        <% if @memory.image1.present? %>
-          <%= f.hidden_field :image1_cache %>
-        <% end %>
+        <%= f.hidden_field :image1_cache if @memory.image1.present? %>
       </div>
     </div>
   </div>
@@ -47,11 +41,7 @@
   <!--image2-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image2.present? %>
-        <%= image_tag @memory.image2.url, id: "img_prev_2", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_2", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image02_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image2, id: "img2_delete" %>
@@ -60,9 +50,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image2, class: "image_uploading_2 drop-area" %>
-        <% if @memory.image2.present? %>
-          <%= f.hidden_field :image2_cache %>
-        <% end %>
+        <%= f.hidden_field :image2_cache if @memory.image2.present? %>
       </div>
     </div>
   </div>
@@ -70,11 +58,7 @@
   <!--image3-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image3.present? %>
-        <%= image_tag @memory.image3.url, id: "img_prev_3", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_3", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image03_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image3, id: "img3_delete" %>
@@ -83,9 +67,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image3, class: "image_uploading_3 drop-area" %>
-        <% if @memory.image3.present? %>
-          <%= f.hidden_field :image3_cache %>
-        <% end %>
+        <%= f.hidden_field :image3_cache if @memory.image3.present? %>
       </div>
     </div>
   </div>
@@ -93,11 +75,7 @@
   <!--image4-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image4.present? %>
-        <%= image_tag @memory.image4.url, id: "img_prev_4", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_4", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image04_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image4, id: "img4_delete" %>
@@ -106,9 +84,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image4, class: "image_uploading_4 drop-area" %>
-        <% if @memory.image4.present? %>
-          <%= f.hidden_field :image4_cache %>
-        <% end %>
+        <%= f.hidden_field :image4_cache if @memory.image4.present? %>
       </div>
     </div>
   </div>
@@ -116,11 +92,7 @@
   <!--image5-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image5.present? %>
-        <%= image_tag @memory.image5.url, id: "img_prev_5", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_5", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image05_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image5, id: "img5_delete" %>
@@ -129,9 +101,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image5, class: "image_uploading_5 drop-area" %>
-        <% if @memory.image5.present? %>
-          <%= f.hidden_field :"image5_cache" %>
-        <% end %>
+        <%= f.hidden_field :image5_cache if @memory.image5.present? %>
       </div>
     </div>
   </div>
@@ -139,11 +109,7 @@
   <!--image6-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image6.present? %>
-        <%= image_tag @memory.image6.url, id: "img_prev_6", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_6", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image06_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image6, id: "img6_delete" %>
@@ -152,9 +118,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image6, class: "image_uploading_6 drop-area" %>
-        <% if @memory.image6.present? %>
-          <%= f.hidden_field :"image6_cache" %>
-        <% end %>
+        <%= f.hidden_field :image6_cache if @memory.image6.present? %>
       </div>
     </div>
   </div>
@@ -162,11 +126,7 @@
   <!--image7-->
   <div class="card memory-card-position">
     <div class="card-image">
-      <% if @memory.image7.present? %>
-        <%= image_tag @memory.image7.url, id: "img_prev_7", class: "photo-size" %>
-      <% else %>
-        <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/NO_IMAGE.png", id: "img_prev_7", class: "photo-size" %>
-      <% end %>
+      <%= @memory.image07_photo %>
     </div>
     <div class="card-content card-drop-area">
       <%= f.check_box :remove_image7, id: "img7_delete" %>
@@ -175,9 +135,7 @@
       </label>
       <div class="content">
         <%= f.file_field :image7, class: "image_uploading_7 drop-area" %>
-        <% if @memory.image7.present? %>
-          <%= f.hidden_field :"image7_cache" %>
-        <% end %>
+        <%= f.hidden_field :image7_cache if @memory.image7.present? %>
       </div>
     </div>
   </div>
@@ -187,26 +145,48 @@
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <%= f.date_field :event_date, class: "fa input" %>
+      <% if @add_images == 0 || @memory.add_image == 0 %>
+        <%= f.date_field :event_date, class: "fa input" %>
+      <% else %>
+        <% @memories.each {|m| @memory = m if m.id == @add_images } %>
+        <%= f.date_field :event_date, readonly: true, :value => @memory.event_date, class: "fa input" %>
+        <%= f.hidden_field :event_date, :value => @memory.event_date %>
+      <% end %>
     </div>
   </div>
+
   <label class="media-left has-text-weight-bold">
     <h1 class="memory-title-mini">思い出画像タイトル</h1>
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+      <% if @add_images == 0 || @memory.add_image == 0 %>
+        <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+      <% else %>
+        <% @memories.each {|m| @memory = m if m.id == @add_images } %>
+        <%= f.text_field :title, :value => @memory.title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+      <% end %>
     </div>
   </div>
+
   <label class="media-left has-text-weight-bold">
     <h1 class="memory-title-mini">ご家族へのメッセージ</h1>
   </label>
   <div class="media-content">
     <div class="content memory-label">
-      <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
+      <% if @add_images == 0 || @memory.add_image == 0 %>
+        <%= f.text_area :message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
+      <% else %>
+        <% @memories.each {|m| @memory = m if m.id == @add_images } %>
+        <%= f.text_area :message, :value => @memory.message, :placeholder => "\uf303 メッセージを入力してください", class: "fa input message-input" %>
+      <% end %>
     </div>
   </div>
-  <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
+  <% if @add_images == 0 || @memory.add_image == 0 %>
+    <%= f.submit "思い出アルバムを新規投稿する", class: "message-btn" %>
+  <% else %>
+    <%= f.submit "思い出アルバムを追加する", class: "message-btn" %>
+  <% end %>
 <% end %>
 
 <script>
