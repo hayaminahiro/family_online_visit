@@ -12,7 +12,7 @@ class RelativesController < ApplicationController
     @user = User.find(params[:user_id].to_i)
     @user.attributes = connection_params
     if @user.save(context: :relative_update)
-      request_resident = RequestResident.order(created_at: :desc).find_by(user_id: params[:user_id].to_i)
+      request_resident = RequestResident.changer(current_facility, params[:user_id].to_i)
       request_resident.承認済!
       redirect_to facility_home_facility_url(current_facility), notice: "入居者登録しました。"
     else
@@ -28,7 +28,7 @@ class RelativesController < ApplicationController
   def update_relatives
     residents_connection_params.each do |id, item|
       request_user = User.find(id)
-      req_resident = RequestResident.order("id DESC").find_by(user_id: id)
+      req_resident = RequestResident.changer(current_facility, id)
       unless item[:resident_ids].map(&:to_i).reject(&:zero?).count == request_user.resident_ids.count
         req_resident.承認済!
         request_user.update_attributes(item)
@@ -39,7 +39,7 @@ class RelativesController < ApplicationController
 
   # 承認済み申請一覧
   def index
-    @approvals = RequestResident.where.not(req_approval: "申請中").where(facility_id: current_facility)
+    @approvals = RequestResident.applied(current_facility)
   end
 
   def show; end
@@ -72,7 +72,7 @@ class RelativesController < ApplicationController
     end
 
     def set_residents
-      @requests = RequestResident.where(facility_id: current_facility).where(req_approval: "申請中")
+      @requests = RequestResident.active(current_facility)
       @residents = Relative.search(params[:search], current_facility)
     end
 
