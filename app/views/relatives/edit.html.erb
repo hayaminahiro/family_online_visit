@@ -24,7 +24,7 @@
         </div>
       </nav>
       <div class="card">
-        <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
+        <table class="table is-narrow user-edit-table is-bordered" style="margin-bottom: 30px;" id="relative-table">
           <tbody>
             <tr>
               <th>利用者名</th>
@@ -60,10 +60,10 @@
                     <% end %>
                   </div>
                   <div class="propriety">
-                    <%= f.submit "承認", class: "button is-primary is-light is-midium has-text-weight-bold", id: "approval-btn" %>
+                    <%= f.submit "承認済に変更", class: "button is-primary is-light is-midium", id: "edit-approval-btn" %>
                     <%= link_to relative_path(denial: @request), method: :patch,
-                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"denial-btn" do %>
-                      否認
+                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"edit-denial-btn" do %>
+                      否認済に変更
                     <% end %>
                   </div>
                   <p style="color: red;">※申請の承認/否認を変更する場合はこちらから変更が可能です</p>

@@ -16,7 +16,7 @@ class RelativesController < ApplicationController
       request_resident.承認済!
       redirect_to facility_home_facility_url(current_facility), notice: "入居者登録しました。"
     else
-      render :show
+      params[:commit] == "承認済に変更" ? (render :edit) : (render :show)
     end
   end
 
