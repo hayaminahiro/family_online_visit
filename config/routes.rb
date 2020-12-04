@@ -72,4 +72,11 @@ Rails.application.routes.draw do
 
   # 予約 ==================================================================================
   resources :reservations
+
+  # お問い合わせ===============================================================================
+  resources :inquiries do
+    collection do
+      get :inquiry
+    end
+  end
 end

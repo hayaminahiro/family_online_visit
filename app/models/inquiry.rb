@@ -1,3 +1,3 @@
 class Inquiry < ApplicationRecord
-  belongs_to :facility
+  # belongs_to :facility
 end

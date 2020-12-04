@@ -1,3 +1,19 @@
 // Place all the styles related to the inquiries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.inquiry-btn {
+  margin-top: 30px;
+}
+
+.inquiry-notice {
+  margin: 50px 0;
+  background-color: #fcf8e3;
+  border: solid 1px #faebcc;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.inquiry-message {
+  height: 100px;
+}

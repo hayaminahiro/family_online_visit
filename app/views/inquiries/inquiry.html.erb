@@ -1,0 +1,35 @@
+<section>
+  <div class="is-size-2 has-text-centered inquiry-title">
+    お問い合わせ
+  </div>
+</section>
+<section>
+  <div class="container is-fluid">
+    <div class="columns">
+      <div class="column">
+        サービス提供者が連絡を取れるようにする為に、連絡先などを記入してください。
+
+        <%= form_with model: @inquiry, url: inquiries_path, local: true, method: :post do |f| %>
+          <%= f.label :name, "名前", class: "label" %>
+          <%= f.text_field :name, :placeholder => "必須", class: "input is-medium" %>
+
+          <%= f.label :email, "メールアドレス", class: "label" %>
+          <%= f.email_field :email, :placeholder => "必須", class: "input is-medium" %>
+
+          <div class="inquiry-notice">
+            メールアドレスを間違えたり、ご利用のメールサービスに迷惑メールフィルタが設定されていると、
+            サービス提供者が連絡を取ることができない可能性がございます。
+            お間違いの無いようにご確認ください。
+          </div>
+
+          <%= f.label :message, "お問い合わせ内容", class: "label" %>
+          <%= f.text_area :message, :placeholder => "必須", class: "textarea", rows: "7" %>
+
+          <div class="inquiry-btn has-text-centered">
+            <%= f.submit "送信", class: "button is-medium is-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
