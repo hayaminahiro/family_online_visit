@@ -92,3 +92,18 @@
     width: 100%;
   }
 }
+
+//モバイル
+@media screen and (max-width: 500px) {
+  #req-table th {
+    width: 85px;
+  }
+
+  .req-show-body{
+    p {
+      width: 80%;
+      margin: auto;
+      word-break: keep-all;
+    }
+  }
+}
