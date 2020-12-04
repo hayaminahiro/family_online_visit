@@ -30,7 +30,6 @@ class User < ApplicationRecord
   validates :phone,                   presence: true
 
   mount_uploader :image, ImageUploader
-  validates :room_name, presence: true, on: :room_word_update
   validate :check_relative_invalid, on: :relative_update
 
   def check_relative_invalid

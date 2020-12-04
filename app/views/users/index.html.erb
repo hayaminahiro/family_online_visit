@@ -93,7 +93,7 @@
                   </div>
                 </td>
                 <td>
-                  <%= link_to video_room_user_path(user), class: "button is-warning" do %>
+                  <%= link_to video_room_user_path(user, facility_id: current_facility.id), class: "button is-warning" do %>
                   <span><i class="fas fa-photo-video"></i></span>
                   <% end %>
                 </td>

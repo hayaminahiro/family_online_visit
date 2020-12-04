@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # before_action :set_facility_id, only: %i[index video_room]
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!, except: %i[index video_room edit update destroy]
-  before_action :authenticate_facility!, only: %i[index video_room edit update destroy]
+  before_action :authenticate_facility!, only: %i[index edit update destroy]
 
   def index
     @users = User.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
@@ -34,7 +34,8 @@ class UsersController < ApplicationController
   end
 
   def video_room
-    @room = Room.find_by(user_id: @user.id, facility_id: current_facility.id)
+    @facility = Facility.find_by(id: params[:facility_id])
+    @room = Room.find_by(user_id: @user.id, facility_id: @facility.id)
   end
 
   def new_admin
