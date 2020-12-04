@@ -24,14 +24,10 @@
         <tr>
           <td><%= l(approval.created_at, format: :dot) %></td>
           <td>
-            <% if approval == RequestResident.order(id: :desc).where(facility_id: current_facility).find_by(user_id: approval.user_id) %>
-              <%= link_to @request_user.name, edit_relative_path(approval), class: "is-small is-size-6", style: "width: 45%;" %>
-            <% else %>
-              <%= @request_user.name %>
-            <% end %>
+            <%= approval.user_name(@request_user) %>
           </td>
           <td>
-            <%= approval.approval_status %>
+            <%= approval.status %>
           </td>
           <td colspan="2"><%= approval.req_name %></td>
           <td><%= approval.req_phone %></td>
