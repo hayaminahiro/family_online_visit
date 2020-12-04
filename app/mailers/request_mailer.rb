@@ -1,4 +1,5 @@
 class RequestMailer < ApplicationMailer
+  # 仮のアドレスで設定しています..
   default from: "takahiro5393s@gmail.com"
 
   # デフォルトの文章を作成
@@ -13,7 +14,6 @@ class RequestMailer < ApplicationMailer
       # 件名
       subject: "申請内容のご確認をお願い致します。",
       # 宛先
-      # to: 'taka_5393@yahoo.co.jp'
       to: @user.email
     ) do |format|
       format.text
@@ -29,7 +29,6 @@ class RequestMailer < ApplicationMailer
 
     mail(
       subject: @title,
-      # to: 'taka_5393@yahoo.co.jp'
       to: @user.email
     ) do |format|
       format.text
@@ -44,7 +43,7 @@ class RequestMailer < ApplicationMailer
 
     mail(
       subject: "申請内容がキャンセルされました。",
-      to: 'taka_5393@yahoo.co.jp'
+      to: @user.email
     ) do |format|
       format.text
     end
