@@ -87,4 +87,8 @@ module FacilityDecorator
   def request_count(requests)
     requests.present? ? tag.sup(requests.count) : nil
   end
+
+  def acceptance_requests(user, facility)
+    RequestResident.where(user_id: user).where(facility_id: facility).where(req_approval: "申請中")
+  end
 end

@@ -1,14 +1,13 @@
 <div class="relative-confirm-body">
-  <% @request_residents.each do |params, r_ids| %>
-    <% requests = RequestResident.where(user_id: params[0]).where(facility_id: current_facility).where(req_approval: "申請中") %>
-    <% requests.each do |request| %>
+  <% @request_residents.each do |user, r_ids| %>
+    <% current_facility.acceptance_requests(user, current_facility).each do |request| %>
       <div class="card">
         <div class="relative-new-container">
           <div class="relative-confirm-section">
           <nav class="level" id="level-bottom">
             <p class="has-text-weight-bold is-size-5">
-              <% @r_user = User.find(request.user_id) %>
-              <h1 class="has-text-weight-bold is-size-4"><%= @r_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+              <% @acceptance_user = User.find(request.user_id) %>
+              <h1 class="has-text-weight-bold is-size-4"><%= @acceptance_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
             </p>
           </nav>
             <table class="table is-narrow user-edit-table is-bordered" id="relative-confirm-table">
@@ -34,23 +33,24 @@
                 <tr>
                   <th>紐付け</th>
                   <td>
-                    <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
-
                     <p class="is-size-7">（登録済み入居者）</p>
-                    <% @r_user.residents.each do |resident| %>
+                    <% @acceptance_user.residents.each do |resident| %>
                       <span class="registered-name"><%= resident.name %></span>
                     <% end %><br><br>
+
                     <p>↓↓</p>
+
                     <p class="is-size-7">（承認後の入居者）</p>
-                    <% ss = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
-                    <% if ss.count == @r_user.residents.count %>
+                    <% request_numbers = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
+                    <% if request_numbers.count == @acceptance_user.residents.count %>
                       <p style="color: red; font-weight: bold;">申請を保留します</p>
                     <% else %>
-                      <% ss.each do |s| %>
-                        <% resident_later = Resident.find(s) %>
-                        <span class="approval-name"><%= resident_later.name %></span>
+                      <% request_numbers.each do |n| %>
+                        <% newly_resident = Resident.find(n) %>
+                        <span class="approval-name"><%= newly_resident.name %></span>
                       <% end %>
                     <% end %>
+
                   </td>
                 </tr>
               </tbody>
