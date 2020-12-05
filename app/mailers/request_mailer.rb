@@ -15,9 +15,7 @@ class RequestMailer < ApplicationMailer
       subject: "申請内容のご確認をお願い致します。",
       # 宛先
       to: @user.email
-    ) do |format|
-      format.text
-    end
+    )
   end
 
   def send_confirm_to_user(facility, request, title, message)
@@ -30,9 +28,7 @@ class RequestMailer < ApplicationMailer
     mail(
       subject: @title,
       to: @user.email
-    ) do |format|
-      format.text
-    end
+    )
   end
 
   # 変更がなかった場合に申請をキャンセルする文章を送信
@@ -44,8 +40,6 @@ class RequestMailer < ApplicationMailer
     mail(
       subject: "申請内容がキャンセルされました。",
       to: @user.email
-    ) do |format|
-      format.text
-    end
+    )
   end
 end
