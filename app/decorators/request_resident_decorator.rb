@@ -16,7 +16,7 @@ module RequestResidentDecorator
     end
   end
 
-  def user_name(user)
+  def user_name
     if id == RequestResident.order(id: :desc).where(facility_id: current_facility).find_by(user_id: user_id).id
       tag.p((link_to user.name, edit_relative_path(id), class: "is-small is-size-6", style: "width: 45%;"))
     else

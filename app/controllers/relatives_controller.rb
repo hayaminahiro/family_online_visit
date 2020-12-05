@@ -39,7 +39,7 @@ class RelativesController < ApplicationController
 
   # 承認済み申請一覧
   def index
-    @approvals = RequestResident.applied(current_facility)
+    @approvals = RequestResident.search(params[:search], current_facility)
   end
 
   def show; end

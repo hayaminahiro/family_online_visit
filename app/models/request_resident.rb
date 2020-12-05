@@ -13,4 +13,11 @@ class RequestResident < ApplicationRecord
   def self.changer(facility, user)
     order(created_at: :desc).where(facility_id: facility).find_by(user_id: user)
   end
+
+  # search定義
+  def self.search(search, facility)
+    return joins(:user).includes(:user).where(facility_id: facility).where.not(req_approval: "申請中").where('users.name LIKE ?', "%#{search}%") if search.present?
+
+    includes(:user).where(facility_id: facility).where.not(req_approval: "申請中")
+  end
 end
