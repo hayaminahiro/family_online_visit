@@ -6,8 +6,7 @@
           <div class="relative-confirm-section">
           <nav class="level" id="level-bottom">
             <p class="has-text-weight-bold is-size-5">
-              <% @acceptance_user = User.find(request.user_id) %>
-              <h1 class="has-text-weight-bold is-size-4"><%= @acceptance_user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+              <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
             </p>
           </nav>
             <table class="table is-narrow user-edit-table is-bordered" id="relative-confirm-table">
@@ -34,7 +33,7 @@
                   <th>紐付け</th>
                   <td>
                     <p class="is-size-7">（登録済み入居者）</p>
-                    <% @acceptance_user.residents.each do |resident| %>
+                    <% request.user.residents.each do |resident| %>
                       <span class="registered-name"><%= resident.name %></span>
                     <% end %><br><br>
 
@@ -42,7 +41,7 @@
 
                     <p class="is-size-7">（承認後の入居者）</p>
                     <% request_numbers = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
-                    <% if request_numbers.count == @acceptance_user.residents.count %>
+                    <% if request_numbers.count == request.user.residents.count %>
                       <p style="color: red; font-weight: bold;">申請を保留します</p>
                     <% else %>
                       <% request_numbers.each do |n| %>
