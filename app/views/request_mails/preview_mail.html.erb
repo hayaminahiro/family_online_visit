@@ -12,6 +12,8 @@
     <p class="preview-p">本文:</p>
     <%= f.text_area :message, value: @message.message.body.raw_source, class: "input message-p" %>
     <%= f.hidden_field :facility_id, :value => params[:denial] %>
+    <%= f.hidden_field :user_id, :value => @user.id %>
+
     <%= f.submit "メールを送信する", data: { confirm: "この内容で送信してよろしいですか？" },
         class: "button is-primary is-light is-midium has-text-weight-bold", id: "preview-submit" %>
   <% end %>
