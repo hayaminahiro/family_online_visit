@@ -22,6 +22,27 @@
   background-size: cover;
 }
 
+#js-remote-streams {
+  width: 100%;
+}
+
+//フルスクリーンボタン
+#btn-open {
+  text-align: right;
+}
+
+.full-btn {
+  margin-left: auto;
+}
+
+#btn-close {
+  text-align: right;
+}
+
+.small-btn {
+  margin-left: auto;
+}
+
 /* ご家族一覧 */
 #user-table th {
   background-color: #FFDAB9;

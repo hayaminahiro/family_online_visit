@@ -25,8 +25,10 @@
           <video id="js-local-stream"></video>
           <span id="js-room-mode"></span>:
         </div>
-        <div class="column is-half">
+        <div class="column is-half" id="video_chat">
           <div cl="remote-streams" id="js-remote-streams"></div>
+          <button id="btn-open" class="btn button is-black full-btn" width="64" height="64" style="display: none;"><i class="fas fa-expand"></i></button>
+          <button id="btn-close" class="btn button is-black small-btn" width="64" height="64" style="display: none;"><i class="fas fa-expand"></i></button>
         </div>
       </div>
       <div class="has-text-centered"> 
@@ -51,7 +53,7 @@
         <%= link_to "戻る", users_path(@facility), class: "button is-large is-outlined is-dark" %>
       <% elsif current_user%>
         <%= link_to "戻る", user_path(@user), class: "button is-large is-outlined is-dark" %>
-      <% end %> 
+      <% end %>
     </div>
     <div class="has-text-right">
       <div class="content">
@@ -64,12 +66,14 @@
       </div>
     </div><br>
     <p class="meta" id="js-meta"></p>
-  </div> 
+  </div>
 </section>
 
 <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 <script>
   const Peer = window.Peer;
+  const btnOpen  = document.querySelector("#btn-open");
+  const btnClose = document.querySelector("#btn-close");
 
   (async function main() {
     const localVideo = document.getElementById('js-local-stream');
@@ -145,6 +149,7 @@
         newVideo.setAttribute('data-peer-id', stream.peerId);
         remoteVideos.append(newVideo);
         await newVideo.play().catch(console.error);
+        btnOpen.style.display  = "block";
       });
   
       room.on('data', ({ data, src }) => {
@@ -160,7 +165,8 @@
         remoteVideo.srcObject.getTracks().forEach(track => track.stop());
         remoteVideo.srcObject = null;
         remoteVideo.remove();
-  
+        btnOpen.style.display  = "none";
+        btnClose.style.display = "none";
         messages.textContent += `=== 面会が終了しました ===\n`;
       });
   
@@ -172,6 +178,8 @@
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
           remoteVideo.remove();
+          btnOpen.style.display  = "none";
+          btnClose.style.display = "none";
         });
       });
   
@@ -274,4 +282,78 @@
     }
     return value;
   };
+</script>
+
+<script>
+  window.onload = ()=>{
+    const album = document.querySelector("#video_chat");
+
+    btnOpen.addEventListener("click", ()=>{
+      if( ! enabledFullScreen() ){
+        alert("フルスクリーンに対応していません");
+        return(false);
+      }
+      // フルスクリーンを開始
+      goFullScreen(album);
+    });
+
+    btnClose.addEventListener("click", ()=>{
+      // フルスクリーンを解除
+      cancelFullScreen(album);
+    });
+
+    // フルスクリーンイベント
+    eventFullScreen( ()=>{
+        // ボタンを入れ替える
+      if( getFullScreenObject() ){
+        console.log("フルスクリーン開始");
+        btnOpen.style.display  = "none";
+        btnClose.style.display = "block";
+      }
+      else{
+        console.log("フルスクリーン終了");
+        btnClose.style.display = "none";
+        btnOpen.style.display  = "block";
+      }
+    });
+  };
+
+  // フルスクリーン開始/終了時のイベント設定
+  function eventFullScreen(callback){
+    document.addEventListener("fullscreenchange", callback, false);
+    document.addEventListener("webkitfullscreenchange", callback, false);
+    document.addEventListener("mozfullscreenchange", callback, false);
+    document.addEventListener("MSFullscreenChange", callback, false);
+  }
+
+  // フルスクリーンが利用できるか
+  function enabledFullScreen(){
+    return(
+      document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen || document.msFullscreenEnabled
+    );
+  }
+
+  // フルスクリーンにする
+  function goFullScreen(element=null){
+    const doc = window.document;
+    const docEl = (element === null)?  doc.documentElement:element;
+    let requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    requestFullScreen.call(docEl);
+  }
+
+  // フルスクリーンをやめる
+  function cancelFullScreen(){
+    const doc = window.document;
+    const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+    cancelFullScreen.call(doc);
+  }
+
+  // フルスクリーン中のオブジェクトを返却
+  function getFullScreenObject(){
+    const doc = window.document;
+    const objFullScreen = doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement;
+    return(objFullScreen);
+  }
+
+
 </script>
