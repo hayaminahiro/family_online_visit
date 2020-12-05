@@ -20,11 +20,10 @@
 
       <tbody>
       <% @approvals.each do |approval| %>
-      <% @request_user = User.find(approval.user_id) %>
         <tr>
           <td><%= l(approval.created_at, format: :dot) %></td>
           <td>
-            <%= approval.user_name(@request_user) %>
+            <%= approval.user_name(approval.user) %>
           </td>
           <td>
             <%= approval.status %>
