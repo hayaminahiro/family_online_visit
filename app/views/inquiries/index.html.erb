@@ -1,0 +1,29 @@
+<section>
+  <div class="is-size-3 has-text-centered index-inquiry-title">お問い合わせ履歴</div>
+</section>
+<div class="container is-fluid">
+  <div class="columns">
+    <div class="column table-container">
+        <table class="table is-bordered is-striped inquiry-table">
+          <thead>
+            <tr class="inquiry-tr is-size-5">
+              <th class="inquiry-th">日付</th>
+              <th class="inquiry-th">お名前</th>
+              <th class="inquiry-th2">連絡先</th>
+              <th class="inquiry-th2">内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @inquiry.each do |inquiry| %>
+              <tr>
+                <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
+                <td><%= inquiry.name %></td>
+                <td><%= inquiry.email %></td>
+                <td><%= inquiry.message %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

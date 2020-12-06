@@ -1,3 +1,22 @@
-<%= @inquiry.name %> 様 から問い合わせがありました。
-・お問い合わせ内容
-<%= @inquiry.message %>
+<% if @inquiry.facility_id.present? %>
+<%# 施設お問い合わせフォーム %>
+  いつもご利用ありがとうございます。
+  family-online-visitお問い合わせ窓口です。
+
+  <%= @inquiry.name %> 様 から以下の問い合わせがありました。
+
+  【お問い合わせ内容】
+  <%= @inquiry.message %>
+
+  【<%= @inquiry.name %>様のご連絡先】
+  <%= @inquiry.email %>
+<% else %>
+<%# システムお問い合わせフォーム %>
+  <%= @inquiry.name %> 様 から以下の問い合わせがありました。
+
+  【お問い合わせ内容】
+  <%= @inquiry.message %>
+
+  【<%= @inquiry.name %>様のご連絡先】
+  <%= @inquiry.email %>
+<% end %>

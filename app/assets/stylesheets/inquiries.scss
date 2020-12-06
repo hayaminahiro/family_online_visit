@@ -4,6 +4,7 @@
 
 .inquiry-btn {
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .inquiry-notice {
@@ -14,6 +15,43 @@
   padding: 15px;
 }
 
-.inquiry-message {
-  height: 100px;
+.inquiry-title {
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+span.inquiry-coment {
+  margin-top: 30px;
+}
+
+.inquiry-submit-btn {
+  width: 300px;
+}
+
+.inquiry-label {
+  margin-top: 30px;
+}
+
+.index-inquiry-title {
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.inquiry-table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 150px;
+}
+
+.inquiry-tr {
+  background-color: #FFFF99;
+}
+
+.inquiry-th {
+  min-width: 120px;
+}
+
+.inquiry-th2 {
+  width: 130px;
+  white-space: normal;
 }

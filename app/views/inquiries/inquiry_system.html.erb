@@ -1,32 +1,30 @@
 <section>
   <div class="is-size-3 has-text-centered inquiry-title">
-    <span>施設へお問い合わせ</span>
+    <span>システムへお問い合わせ</span>
   </div>
 </section>
 <section>
   <div class="container is-fluid">
     <div class="columns">
       <div class="column is-8-desktop is-offset-2-desktop is-12-mobile is-8-tablet is-offset-2-tablet">
-        <span class="inquiry-coment">サービス提供者が連絡を取れるようにする為に、連絡先などを記入してください。</span>
+        <span class="inquiry-coment">システム提供者が連絡を取れるようにする為に、連絡先などを記入してください。</span>
 
-        <%= form_with(model: @inquiry, url: facility_inquiries_path(@facility), method: :post, local: true) do |f| %>
+        <%= form_with(model: @inquiry, url: create_system_inquiries_path, method: :post, local: true) do |f| %>
           <%= render partial: 'shared/error_messages', locals: { obj: @inquiry } %>
           <%= f.label :name, "名前", class: "label inquiry-label" %>
-          <%= f.text_field :name, autocomplete: 'name', :placeholder => "必須", class: "input is-medium" %>
+          <%= f.text_field :name, :placeholder => "必須", class: "input is-medium" %>
 
           <%= f.label :email, "メールアドレス", class: "label inquiry-label" %>
-          <%= f.email_field :email, autocomplete: 'email', :placeholder => "必須", class: "input is-medium" %>
+          <%= f.email_field :email, :placeholder => "必須", class: "input is-medium" %>
 
           <div class="inquiry-notice">
             メールアドレスを間違えたり、ご利用のメールサービスに迷惑メールフィルタが設定されていると、
-            サービス提供者が連絡を取ることができない可能性がございます。
+            システム提供者が連絡を取ることができない可能性がございます。
             お間違いの無いようにご確認ください。
           </div>
 
           <%= f.label :message, "お問い合わせ内容", class: "label" %>
-          <%= f.text_area :message, autocomplete: 'message', :placeholder => "必須", class: "textarea", rows: "7" %>
-
-          <%= f.hidden_field :facility_id, :value => @facility.id %>
+          <%= f.text_area :message, :placeholder => "必須", class: "textarea", rows: "7" %>
 
           <div class="inquiry-btn has-text-centered">
             <%= f.submit "送信", class: "button is-medium is-outlined is-success inquiry-submit-btn" %>
