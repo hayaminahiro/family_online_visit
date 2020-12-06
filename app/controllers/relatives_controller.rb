@@ -83,6 +83,6 @@ class RelativesController < ApplicationController
       # enumの値を「申請中→否認済」に更新
       request.否認済!
       RequestMailer.send_denial_to_user(current_facility, request).deliver
-      redirect_to facility_home_facility_url(current_facility), notice: "[#{request.req_name}][#{request.req_phone}][#{request.req_address}]の申請を否認しました。"
+      redirect_to facility_home_facility_url(current_facility), notice: "#{request.user.name}様の申請を否認しました。"
     end
 end
