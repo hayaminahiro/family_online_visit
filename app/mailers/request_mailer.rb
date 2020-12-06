@@ -1,6 +1,5 @@
 class RequestMailer < ApplicationMailer
-  # 仮のアドレスで設定しています..
-  default from: "takahiro5393s@gmail.com"
+  default from: ENV['USER_NAME']
 
   # デフォルトの文章を作成
   def default_message(facility, request, title, message)

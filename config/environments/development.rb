@@ -37,9 +37,8 @@ Rails.application.configure do
     port: 587,
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
-    # 仮のアドレスで設定しています..
-    user_name: 'takahiro5393s@gmail.com',
-    password: 'muuowazbupdpwxmx',
+    user_name: ENV['USER_NAME'],
+    password: ENV['USER_PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
