@@ -16,8 +16,8 @@ class RequestResident < ApplicationRecord
 
   # search定義
   def self.search(search, facility)
-    return joins(:user).includes(:user).where(facility_id: facility).where.not(req_approval: "申請中").where('users.name LIKE ?', "%#{search}%") if search.present?
+    return joins(:user).includes(:user).where(facility_id: facility).where('users.name LIKE ?', "%#{search}%").order(updated_at: :desc) if search.present?
 
-    includes(:user).where(facility_id: facility).where.not(req_approval: "申請中")
+    includes(:user).where(facility_id: facility).order(updated_at: :desc)
   end
 end
