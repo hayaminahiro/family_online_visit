@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_12_01_064253) do
+=======
+ActiveRecord::Schema.define(version: 2020_11_06_160505) do
+>>>>>>> 9760a8115db38298bee42b36ab5406713edb4a7b
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -61,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_064253) do
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "resident_id"
     t.string "title"
-    t.string "message"
+    t.text "message"
     t.date "event_date"
     t.string "image0"
     t.string "image1"
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_064253) do
     t.string "image5"
     t.string "image6"
     t.string "image7"
+    t.integer "add_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resident_id"], name: "index_memories_on_resident_id"

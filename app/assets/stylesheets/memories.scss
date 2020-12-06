@@ -1,4 +1,9 @@
 //思い出indexページ
+#hero-memory {
+  position: relative;
+  background: #efefef;
+}
+
 .glovalNavigation {
   font-weight: 700;
   padding-bottom: 5px;
@@ -22,6 +27,75 @@
     text-align: center;
     margin: 20px 10px 0 0;
     padding-top: 50px;
+
+    .all-render {
+      padding-top: 50px;
+    }
+
+    .event-render {
+      padding-top: 0;
+    }
+
+    .modal-title-back {
+      background-color: #e3dcca;
+      padding-right: 30px;
+
+      .title-color {
+        color: #401c00; margin: 5px;
+      }
+    }
+
+    .image-position {
+      padding-bottom: 12px;
+
+      .modal-input {
+        display: none;
+      }
+    }
+
+    .content-back {
+      border-top: 1px solid #dbdbdb;
+      background: #f7f3e8;
+
+      .word-break {
+        word-break: break-all;
+        padding-left: 50px;
+      }
+
+      .span-title {
+        color: #401c00;
+        padding-right: 15px;
+      }
+    }
+
+    .footer-position {
+      padding-left: 60px;
+
+      .delete-btn {
+        color: #dc628b;
+        background: #ff000030;
+        border-color: #cc9ba4;
+      }
+
+      .drop-zone {
+        border-style: dashed;
+        color: #ccc;
+        padding: 20px 30px 20px 10px;
+        margin-left: 40px;
+      }
+
+      .img-update-btn {
+        margin-left: 15px;
+        border-radius: 5px;
+        border: 2px solid #13b1c0;
+        color: #13b1c0;
+        text-decoration: none;
+        padding: 9px 25px;
+        background: #fff;
+        cursor: pointer;
+        font-weight: 700;
+      }
+    }
   }
 
   .img-interval {
@@ -32,6 +106,7 @@
     width: 350px;
     height: 250px;
     object-fit: cover;
+    cursor: pointer
   }
 
   .card-photo-size {
@@ -40,9 +115,17 @@
     object-fit: cover;
   }
 
+  .card-inline-block {
+    display: inline-block;
+  }
+
   a.folder {
     color: burlywood;
   }
+}
+
+.bottom-control {
+  margin-bottom: 30px;
 }
 
 //indexカードのデザイン
@@ -75,6 +158,7 @@
   color: #777;
   font-size: 14px;
   line-height: 1.5;
+  word-break: break-all;
 }
 
 .photo-card-link {
@@ -93,86 +177,8 @@
   color: #0090aa;
 }
 
-//タブのデザイン
-.tab4 {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  background-color: #fff !important;
-  margin: 0 !important;
-}
-
-.tab4__item {
-  flex: 1;
-  list-style: none;
-}
-
-.tab4__link {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  color: #401c00;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.tab4__link:before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #13b1c0;
-  transition: all 0.4s ease-out;
-}
-
-.tab4__link:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #13b1c0;
-  transition: all 0.4s ease-out;
-}
-
-.tab4__link.on:before {
-  width: 20%;
-}
-
-.tab4__link.on:after {
-  width: 20%;
-}
-
-.tab4-body {
-  position: relative;
-  height: 120px;
-}
-
-.tab4-body__item {
-  position: absolute;
-  width: 100%;
-  margin: 30px 15px;
-  text-align: center;
-  opacity: 0;
-  transition: all 0.6s ease-out;
-}
-
-.tab4-body__item.on {
-  opacity: 1;
-}
-
-//スクロール機能
-.photo-scroll {
-  width: 100%;
-  min-height: 110vh;
-  overflow: scroll;
-}
-
 // レスポンシブindex
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 750px) {
   .glovalNavigation {
     font-weight: 700;
     padding-bottom: 5px;
@@ -189,8 +195,7 @@
 
     .content {
       text-align: center;
-      margin: 20px 10px 0 0;
-      padding-right: 30px;
+      margin: 0 auto;
     }
 
     .img-interval {
@@ -202,11 +207,47 @@
     }
 
     .photo-card {
-      margin: 50px 50px 20px -90px;
-      width: 280px;
+      margin: 50px 50px 20px 13px;
+      width: 320px;
       background: #fff;
       border-radius: 5px;
       box-shadow: 0 2px 5px #ccc;
+    }
+
+    .tab-font {
+      font-size: 20px;
+    }
+
+    //モーダルデザイン
+    .img-interval {
+      margin: 0 auto;
+    }
+
+    .modal-width {
+      width: 90%;
+
+      .image-position {
+        .modal-input {
+          display: block;
+        }
+      }
+
+      .footer-position {
+        .drop-zone {
+          display: none;
+        }
+      }
+
+      .content-back {
+        .word-break {
+          word-break: break-all;
+          padding-left: 0;
+        }
+      }
+
+      .res-footer {
+        padding: 40px 10px 40px 55px;
+      }
     }
   }
 
@@ -228,35 +269,46 @@
 
 //思い出showページ
 .main-show {
-  min-height: 110vh;
+  min-height: 50vh;
+
+  .show-bottom-control {
+    margin-bottom: 50px;
+  }
 
   .content {
     text-align: center;
     margin: 20px 10px 0 0;
     padding: 15px;
+
+    .show-photo-size {
+      width: 350px;
+      height: 250px;
+      object-fit: cover;
+    }
+  }
+
+  .show-bottom-control {
+    margin-bottom: 50px;
   }
 
   .img-interval {
     margin-top: 20px;
   }
-}
 
-//showカードのデザイン
-.photo-card-show {
-  margin: 0 50px 20px 50px;
-  //width: 1000px;
-  height: 1020px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px #ccc;
-
-  .show-photo-size {
-    width: 350px;
-    height: 250px;
-    object-fit: cover;
+  .otherNavigation {
+    font-weight: 200;
+    padding-bottom: 5px;
+    text-align: left;
+    border-bottom: 1px solid;
+    color: #401c00;
+    margin: 30px 5% 0 5%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
   }
 }
 
+//showメッセージ部分
 .photo-card-img-show {
   border-radius: 5px 5px 0 0;
   max-width: 100%;
@@ -284,6 +336,37 @@
   text-align: center;
   border-top: 1px solid #eee;
   padding-top: 30px;
+
+  .title-brown {
+    color: #401c00;
+  }
+
+  .message-title {
+    word-break: break-all;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+
+  .memories-index-btn {
+    margin-top: 20px;
+  }
+
+  a.folder {
+    color: burlywood;
+  }
+
+  .edit-btn {
+    border: solid 1px #92ad92 !important;
+  }
+
+  .delete-btn {
+    border: solid 1px #d08d9a !important;
+  }
+
+  .index-btn {
+    border: solid 1px #9d9dbd !important;
+  }
 }
 
 .photo-card-link-show a {
@@ -308,17 +391,13 @@
       padding: 15px;
     }
 
+    .show-bottom-control {
+      margin-bottom: 50px;
+    }
+
     .img-interval {
       margin-top: 10px;
     }
-  }
-
-  .photo-card-show {
-    margin: 50px 0;
-    min-height: 275vh;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px #ccc;
   }
 
   .photo-card-img-show {
@@ -348,10 +427,6 @@
     text-align: center;
     border-top: 1px solid #eee;
     padding: 20px;
-
-    .memories-index-btn {
-      margin-top: 20px;
-    }
   }
 
   .photo-card-link-show a {
@@ -395,7 +470,7 @@
     font-weight: 700;
     border-bottom: 1px solid #C0C0C0;
     padding: 50px 0 5px 0;
-    margin-bottom: 20px;
+    margin: 50px 0 20px 0;
     text-align: left;
     font-size: 20px;
     color: #401c00;
@@ -451,10 +526,6 @@
 
       .img-delete-label {
         margin-top: -2px;
-      }
-
-      .blank-area {
-        padding: 14px;
       }
 
       //チェックボックスのデザイン
@@ -528,6 +599,10 @@
     .memory-title {
       font-size: 26px;
     }
+
+    .mandatory {
+      margin: 0 0 2px 10px;
+    }
   }
 
   //カード
@@ -535,11 +610,13 @@
     .card-drop-area {
 
       .drop-area {
-        padding: 19px !important;
+        padding: 10px 20px 20px 10px !important;
+        border-style: none !important;
       }
 
       .drop-area-mandatory {
-        padding: 19px !important;
+        padding: 10px 20px 20px 10px !important;
+        border-style: none !important;
       }
     }
   }
