@@ -1,29 +1,30 @@
-<%= form_with(url: relatives_path, method: :get, local: true) do |f| %>
-  <div class="field is-grouped is-grouped-right">
-    <div class="control has-icons-left">
-      <%= f.text_field :search, :placeholder => "申請者を入力..", class: "input is-rounded" %>
-      <span class="icon is-left">
-        <i class="fas fa-search" aria-hidden="true"></i>
-      </span>
-    </div>
-    <div class="control">
-      <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
-    </div>
-  </div>
-<% end %>
 
 <div class="relative-index-container">
   <div class="relative-index-section">
-    <div>
-      <h1>※過去の申請一覧が表示されます。</h1>
+    <div style="display: flex;">
+      <h1 style="flex: 1; line-height: 60px;">※申請済一覧が表示されます。</h1>
+      <%= form_with(url: relatives_path, method: :get, local: true) do |f| %>
+        <div class="field is-grouped is-grouped-right" style="margin: 10px;">
+          <div class="control has-icons-left">
+            <%= f.text_field :search, :placeholder => "申請者を入力..", class: "input is-rounded" %>
+            <span class="icon is-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="control">
+            <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
+          </div>
+        </div>
+      <% end %>
     </div>
     <table class="table is-bordered is-fullwidth" id="relative-index-table">
       <thead>
         <tr>
           <th rowspan="2" width="10%">申請日</th>
           <th rowspan="2" width="20%">申請者</th>
-          <th rowspan="2" width="20%">承認/否認</th>
+          <th rowspan="2" width="10%">承認/否認</th>
           <th colspan="5" width="50%">申請内容</th>
+          <th rowspan="2" width="10%">過去の申請</th>
         </tr>
         <tr>
           <th colspan="2" width="20%" class="is-size-6">利用者名</th>
@@ -33,21 +34,36 @@
       </thead>
 
       <tbody>
-      <% @approvals.each do |approval| %>
+      <% @approvals.group_by(&:user_id).each do |approval, others| %>
         <tr>
-          <td><%= l(approval.created_at, format: :dot) %></td>
           <td>
-            <%= approval.user_name %>
+          <%= l(others[0].created_at, format: :dot) %>
           </td>
           <td>
-            <%= approval.status %>
+            <p style="">
+              <%= others[0].user.name %>
+            </p>
           </td>
-          <td colspan="2"><%= approval.req_name %></td>
-          <td><%= approval.req_phone %></td>
-          <td colspan="2"><%= approval.req_address %></td>
+          <td>
+            <%= others[0].status %>
+            <%= link_to edit_relative_path(others[0]), class: "is-small is-size-7", style: "flex:2; line-height: 40px;" do %>
+              <i class="fas fa-pencil-alt"></i>
+            <% end %>
+          </td>
+          <td colspan="2"><%= simple_format(others[0].req_name) %></td>
+          <td><%= simple_format(others[0].req_phone) %></td>
+          <td colspan="2"><%= simple_format(others[0].req_address) %></td>
+          <td>
+            <span style="flex:1; margin: auto;"><button type="button" class="button is-small is-rounded" id="<%= others[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
+          </td>
         </tr>
+
+        <!--モーダル表示-->
+        <%= render "request_modal_contents", { request: request, others: others[0], approval: approval } %>
+
       <% end %>
       <tbody>
     </table>
   </div>
 </div>
+
