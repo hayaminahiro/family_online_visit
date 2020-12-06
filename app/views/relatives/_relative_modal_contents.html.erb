@@ -8,10 +8,7 @@
     <section class="modal-card-body">
       <div class="form-group col-sm-5">
 
-      <div style="display: flex;
-    border-bottom: solid 2px gray;
-    padding-bottom: 10px;
-    text-align: center;">
+      <div class="relative-modal-title">
         <p style="width:10%;">日付</p>
         <p style="width:15%;">承認/否認</p>
         <p style="width:30%;">入居者名</p>
@@ -20,11 +17,7 @@
       </div>
 
       <% others.user.request_residents.order(id: :desc).each do |request| %>
-        <div style="display: flex;
-      border-bottom: solid 1px #cecece;
-      text-align: center;
-      min-height: 35px;
-    line-height: 35px;">
+        <div class="relative-modal-contents">
           <span style="width:10%;"><%= l(request.created_at, format: :dot) %></span>
           <span style="width:15%;"><%= request.status %></span>
           <span style="width:30%;"><%= simple_format(request.req_name) %></span>

@@ -331,6 +331,21 @@
   }
 }
 
+.relative-modal-title{
+  display: flex;
+  border-bottom: solid 2px gray;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.relative-modal-contents{
+  display: flex;
+  border-bottom: solid 1px #cecece;
+  text-align: center;
+  min-height: 35px;
+  line-height: 35px;
+}
+
 //タブレット
 @media screen and (max-width: 1000px) {
   .relative-new-body {
