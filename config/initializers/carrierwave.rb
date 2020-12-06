@@ -11,8 +11,8 @@ if Rails.env.production?
         provider: 'AWS',
         aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
         aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-        region: ENV['AWS_S3_REGION'],
-        path_style: true
+        region: 'ap-northeast-1',
+        path_style: true,
       }
       config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" }
   end
