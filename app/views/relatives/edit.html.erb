@@ -3,7 +3,11 @@
     <div class="relative-section">
       <nav class="level">
         <div class="level-left">
-          <h1 class="has-text-weight-bold is-size-4"><%= @user.name %> 様の申請は<span class="is-size-3 req-name"><%= @request.status %></span>です</h1>
+          <h1 class="has-text-weight-bold is-size-4"><%= @user.name %> 様の申請は<span class="is-size-3 req-name"><%= @request.status %></span>です
+            <%= link_to request_mail_preview_path(denial: @request), method: :get, class:"is-size-5", style:"margin-left: 10px;" do %>
+              <i class="far fa-envelope" style="font-size: 25px;"></i>
+            <% end %>
+          </h1>
         </div>
         <div class="level-right">
           <div class="new-c-container">
@@ -67,7 +71,7 @@
                     <% end %>
                   </div>
                   <p style="color: red;">※申請の承認/否認を変更する場合はこちらから変更が可能です</p>
-                  <%= link_to "問い合わせメールの作成はこちら", request_mail_preview_path(denial: @request), method: :get, class:"is-size-6" %>
+                  <%#= link_to "問い合わせメールの作成はこちら", request_mail_preview_path(denial: @request), method: :get, class:"is-size-6" %>
                 <% end %>
               </td>
             </tr>
