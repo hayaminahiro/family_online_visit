@@ -163,6 +163,35 @@
     font-size: 14px;
     font-weight: 600;
   }
+
+}
+
+.w-10{
+  width: 10%;
+}
+
+.w-15{
+  width: 15%;
+}
+
+.w-20{
+  width: 20%;
+}
+
+.w-30{
+  width: 30%;
+}
+
+.w-50{
+  width: 50%;
+}
+
+.fs-6{
+  font-size: 15px;
+}
+
+#modal-width{
+  width: 1500px;
 }
 
 // confirm
@@ -426,5 +455,31 @@
     #req-submit {
       margin-left: 0px;
     }
+  }
+
+  #relative-index-table {
+    font-size: 12px;
+
+    th {
+      font-size: 13px;
+      padding: 5px;
+    }
+
+    .relative-edit-status {
+      font-size: 11px;
+    }
+
+    .button.is-rounded {
+      font-size: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .w-10 {
+    width: 12%;
+  }
+
+  #modal-width{
+    width: 680px;
   }
 }
