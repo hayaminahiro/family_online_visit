@@ -153,6 +153,16 @@
   tr:nth-child(2n+1) td {
     background-color: #fbfbfb;
   }
+
+  .button.is-rounded {
+    border-radius: 290486px;
+    padding-right: 14px;
+  }
+
+  .relative-edit-status{
+    font-size: 14px;
+    font-weight: 600;
+  }
 }
 
 // confirm
@@ -346,9 +356,10 @@
   line-height: 35px;
 }
 
-.relative-edit-link{
-  flex: 2;
-  line-height: 40px;
+.relative-edit-pencil{
+  font-size: 10px;
+  margin-left: 3px;
+  margin-top: 3px;
 }
 
 .relative-modal-link{
