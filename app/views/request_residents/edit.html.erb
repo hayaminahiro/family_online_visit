@@ -2,7 +2,7 @@
   <div class="req-new-container">
     <div class="req-new-section">
       <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
-      <p>※利用者登録は<span style="color: red;"><%= @request.req_approval %></span>です。</p>
+      <p>※利用者登録は<span style="color: red;"><%= @request.req_approval_i18n %></span>です。</p>
       <%= form_with(model: @request, url: request_resident_path, local: true) do |f| %>
         <%= render "users/shared/error_messages", resource: @request %>
         <div class="card">

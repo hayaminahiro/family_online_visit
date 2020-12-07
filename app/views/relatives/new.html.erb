@@ -15,7 +15,7 @@
 
   <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
     <% @requests.each do |request| %>
-      <% if request.req_approval == "申請中" %>
+      <% if request.req_approval == "request" %>
         <div class="card">
           <div class="relative-new-container">
             <div class="relative-new-section">

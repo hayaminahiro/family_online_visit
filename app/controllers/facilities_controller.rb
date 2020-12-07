@@ -20,7 +20,7 @@ class FacilitiesController < ApplicationController
   # 施設ルートのhome画面
   def facility_home
     @info_top = Information.find_by(status: "head")
-    @request_residents = RequestResident.where(req_approval: "申請中").where(facility_id: current_facility)
+    @request_residents = RequestResident.where(req_approval: "request").where(facility_id: current_facility)
   end
 
   def destroy

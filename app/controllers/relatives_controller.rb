@@ -13,7 +13,7 @@ class RelativesController < ApplicationController
     @user.attributes = connection_params
     if @user.save(context: :relative_update)
       request_resident = RequestResident.changer(current_facility, params[:user_id].to_i)
-      request_resident.承認済!
+      request_resident.approval!
       redirect_to facility_home_facility_url(current_facility), notice: "登録申請を承認しました。"
     else
       params[:commit] == "承認済に変更" ? (render :edit) : (render :show)
@@ -30,7 +30,7 @@ class RelativesController < ApplicationController
       request_user = User.find(id)
       req_resident = RequestResident.changer(current_facility, id)
       unless item[:resident_ids].map(&:to_i).reject(&:zero?).count == request_user.resident_ids.count
-        req_resident.承認済!
+        req_resident.approval!
         request_user.update_attributes(item)
       end
     end
@@ -39,7 +39,7 @@ class RelativesController < ApplicationController
 
   # 承認済み申請一覧
   def index
-    @approvals = RequestResident.search(params[:search], current_facility)
+    @applied_ids = RequestResident.search(params[:search], current_facility)
   end
 
   def show; end
@@ -81,7 +81,7 @@ class RelativesController < ApplicationController
 
       request = RequestResident.find(params[:denial])
       # enumの値を「申請中→否認済」に更新
-      request.否認済!
+      request.denial!
       RequestMailer.send_denial_to_user(current_facility, request).deliver
       redirect_to facility_home_facility_url(current_facility), notice: "#{request.user.name}様の申請を否認しました。"
     end

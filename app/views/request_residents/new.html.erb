@@ -2,7 +2,7 @@
   <div class="req-new-container">
     <div class="req-new-section">
       <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
-      <% if @request_resident&.req_approval == "承認済" && @request_resident.facility_id == params[:facility_id].to_i %>
+      <% if @request_resident&.req_approval == "approval" && @request_resident.facility_id == params[:facility_id].to_i %>
         <p>※利用者登録は<span style="color: red;"><%= @request_resident.req_approval %></span>です。追加申請の際はご入力ください。</p>
       <% end %>
       <%= form_with(model: @request, url: request_residents_path(facility_id: params[:facility_id]), local: true) do |f| %>

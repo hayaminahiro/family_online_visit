@@ -5,10 +5,13 @@ class RequestResident < ApplicationRecord
   validates :req_phone, presence: true, on: :create_request
   validates :req_address, presence: true, on: :create_request
 
-  enum req_approval: { "申請中": 0, "承認済": 1, "否認済": 2 }
+  enum req_approval: { request: 0,
+                       approval: 1,
+                       denial: 2
+                      }
 
-  scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "申請中") }
-  scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "申請中") }
+  scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "request") }
+  scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "request") }
   scope :search_columns, (lambda do |search|
     where('users.name LIKE ?', "%#{search}%")
       .or(where('req_name LIKE ?', "%#{search}%"))

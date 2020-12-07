@@ -89,6 +89,6 @@ module FacilityDecorator
   end
 
   def acceptance_requests(user, facility)
-    RequestResident.includes(:user).where(user_id: user).where(facility_id: facility).where(req_approval: "申請中")
+    RequestResident.includes(:user).where(user_id: user).where(facility_id: facility).where(req_approval: "request")
   end
 end
