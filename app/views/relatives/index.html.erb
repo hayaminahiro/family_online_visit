@@ -35,7 +35,6 @@
 
       <tbody>
       <% @approvals.group_by(&:user_id).each do |approval, others| %>
-      <% binding.pry %>
         <tr>
           <td>
           <%= l(others[0].created_at, format: :dot) %>

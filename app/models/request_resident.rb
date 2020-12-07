@@ -7,14 +7,14 @@ class RequestResident < ApplicationRecord
 
   enum req_approval: { "申請中": 0, "承認済": 1, "否認済": 2 }
 
-  scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "申請中")  }
+  scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "申請中") }
   scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "申請中") }
-  scope :search_columns, ->(search) do
-    where('users.name LIKE ?', "%#{search}%").
-      or(where('req_name LIKE ?', "%#{search}%")).
-        or(where('req_phone LIKE ?', "%#{search}%")).
-          or(where('req_address LIKE ?', "%#{search}%"))
-  end
+  scope :search_columns, (lambda do |search|
+    where('users.name LIKE ?', "%#{search}%")
+      .or(where('req_name LIKE ?', "%#{search}%"))
+      .or(where('req_phone LIKE ?', "%#{search}%"))
+      .or(where('req_address LIKE ?', "%#{search}%"))
+  end)
 
   def self.changer(facility, user)
     order(created_at: :desc).where(facility_id: facility).find_by(user_id: user)
