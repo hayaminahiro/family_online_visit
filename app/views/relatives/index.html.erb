@@ -1,10 +1,10 @@
 
 <div class="relative-index-container">
   <div class="relative-index-section">
-    <div style="display: flex;">
-      <h1 style="flex: 1; line-height: 60px;">※申請済一覧が表示されます。</h1>
+    <div class="relative-index-search">
+      <h1 class="relative-index-h1">※申請済一覧が表示されます。</h1>
       <%= form_with(url: relatives_path, method: :get, local: true) do |f| %>
-        <div class="field is-grouped is-grouped-right" style="margin: 10px;">
+        <div class="field is-grouped is-grouped-right m-10">
           <div class="control has-icons-left">
             <%= f.text_field :search, :placeholder => "申請内容を入力..", class: "input is-rounded" %>
             <span class="icon is-left">
@@ -35,18 +35,17 @@
 
       <tbody>
       <% @approvals.group_by(&:user_id).each do |approval, others| %>
+      <% binding.pry %>
         <tr>
           <td>
           <%= l(others[0].created_at, format: :dot) %>
           </td>
           <td>
-            <p style="">
-              <%= others[0].user.name %>
-            </p>
+            <p><%= others[0].user.name %></p>
           </td>
           <td>
             <%= others[0].status %>
-            <%= link_to edit_relative_path(others[0]), class: "is-small is-size-7", style: "flex:2; line-height: 40px;" do %>
+            <%= link_to edit_relative_path(others[0]), class: "is-small is-size-7 relative-edit-link" do %>
               <i class="fas fa-pencil-alt"></i>
             <% end %>
           </td>
@@ -54,7 +53,7 @@
           <td><%= simple_format(others[0].req_phone) %></td>
           <td colspan="2"><%= simple_format(others[0].req_address) %></td>
           <td>
-            <span style="flex:1; margin: auto;"><button type="button" class="button is-small is-rounded" id="<%= others[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
+            <span class="relative-modal-link"><button type="button" class="button is-small is-rounded" id="<%= others[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
           </td>
         </tr>
 

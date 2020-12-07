@@ -346,6 +346,29 @@
   line-height: 35px;
 }
 
+.relative-edit-link{
+  flex: 2;
+  line-height: 40px;
+}
+
+.relative-modal-link{
+  flex:1;
+  margin: auto;
+}
+
+.relative-index-search{
+  display: flex;
+}
+
+.relative-index-h1{
+  flex: 1;
+  line-height: 60px;
+}
+
+.m-10{
+  margin: 10px;
+}
+
 //タブレット
 @media screen and (max-width: 1000px) {
   .relative-new-body {
