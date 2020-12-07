@@ -1,8 +1,8 @@
-<div class="modal" id="<%= approval %>" >
+<div class="modal" id="<%= applied_id %>" >
   <div class="modal-background"></div>
   <div class="modal-card" style="width: 1500px;">
     <header class="modal-card-head" style="background-color: #48D1CC;">
-      <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-4"><%= others.user.name %>様の申請一覧</p>
+      <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-4"><%= applied.user.name %>様の申請一覧</p>
       <button class="delete" aria-label="close" id="close"></button>
     </header>
     <section class="modal-card-body">
@@ -16,7 +16,7 @@
         <p style="width:30%;">住所</p>
       </div>
 
-      <% others.user.request_residents.order(id: :desc).each do |request| %>
+      <% applied.user.request_residents.order(id: :desc).each do |request| %>
         <div class="relative-modal-contents">
           <span style="width:10%;"><%= l(request.created_at, format: :dot) %></span>
           <span style="width:15%;"><%= request.status %></span>
@@ -38,12 +38,12 @@
 
 <script>
   $(document).ready(function() {
-    $("#<%= others.user.name %>").on("click", function() {
-      $("div#<%= approval %>").addClass("is-active");
+    $("#<%= applied.user.name %>").on("click", function() {
+      $("div#<%= applied_id %>").addClass("is-active");
     })
 
     $("#close, div.modal-background").on("click", function() {
-      $("div#<%= approval %>").removeClass("is-active");
+      $("div#<%= applied_id %>").removeClass("is-active");
     })
   });
 </script>

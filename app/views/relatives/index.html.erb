@@ -33,30 +33,29 @@
       </thead>
 
       <tbody>
-      <% @approvals.group_by(&:user_id).each do |approval, others| %>
+      <% @applied_ids.group_by(&:user_id).each do |applied_id, applied| %>
         <tr>
           <td>
-          <%= l(others[0].created_at, format: :dot) %>
+          <%= l(applied[0].created_at, format: :dot) %>
           </td>
           <td>
-            <p><%= others[0].user.name %></p>
+            <p><%= applied[0].user.name %></p>
           </td>
           <td>
-            <%= others[0].status %>
-            <%= link_to edit_relative_path(others[0]), class: "is-small is-size-7 relative-edit-link" do %>
-              <i class="fas fa-pencil-alt"></i>
+            <%= link_to edit_relative_path(applied[0]), class:"button is-small is-rounded relative-edit-status" do %>
+              <%= applied[0].status %><span class="relative-edit-pencil"><i class="fas fa-pencil-alt"></i></span>
             <% end %>
           </td>
-          <td colspan="2"><%= simple_format(others[0].req_name) %></td>
-          <td><%= simple_format(others[0].req_phone) %></td>
-          <td colspan="2"><%= simple_format(others[0].req_address) %></td>
+          <td colspan="2"><%= simple_format(applied[0].req_name) %></td>
+          <td><%= simple_format(applied[0].req_phone) %></td>
+          <td colspan="2"><%= simple_format(applied[0].req_address) %></td>
           <td>
-            <span class="relative-modal-link"><button type="button" class="button is-small is-rounded" id="<%= others[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
+            <span class="relative-modal-link"><button type="button" class="button is-small is-rounded" id="<%= applied[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
           </td>
         </tr>
 
         <!--モーダル表示-->
-        <%= render "relative_modal_contents", { request: request, others: others[0], approval: approval } %>
+        <%= render "relative_modal_contents", { applied: applied[0], applied_id: applied_id } %>
 
       <% end %>
       <tbody>
