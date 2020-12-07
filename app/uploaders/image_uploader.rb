@@ -1,14 +1,14 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  # if Rails.env.production?
-  #   storage :fog # 本番環境のみ
-  # else
-  #   storage :file # 本番環境以外
-  # end
+  if Rails.env.production?
+    storage :fog # 本番環境のみ
+  else
+    storage :file # 本番環境以外
+  end
 
   # 開発環境も本番環境もS3に保存(お試し用)
-  storage :fog
+  # storage :fog
 
   def store_dir
     if model.present?
