@@ -2,7 +2,7 @@
   <div class="req-new-container">
     <div class="req-new-section">
       <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
-      <p>※利用者登録は<span style="color: red;"><%= @request.req_approval_i18n %></span>です。</p>
+      <p>※利用者登録は<span class="c-red"><%= @request.req_approval_i18n %></span>です。</p>
       <%= form_with(model: @request, url: request_resident_path, local: true) do |f| %>
         <%= render "users/shared/error_messages", resource: @request %>
         <div class="card">
@@ -11,19 +11,19 @@
               <tr>
                 <th>利用者名</th>
                 <td>
-                  <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered", style: "margin: 20px 3px;" %>
+                  <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered req-table-edit-form" %>
                 </td>
               </tr>
               <tr>
                 <th>連絡先</th>
                 <td>
-                  <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
+                  <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
                 </td>
               </tr>
               <tr>
                 <th>住所</th>
                 <td>
-                  <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
+                  <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
                   <%= f.hidden_field :req_approval %>
                 </td>
               </tr>
@@ -39,9 +39,9 @@
         </div>
       <% end %>
       <div>
-        <p style="margin: 20px 0 0 150px;">
+        <p class="req-edit-cancel-btn">
           <%= link_to request_resident_path(@request), method: :delete, data: { confirm: "この申請をキャンセルしますか？" }, class:"" do %>
-            <span style="color: red;">申請をキャンセルする</span>
+            <span class="c-red">申請をキャンセルする</span>
           <% end %>
         </p>
       </div>

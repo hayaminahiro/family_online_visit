@@ -42,7 +42,7 @@
                     <p class="is-size-7">（承認後の入居者）</p>
                     <% request_numbers = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
                     <% if request_numbers.count == request.user.residents.count %>
-                      <p style="color: red; font-weight: bold;">申請を保留します</p>
+                      <p class="c-red has-text-weight-bold">申請を保留します</p>
                     <% else %>
                       <% request_numbers.each do |n| %>
                         <% newly_resident = Resident.find(n) %>

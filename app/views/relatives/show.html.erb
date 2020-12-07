@@ -50,13 +50,13 @@
               <td>
                 <%= render partial: 'shared/error_messages', locals: { obj: @user } if @user.present? %>
                 <%= form_with(model: @user, url: relative_path(user_id: @user), local: true) do |f| %>
-                <div style="text-align: left; margin-top: 15px;">
+                <div class="relative-check-box">
                   <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
                     <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
                   <% end %><br>
                 </div>
                 <div class="tag-apply">
-                  <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, style: 'display:none' do |b| %>
+                  <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
                     <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
                   <% end %>
                 </div>

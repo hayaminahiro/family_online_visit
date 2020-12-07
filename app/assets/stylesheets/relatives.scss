@@ -97,6 +97,41 @@
     text-align: left;
     padding: 0 30px;
   }
+
+  .d-none{
+    display: none;
+  }
+
+  .relative-check-box{
+    text-align: left;
+    margin-top: 15px;
+  }
+
+  .new-checkbox{
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .new-cancel-btn{
+    display: block;
+    text-align: end;
+  }
+}
+
+.c-red{
+  color: red;
+}
+
+.mb-30{
+  margin-bottom: 30px;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.fs-25{
+  font-size: 25px;
 }
 
 #req-submit{
@@ -190,8 +225,12 @@
   font-size: 15px;
 }
 
-#modal-width{
+#relative-modal-width{
   width: 1500px;
+}
+
+#relative-modal-backcolor{
+  background-color: #48D1CC;
 }
 
 // confirm
@@ -479,7 +518,7 @@
     width: 12%;
   }
 
-  #modal-width{
+  #relative-modal-width{
     width: 680px;
   }
 }

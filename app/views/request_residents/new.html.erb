@@ -3,7 +3,7 @@
     <div class="req-new-section">
       <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
       <% if @request_resident&.req_approval == "approval" && @request_resident.facility_id == params[:facility_id].to_i %>
-        <p>※利用者登録は<span style="color: red;"><%= @request_resident.req_approval %></span>です。追加申請の際はご入力ください。</p>
+        <p>※利用者登録は<span class="c-red"><%= @request_resident.req_approval %></span>です。追加申請の際はご入力ください。</p>
       <% end %>
       <%= form_with(model: @request, url: request_residents_path(facility_id: params[:facility_id]), local: true) do |f| %>
       <%= render "users/shared/error_messages", resource: @request %>
@@ -20,19 +20,19 @@
               <tr>
                 <th>利用者名</th>
                 <td>
-                  <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered", style: "margin: 20px 3px;" %>
+                  <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered req-table-edit-form" %>
                 </td>
               </tr>
               <tr>
                 <th>連絡先</th>
                 <td>
-                  <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
+                  <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
                 </td>
               </tr>
               <tr>
                 <th>住所</th>
                 <td>
-                  <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered", style: "margin-top: 20px;" %><br><br>
+                  <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
                   <%= f.hidden_field :req_approval %>
                 </td>
               </tr>

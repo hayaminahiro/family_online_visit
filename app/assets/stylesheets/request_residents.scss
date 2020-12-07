@@ -27,6 +27,14 @@
     text-align: center;
     height: 40px;
   }
+
+  .req-table-edit-form{
+    margin: 20px 3px;
+  }
+
+  .req-table-edit-form2{
+    margin-top: 20px;
+  }
 }
 
 .req-new-body{
@@ -84,6 +92,10 @@
     border: solid 1px;
     letter-spacing: 5px;
     font-size: 15px;
+}
+
+.req-edit-cancel-btn{
+  margin: 20px 0 0 150px;
 }
 
 //タブレット
