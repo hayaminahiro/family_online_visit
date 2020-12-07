@@ -32,7 +32,7 @@
         <%= image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_application.jpg") %>
       </figure>
       <p><%= link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: @facility), class: "btn-shine" unless @request %></p>
-      <%= @request&.approval_link(@request, @facility) %>
+      <%= @request&.approval_link(@facility) %>
     </div>
   </div>
 
