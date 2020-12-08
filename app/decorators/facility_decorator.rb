@@ -88,8 +88,8 @@ module FacilityDecorator
     requests.present? ? tag.sup(requests.count) : nil
   end
 
-  def acceptance_requests(user, facility)
-    RequestResident.includes(:user).where(user_id: user).where(facility_id: facility).where(req_approval: "request")
+  def acceptance_requests(user)
+    RequestResident.includes(:user).where(user_id: user).where(facility_id: id).where(req_approval: "request")
   end
 
   def newly_numbers(r_ids)

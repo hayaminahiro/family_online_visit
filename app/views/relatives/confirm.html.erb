@@ -1,6 +1,6 @@
 <div class="relative-confirm-body">
   <% @request_residents.each do |user, r_ids| %>
-    <% current_facility.acceptance_requests(user, current_facility).each do |request| %>
+    <% current_facility.acceptance_requests(user).each do |request| %>
       <div class="card">
         <div class="relative-new-container">
           <div class="relative-confirm-section">
