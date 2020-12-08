@@ -34,6 +34,7 @@
                 <td>
                   <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
                   <%= f.hidden_field :req_approval %>
+                  <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
                 </td>
               </tr>
             </tbody>

@@ -9,7 +9,6 @@ class RequestResidentsController < ApplicationController
 
   def create
     @request = current_user.request_residents.build(request_params)
-    @request.facility_id = params[:facility_id].to_i
     if @request.save(context: :create_request)
       redirect_to facility_home_url(@request.facility_id), notice: "入居者申請できました"
     else
@@ -50,6 +49,6 @@ class RequestResidentsController < ApplicationController
     end
 
     def request_params
-      params.require(:request_resident).permit(:req_name, :req_phone, :req_address, :req_approval)
+      params.require(:request_resident).permit(:req_name, :req_phone, :req_address, :req_approval, :facility_id)
     end
 end
