@@ -30,6 +30,17 @@ span.inquiry-coment {
 
 .inquiry-label {
   margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.inquiry-label-block {
+  display: inline-block;
+}
+
+.inquiry-label-require {
+  display: inline-block;
+  color: red;
+  font-size: 18px;
 }
 
 .index-inquiry-title {
@@ -54,4 +65,8 @@ span.inquiry-coment {
 .inquiry-th2 {
   width: 130px;
   white-space: normal;
+}
+
+textarea#inquiry_message.textarea {
+  font-size: 20px;
 }
