@@ -1,21 +1,12 @@
 class InquiriesController < ApplicationController
   before_action :set_facility_id, only: %i[inquiry create index]
+  before_action :set_inquiry, only: %i[inquiry inquiry_system]
   before_action :authenticate_user!, only: %i[inquiry create]
 
   def inquiry
-    if params[:name].present?
-      @inquiry = Inquiry.new(inquiry_params)
-    else
-      @inquiry = Inquiry.new
-    end
   end
 
   def inquiry_system
-    if params[:name].present?
-      @inquiry = Inquiry.new(inquiry_params)
-    else
-      @inquiry = Inquiry.new
-    end
   end
 
   def create
@@ -49,5 +40,13 @@ class InquiriesController < ApplicationController
 
     def set_facility_id
       @facility = Facility.find(params[:facility_id])
+    end
+
+    def set_inquiry
+      @inquiry = if params[:name].present?
+        Inquiry.new(inquiry_params)
+      else
+        Inquiry.new
+      end
     end
 end
