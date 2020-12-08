@@ -1,7 +1,7 @@
 <div class="preview-container">
   <p class="preview-p">差出人:</p>
   <p style="border: solid 1px #dbdbdb;
-      border-radius: 4px; padding: 10px;"><%= current_facility.facility_name %><span>[online_visit@gmail.com（仮）]</span></p>
+      border-radius: 4px; padding: 10px;"><%= current_facility.facility_name %><span>[<%= ENV['USER_NAME'] %>]</span></p>
   <p class="preview-p">宛先:</p>
   <p style="border: solid 1px #dbdbdb;
     border-radius: 4px; padding: 10px;"><%= @user.name %><span>[<%= @user.email %>]</span></p>
