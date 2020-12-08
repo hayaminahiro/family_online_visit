@@ -40,13 +40,11 @@
                     <p>↓↓</p>
 
                     <p class="is-size-7">（承認後の入居者）</p>
-                    <% request_numbers = r_ids[:resident_ids].map(&:to_i).reject{|e| e == 0} %>
-                    <% if request_numbers.count == request.user.residents.count %>
+                    <% if @newly_resident.count == request.user.residents.count %>
                       <p class="c-red has-text-weight-bold">申請を保留します</p>
                     <% else %>
-                      <% request_numbers.each do |n| %>
-                        <% newly_resident = Resident.find(n) %>
-                        <span class="approval-name"><%= newly_resident.name %></span>
+                      <% @newly_resident.each do |resident| %>
+                        <span class="approval-name"><%= resident.name %></span>
                       <% end %>
                     <% end %>
 
