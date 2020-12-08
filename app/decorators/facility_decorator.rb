@@ -91,4 +91,12 @@ module FacilityDecorator
   def acceptance_requests(user, facility)
     RequestResident.includes(:user).where(user_id: user).where(facility_id: facility).where(req_approval: "request")
   end
+
+  def newly_numbers(r_ids)
+    r_ids[:resident_ids].map(&:to_i).reject(&:zero?)
+  end
+
+  def resident_name(id)
+    Resident.find(id).name
+  end
 end

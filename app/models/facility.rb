@@ -31,9 +31,4 @@ class Facility < ApplicationRecord
     where.not(admin: true).order(:id) unless search
     where('facility_name LIKE ?', "%#{search}%").where.not(admin: true).order(:id)
   end
-
-  def newly_resident(params)
-    request_numbers = params.values[0][:resident_ids].map(&:to_i).reject{|e| e == 0}
-    request_numbers.map{|n|Resident.find(n)}
-  end
 end

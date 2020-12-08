@@ -22,7 +22,6 @@ class RelativesController < ApplicationController
 
   def confirm
     @request_residents = acceptance_params
-    @newly_resident = current_facility.newly_resident(acceptance_params)
     @residents = Relative.search(params[:search], current_facility)
   end
 

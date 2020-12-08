@@ -40,11 +40,11 @@
                     <p>↓↓</p>
 
                     <p class="is-size-7">（承認後の入居者）</p>
-                    <% if @newly_resident.count == request.user.residents.count %>
+                    <% if current_facility.newly_numbers(r_ids).count == request.user.residents.count %>
                       <p class="c-red has-text-weight-bold">申請を保留します</p>
                     <% else %>
-                      <% @newly_resident.each do |resident| %>
-                        <span class="approval-name"><%= resident.name %></span>
+                      <% current_facility.newly_numbers(r_ids).each do |r_id| %>
+                        <span class="approval-name"><%= current_facility.resident_name(r_id) %></span>
                       <% end %>
                     <% end %>
 
