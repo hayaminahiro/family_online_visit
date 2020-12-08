@@ -20,14 +20,14 @@
 <section class="section">
   <div class="container">
     <div class="room">
-      <div class="has-text-centered columns">
-        <div class="column is-half">
+      <div class="has-text-centered columns is-gapless">
+        <div class="column is-half" id="local-video">
           <video id="js-local-stream"></video>
-          <span id="js-room-mode"></span>:
+          <span id="js-room-mode"></span>
         </div>
-        <div class="column is-half" id="video_chat">
-          <div cl="remote-streams" id="js-remote-streams"></div>
-          <button id="btn-open" class="btn button is-black full-btn" width="64" height="64" style="display: none;"><i class="fas fa-expand"></i></button>
+        <div class="column is-half" id="remote-video">
+          <div class="remote-streams" id="js-remote-streams"></div>
+          <button id="btn-open" class="btn button is-black full-btn" width="64" height="64" style="display: none;">フルスクリーン</button>
           <button id="btn-close" class="btn button is-black small-btn" width="64" height="64" style="display: none;"><i class="fas fa-expand"></i></button>
         </div>
       </div>
@@ -151,7 +151,7 @@
         await newVideo.play().catch(console.error);
         btnOpen.style.display  = "block";
       });
-  
+
       room.on('data', ({ data, src }) => {
         // Show a message sent to the room and who sent
         messages.textContent += `${src}: ${data}\n`;
@@ -286,7 +286,7 @@
 
 <script>
   window.onload = ()=>{
-    const album = document.querySelector("#video_chat");
+    const album = document.querySelector("#remote-video");
 
     btnOpen.addEventListener("click", ()=>{
       if( ! enabledFullScreen() ){
@@ -354,6 +354,4 @@
     const objFullScreen = doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement;
     return(objFullScreen);
   }
-
-
 </script>

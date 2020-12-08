@@ -26,6 +26,13 @@
   width: 100%;
 }
 
+#local-video {
+
+  span#js-room-mode {
+    display: none;
+  }
+}
+
 //フルスクリーンボタン
 #btn-open {
   text-align: right;
