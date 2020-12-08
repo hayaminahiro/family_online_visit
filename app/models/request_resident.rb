@@ -7,8 +7,7 @@ class RequestResident < ApplicationRecord
 
   enum req_approval: { request: 0,
                        approval: 1,
-                       denial: 2
-                      }
+                       denial: 2 }
 
   scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "request") }
   scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "request") }
