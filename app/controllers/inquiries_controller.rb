@@ -3,11 +3,9 @@ class InquiriesController < ApplicationController
   before_action :set_inquiry, only: %i[inquiry inquiry_system]
   before_action :authenticate_user!, only: %i[inquiry create]
 
-  def inquiry
-  end
+  def inquiry; end
 
-  def inquiry_system
-  end
+  def inquiry_system; end
 
   def create
     @inquiry = Inquiry.new(inquiry_params)
@@ -34,19 +32,20 @@ class InquiriesController < ApplicationController
   end
 
   private
-    def inquiry_params
-      params.require(:inquiry).permit(:name, :email, :message, :facility_id)
-    end
 
-    def set_facility_id
-      @facility = Facility.find(params[:facility_id])
-    end
+  def inquiry_params
+    params.require(:inquiry).permit(:name, :email, :message, :facility_id)
+  end
 
-    def set_inquiry
-      @inquiry = if params[:name].present?
-        Inquiry.new(inquiry_params)
-      else
-        Inquiry.new
-      end
-    end
+  def set_facility_id
+    @facility = Facility.find(params[:facility_id])
+  end
+
+  def set_inquiry
+    @inquiry = if params[:name].present?
+                 Inquiry.new(inquiry_params)
+               else
+                 Inquiry.new
+               end
+  end
 end

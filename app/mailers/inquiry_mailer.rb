@@ -5,15 +5,15 @@ class InquiryMailer < ApplicationMailer
       # 施設へのお問い合わせ
       facility = Facility.find_by(id: @inquiry.facility_id)
       mail(
-        from: @inquiry.email,
+        from: ENV['USER_NAME'],
         to:   facility.email,
         subject: '[family-online-visitお問い合わせ窓口]　' + facility.facility_name + '様へお問い合わせ通知'
       )
     else
       # システムのお問い合わせ
       mail(
-        from: "toyo.yuya0311@gmail.com",
-        to:   @inquiry.email,
+        from: @inquiry.email,
+        to:   ENV['USER_NAME'],
         subject: 'family-online-visitお問い合わせ通知'
       )
     end

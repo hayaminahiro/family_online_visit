@@ -1,9 +1,14 @@
-<section>
-  <div class="is-size-3 has-text-centered index-inquiry-title">お問い合わせ履歴</div>
-</section>
-<div class="container is-fluid">
-  <div class="columns">
-    <div class="column table-container">
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
+  <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+      <%= render 'shared/side_link' %>
+    <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+      <div class="index-inquiry-title">
+        <div class="hero-body">
+          <div class="is-size-3 has-text-white has-text-weight-bold has-text-centered">お問い合わせ履歴</div>
+        </div>
+      </div>
+      <div class="table-container">
         <table class="table is-bordered is-striped inquiry-table">
           <thead>
             <tr class="inquiry-tr is-size-5">
@@ -24,6 +29,6 @@
             <% end %>
           </tbody>
         </table>
+      </div>
     </div>
   </div>
-</div>
