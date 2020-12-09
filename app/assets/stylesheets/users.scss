@@ -6,6 +6,10 @@
 .hero-1 {
   background-size: cover;
   background-position: center;
+
+  h1 {
+    font-size: 40px;
+  }
 }
 
 .video_background {
@@ -36,6 +40,7 @@
 //フルスクリーンボタン
 #btn-open {
   text-align: right;
+  display: none;
 }
 
 .full-btn {
@@ -44,10 +49,63 @@
 
 #btn-close {
   text-align: right;
+  display: none;
 }
 
 .small-btn {
   margin-left: auto;
+}
+
+//Room Name記入欄
+#input-key {
+  
+  p {
+    display: none;
+  }
+
+  h3 {
+    display: none;
+  }
+}
+
+//入室ボタン
+#js-join-trigger {
+  font-size: 20px;
+}
+
+//退室ボタン
+#js-leave-trigger {
+  font-size: 20px;
+}
+
+//送信ボタン
+#js-send-trigger {
+  font-size: 20px;
+}
+
+//戻るボタン
+#return-btn {
+  font-size: 20px;
+}
+
+//タイマーアイコン
+.time-icon {
+  font-size: 30px;
+  padding-right: 33px;
+}
+
+//タイマー
+#timer {
+  font-size: 25px;
+}
+
+//テレビ電話のシステム表示
+p#js-meta {
+  display: none;
+}
+
+p.meta {
+  display: none;
 }
 
 /* ご家族一覧 */

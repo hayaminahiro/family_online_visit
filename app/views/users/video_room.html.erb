@@ -10,7 +10,7 @@
 <section class="hero-1" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/video_room.jpg');">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title has-text-centered has-text-white is-size-1">
+      <h1 class="title has-text-centered has-text-white">
         <font color="#F9BF4B">・</font>ー<font color="#4DADA1">Video Room</font>ー<font color="#F9BF4B">・</font>
       </h1>
     </div>
@@ -27,17 +27,17 @@
         </div>
         <div class="column is-half" id="remote-video">
           <div class="remote-streams" id="js-remote-streams"></div>
-          <button id="btn-open" class="btn button is-black full-btn" width="64" height="64" style="display: none;">フルスクリーン</button>
-          <button id="btn-close" class="btn button is-black small-btn" width="64" height="64" style="display: none;"><i class="fas fa-expand"></i></button>
+          <button id="btn-open" class="btn button is-black full-btn" width="64" height="64"><i class="fas fa-expand"></i> フルスクリーン</button>
+          <button id="btn-close" class="btn button is-black small-btn" width="64" height="64"><i class="fas fa-expand"></i></button>
         </div>
       </div>
-      <div class="has-text-centered"> 
+      <div class="has-text-centered" id="input-key"> 
         <p class="column is-three-fifths is-offset-one-fifth control">
-          <input class="input is-large is-warning has-text-weight-semibold is-rounded is-focused is-size-3" type="text" placeholder="Room Nameを入力してください" value="<%= @room.room_name %>"id="js-room-id">
+          <input class="input is-large is-warning has-text-weight-semibold is-rounded is-focused is-size-3" type="text" placeholder="Room Nameを入力してください" value="<%= @room.room_name %>" id="js-room-id">
         </p>
         <h3 class="is-size-3"><strong>Room Name:&emsp;<font color="#FF7F50"><%= @room.room_name %></font></strong></h3><br>
-        <button id="js-join-trigger" class="button is-success is-large is-rounded has-text-weight-semibold">入室する</button>&emsp;
-        <button id="js-leave-trigger" class="button is-danger is-large is-rounded has-text-weight-semibold">退室する</button> 
+        <button id="js-join-trigger" class="button is-focused is-success is-rounded has-text-weight-semibold">入室する</button>&emsp;
+        <button id="js-leave-trigger" class="button is-focused is-danger is-rounded has-text-weight-semibold">退室する</button> 
       </div><br>
       <div class="has-text-centered">
         <pre class="messages" id="js-messages"></pre>
@@ -45,19 +45,20 @@
         <p class="has-text-right has-text-weight-semibold">
           *メッセージを送信することができます。
         </p>
-        <button id="js-send-trigger" class="button is-info is-large is-rounded has-text-weight-semibold">送信する</button>
+        <button id="js-send-trigger" class="button is-focused is-info is-rounded has-text-weight-semibold">送信する</button>
       </div>
     </div><br>
     <div class="has-text-centered">
       <% if current_facility %>
-        <%= link_to "戻る", users_path(@facility), class: "button is-large is-outlined is-dark" %>
+        <%= link_to "戻る", users_path(@facility), id: "return-btn", class: "button is-outlined is-dark has-text-weight-semibold" %>
       <% elsif current_user%>
-        <%= link_to "戻る", user_path(@user), class: "button is-large is-outlined is-dark" %>
+        <%= link_to "戻る", facility_home_path(@facility), id: "return-btn", class: "button is-outlined is-dark has-text-weight-semibold back-btn" %>
       <% end %>
     </div>
     <div class="has-text-right">
       <div class="content">
-        <button id="timer" class="has-text-weight-semibold button is-large is-primary">残り30分</p>
+        <div class="time-icon"><i class="fas fa-user-clock"></i></div>
+        <div id="timer" class="has-text-weight-semibold">残り30分</div>
       </div>
       <div class="button" id="buttonBox">
           <button id="start" class="has-text-weight-semibold">
@@ -69,7 +70,9 @@
   </div>
 </section>
 
+<script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+
 <script>
   const Peer = window.Peer;
   const btnOpen  = document.querySelector("#btn-open");
@@ -218,6 +221,9 @@
       document.getElementById('buttonBox').classList.remove('button');
       document.getElementById('buttonBox').classList.add('buttonbutton');
       if (document.getElementById('start').innerHTML === '面会中') {
+        document.getElementById('start').style.background = '#4682B4';
+        document.getElementById('start').style.color = 'white';
+        document.getElementById('start').style.fontSize = '17px';
         document.getElementById('start').disabled = true;
       }
   } else {
@@ -227,6 +233,9 @@
       document.getElementById('buttonBox').classList.remove('buttonbutton');
       document.getElementById('buttonBox').classList.add('button');
       if (document.getElementById('start').innerHTML === '面会中') {
+        document.getElementById('start').style.background = '#4682B4';
+        document.getElementById('start').style.color = 'white';
+        document.getElementById('start').style.fontSize = '17px';
         document.getElementById('start').disabled = true;
       }
     }
