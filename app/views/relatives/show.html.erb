@@ -3,9 +3,6 @@
   <div class="relative-container">
     <div class="relative-section">
       <nav class="level">
-        <div class="level-left">
-          <h1 class="has-text-weight-bold is-size-3"><%= @user.name %><span class="is-size-4 req-name"> 様からの申請</span></h1>
-        </div>
         <div class="level-right">
           <div class="new-c-container">
             <%= form_with(url: relative_path(@request), method: :get, local: true) do |f| %>
@@ -27,6 +24,18 @@
       <div class="card">
         <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
           <tbody>
+            <tr>
+              <th colspan="2">
+                <div class="relative-show-req-name">
+                  <h1 class="has-text-weight-bold is-size-4"><%= @user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+                    <div>
+                      <%= link_to request_mail_preview_path(denial: @request), method: :get, class:"button" do %>
+                        <i class="far fa-envelope"></i><span>メール</span>
+                      <% end %>
+                    </div>
+                </div>
+              </th>
+            </tr>
             <tr>
               <th>利用者名</th>
               <td>
@@ -68,7 +77,6 @@
                   <% end %>
                 </div>
                 <% end %>
-                  <%= link_to "問い合わせメールの作成", request_mail_preview_path(denial: @request), method: :get, class:"is-size-6" %>
               </td>
             </tr>
           </tbody>

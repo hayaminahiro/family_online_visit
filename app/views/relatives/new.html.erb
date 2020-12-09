@@ -26,10 +26,7 @@
                   <tr>
                     <th colspan="2">
                       <div class="relative-new-req-name">
-                        <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span>
-                        </h1>
-                          <span class="">
-                          </span>
+                        <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
                           <div>
                             <%= link_to request_mail_preview_path(denial: request), method: :get, class:"button" do %>
                               <i class="far fa-envelope"></i><span>メール</span>
