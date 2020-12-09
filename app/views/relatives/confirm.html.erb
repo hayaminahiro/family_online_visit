@@ -4,13 +4,15 @@
       <div class="card">
         <div class="relative-new-container">
           <div class="relative-confirm-section">
-          <nav class="level" id="level-bottom">
-            <p class="has-text-weight-bold is-size-5">
-              <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
-            </p>
-          </nav>
             <table class="table is-narrow user-edit-table is-bordered" id="relative-confirm-table">
               <tbody>
+                <tr>
+                  <th colspan="2">
+                    <div class="relative-confirm-req-name">
+                      <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+                    </div>
+                  </th>
+                </tr>
                 <tr>
                   <th>利用者名</th>
                   <td>

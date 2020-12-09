@@ -30,21 +30,15 @@
     position: relative;
     margin: auto;
     margin: 0px auto;
-    padding: 0px 0px 23px 0px;
     margin-top: 20px;
   }
 }
 
 .relative-new-container{
   margin: 0px;
-
-  .new-denial-btn{
-    margin-right: 8px;
-  }
 }
 
 .relative-new-section{
-  width: 90%;
   margin: auto;
 
   .req-name{
@@ -55,7 +49,47 @@
     margin-bottom: 0px;
     text-align: left;
     display: block;
-    padding: 15px;
+    padding-bottom: 0px;
+  }
+
+  .relative-new-req-name{
+    display: flex;
+
+    h1{
+      flex: 1;
+      text-align: left;
+      color: #285465;
+      margin-left: 3%;
+    }
+
+    div{
+      line-height: 35px;
+    }
+
+    .button{
+      background-color: #eff8fe;
+      border: none;
+      // outline: none
+
+      i{
+        color: white;
+        font-size: 21px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #4783b4;
+        line-height: 35px;
+      }
+    }
+
+    .button:focus:not(:active), .button.is-focused:not(:active) {
+      box-shadow: none;
+    }
+
+    span{
+      font-size: 18px;
+      margin-left: 8px;
+    }
   }
 }
 
@@ -95,7 +129,7 @@
 
   .tag-apply{
     text-align: left;
-    padding: 0 30px;
+    padding: 20px 30px;
   }
 
   .d-none{
@@ -115,6 +149,32 @@
   .new-cancel-btn{
     display: block;
     text-align: end;
+
+    .new-denial-btn{
+      font-size: 16px;
+
+      i{
+        background-color: #c3c3c3;
+        color: white;
+        font-size: 21px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+      }
+
+      span{
+        font-size: 18px;
+        margin-left: 8px;
+      }
+    }
+
+    .button.is-rounded {
+      border-radius: 290486px;
+    }
+
+    .button:focus:not(:active), .button.is-focused:not(:active) {
+      box-shadow: none;
+    }
   }
 }
 
@@ -258,7 +318,6 @@
     position: relative;
     margin: auto;
     margin: 0px auto;
-    padding: 0px 0px 23px 0px;
     margin-top: 20px;
     width: 80%;
   }
@@ -315,12 +374,19 @@
 
   .tag-apply{
     text-align: left;
-    padding: 0 30px;
+    padding: 20px 30px;
+  }
+
+  .relative-confirm-req-name{
+    h1{
+      text-align: left;
+      color: #214c50;
+      margin-left: 3%;
+    }
   }
 }
 
 .relative-confirm-section{
-  width: 90%;
   margin: auto;
 
   .req-name{
@@ -331,7 +397,6 @@
     margin-bottom: 0px;
     text-align: left;
     display: block;
-    padding: 15px;
     width: 70%;
   }
 }

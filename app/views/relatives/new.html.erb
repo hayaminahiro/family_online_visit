@@ -20,16 +20,31 @@
           <div class="relative-new-container">
             <div class="relative-new-section">
             <nav class="level" id="level-bottom">
-              <p class="has-text-weight-bold is-size-5">
-                <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span>
-                  <%= link_to request_mail_preview_path(denial: request), method: :get, class:"is-size-5" do %>
-                    <i class="far fa-envelope"></i>
-                  <% end %>
-                </h1>
-              </p>
             </nav>
               <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
                 <tbody>
+                  <tr>
+                    <th colspan="2">
+                      <div class="relative-new-req-name">
+                        <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span>
+                        </h1>
+                          <span class="">
+                          </span>
+                          <div>
+                            <%= link_to request_mail_preview_path(denial: request), method: :get, class:"button" do %>
+                              <i class="far fa-envelope"></i><span>メール</span>
+                            <% end %>
+                          </div>
+
+                          <div class="new-cancel-btn">
+                            <%= link_to relative_path(request, denial: request), method: :patch,
+                              data: { confirm: "#{request.user.name}の申請を否認してよろしいですか？" }, class:"button is-rounded new-denial-btn" do %>
+                              <i class="fas fa-times"></i><span>否認する（メール送信）</span>
+                            <% end %>
+                          </div>
+                      </div>
+                    </th>
+                  </tr>
                   <tr>
                     <th>利用者名</th>
                     <td>
@@ -64,13 +79,7 @@
                           <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
                         <% end %>
                       </div>
-                      <div class="new-cancel-btn">
-                        <%= link_to relative_path(request, denial: request), method: :patch,
-                          data: { confirm: "#{request.user.name}の申請を否認してよろしいですか？" }, class:"has-text-danger is-size-5 new-denial-btn" do %>
-                          <i class="fas fa-times"></i>
-                        <% end %>
                       <% end %>
-                      </div>
                     </td>
                   </tr>
                 </tbody>
