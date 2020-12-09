@@ -1,20 +1,14 @@
 <ul class="video_background">
 </ul>
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-    </div>
-  </div>
-</section>
 
-<section class="hero-1" style="background-image: url('https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/video_room.jpg');">
+<section class="hero-6">
   <div class="hero-body">
     <div class="container">
       <h1 class="title has-text-centered has-text-white">
         <font color="#F9BF4B">・</font>ー<font color="#4DADA1">Video Room</font>ー<font color="#F9BF4B">・</font>
       </h1>
     </div>
-  </div>
+  </div>  
 </section>
 
 <section class="section">
@@ -27,13 +21,13 @@
         </div>
         <div class="column is-half" id="remote-video">
           <div class="remote-streams" id="js-remote-streams"></div>
-          <button id="btn-open" class="btn button is-black full-btn" width="64" height="64"><i class="fas fa-expand"></i> フルスクリーン</button>
-          <button id="btn-close" class="btn button is-black small-btn" width="64" height="64"><i class="fas fa-expand"></i></button>
+          <button id="btn-open" class="btn button full-btn" width="64" height="64"><i class="fas fa-expand"></i> フルスクリーン</button>
+          <button id="btn-close" class="btn button small-btn" width="64" height="64"><i class="fas fa-expand fa-lg"></i></button>
         </div>
       </div>
       <div class="has-text-centered" id="input-key"> 
         <p class="column is-three-fifths is-offset-one-fifth control">
-          <input class="input is-large is-warning has-text-weight-semibold is-rounded is-focused is-size-3" type="text" placeholder="Room Nameを入力してください" value="<%= @room.room_name %>" id="js-room-id">
+          <input class="input is-large is-warning has-text-weight-semibold is-rounded is-focused" type="text" placeholder="Room Nameを入力してください" value="<%= @room.room_name %>" id="js-room-id">
         </p>
         <h3 class="is-size-3"><strong>Room Name:&emsp;<font color="#FF7F50"><%= @room.room_name %></font></strong></h3><br>
         <button id="js-join-trigger" class="button is-focused is-success is-rounded has-text-weight-semibold">入室する</button>&emsp;
@@ -42,7 +36,7 @@
       <div class="has-text-centered">
         <pre class="messages" id="js-messages"></pre>
         <input class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text">
-        <p class="has-text-right has-text-weight-semibold">
+        <p class="has-text-right has-text-weight-semibold info-message" >
           *メッセージを送信することができます。
         </p>
         <button id="js-send-trigger" class="button is-focused is-info is-rounded has-text-weight-semibold">送信する</button>
@@ -318,11 +312,13 @@
         console.log("フルスクリーン開始");
         btnOpen.style.display  = "none";
         btnClose.style.display = "block";
+        album.style.backgroundColor = "#323232";
       }
       else{
         console.log("フルスクリーン終了");
         btnClose.style.display = "none";
         btnOpen.style.display  = "block";
+        album.style.backgroundColor = "transparent";
       }
     });
   };
