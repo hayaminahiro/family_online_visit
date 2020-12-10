@@ -522,6 +522,12 @@
   .relative-level{
     text-align: right;
     margin: 20px;
+
+    .field.is-grouped > .control:not(:last-child) {
+      width: 314px;
+      margin-bottom: 0;
+      margin-right: 0.75rem;
+    }
   }
 
   .card{
