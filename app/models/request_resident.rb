@@ -11,7 +11,7 @@ class RequestResident < ApplicationRecord
 
   scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "request") }
   scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "request") }
-  scope :search_columns, (lambda do |search|
+  scope :search_request_columns, (lambda do |search|
     where('users.name LIKE ?', "%#{search}%")
       .or(where('req_name LIKE ?', "%#{search}%"))
       .or(where('req_phone LIKE ?', "%#{search}%"))
@@ -24,7 +24,7 @@ class RequestResident < ApplicationRecord
 
   # search定義
   def self.search(search, facility)
-    return joins(:user).includes(:user).where(facility_id: facility).search_columns(search).order(updated_at: :desc) if search.present?
+    return joins(:user).includes(:user).where(facility_id: facility).search_request_columns(search).order(updated_at: :desc) if search.present?
 
     includes(:user).where(facility_id: facility).order(updated_at: :desc)
   end
