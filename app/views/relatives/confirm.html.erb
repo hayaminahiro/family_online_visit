@@ -35,9 +35,13 @@
                   <th>紐付け</th>
                   <td>
                     <p class="is-size-7">（登録済み入居者）</p>
-                    <% request.user.residents.each do |resident| %>
-                      <span class="registered-name"><%= resident.name %></span>
-                    <% end %><br><br>
+                    <% if request.user.residents == [] %>
+                      <p class="registered-name">現在登録されている利用者はいません</p><br>
+                    <% else %>
+                      <% request.user.residents.each do |resident| %>
+                        <span class="registered-name"><%= resident.name %></span>
+                      <% end %><br><br>
+                    <% end %>
 
                     <p>↓↓</p>
 
