@@ -2,6 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.cp_tooltip {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.cp_tooltip .cp_tooltiptext {
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  position: absolute;
+  z-index: 1;
+  top: 38px;
+  right: -35px;
+  visibility: hidden;
+  width: auto;
+  white-space: nowrap;
+  padding: 0.3em 0.5em;
+  transition: opacity 0.4s;
+  text-align: center;
+  opacity: 0;
+  font-size: 12px;
+  color: red;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+.cp_tooltip:hover .cp_tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}
+
 .relative-container{
   margin: 0px;
   padding-top: 30px;
@@ -160,10 +190,11 @@
         width: 35px;
         height: 35px;
         line-height: 35px;
+        margin-right: 10px;
       }
 
       span{
-        font-size: 18px;
+        font-size: 13px;
         margin-left: 8px;
       }
     }
@@ -487,6 +518,11 @@
 
 .relative-show-body{
   text-align: center;
+
+  .relative-level{
+    text-align: right;
+    margin: 20px;
+  }
 
   .card{
     width: 100%;

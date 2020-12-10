@@ -36,7 +36,7 @@
                           <div class="new-cancel-btn">
                             <%= link_to relative_path(request, denial: request), method: :patch,
                               data: { confirm: "#{request.user.name}の申請を否認してよろしいですか？" }, class:"button is-rounded new-denial-btn" do %>
-                              <i class="fas fa-times"></i><span>否認する（メール送信）</span>
+                              <div class="cp_tooltip"><i class="fas fa-times"></i>否認する<span class="cp_tooltiptext">※否認と同時にメール送信されます</span></div>
                             <% end %>
                           </div>
                       </div>
