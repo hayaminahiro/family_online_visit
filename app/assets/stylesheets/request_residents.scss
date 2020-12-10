@@ -27,6 +27,14 @@
     text-align: center;
     height: 40px;
   }
+
+  .req-table-edit-form{
+    margin: 20px 3px;
+  }
+
+  .req-table-edit-form2{
+    margin-top: 20px;
+  }
 }
 
 .req-new-body{
@@ -84,4 +92,30 @@
     border: solid 1px;
     letter-spacing: 5px;
     font-size: 15px;
+}
+
+.req-edit-cancel-btn{
+  margin: 20px 0 0 150px;
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+  .req-show-body .card{
+    width: 100%;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+  #req-table th {
+    width: 85px;
+  }
+
+  .req-show-body{
+    p {
+      width: 80%;
+      margin: auto;
+      word-break: keep-all;
+    }
+  }
 }

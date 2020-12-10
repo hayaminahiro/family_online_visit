@@ -1,36 +1,62 @@
-<div class="req-index-container">
-  <div style="margin: 60px;">
-    <div>
-      <h1>※過去の申請一覧が表示されます。</h1>
+<div class="relative-index-container">
+  <div class="relative-index-section">
+    <div class="relative-index-search">
+      <h1 class="relative-index-h1">※申請済一覧が表示されます。</h1>
+      <%= form_with(url: relatives_path, method: :get, local: true) do |f| %>
+        <div class="field is-grouped is-grouped-right m-10">
+          <div class="control has-icons-left">
+            <%= f.text_field :search, :placeholder => "申請内容を入力..", class: "input is-rounded" %>
+            <span class="icon is-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="control">
+            <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <table class="table is-bordered is-fullwidth" id="req-index-table">
+    <table class="table is-bordered is-fullwidth" id="relative-index-table">
       <thead>
         <tr>
-          <th rowspan="2" width="10%">申請日</th>
-          <th rowspan="2" width="20%">申請者</th>
-          <th rowspan="2" width="20%">承認/否認</th>
-          <th colspan="5" width="50%">申請内容</th>
+          <th rowspan="2" class="w-15">申請日</th>
+          <th rowspan="2" class="w-15">申請者</th>
+          <th rowspan="2" class="w-10">承認/否認</th>
+          <th colspan="5" class="w-50">申請内容</th>
+          <th rowspan="2" class="w-10">過去の<br>申請</th>
         </tr>
         <tr>
-          <th colspan="2" width="20%" class="is-size-6">利用者名</th>
-          <th colspan="1" width="10%" class="is-size-6">電話番号</th>
-          <th colspan="2" width="20%" class="is-size-6">住所</th>
+          <th colspan="2" class="w-20 fs-6">利用者</th>
+          <th colspan="1" class="w-10 fs-6">電話番号</th>
+          <th colspan="2" class="w-20 fs-6">住所</th>
         </tr>
       </thead>
 
       <tbody>
-      <% @approvals.each do |approval| %>
-      <% @request_user = User.find(approval.user_id) %>
+      <% @applied_ids.group_by(&:user_id).each do |applied_id, applied| %>
         <tr>
-          <td><%= l(approval.created_at, format: :dot) %></td>
-          <td><%= @request_user.name %></td>
           <td>
-            <%= approval.approval_status %>
+          <%= l(applied[0].created_at, format: :dot) %>
           </td>
-          <td colspan="2"><%= approval.req_name %></td>
-          <td><%= approval.req_phone %></td>
-          <td colspan="2"><%= approval.req_address %></td>
+          <td>
+            <p><%= applied[0].user.name %></p>
+          </td>
+          <td>
+            <%= link_to edit_relative_path(applied[0]), class:"button is-small is-rounded relative-edit-status" do %>
+              <%= applied[0].status %><span class="relative-edit-pencil"><i class="fas fa-pencil-alt"></i></span>
+            <% end %>
+          </td>
+          <td colspan="2"><%= simple_format(applied[0].req_name) %></td>
+          <td><%= simple_format(applied[0].req_phone) %></td>
+          <td colspan="2"><%= simple_format(applied[0].req_address) %></td>
+          <td>
+            <span class="relative-modal-link"><button type="button" class="button is-small is-rounded" id="<%= applied[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
+          </td>
         </tr>
+
+        <!--モーダル表示-->
+        <%= render "relative_modal_contents", { applied: applied[0], applied_id: applied_id } %>
+
       <% end %>
       <tbody>
     </table>

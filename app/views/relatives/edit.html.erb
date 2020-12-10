@@ -1,4 +1,3 @@
-<% if @request.req_approval == "request" %>
 <div class="relative-show-body">
   <div class="relative-container">
     <div class="relative-section">
@@ -20,12 +19,12 @@
         </div>
       </nav>
       <div class="card">
-        <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
+        <table class="table is-narrow user-edit-table is-bordered mb-30" id="relative-table">
           <tbody>
             <tr>
               <th colspan="2">
-                <div class="relative-show-req-name">
-                  <h1 class="has-text-weight-bold is-size-4"><%= @user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+                <div class="relative-edit-req-name">
+                  <h1 class="has-text-weight-bold is-size-4"><%= @user.name %> 様の申請は<span><%= @request.status %></span>です</h1>
                     <div>
                       <%= link_to request_mail_preview_path(denial: @request), method: :get, class:"button" do %>
                         <i class="far fa-envelope"></i><span>メール</span>
@@ -57,23 +56,24 @@
               <td>
                 <%= render partial: 'shared/error_messages', locals: { obj: @user } if @user.present? %>
                 <%= form_with(model: @user, url: relative_path(user_id: @user), local: true) do |f| %>
-                <div class="relative-check-box">
-                  <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                    <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
-                  <% end %><br>
-                </div>
-                <div class="tag-apply">
-                  <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
-                    <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
-                  <% end %>
-                </div>
-                <div class="propriety">
-                  <%= f.submit "承認", class: "button is-primary is-light is-midium has-text-weight-bold", id: "approval-btn" %>
-                  <%= link_to relative_path(denial: @request), method: :patch,
-                    data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"denial-btn" do %>
-                    否認
-                  <% end %>
-                </div>
+                  <div class="relative-check-box">
+                    <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                      <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                    <% end %><br>
+                  </div>
+                  <div class="tag-apply">
+                    <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
+                      <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% end %>
+                  </div>
+                  <div class="propriety">
+                    <%= f.submit "承認済に変更", class: "button is-primary is-light is-midium", id: "edit-approval-btn" %>
+                    <%= link_to relative_path(denial: @request), method: :patch,
+                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"edit-denial-btn" do %>
+                      否認済に変更
+                    <% end %>
+                  </div>
+                  <p class="c-red">※申請の承認/否認を変更する場合はこちらから変更が可能です</p>
                 <% end %>
               </td>
             </tr>
@@ -83,4 +83,3 @@
     </div>
   </div>
 </div>
-<% end %>
