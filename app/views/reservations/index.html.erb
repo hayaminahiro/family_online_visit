@@ -16,15 +16,32 @@
               <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">予約画面</p>
               <button class="delete" aria-label="close" id="close"></button>
             </header>
-            <%= form_with model: @reservation, url: "#", local: true do |f| %>
               <section class="modal-card-body">
                 <div class="field">
                   <p class="title-in-modal"><%= date %></p>
                   <p class="modal-description">予約時間を選択して下さい。</p>
                 </div>
+                <div class="field">
+                  <p class=" js-contents--edit-button">
+
+                    <%= link_to new_reservation_path(date: date, time: "1000"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;10:00
+                    <% end %>
+                    <%= link_to new_reservation_path(date: date, time: "1100"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;11:00
+                    <% end %>
+                    <%= link_to new_reservation_path(date: date, time: "1400"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;14:00
+                    <% end %>
+                    <%= link_to new_reservation_path(date: date, time: "1500"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;15:00
+                    <% end %>
+                  </p>
+
+                </div>
               </section>
               <footer class="modal-card-foot">
-                <%= f.submit "\uf017 予約確認画面へ", class: "fa button img-update-btn" %>
+                <%= link_to "予約確認画面へ", new_reservation_path, class: "fa button img-update-btn" %>
               </footer>
               <script>
                 $(document).ready(function () {
@@ -37,7 +54,7 @@
                   })
                 });
               </script>
-            <% end %>
+
           </div>
         </div>
       <% end %>
