@@ -4,11 +4,11 @@ module RequestResidentDecorator
   def status
     case req_approval
     when "approval"
-      tag.span(req_approval_i18n, style: 'color: #e41414;')
+      tag.span(req_approval_i18n, style: 'color: rgb(2,148,126);')
     when "denial"
-      tag.span(req_approval_i18n, style: 'color: #0c94f9;')
+      tag.span(req_approval_i18n, style: 'color: rgb(204,13,53);')
     else
-      tag.span(req_approval_i18n, style: 'color: #a2b9ca;')
+      tag.span(req_approval_i18n, style: 'color: rgb(162,184,202)')
     end
   end
 
