@@ -145,9 +145,9 @@
         // mark peerId to find it later at peerLeave event
         newVideo.setAttribute('data-peer-id', stream.peerId);
         newVideo.setAttribute('controls', true);
+        newVideo.setAttribute('id', "remote-video");
         remoteVideos.append(newVideo);
         await newVideo.play().catch(console.error);
-        btnOpen.style.display  = "block";
       });
 
       room.on('data', ({ data, src }) => {
@@ -163,8 +163,6 @@
         remoteVideo.srcObject.getTracks().forEach(track => track.stop());
         remoteVideo.srcObject = null;
         remoteVideo.remove();
-        btnOpen.style.display  = "none";
-        btnClose.style.display = "none";
         messages.textContent += `=== 面会が終了しました ===\n`;
       });
   
@@ -176,8 +174,6 @@
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
           remoteVideo.remove();
-          btnOpen.style.display  = "none";
-          btnClose.style.display = "none";
         });
       });
   
@@ -196,6 +192,7 @@
   })();
 </script>
 
+<!-->タイマー機能-->
 <script>
   var point;
   var sec;
@@ -286,78 +283,4 @@
     }
     return value;
   };
-</script>
-
-<script>
-  window.onload = ()=>{
-    const album = document.querySelector("#remote-video");
-
-    btnOpen.addEventListener("click", ()=>{
-      if( ! enabledFullScreen() ){
-        alert("フルスクリーンに対応していません");
-        return(false);
-      }
-      // フルスクリーンを開始
-      goFullScreen(album);
-    });
-
-    btnClose.addEventListener("click", ()=>{
-      // フルスクリーンを解除
-      cancelFullScreen(album);
-    });
-
-    // フルスクリーンイベント
-    eventFullScreen( ()=>{
-        // ボタンを入れ替える
-      if( getFullScreenObject() ){
-        console.log("フルスクリーン開始");
-        btnOpen.style.display  = "none";
-        btnClose.style.display = "block";
-        album.style.backgroundColor = "#323232";
-      }
-      else{
-        console.log("フルスクリーン終了");
-        btnClose.style.display = "none";
-        btnOpen.style.display  = "block";
-        album.style.backgroundColor = "transparent";
-      }
-    });
-  };
-
-  // フルスクリーン開始/終了時のイベント設定
-  function eventFullScreen(callback){
-    document.addEventListener("fullscreenchange", callback, false);
-    document.addEventListener("webkitfullscreenchange", callback, false);
-    document.addEventListener("mozfullscreenchange", callback, false);
-    document.addEventListener("MSFullscreenChange", callback, false);
-  }
-
-  // フルスクリーンが利用できるか
-  function enabledFullScreen(){
-    return(
-      document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen || document.msFullscreenEnabled
-    );
-  }
-
-  // フルスクリーンにする
-  function goFullScreen(element=null){
-    const doc = window.document;
-    const docEl = (element === null)?  doc.documentElement:element;
-    let requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-    requestFullScreen.call(docEl);
-  }
-
-  // フルスクリーンをやめる
-  function cancelFullScreen(){
-    const doc = window.document;
-    const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-    cancelFullScreen.call(doc);
-  }
-
-  // フルスクリーン中のオブジェクトを返却
-  function getFullScreenObject(){
-    const doc = window.document;
-    const objFullScreen = doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement;
-    return(objFullScreen);
-  }
 </script>

@@ -27,6 +27,10 @@
   background-size: cover;
 }
 
+video::-webkit-media-controls-start-playback-button {
+  pointer-events: none;
+}
+
 video::-webkit-media-controls-timeline {
   display: none;
 }
@@ -37,10 +41,11 @@ video::-webkit-media-controls-current-time-display {
 
 video::-webkit-media-controls-play-button {
   display: none;
+  pointer-events: none;
 }
 
-#js-local-stream:checked + video {
-  border: transparent;
+video::-webkit-media-controls-pause-button {
+  pointer-events: none;
 }
 
 #js-remote-streams {
