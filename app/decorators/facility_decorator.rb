@@ -87,4 +87,16 @@ module FacilityDecorator
   def request_count(requests)
     requests.present? ? tag.sup(requests.count) : nil
   end
+
+  def acceptance_requests(user)
+    RequestResident.includes(:user).where(user_id: user).where(facility_id: id).where(req_approval: "request")
+  end
+
+  def newly_numbers(r_ids)
+    r_ids[:resident_ids].map(&:to_i).reject(&:zero?)
+  end
+
+  def resident_name(id)
+    Resident.find(id).name
+  end
 end

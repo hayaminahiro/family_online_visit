@@ -209,3 +209,9 @@ ja:
       dot: "%Y.%m.%d"
       hyphen: "%Y-%m-%d"
     pm: 午後
+  enums:
+    request_resident:
+      req_approval:
+        request: "申請中"
+        approval: "承認済"
+        denial: "否認済"

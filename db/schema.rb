@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 2020_12_02_124408) do
     t.index ["user_id"], name: "index_relatives_on_user_id"
   end
 
+  create_table "request_mails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "facility_id"
+    t.string "title"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_request_mails_on_facility_id"
+  end
+
   create_table "request_residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "facility_id"
@@ -156,6 +165,7 @@ ActiveRecord::Schema.define(version: 2020_12_02_124408) do
   add_foreign_key "memories", "residents"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"
+  add_foreign_key "request_mails", "facilities"
   add_foreign_key "request_residents", "facilities"
   add_foreign_key "request_residents", "users"
   add_foreign_key "reservations", "users"

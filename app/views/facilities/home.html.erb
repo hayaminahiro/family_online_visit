@@ -31,13 +31,8 @@
       <figure class="image is-4by3">
         <%= image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_application.jpg") %>
       </figure>
-      <% if @requests.present? && @requests.req_approval == "申請中" %>
-        <p><%= link_to "利用者登録は #{@requests.req_approval} です", "#", class: "btn-shine", id: "disabled-btn" %></p>
-      <% elsif @requests.present? %>
-        <p><%= link_to "利用者登録は #{@requests.req_approval} です", new_request_resident_path(facility_id: @facility), class: "btn-shine" %></p>
-      <% else %>
-        <p><%= link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: @facility), class: "btn-shine" %></p>
-      <% end %>
+      <p><%= link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: @facility), class: "btn-shine" unless @request %></p>
+      <%= @request&.approval_link(@facility) %>
     </div>
   </div>
 
@@ -72,7 +67,7 @@
 </div>
 
 
-<div class="about-title has-text-centered">Memu</div>
+<div class="about-title has-text-centered">Menu</div>
 
 <div class="columns .is-variable is-0" style="margin-top: 20px;">
   <div class="column is-3">
@@ -92,7 +87,7 @@
             <span>
               面会予約
             </span>
-          <% end %>  
+          <% end %>
         </div><br>
         <div class="menu-content">
           オンラインでの面会予約の日時の登録、編集、削除ができます。
@@ -118,7 +113,7 @@
             <span>
               ビデオ通話
             </span>
-          <% end %>  
+          <% end %>
         </div><br>
         <div class="menu-content">
           施設ご利用者様とのビデオ通話をすることができます。
@@ -144,7 +139,7 @@
             <span>
               写真・動画
             </span>
-          <% end %>  
+          <% end %>
         </div><br>
         <div class="menu-content">
           ご利用者様の写真の閲覧、動画の視聴をすることができます。
