@@ -64,7 +64,9 @@
                 </div>
                 <div class="tag-apply">
                   <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
-                    <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% if b.object.facility_id == current_facility.id  %>
+                      <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="propriety">
