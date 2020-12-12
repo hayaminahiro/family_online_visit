@@ -35,18 +35,18 @@
                   <th>紐付け</th>
                   <td>
                     <p class="is-size-7">（登録済み入居者）</p>
-                    <% if request.user.residents == [] %>
-                      <p class="registered-name">現在登録されている利用者はいません</p><br>
-                    <% else %>
+                    <% if request.user.residents.map(&:facility_id).include?(current_facility.id) %>
                       <% request.user.residents.each do |resident| %>
-                        <span class="registered-name"><%= resident.name %></span>
+                        <span class="registered-name"><%= resident.name if resident.facility_id == current_facility.id %></span>
                       <% end %><br><br>
+                    <% else %>
+                      <p class="registered-name">現在登録されている利用者はいません</p><br>
                     <% end %>
 
                     <p>↓↓</p>
 
                     <p class="is-size-7">（承認後の入居者）</p>
-                    <% if current_facility.newly_numbers(r_ids).count == request.user.residents.count %>
+                    <% if current_facility.newly_numbers(r_ids).count == request.user.residents.where(facility_id: current_facility.id).count %>
                       <p class="c-red has-text-weight-bold">申請を保留します</p>
                     <% else %>
                       <% current_facility.newly_numbers(r_ids).each do |r_id| %>
