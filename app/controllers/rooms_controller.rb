@@ -30,15 +30,15 @@ class RoomsController < ApplicationController
 
   private
 
-    def room_params
-      params.require(:room).permit(:room_name, :facility_id)
-    end
+  def room_params
+    params.require(:room).permit(:room_name, :facility_id)
+  end
 
-    def set_room
-      @room = Room.find(params[:id])
-    end
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 end
