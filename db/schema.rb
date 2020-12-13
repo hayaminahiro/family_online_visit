@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_074039) do
+ActiveRecord::Schema.define(version: 2020_12_13_153129) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -24,7 +24,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "reservation_id"
     t.index ["email"], name: "index_facilities_on_email", unique: true
+    t.index ["reservation_id"], name: "index_facilities_on_reservation_id"
     t.index ["reset_password_token"], name: "index_facilities_on_reset_password_token", unique: true
   end
 
@@ -107,6 +109,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "facility_id"
+    t.index ["facility_id"], name: "index_reservations_on_facility_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -117,6 +121,16 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_residents_on_facility_id"
+  end
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "room_name"
+    t.bigint "user_id"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_rooms_on_facility_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -151,6 +165,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "facilities", "reservations"
   add_foreign_key "facility_users", "facilities"
   add_foreign_key "facility_users", "users"
   add_foreign_key "information", "facilities"
@@ -160,6 +175,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
   add_foreign_key "request_mails", "facilities"
   add_foreign_key "request_residents", "facilities"
   add_foreign_key "request_residents", "users"
+  add_foreign_key "reservations", "facilities"
   add_foreign_key "reservations", "users"
   add_foreign_key "residents", "facilities"
+  add_foreign_key "rooms", "facilities"
+  add_foreign_key "rooms", "users"
 end
