@@ -1,0 +1,19 @@
+<div class="preview-container">
+  <p class="preview-p">差出人:</p>
+  <p style="border: solid 1px #dbdbdb;
+      border-radius: 4px; padding: 10px;"><%= current_facility.facility_name %><span>[<%= ENV['USER_NAME'] %>]</span></p>
+  <p class="preview-p">宛先:</p>
+  <p style="border: solid 1px #dbdbdb;
+    border-radius: 4px; padding: 10px;"><%= @user.name %><span>[<%= @user.email %>]</span></p>
+  <%= form_with(model: @request_mail, url: request_mail_create_path, local: true) do |f| %>
+    <p class="preview-p">件名:</p>
+    <%= f.text_field :title, value: @message.subject, class: "input title-p" %>
+
+    <p class="preview-p">本文:</p>
+    <%= f.text_area :message, value: @message.message.body.raw_source, class: "input message-p" %>
+    <%= f.hidden_field :facility_id, :value => params[:denial] %>
+
+    <%= f.submit "メールを送信する", data: { confirm: "この内容で送信してよろしいですか？" },
+        class: "button is-primary is-light is-midium has-text-weight-bold", id: "preview-submit" %>
+  <% end %>
+</div>

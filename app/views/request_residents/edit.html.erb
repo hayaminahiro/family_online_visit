@@ -2,20 +2,11 @@
   <div class="req-new-container">
     <div class="req-new-section">
       <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
-      <% if @request_resident&.req_approval == "approval" && @request_resident.facility_id == params[:facility_id].to_i %>
-        <p>※利用者登録は<span class="c-red"><%= @request_resident.req_approval_i18n %></span>です。追加申請の際はご入力ください。</p>
-      <% end %>
-      <%= form_with(model: @request, url: request_residents_path(facility_id: params[:facility_id]), local: true) do |f| %>
-      <%= render "users/shared/error_messages", resource: @request %>
+      <p>※利用者登録は<span class="c-red"><%= @request.req_approval_i18n %></span>です。</p>
+      <%= form_with(model: @request, url: request_resident_path, local: true) do |f| %>
+        <%= render "users/shared/error_messages", resource: @request %>
         <div class="card">
           <table class="table is-narrow user-edit-table is-bordered" id="req-table">
-            <tfoot>
-              <tr>
-                <th><abbr title="Position"></abbr></th>
-                <td><%= f.submit "申請", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
-                </td>
-              </tr>
-            </tfoot>
             <tbody>
               <tr>
                 <th>利用者名</th>
@@ -34,13 +25,26 @@
                 <td>
                   <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
                   <%= f.hidden_field :req_approval %>
-                  <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
                 </td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td><%= f.submit "申請内容を変更する", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       <% end %>
+      <div>
+        <p class="req-edit-cancel-btn">
+          <%= link_to request_resident_path(@request), method: :delete, data: { confirm: "この申請をキャンセルしますか？" }, class:"" do %>
+            <span class="c-red">申請をキャンセルする</span>
+          <% end %>
+        </p>
+      </div>
     </div>
   </div>
 </div>
