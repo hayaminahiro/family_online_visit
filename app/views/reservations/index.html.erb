@@ -6,7 +6,11 @@
 
       <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
         <%= l(date, format: :short) %>
-        <button id=<%= date %>>ボタン</button>
+        <button id=<%= date %>>予約</button>
+
+        <% @reservations.each do |reservation| %>
+          <%= link_to "予約済", reservation_path(reservation) if reservation.reservation_time == date %>
+        <% end %>
 
         <!-- 予約時間 モーダル表示 -->
         <div class="modal" id=<%= l(date, format: :short) %>>
@@ -16,48 +20,52 @@
               <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">予約画面</p>
               <button class="delete" aria-label="close" id="close"></button>
             </header>
-              <section class="modal-card-body">
-                <div class="field">
-                  <p class="title-in-modal"><%= date %></p>
-                  <p class="modal-description">予約時間を選択して下さい。</p>
-                </div>
-                <div class="field">
-                  <p class=" js-contents--edit-button">
+            <section class="modal-card-body">
+              <div class="field">
+                <p class="title-in-modal"><%= date %></p>
+                <p class="modal-description">予約時間を選択して下さい。</p>
+              </div>
+              <div class="field">
+                <p class=" js-contents--edit-button">
 
-                    <%= link_to new_reservation_path(date: date, time: "1000"), class:"button is-info" do %>
-                      <i class="far fa-clock"></i>&nbsp;10:00
-                    <% end %>
-                    <%= link_to new_reservation_path(date: date, time: "1100"), class:"button is-info" do %>
-                      <i class="far fa-clock"></i>&nbsp;11:00
-                    <% end %>
-                    <%= link_to new_reservation_path(date: date, time: "1400"), class:"button is-info" do %>
-                      <i class="far fa-clock"></i>&nbsp;14:00
-                    <% end %>
-                    <%= link_to new_reservation_path(date: date, time: "1500"), class:"button is-info" do %>
-                      <i class="far fa-clock"></i>&nbsp;15:00
-                    <% end %>
-                  </p>
+                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 10:00:00 +0900"), class:"button is-info" do %>
+                    <i class="far fa-clock"></i>&nbsp;10:00
+                  <% end %>
+                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 11:00:00 +0900"), class:"button is-info" do %>
+                    <i class="far fa-clock"></i>&nbsp;11:00
+                  <% end %>
+                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 14:00:00 +0900"), class:"button is-info" do %>
+                    <i class="far fa-clock"></i>&nbsp;14:00
+                  <% end %>
+                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 15:00:00 +0900"), class:"button is-info" do %>
+                    <i class="far fa-clock"></i>&nbsp;15:00
+                  <% end %>
+                </p>
+              </div>
+            </section>
+            <footer class="modal-card-foot">
+              <p>ーーー</p>
+            </footer>
 
-                </div>
-              </section>
-              <footer class="modal-card-foot">
-                <%= link_to "予約確認画面へ", new_reservation_path, class: "fa button img-update-btn" %>
-              </footer>
-              <script>
-                $(document).ready(function () {
-                  $("#<%= date %>").on("click", function () {
-                    $("div#<%= l(date, format: :short) %>").addClass("is-active");
-                  })
+            <script>
+              $(document).ready(function () {
+                $("#<%= date %>").on("click", function () {
+                  $("div#<%= l(date, format: :short) %>").addClass("is-active");
+                })
 
-                  $("#close, div.modal-background").on("click", function () {
-                    $("div#<%= l(date, format: :short) %>").removeClass("is-active");
-                  })
-                });
-              </script>
+                $("#close, div.modal-background").on("click", function () {
+                  $("div#<%= l(date, format: :short) %>").removeClass("is-active");
+                })
+              });
+            </script>
 
           </div>
         </div>
       <% end %>
     </div>
+    <p>予約一覧</p>
+    <% @reservations.each do |reservation| %>
+      <%= reservation.reservation_time %>
+    <% end %>
   </div>
 </div>

@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_160505) do
     t.date "reservation_time"
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_reservations_on_user_id"

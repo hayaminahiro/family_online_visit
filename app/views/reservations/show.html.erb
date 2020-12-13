@@ -1,0 +1,19 @@
+<h1>予約内容</h1>
+
+<p>ご家族名前</p>
+<%= current_user.name %>
+
+<p>メールアドレス</p>
+<%= current_user.email %>
+
+<p>面会したい利用者</p>
+<% current_user.residents.each do |resident| %>
+  <%= resident.name %>
+<% end %>
+
+<p>予約日</p>
+<%= @reservation.reservation_time %>
+
+<p>予約時間</p>
+<%= @reservation.started_at %>
+

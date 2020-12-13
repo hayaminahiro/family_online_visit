@@ -1,1 +1,38 @@
-<h1>予約取得画面</h1>
+<%= form_with(model: @reservation, url: reservations_path, method: :post, local: true) do |f| %>
+  <%= render partial: 'shared/error_messages', locals: { obj: @reservation } %>
+
+  <h1>予約情報確認</h1>
+
+  <p>ご家族名前</p>
+  <%= current_user.name %>
+
+  <p>メールアドレス</p>
+  <%= current_user.email %>
+
+  <p>面会したい利用者</p>
+  <% current_user.residents.each do |resident| %>
+    <%= f.check_box :column, {multiple: true}, resident, nil %>
+    <%= resident.name %>
+  <% end %>
+
+
+
+
+
+
+  <p>予約日時</p>
+  <%= params[:date] %>
+
+  <p>予約時間</p>
+  <%= params[:time] %>
+
+
+
+  <%= f.hidden_field :reservation_time, :value => params[:date] %>
+
+  <%= f.hidden_field :started_at, :value => params[:time] %>
+
+  <%= f.text_area :comment, :placeholder => "\uf303 自由記入欄", class: "fa textarea" %>
+
+  <%= f.submit "予約を決定する", class: "message-btn" %>
+<% end %>

@@ -6,6 +6,7 @@ class CreateReservations < ActiveRecord::Migration[5.2]
       t.date :reservation_time
       t.datetime :started_at
       t.datetime :finished_at
+      t.text :comment
       t.timestamps
     end
   end
