@@ -3,7 +3,7 @@
     <div class="relative-section">
       <nav class="relative-level">
         <div class="new-c-container">
-          <%= form_with(url: relative_path(@request), method: :get, local: true) do |f| %>
+          <%= form_with(url: edit_relative_path(@request), method: :get, local: true) do |f| %>
             <div class="field is-grouped is-grouped-right">
               <div class="control has-icons-left">
                 <%= f.text_field :search, :placeholder => "利用者名を入力..", class: "input is-rounded" %>
