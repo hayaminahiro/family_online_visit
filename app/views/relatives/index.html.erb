@@ -36,7 +36,7 @@
       <% @applied_ids.group_by(&:user_id).each do |applied_id, applied| %>
         <tr>
           <td>
-          <%= l(applied[0].created_at, format: :dot) %>
+          <%= l(applied[0].created_at, format: :long) %>
           </td>
           <td>
             <p><%= applied[0].user.name %></p>

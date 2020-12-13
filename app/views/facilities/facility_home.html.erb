@@ -49,7 +49,7 @@
                   <% @request_residents.each do |request_resident| %>
                   <% @request_user = User.find(request_resident.user_id) %>
                     <tr>
-                      <td><%= request_resident.created_at %></td>
+                      <td><%= l(request_resident.created_at, format: :long) %></td>
                       <td><%= @request_user.name %></td>
                       <td>
                         <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>

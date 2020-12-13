@@ -1,6 +1,7 @@
 <div class="relative-confirm-body">
   <% @request_residents.each do |user, r_ids| %>
     <% current_facility.acceptance_requests(user).each do |request| %>
+      <div class="request-time"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
       <div class="card">
         <div class="relative-new-container">
           <div class="relative-confirm-section">

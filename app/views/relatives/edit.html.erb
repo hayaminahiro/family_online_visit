@@ -18,6 +18,8 @@
           <% end %>
         </div>
       </nav>
+
+      <div class="request-time"><span>申請日</span><%= l(@request.created_at, format: :long) %></div>
       <div class="card">
         <table class="table is-narrow user-edit-table is-bordered mb-30" id="relative-table">
           <tbody>

@@ -16,11 +16,10 @@
   <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
     <% @requests.each do |request| %>
       <% if request.req_approval == "request" %>
+        <div class="request-time"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
         <div class="card">
           <div class="relative-new-container">
             <div class="relative-new-section">
-            <nav class="level" id="level-bottom">
-            </nav>
               <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
                 <tbody>
                   <tr>
