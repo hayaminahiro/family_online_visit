@@ -47,7 +47,7 @@
                     <p>↓↓</p>
 
                     <p class="is-size-7">（承認後の入居者）</p>
-                    <% if current_facility.newly_numbers(r_ids).count == request.user.residents.where(facility_id: current_facility.id).count %>
+                    <% if current_facility.newly_numbers(r_ids).sort == request.user.resident_ids.sort %>
                       <p class="c-red has-text-weight-bold">申請を保留します</p>
                     <% else %>
                       <% current_facility.newly_numbers(r_ids).each do |r_id| %>
