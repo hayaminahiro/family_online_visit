@@ -64,6 +64,12 @@
                     <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
                   <% end %><br>
                 </div>
+                <div class="d-none">
+                  <%= f.collection_check_boxes :resident_ids, @request.exclude_ids, :id, :name do |b| %>
+                    <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                  <% end %>
+                </div>
+
                 <div class="tag-apply">
                   <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
                     <% if b.object.facility_id == current_facility.id  %>
