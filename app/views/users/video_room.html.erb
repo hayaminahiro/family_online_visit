@@ -11,7 +11,7 @@
   </div>  
 </section>
 
-<section class="section">
+<section class="section" data-turbolinks="false">
   <div class="container">
     <div class="room">
       <div class="has-text-centered columns is-gapless">
@@ -21,8 +21,6 @@
         </div>
         <div class="column is-half" id="remote-video">
           <div class="remote-streams" id="js-remote-streams"></div>
-          <button id="btn-open" class="btn button full-btn" width="64" height="64"><i class="fas fa-expand"></i> フルスクリーン</button>
-          <button id="btn-close" class="btn button small-btn" width="64" height="64"><i class="fas fa-expand fa-lg"></i></button>
         </div>
       </div>
       <div class="has-text-centered" id="input-key"> 
@@ -35,6 +33,11 @@
       </div><br>
       <div class="has-text-centered">
         <pre class="messages" id="js-messages"></pre>
+        <% if user_signed_in? %>
+          <input class="input" type="hidden" name="name" value="<%= current_user.name %>" id="js-local-name">
+        <% elsif facility_signed_in? %>
+          <input class="input" type="hidden" name="name" value="<%= current_facility.facility_name %>" id="js-local-name">
+        <% end %>
         <input class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text">
         <p class="has-text-right has-text-weight-semibold info-message" >
           *メッセージを送信することができます。
@@ -55,22 +58,19 @@
         <div id="timer" class="has-text-weight-semibold">残り30分</div>
       </div>
       <div class="button" id="buttonBox">
-          <button id="start" class="has-text-weight-semibold">
-            面会開始
-          </button>
+        <button id="start" class="has-text-weight-semibold">
+          <span>面会開始</span>
+        </button>
       </div>
     </div><br>
     <p class="meta" id="js-meta"></p>
   </div>
 </section>
 
-<script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 
 <script>
   const Peer = window.Peer;
-  const btnOpen  = document.querySelector("#btn-open");
-  const btnClose = document.querySelector("#btn-close");
 
   (async function main() {
     const localVideo = document.getElementById('js-local-stream');
@@ -79,6 +79,7 @@
     const remoteVideos = document.getElementById('js-remote-streams');
     const roomId = document.getElementById('js-room-id');
     const roomMode = document.getElementById('js-room-mode');
+    const localName = document.getElementById('js-local-name')
     const localText = document.getElementById('js-local-text');
     const sendTrigger = document.getElementById('js-send-trigger');
     const messages = document.getElementById('js-messages');
@@ -152,7 +153,8 @@
 
       room.on('data', ({ data, src }) => {
         // Show a message sent to the room and who sent
-        messages.textContent += `${src}: ${data}\n`;
+        messages.textContent += `${data[0]}: ${data[1]}\n`;
+        messages.textContent.fontcolor('red');
       });
   
       // for closing room members
@@ -182,8 +184,8 @@
   
       function onClickSend() {
         // Send message to all of the peers in the room via websocket
-        room.send(localText.value);
-        messages.textContent += `${peer.id}: ${localText.value}\n`;
+        room.send([localName.value, localText.value]);
+        messages.textContent += `${localName.value}: ${localText.value}\n`;
         localText.value = '';
       }
     });
@@ -213,9 +215,6 @@
       document.getElementById('buttonBox').classList.remove('button');
       document.getElementById('buttonBox').classList.add('buttonbutton');
       if (document.getElementById('start').innerHTML === '面会中') {
-        document.getElementById('start').style.background = '#4682B4';
-        document.getElementById('start').style.color = 'white';
-        document.getElementById('start').style.fontSize = '17px';
         document.getElementById('start').disabled = true;
       }
   } else {
@@ -225,9 +224,6 @@
       document.getElementById('buttonBox').classList.remove('buttonbutton');
       document.getElementById('buttonBox').classList.add('button');
       if (document.getElementById('start').innerHTML === '面会中') {
-        document.getElementById('start').style.background = '#4682B4';
-        document.getElementById('start').style.color = 'white';
-        document.getElementById('start').style.fontSize = '17px';
         document.getElementById('start').disabled = true;
       }
     }

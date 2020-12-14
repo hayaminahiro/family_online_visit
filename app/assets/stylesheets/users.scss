@@ -59,30 +59,6 @@ video::-webkit-media-controls-pause-button {
   }
 }
 
-//フルスクリーンボタン
-#btn-open {
-  text-align: right;
-  display: none;
-  color: #fff;
-  background-color: #323232;
-}
-
-.full-btn {
-  margin-left: auto;
-}
-
-#btn-close {
-  text-align: right;
-  display: none;
-  color: #fff;
-  border: none;
-  background-color: #323232;
-}
-
-.small-btn {
-  margin-left: auto;
-}
-
 //Room Name記入欄
 #input-key {
   
@@ -112,6 +88,7 @@ video::-webkit-media-controls-pause-button {
 
 //戻るボタン
 #return-btn {
+  margin-top: 20px;
   font-size: 22px;
 }
 
@@ -124,6 +101,40 @@ video::-webkit-media-controls-pause-button {
 //タイマー
 #timer {
   font-size: 25px;
+}
+
+//タイマーボタン
+#buttonBox {
+  background-color: #2A4462;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: none;
+  padding: 0px;
+  margin-left: auto;
+
+  button#start {
+    background-color: #01D1B2;
+    font-size: 17px;
+    color: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    padding: 0px;
+    outline: none;
+    overflow: hidden;
+  }
+
+  button#start span {
+    display:inline-block;
+    transition: .5s;
+  }
+
+  button#start:hover span {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+  }
 }
 
 //テレビ電話のシステム表示
