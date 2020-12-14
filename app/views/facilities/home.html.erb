@@ -80,7 +80,7 @@
       </div>
       <div class="card-content has-text-centered menu-card">
         <div class="is-size-5">
-          <%= link_to reservations_path, class: "button menu-btn is-rounded is-warning is-outlined" do %>
+          <%= link_to facility_reservations_path(facility_id: @facility.id), class: "button menu-btn is-rounded is-warning is-outlined" do %>
             <span class="icon">
               <i class="far fa-calendar-alt"></i>&nbsp;
             </span>

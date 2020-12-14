@@ -6,6 +6,7 @@ class ReservationsController < ApplicationController
 
   def index
     @reservations = Reservation.all
+    @facility = Facility.find(params[:facility_id])
   end
 
   def show
@@ -19,9 +20,10 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = current_user.id
+    @reservation.facility_id = params[:facility_id].to_i
     if @reservation.save
       # raise
-      redirect_to reservations_url, notice: "予約決定しました。"
+      redirect_to facility_reservations_url, notice: "#{@reservation.reservation_time}の#{@reservation.started_at}で予約決定しました。"
     else
       render :new
     end

@@ -1,4 +1,4 @@
-<%= form_with(model: @reservation, url: reservations_path, method: :post, local: true) do |f| %>
+<%= form_with(model: @reservation, url: facility_reservations_path, method: :post, local: true) do |f| %>
   <%= render partial: 'shared/error_messages', locals: { obj: @reservation } %>
 
   <h1>予約情報確認</h1>
@@ -27,7 +27,7 @@
   <%= params[:time] %>
 
 
-
+  <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
   <%= f.hidden_field :reservation_time, :value => params[:date] %>
 
   <%= f.hidden_field :started_at, :value => params[:time] %>

@@ -9,7 +9,9 @@
         <button id=<%= date %>>予約</button>
 
         <% @reservations.each do |reservation| %>
-          <%= link_to "予約済", reservation_path(reservation) if reservation.reservation_time == date %>
+          <% if reservation.facility_id == @facility.id %>
+            <%= link_to "予約済", facility_reservation_path(@facility, reservation) if reservation.reservation_time == date %>
+          <% end %>
         <% end %>
 
         <!-- 予約時間 モーダル表示 -->
@@ -28,18 +30,19 @@
               <div class="field">
                 <p class=" js-contents--edit-button">
 
-                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 10:00:00 +0900"), class:"button is-info" do %>
+                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 10:00:00 +0900"), class:"button is-info" do %>
                     <i class="far fa-clock"></i>&nbsp;10:00
                   <% end %>
-                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 11:00:00 +0900"), class:"button is-info" do %>
+                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 11:00:00 +0900"), class:"button is-info" do %>
                     <i class="far fa-clock"></i>&nbsp;11:00
                   <% end %>
-                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 14:00:00 +0900"), class:"button is-info" do %>
+                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 14:00:00 +0900"), class:"button is-info" do %>
                     <i class="far fa-clock"></i>&nbsp;14:00
                   <% end %>
-                  <%= link_to new_reservation_path(date: date, time: "2000-01-01 15:00:00 +0900"), class:"button is-info" do %>
+                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 15:00:00 +0900"), class:"button is-info" do %>
                     <i class="far fa-clock"></i>&nbsp;15:00
                   <% end %>
+
                 </p>
               </div>
             </section>
