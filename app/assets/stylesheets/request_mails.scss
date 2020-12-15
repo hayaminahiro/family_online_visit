@@ -1,0 +1,49 @@
+// Place all the styles related to the request_mails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.preview-container{
+  width: 55%;
+  margin: auto;
+
+  .preview-p{
+    padding: 20px 10px 5px 10px;
+    font-size: 20px;
+    color: gray;
+    font-size: 15px;
+  }
+
+  .title-p{
+    height: 50px;
+    display: block;
+  }
+
+  .message-p{
+    height: 600px;
+    display: block;
+  }
+
+  #preview-submit{
+    display: block;
+    text-align: center;
+    width: 55%;
+    margin: 15px auto;
+  }
+
+  span{
+    font-size: 13px;
+    margin-left: 10px;
+    font-weight: 300;
+  }
+}
+
+//タブレット
+@media screen and (max-width: 1000px) {
+  .preview-container {
+    width: 75%;
+
+    #preview-submit {
+      margin: 21px auto 50px auto;
+    }
+  }
+}

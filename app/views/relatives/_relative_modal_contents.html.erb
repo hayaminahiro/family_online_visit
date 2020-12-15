@@ -1,0 +1,49 @@
+<div class="modal" id="<%= applied_id %>" >
+  <div class="modal-background"></div>
+  <div class="modal-card" id="relative-modal-width">
+    <header class="modal-card-head" id="relative-modal-backcolor">
+      <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-4"><%= applied.user.name %>様の申請一覧</p>
+      <button class="delete" aria-label="close" id="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="form-group col-sm-5">
+
+      <div class="relative-modal-title">
+        <p class="w-15">日付</p>
+        <p class="w-15">承認/否認</p>
+        <p class="w-30">入居者名</p>
+        <p class="w-15">電話番号</p>
+        <p class="w-30">住所</p>
+      </div>
+
+      <% applied.user.request_residents.order(id: :desc).each do |request| %>
+        <div class="relative-modal-contents">
+          <span class="w-15"><%= l(request.created_at, format: :dot) %></span>
+          <span class="w-15"><%= request.status %></span>
+          <span class="w-30"><%= simple_format(request.req_name) %></span>
+          <span class="w-15"><%= simple_format(request.req_phone) %></span>
+          <span class="w-30"><%= simple_format(request.req_address) %></span><br>
+        </div>
+      <% end %>
+
+      </div><br>
+      <div class="has-text-centered">
+        <button type="button" class="button is-black is-outlined is-small is-rounded has-text-weight-semibold" aria-label="close" id="close">
+        閉じる
+        </button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("#<%= applied.user.name %>").on("click", function() {
+      $("div#<%= applied_id %>").addClass("is-active");
+    })
+
+    $("#close, div.modal-background").on("click", function() {
+      $("div#<%= applied_id %>").removeClass("is-active");
+    })
+  });
+</script>
