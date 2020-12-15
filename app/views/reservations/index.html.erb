@@ -6,11 +6,19 @@
 
       <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
         <%= l(date, format: :short) %>
-        <button id=<%= date %>>予約</button>
+
+
+
+<!--        <button id=<%#= date %>>予約</button><br>-->
+        <button class="button is-link is-light" id=<%= date %>>
+          予約可
+        </button>
 
         <% @reservations.each do |reservation| %>
           <% if reservation.facility_id == @facility.id %>
+
             <%= link_to "予約済", facility_reservation_path(@facility, reservation) if reservation.reservation_time == date %>
+
           <% end %>
         <% end %>
 
@@ -30,17 +38,25 @@
               <div class="field">
                 <p class=" js-contents--edit-button">
 
-                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 10:00:00 +0900"), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;10:00
+                  <% if @reservations.where(reservation_time: date).where(started_at: "2000-01-01 10:00:00 +0900").count < 1 %>
+                    <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 10:00:00 +0900"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;10:00
+                    <% end %>
                   <% end %>
-                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 11:00:00 +0900"), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;11:00
+                  <% if @reservations.where(reservation_time: date).where(started_at: "2000-01-01 11:00:00 +0900").count < 1 %>
+                    <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 11:00:00 +0900"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;11:00
+                    <% end %>
                   <% end %>
-                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 14:00:00 +0900"), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;14:00
+                  <% if @reservations.where(reservation_time: date).where(started_at: "2000-01-01 14:00:00 +0900").count < 1 %>
+                    <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 14:00:00 +0900"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;14:00
+                    <% end %>
                   <% end %>
-                  <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 15:00:00 +0900"), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;15:00
+                  <% if @reservations.where(reservation_time: date).where(started_at: "2000-01-01 15:00:00 +0900").count < 1 %>
+                    <%= link_to new_facility_reservation_path(date: date, time: "2000-01-01 15:00:00 +0900"), class:"button is-info" do %>
+                      <i class="far fa-clock"></i>&nbsp;15:00
+                    <% end %>
                   <% end %>
 
                 </p>
