@@ -16,11 +16,10 @@
   <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
     <% @requests.each do |request| %>
       <% if request.req_approval == "request" %>
+        <div class="request-time"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
         <div class="card">
           <div class="relative-new-container">
             <div class="relative-new-section">
-            <nav class="level" id="level-bottom">
-            </nav>
               <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
                 <tbody>
                   <tr>
@@ -66,16 +65,24 @@
                       <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
 
                       <%= f.fields_for "request_residents[]", request.user do |i| %>
-                      <div class="new-checkbox">
-                        <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                          <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
-                        <% end %><br>
-                      </div>
-                      <div class="tag-apply">
-                        <%= i.collection_check_boxes :resident_ids, request.user.residents, :id, :name, class: 'd-none' do |b| %>
-                          <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
-                        <% end %>
-                      </div>
+                        <div class="new-checkbox">
+                          <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                            <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                          <% end %><br>
+                        </div>
+                        <div class="d-none">
+                          <%= i.collection_check_boxes :resident_ids, request.exclude_ids, :id, :name do |b| %>
+                            <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                          <% end %>
+                        </div>
+
+                        <div class="tag-apply">
+                          <%= i.collection_check_boxes :resident_ids, request.user.residents, :id, :name, class: 'd-none' do |b| %>
+                            <% if b.object.facility_id == current_facility.id  %>
+                              <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                            <% end %>
+                          <% end %>
+                        </div>
                       <% end %>
                     </td>
                   </tr>
