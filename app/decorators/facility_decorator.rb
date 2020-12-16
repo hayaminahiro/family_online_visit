@@ -96,7 +96,8 @@ module FacilityDecorator
     r_ids[:resident_ids].map(&:to_i).reject(&:zero?)
   end
 
-  def resident_name(id)
-    Resident.find(id).name
+  def resident_name(resident_id)
+    resident = Resident.find(resident_id)
+    resident.name if resident.facility_id == id
   end
 end
