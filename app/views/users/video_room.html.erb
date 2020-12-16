@@ -31,14 +31,14 @@
         <button id="js-join-trigger" class="button is-focused is-success is-rounded has-text-weight-semibold">入室する</button>&emsp;
         <button id="js-leave-trigger" class="button is-focused is-danger is-rounded has-text-weight-semibold">退室する</button> 
       </div><br>
-      <div class="has-text-centered">
+      <div class="has-text-centered messages-layout">
         <pre class="messages" id="js-messages"></pre>
         <% if user_signed_in? %>
           <input class="input" type="hidden" name="name" value="<%= current_user.name %>" id="js-local-name">
         <% elsif facility_signed_in? %>
           <input class="input" type="hidden" name="name" value="<%= current_facility.facility_name %>" id="js-local-name">
         <% end %>
-        <input class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text">
+        <textarea class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text"></textarea>
         <p class="has-text-right has-text-weight-semibold info-message" >
           *メッセージを送信することができます。
         </p>
@@ -132,10 +132,10 @@
       });
   
       room.once('open', () => {
-        messages.textContent += '=== 入室しました ===\n';
+        messages.innerHTML += '<div class="local-start"><span>入室しました</span></div>';
       });
       room.on('peerJoin', peerId => {
-        messages.textContent += `=== 相手が入室しました ===\n`;
+        messages.innerHTML += `<div class="remote-start"><span><strong>${localName.value}</strong> が入室しました</span></div>`;
       });
   
       // Render remote stream for new peer join in the room
@@ -153,8 +153,7 @@
 
       room.on('data', ({ data, src }) => {
         // Show a message sent to the room and who sent
-        messages.textContent += `${data[0]}: ${data[1]}\n`;
-        messages.textContent.fontcolor('red');
+        messages.innerHTML += `<div class="remote-text"><span>${data[0]}</span><p>${data[1]}</p></div>`;
       });
   
       // for closing room members
@@ -165,13 +164,13 @@
         remoteVideo.srcObject.getTracks().forEach(track => track.stop());
         remoteVideo.srcObject = null;
         remoteVideo.remove();
-        messages.textContent += `=== 面会が終了しました ===\n`;
+        messages.innerHTML += `<div class="chat-end"><span>面会が終了しました</span></div>\n`;
       });
   
       // for closing myself
       room.once('close', () => {
         sendTrigger.removeEventListener('click', onClickSend);
-        messages.textContent += '== 退室しました ===\n';
+        messages.innerHTML += `<div class="room-end"><span><strong>${localName.value}</strong> が退室しました</span></div>`;
         Array.from(remoteVideos.children).forEach(remoteVideo => {
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
@@ -185,7 +184,7 @@
       function onClickSend() {
         // Send message to all of the peers in the room via websocket
         room.send([localName.value, localText.value]);
-        messages.textContent += `${localName.value}: ${localText.value}\n`;
+        messages.innerHTML += `<div class="local-text"><span>${localText.value}\n</span></div>`;
         localText.value = '';
       }
     });

@@ -81,6 +81,149 @@ video::-webkit-media-controls-pause-button {
   font-size: 22px;
 }
 
+//チャット
+.messages-layout {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#js-messages {
+  background-color: #87CEFA;
+  height: 300px;
+
+  .local-start{
+    margin-top: 30px;
+  }
+
+  .local-start span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 7px 13px;
+    border-radius: 25px;
+  }
+
+  .remote-start {
+    margin-top: 25px;
+  }
+
+  .remote-start span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 7px 13px;
+    border-radius: 25px;
+  }
+
+  .room-end {
+    margin-top: 25px;
+  }
+
+  .room-end span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 7px 13px;
+    border-radius: 25px;
+  }
+
+  .chat-end {
+    margin-top: 25px;
+  }
+
+  .chat-end span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 7px 13px;
+    border-radius: 25px;
+  }
+
+  .remote-text {
+    width: 60%;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .remote-text span {
+    margin-right: auto;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    padding: 6px;
+    font-size: 12px;
+    display: inline-block;
+  }
+
+  .remote-text p {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    margin-left: 30px;
+    border-radius: 25px;
+    white-space: pre-wrap;
+    display: inline-block;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+  }
+
+  .remote-text p:after {
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    position: absolute;
+    border-color: rgba(255, 255, 255, 0);
+    border-top-width: 3px;
+    border-bottom-width: 8px;
+    border-left-width: 20px;
+    border-right-width: 20px;
+    margin-top: -10px;
+    border-right-color: #fff;
+    right: 100%;
+    top: 67%;
+  }
+
+  .local-text {
+    width: 60%;
+    margin-right: 3%;
+    margin-left: auto;
+    margin-top: 30px;
+    text-align: right;
+  }
+
+  .local-text span {
+    position: relative;
+    text-align: left;
+    margin-left: auto;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 10px;
+    white-space: pre-wrap;
+    display: inline-block;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+  }
+
+  .local-text span:after {
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    position: absolute;
+    border-color: rgba(255, 255, 255, 0);
+    border-top-width: 3px;
+    border-bottom-width: 8px;
+    border-left-width: 20px;
+    border-right-width: 20px;
+    margin-top: -10px;
+    border-left-color: #fff;
+    left: 100%;
+    top: 67%;
+  }
+}
+
 //送信ボタン
 #js-send-trigger {
   font-size: 22px;
