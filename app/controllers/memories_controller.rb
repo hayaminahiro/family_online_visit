@@ -4,7 +4,9 @@ class MemoriesController < ApplicationController
   before_action :set_memory, only: %i[show edit update]
   before_action :add_images, only: %i[new edit]
 
-  def index; end
+  def index
+    @image_columns = Memory.image_columns(@memories)
+  end
 
   def show; end
 
