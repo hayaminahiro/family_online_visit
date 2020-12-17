@@ -1,4 +1,4 @@
-<% @memories.each do |m| %>
+<% memories.each do |m| %>
   <div class="card-float card-inline-block">
     <section class="photo-card card-inline-block">
       <%= image_tag m.image0.url, class: "card-photo-size" if m.image0.present? %>
@@ -7,10 +7,10 @@
         <p class="photo-card-text"><%= m.message %></p>
       </div>
       <div class="photo-card-link">
-        <%= link_to resident_memory_path(@resident, m), class:"folder" do %>
+        <%= link_to resident_memory_path(resident, m), class:"folder" do %>
           <i class="fas fa-folder-open fa-3x"></i>
         <% end %>
-        <%= link_to new_resident_memory_path(@resident, add_images: m), class: "folder" do %>
+        <%= link_to new_resident_memory_path(resident, add_images: m), class: "folder" do %>
           <i class="fas fa-folder-plus fa-3x"></i>
         <% end %>
         <p class="photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
@@ -18,4 +18,4 @@
     </section>
   </div>
 <% end %>
-<div class="bottom-control">&nbsp;</div>
+<%# <div class="bottom-control">&nbsp;</div> %>

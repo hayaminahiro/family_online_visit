@@ -1,18 +1,18 @@
-<% @image_columns.each do |image| %>
+<% image_columns.each do |image| %>
   <% if Rails.env.production? %>
     <% memory_id = image.url.split("/")[6].to_i %>
     <% column = image.url.split("/")[5] %>
     <% id_column = image.url.split("/")[6] + s[5] %>
     <% column_id = image.url.split("/")[5] + s[6] %>
     <% url = image.url.split("/")[7] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% memory = memories.find(memory_id) %>
   <% else %>
     <% memory_id = image.url.split("/")[4].to_i %>
     <% column = image.url.split("/")[3] %>
     <% id_column = image.url.split("/")[4] + image.url.split("/")[3] %>
     <% column_id = image.url.split("/")[3] + image.url.split("/")[4] %>
     <% url = image.url.split("/")[5] %>
-    <% @memory = @memories.find(memory_id) %>
+    <% memory = memories.find(memory_id) %>
   <% end %>
   <%= image_tag image.url, class: "img-interval index-photo-size", id: id_column %>
 
@@ -24,8 +24,8 @@
         <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3 title-color">画像データ詳細</p>
         <button class="delete" aria-label="close" id="close"></button>
       </header>
-      <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-        <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
+      <%= form_with(model: memory, url: resident_memory_path(resident, memory), method: :patch, local: true) do |f| %>
+        <%= render partial: 'shared/error_messages', locals: { obj: memory } %>
         <section class="modal-card-body image-position">
           <%= image_tag image.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" %>
           <%#= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
@@ -38,7 +38,7 @@
         </section>
 
         <footer class="modal-card-foot footer-position res-footer">
-          <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+          <%= link_to delete_image_resident_memories_path(resident, memory_id: memory_id, column: column),
                       method: :delete, data: { confirm: "トップ画像(#{url})は削除できません。"}, class: "button is-medium delete-btn" do %>
             <span><i class="far fa-trash-alt"></i></span>
           <% end %>
@@ -103,4 +103,4 @@
   </script>
 <% end %>
 
-<div class="bottom-control">&nbsp;</div>
+<%# <div class="bottom-control">&nbsp;</div> %>
