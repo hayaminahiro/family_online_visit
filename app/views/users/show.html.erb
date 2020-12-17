@@ -113,7 +113,44 @@
       </div>
 
       <div id="Faci" class="content-tab" style="display:none">
-        <p>写真を表示</p>
+        <section class="hero is-medium has-text-centered" id="hero-memory">
+          <div class="main-index">
+            <div class="content">
+              <div class="cp_tab">
+                <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+                <label for="tab1_1" class="tab-font">全ての写真</label>
+                <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+                <label for="tab1_2" class="tab-font">行事ごとの写真</label>
+                <div class="cp_tabpanels">
+                  <div id="first_tab01" class="cp_tabpanel all-render">
+                  <!--全ての写真のタブ-->
+                    <% @residents.each do |resident| %>
+                      <% @image_columns = [] %>
+                      <% resident.memories.each do |m| %>
+                        <% @image_columns << m.image0 if m.image0? %>
+                        <% @image_columns << m.image1 if m.image1? %>
+                        <% @image_columns << m.image2 if m.image2? %>
+                        <% @image_columns << m.image3 if m.image3? %>
+                        <% @image_columns << m.image4 if m.image4? %>
+                        <% @image_columns << m.image5 if m.image5? %>
+                        <% @image_columns << m.image6 if m.image6? %>
+                        <% @image_columns << m.image7 if m.image7? %>
+                      <% end %>
+                      <%= render 'memories/all_images', { image_columns: @image_columns, memories: resident.memories, resident: resident } %>
+                    <% end %>
+                  </div>
+
+                  <!--行事ごとの写真(カード)のタブ-->
+                  <div id="second_tab01" class="cp_tabpanel event-render">
+                    <% @residents.each do |resident| %>
+                      <%= render 'memories/event_card', { memories: resident.memories, resident: resident } %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div id="Resi" class="content-tab" style="display:none">

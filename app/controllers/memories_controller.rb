@@ -57,7 +57,7 @@ class MemoriesController < ApplicationController
   private
 
     def set_resident
-      @resident = current_facility.residents.find(params[:resident_id])
+      @resident = Resident.find(params[:resident_id])
     end
 
     def set_memories

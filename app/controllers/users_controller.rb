@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @informations = Information.where(facility_id: current_user.facilities).where(status: "others")
+    @residents = current_user.residents.includes(:memories)
   end
 
   def edit; end
