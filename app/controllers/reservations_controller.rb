@@ -5,13 +5,14 @@ class ReservationsController < ApplicationController
   # before_action :set_information, only: %i[show edit update destroy]
 
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.all.includes(:facility)
     @facility = Facility.find(params[:facility_id])
-    # raise
   end
 
   def show
     @reservation = Reservation.find(params[:id])
+    @facility = Facility.find(params[:facility_id])
+    # raise
   end
 
   def new
@@ -23,8 +24,8 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
     @reservation.facility_id = params[:facility_id].to_i
     if @reservation.save
-      # raise
-      redirect_to facility_reservations_url, notice: "#{@reservation.reservation_time}の#{@reservation.started_at}で予約決定しました。"
+      redirect_to facility_reservations_url, notice: "
+      #{l(@reservation.reservation_date.to_time, format: :date)}/#{ l(@reservation.started_at.to_time, format: :time)}~で予約決定しました。"
     else
       render :new
     end
@@ -33,7 +34,8 @@ class ReservationsController < ApplicationController
   private
 
     def reservation_params
-      params.require(:reservation).permit(:calendar_day, :reservation_time, :started_at, :finished_at, :comment)
+      params.require(:reservation).permit(:calendar_day, :reservation_date, :started_at, :finished_at, :comment,
+                                          :reservation_user, :reservation_email, reservation_residents: [])
     end
 
     def set_reservation

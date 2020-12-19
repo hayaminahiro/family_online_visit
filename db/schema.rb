@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_153129) do
+ActiveRecord::Schema.define(version: 2020_12_15_154725) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -101,13 +101,16 @@ ActiveRecord::Schema.define(version: 2020_12_13_153129) do
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.date "calendar_day"
-    t.date "reservation_time"
+    t.date "reservation_date"
     t.datetime "started_at"
     t.datetime "finished_at"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "facility_id"
+    t.string "reservation_user"
+    t.string "reservation_email"
+    t.string "reservation_residents"
     t.index ["facility_id"], name: "index_reservations_on_facility_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

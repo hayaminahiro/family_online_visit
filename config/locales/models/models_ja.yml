@@ -41,7 +41,8 @@ ja:
           charge_worker: 担当職員
         reservation:
           calendar_day: カレンダー表示
-          reservation_time: 予約日
+          reservation_date: 予約日
+          reservation_residents: 面会希望利用者
           started_at: 開始時間
           finished_at: 終了時間
         comment:

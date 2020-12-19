@@ -1,19 +1,22 @@
-<h1>予約内容</h1>
+<h1>【予約内容】</h1>
 
-<p>ご家族名前</p>
-<%= current_user.name %>
+<p>【ご家族様お名前】</p>
+<%= @reservation.reservation_user %>
 
-<p>メールアドレス</p>
-<%= current_user.email %>
+<p>【メールアドレス】</p>
+<%= @reservation.reservation_email %>
 
-<p>面会したい利用者</p>
-<% current_user.residents.each do |resident| %>
-  <%= resident.name %>
+<p>【面会予定ご利用者様】</p>
+
+<% eval(@reservation.reservation_residents).each do |resident| %>
+  <%= resident %><br>
 <% end %>
 
-<p>予約日</p>
-<%= @reservation.reservation_time %>
+<p>【予約日】</p>
+<%= l(@reservation.reservation_date.to_time, format: :date) %>
 
-<p>予約時間</p>
-<%= @reservation.started_at %>
 
+<p>【予約時間】</p>
+<%= l(@reservation.started_at, format: :time) %><br>
+
+<%= link_to "戻る", facility_reservations_path(facility_id: @facility.id), class: "button is-light" %>

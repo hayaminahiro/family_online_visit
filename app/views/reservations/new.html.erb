@@ -5,31 +5,36 @@
 
   <p>ご家族名前</p>
   <%= current_user.name %>
+  <%= f.hidden_field :reservation_user, :value => current_user.name %>
+
 
   <p>メールアドレス</p>
   <%= current_user.email %>
+  <%= f.hidden_field :reservation_email, :value => current_user.email %>
 
   <p>面会したい利用者</p>
-  <% current_user.residents.each do |resident| %>
-    <%= f.check_box :column, {multiple: true}, resident, nil %>
+  <% current_user.residents.map do |resident| %>
+    <%= f.check_box :reservation_residents, {multiple: true}, resident.name, nil %>
     <%= resident.name %>
   <% end %>
 
-
-
-
-
-
   <p>予約日時</p>
-  <%= params[:date] %>
+  <% if @reservation.reservation_date.present? %>
+    <%= @reservation.reservation_date %>
+  <% else %>
+    <%= l(params[:date].to_time, format: :date) %>
+  <% end %>
 
   <p>予約時間</p>
-  <%= params[:time] %>
+  <% if @reservation.started_at.present? %>
+    <%= @reservation.started_at %>
+  <% else %>
+    <%= l(params[:time].to_time, format: :time) %>
+  <% end %>
 
 
   <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
-  <%= f.hidden_field :reservation_time, :value => params[:date] %>
-
+  <%= f.hidden_field :reservation_date, :value => params[:date] %>
   <%= f.hidden_field :started_at, :value => params[:time] %>
 
   <%= f.text_area :comment, :placeholder => "\uf303 自由記入欄", class: "fa textarea" %>
