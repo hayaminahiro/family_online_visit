@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :relatives, dependent: :destroy
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
+  has_many :tags, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
