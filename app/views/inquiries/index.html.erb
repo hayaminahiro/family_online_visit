@@ -3,32 +3,61 @@
   <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
       <%= render 'shared/side_link' %>
     <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
-      <div class="index-inquiry-title">
-        <div class="hero-body">
-          <div class="is-size-3 has-text-white has-text-weight-bold has-text-centered">お問い合わせ履歴</div>
+      <article class="panel is-success inquiry-panel" id="panel-info">
+        <!-- Main container -->
+        <nav class="level">
+          <!-- Left side -->
+          <div class="level-left">
+            <div class="level-item">
+              <div class="is-size-5 inquiry-index-title">
+              お問い合わせ一覧
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side -->
+          <div class="level-right">
+            <div class="inquiry-index-right">
+              <%= form_with(url: facility_inquiries_path(current_facility), method: :get, local: true) do |f| %>
+                <div class="field is-grouped is-grouped-right">
+                  <div class="control has-icons-left">
+                    <%= f.text_field :search, :placeholder => "お名前を入力..", class: "input is-rounded" %>
+                    <span class="icon is-left">
+                      <i class="fas fa-search" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  <div class="control">
+                    <%= f.submit "\uf002検索", class: "fa button is-primary is-outlined is-rounded" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </nav>
+        <div class="table-container has-text-centered">
+          <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+            <table class="table is-striped is-fullwidth inquiry-table">
+              <thead>
+                <tr class="inquiry-tr is-size-5 has-background-primary">
+                  <th class="inquiry-th">日付</th>
+                  <th class="inquiry-th">お名前</th>
+                  <th class="inquiry-th2">連絡先</th>
+                  <th class="inquiry-th2">内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @inquiries.each do |inquiry| %>
+                  <tr>
+                    <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
+                    <td><%= inquiry.name %></td>
+                    <td><%= inquiry.email %></td>
+                    <td><%= inquiry.message %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
         </div>
-      </div>
-      <div class="table-container">
-        <table class="table is-bordered is-striped inquiry-table">
-          <thead>
-            <tr class="inquiry-tr is-size-5">
-              <th class="inquiry-th">日付</th>
-              <th class="inquiry-th">お名前</th>
-              <th class="inquiry-th2">連絡先</th>
-              <th class="inquiry-th2">内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @inquiry.each do |inquiry| %>
-              <tr>
-                <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
-                <td><%= inquiry.name %></td>
-                <td><%= inquiry.email %></td>
-                <td><%= inquiry.message %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      </article>
     </div>
   </div>

@@ -28,7 +28,7 @@ class InquiriesController < ApplicationController
   end
 
   def index
-    @inquiry = Inquiry.where(facility_id: @facility.id)
+    @inquiries = Inquiry.search(params[:search], current_facility).paginate(page: params[:page], per_page: 2)
   end
 
   private

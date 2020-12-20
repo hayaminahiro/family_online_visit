@@ -55,18 +55,26 @@ span.inquiry-coment {
 }
 
 .inquiry-tr {
-  background-color: rgb(235, 173, 39);
+  // background-color: rgb(235, 173, 39);
 }
 
 .inquiry-th {
-  min-width: 120px;
+  // min-width: 120px;
 }
 
 .inquiry-th2 {
-  width: 130px;
+  // width: 130px;
   white-space: normal;
 }
 
 textarea#inquiry_message.textarea {
   font-size: 20px;
+}
+
+.inquiry-index-title {
+  margin-left: 30px;
+}
+
+.inquiry-panel {
+  padding: 1rem 1.5rem;
 }
