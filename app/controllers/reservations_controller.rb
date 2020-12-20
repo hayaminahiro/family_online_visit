@@ -7,11 +7,6 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
     @facility = Facility.find(params[:facility_id])
-
-
-
-
-
   end
 
   def show
@@ -34,6 +29,13 @@ class ReservationsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @facility = Facility.find(params[:facility_id])
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to facility_reservations_url, alert: "#{l(@reservation.reservation_date.to_time, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消しました。"
   end
 
   private
