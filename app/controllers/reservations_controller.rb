@@ -5,8 +5,13 @@ class ReservationsController < ApplicationController
   # before_action :set_information, only: %i[show edit update destroy]
 
   def index
-    @reservations = Reservation.all.includes(:facility)
+    @reservations = Reservation.all
     @facility = Facility.find(params[:facility_id])
+
+
+
+
+
   end
 
   def show
