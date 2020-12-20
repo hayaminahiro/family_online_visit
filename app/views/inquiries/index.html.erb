@@ -10,7 +10,7 @@
           <div class="level-left">
             <div class="level-item">
               <div class="is-size-5 inquiry-index-title">
-              お問い合わせ一覧
+              <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;お問い合わせ一覧
               </div>
             </div>
           </div>
@@ -27,18 +27,18 @@
                     </span>
                   </div>
                   <div class="control">
-                    <%= f.submit "\uf002検索", class: "fa button is-primary is-outlined is-rounded" %>
+                    <%= f.submit "\uf002検索", class: "fa button is-info is-outlined is-rounded" %>
                   </div>
                 </div>
               <% end %>
             </div>
           </div>
         </nav>
-        <div class="table-container has-text-centered">
+        <div class="table-container has-text-centered inquiry-table-adjust">
           <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
             <table class="table is-striped is-fullwidth inquiry-table">
               <thead>
-                <tr class="inquiry-tr is-size-5 has-background-primary">
+                <tr class="inquiry-tr is-size-5 has-background-info">
                   <th class="inquiry-th">日付</th>
                   <th class="inquiry-th">お名前</th>
                   <th class="inquiry-th2">連絡先</th>
@@ -56,6 +56,7 @@
                 <% end %>
               </tbody>
             </table>
+            <div class="inquiry-adjust"></div>
           <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
         </div>
       </article>
