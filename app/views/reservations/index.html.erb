@@ -5,9 +5,21 @@
     <div class="is-centered">
 
       <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
-        <%= l(date, format: :short) %>
 
-        <button class="button is-link is-light" id=<%= date %>>予約可</button><br>
+        <% if HolidayJapan.check(date) == true %>
+          <p style="color: red;"><%= l(date, format: :short) %></p>
+        <% else %>
+          <p><%= l(date, format: :short) %></p>
+        <% end %>
+
+        <p style="color: #c63f3f"><%= HolidayJapan.name(date) %></p>
+
+        <% if t('date.abbr_day_names')[date.wday] == "土" || t('date.abbr_day_names')[date.wday] == "日" || HolidayJapan.check(date) == true  %>
+          <p style="color: #c63f3f">休日</p>
+        <% else %>
+
+          <button class="button is-link is-light" id=<%= date %>>予約可</button><br>
+        <% end %>
 
         <% @reservations.each do |reservation| %>
           <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
