@@ -59,11 +59,10 @@ span.inquiry-coment {
 }
 
 .inquiry-th {
-  // min-width: 120px;
+  min-width: 120px;
 }
 
 .inquiry-th2 {
-  // width: 130px;
   white-space: normal;
 }
 
@@ -86,5 +85,10 @@ textarea#inquiry_message.textarea {
 }
 
 .inquiry-table-adjust {
+  margin-top: 50px;
+}
+
+.inquiry-nothing {
+  margin-left: auto;
   margin-top: 50px;
 }

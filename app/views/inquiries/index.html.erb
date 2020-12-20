@@ -34,31 +34,37 @@
             </div>
           </div>
         </nav>
-        <div class="table-container has-text-centered inquiry-table-adjust">
-          <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-            <table class="table is-striped is-fullwidth inquiry-table">
-              <thead>
-                <tr class="inquiry-tr is-size-5 has-background-info">
-                  <th class="inquiry-th">日付</th>
-                  <th class="inquiry-th">お名前</th>
-                  <th class="inquiry-th2">連絡先</th>
-                  <th class="inquiry-th2">内容</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @inquiries.each do |inquiry| %>
-                  <tr>
-                    <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
-                    <td><%= inquiry.name %></td>
-                    <td><%= inquiry.email %></td>
-                    <td><%= inquiry.message %></td>
+        <% if @inquiries.present? %>
+          <div class="table-container has-text-centered inquiry-table-adjust">
+            <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+              <table class="table is-striped is-fullwidth inquiry-table">
+                <thead>
+                  <tr class="inquiry-tr is-size-5 has-background-info">
+                    <th class="inquiry-th">日付</th>
+                    <th class="inquiry-th">お名前</th>
+                    <th class="inquiry-th2">連絡先</th>
+                    <th class="inquiry-th2">内容</th>
                   </tr>
-                <% end %>
-              </tbody>
-            </table>
-            <div class="inquiry-adjust"></div>
-          <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-        </div>
+                </thead>
+                <tbody>
+                  <% @inquiries.each do |inquiry| %>
+                    <tr>
+                      <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
+                      <td><%= inquiry.name %></td>
+                      <td><%= inquiry.email %></td>
+                      <td><%= inquiry.message %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <div class="inquiry-adjust"></div>
+            <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+          </div>
+        <% else %>
+          <div class="inquiry-nothing has-text-centered">
+            現在お問い合わせはありません。
+          </div>
+        <% end %>
       </article>
     </div>
   </div>
