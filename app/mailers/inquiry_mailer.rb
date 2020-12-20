@@ -12,7 +12,6 @@ class InquiryMailer < ApplicationMailer
     else
       # システムのお問い合わせ
       mail(
-        from: @inquiry.email,
         to:   ENV['USER_NAME'],
         subject: 'family-online-visitお問い合わせ通知'
       )

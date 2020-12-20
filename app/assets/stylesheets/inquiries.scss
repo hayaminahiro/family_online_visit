@@ -43,19 +43,11 @@ span.inquiry-coment {
   font-size: 18px;
 }
 
-.index-inquiry-title {
-  background-color: rgb(235, 173, 39);
-}
-
 .inquiry-table {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
   margin-top: 50px;
-}
-
-.inquiry-tr {
-  // background-color: rgb(235, 173, 39);
 }
 
 .inquiry-th {
@@ -91,4 +83,9 @@ textarea#inquiry_message.textarea {
 .inquiry-nothing {
   margin-left: auto;
   margin-top: 50px;
+}
+
+#facility-inquiry {
+  margin-right: 0px;
+  margin-top: -1.1rem;
 }

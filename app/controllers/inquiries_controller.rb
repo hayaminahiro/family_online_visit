@@ -11,7 +11,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       InquiryMailer.send_mail(@inquiry).deliver_now
-      redirect_to inquiry_facility_inquiries_path(@facility), notice: "お問い合わせを完了しました。"
+      redirect_to facility_home_path(@facility), notice: "お問い合わせを完了しました。"
     else
       render :inquiry
     end
@@ -21,7 +21,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       InquiryMailer.send_mail(@inquiry).deliver_now
-      redirect_to inquiry_system_inquiries_path, notice: "お問い合わせを完了しました。"
+      redirect_to root_path, notice: "お問い合わせを完了しました。"
     else
       render :inquiry_system
     end
