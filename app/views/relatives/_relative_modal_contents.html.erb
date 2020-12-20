@@ -9,7 +9,7 @@
       <div class="form-group col-sm-5">
 
       <div class="relative-modal-title">
-        <p class="w-15">日付</p>
+        <p class="w-15">申請日</p>
         <p class="w-15">承認/否認</p>
         <p class="w-30">入居者名</p>
         <p class="w-15">電話番号</p>
@@ -17,13 +17,15 @@
       </div>
 
       <% applied.user.request_residents.order(id: :desc).each do |request| %>
-        <div class="relative-modal-contents">
-          <span class="w-15"><%= l(request.created_at, format: :dot) %></span>
-          <span class="w-15"><%= request.status %></span>
-          <span class="w-30"><%= simple_format(request.req_name) %></span>
-          <span class="w-15"><%= simple_format(request.req_phone) %></span>
-          <span class="w-30"><%= simple_format(request.req_address) %></span><br>
-        </div>
+        <% if request.facility_id == current_facility.id %>
+          <div class="relative-modal-contents">
+            <span class="w-15"><%= l(request.created_at, format: :long) %></span>
+            <span class="w-15"><%= request.status %></span>
+            <span class="w-30"><%= simple_format(request.req_name) %></span>
+            <span class="w-15"><%= simple_format(request.req_phone) %></span>
+            <span class="w-30"><%= simple_format(request.req_address) %></span><br>
+          </div>
+        <% end %>
       <% end %>
 
       </div><br>

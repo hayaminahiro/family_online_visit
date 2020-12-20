@@ -29,9 +29,9 @@ class RelativesController < ApplicationController
     residents_connection_params.each do |id, item|
       request_user = User.find(id)
       req_resident = RequestResident.changer(current_facility, id)
-      unless item[:resident_ids].map(&:to_i).reject(&:zero?).count == request_user.resident_ids.count
-        req_resident.approval!
+      unless item[:resident_ids].map(&:to_i).reject(&:zero?).sort == request_user.resident_ids.sort
         request_user.update_attributes(item)
+        req_resident.approval!
       end
     end
     redirect_to facility_home_facility_url(current_facility), notice: "まとめて承認しました。"
