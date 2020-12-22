@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//indexページ
 #reservations-calendar {
   height: 100%;
   margin: 100px;
@@ -20,7 +21,7 @@
   }
 
   #calendar-info .calendar-th {
-    background: #E9D8AF;
+    background: #f7f3e8;
   }
 
   p.modal-explanation {
@@ -29,6 +30,76 @@
     font-size: 16px;
     color: #401c00;
   }
-
 }
 
+//newページ
+#reservations-new {
+  height: 100%;
+  margin: 30px 300px 50px 300px;
+  padding: 30px;
+  font-size: 15px;
+  color: #401c00;
+  border-radius: 6px;
+  flex: 2;
+
+  .reservation-new-title {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+    border-bottom: 1px solid #401c00;
+    margin: 0 0 20px 0;
+  }
+
+  #reservation-new-tables{
+    th{
+      text-align: center;
+      vertical-align: middle;
+      font-size: 20px;
+      letter-spacing: 3px;
+      background-color: #f7f3e8;
+      color: #401c00;
+      font-weight: 400;
+
+      .sign-tag {
+        margin-top: 3px;
+      }
+    }
+
+    td{
+      text-align: center;
+      vertical-align: middle;
+      letter-spacing: 3px;
+      color: #401c00;
+      font-weight: 400;
+      font-size: 18px;
+    }
+
+    tr:nth-child(2n+1) td {
+      background-color: #fbfbfb;
+    }
+
+    .button.is-rounded {
+      border-radius: 290486px;
+      padding-right: 14px;
+    }
+  }
+
+  .message-btn {
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #13b1c0;
+    color: #13b1c0;
+    text-decoration: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 30px;
+  }
+
+  .message-btn:hover {
+    background: #51afbe;
+    color: #fff;
+  }
+
+}

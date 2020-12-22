@@ -16,10 +16,12 @@ class ReservationsController < ApplicationController
   end
 
   def new
+    @facility = Facility.find(params[:facility_id])
     @reservation = Reservation.new
   end
 
   def create
+    @facility = Facility.find(params[:facility_id])
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = current_user.id
     @reservation.facility_id = params[:facility_id].to_i
