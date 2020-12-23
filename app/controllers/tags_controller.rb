@@ -72,13 +72,6 @@ class TagsController < ApplicationController
     # redirect_to user_url(current_user), alert: "お知らせを削除しました"
   end
 
-
-  # # 家族向けお知らせ表示ページ
-  # def top_notice
-  #   @info_top = Tag.find_by(status: "head")
-  #   @tags = Tag.where(facility_id: params[:facility_id].to_i).where(status: "others").order(id: "DESC")
-  # end
-
   private
 
     def tag_params
