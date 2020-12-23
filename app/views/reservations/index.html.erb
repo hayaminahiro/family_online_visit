@@ -35,7 +35,7 @@
             </header>
             <section class="modal-card-body">
               <div class="field">
-                <p class="title-in-modal"><%= l(date.to_time, format: :date) %></p>
+                <p class="title-in-modal"><%= l(date.in_time_zone, format: :date) %></p>
                 <p class="modal-description">予約時間を選択して下さい。</p>
               </div>
               <div class="field">

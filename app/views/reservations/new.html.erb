@@ -39,7 +39,7 @@
                 <% if @reservation.reservation_date.present? %>
                   <%= @reservation.reservation_date %>
                 <% else %>
-                  <%= l(params[:date].to_time, format: :date) %>
+                  <%= l(params[:date].in_time_zone, format: :date) %>
                 <% end %>
               </td>
             </tr>
@@ -49,7 +49,7 @@
                 <% if @reservation.started_at.present? %>
                   <%= @reservation.started_at %>
                 <% else %>
-                  <%= l(params[:time].to_time, format: :time) %>
+                  <%= l(params[:time].in_time_zone, format: :time) %>
                 <% end %>
               </td>
             </tr>

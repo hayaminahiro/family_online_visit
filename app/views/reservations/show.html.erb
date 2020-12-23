@@ -30,7 +30,7 @@
         <tr>
           <th>予約日</th>
           <td>
-            <%= l(@reservation.reservation_date.to_time, format: :date) %>
+            <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
           </td>
         </tr>
         <tr>
@@ -42,7 +42,7 @@
         </tbody>
       </table>
       <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete,
-                  data: { confirm: "#{l(@reservation.reservation_date.to_time, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" },
+                  data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" },
                   class: "button is-danger is-light show-back-btn" %>
       <%= link_to "戻る", facility_reservations_path(facility_id: @facility.id), class: "button is-light show-back-btn" %>
     </div>
