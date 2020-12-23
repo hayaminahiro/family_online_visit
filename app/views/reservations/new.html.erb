@@ -1,6 +1,6 @@
 <%= form_with(model: @reservation, url: facility_reservations_path, method: :post, local: true) do |f| %>
   <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
-  <div class="card" id="reservations-new">
+  <div class="card reservations-top">
     <div class="has-text-centered">
       <div class="is-centered">
         <h1 class="has-text-centered reservation-new-title">予約情報確認</h1>
@@ -59,7 +59,10 @@
         <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
         <%= f.hidden_field :reservation_date, :value => params[:date] %>
         <%= f.hidden_field :started_at, :value => params[:time] %>
-        <%= f.submit "予約を決定する", class: "message-btn" %>
+        <div>
+          <%= f.submit "予約を決定する", class: "message-btn" %>
+          <%= link_to "戻る", facility_reservations_path(facility_id: @facility.id), class: "button is-light back-btn" %>
+        </div>
       </div>
     </div>
   </div>
