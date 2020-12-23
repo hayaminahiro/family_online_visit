@@ -1,0 +1,11 @@
+$('.user-show-tags').append("<li class='tag-link-<%= @tag.id%>' id='tag-links'><a data-remote='true' href='/tags/<%= @tag.id%>'><%= @tag.title %></a><a data-confirm='<%= @tag.title %>のフォルダを削除してよろしいですか？' class='tag-delete-btn' data-remote='true' rel='nofollow' data-method='delete' href='/tags/<%= @tag.id%>'><i class='fas fa-times'></i></a></li>");
+
+$("div.modal").removeClass("is-active");
+
+$('.select-tag').append("<option value='<%= @tag.id%>'><%= @tag.title %></option>");
+
+<%# $("#samplRemote").remove(); %>
+<%# $("#samplRemote2").hide(); %>
+
+
+

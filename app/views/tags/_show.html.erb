@@ -1,0 +1,39 @@
+<% @residents.each do |resident| %>
+  <% @image_columns = [] %>
+  <% resident.memories.each do |m| %>
+    <% @image_columns << m.image0 if m.image0? %>
+    <% @image_columns << m.image1 if m.image1? %>
+    <% @image_columns << m.image2 if m.image2? %>
+    <% @image_columns << m.image3 if m.image3? %>
+    <% @image_columns << m.image4 if m.image4? %>
+    <% @image_columns << m.image5 if m.image5? %>
+    <% @image_columns << m.image6 if m.image6? %>
+    <% @image_columns << m.image7 if m.image7? %>
+  <% end %>
+
+
+  <% case @all_image
+    when "all" %>
+    <%= render 'memories/all_images', { image_columns: @image_columns, memories: resident.memories, resident: resident } %>
+  <% when "event" %>
+    <%= render 'memories/event_card', { memories: resident.memories, resident: resident } %>
+  <% else %>
+
+    <% @tag.tag_images.each do |i| %>
+      <% @image_columns.each do |image| %>
+        <% if Rails.env.production? %>
+          <% url = image.url.split("/")[7] %>
+        <% else %>
+          <% url = image.url.split("/")[5] %>
+        <% end %>
+
+        <% if i.image == url %>
+          <%= image_tag image.url, class: "img-interval index-photo-size" %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+
+
+<% end %>

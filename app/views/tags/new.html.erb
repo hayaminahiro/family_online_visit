@@ -1,0 +1,10 @@
+    <%= form_with(model: @tag, url: tags_path, method: :post, local: true) do |f| %>
+      <%= render partial: 'shared/error_messages', locals: { obj: @tag } %>
+      <label class="media-left has-text-weight-bold">
+        <h1 class="mini-title" style="font-size: 20px; color: #401c00;">新しいフォルダーの作成</h1>
+      </label>
+      <div>
+          <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
+      </div>
+      <%= f.submit "作成する", class: "info-btn" %>
+    <% end %>
