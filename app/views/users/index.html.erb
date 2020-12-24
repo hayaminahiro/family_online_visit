@@ -69,7 +69,7 @@
                   <%= link_to "登録", '#', class: "button is-info is-rounded has-text-weight-semibold" %>
                 </td>
                 <td>
-                  <%= link_to "予約", '#', class: "button is-link is-rounded has-text-weight-semibold" %>
+                  <%= link_to "予約", facility_reservations_path(current_facility), class: "button is-link is-rounded has-text-weight-semibold" %>
                 </td>
                 <td>
                   <button class="button is-primary" id=<%= user.id %>>

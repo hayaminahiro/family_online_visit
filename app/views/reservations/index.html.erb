@@ -20,8 +20,14 @@
         <% end %>
 
         <% @reservations.each do |reservation| %>
-          <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
-            <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-danger is-light" if reservation.reservation_date == date %>
+          <% if current_user.present? %>
+            <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
+              <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-danger is-light" if reservation.reservation_date == date %>
+            <% end %>
+          <% elsif current_facility.present? %>
+            <% if reservation.facility_id == @facility.id %>
+              <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-danger is-light" if reservation.reservation_date == date %>
+            <% end %>
           <% end %>
         <% end %>
 
