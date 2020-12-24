@@ -86,6 +86,10 @@ video::-webkit-media-controls-pause-button {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+
+  #chat-icon {
+    display: none;
+  }
 }
 
 #js-messages {
@@ -147,14 +151,22 @@ video::-webkit-media-controls-pause-button {
     vertical-align: middle;
   }
 
+  //チャットアイコン
+  .remote-text img.message-chat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: -8px;
+    display: inline-block;
+  }
+
   .remote-text span {
     margin-right: auto;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.2);
+    color: gray;
     border-radius: 25px;
     padding: 6px;
-    font-size: 12px;
-    display: inline-block;
+    font-size: 8px;
+    display: block;
   }
 
   .remote-text p {
@@ -165,6 +177,8 @@ video::-webkit-media-controls-pause-button {
     border-radius: 25px;
     white-space: pre-wrap;
     display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
     -webkit-border-radius:15px;
     -moz-border-radius:15px;
   }
@@ -199,7 +213,7 @@ video::-webkit-media-controls-pause-button {
     position: relative;
     text-align: left;
     margin-left: auto;
-    background-color: #fff;
+    background-color: #90EE90;
     border-radius: 25px;
     padding: 10px;
     white-space: pre-wrap;
@@ -221,7 +235,7 @@ video::-webkit-media-controls-pause-button {
     border-left-width: 20px;
     border-right-width: 20px;
     margin-top: -10px;
-    border-left-color: #fff;
+    border-left-color: #90EE90;
     left: 100%;
     top: 67%;
   }

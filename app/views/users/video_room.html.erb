@@ -32,10 +32,14 @@
         <button id="js-leave-trigger" class="button is-focused is-danger is-rounded has-text-weight-semibold">退室する</button> 
       </div><br>
       <div class="has-text-centered messages-layout">
-        <pre class="messages" id="js-messages"></pre>
+        <pre class="messages" id="js-messages">
+          <div class="today"><%= Date.current %></div>
+        </pre>
         <% if user_signed_in? %>
+          <%= @user.chat_user_icon %>
           <input class="input" type="hidden" name="name" value="<%= current_user.name %>" id="js-local-name">
         <% elsif facility_signed_in? %>
+          <%= @facility.chat_facility_icon %>
           <input class="input" type="hidden" name="name" value="<%= current_facility.facility_name %>" id="js-local-name">
         <% end %>
         <textarea class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text"></textarea>
@@ -85,7 +89,8 @@
     const messages = document.getElementById('js-messages');
     const meta = document.getElementById('js-meta');
     const sdkSrc = document.querySelector('script[src*=skyway]');
-  
+    const remoteIcon = document.getElementById('chat-icon');
+
     meta.innerText = `
       UA: ${navigator.userAgent}
       SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
@@ -135,7 +140,7 @@
         messages.innerHTML += '<div class="local-start"><span>入室しました</span></div>';
       });
       room.on('peerJoin', peerId => {
-        messages.innerHTML += `<div class="remote-start"><span><strong>${localName.value}</strong> が入室しました</span></div>`;
+        messages.innerHTML += `<div class="remote-start"><span>相手が入室しました</span></div>`;
       });
   
       // Render remote stream for new peer join in the room
@@ -153,7 +158,7 @@
 
       room.on('data', ({ data, src }) => {
         // Show a message sent to the room and who sent
-        messages.innerHTML += `<div class="remote-text"><span>${data[0]}</span><p>${data[1]}</p></div>`;
+        messages.innerHTML += `<div class="remote-text"><img src="${data[2]}" class="message-chat-icon"><p>${data[1]}</p><span>${data[0]}</span></div>`;
       });
   
       // for closing room members
@@ -170,7 +175,7 @@
       // for closing myself
       room.once('close', () => {
         sendTrigger.removeEventListener('click', onClickSend);
-        messages.innerHTML += `<div class="room-end"><span><strong>${localName.value}</strong> が退室しました</span></div>`;
+        messages.innerHTML += `<div class="room-end"><span>退室しました</span></div>`;
         Array.from(remoteVideos.children).forEach(remoteVideo => {
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
@@ -182,8 +187,9 @@
       leaveTrigger.addEventListener('click', () => room.close(), { once: true });
   
       function onClickSend() {
+        let obj = new String(remoteIcon.src)
         // Send message to all of the peers in the room via websocket
-        room.send([localName.value, localText.value]);
+        room.send([localName.value, localText.value, obj]);
         messages.innerHTML += `<div class="local-text"><span>${localText.value}\n</span></div>`;
         localText.value = '';
       }

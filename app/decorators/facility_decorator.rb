@@ -62,6 +62,14 @@ module FacilityDecorator
     end
   end
 
+  def chat_facility_icon
+    if icon?
+      image_tag icon.url, id: "chat-icon"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', id: "chat-icon"
+    end
+  end
+    
   # 施設のモバイルでのアイコン表示
   def facility_icon_responsive
     if icon?
