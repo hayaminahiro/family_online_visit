@@ -5,40 +5,46 @@
       <h1 class="has-text-centered reservation-new-title">予約内容</h1>
       <table class="table is-bordered is-fullwidth" id="reservation-new-tables">
         <tbody>
-        <tr>
-          <th>ご家族名前</th>
-          <td>
-            <%= @reservation.reservation_user %>
-          </td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td>
-            <%= @reservation.reservation_email %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            面会したい利用者
-          </th>
-          <td>
-            <% eval(@reservation.reservation_residents).each do |resident| %>
-              <%= resident %><br>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th>予約日</th>
-          <td>
-            <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
-          </td>
-        </tr>
-        <tr>
-          <th>予約時間</th>
-          <td>
-            <%= l(@reservation.started_at, format: :time) %>
-          </td>
-        </tr>
+          <tr>
+            <th>ご家族名前</th>
+            <td>
+              <%= @reservation.reservation_user %>
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td>
+              <%= @reservation.reservation_email %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              面会したい利用者
+            </th>
+            <td>
+              <% eval(@reservation.reservation_residents).each do |resident| %>
+                <%= resident %><br>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>予約日</th>
+            <td>
+              <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
+            </td>
+          </tr>
+          <tr>
+            <th>予約時間</th>
+            <td>
+              <%= l(@reservation.started_at, format: :time) %>
+            </td>
+          </tr>
+          <tr>
+            <th>ご要望等</th>
+            <td>
+              <%= @reservation.comment %>
+            </td>
+          </tr>
         </tbody>
       </table>
       <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete,
