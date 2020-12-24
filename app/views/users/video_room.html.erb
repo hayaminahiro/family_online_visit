@@ -33,7 +33,7 @@
       </div><br>
       <div class="has-text-centered messages-layout">
         <pre class="messages" id="js-messages">
-          <div class="today"><%= Date.current %></div>
+          <div class="chat-day"><%= l(Date.current) %></div>
         </pre>
         <% if user_signed_in? %>
           <%= @user.chat_user_icon %>
@@ -90,6 +90,18 @@
     const meta = document.getElementById('js-meta');
     const sdkSrc = document.querySelector('script[src*=skyway]');
     const remoteIcon = document.getElementById('chat-icon');
+
+    function scrollToEnd() {
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    const observer = new MutationObserver((render) => {
+      scrollToEnd();
+    });
+
+    observer.observe(messages, {
+      childList: true,
+    });
 
     meta.innerText = `
       UA: ${navigator.userAgent}

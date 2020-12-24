@@ -98,6 +98,18 @@ video::-webkit-media-controls-pause-button {
   background-size: cover;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  padding: 0px 20px 10px 20px;
+
+  .chat-day {
+    color: #fff;
+    width: 22%;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -37px;
+    padding-top: 2px;
+  }
 
   .local-start{
     margin-top: 30px;
@@ -106,8 +118,9 @@ video::-webkit-media-controls-pause-button {
   .local-start span {
     color: #fff;
     background: rgba(0, 0, 0, 0.2);
-    padding: 7px 13px;
     border-radius: 25px;
+    font-size: 13px;
+    padding: 5px 13px;
   }
 
   .remote-start {
@@ -117,7 +130,8 @@ video::-webkit-media-controls-pause-button {
   .remote-start span {
     color: #fff;
     background: rgba(0, 0, 0, 0.2);
-    padding: 7px 13px;
+    font-size: 13px;
+    padding: 5px 13px;
     border-radius: 25px;
   }
 
@@ -128,7 +142,8 @@ video::-webkit-media-controls-pause-button {
   .room-end span {
     color: #fff;
     background: rgba(0, 0, 0, 0.2);
-    padding: 7px 13px;
+    padding: 5px 13px;
+    font-size: 13px;
     border-radius: 25px;
   }
 
@@ -139,11 +154,13 @@ video::-webkit-media-controls-pause-button {
   .chat-end span {
     color: #fff;
     background: rgba(0, 0, 0, 0.2);
-    padding: 7px 13px;
+    padding: 5px 13px;
+    font-size: 13px;
     border-radius: 25px;
   }
 
   .remote-text {
+    position: relative;
     width: 60%;
     margin-right: auto;
     margin-top: 30px;
@@ -155,12 +172,15 @@ video::-webkit-media-controls-pause-button {
   .remote-text img.message-chat-icon {
     width: 60px;
     height: 60px;
+    object-fit: cover;
     border-radius: 50%;
     margin-bottom: -8px;
     display: inline-block;
   }
 
   .remote-text span {
+    top: 53px;
+    position: absolute;
     margin-right: auto;
     color: gray;
     border-radius: 25px;
@@ -179,8 +199,8 @@ video::-webkit-media-controls-pause-button {
     display: inline-block;
     vertical-align: top;
     margin-top: 10px;
-    -webkit-border-radius:15px;
-    -moz-border-radius:15px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
   }
 
   .remote-text p:after {
@@ -198,7 +218,7 @@ video::-webkit-media-controls-pause-button {
     margin-top: -10px;
     border-right-color: #fff;
     right: 100%;
-    top: 67%;
+    top: 26px;
   }
 
   .local-text {
@@ -218,8 +238,8 @@ video::-webkit-media-controls-pause-button {
     padding: 10px;
     white-space: pre-wrap;
     display: inline-block;
-    -webkit-border-radius:15px;
-    -moz-border-radius:15px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
   }
 
   .local-text span:after {
@@ -237,7 +257,7 @@ video::-webkit-media-controls-pause-button {
     margin-top: -10px;
     border-left-color: #90EE90;
     left: 100%;
-    top: 67%;
+    top: 23px;
   }
 }
 
