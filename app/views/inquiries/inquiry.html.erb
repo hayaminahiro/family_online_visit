@@ -1,5 +1,5 @@
 <div class="is-size-3 has-text-centered inquiry-title">
-  <span>施設へお問い合わせ</span>
+  <span><%= @facility.facility_name %>へお問い合わせ</span>
 </div>
 <div class="container is-fluid">
   <div class="columns">
@@ -25,6 +25,7 @@
 
         <%= f.hidden_field :facility_id, :value => @facility.id %>
 
+        <div class="inquiry-notice">こちらは<%= @facility.facility_name %>へのお問い合わせページになります。お間違えのないようにご注意下さい。</div>
         <div class="inquiry-btn has-text-centered">
           <%= f.submit "送信", class: "button is-medium is-outlined is-success inquiry-submit-btn" %>
         </div>

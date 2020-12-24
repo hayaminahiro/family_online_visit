@@ -11,7 +11,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       InquiryMailer.send_mail(@inquiry).deliver_now
-      redirect_to facility_home_path(@facility), notice: "お問い合わせを完了しました。"
+      redirect_to facility_home_url(@facility), notice: "お問い合わせを完了しました。"
     else
       render :inquiry
     end
@@ -21,7 +21,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       InquiryMailer.send_mail(@inquiry).deliver_now
-      redirect_to root_path, notice: "お問い合わせを完了しました。"
+      redirect_to root_url, notice: "お問い合わせを完了しました。"
     else
       render :inquiry_system
     end
@@ -33,19 +33,19 @@ class InquiriesController < ApplicationController
 
   private
 
-  def inquiry_params
-    params.require(:inquiry).permit(:name, :email, :message, :facility_id)
-  end
+    def inquiry_params
+      params.require(:inquiry).permit(:name, :email, :message, :facility_id)
+    end
 
-  def set_facility_id
-    @facility = Facility.find(params[:facility_id])
-  end
+    def set_facility_id
+      @facility = Facility.find(params[:facility_id])
+    end
 
-  def set_inquiry
-    @inquiry = if params[:name].present?
-                 Inquiry.new(inquiry_params)
-               else
-                 Inquiry.new
-               end
-  end
+    def set_inquiry
+      @inquiry = if params[:name].present?
+                  Inquiry.new(inquiry_params)
+                else
+                  Inquiry.new
+                end
+    end
 end
