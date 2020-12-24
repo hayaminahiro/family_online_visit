@@ -2,6 +2,10 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :facility
 
+  validates :reservation_date,  presence: true
+  validates :started_at,        presence: true
+  validates :reservation_user,  presence: true
+  validates :reservation_email, presence: true
   validates :reservation_residents, presence: true
 
   TIME_1000 = "2000-01-01 10:00:00 +0900".freeze
