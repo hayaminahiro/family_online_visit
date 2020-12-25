@@ -1,0 +1,95 @@
+<div id="back-to-event-card">
+  <section class="hero is-medium has-text-centered" id="hero-memory">
+    <div class="main-show">
+      <div class="content">
+        <!--画像部分-->
+        <%= image_tag @memory.image0.url, class: "img-interval show-photo-size" if @memory.image0? %>
+        <%= image_tag @memory.image1.url, class: "img-interval show-photo-size" if @memory.image1? %>
+        <%= image_tag @memory.image2.url, class: "img-interval show-photo-size" if @memory.image2? %>
+        <%= image_tag @memory.image3.url, class: "img-interval show-photo-size" if @memory.image3? %>
+        <%= image_tag @memory.image4.url, class: "img-interval show-photo-size" if @memory.image4? %>
+        <%= image_tag @memory.image5.url, class: "img-interval show-photo-size" if @memory.image5? %>
+        <%= image_tag @memory.image6.url, class: "img-interval show-photo-size" if @memory.image6? %>
+        <%= image_tag @memory.image7.url, class: "img-interval show-photo-size" if @memory.image7? %>
+
+        <!--タイトル/メッセージ部分-->
+        <div class="photo-card-link-show">
+          <h4 class="title-brown"><%= @memory.title %></h4>
+          <p class="message-title"><%= @memory.message %></p>
+          <p class="photo-card-text-show">行事日: <%= l(@memory.event_date, format: :long) %>（最終投稿日: <%= l(@memory.updated_at, format: :long) %>）</p>
+          <% if facility_signed_in? %>
+            <%= link_to edit_resident_memory_path(@resident, @memory) do %>
+              <button type="button" class="button is-success is-light is-medium edit-btn"><i class="fas fa-edit"></i></button>
+            <% end %>
+            <%= link_to resident_memory_path(@resident, @memory), method: :delete,
+                        data: { confirm: "削除してよろしいですか？" }, class:"button is-danger is-light is-medium delete-btn" do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+            <%= link_to new_resident_memory_path(@resident, add_images: @memory), class: "folder" do %>
+              <i class="fas fa-folder-plus fa-3x"></i>
+            <% end %>
+          <% end %>
+
+            <div class="memories-index-btn">
+              <button id="back-to-event-card-btn" class="button is-link is-light is-medium index-btn"><i class="fas fa-images"></i>&nbsp;行事ごとの写真一覧へ戻る</button>
+            </div>
+        </div>
+      </div>
+
+      <% if facility_signed_in? %>
+        <!--追加画像カードへのリンク画像-->
+        <div class="otherNavigation">
+          <h1 class="has-text-weight-bold">下記の画像をクリックすると、該当する画像ページへ移動できます。</h1>
+        </div>
+        <div class="content">
+          <% @memories.each do |m| %>
+            <% if @memory.event_date == m.event_date && @memory.id != m.id %>
+              <%= link_to resident_memory_path(@resident, m), class:"folder", remote: true do %>
+                <%= image_tag m.image0.url, class: "img-interval show-photo-size" if m.image0? %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <!--同じ行事タイトルの画像一覧を表示させる-->
+      <div class="otherNavigation">
+        <h1 class="has-text-weight-bold">行事日【<%= l(@memory.event_date, format: :long) %>】と同じ画像を表示</h1>
+      </div>
+      <div class="content show-bottom-control">
+        <% @memories.map do |m| %>
+          <% if m.event_date == @memory.event_date %>
+            <% if @memory.id != m.id %>
+              <%= image_tag m.image0.url, class: "img-interval show-photo-size" if m.image0? %>
+              <%= image_tag m.image1.url, class: "img-interval show-photo-size" if m.image1? %>
+              <%= image_tag m.image2.url, class: "img-interval show-photo-size" if m.image2? %>
+              <%= image_tag m.image3.url, class: "img-interval show-photo-size" if m.image3? %>
+              <%= image_tag m.image4.url, class: "img-interval show-photo-size" if m.image4? %>
+              <%= image_tag m.image5.url, class: "img-interval show-photo-size" if m.image5? %>
+              <%= image_tag m.image6.url, class: "img-interval show-photo-size" if m.image6? %>
+              <%= image_tag m.image7.url, class: "img-interval show-photo-size" if m.image7? %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+
+<% if user_signed_in? %>
+  <script>
+    $(function() {
+      $('#back-to-event-card-btn').click(function() {
+        $('#back-to-event-card').html("<%= escape_javascript(render 'event_card', { residents: @residents }) %>").hide().fadeIn();
+      });
+    });
+  </script>
+<% else %>
+  <script>
+    $(function() {
+      $('#back-to-event-card-btn').click(function() {
+        $('#back-to-event-card').html("<%= escape_javascript(render 'event_card', { resident: @resident }) %>").hide().fadeIn();
+      });
+    });
+  </script>
+<% end %>
