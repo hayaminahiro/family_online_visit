@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_074039) do
+ActiveRecord::Schema.define(version: 2020_12_19_063111) do
+
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
     t.string "email", default: "", null: false
@@ -117,6 +118,24 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
     t.index ["facility_id"], name: "index_residents_on_facility_id"
   end
 
+  create_table "tag_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.bigint "tag_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_images_on_tag_id"
+    t.index ["user_id"], name: "index_tag_images_on_user_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -160,4 +179,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_074039) do
   add_foreign_key "request_residents", "users"
   add_foreign_key "reservations", "users"
   add_foreign_key "residents", "facilities"
+  add_foreign_key "tag_images", "tags"
+  add_foreign_key "tag_images", "users"
+  add_foreign_key "tags", "users"
 end
