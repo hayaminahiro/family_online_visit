@@ -59,6 +59,7 @@
   width: 90%;
   text-align: center;
 }
+
 .cp_ipselect select {
   width: 100%;
   padding-right: 1em;
@@ -73,9 +74,11 @@
   -webkit-appearance: none;
   appearance: none;
 }
+
 .cp_ipselect select::-ms-expand {
 display: none;
 }
+
 .cp_ipselect.cp_sl04 {
   position: relative;
   border-radius: 2px;
@@ -84,6 +87,7 @@ display: none;
   background: #ffffff;
   margin-right: 20px;
 }
+
 .cp_ipselect.cp_sl04::before {
   position: absolute;
   top: 1em;
@@ -97,6 +101,7 @@ display: none;
   border-top: 6px solid #13b1c0;
   pointer-events: none;
 }
+
 .cp_ipselect.cp_sl04 select {
   padding: 8px 38px 8px 8px;
   color: #13b1c0;

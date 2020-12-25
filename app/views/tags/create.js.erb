@@ -4,7 +4,6 @@ $('.user-show-tags').append("<li class='tag-link-<%= @tag.id%>' id='tag-links'><
 
 $('.user-show-tags').append("<div class='tag-plus-btn'><a class='new-folder-btn' data-remote='true' href='/tags/new'><i class='fas fa-folder-plus fa-3x'></i></a></div>");
 
-
 $("div.modal").removeClass("is-active");
 
 $('.select-tag').append("<option value='<%= @tag.id%>'><%= @tag.title %></option>");
