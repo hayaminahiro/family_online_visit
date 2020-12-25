@@ -8,9 +8,9 @@ class TagImagesController < ApplicationController
     respond_to do |format|
       if @tag_image.save
         format.html
-        format.js
-      # else
-      #   format.js {render :new}
+        format.js { flash.now[:notice] = "#{Tag.find(@tag_image.tag_id).title}フォルダに画像を追加しました" }
+        # else
+        # format.js { render :new }
       end
     end
   end
@@ -19,6 +19,5 @@ class TagImagesController < ApplicationController
 
     def tag_image_params
       params.require(:user).permit(:image, :tag_id)
-      # params.permit(:image, :tag_id)
     end
 end
