@@ -16,6 +16,106 @@
   align-items: center;
 }
 
+#modal-title-back {
+  background-color: #e3dcca;
+  padding-right: 30px;
+
+  .title-color {
+    color: #401c00; margin: 5px;
+  }
+}
+
+#content-back {
+  border-top: 1px solid #dbdbdb;
+  background: #f7f3e8;
+
+  .word-break {
+    word-break: break-all;
+    padding-left: 50px;
+  }
+
+  .span-title {
+    color: #401c00;
+    padding-right: 15px;
+  }
+}
+
+.tag-panel{
+  border-radius: 6px;
+  box-shadow: -2px 0em 1em -0.125em rgba(10, 10, 10, 0.1), 1px -1px 0 1px rgba(10, 10, 10, 0.02);
+  font-size: 16px;
+  line-height: 20px;
+  margin: 10px 0 10px 10px;
+}
+
+.tag-select-form{
+  display: flex;
+  width: 60%;
+  margin: auto;
+}
+
+.cp_ipselect {
+  overflow: hidden;
+  width: 90%;
+  text-align: center;
+}
+.cp_ipselect select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer;
+  text-indent: 0.01px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+display: none;
+}
+.cp_ipselect.cp_sl04 {
+  position: relative;
+  border-radius: 2px;
+  border: 2px solid#13b1c0;
+  border-radius: 50px;
+  background: #ffffff;
+  margin-right: 20px;
+}
+.cp_ipselect.cp_sl04::before {
+  position: absolute;
+  top: 1em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #13b1c0;
+  pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+  padding: 8px 38px 8px 8px;
+  color: #13b1c0;
+  line-height: 20px;
+  margin-left: 20px;
+}
+
+.tag-select-submit{
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #13b1c0;
+  color: #13b1c0;
+  text-decoration: none;
+  padding: 9px 25px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 .main-index {
   min-height: 110vh;
 
@@ -36,35 +136,11 @@
       padding-top: 0;
     }
 
-    .modal-title-back {
-      background-color: #e3dcca;
-      padding-right: 30px;
-
-      .title-color {
-        color: #401c00; margin: 5px;
-      }
-    }
-
     .image-position {
       padding-bottom: 12px;
 
       .modal-input {
         display: none;
-      }
-    }
-
-    .content-back {
-      border-top: 1px solid #dbdbdb;
-      background: #f7f3e8;
-
-      .word-break {
-        word-break: break-all;
-        padding-left: 50px;
-      }
-
-      .span-title {
-        color: #401c00;
-        padding-right: 15px;
       }
     }
 
@@ -75,17 +151,23 @@
         color: #dc628b;
         background: #ff000030;
         border-color: #cc9ba4;
+        margin: 15px 0;
+        font-size: 15px;
       }
 
       .drop-zone {
         border-style: dashed;
         color: #ccc;
-        padding: 20px 30px 20px 10px;
-        margin-left: 40px;
+        padding: 5px 10px 5px 10px;
+        margin: 15px 0;
+      }
+
+      .img-update-form{
+        margin: auto;
       }
 
       .img-update-btn {
-        margin-left: 15px;
+        margin: 15px;
         border-radius: 5px;
         border: 2px solid #13b1c0;
         color: #13b1c0;
@@ -103,8 +185,23 @@
   }
 
   .index-photo-size {
-    width: 350px;
-    height: 250px;
+    width: 260px;
+    height: 180px;
+    object-fit: cover;
+    cursor: pointer
+  }
+
+  .image-modal-width{
+    width: 70%;
+
+    .modal-card-body{
+      text-align: center;
+    }
+  }
+
+  .modal-photo-size {
+    width: 750px;
+    height: 500px;
     object-fit: cover;
     cursor: pointer
   }
@@ -193,6 +290,14 @@
   .main-index {
     min-height: 100vh;
 
+    .tag-container {
+      margin: 10px 10px 10px 10px;
+    }
+
+    #tag-images-view {
+      margin: 0px;
+    }
+
     .content {
       text-align: center;
       margin: 0 auto;
@@ -207,15 +312,33 @@
     }
 
     .photo-card {
-      margin: 50px 50px 20px 13px;
-      width: 320px;
+      margin: 50px 50px 20px 50px;
+      width: 280px;
       background: #fff;
       border-radius: 5px;
       box-shadow: 0 2px 5px #ccc;
     }
 
+    .card-photo-size {
+      height: 175px;
+    }
+
     .tab-font {
       font-size: 20px;
+    }
+
+    .tag-panel {
+      font-size: 12px;
+      line-height: 3px;
+      margin: 5px 0 5px 5px;
+    }
+
+    .user-show-tags{
+      margin-left: 10px;
+
+      .tag-title {
+        padding: 10px;
+      }
     }
 
     //モーダルデザイン
@@ -389,6 +512,15 @@
       text-align: center;
       margin: 0;
       padding: 15px;
+
+      .show-photo-size {
+        width: 140px;
+        height: 105px;
+      }
+
+      .button.is-medium {
+        font-size: 13px;
+      }
     }
 
     .show-bottom-control {
