@@ -11,7 +11,7 @@
   </div>  
 </section>
 
-<section class="section" data-turbolinks="false">
+<section class="chat-section" data-turbolinks="false">
   <div class="container">
     <div class="room">
       <div class="has-text-centered columns is-gapless">
@@ -77,6 +77,7 @@
   const Peer = window.Peer;
 
   (async function main() {
+    const localLayout = document.getElementById('local-video');
     const localVideo = document.getElementById('js-local-stream');
     const joinTrigger = document.getElementById('js-join-trigger');
     const leaveTrigger = document.getElementById('js-leave-trigger');
@@ -90,6 +91,7 @@
     const meta = document.getElementById('js-meta');
     const sdkSrc = document.querySelector('script[src*=skyway]');
     const remoteIcon = document.getElementById('chat-icon');
+    const mq = window.matchMedia( "(max-width: 1000px)" );
 
     function scrollToEnd() {
       messages.scrollTop = messages.scrollHeight;
@@ -102,6 +104,8 @@
     observer.observe(messages, {
       childList: true,
     });
+
+    leaveTrigger.disabled = true;
 
     meta.innerText = `
       UA: ${navigator.userAgent}
@@ -147,6 +151,9 @@
         mode: getRoomModeByHash(),
         stream: localStream,
       });
+
+      joinTrigger.disabled = true;
+      leaveTrigger.disabled = false;
   
       room.once('open', () => {
         messages.innerHTML += '<div class="local-start"><span>入室しました</span></div>';
@@ -158,6 +165,12 @@
       // Render remote stream for new peer join in the room
       room.on('stream', async stream => {
         const newVideo = document.createElement('video');
+        if (mq.matches) {
+          localLayout.style.height = '65px';
+          localVideo.style.top = '65px';
+          localVideo.style.left = '78%';
+          localVideo.style.height = '89px'
+        };
         newVideo.srcObject = stream;
         newVideo.playsInline = true;
         // mark peerId to find it later at peerLeave event
@@ -178,6 +191,13 @@
         const remoteVideo = remoteVideos.querySelector(
           `[data-peer-id="${peerId}"]`
         );
+        if (mq.matches) {
+          localLayout.style.height = '330px';
+          localVideo.style.top = '0px';
+          localVideo.style.right = '9%';
+          localVideo.style.left = '9%';
+          localVideo.style.height = '100%'
+        };
         remoteVideo.srcObject.getTracks().forEach(track => track.stop());
         remoteVideo.srcObject = null;
         remoteVideo.remove();
@@ -193,10 +213,21 @@
           remoteVideo.srcObject = null;
           remoteVideo.remove();
         });
+        if (mq.matches) {
+          localLayout.style.height = '330px';
+          localVideo.style.top = '0px';
+          localVideo.style.right = '9%';
+          localVideo.style.left = '9%';
+          localVideo.style.height = '100%'
+        };
       });
   
       sendTrigger.addEventListener('click', onClickSend);
       leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+      leaveTrigger.addEventListener('click', () => {
+        joinTrigger.disabled = false;
+        leaveTrigger.disabled = true;
+      });
   
       function onClickSend() {
         let obj = new String(remoteIcon.src)

@@ -13,6 +13,11 @@
   }
 }
 
+//ビデオチャットレイアウト
+.chat-section {
+  padding: 3rem 1.5rem;
+}
+
 .video_background {
   position: fixed;
   top: 0px;
@@ -52,10 +57,23 @@ video::-webkit-media-controls-pause-button {
   width: 100%;
 }
 
+//ローカルモニター
 #local-video {
+
+  video {
+    transform: scale(-1, 1);
+  }
 
   span#js-room-mode {
     display: none;
+  }
+}
+
+//リモートモニター
+#remote-video {
+
+  video {
+    transform: scale(-1, 1);
   }
 }
 
@@ -94,6 +112,7 @@ video::-webkit-media-controls-pause-button {
 
 #js-messages {
   height: 295px;
+  overflow-x: hidden;
   background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(135, 206, 250, 1)), url("/cloud.jpg");
   background-size: cover;
   border-top-right-radius: 4px;
@@ -1338,6 +1357,38 @@ main {
   //送信ボタン
   #js-send-trigger {
     margin-top: 17px;
+  }
+
+  //ビデオチャットレイアウト
+  .chat-section {
+    padding: 1.5rem 1.5rem;
+  }
+
+  //ローカルビデオ
+  #local-video {
+    position: relative;
+    height: 330px;
+
+    video {
+      position: absolute;
+      z-index: 5;
+      top: 0px;
+      left: 9%;
+      right: 9%;
+      height: 100%;
+    }
+  }
+
+  #js-messages {
+
+    .remote-text span {
+      padding: 0px;
+    }
+
+    .remote-text img.message-chat-icon {
+      width: 45px;
+      height: 45px;
+    }
   }
 }
 
