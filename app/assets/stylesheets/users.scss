@@ -463,7 +463,7 @@ mypage-main{/*画面中央*/
 }
 
 #tag-images-view{
-  text-align: left;
+  text-align: center;
   margin: 10px;
 }
 
@@ -1310,10 +1310,6 @@ main {
     display: none;
   }
 
-  #tag-images-view {
-    text-align: center;
-  }
-
   .main-index {
 
     .index-photo-size {
@@ -1338,6 +1334,20 @@ main {
       width: 350px;
       height: 200px;
       object-fit: cover;
+    }
+
+    .modal-card-head{
+      .is-size-3 {
+        font-size: 1rem !important;
+      }
+    }
+
+    .modal-card {
+      width: 90%;
+
+      .button.is-medium {
+        font-size: 13px!important;
+      }
     }
   }
 
