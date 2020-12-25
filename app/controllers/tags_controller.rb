@@ -1,8 +1,8 @@
 class TagsController < ApplicationController
   # ログインしてなければ閲覧不可
-  # before_action :authenticate_user!, only: %i[top_notice show]
-  # before_action :authenticate_facility!, only: %i[index create new update destroy]
-  # before_action :set_tag, only: %i[show edit update destroy]
+  # before_action :authenticate_user!, only: %i[]
+  # before_action :authenticate_facility!, only: %i[]
+  # before_action :set_tag, only: %i[]
 
   # def index; end
 
