@@ -1,7 +1,7 @@
 $("div").removeClass("is-active");
 
-$("#added-message").html("<div class='notification is-success has-text-weight-bold'><p class='notice'><%= notice %></p></div>").hide().fadeIn(250);
+$("#added-message").html("<div class='notification is-success has-text-weight-bold' id='is-notice'><p class='notice'><%= notice %></p></div>").hide().fadeIn(800);
 
 $(function(){
-  setTimeout("$('#added-message').fadeOut(1200)", 1500)
+  setTimeout("$('#added-message').fadeOut(1200)", 4000)
 })

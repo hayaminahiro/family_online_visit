@@ -1,3 +1,9 @@
+//エラーメッセージ（フルメッセージ用）
+.errors_full_messages {
+  margin: 0 0 20px 0;
+  padding: 15px;
+}
+
 //共通フラッシュメッセージ
 .error-position {
   margin-top: 94px;
@@ -5,25 +11,40 @@
   padding: 15px;
 }
 
-//エラーメッセージ（フルメッセージ用）
-.errors_full_messages {
-  margin: 0 0 20px 0;
-  padding: 15px;
-}
-
 //ヘッダー下
 #layout-message {
   margin-top: 74px;
-}
-
-div.notification.is-danger.error-count {
-  margin-bottom: 0;
+  text-align: center;
+  // position: relative;
 }
 
 .notification {
-  width: 100%;
+  position: fixed!important;
+  left: 15%;
+  top: 88px;
+  width: 70%;
+  z-index: 3;
+  border-radius: 10px!important;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 10px;
   font-size: 20px;
+  background-color: none;
+  color: white;
 }
+
+#is-notice{
+  background-color: rgba(72, 199, 116, 0.8);
+}
+
+#is-alert{
+  background-color: rgba(218, 30, 30, 0.8);
+}
+
+div.notification.is-alert.error-count {
+  margin-bottom: 0;
+}
+
 
 //施設・家族ユーザー共通
 
@@ -82,7 +103,7 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
 
   //エラーメッセージ
   .notification {
-    width: 90%;
+    padding: 1.25rem 1.5rem!important;
     margin-right: auto;
     margin-left: auto;
   }
@@ -91,16 +112,12 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
 //モバイル
 @media screen and (max-width: 500px) {
 
-  //共通エラーメッセージ
-  .error-position {
-    margin-top: 60px;
-    margin-bottom: 5px;
-  }
-
   //エラーメッセージ
   .notification {
-    width: 80%;
+    padding: 0.5rem 1.5rem!important;
     font-size: 15px;
+    padding: 5px;
+    top: 70px;
   }
 
   //ヘッダー下
