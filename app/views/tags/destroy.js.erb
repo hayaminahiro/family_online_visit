@@ -1,2 +1,9 @@
 $(".tag-link-<%= @tag.id%>").remove();
+
 $("select.select-tag option[value='<%= @tag.id%>']").remove();
+
+$("#added-message").html("<div class='notification is-danger has-text-weight-bold'><p class='notice'><%= alert %></p></div>").hide().fadeIn(250);
+
+$(function(){
+  setTimeout("$('#added-message').fadeOut(1200)", 1500)
+})

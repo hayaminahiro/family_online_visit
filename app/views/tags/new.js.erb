@@ -1,6 +1,5 @@
-<!--$('#samplRemote2').html("<%#= escape_javascript(render 'new') %>").show();-->
-
 document.querySelector(".js-contents--content-form").innerHTML = "<%= escape_javascript(render 'new') %>";
+
 document.querySelector(".modal").classList.add("is-active");
 
 $(".js-content-form--close-button, div.modal-background").on("click", function() {
