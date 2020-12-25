@@ -115,39 +115,41 @@
       <div id="Faci" class="content-tab" style="display:none">
         <section class="hero is-medium has-text-centered" id="hero-memory">
           <div class="main-index">
-            <div class="content">
-              <div class="cp_tab">
-                <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
-                <label for="tab1_1" class="tab-font">全ての写真</label>
-                <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
-                <label for="tab1_2" class="tab-font">行事ごとの写真</label>
-                <div class="cp_tabpanels">
-                  <div id="first_tab01" class="cp_tabpanel all-render">
-                  <!--全ての写真のタブ-->
-                    <% @residents.each do |resident| %>
-                      <% @image_columns = [] %>
-                      <% resident.memories.each do |m| %>
-                        <% @image_columns << m.image0 if m.image0? %>
-                        <% @image_columns << m.image1 if m.image1? %>
-                        <% @image_columns << m.image2 if m.image2? %>
-                        <% @image_columns << m.image3 if m.image3? %>
-                        <% @image_columns << m.image4 if m.image4? %>
-                        <% @image_columns << m.image5 if m.image5? %>
-                        <% @image_columns << m.image6 if m.image6? %>
-                        <% @image_columns << m.image7 if m.image7? %>
+            <div id="added-message"></div>
+            <div class="tag-container d-flex">
+              <ul class="user-show-tags">
+                <li id="tag-links"><%= link_to "全ての写真", tag_path(tag: "all"), class: "tag-title tag-panel", remote: true %></li>
+                <li id="tag-links"><%= link_to "行事ごとの写真", tag_path(tag: "event"), class: "tag-title tag-panel", remote: true %></li>
+                <% current_user.tags.each do |tag| %>
+                  <li class="tag-link-<%= tag.id %>" id="tag-links">
+                    <div class="tag-panel">
+                      <%= link_to tag.title, tag_path(tag), class: "tag-title-branch", remote: true %>
+                      <%= link_to tag_path(tag), method: :delete, remote: true, data: { confirm: "#{tag.title}のフォルダを削除してよろしいですか？" }, class:"tag-delete-btn" do %>
+                        <i class="fas fa-times"></i>
                       <% end %>
-                      <%= render 'memories/all_images', { image_columns: @image_columns, memories: resident.memories, resident: resident } %>
-                    <% end %>
-                  </div>
-
-                  <!--行事ごとの写真(カード)のタブ-->
-                  <div id="second_tab01" class="cp_tabpanel event-render">
-                    <% @residents.each do |resident| %>
-                      <%= render 'memories/event_card', { memories: resident.memories, resident: resident } %>
-                    <% end %>
-                  </div>
-                </div>
+                    </div>
+                  </li>
+                <% end %>
+              <div class="tag-plus-btn">
+                <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
+                  <i class="fas fa-folder-plus fa-3x"></i>
+                <% end %>
               </div>
+              </ul>
+            </div>
+
+            <!--モーダル表示-->
+            <div class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <div class="js-contents--content-form"></div>
+              </div>
+            </div>
+
+            <div id="tag-images-view">
+              <% @residents.each do |resident| %>
+                <%= render 'memories/all_images', { image_columns: resident.image_columns, memories: resident.memories, resident: resident } %>
+              <% end %>
             </div>
           </div>
         </section>
