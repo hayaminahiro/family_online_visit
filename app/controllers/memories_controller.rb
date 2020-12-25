@@ -8,7 +8,9 @@ class MemoriesController < ApplicationController
     @image_columns = Memory.image_columns(@memories)
   end
 
-  def show; end
+  def show
+    @residents = current_user.residents.includes(:memories) if user_signed_in?
+  end
 
   def new
     @memory = @resident.memories.new
@@ -35,8 +37,7 @@ class MemoriesController < ApplicationController
 
   def destroy
     resident = current_facility.residents.find(params[:resident_id])
-    memories = resident.memories
-    memory = memories.find(params[:id])
+    memory = resident.memories.find(params[:id])
     memory.delete
     redirect_to resident_memories_url, alert: "#{resident.name}さんの思い出アルバムを削除しました"
   end
