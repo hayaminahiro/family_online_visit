@@ -57,7 +57,7 @@
       <% end %>
     </div>
     <div class="has-text-right">
-      <div class="content">
+      <div class="content" id="timer-layout">
         <div class="time-icon"><i class="fas fa-user-clock"></i></div>
         <div id="timer" class="has-text-weight-semibold">残り30分</div>
       </div>
@@ -91,7 +91,9 @@
     const meta = document.getElementById('js-meta');
     const sdkSrc = document.querySelector('script[src*=skyway]');
     const remoteIcon = document.getElementById('chat-icon');
-    const mq = window.matchMedia( "(max-width: 1000px)" );
+    const tablet = window.matchMedia( "(max-width: 1000px)" );
+    const mobile = window.matchMedia( "(max-width: 500px)" );
+    const buttonLayout = document.getElementById('input-key');
 
     function scrollToEnd() {
       messages.scrollTop = messages.scrollHeight;
@@ -165,18 +167,26 @@
       // Render remote stream for new peer join in the room
       room.on('stream', async stream => {
         const newVideo = document.createElement('video');
-        if (mq.matches) {
+
+        if (mobile.matches) {
+          localLayout.style.height = '45px';
+          buttonLayout.style.marginTop = '-35px';
+          localVideo.style.top = '45px';
+          localVideo.style.left = '75%';
+          localVideo.style.height = '45px'
+        } else if (tablet.matches) {
           localLayout.style.height = '65px';
           localVideo.style.top = '65px';
           localVideo.style.left = '78%';
           localVideo.style.height = '89px'
         };
+
         newVideo.srcObject = stream;
         newVideo.playsInline = true;
         // mark peerId to find it later at peerLeave event
         newVideo.setAttribute('data-peer-id', stream.peerId);
         newVideo.setAttribute('controls', true);
-        newVideo.setAttribute('id', "remote-video");
+        newVideo.setAttribute('id', "remote-monitor");
         remoteVideos.append(newVideo);
         await newVideo.play().catch(console.error);
       });
@@ -191,17 +201,26 @@
         const remoteVideo = remoteVideos.querySelector(
           `[data-peer-id="${peerId}"]`
         );
-        if (mq.matches) {
-          localLayout.style.height = '330px';
-          localVideo.style.top = '0px';
-          localVideo.style.right = '9%';
-          localVideo.style.left = '9%';
-          localVideo.style.height = '100%'
-        };
         remoteVideo.srcObject.getTracks().forEach(track => track.stop());
         remoteVideo.srcObject = null;
         remoteVideo.remove();
         messages.innerHTML += `<div class="chat-end"><span>面会が終了しました</span></div>\n`;
+
+        var firstRemote = document.getElementById('remote-monitor');
+
+        if (mobile.matches && firstRemote === null) {
+          localLayout.style.height = '185px';
+          buttonLayout.style.marginTop = '38px';
+          localVideo.style.right = '0px';
+          localVideo.style.left = '0px';
+          localVideo.style.height = '100%';
+        } else if (tablet.matches && firstRemote === null) {
+          localLayout.style.height = '330px';
+          localVideo.style.top = '0px';
+          localVideo.style.right = '9%';
+          localVideo.style.left = '9%';
+          localVideo.style.height = '100%';
+        };
       });
   
       // for closing myself
@@ -212,14 +231,23 @@
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
           remoteVideo.remove();
+
+          var firstRemote = document.getElementById('remote-monitor');
+
+          if (mobile.matches && firstRemote === null) {
+            localLayout.style.height = '185px';
+            buttonLayout.style.marginTop = '38px';
+            localVideo.style.right = '0px';
+            localVideo.style.left = '0px';
+            localVideo.style.height = '100%';
+          } else if (tablet.matches && firstRemote === null) {
+            localLayout.style.height = '330px';
+            localVideo.style.top = '0px';
+            localVideo.style.right = '9%';
+            localVideo.style.left = '9%';
+            localVideo.style.height = '100%';
+          };
         });
-        if (mq.matches) {
-          localLayout.style.height = '330px';
-          localVideo.style.top = '0px';
-          localVideo.style.right = '9%';
-          localVideo.style.left = '9%';
-          localVideo.style.height = '100%'
-        };
       });
   
       sendTrigger.addEventListener('click', onClickSend);

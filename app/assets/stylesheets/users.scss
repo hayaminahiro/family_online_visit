@@ -32,6 +32,10 @@
   background-size: cover;
 }
 
+video::-webkit-media-controls {
+  -webkit-transform: scaleX(-1);
+}
+
 video::-webkit-media-controls-start-playback-button {
   pointer-events: none;
 }
@@ -61,7 +65,7 @@ video::-webkit-media-controls-pause-button {
 #local-video {
 
   video {
-    transform: scale(-1, 1);
+    -webkit-transform: scaleX(-1);
   }
 
   span#js-room-mode {
@@ -73,7 +77,7 @@ video::-webkit-media-controls-pause-button {
 #remote-video {
 
   video {
-    transform: scale(-1, 1);
+    -webkit-transform: scaleX(-1);
   }
 }
 
@@ -112,6 +116,7 @@ video::-webkit-media-controls-pause-button {
 
 #js-messages {
   height: 295px;
+  word-break: break-all;
   overflow-x: hidden;
   background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(135, 206, 250, 1)), url("/cloud.jpg");
   background-size: cover;
@@ -1379,7 +1384,15 @@ main {
     }
   }
 
+  .messages-layout  {
+    width: 75%;
+  }
+
   #js-messages {
+
+    .chat-day {
+      width: 28%;
+    }
 
     .remote-text span {
       padding: 0px;
@@ -1623,7 +1636,7 @@ main {
   }
 
   //インプット欄
-  input#js-local-text::placeholder {
+  textarea#js-local-text::placeholder {
     font-size: 0.7em;
   }
 
@@ -1634,12 +1647,12 @@ main {
 
   //入室ボタン
   #js-join-trigger {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   //退室ボタン
   #js-leave-trigger {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   //送信ボタン
@@ -1656,5 +1669,65 @@ main {
   //タイマー
   #timer {
     font-size: 22px;
+  }
+
+  #timer-layout {
+    margin-bottom: 0px;
+
+    .time-icon {
+      padding-right: 16px;
+    }
+  }
+
+  #buttonBox {
+    width: 70px;
+    height: 70px;
+
+    button#start {
+      width: 70px;
+      height: 70px;
+      font-size: 14px;
+    }
+  }
+
+  //ローカルビデオ
+  #local-video {
+    height: 250px;
+
+    video {
+      left: 0px;
+      right: 0px;
+    }
+  }
+
+  //入室・退室ボタンの配置
+  #input-key {
+    margin-top: -55px;
+  }
+
+  //チャット
+  .messages-layout {
+    width: 100%;
+  }
+
+  #js-messages {
+
+    //日付
+    .chat-day {
+      width: 30%;
+      font-size: 10px;
+    }
+
+    .local-start span {
+      font-size: 10px;
+    }
+
+    .room-end span {
+      font-size: 10px;
+    }
+
+    .chat-end span {
+      font-size: 10px;
+    }
   }
 }
