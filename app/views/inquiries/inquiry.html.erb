@@ -1,6 +1,7 @@
 <div class="is-size-3 has-text-centered inquiry-title">
-  <span><%= @facility.facility_name %>へお問い合わせ</span>
+  <span class="inquiry-title-block"><%= @facility.facility_name %>へ</span><span class="inquiry-title-block">お問い合わせ</span>
 </div>
+<div class="has-text-centered inquiry-confirm">※こちらは<%= @facility.facility_name %>へのお問い合わせページになります。お間違えのないようにご注意下さい。</div>
 <div class="container is-fluid">
   <div class="columns">
     <div class="column is-8-desktop is-offset-2-desktop is-12-mobile is-8-tablet is-offset-2-tablet">
@@ -25,7 +26,6 @@
 
         <%= f.hidden_field :facility_id, :value => @facility.id %>
 
-        <div class="inquiry-notice">こちらは<%= @facility.facility_name %>へのお問い合わせページになります。お間違えのないようにご注意下さい。</div>
         <div class="inquiry-btn has-text-centered">
           <%= f.submit "送信", class: "button is-medium is-outlined is-success inquiry-submit-btn" %>
         </div>
