@@ -25,11 +25,11 @@
 
     <div id="layout-space"></div>
     <% if flash[:notice] %>
-      <div class="notification has-text-weight-bold" id="is-notice">
+      <div class="notification is-success has-text-weight-bold">
         <p class="notice"><%= notice %></p>
       </div>
     <% elsif flash[:alert] %>
-      <div class="notification has-text-weight-bold" id="is-alert">
+      <div class="notification is-danger has-text-weight-bold">
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
@@ -43,8 +43,8 @@
 </html>
 
 <script>
-  $(".notification").hide().fadeIn(800);
+  $(".notification").hide().fadeIn(100);
   $(function(){
-    setTimeout("$('.notification').fadeOut(1200)", 4000)
+    setTimeout("$('.notification').fadeOut(1200)", 10000)
     })
 </script>

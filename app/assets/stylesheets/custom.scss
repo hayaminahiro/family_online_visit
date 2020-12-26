@@ -15,7 +15,6 @@
 #layout-space {
   margin-top: 74px;
   text-align: center;
-  // position: relative;
 }
 
 .notification {
@@ -33,18 +32,9 @@
   color: white;
 }
 
-#is-notice{
-  background-color: rgba(72, 199, 116, 0.8);
-}
-
-#is-alert{
-  background-color: rgba(218, 30, 30, 0.8);
-}
-
 div.notification.is-alert.error-count {
   margin-bottom: 0;
 }
-
 
 //施設・家族ユーザー共通
 
