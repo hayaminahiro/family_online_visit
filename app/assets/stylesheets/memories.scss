@@ -766,4 +766,28 @@
       }
     }
   }
+
+  .main-show {
+
+    .photo-card-link-show{
+      .fa-3x {
+          font-size: 37px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main-show {
+
+    .otherNavigation h1 {
+      font-size: 18px;
+    }
+
+    .photo-card-link-show{
+      .fa-3x {
+        font-size: 2em;
+      }
+    }
+  }
 }
