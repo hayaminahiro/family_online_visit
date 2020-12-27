@@ -23,7 +23,7 @@ class TagsController < ApplicationController
     respond_to do |format|
       if @tag.save
         format.html
-        format.js { flash.now[:notice] = "#{@tag.title}フォルダ追加しました" }
+        format.js { flash.now[:notice] = "#{@tag.title}フォルダを追加しました" }
       else
         format.js { render :new }
       end
@@ -40,7 +40,7 @@ class TagsController < ApplicationController
     respond_to do |format|
       if @tag.destroy
         format.html
-        format.js { flash.now[:alert] = "#{@tag.title}フォルダ削除しました" }
+        format.js { flash.now[:alert] = "#{@tag.title}フォルダを削除しました" }
       else
         format.js { render :new }
       end
