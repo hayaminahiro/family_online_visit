@@ -47,10 +47,8 @@
           </tr>
         </tbody>
       </table>
-      <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete,
-                  data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" },
-                  class: "button is-danger is-light show-back-btn" %>
-      <%= link_to "戻る", facility_reservations_path(facility_id: @facility.id), class: "button is-light show-back-btn" %>
+      <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete, data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" }, class: "button is-danger is-light show-back-btn" %>
+      <%= link_to "戻る", facility_reservations_path(facility_id: @facility.id, user: @reservation.user_id), class: "button is-light show-back-btn" %>
     </div>
   </div>
 </div>
