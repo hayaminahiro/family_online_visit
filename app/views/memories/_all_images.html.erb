@@ -2,8 +2,8 @@
   <% if Rails.env.production? %>
     <% memory_id = image.url.split("/")[6].to_i %>
     <% column = image.url.split("/")[5] %>
-    <% id_column = image.url.split("/")[6] + s[5] %>
-    <% column_id = image.url.split("/")[5] + s[6] %>
+    <% id_column = image.url.split("/")[6] + image.url.split("/")[5] %>
+    <% column_id = image.url.split("/")[5] + image.url.split("/")[6] %>
     <% url = image.url.split("/")[7] %>
     <% memory = memories.find(memory_id) %>
   <% else %>
