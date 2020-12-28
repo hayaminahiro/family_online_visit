@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2020_12_15_154725) do
     t.index ["facility_id"], name: "index_information_on_facility_id"
   end
 
+  create_table "inquiries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "message"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_inquiries_on_facility_id"
+  end
+
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "resident_id"
     t.string "title"
@@ -159,6 +169,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_154725) do
   add_foreign_key "facility_users", "facilities"
   add_foreign_key "facility_users", "users"
   add_foreign_key "information", "facilities"
+  add_foreign_key "inquiries", "facilities"
   add_foreign_key "memories", "residents"
   add_foreign_key "relatives", "residents"
   add_foreign_key "relatives", "users"

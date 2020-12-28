@@ -60,7 +60,17 @@
     position: relative;
     margin: auto;
     margin: 0px auto;
-    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  .request-time{
+    text-align: right;
+    width: 97%;
+    color: gray;
+
+    span{
+      margin-right: 10px;
+    }
   }
 }
 
@@ -433,7 +443,7 @@
     position: relative;
     margin: auto;
     margin: 0px auto;
-    margin-top: 20px;
+    margin-bottom: 20px;
     width: 80%;
   }
 
@@ -448,6 +458,16 @@
     font-size: 18px;
     font-weight: 600;
     margin-right: 10px;
+  }
+
+  .request-time{
+    text-align: right;
+    width: 90%;
+    color: gray;
+
+    span{
+      margin-right: 10px;
+    }
   }
 }
 
@@ -579,6 +599,15 @@
     width: 150px; border: solid 1px;
     font-size: initial;
     font-weight: 500;
+  }
+
+  .request-time{
+    text-align: right;
+    color: gray;
+
+    span{
+      margin-right: 10px;
+    }
   }
 }
 
