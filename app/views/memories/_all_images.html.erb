@@ -43,30 +43,38 @@
             <% case image.url.split("/")[3] %>
             <% when "image0" %>
               <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
-              <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image0, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% when "image1" %>
               <%= f.hidden_field :image1_cache %>
-              <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image1, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% when "image2" %>
               <%= f.hidden_field :image2_cache %>
-              <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image2, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% when "image3" %>
               <%= f.hidden_field :image3_cache %>
-              <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image3, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% when "image4" %>
               <%= f.hidden_field :image4_cache %>
-              <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image4, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% when "image5" %>
               <%= f.hidden_field :image5_cache %>
-              <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image5, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% when "image6" %>
               <%= f.hidden_field :image6_cache %>
-              <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image6, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% else %>
               <%= f.hidden_field :image7_cache %>
-              <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
+              <%= f.label :image7, "\uf093 画像を選択", class: "fa label" %><br />
+              <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
             <% end %>
-            <%= f.submit "\uf302 画像変更", class: "fa button img-update-btn" %>
+            <%= f.submit "\uf302 変更する", class: "fa button img-update-btn" %>
 
             <%= link_to delete_image_resident_memories_path(resident, memory_id: memory_id, column: column),
                         method: :delete, data: { confirm: "トップ画像(#{url})は削除できません。"}, class: "button is-medium delete-btn" do %>

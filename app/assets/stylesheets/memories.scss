@@ -170,6 +170,10 @@
 
       .img-update-form{
         margin: auto;
+
+        .label {
+          display: none;
+        }
       }
 
       .img-update-btn {
@@ -726,6 +730,79 @@
   }
 }
 
+
+@media screen and (max-width: 500px) {
+  .main-show {
+
+    .otherNavigation h1 {
+      font-size: 18px;
+    }
+
+    .photo-card-link-show{
+      .fa-3x {
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+
+  .cp_ipselect.cp_sl04 select {
+    margin-left: 8px;
+  }
+
+  .tag-select-form {
+    width: 77%;
+  }
+
+  .main-index {
+
+    .content {
+
+      .footer-position {
+        height: 88px;
+
+        .d-none {
+          display: none;
+        }
+
+        .img-update-form {
+          margin: auto;
+          padding: 9px 13px;
+          display: flex;
+          height: 100%;
+
+          .label {
+            display: block;
+            background-color: #49bbc8;
+            color: white;
+            font-size: 14px !important;
+            border-radius: 6px;
+            padding: 10px 10px;
+            margin: auto;
+          }
+        }
+
+        .img-update-btn {
+          margin: 0 30px 0 8px;
+          font-size: 13px;
+          padding: 0px 10px;
+        }
+
+        .delete-btn {
+          margin: auto;
+          font-size: 13px;
+        }
+      }
+    }
+
+    footer {
+      height: 85px;
+    }
+  }
+}
+
 //思い出new・editページのレスポンシブ対応
 @media screen and (max-width: 1024px) {
   #memory-panel-style {
@@ -772,21 +849,6 @@
     .photo-card-link-show{
       .fa-3x {
           font-size: 37px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .main-show {
-
-    .otherNavigation h1 {
-      font-size: 18px;
-    }
-
-    .photo-card-link-show{
-      .fa-3x {
-        font-size: 2em;
       }
     }
   }
