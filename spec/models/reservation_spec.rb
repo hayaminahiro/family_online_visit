@@ -6,13 +6,12 @@ RSpec.describe Reservation, type: :model do
   let(:reservation) { create(:reservation) }
 
   describe 'validations' do
-
     # これから全てののカラムが存在すれば有効な状態であること
     it "is valid with all reservation column" do
       reservation = Reservation.new(
         user_id: user.id,
         facility_id: facility.id,
-        reservation_date: Date.today,
+        reservation_date: Time.zone.today,
         started_at: DateTime.now,
         reservation_user: "sample_reservation_user",
         reservation_email: "sample@email.com",
