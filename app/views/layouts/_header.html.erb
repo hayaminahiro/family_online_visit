@@ -34,7 +34,7 @@
             </p>
           <% end %>
           <p class="navbar-item">
-            <%= link_to_unless_current "お問い合わせ", "#", class: "links" %>
+            <%= link_to_unless_current "お問い合わせ", inquiry_system_inquiries_path, class: "links" %>
           </p>
           <% if facility_signed_in? && current_facility.admin? %>
             <!--システム全体管理者のみ閲覧可能-->

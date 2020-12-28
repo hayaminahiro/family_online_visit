@@ -9,6 +9,7 @@ ja:
       comment: お問い合わせ
       # notification: 通知
       memory: 生活記録
+      inquiry: お問い合わせ
     attributes:
         user:
           id: ID
@@ -56,3 +57,7 @@ ja:
           req_name: 入居者様名
           req_phone: ご家族様連絡先
           req_address: ご家族様住所
+        inquiry:
+          name: 名前
+          email: メールアドレス
+          message: 本文
