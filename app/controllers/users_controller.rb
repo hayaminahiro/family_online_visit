@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     def room_required
       return true unless @room.nil?
 
-      if current_facility 
+      if current_facility
         redirect_to users_url, alert: "#{@user.name}の Room Name を設定してください。"
       elsif current_user
         redirect_to facility_home_path(@facility), alert: "ビデオチャットの準備ができていません、今しばらくお待ちください。"

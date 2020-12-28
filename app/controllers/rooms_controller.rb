@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    room = @user.rooms.build(room_params)
+    @room = @user.rooms.build(room_params)
     if room.save
       redirect_to users_url, notice: "Room Nameを登録しました。"
     else
@@ -29,15 +29,15 @@ class RoomsController < ApplicationController
 
   private
 
-  def room_params
-    params.require(:room).permit(:room_name, :facility_id)
-  end
+    def room_params
+      params.require(:room).permit(:room_name, :facility_id)
+    end
 
-  def set_room
-    @room = Room.find(params[:id])
-  end
+    def set_room
+      @room = Room.find(params[:id])
+    end
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+    def set_user
+      @user = User.find(params[:user_id])
+    end
 end

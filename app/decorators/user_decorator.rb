@@ -75,6 +75,7 @@ module UserDecorator
     end
   end
 
+  # チャット内のアイコン
   def chat_user_icon
     if image?
       image_tag image.url, id: "chat-icon"
