@@ -43,6 +43,11 @@ Rails.application.routes.draw do
   resources :facilities do
     get :home # ユーザログイン後の各施設のホーム画面
     get :facility_home, on: :member # 施設ログイン後のホーム画面
+    # get 'inquiry', to: "facilities/inquiries#inquiry"
+    # post 'create', to: "facilities/inquiries#create"
+    resources :inquiries do
+      get :inquiry, on: :collection
+    end
   end
 
   # ご家族 ================================================================================
@@ -83,4 +88,13 @@ Rails.application.routes.draw do
   # タグ ==================================================================================
   resources :tags
   resources :tag_images
+
+  # お問い合わせ===============================================================================
+  resources :inquiries do
+    collection do
+      get :inquiry
+      get :inquiry_system
+      post :create_system
+    end
+  end
 end
