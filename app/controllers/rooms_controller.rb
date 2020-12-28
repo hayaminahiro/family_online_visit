@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = @user.rooms.build(room_params)
-    if room.save
+    if @room.save
       redirect_to users_url, notice: "Room Nameを登録しました。"
     else
       render :new

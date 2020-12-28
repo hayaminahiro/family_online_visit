@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user,               only: %i[edit update destroy video_room set_room]
-  before_action :set_facility_id,        only: %i[video_room set_room]
+  before_action :set_user,               only: %i[edit update destroy video_room set_room room_required]
+  before_action :set_facility_id,        only: %i[video_room set_room room_required]
   before_action :set_room,               only: %i[video_room room_required]
   # ログインしてなければ閲覧不可
   before_action :authenticate_user!,     except: %i[index video_room edit update destroy]
   before_action :authenticate_facility!, only: %i[index edit update destroy]
-  before_action :room_required,          only: :room_required
+  before_action :room_required,          only: :video_room
 
   def index
     @users = User.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
