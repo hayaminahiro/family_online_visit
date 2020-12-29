@@ -1,7 +1,7 @@
 class InquiriesController < ApplicationController
   before_action :set_facility_id, only: %i[inquiry create index]
   before_action :set_inquiry, only: %i[inquiry inquiry_system]
-  before_action :authenticate_user!, only: %i[inquiry create]
+  before_action :authenticate_user!, only: %i[inquiry create destroy]
 
   def inquiry; end
 
@@ -29,6 +29,12 @@ class InquiriesController < ApplicationController
 
   def index
     @inquiries = Inquiry.search(params[:search], current_facility).paginate(page: params[:page], per_page: 10)
+  end
+
+  def destroy
+    @inquiry = Inquiry.find(params[:id])
+    @inquiry.destroy
+    redirect_to facility_inquiries_url(current_facility), alert: "#{@inquiry.name}のデータを削除しました。"
   end
 
   private
