@@ -22,4 +22,8 @@ module RequestResidentDecorator
       tag.p((link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: facility), class: "btn-shine"))
     end
   end
+
+  def exclude_ids
+    Resident.all.where.not(facility_id: current_facility.id)
+  end
 end

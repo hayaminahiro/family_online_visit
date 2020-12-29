@@ -19,6 +19,8 @@
           <% end %>
         </div>
       </nav>
+
+      <div class="request-time"><span>申請日</span><%= l(@request.created_at, format: :long) %></div>
       <div class="card">
         <table class="table is-narrow user-edit-table is-bordered" id="relative-table">
           <tbody>
@@ -62,9 +64,17 @@
                     <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
                   <% end %><br>
                 </div>
+                <div class="d-none">
+                  <%= f.collection_check_boxes :resident_ids, @request.exclude_ids, :id, :name do |b| %>
+                    <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                  <% end %>
+                </div>
+
                 <div class="tag-apply">
                   <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
-                    <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% if b.object.facility_id == current_facility.id  %>
+                      <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="propriety">
