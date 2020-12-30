@@ -1420,6 +1420,10 @@ main {
         }
       }
     }
+
+    .modal-card-head {
+      height: 68px;
+    }
   }
 
   #content-back .word-break {
@@ -1444,6 +1448,7 @@ main {
   .cp_ipselect.cp_sl04::before {
     display: none;
   }
+
 
   .modal-card-body {
     padding: 10px;
