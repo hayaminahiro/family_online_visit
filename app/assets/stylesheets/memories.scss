@@ -84,7 +84,7 @@
   position: relative;
   border-radius: 2px;
   border: 2px solid#13b1c0;
-  border-radius: 50px;
+  border-radius: 6px;
   background: #ffffff;
   margin-right: 20px;
 }
@@ -112,7 +112,6 @@
 
 .tag-select-submit{
   text-align: center;
-  border-radius: 5px;
   border: 2px solid #13b1c0;
   color: #13b1c0;
   text-decoration: none;
@@ -120,6 +119,7 @@
   background: #fff;
   cursor: pointer;
   font-size: 14px;
+  border-radius: 6px;
 }
 
 .main-index {
@@ -133,6 +133,14 @@
     text-align: center;
     margin: 20px 10px 0 0;
     padding-top: 50px;
+
+    .modal-card-title {
+      padding: 20px;
+    }
+
+    .modal-card-foot {
+      padding: 0px;
+    }
 
     .all-render {
       padding-top: 50px;
@@ -151,7 +159,7 @@
     }
 
     .footer-position {
-      padding-left: 60px;
+      padding-left: 0px;
 
       .delete-btn {
         color: #dc628b;
@@ -164,12 +172,14 @@
       .drop-zone {
         border-style: dashed;
         color: #ccc;
-        padding: 5px 10px 5px 10px;
-        margin: 15px 0;
+        padding: 20px 85px 20px 30px;
+        margin: 0;
+        width: 70%;
       }
 
       .img-update-form{
         margin: auto;
+        width: 100%;
 
         .label {
           display: none;
@@ -781,18 +791,21 @@
             border-radius: 6px;
             padding: 10px 10px;
             margin: auto;
+            width: 30%;
           }
         }
 
         .img-update-btn {
-          margin: 0 30px 0 8px;
-          font-size: 13px;
+          margin: auto 30px auto 8px;
+          font-size: 15px;
           padding: 0px 10px;
+          width: 30%;
         }
 
         .delete-btn {
           margin: auto;
           font-size: 13px;
+          width: 20%;
         }
       }
     }
