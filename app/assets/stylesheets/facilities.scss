@@ -880,11 +880,12 @@ img#icon_prev.icon_circle {
   background: #F5F5F5;
 }
 
-.account-title {
+#account-title {
   font-weight: 700;
   padding-bottom: 5px;
   margin-bottom: 20px;
   text-align: left;
+  color: #401c00;
 }
 
 .mini-title {
@@ -1197,7 +1198,7 @@ h1.mini-title {
   }
 
   //サブタイトル
-  .account-title {
+  #account-title {
     display: none;
   }
 

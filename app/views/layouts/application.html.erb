@@ -22,21 +22,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.min.css">
 
     <%= render 'layouts/header' %>
-    <div class="container" id="layout-message">
-      <% if flash[:notice] %>
-      <div class="notification is-success has-text-weight-bold error-position">
+
+    <div id="layout-space"></div>
+    <% if flash[:notice] %>
+      <div class="notification is-success has-text-weight-bold">
         <p class="notice"><%= notice %></p>
       </div>
-      <% elsif flash[:alert] %>
-      <div class="notification is-danger has-text-weight-bold error-position">
+    <% elsif flash[:alert] %>
+      <div class="notification is-danger has-text-weight-bold">
         <p class="alert"><%= alert %></p>
       </div>
-      <% end %>
-    </div>
+    <% end %>
+
     <%= yield %>
+
     <%= facility_signed_in? ? (render 'layouts/under_facility_tab') : (render 'layouts/under_user_tab') %>
     <!%= debug(params) if Rails.env.development? %>
     <%= render 'layouts/footer' %>
   </body>
-
 </html>
+
+<script>
+  $(".notification").hide().fadeIn(100);
+  $(function(){
+    setTimeout("$('.notification').fadeOut(1200)", 12000)
+    })
+</script>
