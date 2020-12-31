@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
+  has_many :rooms, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -29,7 +30,6 @@ class User < ApplicationRecord
   validates :phone,                   presence: true
 
   mount_uploader :image, ImageUploader
-  validates :room_name, presence: true, on: :room_word_update
   validate :check_relative_invalid, on: :relative_update
 
   def check_relative_invalid
