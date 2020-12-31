@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_064253) do
+ActiveRecord::Schema.define(version: 2020_12_28_153804) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -146,11 +146,21 @@ ActiveRecord::Schema.define(version: 2020_12_01_064253) do
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "room_name"
+    t.bigint "user_id"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_rooms_on_facility_id"
+    t.index ["room_name"], name: "index_rooms_on_room_name", unique: true
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "password"
-    t.string "room_name"
     t.boolean "admin", default: false
     t.string "phone"
     t.string "address"
@@ -193,4 +203,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_064253) do
   add_foreign_key "tag_images", "tags"
   add_foreign_key "tag_images", "users"
   add_foreign_key "tags", "users"
+  add_foreign_key "rooms", "facilities"
+  add_foreign_key "rooms", "users"
 end

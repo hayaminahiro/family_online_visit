@@ -1,0 +1,19 @@
+<header class="modal-card-head" style="background-color: #48D1CC;">
+  <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name設定</p>
+</header>
+<section class="modal-card-body">
+  <div class="field">
+    <%= render partial: 'shared/error_messages', locals: { obj: content } %>
+    <div class="form-group col-sm-5">
+      <%= f.hidden_field :facility_id, value: current_facility.id %>
+      <%= f.label :room_name, class: "label is-size-4 has-text-weight-normal" %>
+      <%= f.text_field :room_name, :placeholder => " \uf084 部屋名を入力", class: "fa input is-link is-medium is-rounded" %><br><br>
+    </div><br>
+  </div>
+  <div class="has-text-centered">
+    <%= f.submit content.id.present? ? "編集する" : "登録する", class: "fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
+    <button type="button" class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold js-content-form--close-button" aria-label="close" id="close">
+        キャンセル
+    </button>
+  </div>
+</section>
