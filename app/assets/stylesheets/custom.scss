@@ -26,7 +26,7 @@
   border-radius: 10px!important;
   letter-spacing: 1px;
   text-align: center;
-  padding: 10px;
+  padding: 1rem 2rem!important;
   font-size: 20px;
   background-color: none;
   color: white;
@@ -93,11 +93,11 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
 }
 
 //タブレット
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
 
-  //エラーメッセージ
+  //フラッシュメッセージ
   .notification {
-    padding: 1.25rem 1.5rem!important;
+    padding: 0.5rem 1.5rem!important;
     margin-right: auto;
     margin-left: auto;
   }
@@ -106,9 +106,8 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
 //モバイル
 @media screen and (max-width: 500px) {
 
-  //エラーメッセージ
+  //フラッシュメッセージ
   .notification {
-    padding: 0.5rem 1.5rem!important;
     font-size: 12px;
     padding: 5px;
     top: 70px;
