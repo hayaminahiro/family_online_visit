@@ -1,0 +1,7 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.5.7-node-browsers
+    steps:
+      - run: echo "hello world"
