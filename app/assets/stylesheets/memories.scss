@@ -247,7 +247,7 @@
 
 //indexカードのデザイン
 .photo-card {
-  margin: 50px 50px 20px 50px;
+  margin: 30px 15px 20px 15px;
   width: 310px;
   background: #fff;
   border-radius: 5px;
@@ -294,6 +294,10 @@
   color: #0090aa;
 }
 
+.card-float:last-child {
+  margin-bottom: 55px;
+}
+
 // レスポンシブindex
 @media screen and (max-width: 750px) {
   .glovalNavigation {
@@ -332,7 +336,7 @@
     }
 
     .photo-card {
-      margin: 50px 50px 20px 50px;
+      margin: 25px 50px 20px 50px;
       width: 280px;
       background: #fff;
       border-radius: 5px;
@@ -407,6 +411,10 @@
 
   .card-float {
     float: left;
+  }
+
+  .card-float:last-child {
+    margin-bottom: 70px;
   }
 }
 
