@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :relatives, dependent: :destroy
   has_many :residents, through: :relatives
   has_many :reservations, dependent: :destroy
+  has_many :tags, dependent: :destroy
+  has_many :tag_images, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
   has_many :rooms, dependent: :destroy
 

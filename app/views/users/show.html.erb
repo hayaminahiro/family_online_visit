@@ -113,7 +113,46 @@
       </div>
 
       <div id="Faci" class="content-tab" style="display:none">
-        <p>写真を表示</p>
+        <section class="hero is-medium has-text-centered" id="hero-memory">
+          <div class="main-index">
+            <div id="added-message"></div>
+            <div class="tag-container d-flex">
+              <ul class="user-show-tags">
+                <li id="tag-links"><%= link_to "全ての写真", tag_path(tag: "all"), class: "tag-title tag-panel", remote: true %></li>
+                <li id="tag-links"><%= link_to "行事ごとの写真", tag_path(tag: "event"), class: "tag-title tag-panel", remote: true %></li>
+                <% current_user.tags.each do |tag| %>
+                  <li class="tag-link-<%= tag.id %>" id="tag-links">
+                    <div class="tag-panel">
+                      <%= link_to tag.title, tag_path(tag), class: "tag-title-branch", remote: true %>
+                      <%= link_to tag_path(tag), method: :delete, remote: true, data: { confirm: "#{tag.title}のフォルダを削除してよろしいですか？" }, class:"tag-delete-btn" do %>
+                        <i class="fas fa-times"></i>
+                      <% end %>
+                    </div>
+                  </li>
+                <% end %>
+              <div class="tag-plus-btn">
+                <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
+                  <i class="fas fa-folder-plus fa-3x"></i>
+                <% end %>
+              </div>
+              </ul>
+            </div>
+
+            <!--モーダル表示-->
+            <div class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <div class="js-contents--content-form"></div>
+              </div>
+            </div>
+
+            <div id="tag-images-view">
+              <% @residents.each do |resident| %>
+                <%= render 'memories/all_images', { image_columns: resident.image_columns, memories: resident.memories, resident: resident } %>
+              <% end %>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div id="Resi" class="content-tab" style="display:none">
