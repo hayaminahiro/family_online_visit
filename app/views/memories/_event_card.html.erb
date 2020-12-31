@@ -7,7 +7,7 @@
             <%= image_tag m.image0.url, class: "card-photo-size" if m.image0.present? %>
             <div class="photo-card-content">
               <p class="photo-card-title"><%= m.title %></p>
-              <p class="photo-card-text"><%= m.message %></p>
+              <p class="photo-card-text"><%= m.message.truncate(20) %></p>
             </div>
             <div class="photo-card-link">
               <%= link_to resident_memory_path(resident, m), class:"folder", remote: true do %>
@@ -34,7 +34,7 @@
           <%= image_tag m.image0.url, class: "card-photo-size" if m.image0.present? %>
           <div class="photo-card-content">
             <p class="photo-card-title"><%= m.title %></p>
-            <p class="photo-card-text"><%= m.message %></p>
+            <p class="photo-card-text"><%= m.message.truncate(20) %></p>
           </div>
           <div class="photo-card-link">
             <%= link_to resident_memory_path(resident, m), class:"folder", remote: true do %>
