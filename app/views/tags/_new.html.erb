@@ -1,0 +1,19 @@
+<header class="modal-card-head" style="background-color: #48D1CC;">
+  <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-4">新しいフォルダーの作成</p>
+</header>
+<section class="modal-card-body">
+  <%= form_with(model: @tag, url: tags_path, method: :post, remote: true) do |f| %>
+    <div class="field">
+      <div class="form-group col-sm-5">
+        <%= render partial: 'shared/error_messages', locals: { obj: @tag } %>
+        <%= f.text_field :title, :placeholder => "\uf303 フォルダ名を入力してください", class: "fa input" %>
+      </div><br>
+    </div>
+    <div class="has-text-centered">
+      <%= f.submit "作成する", class:"fa button is-info is-rounded is-focused has-text-weight-semibold" %>&emsp;
+      <button type="button" class="button is-black is-outlined is-rounded has-text-weight-semibold js-content-form--close-button" aria-label="close" id="close">
+        キャンセル
+      </button>
+    </div>
+  <% end %>
+</section>

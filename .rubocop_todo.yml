@@ -21,10 +21,13 @@ Layout/IndentationConsistency:
     - 'app/controllers/relatives_controller.rb'
     - 'app/controllers/request_residents_controller.rb'
     - 'app/controllers/residents_controller.rb'
+    - 'app/controllers/rooms_controller.rb'
     - 'app/controllers/signup_controller.rb'
     - 'app/controllers/users/omniauth_callbacks_controller.rb'
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/controllers/users_controller.rb'
+    - 'app/controllers/tags_controller.rb'
+    - 'app/controllers/tag_images_controller.rb'
     - 'app/models/facility.rb'
     - 'app/controllers/inquiries_controller.rb'
 
@@ -41,10 +44,13 @@ Layout/IndentationWidth:
     - 'app/controllers/relatives_controller.rb'
     - 'app/controllers/request_residents_controller.rb'
     - 'app/controllers/residents_controller.rb'
+    - 'app/controllers/rooms_controller.rb'
     - 'app/controllers/signup_controller.rb'
     - 'app/controllers/users/omniauth_callbacks_controller.rb'
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/controllers/users_controller.rb'
+    - 'app/controllers/tags_controller.rb'
+    - 'app/controllers/tag_images_controller.rb'
     - 'config/initializers/carrierwave.rb'
     - 'app/models/facility.rb'
     - 'app/controllers/inquiries_controller.rb'
@@ -95,6 +101,8 @@ Style/ClassAndModuleChildren:
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/controllers/users/sessions_controller.rb'
     - 'app/controllers/users/unlocks_controller.rb'
+    - 'app/controllers/tags_controller.rb'
+    - 'app/controllers/tag_images_controller.rb'
     - 'test/test_helper.rb'
 
 Style/MixinUsage:
@@ -142,3 +150,10 @@ Style/StderrPuts:
 
 Layout/LineLength:
   Max: 220
+
+# Rubyの循環的複雑度をチェック
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/controllers/facility_users_controller.rb'
+    - 'app/decorators/resident_decorator.rb'
+    - 'app/models/memory.rb'

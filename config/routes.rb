@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :video_room
-      patch :room_word_update # Room_Name登録のため追加
     end
+    resources :rooms, only: %i[new create edit update]
   end
 
   # 利用施設登録 ==========================================================================
@@ -84,6 +84,10 @@ Rails.application.routes.draw do
 
   # 予約 ==================================================================================
   resources :reservations
+
+  # タグ ==================================================================================
+  resources :tags
+  resources :tag_images
 
   # お問い合わせ===============================================================================
   resources :inquiries do

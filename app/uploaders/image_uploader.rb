@@ -1,6 +1,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
+  # 開発環境はローカル/本番環境はS3に保存
   if Rails.env.development?
     storage :file
   elsif Rails.env.test?
