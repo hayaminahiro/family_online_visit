@@ -35,7 +35,7 @@ class InquiriesController < ApplicationController
   def destroy
     @inquiry = Inquiry.find(params[:id])
     @inquiry.destroy
-    redirect_to facility_inquiries_url(current_facility), alert: "#{@inquiry.name}のデータを削除しました。"
+    redirect_to facility_inquiries_url(current_facility), alert: "#{@inquiry.name}様からのお問い合わせを削除しました。"
   end
 
   def show
