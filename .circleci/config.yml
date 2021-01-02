@@ -14,16 +14,11 @@ jobs:
         environment:
           - BUNDLER_VERSION: 1.17.3
           - RAILS_ENV: 'test'
-          # - MYSQL_HOST: 127.0.0.1
-          # - DB_HOST: 127.0.0.1
-          # - DB_USERNAME: from: ENV['USER_NAME']
-          # - DB_PASSWORD: from: ENV['DB_PASSWORD']
-          # - TZ: Asia/Tokyo
           - MYSQL_ROOT_PASSWORD: password
           - MYSQL_DATABASE: root
 
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:5.7
+      - image: circleci/mysql:5.7
       #   environment:
       #     MYSQL_ROOT_PASSWORD: password
       #     MYSQL_DATABASE: root
