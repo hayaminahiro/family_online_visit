@@ -1,0 +1,9 @@
+<% if content.id.present? %>
+  <%= form_with(model: content, url: resident_path, method: :patch, remote: true) do |f| %>
+    <%= render "form", { f: f, content: content } %>
+  <% end %>
+<% else %>
+  <%= form_with(model: content, url: residents_path, method: :post, remote: true) do |f| %>
+    <%= render "form", { f: f, content: content } %>
+  <% end %>
+<% end %>

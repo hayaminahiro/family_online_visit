@@ -100,3 +100,35 @@ textarea#inquiry_message.textarea {
 .inquiry-title-block {
   display: inline-block;
 }
+
+.detail-inquiry {
+  margin: 20px 90px 10px 20px;
+  padding: 0 50px 0 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.detail-inquiry-value {
+  margin: 0 0 0 20px;
+  padding: 0 0 0 0;
+}
+
+.detail-inquiry-message {
+  margin: 0 0 0 20px;
+  padding: 0 20px 0 0;
+  min-height: 200px;
+  word-wrap: break-word;
+}
+
+.inquiry-message-short {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inquiry-delete-btn {
+  margin-right: auto;
+  margin-left: auto;
+}

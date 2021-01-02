@@ -52,9 +52,9 @@
                     <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
                     <td><%= inquiry.name %></td>
                     <td><%= inquiry.email %></td>
-                    <td><%= inquiry.message %></td>
+                    <td><div class="inquiry-message-short"><%= inquiry.message %></div></td>
                     <td>
-                      <%= link_to "詳細", facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success" %>
+                      <%= link_to "詳細", facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success contents--create-button--circle js-contents--create-button--circle" %>
                     </td>
                     <td>
                       <%= link_to "削除", facility_inquiry_path(current_facility, inquiry.id), method: :delete,
@@ -77,4 +77,10 @@
   </div>
 </div>
 
-<div id="inquiry-show-page" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<!--モーダル表示-->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <div class="js-contents--content-form"></div>
+  </div>
+</div>
