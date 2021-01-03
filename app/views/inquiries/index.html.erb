@@ -37,29 +37,31 @@
           <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
             <table class="table is-striped is-fullwidth inquiry-table">
               <thead>
-                <tr class="is-size-5 has-background-info">
-                  <th class="inquiry-th">日付</th>
-                  <th class="inquiry-th">お名前</th>
-                  <th class="inquiry-th2">連絡先</th>
-                  <th class="inquiry-th2">内容</th>
-                  <th class="inquiry-th2">詳細</th>
+                <tr class="is-size-5 has-background-info has-text-weight-bold">
+                  <th class="inquiry-th has-text-white">日付</th>
+                  <th class="inquiry-th has-text-white">お名前</th>
+                  <th class="inquiry-th2 has-text-white">連絡先</th>
+                  <th class="inquiry-th2 has-text-white">内容</th>
+                  <th class="inquiry-th2 has-text-white">詳細</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <% @inquiries.each do |inquiry| %>
-                  <tr>
-                    <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
-                    <td><%= inquiry.name %></td>
-                    <td><%= inquiry.email %></td>
-                    <td><div class="inquiry-message-short"><%= inquiry.message %></div></td>
+                  <tr class="is-size-5">
+                    <td class="has-text-centered inquiry-index-tbody has-text-weight-semibold"><%= l(inquiry.created_at, format: :long) %></td>
+                    <td class="inquiry-index-tbody has-text-weight-semibold"><%= inquiry.name %></td>
+                    <td class="inquiry-index-tbody has-text-weight-semibold"><%= inquiry.email %></td>
+                    <td class="inquiry-index-tbody has-text-weight-semibold"><div class="inquiry-message-short"><%= inquiry.message %></div></td>
                     <td>
-                      <%= link_to "詳細", facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success contents--create-button--circle js-contents--create-button--circle" %>
+                      <%= link_to facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success contents--create-button--circle js-contents--create-button--circle" do %>
+                        <i class="far fa-file-alt"></i>
+                      <% end %>
                     </td>
                     <td>
-                      <%= link_to "削除", facility_inquiry_path(current_facility, inquiry.id), method: :delete,
-                        data: { confirm: "削除してよろしいですか？" },
-                        class: "button is-danger" %>
+                      <%= link_to facility_inquiry_path(current_facility, inquiry.id), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "button is-danger" do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
                     </td>
                   </tr>
                 <% end %>
@@ -80,7 +82,7 @@
 <!--モーダル表示-->
 <div class="modal">
   <div class="modal-background"></div>
-  <div class="modal-card">
+  <div class="modal-card inquiry-modal-size">
     <div class="js-contents--content-form"></div>
   </div>
 </div>
