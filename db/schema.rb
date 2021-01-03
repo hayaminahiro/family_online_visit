@@ -161,7 +161,6 @@ ActiveRecord::Schema.define(version: 2020_12_28_153804) do
     t.string "name", null: false
     t.string "email", null: false
     t.string "password"
-    t.string "room_name"
     t.boolean "admin", default: false
     t.string "phone"
     t.string "address"

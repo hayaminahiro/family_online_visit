@@ -9,6 +9,5 @@ FactoryBot.define do
     prefecture_name       { "Tokyo" }
     address_city          { "tyuuou" }
     address_street        { "nihonbashi" }
-    room_name             { "online_room" }
   end
 end
