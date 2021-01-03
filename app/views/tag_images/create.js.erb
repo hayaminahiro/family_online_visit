@@ -1,0 +1,7 @@
+$("div").removeClass("is-active");
+
+$("#added-message").html("<div class='notification is-success has-text-weight-bold'><p class='notice'><%= notice %></p></div>").hide().fadeIn(100);
+
+$(function(){
+  setTimeout("$('#added-message').fadeOut(1200)", 12000)
+})

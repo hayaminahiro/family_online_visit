@@ -16,6 +16,112 @@
   align-items: center;
 }
 
+#modal-title-back {
+  background-color: #e3dcca;
+  padding-right: 30px;
+
+  .title-color {
+    font-size: 22px;
+    color: #401c00; margin: 5px;
+  }
+}
+
+#content-back {
+  border-top: 1px solid #dbdbdb;
+  background: #f7f3e8;
+
+  .word-break {
+    word-break: break-all;
+    padding-left: 50px;
+  }
+
+  .span-title {
+    color: #401c00;
+    padding-right: 15px;
+  }
+}
+
+.tag-panel{
+  border-radius: 6px;
+  box-shadow: -2px 0em 1em -0.125em rgba(10, 10, 10, 0.1), 1px -1px 0 1px rgba(10, 10, 10, 0.02);
+  font-size: 16px;
+  line-height: 20px;
+  margin: 10px 0 10px 10px;
+}
+
+.tag-select-form{
+  display: flex;
+  width: 60%;
+  margin: auto;
+}
+
+.cp_ipselect {
+  overflow: hidden;
+  width: 90%;
+  text-align: center;
+}
+
+.cp_ipselect select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer;
+  text-indent: 0.01px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cp_ipselect select::-ms-expand {
+  display: none;
+}
+
+.cp_ipselect.cp_sl04 {
+  position: relative;
+  border-radius: 2px;
+  border: 2px solid#13b1c0;
+  border-radius: 6px;
+  background: #ffffff;
+  margin-right: 20px;
+}
+
+.cp_ipselect.cp_sl04::before {
+  position: absolute;
+  top: 1em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #13b1c0;
+  pointer-events: none;
+}
+
+.cp_ipselect.cp_sl04 select {
+  padding: 8px 38px 8px 8px;
+  color: #13b1c0;
+  line-height: 20px;
+  margin-left: 20px;
+}
+
+.tag-select-submit{
+  text-align: center;
+  border: 2px solid #13b1c0;
+  color: #13b1c0;
+  text-decoration: none;
+  padding: 9px 25px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
 .main-index {
   min-height: 110vh;
 
@@ -28,21 +134,20 @@
     margin: 20px 10px 0 0;
     padding-top: 50px;
 
+    .modal-card-title {
+      padding: 20px;
+    }
+
+    .modal-card-foot {
+      padding: 0px;
+    }
+
     .all-render {
       padding-top: 50px;
     }
 
     .event-render {
       padding-top: 0;
-    }
-
-    .modal-title-back {
-      background-color: #e3dcca;
-      padding-right: 30px;
-
-      .title-color {
-        color: #401c00; margin: 5px;
-      }
     }
 
     .image-position {
@@ -53,39 +158,36 @@
       }
     }
 
-    .content-back {
-      border-top: 1px solid #dbdbdb;
-      background: #f7f3e8;
-
-      .word-break {
-        word-break: break-all;
-        padding-left: 50px;
-      }
-
-      .span-title {
-        color: #401c00;
-        padding-right: 15px;
-      }
-    }
-
     .footer-position {
-      padding-left: 60px;
+      padding-left: 0px;
 
       .delete-btn {
         color: #dc628b;
         background: #ff000030;
         border-color: #cc9ba4;
+        margin: 15px 0;
+        font-size: 15px;
       }
 
       .drop-zone {
         border-style: dashed;
         color: #ccc;
-        padding: 20px 30px 20px 10px;
-        margin-left: 40px;
+        padding: 20px 85px 20px 30px;
+        margin: 0;
+        width: 70%;
+      }
+
+      .img-update-form{
+        margin: auto;
+        width: 100%;
+
+        .label {
+          display: none;
+        }
       }
 
       .img-update-btn {
-        margin-left: 15px;
+        margin: 15px;
         border-radius: 5px;
         border: 2px solid #13b1c0;
         color: #13b1c0;
@@ -103,8 +205,23 @@
   }
 
   .index-photo-size {
-    width: 350px;
-    height: 250px;
+    width: 260px;
+    height: 180px;
+    object-fit: cover;
+    cursor: pointer
+  }
+
+  .image-modal-width{
+    width: 70%;
+
+    .modal-card-body{
+      text-align: center;
+    }
+  }
+
+  .modal-photo-size {
+    width: 750px;
+    height: 500px;
     object-fit: cover;
     cursor: pointer
   }
@@ -130,7 +247,7 @@
 
 //indexカードのデザイン
 .photo-card {
-  margin: 50px 50px 20px 50px;
+  margin: 30px 15px 20px 15px;
   width: 310px;
   background: #fff;
   border-radius: 5px;
@@ -177,6 +294,10 @@
   color: #0090aa;
 }
 
+.card-float:last-child {
+  margin-bottom: 55px;
+}
+
 // レスポンシブindex
 @media screen and (max-width: 750px) {
   .glovalNavigation {
@@ -193,13 +314,17 @@
   .main-index {
     min-height: 100vh;
 
+    .tag-container {
+      margin: 10px 10px 10px 10px;
+    }
+
+    #tag-images-view {
+      margin-bottom: 65px;
+    }
+
     .content {
       text-align: center;
       margin: 0 auto;
-    }
-
-    .img-interval {
-      margin: 5px;
     }
 
     a.folder {
@@ -207,15 +332,33 @@
     }
 
     .photo-card {
-      margin: 50px 50px 20px 13px;
-      width: 320px;
+      margin: 25px 50px 20px 50px;
+      width: 280px;
       background: #fff;
       border-radius: 5px;
       box-shadow: 0 2px 5px #ccc;
     }
 
+    .card-photo-size {
+      height: 175px;
+    }
+
     .tab-font {
       font-size: 20px;
+    }
+
+    .tag-panel {
+      font-size: 12px;
+      line-height: 3px;
+      margin: 5px 0 5px 5px;
+    }
+
+    .user-show-tags{
+      margin: auto;
+
+      .tag-title {
+        padding: 10px;
+      }
     }
 
     //モーダルデザイン
@@ -265,6 +408,10 @@
   .card-float {
     float: left;
   }
+
+  .card-float:last-child {
+    margin-bottom: 70px;
+  }
 }
 
 //思い出showページ
@@ -305,6 +452,13 @@
     font-size: 20px;
     display: flex;
     align-items: center;
+
+    h1{
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 0px;
+      color: #401c00;
+    }
   }
 }
 
@@ -389,6 +543,15 @@
       text-align: center;
       margin: 0;
       padding: 15px;
+
+      .show-photo-size {
+        width: 140px;
+        height: 105px;
+      }
+
+      .button.is-medium {
+        font-size: 13px;
+      }
     }
 
     .show-bottom-control {
@@ -458,6 +621,7 @@
     margin-bottom: 20px;
     text-align: left;
     color: #401c00;
+    font-size: 30px;
   }
 
   .photo-size {
@@ -580,6 +744,86 @@
   }
 }
 
+
+@media screen and (max-width: 500px) {
+  .main-show {
+
+    .otherNavigation h1 {
+      font-size: 18px;
+    }
+
+    .photo-card-link-show{
+      .fa-3x {
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+
+  .cp_ipselect.cp_sl04 select {
+    margin-left: 8px;
+  }
+
+  .tag-select-form {
+    width: 77%;
+  }
+
+  .main-index {
+
+    .content {
+
+      .footer-position {
+        height: 88px;
+
+        .d-none {
+          display: none;
+        }
+
+        .img-update-form {
+          margin: auto;
+          padding: 9px 13px;
+          display: flex;
+          height: 100%;
+
+          .label {
+            display: block;
+            background-color: #49bbc8;
+            color: white;
+            font-size: 14px !important;
+            border-radius: 6px;
+            padding: 10px 10px;
+            margin: auto;
+            width: 30%;
+          }
+        }
+
+        .img-update-btn {
+          margin: auto 30px auto 8px;
+          font-size: 15px;
+          padding: 0px 10px;
+          width: 30%;
+        }
+
+        .delete-btn {
+          margin: auto;
+          font-size: 13px;
+          width: 20%;
+        }
+      }
+    }
+
+    .modal-card-head {
+      height: 95px;
+    }
+
+    footer {
+      height: 85px;
+    }
+  }
+}
+
 //思い出new・editページのレスポンシブ対応
 @media screen and (max-width: 1024px) {
   #memory-panel-style {
@@ -598,6 +842,7 @@
 
     .memory-title {
       font-size: 26px;
+      padding-top: 30px;
     }
 
     .mandatory {
@@ -617,6 +862,15 @@
       .drop-area-mandatory {
         padding: 10px 20px 20px 10px !important;
         border-style: none !important;
+      }
+    }
+  }
+
+  .main-show {
+
+    .photo-card-link-show{
+      .fa-3x {
+          font-size: 37px;
       }
     }
   }

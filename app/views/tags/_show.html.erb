@@ -1,0 +1,26 @@
+<% case @all_image
+  when "all" %>
+  <% @residents.each do |resident| %>
+      <%= render 'memories/all_images', { image_columns: resident.image_columns, memories: resident.memories, resident: resident } %>
+  <% end %>
+
+<% when "event" %>
+  <%= render 'memories/event_card', {residents: @residents } %>
+
+<% else %>
+  <% @residents.each do |resident| %>
+    <% @tag.tag_images.each do |i| %>
+      <% resident.image_columns.each do |image| %>
+        <% if Rails.env.production? %>
+          <% url = image.url.split("/")[7] %>
+        <% else %>
+          <% url = image.url.split("/")[5] %>
+        <% end %>
+
+        <% if i.image == url %>
+          <%= image_tag image.url, class: "img-interval index-photo-size" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

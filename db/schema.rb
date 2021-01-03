@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_154725) do
+ActiveRecord::Schema.define(version: 2020_12_28_153804) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -111,10 +111,9 @@ ActiveRecord::Schema.define(version: 2020_12_15_154725) do
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.date "calendar_day"
-    t.date "reservation_date"
+    t.date "reservation_time"
     t.datetime "started_at"
     t.datetime "finished_at"
-    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "facility_id"
@@ -132,6 +131,35 @@ ActiveRecord::Schema.define(version: 2020_12_15_154725) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_residents_on_facility_id"
+  end
+
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "room_name"
+    t.bigint "user_id"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_rooms_on_facility_id"
+    t.index ["room_name"], name: "index_rooms_on_room_name", unique: true
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "tag_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.bigint "tag_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_images_on_tag_id"
+    t.index ["user_id"], name: "index_tag_images_on_user_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -179,4 +207,9 @@ ActiveRecord::Schema.define(version: 2020_12_15_154725) do
   add_foreign_key "reservations", "facilities"
   add_foreign_key "reservations", "users"
   add_foreign_key "residents", "facilities"
+  add_foreign_key "rooms", "facilities"
+  add_foreign_key "rooms", "users"
+  add_foreign_key "tag_images", "tags"
+  add_foreign_key "tag_images", "users"
+  add_foreign_key "tags", "users"
 end

@@ -58,6 +58,8 @@ ja:
           req_name: 入居者様名
           req_phone: ご家族様連絡先
           req_address: ご家族様住所
+        tag:
+          title: フォルダ名
         inquiry:
           name: 名前
           email: メールアドレス

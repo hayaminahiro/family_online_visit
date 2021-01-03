@@ -74,4 +74,13 @@ module UserDecorator
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "user-icon-header"
     end
   end
+
+  # チャット内のアイコン
+  def chat_user_icon
+    if image?
+      image_tag image.url, id: "chat-icon"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: "chat-icon"
+    end
+  end
 end

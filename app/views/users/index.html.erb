@@ -59,6 +59,7 @@
             </thead>
             <tbody>
               <% @users.each do |user| %>
+              <% room = user.rooms.find_by(facility_id: current_facility.id) %>
               <tr>
                 <td class="is-vcentered">
                   <div class="has-text-weight-semibold user-table-tag">
@@ -72,60 +73,27 @@
                   <%= link_to "予約", facility_reservations_path(current_facility, user: user), class: "button is-link is-rounded has-text-weight-semibold" %>
                 </td>
                 <td>
-                  <button class="button is-primary" id=<%= user.id %>>
-                    <span><i class="fas fa-key"></i></span>
-                  </button>
-
-                  <!-- Room Name モーダル表示 -->
-                  <div class="modal" id=<%= user.name %>>
-                    <div class="modal-background"></div>
-                    <div class="modal-card">
-                      <header class="modal-card-head" style="background-color: #48D1CC;">
-                        <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3">Room Name登録</p>
-                        <button class="delete" aria-label="close" id="close"></button>
-                      </header>
-                      <%= form_with(model: user, url: room_word_update_user_path(user), method: :patch, local: true,) do |f| %>
-                      <section class="modal-card-body">
-                        <div class="field">
-                          <%= f.label :room_name, class: "label is-size-4" %>
-                          <%= f.text_field :room_name, :placeholder => " \uf084 Room Nameを入力してください", class: "fa input is-link is-large is-rounded is-focused" %>
-                        </div><br>
-                        <div class="has-text-centered">
-                          <%= f.submit "\uf044 登録する", class: "fa button is-info is-medium is-rounded is-focused has-text-weight-semibold" %>&emsp;
-                          <button type="button"
-                            class="button is-black is-outlined is-medium is-rounded has-text-weight-semibold"
-                            aria-label="close" id="close">
-                            キャンセル
-                          </button>
-                        </div>
-                      </section>
-                      <footer class="modal-card-foot">
-                      </footer>
+                  <% if room.present? %>
+                    <div class=" js-contents--edit-button">
+                      <%= link_to edit_user_room_path(user, id: room.id), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
+                        <i class="fas fa-key"></i>
                       <% end %>
-                    </div>
-                  </div>
-
-                  <script>
-                    $(document).ready(function () {
-                      $("#<%= user.id %>").on("click", function () {
-                        $("div#<%= user.name %>").addClass("is-active");
-                      })
-
-                      $("#close, div.modal-background").on("click", function () {
-                        $("div#<%= user.name %>").removeClass("is-active");
-                      })
-                    });
-                  </script>
-                  <!-- ここまで -->
-
+                    </div>  
+                  <% else %>
+                    <div class=" js-contents--create-button">
+                      <%= link_to new_user_room_path(user), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
+                        <i class="fas fa-key"></i>
+                      <% end %>
+                    </div>  
+                  <% end %>  
                 </td>
                 <td class="is-vcentered">
                   <div class="has-text-weight-semibold user-table-tag">
-                    <%= user.room_name %>
+                    <%= room.room_name if room.present? %>
                   </div>
                 </td>
                 <td>
-                  <%= link_to video_room_user_path(user), class: "button is-warning" do %>
+                  <%= link_to video_room_user_path(user, facility_id: current_facility.id), class: "button is-warning" do %>
                   <span><i class="fas fa-photo-video"></i></span>
                   <% end %>
                 </td>
@@ -159,6 +127,14 @@
           versions of Lorem Ipsum.</p>
       </div>
     </div>
+  </div>
+</div>
+
+<!--モーダル表示-->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <div class="js-contents--content-form"></div>
   </div>
 </div>
 

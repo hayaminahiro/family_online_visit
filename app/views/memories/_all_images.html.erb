@@ -1,371 +1,124 @@
-<% @memories.each do |m| %>
-  <% if m.image0? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image0.url.split("/")[6].to_i %>
-      <% column = m.image0.url.split("/")[5] %>
-      <% id_column = m.image0.url.split("/")[6] + m.image0.url.split("/")[5] %>
-      <% column_id = m.image0.url.split("/")[5] + m.image0.url.split("/")[6] %>
-      <% url = m.image0.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image0.url.split("/")[4].to_i %>
-      <% column = m.image0.url.split("/")[3] %>
-      <% id_column = m.image0.url.split("/")[4] + m.image0.url.split("/")[3] %>
-      <% column_id = m.image0.url.split("/")[3] + m.image0.url.split("/")[4] %>
-      <% url = m.image0.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
+<% image_columns.each do |image| %>
+  <% if Rails.env.production? %>
+    <% memory_id = image.url.split("/")[6].to_i %>
+    <% column = image.url.split("/")[5] %>
+    <% id_column = image.url.split("/")[6] + image.url.split("/")[5] %>
+    <% column_id = image.url.split("/")[5] + image.url.split("/")[6] %>
+    <% url = image.url.split("/")[7] %>
+    <% memory = memories.find(memory_id) %>
+  <% else %>
+    <% memory_id = image.url.split("/")[4].to_i %>
+    <% column = image.url.split("/")[3] %>
+    <% id_column = image.url.split("/")[4] + image.url.split("/")[3] %>
+    <% column_id = image.url.split("/")[3] + image.url.split("/")[4] %>
+    <% url = image.url.split("/")[5] %>
+    <% memory = memories.find(memory_id) if facility_signed_in? %>
+  <% end %>
+  <%= image_tag image.url, class: "img-interval index-photo-size", id: id_column %>
 
-    <%= image_tag m.image0.url, class: "img-interval index-photo-size", id: id_column if m.image0? %>
+  <!-- 画像モーダル表示 -->
+  <div class="modal" id="<%= column_id %>">
+    <div class="modal-background"></div>
+    <div class="modal-card image-modal-width">
+      <header class="modal-card-head" id="modal-title-back">
+        <p class="modal-card-title is-half has-text-weight-bold reserve-modal title-color">画像データ詳細</p>
+        <button class="delete" aria-label="close" id="close"></button>
+      </header>
 
-    <!-- 画像00 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image0.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image0? %>
-            <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
+      <%= render partial: 'shared/error_messages', locals: { obj: memory } if facility_signed_in? %>
+      <section class="modal-card-body image-position">
+        <%= image_tag image.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval modal-photo-size" %>
+        <%#= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
+      </section>
+      <section class="modal-card-body" id="content-back">
+        <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
+        <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">出来事の日付（行事日等）</span><%= l(image.model.event_date, format: :long) %></p>
+        <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">思い出画像タイトル</span><%= image.model.title %></p>
+        <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">ご家族へのメッセージ</span><%= image.model.message %></p>
+      </section>
+
+      <footer class="modal-card-foot footer-position res-footer">
+        <% if facility_signed_in? %>
+          <%= form_with(model: memory, url: resident_memory_path(resident, memory), method: :patch, class: "img-update-form", local: true) do |f| %>
+            <% case image.url.split("/")[3] %>
+            <% when "image0" %>
+              <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
+              <%= f.label :image0, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% when "image1" %>
+              <%= f.hidden_field :image1_cache %>
+              <%= f.label :image1, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% when "image2" %>
+              <%= f.hidden_field :image2_cache %>
+              <%= f.label :image2, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% when "image3" %>
+              <%= f.hidden_field :image3_cache %>
+              <%= f.label :image3, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% when "image4" %>
+              <%= f.hidden_field :image4_cache %>
+              <%= f.label :image4, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% when "image5" %>
+              <%= f.hidden_field :image5_cache %>
+              <%= f.label :image5, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% when "image6" %>
+              <%= f.hidden_field :image6_cache %>
+              <%= f.label :image6, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% else %>
+              <%= f.hidden_field :image7_cache %>
+              <%= f.label :image7, "\uf093 画像を選択", class: "fa label" %>
+              <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+            <% end %>
+            <%= f.submit "\uf302 変更する", class: "fa button img-update-btn" %>
+
+            <%= link_to delete_image_resident_memories_path(resident, memory_id: memory_id, column: column),
                         method: :delete, data: { confirm: "トップ画像(#{url})は削除できません。"}, class: "button is-medium delete-btn" do %>
               <span><i class="far fa-trash-alt"></i></span>
             <% end %>
-            <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf302 画像変更", class: "fa button img-update-btn" %>
-          </footer>
+          <% end %>
+        <% else %>
+          <%= form_with(model: current_user, url: tag_images_path(image: url), method: :post, class: "tag-select-form", remote: true) do |f| %>
+            <div class="cp_ipselect cp_sl04">
+              <%= f.collection_select :tag_id, current_user.tags, :id, :title, { prompt: '追加したいフォルダを選択' }, {class: "select-tag"} %>
+              <%= f.hidden_field :image, :value => url %>
+            </div>
+            <%= f.submit "\uf302 追加する", class: "fa tag-select-submit" %>
+          <% end %>
         <% end %>
-      </div>
+      </footer>
     </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
+  </div>
 
-  <% if m.image1? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image1.url.split("/")[6].to_i %>
-      <% column = m.image1.url.split("/")[5] %>
-      <% id_column = m.image1.url.split("/")[6] + m.image1.url.split("/")[5] %>
-      <% column_id = m.image1.url.split("/")[5] + m.image1.url.split("/")[6] %>
-      <% url = m.image1.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image1.url.split("/")[4].to_i %>
-      <% column = m.image1.url.split("/")[3] %>
-      <% id_column = m.image1.url.split("/")[4] + m.image1.url.split("/")[3] %>
-      <% column_id = m.image1.url.split("/")[3] + m.image1.url.split("/")[4] %>
-      <% url = m.image1.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
+  <script>
+    $(document).ready(function () {
+      $("#<%= id_column %>").on("click", function () {
+        $("div#<%= column_id %>").addClass("is-active");
+      })
+      $("#close, div.modal-background").on("click", function () {
+        $("div#<%= column_id %>").removeClass("is-active");
+      })
+    });
 
-    <%= image_tag m.image1.url, class: "img-interval index-photo-size", id: id_column if m.image1? %>
-
-    <!-- 画像01 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image1.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image1? %>
-            <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像2(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <!--変更なしの際のエラー解消-->
-            <%= f.hidden_field :image1_cache %>
-            <%= f.file_field :image1, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
-
-  <% if m.image2? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image2.url.split("/")[6].to_i %>
-      <% column = m.image2.url.split("/")[5] %>
-      <% id_column = m.image2.url.split("/")[6] + m.image2.url.split("/")[5] %>
-      <% column_id = m.image2.url.split("/")[5] + m.image2.url.split("/")[6] %>
-      <% url = m.image2.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image2.url.split("/")[4].to_i %>
-      <% column = m.image2.url.split("/")[3] %>
-      <% id_column = m.image2.url.split("/")[4] + m.image2.url.split("/")[3] %>
-      <% column_id = m.image2.url.split("/")[3] + m.image2.url.split("/")[4] %>
-      <% url = m.image2.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
-
-    <%= image_tag m.image2.url, class: "img-interval index-photo-size", id: id_column if m.image2? %>
-
-    <!-- 画像02 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image2.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image2? %>
-            <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像3(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <%= f.hidden_field :image2_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image2, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
-
-  <% if m.image3? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image3.url.split("/")[6].to_i %>
-      <% column = m.image3.url.split("/")[5] %>
-      <% id_column = m.image3.url.split("/")[6] + m.image3.url.split("/")[5] %>
-      <% column_id = m.image3.url.split("/")[5] + m.image3.url.split("/")[6] %>
-      <% url = m.image3.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image3.url.split("/")[4].to_i %>
-      <% column = m.image3.url.split("/")[3] %>
-      <% id_column = m.image3.url.split("/")[4] + m.image3.url.split("/")[3] %>
-      <% column_id = m.image3.url.split("/")[3] + m.image3.url.split("/")[4] %>
-      <% url = m.image3.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
-
-    <%= image_tag m.image3.url, class: "img-interval index-photo-size", id: id_column if m.image3? %>
-
-    <!-- 画像03 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image3.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image3? %>
-            <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像4(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <%= f.hidden_field :image3_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image3, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
-
-  <% if m.image4? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image4.url.split("/")[6].to_i %>
-      <% column = m.image4.url.split("/")[5] %>
-      <% id_column = m.image4.url.split("/")[6] + m.image4.url.split("/")[5] %>
-      <% column_id = m.image4.url.split("/")[5] + m.image4.url.split("/")[6] %>
-      <% url = m.image4.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image4.url.split("/")[4].to_i %>
-      <% column = m.image4.url.split("/")[3] %>
-      <% id_column = m.image4.url.split("/")[4] + m.image4.url.split("/")[3] %>
-      <% column_id = m.image4.url.split("/")[3] + m.image4.url.split("/")[4] %>
-      <% url = m.image4.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
-
-    <%= image_tag m.image4.url, class: "img-interval index-photo-size", id: id_column if m.image4? %>
-
-    <!-- 画像04 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image4.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image4? %>
-            <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像5(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <%= f.hidden_field :image4_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image4, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
-
-  <% if m.image5? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image5.url.split("/")[6].to_i %>
-      <% column = m.image5.url.split("/")[5] %>
-      <% id_column = m.image5.url.split("/")[6] + m.image5.url.split("/")[5] %>
-      <% column_id = m.image5.url.split("/")[5] + m.image5.url.split("/")[6] %>
-      <% url = m.image5.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image5.url.split("/")[4].to_i %>
-      <% column = m.image5.url.split("/")[3] %>
-      <% id_column = m.image5.url.split("/")[4] + m.image5.url.split("/")[3] %>
-      <% column_id = m.image5.url.split("/")[3] + m.image5.url.split("/")[4] %>
-      <% url = m.image5.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
-
-    <%= image_tag m.image5.url, class: "img-interval index-photo-size", id: id_column if m.image5? %>
-
-    <!-- 画像05 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image5.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image5? %>
-            <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像6(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <%= f.hidden_field :image5_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image5, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
-
-  <% if m.image6? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image6.url.split("/")[6].to_i %>
-      <% column = m.image6.url.split("/")[5] %>
-      <% id_column = m.image6.url.split("/")[6] + m.image6.url.split("/")[5] %>
-      <% column_id = m.image6.url.split("/")[5] + m.image6.url.split("/")[6] %>
-      <% url = m.image6.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image6.url.split("/")[4].to_i %>
-      <% column = m.image6.url.split("/")[3] %>
-      <% id_column = m.image6.url.split("/")[4] + m.image6.url.split("/")[3] %>
-      <% column_id = m.image6.url.split("/")[3] + m.image6.url.split("/")[4] %>
-      <% url = m.image6.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
-
-    <%= image_tag m.image6.url, class: "img-interval index-photo-size", id: id_column if m.image6? %>
-
-    <!-- 画像06 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image6.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image6? %>
-            <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像7(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <%= f.hidden_field :image6_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image6, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
-
-  <% if m.image7? %>
-    <% if Rails.env.production? %>
-      <% memory_id = m.image7.url.split("/")[6].to_i %>
-      <% column = m.image7.url.split("/")[5] %>
-      <% id_column = m.image7.url.split("/")[6] + m.image7.url.split("/")[5] %>
-      <% column_id = m.image7.url.split("/")[5] + m.image7.url.split("/")[6] %>
-      <% url = m.image7.url.split("/")[7] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% else %>
-      <% memory_id = m.image7.url.split("/")[4].to_i %>
-      <% column = m.image7.url.split("/")[3] %>
-      <% id_column = m.image7.url.split("/")[4] + m.image7.url.split("/")[3] %>
-      <% column_id = m.image7.url.split("/")[3] + m.image7.url.split("/")[4] %>
-      <% url = m.image7.url.split("/")[5] %>
-      <% @memory = @memories.find(memory_id) %>
-    <% end %>
-
-    <%= image_tag m.image7.url, class: "img-interval index-photo-size", id: id_column if m.image7? %>
-
-    <!-- 画像07 モーダル表示 -->
-    <div class="modal" id="<%= column_id %>">
-      <div class="modal-background"></div>
-      <div class="modal-card modal-width">
-        <%= render "memory-header" %>
-        <%= form_with(model: @memory, url: resident_memory_path(@resident, @memory), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @memory } %>
-          <section class="modal-card-body image-position">
-            <%= image_tag m.image7.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval index-photo-size" if m.image7? %>
-            <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} modal-input" %>
-          </section>
-          <%= render "title-content", {m: m, url: url} %>
-          <footer class="modal-card-foot footer-position res-footer">
-            <%= link_to delete_image_resident_memories_path(@resident, memory_id: memory_id, column: column),
-                        method: :delete, data: { confirm: "画像8(#{url})を削除してよろしいですか？。" }, class: "button is-medium delete-btn" do %>
-              <span><i class="far fa-trash-alt"></i></span>
-            <% end %>
-            <%= f.hidden_field :image7_cache %> <!--変更なしの際のエラー解消-->
-            <%= f.file_field :image7, class: "image_uploading_#{column}_#{memory_id} drop-zone" %>
-            <%= f.submit "\uf044 更新", class: "fa button img-update-btn" %>
-          </footer>
-        <% end %>
-      </div>
-    </div>
-    <%= render "modal_prev", { memory_id: memory_id, column: column, id_column: id_column, column_id: column_id } %>
-  <% end %>
+    $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#img_prev_<%= column %>_<%= memory_id %>").attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $(".image_uploading_<%= column %>_<%= memory_id %>").change(function(){
+        readURL(this);
+      });
+    });
+  </script>
 <% end %>
-<div class="bottom-control">&nbsp;</div>
+
+<%# <div class="bottom-control">&nbsp;</div> %>
