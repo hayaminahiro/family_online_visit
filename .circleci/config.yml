@@ -17,11 +17,9 @@ jobs:
 
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
-        # environment:
-      #     MYSQL_ROOT_PASSWORD: password
-      #     MYSQL_DATABASE: root
-          # - MYSQL_PASSWORD: 'root'
-          # - MYSQL_ROOT_HOST: '%'
+        environment:
+          - MYSQL_PASSWORD: 'root'
+          - MYSQL_ROOT_HOST: '%'
 
     # 自身のアプリディレクトリ名を設定
     working_directory: ~/family_online_visit
