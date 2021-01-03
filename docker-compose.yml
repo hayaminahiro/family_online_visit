@@ -7,8 +7,6 @@ services:
       MYSQL_DATABASE: root
     ports:
       - "3306:3306"
-    expose:
-      - "3306"
 
   web:
     build: .
