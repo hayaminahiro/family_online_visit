@@ -57,7 +57,7 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       # database.ymlとdatabase.yml.ciを入れ替える
-      - run: mv config/database.yml.ci config/database.yml
+      # - run: mv config/database.yml.ci config/database.yml
 
       # DBセットアップ
       - run: bundle exec rake db:create
