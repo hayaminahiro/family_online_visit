@@ -14,14 +14,14 @@ jobs:
         environment:
           - BUNDLER_VERSION: 1.17.3
           - RAILS_ENV: 'test'
-          - MYSQL_ROOT_PASSWORD: password
-          - MYSQL_DATABASE: root
 
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
       #   environment:
       #     MYSQL_ROOT_PASSWORD: password
       #     MYSQL_DATABASE: root
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
 
     # 自身のアプリディレクトリ名を設定
     working_directory: ~/family_online_visit
@@ -52,9 +52,12 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # mysqlの起動待機
-      # - run:
-      #     name: Wait for DB
-      #     command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+
+      # database.ymlとdatabase.yml.ciを入れ替える
+      - run: mv config/database.yml.ci config/database.yml
 
       # DBセットアップ
       - run: bundle exec rake db:create
