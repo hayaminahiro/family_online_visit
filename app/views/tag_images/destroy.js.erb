@@ -1,0 +1,9 @@
+$("div").removeClass("is-active");
+
+$(".image-id-<%= @tag_image.id %>").remove();
+
+$("#added-message").html("<div class='notification is-danger has-text-weight-bold'><p class='alert'><%= alert %></p></div>").hide().fadeIn(100);
+
+$(function(){
+  setTimeout("$('#added-message').fadeOut(1200)", 12000)
+})
