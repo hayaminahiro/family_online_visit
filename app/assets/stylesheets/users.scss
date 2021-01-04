@@ -32,10 +32,6 @@
   background-size: cover;
 }
 
-video::-webkit-media-controls {
-  -webkit-transform: scaleX(-1);
-}
-
 video::-webkit-media-controls-start-playback-button {
   pointer-events: none;
 }
@@ -64,20 +60,8 @@ video::-webkit-media-controls-pause-button {
 //ローカルモニター
 #local-video {
 
-  video {
-    -webkit-transform: scaleX(-1);
-  }
-
   span#js-room-mode {
     display: none;
-  }
-}
-
-//リモートモニター
-#remote-video {
-
-  video {
-    -webkit-transform: scaleX(-1);
   }
 }
 
