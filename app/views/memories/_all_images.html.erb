@@ -82,7 +82,7 @@
             <% end %>
           <% end %>
         <% else %>
-          <!--自身で作成したフォルダを選択して、画像を登録する （tag_image/create ⇨ create.js.erb ⇨ viewに表示）-->
+          <!--登録先フォルダを選択して、画像を登録する （tag_image/create ⇨ create.js.erb ⇨ viewに表示）-->
           <%= form_with(model: current_user, url: tag_images_path(image: url), method: :post, class: "tag-select-form", remote: true) do |f| %>
             <div class="cp_ipselect cp_sl04">
               <%= f.collection_select :tag_id, current_user.tags, :id, :title, { prompt: '追加したいフォルダを選択' }, {class: "select-tag"} %>

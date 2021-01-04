@@ -1,7 +1,7 @@
 <!--.js-contents--content-formにtags/newをrenderして埋め込む-->
 document.querySelector(".js-contents--content-form").innerHTML = "<%= escape_javascript(render 'new') %>";
 
-<!--モーダル表示させる-->
+<!--モーダル表示する-->
 document.querySelector(".modal").classList.add("is-active");
 
 <!--モーダルを閉じる、モーダル外を押下でモーダルを閉じる-->
