@@ -124,6 +124,7 @@
                   <li class="tag-link-<%= tag.id %>" id="tag-links">
                     <div class="tag-panel">
                       <%= link_to tag.title, tag_path(tag), class: "tag-title-branch", remote: true %>
+                      <!--（tags/destroy ⇨ destroy.js.erb ⇨ viewを表示）-->
                       <%= link_to tag_path(tag), method: :delete, remote: true, data: { confirm: "#{tag.title}のフォルダを削除してよろしいですか？" }, class:"tag-delete-btn" do %>
                         <i class="fas fa-times"></i>
                       <% end %>
@@ -131,6 +132,7 @@
                   </li>
                 <% end %>
               <div class="tag-plus-btn">
+                <!--タグを新規作成 （tags/new ⇨ new.js.erb ⇨ 作成フォームをモーダル表示）-->
                 <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
                   <i class="fas fa-folder-plus fa-3x"></i>
                 <% end %>

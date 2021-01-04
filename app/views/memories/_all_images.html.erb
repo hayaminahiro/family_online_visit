@@ -43,8 +43,8 @@
             <% case image.url.split("/")[3] %>
             <% when "image0" %>
               <%= f.hidden_field :image0_cache %> <!--変更なしの際のエラー解消-->
-              <%= f.label :image0, "\uf093 画像を選択", class: "fa label" %>
-              <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %>
+              <%= f.label :image0, "\uf093 画像を選択", class: "fa label" %> <!--sp→labelボタンを表示  pc→display: none;-->
+              <%= f.file_field :image0, class: "image_uploading_#{column}_#{memory_id} d-none drop-zone" %> <!--sp→display: none;  pc→file_fieldを表示-->
             <% when "image1" %>
               <%= f.hidden_field :image1_cache %>
               <%= f.label :image1, "\uf093 画像を選択", class: "fa label" %>
@@ -82,6 +82,7 @@
             <% end %>
           <% end %>
         <% else %>
+          <!--登録先フォルダを選択して、画像を登録する （tag_image/create ⇨ create.js.erb ⇨ viewに表示）-->
           <%= form_with(model: current_user, url: tag_images_path(image: url), method: :post, class: "tag-select-form", remote: true) do |f| %>
             <div class="cp_ipselect cp_sl04">
               <%= f.collection_select :tag_id, current_user.tags, :id, :title, { prompt: '追加したいフォルダを選択' }, {class: "select-tag"} %>
