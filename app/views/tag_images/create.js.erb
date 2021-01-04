@@ -8,7 +8,7 @@ $("div").removeClass("is-active");
   $("#added-message").html("<div class='notification is-danger has-text-weight-bold'><p class='alert'><%= alert %></p></div>").hide().fadeIn(100);
 <% end %>
 
-<!--フラッシュ表示を12000ms表示し、1200msの速さでfadeOut（非表示）する-->
+<!--フラッシュを12000ms表示し、1200msの速さでfadeOut（非表示）する-->
 $(function(){
   setTimeout("$('#added-message').fadeOut(1200)", 12000)
 })

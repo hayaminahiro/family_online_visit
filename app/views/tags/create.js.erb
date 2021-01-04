@@ -13,10 +13,10 @@ $('.select-tag').append("<option value='<%= @tag.id%>'><%= @tag.title %></option
 <!--モーダルを閉じる-->
 $("div.modal").removeClass("is-active");
 
-<!--コントローラから受け取ったフラッシュの内容を表示させる-->
+<!--コントローラから受け取ったフラッシュの内容を表示する-->
 $("#added-message").html("<div class='notification is-success has-text-weight-bold'><p class='notice'><%= notice %></p></div>").hide().fadeIn(100);
 
-<!--フラッシュ表示を12000ms表示し、1200msの速さでfadeOut（非表示）する-->
+<!--フラッシュを12000ms表示し、1200msの速さでfadeOut（非表示）する-->
 $(function(){
   setTimeout("$('#added-message').fadeOut(1200)", 12000)
 })

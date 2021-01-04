@@ -4,10 +4,10 @@ $("div").removeClass("is-active");
 <!--destroyされた"@tag_image.id"と同じ番号を持つhtml⇨ <%#= image_tag 〜 image-id-#{tag_image.id}" %> (tags/_show.html.erb)  を削除する-->
 $(".image-id-<%= @tag_image.id %>").remove();
 
-<!--コントローラから受け取ったフラッシュの内容を表示させる-->
+<!--コントローラから受け取ったフラッシュの内容を表示する-->
 $("#added-message").html("<div class='notification is-danger has-text-weight-bold'><p class='alert'><%= alert %></p></div>").hide().fadeIn(100);
 
-<!--フラッシュ表示を12000ms表示し、1200msの速さでfadeOut（非表示）する-->
+<!--フラッシュを12000ms表示し、1200msの速さでfadeOut（非表示）する-->
 $(function(){
   setTimeout("$('#added-message').fadeOut(1200)", 12000)
 })
