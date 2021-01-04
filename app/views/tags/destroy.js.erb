@@ -1,4 +1,4 @@
-<!--destroyされた"@tag.id"と同じ番号を持つhtml⇨ <li class="tag-link-<%= tag.id %>" id="tag-links"> （users/show.html.erb） を削除する-->
+<!--destroyされた"@tag.id"と同じ番号を持つhtml⇨ <li class="tag-link-<%#= tag.id %>" id="tag-links"> （users/show.html.erb） を削除する-->
 $(".tag-link-<%= @tag.id%>").remove();
 
 <!--_all_images.html.erbのモーダル表示（各画像）される画面において、フォルダ選択フォームのリストで、削除した@tagのデータを持つ選択リストを削除する-->

@@ -1,7 +1,7 @@
 <!--モーダルを閉じる-->
 $("div").removeClass("is-active");
 
-<!--destroyされた"@tag_image.id"と同じ番号を持つhtml⇨ <%= image_tag 〜 image-id-#{tag_image.id}" %> (tags/_show.html.erb)  を削除する-->
+<!--destroyされた"@tag_image.id"と同じ番号を持つhtml⇨ <%#= image_tag 〜 image-id-#{tag_image.id}" %> (tags/_show.html.erb)  を削除する-->
 $(".image-id-<%= @tag_image.id %>").remove();
 
 <!--コントローラから受け取ったフラッシュの値を元にフラッシュ表示させる-->
