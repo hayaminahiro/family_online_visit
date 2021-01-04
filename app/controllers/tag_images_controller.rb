@@ -7,6 +7,7 @@ class TagImagesController < ApplicationController
     @tag_image = current_user.tag_images.build(tag_image_params)
 
     respond_to do |format|
+      # 登録する画像がすでに選択したフォルダに登録済みでないかをチェックする
       if !@tag_image.tag.tag_images.map(&:image).include?(@tag_image.image)
         @tag_image.save
         format.html

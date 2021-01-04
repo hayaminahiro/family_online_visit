@@ -51,6 +51,7 @@
 
                 <footer class="modal-card-foot footer-position res-footer">
                   <div class="tag-modal-image">
+                    <!-- （tag_image/destroy ⇨ destroy.js.erb ⇨ viewを表示）-->
                     <%= link_to "\uf2ed フォルダから画像を削除", tag_image_path(tag_image),
                           data: { confirm: "フォルダから画像を削除して本当によろしいですか？" },
                           method: :delete, class: "fa button delete-btn", remote: true %>
