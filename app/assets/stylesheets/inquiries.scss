@@ -133,8 +133,10 @@ textarea#inquiry_message.textarea {
   margin-left: auto;
 }
 
-.inquiry-modal-size {
-  width: 70%!important;
+@media screen and (min-width: 1030px) {
+  .inquiry-modal-size {
+    width: 60%!important;
+  }
 }
 
 td.inquiry-index-tbody {

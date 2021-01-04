@@ -3,7 +3,7 @@ class CreateInquiries < ActiveRecord::Migration[5.2]
     create_table :inquiries do |t|
       t.string :name
       t.string :email
-      t.string :message
+      t.text :message
       t.references :facility, foreign_key: true
 
       t.timestamps
