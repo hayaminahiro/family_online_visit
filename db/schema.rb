@@ -111,11 +111,17 @@ ActiveRecord::Schema.define(version: 2020_12_28_153804) do
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.date "calendar_day"
-    t.date "reservation_time"
+    t.date "reservation_date"
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "facility_id"
+    t.string "reservation_user"
+    t.string "reservation_email"
+    t.string "reservation_residents"
+    t.index ["facility_id"], name: "index_reservations_on_facility_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -198,6 +204,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_153804) do
   add_foreign_key "request_mails", "facilities"
   add_foreign_key "request_residents", "facilities"
   add_foreign_key "request_residents", "users"
+  add_foreign_key "reservations", "facilities"
   add_foreign_key "reservations", "users"
   add_foreign_key "residents", "facilities"
   add_foreign_key "rooms", "facilities"

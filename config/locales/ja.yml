@@ -42,6 +42,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       middle: "%Y年%m月"
       short: "%-d"
+      modal_id: "%Y%m%d"
     month_names:
     -
     - 1月
@@ -203,9 +204,10 @@ ja:
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       default_info: "%Y年%m月%d日(%a) %H時%M分"
+      date: "%Y年%m月%d日(%a)"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
-      time: "%H：%M"
+      time: "%H:%M"
       dot: "%Y.%m.%d"
       hyphen: "%Y-%m-%d"
     pm: 午後
