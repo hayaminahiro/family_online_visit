@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": null,
+
+  // prettierを使用のため追加
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // ファイルの最後に改行を自動で追加
+  "files.insertFinalNewline": true
+}

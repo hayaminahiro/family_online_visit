@@ -9,16 +9,68 @@
 
 <% else %>
   <% @residents.each do |resident| %>
-    <% @tag.tag_images.each do |i| %>
+    <% @tag.tag_images.each do |tag_image| %>
       <% resident.image_columns.each do |image| %>
         <% if Rails.env.production? %>
+          <% memory_id = image.url.split("/")[6].to_i %>
+          <% column = image.url.split("/")[5] %>
+          <% id_column = image.url.split("/")[6] + image.url.split("/")[5] %>
+          <% column_id = image.url.split("/")[5] + image.url.split("/")[6] %>
           <% url = image.url.split("/")[7] %>
+          <% memory = memories.find(memory_id) %>
         <% else %>
+          <% memory_id = image.url.split("/")[4].to_i %>
+          <% column = image.url.split("/")[3] %>
+          <% id_column = image.url.split("/")[4] + image.url.split("/")[3] %>
+          <% column_id = image.url.split("/")[3] + image.url.split("/")[4] %>
           <% url = image.url.split("/")[5] %>
+          <% memory = memories.find(memory_id) if facility_signed_in? %>
         <% end %>
 
-        <% if i.image == url %>
-          <%= image_tag image.url, class: "img-interval index-photo-size" %>
+        <% if tag_image.image == url %>
+          <%= image_tag image.url, class: "img-interval index-photo-size image-id-#{tag_image.id}", id: id_column %>
+
+            <!-- 画像モーダル表示 -->
+            <div class="modal" id="<%= column_id %>">
+              <div class="modal-background"></div>
+              <div class="modal-card image-modal-width">
+                <header class="modal-card-head" id="modal-title-back">
+                  <p class="modal-card-title is-half has-text-weight-bold reserve-modal title-color">画像データ詳細</p>
+                  <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body image-position">
+                  <%= image_tag image.url, id: "img_prev_#{column}_#{memory_id}", class: "img-interval modal-photo-size" %>
+                </section>
+                <section class="modal-card-body" id="content-back">
+                  <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">画像名</span><%= url %></p>
+                  <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">出来事の日付（行事日等）</span><%= l(image.model.event_date, format: :long) %></p>
+                  <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">思い出画像タイトル</span><%= image.model.title %></p>
+                  <p class="is-pulled-left word-break"><span class="has-text-weight-bold span-title">ご家族へのメッセージ</span><%= image.model.message %></p>
+                </section>
+
+                <footer class="modal-card-foot footer-position res-footer">
+                  <div class="tag-modal-image">
+                    <!-- （tag_image/destroy ⇨ destroy.js.erb ⇨ viewを表示）-->
+                    <%= link_to "\uf2ed フォルダから画像を削除", tag_image_path(tag_image),
+                          data: { confirm: "フォルダから画像を削除して本当によろしいですか？" },
+                          method: :delete, class: "fa button delete-btn", remote: true %>
+                  </div>
+                </footer>
+              </div>
+            </div>
+
+            <script>
+              $(document).ready(function () {
+                $("#<%= id_column %>").on("click", function () {
+                  $("div#<%= column_id %>").addClass("is-active");
+                })
+                $("#close, div.modal-background").on("click", function () {
+                  $("div#<%= column_id %>").removeClass("is-active");
+                })
+              });
+            </script>
+
         <% end %>
       <% end %>
     <% end %>
