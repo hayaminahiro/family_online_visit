@@ -10,7 +10,7 @@
         <div class="level-left">
           <div class="level-item">
             <div class="is-size-5 inquiry-index-title">
-            <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;お問い合わせ一覧
+              <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;お問い合わせ一覧
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
         <!-- Right side -->
         <div class="level-right">
           <%= form_with(url: facility_inquiries_path(current_facility), method: :get, local: true) do |f| %>
-            <div class="field is-grouped is-grouped-right">
+            <div class="field is-grouped is-grouped-right inquiry-index-search">
               <div class="control has-icons-left">
                 <%= f.text_field :search, :placeholder => "お名前を入力..", class: "input is-rounded" %>
                 <span class="icon is-left">

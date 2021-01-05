@@ -63,9 +63,14 @@ textarea#inquiry_message.textarea {
 }
 
 .inquiry-index-title {
-  margin-left: 30px;
+  margin-left: auto;
+  margin-right: auto;
   border-bottom: 1px solid #dbdbdb;
   padding: 0.5em;
+}
+
+.field.is-grouped.is-grouped-right.inquiry-index-search {
+  justify-content: center;
 }
 
 .inquiry-panel {
@@ -109,14 +114,19 @@ textarea#inquiry_message.textarea {
 
 .detail-inquiry-value {
   margin: 0 0 0 20px;
-  padding: 0;
+  padding: 0 20px 0 0;
+  word-wrap: break-word;
 }
 
 .detail-inquiry-message {
   margin: 0 0 0 20px;
   padding: 0 20px 0 0;
-  min-height: 200px;
+  height: 250px;
   word-wrap: break-word;
+}
+
+.detail-inquiry-content {
+  margin-bottom: 20px;
 }
 
 .inquiry-message-short {
@@ -133,12 +143,20 @@ textarea#inquiry_message.textarea {
   margin-left: auto;
 }
 
-@media screen and (min-width: 1030px) {
+@media screen and (min-width: 1000px) {
   .inquiry-modal-size {
     width: 60%!important;
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .inquiry-modal-size {
+    width: 85%!important;
+    font-size: 17px;
   }
 }
 
 td.inquiry-index-tbody {
-  padding: 0.8em 0 0.2em 0!important;
+  padding: 0.8em 0.2em 0.2em 0.2em!important;
 }
