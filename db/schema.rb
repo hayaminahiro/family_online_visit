@@ -111,9 +111,10 @@ ActiveRecord::Schema.define(version: 2020_12_28_153804) do
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.date "calendar_day"
-    t.date "reservation_time"
+    t.date "reservation_date"
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "facility_id"
@@ -166,7 +167,6 @@ ActiveRecord::Schema.define(version: 2020_12_28_153804) do
     t.string "name", null: false
     t.string "email", null: false
     t.string "password"
-    t.string "room_name"
     t.boolean "admin", default: false
     t.string "phone"
     t.string "address"
