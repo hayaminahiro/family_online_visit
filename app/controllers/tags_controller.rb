@@ -41,8 +41,8 @@ class TagsController < ApplicationController
       if @tag.destroy
         format.html
         format.js { flash.now[:alert] = "#{@tag.title}フォルダを削除しました" }
-      else
-        format.js { render :new }
+        # else
+        # format.js { render :new }
       end
     end
   end
