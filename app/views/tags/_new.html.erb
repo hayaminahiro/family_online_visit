@@ -2,6 +2,7 @@
   <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-4">新しいフォルダーの作成</p>
 </header>
 <section class="modal-card-body">
+  <!--タグの新規作成 （tags/create ⇨ create.js.erb ⇨ viewを表示）-->
   <%= form_with(model: @tag, url: tags_path, method: :post, remote: true) do |f| %>
     <div class="field">
       <div class="form-group col-sm-5">
