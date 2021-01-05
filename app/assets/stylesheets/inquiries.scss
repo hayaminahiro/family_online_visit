@@ -63,9 +63,14 @@ textarea#inquiry_message.textarea {
 }
 
 .inquiry-index-title {
-  margin-left: 30px;
+  margin-left: auto;
+  margin-right: auto;
   border-bottom: 1px solid #dbdbdb;
   padding: 0.5em;
+}
+
+.field.is-grouped.is-grouped-right.inquiry-index-search {
+  justify-content: center;
 }
 
 .inquiry-panel {
@@ -99,4 +104,59 @@ textarea#inquiry_message.textarea {
 
 .inquiry-title-block {
   display: inline-block;
+}
+
+.detail-inquiry {
+  margin: 20px 90px 10px 20px;
+  padding: 0 50px 0 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.detail-inquiry-value {
+  margin: 0 0 0 20px;
+  padding: 0 20px 0 0;
+  word-wrap: break-word;
+}
+
+.detail-inquiry-message {
+  margin: 0 0 0 20px;
+  padding: 0 20px 0 0;
+  height: 250px;
+  word-wrap: break-word;
+}
+
+.detail-inquiry-content {
+  margin-bottom: 20px;
+}
+
+.inquiry-message-short {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inquiry-delete-btn {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 1000px) {
+  .inquiry-modal-size {
+    width: 60%!important;
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .inquiry-modal-size {
+    width: 85%!important;
+    font-size: 17px;
+  }
+}
+
+td.inquiry-index-tbody {
+  padding: 0.8em 0.2em 0.2em 0.2em!important;
 }
