@@ -16,8 +16,16 @@
         <% if t('date.abbr_day_names')[date.wday] == "土" || t('date.abbr_day_names')[date.wday] == "日" %>
           <p class="public-holiday">休日</p>
         <% else %>
-          <button class="button is-link is-light" id=<%= date %>>予約可</button><br>
+          <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date), remote: true, class: "button is-link is-light" %>
         <% end %>
+
+        <!--モーダル表示-->
+        <div class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <div class="js-contents--content-form"></div>
+          </div>
+        </div>
 
         <% @reservations.each do |reservation| %>
           <% if current_user.present? %>
@@ -30,64 +38,6 @@
             <% end %>
           <% end %>
         <% end %>
-
-        <!-- 予約時間 モーダル表示 -->
-        <div class="modal" id=<%= l(date, format: :modal_id) %>>
-          <div class="modal-background"></div>
-          <div class="modal-card">
-            <header class="modal-card-head" style="background-color: #e3dcca;">
-              <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">予約画面</p>
-              <button class="delete" aria-label="close" id="close"></button>
-            </header>
-            <section class="modal-card-body">
-              <div class="field">
-                <p class="title-in-modal"><%= l(date, format: :long) %></p>
-                <p class="modal-description">予約時間を選択して下さい。</p>
-              </div>
-              <div class="field">
-                <%# if @reservations.time_1000(date).count < 1 %>
-                  <%= link_to new_facility_reservation_path(date: date, time: Reservation::TIME_1000, user: @user), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;10:00
-                  <% end %>
-                <%# end %>
-
-                <%# if @reservations.time_1100(date).count < 1 %>
-                  <%= link_to new_facility_reservation_path(date: date, time: Reservation::TIME_1100, user: @user), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;11:00
-                  <% end %>
-                <%# end %>
-
-                <%# if @reservations.time_1400(date).count < 1 %>
-                  <%= link_to new_facility_reservation_path(date: date, time: Reservation::TIME_1400, user: @user), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;14:00
-                  <% end %>
-                <%# end %>
-
-                <%# if @reservations.time_1500(date).count < 1 %>
-                  <%= link_to new_facility_reservation_path(date: date, time: Reservation::TIME_1500, user: @user), class:"button is-info" do %>
-                    <i class="far fa-clock"></i>&nbsp;15:00
-                  <% end %>
-                <%# end %>
-              </div>
-            </section>
-
-            <footer class="modal-card-foot">
-              <p class="modal-explanation">時間を選択すると、予約ページに移動できます。</p>
-            </footer>
-
-            <script>
-              $(document).ready(function () {
-                $("#<%= date %>").on("click", function () {
-                  $("div#<%= l(date, format: :modal_id) %>").addClass("is-active");
-                })
-                $("#close, div.modal-background").on("click", function () {
-                  $("div#<%= l(date, format: :modal_id) %>").removeClass("is-active");
-                })
-              });
-            </script>
-
-          </div>
-        </div>
       <% end %>
     </div>
   </div>

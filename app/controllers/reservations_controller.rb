@@ -9,6 +9,13 @@ class ReservationsController < ApplicationController
 
   def show; end
 
+  def reservation_time
+    @reservations = Reservation.all
+    @title_date = params[:title_date]
+    @date = params[:date]
+    @user = User.find(params[:user]) if params[:user].present?
+  end
+
   def new
     @reservation = Reservation.new
     # 管理者側からの予約

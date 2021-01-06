@@ -43,7 +43,9 @@ Rails.application.routes.draw do
   resources :facilities do
     get :home # ユーザログイン後の各施設のホーム画面
     get :facility_home, on: :member # 施設ログイン後のホーム画面
-    resources :reservations # 予約機能
+    resources :reservations do # 予約機能
+      get '/reservation_time/:date', on: :collection, to: 'reservations#reservation_time', as: :reservation_time
+    end
     # get 'inquiry', to: "facilities/inquiries#inquiry"
     # post 'create', to: "facilities/inquiries#create"
     resources :inquiries do
