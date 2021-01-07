@@ -1,6 +1,5 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
 <div class="container">
-
   <div class="card" id="reservations-calendar">
     <div class="has-text-centered">
       <div class="is-centered">
@@ -18,7 +17,7 @@
           <% if t('date.abbr_day_names')[date.wday] == "土" || t('date.abbr_day_names')[date.wday] == "日" %>
             <p class="public-holiday">休日</p>
           <% else %>
-            <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date), remote: true, class: "button is-link is-light" %>
+            <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" %>
           <% end %>
 
           <!--モーダル表示-->
@@ -32,11 +31,11 @@
           <% @reservations.each do |reservation| %>
             <% if current_user.present? %>
               <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
-                <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-danger is-light" if reservation.reservation_date == date %>
+                <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-rounded", id: "tag-color" if reservation.reservation_date == date %>
               <% end %>
             <% elsif current_facility.present? %>
               <% if reservation.facility_id == @facility.id %>
-                <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation, user: reservation.user_id), class:"tag is-danger is-light" if reservation.reservation_date == date %>
+                <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation, user: reservation.user_id), class:"tag is-rounded", id: "tag-color" if reservation.reservation_date == date %>
               <% end %>
             <% end %>
           <% end %>
@@ -44,20 +43,29 @@
       </div>
     </div>
 
+    <% if current_facility.present? %>
+      <h1 class="list-title">&nbsp;&nbsp;本日の予約</h1>
+    <% elsif %>
+      <h1 class="list-title">予約情報一覧</h1>
+    <% end %>
+
     <% @reservations.each do |reservation| %>
-      <div class="reservation-list">
-        <span>予約情報 |</span>
+      <% if reservation.present? %>
         <% if current_user.present? %>
           <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
-            <%= link_to "#{l(reservation.reservation_date, format: :long)}~", facility_reservation_path(@facility, reservation), style:"color: #401c00;" %>
+            <div class="reservation-list">
+              <span>予約情報 |</span>
+              <%= link_to "#{l(reservation.reservation_date, format: :long)}~", facility_reservation_path(@facility, reservation), style:"color: #401c00;" %>
+            </div>
           <% end %>
         <% elsif current_facility.present? %>
-          <% if reservation.facility_id == @facility.id %>
-            <%= link_to "#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation, user: reservation.user_id), style:"color: #401c00;" %>
+          <% if (reservation.facility_id == @facility.id) && (Date.today == reservation.reservation_date) %>
+            <div class="reservation-list">
+              <%= link_to "#{reservation.reservation_user} / #{l(reservation.reservation_date, format: :base)}#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation, user: reservation.user_id), style:"color: #401c00;" %>
+            </div>
           <% end %>
         <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
-
 </div>
