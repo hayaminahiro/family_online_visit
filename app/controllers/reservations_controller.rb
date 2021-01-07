@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show destroy]
 
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.all.order(reservation_date: "ASC")
     @user = User.find(params[:user]) if params[:user].present?
   end
 
