@@ -66,7 +66,7 @@ video::-webkit-media-controls-pause-button {
 
 //Room Name記入欄
 #input-key {
-  p {
+  p#room-key {
     display: none;
   }
 
@@ -281,12 +281,7 @@ video::-webkit-media-controls-pause-button {
 #return-btn {
   margin-top: 20px;
   font-size: 22px;
-}
-
-//タイマーアイコン
-.time-icon {
-  font-size: 30px;
-  padding-right: 33px;
+  margin-bottom: 9%;
 }
 
 //タイマー
@@ -296,33 +291,46 @@ video::-webkit-media-controls-pause-button {
 
 //タイマーボタン
 #buttonBox {
-  background-color: #2a4462;
-  width: 100px;
-  height: 100px;
+  display: inline-block;
+  background-color: #b0c4de;
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
   border: none;
   padding: 0px;
   margin-left: auto;
 
   button#start {
-    background-color: #01d1b2;
-    font-size: 17px;
+    background: -webkit-linear-gradient(top, #4e6f8b, #0a203f);
     color: #fff;
-    width: 100px;
-    height: 100px;
+    font-size: 15px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: none;
     padding: 0px;
+    margin-top: 4%;
     outline: none;
     overflow: hidden;
   }
 
   button#start span {
     display: inline-block;
+    font-size: 40px;
     transition: 0.5s;
   }
 
   button#start:hover span {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+  }
+
+  button#start p {
+    font-size: 10px;
+    transition: 0.5s;
+  }
+
+  button#start:hover p {
     -webkit-transform: rotateX(360deg);
     transform: rotateX(360deg);
   }
@@ -1864,30 +1872,35 @@ main {
 
   #timer-layout {
     margin-bottom: 0px;
-
-    .time-icon {
-      padding-right: 16px;
-    }
   }
 
   #buttonBox {
-    width: 70px;
-    height: 70px;
+    width: 66px;
+    height: 66px;
 
     button#start {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       font-size: 14px;
+    }
+
+    button#start span {
+      font-size: 30px;
+    }
+
+    button#start p {
+      font-size: 0px;
     }
   }
 
   //ローカルビデオ
   #local-video {
-    height: 250px;
+    height: 220px;
 
     video {
       left: 0px;
       right: 0px;
+      height: 84%;
     }
   }
 
