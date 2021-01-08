@@ -16,6 +16,11 @@ class ReservationsController < ApplicationController
     @user = User.find(params[:user]) if params[:user].present?
   end
 
+  def index_week
+    @reservations = Reservation.all.order(reservation_date: "ASC")
+    @user = User.find(params[:user]) if params[:user].present?
+  end
+
   def new
     @reservation = Reservation.new
     # 管理者側からの予約
