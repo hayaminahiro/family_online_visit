@@ -2,7 +2,7 @@
   <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
   <div class="container">
     <div class="card" id="reservations-calendar">
-    <%= link_to "月間カレンダーへ切り替える", facility_reservations_path(@facility), remote: true, class: "button is-warning is-light" %>
+    <%= link_to "月間カレンダーへ切り替える", facility_reservations_path(@facility, user: @user), remote: true, class: "button is-warning is-light" %>
       <div class="has-text-centered">
 
         <div class="is-centered">
