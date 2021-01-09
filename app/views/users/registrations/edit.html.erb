@@ -122,11 +122,9 @@
               <tr class="image-change">
                 <th>画像を削除</th>
                 <td>
-                  <div style="margin-top:10px;">
-                    <%= f.check_box :remove_image, id: "icon_delete" %>
-                    <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
-                    </label>
-                  </div>
+                  <%= f.check_box :remove_image, id: "icon_delete" %>
+                  <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                  </label>
                 </td>
               </tr>
               <% end %>
@@ -206,35 +204,20 @@
 </script>
 
 <script type="text/javascript">
-  $(function() {
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $('#img_prev').attr('src', e.target.result);
+  for (let i = 0; i < 2; i++) {
+    $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $(`#img_prev_${i}`).attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
         }
-        reader.readAsDataURL(input.files[0]);
       }
-    }
-    $(".user_img").change(function() {
-      readURL(this);
+      $(".user_img").change(function() {
+        readURL(this);
+      });
     });
-  });
-</script>
-
-<script type="text/javascript">
-  $(function() {
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $('#mobile_prev').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-    $(".user_img").change(function() {
-      readURL(this);
-    });
-  });
+  };
 </script>

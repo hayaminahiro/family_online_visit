@@ -43,9 +43,9 @@ module UserDecorator
   # ユーザー編集画面用
   def user_icon_edit
     if image?
-      image_tag image.url, id: :img_prev, class: "user-edit-image"
+      image_tag image.url, id: :img_prev_0, class: "user-edit-image"
     else
-      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-edit-image"
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev_0, class: "user-edit-image"
     end
   end
 
@@ -60,9 +60,9 @@ module UserDecorator
 
   def user_icon_edit_responsive
     if image?
-      image_tag image.url, id: :mobile_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
+      image_tag image.url, id: :img_prev_1, class: "user-icon-image", onClick: "$('.user_img').click()"
     else
-      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :mobile_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev_1, class: "user-icon-image", onClick: "$('.user_img').click()"
     end
   end
 

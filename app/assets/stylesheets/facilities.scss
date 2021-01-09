@@ -813,7 +813,7 @@ input#icon_delete[type="checkbox"] + label.check_position:before {
   border: 1px solid #0d47a1;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100%;
   opacity: 0.6;
   -webkit-transition: all 0.12s, border-color 0.08s;
   transition: all 0.12s, border-color 0.08s;
@@ -821,7 +821,7 @@ input#icon_delete[type="checkbox"] + label.check_position:before {
 
 input#icon_delete[type="checkbox"]:checked + label.check_position:before {
   width: 10px;
-  top: -5px;
+  top: 100%;
   left: 5px;
   border-radius: 0;
   opacity: 1;

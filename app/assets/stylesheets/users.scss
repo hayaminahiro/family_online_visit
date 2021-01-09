@@ -408,7 +408,7 @@ p.meta {
   font-size: 15px;
 }
 
-img#img_prev.user-edit-image {
+img#img_prev_0.user-edit-image {
   width: 210px;
   height: 210px;
   border-radius: 50%;
@@ -891,12 +891,12 @@ mypage-main {
 }
 
 //アイコン変更イメージ
-.edit-image-icon {
+.user-edit-icon-back {
   display: none;
 }
 
 //背景変更イメージ
-.edit-image-background {
+.user-edit-background-back {
   display: none;
 }
 
@@ -1050,6 +1050,7 @@ main {
 
 .user-edit-table {
   background: rgba(224, 231, 231, 0.605);
+  text-align: center;
   width: 100%;
 }
 
