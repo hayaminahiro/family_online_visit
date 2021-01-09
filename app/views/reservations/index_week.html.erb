@@ -1,11 +1,11 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
 <div class="container">
   <div class="card" id="reservations-calendar">
-  <%= link_to "週間カレンダーへ切り替える", index_week_facility_reservations_path(@facility, user: @user), class: "button is-warning is-light" %>
+    <%= link_to "月間カレンダーへ切り替える", facility_reservations_path(@facility, user: @user), class: "button is-warning is-light" %>
     <div class="has-text-centered">
       <div class="is-centered">
         <h1 class="has-text-centered reservation-title">予約日時選択</h1>
-        <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
+        <%= week_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
           <%= render partial: "calendar_content", locals: { date: date } %>
         <% end %>
       </div>
