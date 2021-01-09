@@ -29,7 +29,6 @@
               <%= f.label :image, "\uf574", class: "fa image_input_comment_user", style: "margin-left: -15px;" %>
               <%= f.file_field :image, value: "upload", class: "image_uploading" %>
               <%= f.hidden_field :image_cache %>
-              <%= f.file_field :image, value: "upload", class: "image_uploading_mobile" %>
             </div>
             <div class="drop-zone-area">
               <%= f.check_box :remove_image, id: "img_delete" %>
@@ -49,7 +48,6 @@
               <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
               <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
               <%= f.hidden_field :icon_cache %>
-              <%= f.file_field :icon, value: "upload", class: "icon_uploading_mobile" %>
             </div>
             <div class="drop-zone-area">
               <%= f.check_box :remove_icon, id: "icon_delete" %>
@@ -125,7 +123,7 @@
         reader.readAsDataURL(input.files[0]);
       }
     }
-    $(".image_uploading_mobile").change(function() {
+    $(".image_uploading").change(function() {
       readURL(this);
     });
   });
@@ -159,7 +157,7 @@
         reader.readAsDataURL(input.files[0]);
       }
     }
-    $(".icon_uploading_mobile").change(function() {
+    $(".image_uploading_icon").change(function() {
       readURL(this);
     });
   });

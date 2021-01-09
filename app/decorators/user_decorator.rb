@@ -60,16 +60,16 @@ module UserDecorator
 
   def user_icon_edit_responsive
     if image?
-      image_tag image.url, id: :img_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
+      image_tag image.url, id: :mobile_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
     else
-      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :img_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :mobile_prev, class: "user-icon-image", onClick: "$('.user_img').click()"
     end
   end
 
   # ヘッダー内のアイコン
   def user_header_icon
     if image?
-      image_tag image.url, id: :img_prev, class: "user-icon-header"
+      image_tag image.url, class: "user-icon-header"
     else
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "user-icon-header"
     end
