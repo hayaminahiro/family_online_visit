@@ -5,6 +5,6 @@ document.querySelector(".js-contents--content-form").innerHTML = "<%= escape_jav
 document.querySelector(".modal").classList.add("is-active");
 
 <!--モーダルを閉じる、モーダル外を押下でモーダルを閉じる-->
-$(".js-content-form--close-button, div.modal-background").on("click", function() {
+$("button#close.delete, div.modal-background").on("click", function() {
     $("div.modal").removeClass("is-active");
 })
