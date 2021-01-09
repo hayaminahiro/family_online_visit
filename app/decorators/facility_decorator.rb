@@ -83,9 +83,9 @@ module FacilityDecorator
   # 施設のモバイルでのアイコン編集
   def facility_icon_edit_responsive
     if icon?
-      image_tag icon.url, id: :icon_prev, class: "user-icon-image", onClick: "$('.image_uploading_icon').click()"
+      image_tag icon.url, id: :mobile2_prev, class: "user-icon-image", onClick: "$('.icon_uploading_mobile').click()"
     else
-      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', id: :icon_prev, class: "default-icon-image", onClick: "$('.image_uploading_icon' ).click()"
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', id: :mobile2_prev, class: "default-icon-image", onClick: "$('.icon_uploading_mobile' ).click()"
     end
   end
 

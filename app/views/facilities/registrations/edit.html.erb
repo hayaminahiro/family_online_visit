@@ -30,7 +30,6 @@
               <%= f.file_field :image, value: "upload", class: "image_uploading" %>
               <%= f.hidden_field :image_cache %>
               <%= f.file_field :image, value: "upload", class: "image_uploading_mobile" %>
-              <%= f.hidden_field :image_cache %>
             </div>
             <div class="drop-zone-area">
               <%= f.check_box :remove_image, id: "img_delete" %>
@@ -50,6 +49,7 @@
               <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
               <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
               <%= f.hidden_field :icon_cache %>
+              <%= f.file_field :icon, value: "upload", class: "icon_uploading_mobile" %>
             </div>
             <div class="drop-zone-area">
               <%= f.check_box :remove_icon, id: "icon_delete" %>
@@ -143,6 +143,23 @@
       }
     }
     $(".image_uploading_icon").change(function() {
+      readURL(this);
+    });
+  });
+</script>
+
+<script>
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#mobile2_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".icon_uploading_mobile").change(function() {
       readURL(this);
     });
   });
