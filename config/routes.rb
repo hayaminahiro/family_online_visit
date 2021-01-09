@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'step1'
       get 'step2' # ここで、入力が終了
       get 'step3'
+      get 'search'
     end
   end
 
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
   resources :facilities do
     get :home # ユーザログイン後の各施設のホーム画面
     get :facility_home, on: :member # 施設ログイン後のホーム画面
+    resources :reservations # 予約機能
     # get 'inquiry', to: "facilities/inquiries#inquiry"
     # post 'create', to: "facilities/inquiries#create"
     resources :inquiries do
@@ -81,9 +83,6 @@ Rails.application.routes.draw do
   resources :informations do
     get :top_notice, on: :collection
   end
-
-  # 予約 ==================================================================================
-  resources :reservations
 
   # タグ ==================================================================================
   resources :tags

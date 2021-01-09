@@ -75,12 +75,12 @@
       <div class="card-image" id="home-images">
         <figure class="image is-4by3">
           <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_reservation.jpg"), '#' %>
-          <p><%= link_to "面会予約", '#', :style=>"color: #fff;" %></p>
+          <p><%= link_to "面会予約",  facility_reservations_path(facility_id: @facility.id), :style=>"color: #fff;" %></p>
         </figure>
       </div>
       <div class="card-content has-text-centered menu-card">
         <div class="is-size-5">
-          <%= link_to '#', class: "button menu-btn is-rounded is-warning is-outlined" do %>
+          <%= link_to facility_reservations_path(facility_id: @facility.id), class: "button menu-btn is-rounded is-warning is-outlined" do %>
             <span class="icon">
               <i class="far fa-calendar-alt"></i>&nbsp;
             </span>

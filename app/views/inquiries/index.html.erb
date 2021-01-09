@@ -10,7 +10,7 @@
         <div class="level-left">
           <div class="level-item">
             <div class="is-size-5 inquiry-index-title">
-            <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;お問い合わせ一覧
+              <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;お問い合わせ一覧
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
         <!-- Right side -->
         <div class="level-right">
           <%= form_with(url: facility_inquiries_path(current_facility), method: :get, local: true) do |f| %>
-            <div class="field is-grouped is-grouped-right">
+            <div class="field is-grouped is-grouped-right inquiry-index-search">
               <div class="control has-icons-left">
                 <%= f.text_field :search, :placeholder => "お名前を入力..", class: "input is-rounded" %>
                 <span class="icon is-left">
@@ -37,20 +37,32 @@
           <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
             <table class="table is-striped is-fullwidth inquiry-table">
               <thead>
-                <tr class="is-size-5 has-background-info">
-                  <th class="inquiry-th">日付</th>
-                  <th class="inquiry-th">お名前</th>
-                  <th class="inquiry-th2">連絡先</th>
-                  <th class="inquiry-th2">内容</th>
+                <tr class="is-size-5 has-background-info has-text-weight-bold">
+                  <th class="inquiry-th has-text-white">日付</th>
+                  <th class="inquiry-th has-text-white">お名前</th>
+                  <th class="inquiry-th2 has-text-white">連絡先</th>
+                  <th class="inquiry-th2 has-text-white">内容</th>
+                  <th class="inquiry-th2 has-text-white">詳細</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <% @inquiries.each do |inquiry| %>
-                  <tr>
-                    <td class="has-text-centered"><%= l(inquiry.created_at, format: :long) %></td>
-                    <td><%= inquiry.name %></td>
-                    <td><%= inquiry.email %></td>
-                    <td><%= inquiry.message %></td>
+                  <tr class="is-size-5">
+                    <td class="has-text-centered inquiry-index-tbody has-text-weight-semibold"><%= l(inquiry.created_at, format: :long) %></td>
+                    <td class="inquiry-index-tbody has-text-weight-semibold"><%= inquiry.name %></td>
+                    <td class="inquiry-index-tbody has-text-weight-semibold"><%= inquiry.email %></td>
+                    <td class="inquiry-index-tbody has-text-weight-semibold"><div class="inquiry-message-short"><%= inquiry.message %></div></td>
+                    <td>
+                      <%= link_to facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success contents--create-button--circle js-contents--create-button--circle" do %>
+                        <i class="far fa-file-alt"></i>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to facility_inquiry_path(current_facility, inquiry.id), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "button is-danger" do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
@@ -64,5 +76,13 @@
         </div>
       <% end %>
     </article>
+  </div>
+</div>
+
+<!--モーダル表示-->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card inquiry-modal-size">
+    <div class="js-contents--content-form"></div>
   </div>
 </div>
