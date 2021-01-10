@@ -17,7 +17,11 @@
           <% if t('date.abbr_day_names')[date.wday] == "土" || t('date.abbr_day_names')[date.wday] == "日" %>
             <p class="public-holiday">休日</p>
           <% else %>
-            <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" %>
+            <% if current_facility.present? %>
+              <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" %>
+            <% elsif current_user.present? %>
+              <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" if @reservations.where(reservation_user: current_user.name).where(reservation_date: date).count < 1 %>
+            <% end %>
           <% end %>
 
           <!--モーダル表示-->
