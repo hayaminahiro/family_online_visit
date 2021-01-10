@@ -18,7 +18,7 @@
             <p class="public-holiday">休日</p>
           <% else %>
             <% if current_facility.present? %>
-              <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" %>
+              <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" if @reservations.where(facility_id: current_facility).where(reservation_date: date).count < 4 %>
             <% elsif current_user.present? %>
               <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" if @reservations.where(reservation_user: current_user.name).where(reservation_date: date).count < 1 %>
             <% end %>
