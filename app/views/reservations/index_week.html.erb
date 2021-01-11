@@ -1,12 +1,12 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
 <div class="container">
-  <div class="card" id="reservations-calendar">
-    <%= link_to "月間カレンダーへ切り替える", facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
+  <div class="card card-width" id="reservations-calendar">
+    <%= link_to "月間カレンダーへ", facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
     <%= link_to "戻る", facility_home_path(@facility), class: "button is-light" if current_user.present? %>
     <%= link_to "戻る", users_path, class: "button is-light" if current_facility.present? %>
     <div class="has-text-centered">
       <div class="is-centered">
-        <h1 class="has-text-centered reservation-title">予約日時選択</h1>
+        <h1 class="has-text-centered reservation-title"><%= @user.name if current_facility.present? %>&nbsp;&nbsp;予約日時選択</h1>
         <%= week_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
           <% if HolidayJapan.check(date) == true %>
             <p class="holiday-color"><%= l(date, format: :short) %></p>
@@ -17,7 +17,19 @@
           <% if t('date.abbr_day_names')[date.wday] == "土" || t('date.abbr_day_names')[date.wday] == "日" %>
             <p class="public-holiday">休日</p>
           <% else %>
-            <%= link_to "予約可", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "button is-link is-light" %>
+            <% if current_facility.present? %>
+              <% if @reservations.where(facility_id: current_facility).where(reservation_user: @user.name).where(reservation_date: date).count < 1 && @reservations.where(facility_id: current_facility).where(reservation_date: date).count < 10 %>
+                <%= link_to "◯", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
+              <% else %>
+                <p class="non-sign"><%= @reservations.where(facility_id: current_facility).where(reservation_date: date).count %>件</p>
+              <% end %>
+            <% elsif current_user.present? %>
+              <% if @reservations.where(facility_id: @facility).where(reservation_user: current_user.name).where(reservation_date: date).count < 1 && @reservations.where(facility_id: @facility).where(reservation_date: date).count < 10 %>
+                <%= link_to "◯", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
+              <% else %>
+                <p class="non-sign">--</p>
+              <% end %>
+            <% end %>
           <% end %>
 
           <!--モーダル表示-->
@@ -31,11 +43,11 @@
           <% @reservations.each do |reservation| %>
             <% if current_user.present? %>
               <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
-                <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-rounded", id: "tag-color" if reservation.reservation_date == date %>
+                <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
               <% end %>
             <% elsif current_facility.present? %>
               <% if reservation.facility_id == @facility.id %>
-                <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation, user: reservation.user_id), class:"tag is-rounded", id: "tag-color" if reservation.reservation_date == date %>
+                <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation, user: reservation.user_id), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
               <% end %>
             <% end %>
           <% end %>

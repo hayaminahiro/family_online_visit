@@ -28,6 +28,11 @@
 		color: #c63f3f;
 	}
 
+	.possible-btn {
+		font-weight: bold;
+		font-size: 18px;
+	}
+
 	#calendar-info .calendar-th {
 		background: #f7f3e8;
 	}
@@ -38,6 +43,64 @@
 		font-size: 18px;
 		font-weight: 300;
 		color: #401c00;
+	}
+
+	.non-sign {
+		display: none;
+		font-size: 16px;
+	}
+}
+
+// レスポンシブindexページ
+@media screen and (max-width: 1024px) {
+	#reservations-calendar {
+		height: 100%;
+		margin: 100px;
+		padding: 35px;
+		font-size: 15px;
+		color: #401c00;
+		border-radius: 6px;
+		flex: 2;
+
+		.reservation-title {
+			font-size: 16px;
+			font-weight: bold;
+			padding: 20px;
+			border-bottom: 1px solid #401c00;
+			margin: 0 0 20px 0;
+		}
+
+		.holiday-color {
+			color: red;
+		}
+
+		.public-holiday {
+			color: #c63f3f;
+		}
+
+		#calendar-info .calendar-th {
+			background: #f7f3e8;
+		}
+
+		.modal-explanation {
+			width: 400px;
+			margin: 0 auto;
+			font-size: 18px;
+			font-weight: 300;
+			color: #401c00;
+		}
+
+		.mobile-none {
+			display: none;
+		}
+
+		.non-sign {
+			display: block;
+		}
+	}
+
+	.card-width {
+		margin: 10px 10px 50px 10px !important;
 	}
 }
 
@@ -136,6 +199,7 @@
 		width: 125px;
 		margin: 20px 0 0 20px;
 	}
+
 	.reservation-list {
 		display: inline-block;
 		padding: 0.8em;
@@ -144,6 +208,10 @@
 		box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
 			0 0px 0 1px rgba(10, 10, 10, 0.02);
 		background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+
+		.today-color {
+			color: rgba(248, 7, 7, 0.897);
+		}
 	}
 
 	#tag-color {
@@ -151,8 +219,9 @@
 	}
 }
 
+// モーダル内
 .modal-card-body {
 	.time-interval {
-		margin: 5px;
+		margin: 3px;
 	}
 }
