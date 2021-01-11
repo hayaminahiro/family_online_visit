@@ -10,16 +10,8 @@
 
 <section class="edit-image-user">
   <div class="user-home-image">
-    <% month = Date.today.month %>
-    <% if month.in?([ 12, 1, 2 ]) %>
-    <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"%>
-    <% elsif month.in?([ 3, 4, 5 ]) %>
-    <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image" %>
-    <% elsif month.in?([ 6, 7, 8 ]) %>
-    <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"%>
-    <% elsif month.in?([ 9, 10, 11 ]) %>
-    <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
-    <% end %>
+    <%= @user.user_background %>
+    <%= @user.user_background_edit_responsive %>
     <div class="user-icon-outline">
       <%= @user.user_icon_edit_responsive %>
       <div class="user-edit-icon-back">
@@ -113,29 +105,45 @@
                 <th>プロフィール画像を変更</th>
                 <td>
                   <div class="container">
-                    <%= f.file_field :image, value: "upload", class: "user_img user-icon-field" %>
-                    <%= f.hidden_field :image_cache %>
+                    <%= f.file_field :icon, value: "upload", class: "user_img user-icon-field" %>
+                    <%= f.hidden_field :icon_cache %>
                   </div>
                 </td>
               </tr>
-              <% if @user.persisted? && @user.image? %>
-              <tr class="image-change">
-                <th>画像を削除</th>
-                <td>
-                  <%= f.check_box :remove_image, id: "icon_delete" %>
-                  <label for="icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
-                  </label>
-                </td>
-              </tr>
+              <% if @user.persisted? && @user.icon? %>
+                <tr class="image-change">
+                  <th>プロフィール画像を削除</th>
+                  <td>
+                    <%= f.check_box :remove_icon, id: "user_icon_delete" %>
+                    <label for="user_icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                    </label>
+                  </td>
+                </tr>
               <% end %>
               <tr class="image-change">
                 <th>現在の背景画像</th>
-                <td></td>
+                <td>
+                  <%= @user.user_background_edit %>
+                </td>
               </tr>
               <tr class="image-change">
                 <th>背景画像を変更</th>
-                <td></td>
+                <td>
+                  <%= f.file_field :image, value: "upload", id: "user_bg_img", class: "user-image-field" %>
+                  <%= f.hidden_field :image_cache %>
+                </td>
               </tr>
+              <% if @user.persisted? && @user.image? %>
+                <tr class="image-change">
+                  <th>背景画像を削除</th>
+                  <td>
+                    <%= f.check_box :remove_image, id: "bg_delete" %>
+                    <label for="bg_delete" class="check_position has-text-weight-bold" id="img_lavel">
+                    </label>&emsp;
+                    チェックを入れてください
+                  </td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -163,7 +171,7 @@
               <td>
                 <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "current-password", class: "fa input is-info" %>
                 <% if @minimum_password_length %>
-                <br />
+                  <br />
                 <% end %>
               </td>
             </tr>
@@ -210,12 +218,31 @@
         if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function(e) {
-            $(`#img_prev_${i}`).attr('src', e.target.result);
+            $(`#icon_prev_${i}`).attr('src', e.target.result);
           }
           reader.readAsDataURL(input.files[0]);
         }
       }
       $(".user_img").change(function() {
+        readURL(this);
+      });
+    });
+  };
+</script>
+
+<script type="text/javascript">
+  for (let i = 0; i < 2; i++) {
+    $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $(`#img_prev_${i}`).attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#user_bg_img").change(function() {
         readURL(this);
       });
     });
