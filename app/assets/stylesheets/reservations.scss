@@ -97,6 +97,11 @@
 		.non-sign {
 			display: block;
 		}
+
+		.mobile-modal {
+			width: 90%;
+			margin: 5px auto;
+		}
 	}
 
 	.card-width {
@@ -216,6 +221,19 @@
 
 	#tag-color {
 		background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+	}
+}
+
+// レスポンシブtitle
+@media screen and (max-width: 1024px) {
+	.container {
+		// 予約リスト
+		.list-title {
+			font-size: 16px;
+			border-bottom: 2px #7d3636 solid;
+			width: 100px;
+			margin: 20px 0 0 20px;
+		}
 	}
 }
 
