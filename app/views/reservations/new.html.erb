@@ -83,7 +83,7 @@
         <%= f.hidden_field :started_at, :value => @reservation.started_at %>
         <div>
           <%= f.submit "予約を決定する", class: "message-btn" %>
-          <%= link_to "戻る", facility_reservations_path(facility_id: @facility.id, user: @user), class: "button is-light back-btn" %>
+          <%= link_to "予約ページ戻る", facility_reservations_path(facility_id: @facility.id, user: @user), class: "button is-light back-btn" %>
         </div>
       </div>
     </div>
