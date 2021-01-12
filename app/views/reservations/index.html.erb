@@ -20,9 +20,9 @@
             <% else %>
               <% if current_facility.present? %>
                 <% if @reservations.where(facility_id: current_facility).where(reservation_user: @user.name).where(reservation_date: date).count < 1 && @reservations.where(facility_id: current_facility).where(reservation_date: date).count < 10 %>
-                  <%= link_to "◯", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
+                  <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
                 <% else %>
-                  <p class="non-sign"><%= @reservations.where(facility_id: @facility).where(reservation_date: date).count %>件</p>
+                  <p class="non-sign"><%= @reservations.where(facility_id: current_facility).where(reservation_date: date).count %>件</p>
                 <% end %>
               <% elsif current_user.present? %>
                 <% if @reservations.where(facility_id: @facility).where(reservation_user: current_user.name).where(reservation_date: date).count < 1 && @reservations.where(facility_id: @facility).where(reservation_date: date).count < 10 %>
