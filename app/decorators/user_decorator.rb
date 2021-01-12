@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module UserDecorator
+module UserDecorator # rubocop:disable Metrics/ModuleLength
   # facility_idごとにグループ分け
   def grouped_facility
     informations = Information.where(facility_id: current_user.facilities).where(status: "others")
@@ -54,14 +54,14 @@ module UserDecorator
     if image?
       image_tag image.url, class: "mypage-image"
     else
-      month = Date.today.month
-      if month.in?([ 12, 1, 2 ])
+      month = Time.zone.today.month
+      if month.in?([12, 1, 2])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"
-      elsif month.in?([ 3, 4, 5 ])
+      elsif month.in?([3, 4, 5])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image"
-      elsif month.in?([ 6, 7, 8 ])
+      elsif month.in?([6, 7, 8])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"
-      elsif month.in?([ 9, 10, 11 ])
+      elsif month.in?([9, 10, 11])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"
       end
     end
@@ -72,14 +72,14 @@ module UserDecorator
     if image?
       image_tag image.url, id: :img_prev_1, class: "user-bg-edit"
     else
-      month = Date.today.month
-      if month.in?([ 12, 1, 2 ])
+      month = Time.zone.today.month
+      if month.in?([12, 1, 2])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', id: :img_prev_1, class: "user-bg-edit"
-      elsif month.in?([ 3, 4, 5 ])
+      elsif month.in?([3, 4, 5])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', id: :img_prev_1, class: "user-bg-edit"
-      elsif month.in?([ 6, 7, 8 ])
+      elsif month.in?([6, 7, 8])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', id: :img_prev_1, class: "user-bg-edit"
-      elsif month.in?([ 9, 10, 11 ])
+      elsif month.in?([9, 10, 11])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', id: :img_prev_1, class: "user-bg-edit"
       end
     end
@@ -90,14 +90,14 @@ module UserDecorator
     if image?
       image_tag image.url, id: :img_prev_0, class: "user-bg-edit-responsive", onClick: "$('#user_bg_img').click()"
     else
-      month = Date.today.month
-      if month.in?([ 12, 1, 2 ])
+      month = Time.zone.today.month
+      if month.in?([12, 1, 2])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', id: :img_prev_0, class: "user-bg-edit-responsive", onClick: "$('#user_bg_img').click()"
-      elsif month.in?([ 3, 4, 5 ])
+      elsif month.in?([3, 4, 5])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', id: :img_prev_0, class: "user-bg-edit-responsive", onClick: "$('#user_bg_img').click()"
-      elsif month.in?([ 6, 7, 8 ])
+      elsif month.in?([6, 7, 8])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', id: :img_prev_0, class: "user-bg-edit-responsive", onClick: "$('#user_bg_img').click()"
-      elsif month.in?([ 9, 10, 11 ])
+      elsif month.in?([9, 10, 11])
         image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', id: :img_prev_0, class: "user-bg-edit-responsive", onClick: "$('#user_bg_img').click()"
       end
     end

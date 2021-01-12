@@ -58,7 +58,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
       # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+      # rubocop:disable all
       devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute name email phone postal_code prefecture_name address_city address_street image remove_image image_cache icon remove_icon icon_cache]) # facility_idsを追加
+      # rubocop:enable all
     end
 
     def update_resource(resource, params)
