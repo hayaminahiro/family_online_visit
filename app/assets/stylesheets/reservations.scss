@@ -123,6 +123,7 @@
 		font-size: 30px;
 		font-weight: bold;
 		padding: 20px;
+		color: #401c00;
 		border-bottom: 1px solid #401c00;
 		margin: 0 0 20px 0;
 	}
@@ -193,6 +194,75 @@
 		cursor: pointer;
 		font-weight: 500;
 		margin-top: 30px;
+	}
+}
+
+//new・showページのレスポンシブ
+@media screen and (max-width: 1024px) {
+	.reservations-top {
+		height: 100%;
+		margin: 30px 300px 50px 300px;
+		padding: 10px;
+		font-size: 15px;
+		color: #401c00;
+		border-radius: 6px;
+		flex: 2;
+
+		#reservation-new-tables td {
+			text-align: center;
+			vertical-align: middle;
+			letter-spacing: 3px;
+			color: #401c00;
+			font-weight: 400;
+			font-size: 30px;
+		}
+
+		.reservation-new-title {
+			font-size: 20px;
+			font-weight: bold;
+			padding: 30px;
+			color: #401c00;
+			border-bottom: 1px solid #401c00;
+			margin: 0 0 20px 0;
+		}
+
+		#reservation-new-tables {
+			th {
+				text-align: center;
+				vertical-align: middle;
+				font-size: 14px;
+				letter-spacing: 3px;
+				background-color: #f7f3e8;
+				color: #401c00;
+				font-weight: 500;
+
+				.sign-tag {
+					margin-top: 3px;
+				}
+			}
+
+			td {
+				text-align: center;
+				vertical-align: middle;
+				letter-spacing: 3px;
+				color: #401c00;
+				font-weight: 400;
+				font-size: 16px;
+			}
+
+			tr:nth-child(2n + 1) td {
+				background-color: #fbfbfb;
+			}
+
+			.button.is-rounded {
+				border-radius: 290486px;
+				padding-right: 14px;
+			}
+		}
+
+		.card-width {
+			margin: 5px !important;
+		}
 	}
 }
 

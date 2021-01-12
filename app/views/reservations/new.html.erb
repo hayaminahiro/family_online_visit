@@ -1,6 +1,6 @@
 <%= form_with(model: @reservation, url: facility_reservations_path, method: :post, local: true) do |f| %>
   <%= render partial: 'shared/facility_images', locals: { facility: @facility } %>
-  <div class="card reservations-top">
+  <div class="card reservations-top card-width">
     <div class="has-text-centered">
       <div class="is-centered">
         <h1 class="has-text-centered reservation-new-title">予約情報確認</h1>
