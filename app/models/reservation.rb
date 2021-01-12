@@ -29,4 +29,8 @@ class Reservation < ApplicationRecord
   scope :time_1530, ->(date) { where(reservation_date: date).where(started_at: TIME_1530) }
   scope :time_1600, ->(date) { where(reservation_date: date).where(started_at: TIME_1600) }
   scope :time_1630, ->(date) { where(reservation_date: date).where(started_at: TIME_1630) }
+
+  scope :facility, ->(facility) { where(facility_id: facility)}
+  scope :reservation_user, ->(name) { where(reservation_user: name)}
+  scope :reservation_date, ->(date) { where(reservation_date: date)}
 end

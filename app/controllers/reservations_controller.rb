@@ -3,8 +3,12 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show destroy]
 
   def index
-    @reservations = Reservation.all.order(reservation_date: "ASC")
     @user = User.find(params[:user]) if params[:user].present?
+    @reservations = Reservation.all.order(reservation_date: "ASC")
+    @reservations_facility_day_max = Reservation.all.facility(current_facility).reservation_user(@user.name) if @user.present?
+    @reservations_facility_max = Reservation.all.facility(current_facility)
+    @reservations_user_day_max = Reservation.all.facility(@facility).reservation_user(current_user.name) if current_user.present?
+    @reservations_user_max = Reservation.all.facility(@facility)
   end
 
   def show; end
