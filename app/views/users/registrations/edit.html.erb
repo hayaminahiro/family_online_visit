@@ -78,20 +78,42 @@
             <tbody>
               <tr>
                 <th>名前</th>
-                <td><%= f.text_field :name, :placeholder => "\uf304 お名前を入力", class: "fa input is-info" %></td>
+                <td><%= f.text_field :name, :placeholder => "\uf304 お名前を入力", class: "fa input is-primary" %></td>
               </tr>
               <tr>
                 <th>メールアドレス</th>
-                <td><%= f.email_field :email, autocomplete: "email", class: "fa input is-info" %>
+                <td><%= f.email_field :email, autocomplete: "email", class: "fa input is-primary" %>
                 </td>
               </tr>
               <tr>
                 <th>電話番号</th>
-                <td>080-4990-4484</td>
+                <td>
+                  <%= f.text_field :phone, class: "fa input is-primary" %>
+                </td>
               </tr>
               <tr>
-                <th>住所</th>
-                <td>千葉県佐倉市００−００</td>
+                <th>郵便番号</th>
+                <td>
+                  <%= f.text_field :postal_code, class: "fa input is-primary" %>
+                </td>
+              </tr>
+              <tr>
+                <th>都道府県</th>
+                <td>
+                  <%= f.text_field :prefecture_name, class: "fa input is-primary" %>
+                </td>
+              </tr>
+              <tr>
+                <th>市区町村</th>
+                <td>
+                  <%= f.text_field :address_city, class: "fa input is-primary" %>
+                </td>
+              </tr>
+              <tr>
+                <th>町域・番地</th>
+                <td>
+                  <%= f.text_field :address_street, class: "fa input is-primary" %>
+                </td>
               </tr>
               <tr class="image-change">
                 <th>現在のプロフィール画像</th>
@@ -116,7 +138,8 @@
                   <td>
                     <%= f.check_box :remove_icon, id: "user_icon_delete" %>
                     <label for="user_icon_delete" class="check_position has-text-weight-bold" id="img_lavel">
-                    </label>
+                    </label>&emsp;
+                    チェックを入れてください
                   </td>
                 </tr>
               <% end %>
@@ -167,7 +190,7 @@
           </tfoot>
           <tbody>
             <tr>
-              <th>パスワード</th>
+              <th>パスワード変更</th>
               <td>
                 <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "current-password", class: "fa input is-info" %>
                 <% if @minimum_password_length %>
