@@ -112,11 +112,21 @@ module UserDecorator
     end
   end
 
+  # 編集画面（モバイルサイズのアイコン）
   def user_icon_edit_responsive
     if icon?
       image_tag icon.url, id: :icon_prev_1, class: "user-icon-image", onClick: "$('.user_img').click()"
     else
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: :icon_prev_1, class: "user-icon-image", onClick: "$('.user_img').click()"
+    end
+  end
+
+  # 編集画面（タブレットサイズのアイコン）
+  def user_icon_tablet_responsive
+    if icon?
+      image_tag icon.url, class: "user-icon-tablet"
+    else
+      image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "user-icon-tablet"
     end
   end
 
