@@ -49,7 +49,11 @@ class ReservationsController < ApplicationController
   private
 
     def set_user
-      @user = User.find(params[:user]) if params[:user].present?
+      @user = if params[:user].present?
+                User.find(params[:user])
+              else
+                User.find(current_user.id)
+              end
     end
 
     def set_facility_id
