@@ -47,6 +47,7 @@ class ReservationsController < ApplicationController
   end
 
   private
+
     def set_user
       @user = User.find(params[:user]) if params[:user].present?
     end
@@ -60,7 +61,7 @@ class ReservationsController < ApplicationController
     end
 
     def set_reservations
-      @reservations = Reservation.all.order(reservation_date: "ASC")
+      @reservations = Reservation.all.sorted
     end
 
     def set_reservation_limit
