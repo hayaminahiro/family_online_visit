@@ -36,9 +36,8 @@
       <%= render "users/shared/error_messages", resource: @user %>
       <form>
         <div>
-          <label style="font-size:20px;font-weight:bold;" for="zip">郵便番号</label><br />
-          <input style="margin-top:20px;margin-bottom:10px;" id="zip" type="text" size="10" placeholder="&#xf1fa; ハイフンなし", class="fa input is-medium" />
-          <input id="search" type="button" value="郵便番号から住所検索" class="button is-success" />
+          <div class="label step2-label" for="zip">郵便番号</div>
+          <input id="zip" type="text" size="10" placeholder="&#xf1fa; ハイフンなし", class="fa input is-medium step2-input-postcode" />
         </div>
       </form>
       <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
@@ -49,7 +48,7 @@
 
         <div class="field">
           <%= f.label :prefecture_name, '都道府県', for: "address1", class: "label" %><br />
-          <%= f.text_field :prefecture_name, :placeholder => "\uf015 都道府県を入力", id: "address1", class: 'fa input is-medium input-top' %>
+          <%= f.text_field :prefecture_name, id: "prefecture_name", :placeholder => "\uf015 都道府県を入力", id: "address1", class: 'fa input is-medium input-top' %>
         </div>
 
         <div class="field">
@@ -80,12 +79,11 @@
   </div>
 </div>
 
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
   $(function() {
     // ［検索］ボタンクリックで郵便番号検索を実行
-    $('#search').click(function() {
-      $.getJSON('http://zipcloud.ibsnet.co.jp/api/search?callback=?',
+    $('#zip').on('input',function() {
+      $.getJSON('https://zipcloud.ibsnet.co.jp/api/search?callback=?',
         {
           zipcode: $('#zip').val()
         }

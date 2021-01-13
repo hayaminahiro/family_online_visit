@@ -8,12 +8,19 @@
         <font color="#F9BF4B">・</font>ー<font color="#4DADA1">Video Room</font>ー<font color="#F9BF4B">・</font>
       </h1>
     </div>
-  </div>  
+  </div>
 </section>
 
 <section class="chat-section" data-turbolinks="false">
   <div class="container">
     <div class="room">
+      <% if facility_signed_in? %>
+        <div class="has-text-centered">
+          <div class="content" id="timer-layout">
+            <div id="timer" class="has-text-weight-semibold">残り30分</div>
+          </div>
+        </div>
+      <% end %>  
       <div class="has-text-centered columns is-gapless">
         <div class="column is-half" id="local-video">
           <video id="js-local-stream"></video>
@@ -23,13 +30,21 @@
           <div class="remote-streams" id="js-remote-streams"></div>
         </div>
       </div>
-      <div class="has-text-centered" id="input-key"> 
-        <p class="column is-three-fifths is-offset-one-fifth control">
+      <div class="has-text-centered" id="input-key">
+        <p class="column is-three-fifths is-offset-one-fifth control" id="room-key">
           <input class="input is-large is-warning has-text-weight-semibold is-rounded is-focused" type="text" placeholder="Room Nameを入力してください" value="<%= @room.room_name %>" id="js-room-id">
         </p>
         <h3 class="is-size-3"><strong>Room Name:&emsp;<font color="#FF7F50"><%= @room.room_name if @room.present? %></font></strong></h3><br>
         <button id="js-join-trigger" class="button is-focused is-success is-rounded has-text-weight-semibold">入室する</button>&emsp;
-        <button id="js-leave-trigger" class="button is-focused is-danger is-rounded has-text-weight-semibold">退室する</button> 
+        <% if facility_signed_in? %>
+          <div class="button" id="buttonBox">
+            <button id="start" class="has-text-weight-semibold">
+              <span><i class="far fa-clock"></i></span>
+              <p>タイマー</p>
+            </button>
+          </div>&emsp;
+        <% end %>  
+        <button id="js-leave-trigger" class="button is-focused is-danger is-rounded has-text-weight-semibold">退室する</button>
       </div><br>
       <div class="has-text-centered messages-layout">
         <pre class="messages" id="js-messages">
@@ -43,7 +58,7 @@
           <input class="input" type="hidden" name="name" value="<%= current_facility.facility_name %>" id="js-local-name">
         <% end %>
         <textarea class="input is-medium is-info has-text-weight-semibold" type="text" placeholder="メッセージを入力して下さい" id="js-local-text"></textarea>
-        <p class="has-text-right has-text-weight-semibold info-message" >
+        <p class="has-text-right has-text-weight-semibold info-message">
           *メッセージを送信することができます。
         </p>
         <button id="js-send-trigger" class="button is-focused is-info is-rounded has-text-weight-semibold">送信する</button>
@@ -56,17 +71,6 @@
         <%= link_to "戻る", facility_home_path(@facility), id: "return-btn", class: "button is-outlined is-dark has-text-weight-semibold back-btn" %>
       <% end %>
     </div>
-    <div class="has-text-right">
-      <div class="content" id="timer-layout">
-        <div class="time-icon"><i class="fas fa-user-clock"></i></div>
-        <div id="timer" class="has-text-weight-semibold">残り30分</div>
-      </div>
-      <div class="button" id="buttonBox">
-        <button id="start" class="has-text-weight-semibold">
-          <span>面会開始</span>
-        </button>
-      </div>
-    </div><br>
     <p class="meta" id="js-meta"></p>
   </div>
 </section>
@@ -91,8 +95,8 @@
     const meta = document.getElementById('js-meta');
     const sdkSrc = document.querySelector('script[src*=skyway]');
     const remoteIcon = document.getElementById('chat-icon');
-    const tablet = window.matchMedia( "(max-width: 1000px)" );
-    const mobile = window.matchMedia( "(max-width: 500px)" );
+    const tablet = window.matchMedia("(max-width: 1000px)");
+    const mobile = window.matchMedia("(max-width: 500px)");
     const buttonLayout = document.getElementById('input-key');
 
     function scrollToEnd() {
@@ -113,15 +117,15 @@
       UA: ${navigator.userAgent}
       SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
     `.trim();
-  
+
     const getRoomModeByHash = () => (location.hash === '#sfu' ? 'sfu' : 'mesh');
-  
+
     roomMode.textContent = getRoomModeByHash();
     window.addEventListener(
       'hashchange',
       () => (roomMode.textContent = getRoomModeByHash())
     );
-  
+
     const localStream = await navigator.mediaDevices
       .getUserMedia({
         audio: true,
@@ -134,13 +138,13 @@
     localVideo.playsInline = true;
     localVideo.setAttribute('controls', true);
     await localVideo.play().catch(console.error);
-  
+
     // eslint-disable-next-line require-atomic-updates
     const peer = (window.peer = new Peer({
       key: "56ce0219-dc92-4ccb-98e3-4fe9bc9be693",
       debug: 3,
     }));
-  
+
     // Register join handler
     joinTrigger.addEventListener('click', () => {
       // Note that you need to ensure the peer has connected to signaling server
@@ -148,7 +152,7 @@
       if (!peer.open) {
         return;
       }
-  
+
       const room = peer.joinRoom(roomId.value, {
         mode: getRoomModeByHash(),
         stream: localStream,
@@ -156,27 +160,27 @@
 
       joinTrigger.disabled = true;
       leaveTrigger.disabled = false;
-  
+
       room.once('open', () => {
         messages.innerHTML += '<div class="local-start"><span>入室しました</span></div>';
       });
       room.on('peerJoin', peerId => {
         messages.innerHTML += `<div class="remote-start"><span>相手が入室しました</span></div>`;
       });
-  
+
       // Render remote stream for new peer join in the room
       room.on('stream', async stream => {
         const newVideo = document.createElement('video');
 
         if (mobile.matches) {
-          localLayout.style.height = '45px';
+          localLayout.style.height = '0px';
           buttonLayout.style.marginTop = '-35px';
-          localVideo.style.top = '45px';
+          localVideo.style.top = '0px';
           localVideo.style.left = '75%';
           localVideo.style.height = '45px'
         } else if (tablet.matches) {
-          localLayout.style.height = '65px';
-          localVideo.style.top = '65px';
+          localLayout.style.height = '0px';
+          localVideo.style.top = '0px';
           localVideo.style.left = '78%';
           localVideo.style.height = '89px'
         };
@@ -191,11 +195,14 @@
         await newVideo.play().catch(console.error);
       });
 
-      room.on('data', ({ data, src }) => {
+      room.on('data', ({
+        data,
+        src
+      }) => {
         // Show a message sent to the room and who sent
         messages.innerHTML += `<div class="remote-text"><img src="${data[2]}" class="message-chat-icon"><p>${data[1]}</p><span>${data[0]}</span></div>`;
       });
-  
+
       // for closing room members
       room.on('peerLeave', peerId => {
         const remoteVideo = remoteVideos.querySelector(
@@ -222,7 +229,7 @@
           localVideo.style.height = '100%';
         };
       });
-  
+
       // for closing myself
       room.once('close', () => {
         sendTrigger.removeEventListener('click', onClickSend);
@@ -236,7 +243,7 @@
 
           if (mobile.matches && firstRemote === null) {
             localLayout.style.height = '185px';
-            buttonLayout.style.marginTop = '38px';
+            buttonLayout.style.marginTop = '-30px';
             localVideo.style.right = '0px';
             localVideo.style.left = '0px';
             localVideo.style.height = '100%';
@@ -249,14 +256,16 @@
           };
         });
       });
-  
+
       sendTrigger.addEventListener('click', onClickSend);
-      leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+      leaveTrigger.addEventListener('click', () => room.close(), {
+        once: true
+      });
       leaveTrigger.addEventListener('click', () => {
         joinTrigger.disabled = false;
         leaveTrigger.disabled = true;
       });
-  
+
       function onClickSend() {
         let obj = new String(remoteIcon.src)
         // Send message to all of the peers in the room via websocket
@@ -265,7 +274,7 @@
         localText.value = '';
       }
     });
-  
+
     peer.on('error', console.error);
   })();
 </script>
@@ -282,7 +291,7 @@
   var time;
   var id;
 
-  document.getElementById('start').addEventListener('click', function () {
+  document.getElementById('start').addEventListener('click', function() {
     if (document.getElementById('start').innerHTML === 'START') {
       start = new Date();
       id = setInterval(goTimer, 10);
@@ -293,7 +302,7 @@
       if (document.getElementById('start').innerHTML === '面会中') {
         document.getElementById('start').disabled = true;
       }
-  } else {
+    } else {
       clearInterval(id);
       document.getElementById('start').innerHTML = 'START';
 
@@ -305,7 +314,7 @@
     }
   });
 
-  var goTimer = function () {
+  var goTimer = function() {
     now = new Date();
     time = now.getTime() - start.getTime();
 
@@ -316,42 +325,42 @@
     seconds = Math.floor(time / 1000);
 
     if (seconds < 1800) {
-        point = 9 - (point - sec * 10);
-        sec = 59 - (sec - min * 60);
-        min = 29 - (min - hour * 60);
+      point = 9 - (point - sec * 10);
+      sec = 59 - (sec - min * 60);
+      min = 29 - (min - hour * 60);
 
-        point = addZero(point);
-        sec = addZero(sec);
-        min = addZero(min);
+      point = addZero(point);
+      sec = addZero(sec);
+      min = addZero(min);
 
       document.getElementById('timer').innerHTML = '残り' + min + '分';
     } else if (seconds >= 1800 && seconds < 240) {
-        point = point - sec * 10;
-        sec = sec - min * 60;
-        min = min - 3;
+      point = point - sec * 10;
+      sec = sec - min * 60;
+      min = min - 3;
 
-        point = addZero(point);
-        sec = addZero(sec);
-        min = addZero(min);
+      point = addZero(point);
+      sec = addZero(sec);
+      min = addZero(min);
 
-        document.getElementById('timer').style.color = 'red';
-        document.getElementById('timer').innerHTML = '残り' + min + '分';
+      document.getElementById('timer').style.color = 'red';
+      document.getElementById('timer').innerHTML = '残り' + min + '分';
 
     } else {
-        clearInterval(id);
-        document.getElementById('timer').innerHTML = '残り30分';
-        document.getElementById('timer').style.color = 'white';
-        document.getElementById('start').innerHTML = 'start';
+      clearInterval(id);
+      document.getElementById('timer').innerHTML = '残り30分';
+      document.getElementById('timer').style.color = 'white';
+      document.getElementById('start').innerHTML = 'start';
 
-        document.getElementById('buttonBox').classList.remove('buttonbutton');
-        document.getElementById('buttonBox').classList.add('button');
+      document.getElementById('buttonBox').classList.remove('buttonbutton');
+      document.getElementById('buttonBox').classList.add('button');
     }
 
   };
 
-  var addZero = function (value) {
+  var addZero = function(value) {
     if (value < 10) {
-        value = '0' + value;
+      value = '0' + value;
     }
     return value;
   };
