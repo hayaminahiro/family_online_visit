@@ -19,6 +19,7 @@ class Reservation < ApplicationRecord
   TIME_1600 = "2000-01-01 16:00:00 +0900".freeze
   TIME_1630 = "2000-01-01 16:30:00 +0900".freeze
 
+  scope :date, ->(date) { where(reservation_date: date)}
   scope :time_1000, ->(date) { where(reservation_date: date).where(started_at: TIME_1000) }
   scope :time_1030, ->(date) { where(reservation_date: date).where(started_at: TIME_1030) }
   scope :time_1100, ->(date) { where(reservation_date: date).where(started_at: TIME_1100) }
