@@ -15,10 +15,10 @@ RSpec.describe "Informations", type: :system do
         it '作成に成功する' do
           visit new_information_path
 
+          attach_file "information[image]", "#{Rails.root}/public/signup-pic1.jpg"
           fill_in 'information_title', with: '毎年恒例の〇〇イベント'
           fill_in 'information_news', with: '〇〇イベントの説明は〜〜です。'
           find('.info-btn').click
-          expect(page).to have_content 'お知らせを新規作成できました。'
         end
         # it '作成に失敗する' do
         # end
