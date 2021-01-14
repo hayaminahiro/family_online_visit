@@ -675,6 +675,26 @@ mypage-main {
     margin-top: 0px;
   }
 
+  //施設タブ（レイアウト）
+  #panel-content {
+    width: 97%;
+    margin-left: auto;
+    margin-left: auto;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+
+    span.facility-title {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 8%;
+      margin-left: 10%;
+      color: gray;
+    }
+
+    p.layout-content {
+      text-align: center;
+    }
+  }
+
   //施設タブ（アイコン）
   .mypage-facility-icon-image {
     width: 60px;
@@ -702,7 +722,7 @@ mypage-main {
   }
 
   #calendar-info .calendar-th {
-    background-color: rgba(242, 103, 102, 0.2);
+    background-color: #FFEBCD;
   }
 }
 
