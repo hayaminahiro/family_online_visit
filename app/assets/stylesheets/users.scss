@@ -420,12 +420,13 @@ img#icon_prev_0.user-edit-image {
 mypage-aside {
   /*画面左*/
   position: fixed;
-  width: 15.5%;
+  z-index: 5;
+  width: 20%;
   height: 100%;
   font-size: 15px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background: linear-gradient(to bottom, #f7f0e7, #f24f4f 100%);
   box-shadow: inset -1px 0px 0px 0px #dddddd;
 
   .profile-section {
@@ -485,13 +486,14 @@ mypage-aside {
 
   .panel-tab p {
     font-size: 17px;
-    font-weight: lighter;
+    color: #fff;
+    font-weight: bold;
     text-align: left;
   }
 
   .panel-tab.is-active p {
     font-size: 17px;
-    font-weight: normal;
+    font-weight: bold;
     color: rgb(235, 94, 39);
   }
 
@@ -500,7 +502,7 @@ mypage-aside {
     float: left;
     line-height: 23px;
     font-size: 22px;
-    color: gray;
+    color: #fff;
     margin-left: 20px;
     width: 92px;
   }
@@ -524,8 +526,8 @@ mypage-aside {
 
 mypage-main {
   /*画面中央*/
-  padding-left: 15.5%;
-  width: 100%;
+  margin-left: auto;
+  width: 80%;
   background-color: rgb(244, 243, 238);
   display: flex;
   margin-bottom: -25px;
@@ -672,6 +674,13 @@ mypage-main {
   #edit-content {
     margin-top: 0px;
   }
+
+  //施設タブ（アイコン）
+  .mypage-facility-icon-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
 }
 
 #mypage-reservations-calendar {
@@ -693,7 +702,7 @@ mypage-main {
   }
 
   #calendar-info .calendar-th {
-    background: #f39560;
+    background-color: rgba(242, 103, 102, 0.2);
   }
 }
 
@@ -1673,8 +1682,10 @@ main {
     display: block;
   }
 
-  .mypage-image {
-    display: none;
+  .edit-image-user {
+    .mypage-image {
+      display: none;
+    }
   }
 
   .user-bg-edit-responsive {

@@ -7,10 +7,18 @@
       </div>
     </div>
     <div class="mypage-side-link">
-      <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>予約</p></a>
-      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>写真</p></a>
-      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>動画</p></a>
-      <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="fas fa-phone-volume"></i><p>お問い合わせ</p></a>
+      <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>
+        <p>予約</p>
+      </a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i>
+        <p>写真</p>
+      </a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i>
+        <p>動画</p>
+      </a>
+      <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="far fa-building"></i>
+        <p>施設</p>
+      </a>
     </div>
   </mypage-aside>
 
@@ -18,16 +26,7 @@
     <article>
       <section class="hero-image-user">
         <div class="user-home-image">
-        <% month = Date.today.month %>
-        <% if month.in?([ 12, 1, 2 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"%>
-        <% elsif month.in?([ 3, 4, 5 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image" %>
-        <% elsif month.in?([ 6, 7, 8 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"%>
-        <% elsif month.in?([ 9, 10, 11 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
-        <% end %>
+          <%= current_user.user_background %>
           <div class="user-icon-outline">
             <%= current_user.user_icon_responsive %>
           </div>
@@ -38,36 +37,36 @@
         <div class="Web-section">
           <div class="columns">
             <% current_user.grouped_facility.each do |facility_id, other| %>
-              <div class="card-content" id="my-page-info-content">
-                <div class="card" style="display: flex; border-radius: 11px;">
-                  <div class="media-left">
-                    <small><%= current_user.mypage_facilities_icon(facility_id) %></small>
-                  </div>
-                  <div class="media-content" id="web-media-section">
-                    <% current_user.mypage_informations(facility_id).last(2).each do |information| %>
-                    <div class="mypage-information">
-                      <div>
-                        <div class="box" id="mypage-user-box">
-                          <div class="media">
-                            <%= current_user.mypage_informations_icon(information) %>
-                            <div class="media-content">
-                              <div class="content" id="edit-content">
-                                <p class="is-size-7">
+            <div class="card-content" id="my-page-info-content">
+              <div class="card" style="display: flex; border-radius: 11px;">
+                <div class="media-left">
+                  <small><%= current_user.mypage_facilities_icon(facility_id) %></small>
+                </div>
+                <div class="media-content" id="web-media-section">
+                  <% current_user.mypage_informations(facility_id).last(2).each do |information| %>
+                  <div class="mypage-information">
+                    <div>
+                      <div class="box" id="mypage-user-box">
+                        <div class="media">
+                          <%= current_user.mypage_informations_icon(information) %>
+                          <div class="media-content">
+                            <div class="content" id="edit-content">
+                              <p class="is-size-7">
                                 <strong><%= information.title.truncate(9) %></strong><br>
-                                  <small><%= information.facility.facility_name %></small>
-                                  <br>
-                                  <span><%= information.news.truncate(10) %></span>
-                                </p>
-                              </div>
+                                <small><%= information.facility.facility_name %></small>
+                                <br>
+                                <span><%= information.news.truncate(10) %></span>
+                              </p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <% end %>
                   </div>
+                  <% end %>
                 </div>
               </div>
+            </div>
             <% end %>
           </div>
         </div>
@@ -99,8 +98,8 @@
                         </figure>
                       </th>
                       <td>
-                      <strong>山本　太郎</strong><br>
-                      <small>2020/12/15 10:00~</small>
+                        <strong>山本　太郎</strong><br>
+                        <small>2020/12/15 10:00~</small>
                       </td>
                       <td><i class="far fa-times-circle"></i></td>
                     </tr>
@@ -131,12 +130,12 @@
                     </div>
                   </li>
                 <% end %>
-              <div class="tag-plus-btn">
-                <!--タグを新規作成 （tags/new ⇨ new.js.erb ⇨ 作成フォームをモーダル表示）-->
-                <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
-                  <i class="fas fa-folder-plus fa-3x"></i>
-                <% end %>
-              </div>
+                <div class="tag-plus-btn">
+                  <!--タグを新規作成 （tags/new ⇨ new.js.erb ⇨ 作成フォームをモーダル表示）-->
+                  <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
+                    <i class="fas fa-folder-plus fa-3x"></i>
+                  <% end %>
+                </div>
               </ul>
             </div>
 
@@ -162,7 +161,26 @@
       </div>
 
       <div id="Infor" class="content-tab" style="display:none">
-        <p>お問い合わせ</p>
+        <article class="panel" id="panel-content">
+          <div class="columns is-multiline is-narrow-mobile">
+            <% current_user.facilities.each do |facility| %>
+              <div class="column is-4">
+                <div class="card">
+                  <figure class="image is-4by3">
+                    <%= facility_season_image(facility) %>
+                  </figure>
+                  <div class="card-content">
+                    <p class="title is-4">
+                      <% @facility = facility.id %>
+                      <%= current_user.mypage_facilities_icon(facility.id) %>
+                      <%= link_to facility.facility_name, facility_home_path(facility), class: "has-text-weight-bold is-size-5 has-text-link" %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </article>
       </div>
     </article>
   </mypage-main>
