@@ -1,54 +1,56 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
-<div class="card reservations-top">
-  <div class="has-text-centered">
-    <div class="is-centered">
-      <h1 class="has-text-centered reservation-new-title">予約内容</h1>
-      <table class="table is-bordered is-fullwidth" id="reservation-new-tables">
-        <tbody>
-          <tr>
-            <th>ご家族名前</th>
-            <td>
-              <%= @reservation.reservation_user %>
-            </td>
-          </tr>
-          <tr>
-            <th>メールアドレス</th>
-            <td>
-              <%= @reservation.reservation_email %>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              面会したい利用者
-            </th>
-            <td>
-              <% eval(@reservation.reservation_residents).each do |resident| %>
-                <%= resident %><br>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th>予約日</th>
-            <td>
-              <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
-            </td>
-          </tr>
-          <tr>
-            <th>予約時間</th>
-            <td>
-              <%= l(@reservation.started_at, format: :time) %>
-            </td>
-          </tr>
-          <tr>
-            <th>ご要望等</th>
-            <td>
-              <%= @reservation.comment %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete, data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" }, class: "button is-danger is-light show-back-btn" %>
-      <%= link_to "戻る", facility_reservations_path(facility_id: @facility.id, user: @reservation.user_id), class: "button is-light show-back-btn" %>
+<body id="page-back-color">
+  <div class="card reservations-top card-width">
+    <div class="has-text-centered">
+      <div class="is-centered">
+        <h1 class="has-text-centered reservation-new-title">予約内容</h1>
+        <table class="table is-bordered is-fullwidth" id="reservation-new-tables">
+          <tbody>
+            <tr>
+              <th>ご家族名前</th>
+              <td>
+                <%= @reservation.reservation_user %>
+              </td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td>
+                <%= @reservation.reservation_email %>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                面会したい利用者
+              </th>
+              <td>
+                <% eval(@reservation.reservation_residents).each do |resident| %>
+                  <%= resident %><br>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>予約日</th>
+              <td>
+                <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
+              </td>
+            </tr>
+            <tr>
+              <th>予約時間</th>
+              <td>
+                <%= l(@reservation.started_at, format: :time) %>
+              </td>
+            </tr>
+            <tr>
+              <th>ご要望等</th>
+              <td>
+                <%= @reservation.comment %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete, data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" }, class: "button is-danger is-light show-back-btn" %>
+        <%= link_to "予約ページ戻る", facility_reservations_path(facility_id: @facility.id, user: @reservation.user_id), class: "button is-light show-back-btn" %>
+      </div>
     </div>
   </div>
-</div>
+</body>

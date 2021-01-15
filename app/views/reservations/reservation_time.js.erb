@@ -1,0 +1,10 @@
+<!--.js-contents--content-formにreservation_timeをrenderして埋め込む-->
+document.querySelector(".js-contents--content-form").innerHTML = "<%= escape_javascript(render 'reservation_time') %>";
+
+<!--モーダル表示する-->
+document.querySelector(".modal").classList.add("is-active");
+
+<!--モーダルを閉じる、モーダル外を押下でモーダルを閉じる-->
+$("button#close.delete, div.modal-background").on("click", function() {
+    $("div.modal").removeClass("is-active");
+})

@@ -1,0 +1,76 @@
+<header class="modal-card-head" style="background-color: #e3dcca;">
+  <p class="modal-card-title is-half has-text-weight-bold reserve-modal is-size-3" style="color: #401c00;">予約画面</p>
+  <button class="delete" aria-label="close" id="close"></button>
+</header>
+
+<section class="modal-card-body">
+  <div class="field">
+    <p class="title-in-modal"><%= @title_date %></p>
+    <p class="modal-description">予約時間を選択して下さい。</p>
+  </div>
+  <div class="field">
+    <% if @reservations.time_1000(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1000, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;10:00
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1030(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1030, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;10:30
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1100(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1100, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;11:00
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1130(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1130, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;11:30
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1400(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1400, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;14:00
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1430(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1430, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;14:30
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1500(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1500, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;15:00
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1530(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1530, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;15:30
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1600(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1600, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;16:00
+      <% end %>
+    <% end %>
+
+    <% if @reservations.time_1630(@date).count < 1 %>
+      <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1630, user: @user), class:"button is-info time-interval" do %>
+        <i class="far fa-clock"></i>&nbsp;16:30
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<footer class="modal-card-foot">
+  <p class="modal-explanation">時間を選択すると、予約ページに移動できます。</p>
+</footer>
