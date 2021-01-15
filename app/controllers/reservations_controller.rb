@@ -1,24 +1,26 @@
 class ReservationsController < ApplicationController
   before_action :set_facility_id
+  before_action :set_user, except: %i[show create destroy]
   before_action :set_reservation, only: %i[show destroy]
+  before_action :set_reservations, only: %i[index index_week reservation_time]
+  before_action :set_reservation_limit, only: %i[index index_week]
 
-  def index
-    @reservations = Reservation.all
-    @user = User.find(params[:user]) if params[:user].present?
-  end
+  def index; end
+
+  def index_week; end
 
   def show; end
 
+  def reservation_time
+    @title_date = params[:title_date]
+    @date = params[:date]
+  end
+
   def new
     @reservation = Reservation.new
-    # 管理者側からの予約
-    if params[:user].present?
-      user = User.find(params[:user])
-      @reservation.user_id = user.id
-      @user = User.find(@reservation.user_id)
-      @reservation.reservation_user = user.name
-      @reservation.reservation_email = user.email
-    end
+    @reservation.user_id = @user.id
+    @reservation.reservation_user = @user.name
+    @reservation.reservation_email = @user.email
     @reservation.reservation_date = params[:date]
     @reservation.started_at = params[:time]
   end
@@ -46,8 +48,12 @@ class ReservationsController < ApplicationController
 
   private
 
-    def reservation_params
-      params.require(:reservation).permit(:calendar_day, :reservation_date, :started_at, :finished_at, :comment, :reservation_user, :reservation_email, :user_id, :facility_id, reservation_residents: [])
+    def set_user
+      @user = if params[:user].present?
+                User.find(params[:user])
+              else
+                User.find(current_user.id)
+              end
     end
 
     def set_facility_id
@@ -56,5 +62,20 @@ class ReservationsController < ApplicationController
 
     def set_reservation
       @reservation = Reservation.find(params[:id])
+    end
+
+    def set_reservations
+      @reservations = Reservation.all.sorted
+    end
+
+    def set_reservation_limit
+      @reservations_facility_max = @reservations.facility(current_facility)
+      @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.name) if @user.present?
+      @reservations_user_max = @reservations.facility(@facility)
+      @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.name) if current_user.present?
+    end
+
+    def reservation_params
+      params.require(:reservation).permit(:calendar_day, :reservation_date, :started_at, :finished_at, :comment, :reservation_user, :reservation_email, :user_id, :facility_id, reservation_residents: [])
     end
 end
