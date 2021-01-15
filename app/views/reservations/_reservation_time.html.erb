@@ -9,61 +9,61 @@
     <p class="modal-description">予約時間を選択して下さい。</p>
   </div>
   <div class="field">
-    <% if @reservations.time_1000(@date).count < 1 %>
+    <% if @reservations.time_1000(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1000, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;10:00
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1030(@date).count < 1 %>
+    <% if @reservations.time_1030(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1030, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;10:30
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1100(@date).count < 1 %>
+    <% if @reservations.time_1100(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1100, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;11:00
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1130(@date).count < 1 %>
+    <% if @reservations.time_1130(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1130, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;11:30
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1400(@date).count < 1 %>
+    <% if @reservations.time_1400(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1400, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;14:00
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1430(@date).count < 1 %>
+    <% if @reservations.time_1430(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1430, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;14:30
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1500(@date).count < 1 %>
+    <% if @reservations.time_1500(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1500, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;15:00
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1530(@date).count < 1 %>
+    <% if @reservations.time_1530(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1530, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;15:30
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1600(@date).count < 1 %>
+    <% if @reservations.time_1600(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1600, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;16:00
       <% end %>
     <% end %>
 
-    <% if @reservations.time_1630(@date).count < 1 %>
+    <% if @reservations.time_1630(@date).length < 1 %>
       <%= link_to new_facility_reservation_path(date: @date, time: Reservation::TIME_1630, user: @user), class:"button is-info time-interval" do %>
         <i class="far fa-clock"></i>&nbsp;16:30
       <% end %>
