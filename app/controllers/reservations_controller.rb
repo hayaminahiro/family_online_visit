@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
     # 管理者・ご家族共通/施設ID取得
     @reservation.facility_id = params[:facility_id].to_i
     if @reservation.save
-      redirect_to facility_reservation_url(@facility, @reservation, user: @reservation.user_id), notice: "
+      redirect_to facility_reservations_url(@facility, user: @reservation.user_id), notice: "
       #{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at.in_time_zone, format: :time)}~で予約決定しました。"
     else
       render :new
