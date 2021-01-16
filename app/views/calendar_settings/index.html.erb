@@ -1,2 +1,58 @@
-<h1>CalendarSettings#index</h1>
-<p>Find me in app/views/calendar_settings/index.html.erb</p>
+
+<body id="page-back-color"></body>
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <div class="container">
+      <div class="card card-width" id="reservations-calendar">
+        <%#= link_to "月間カレンダーへ", facility_reservations_path(current_facility), class: "button is-warning is-light is-outlined" %>
+        <%= link_to "戻る", users_path, class: "button is-light" if current_facility.present? %>
+        <div class="has-text-centered">
+          <div class="is-centered">
+            <h1 class="has-text-centered reservation-title">カレンダー詳細設定</h1>
+            <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
+              <% if HolidayJapan.check(date) %>
+                <p class="holiday-color"><%= l(date, format: :short) %></p>
+              <% else %>
+                <p><%= l(date, format: :short) %></p>
+              <% end %>
+
+              <% if current_facility.present? %>
+                <%# if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 %>
+                  <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
+                <% else %>
+                  <p class="non-sign"><%#= @reservations_facility_max.reservation_date(date).length %>件</p>
+                <%# end %>
+
+              <% end %>
+
+              <!--モーダル表示-->
+              <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <div class="js-contents--content-form mobile-modal"></div>
+                </div>
+              </div>
+
+              <% @reservations.each do |reservation| %>
+                <% if current_user.present? %>
+                  <% if reservation.facility_id == @facility.id && current_user.name == reservation.reservation_user %>
+                    <%= link_to "予約情報(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
+                  <% end %>
+                <% elsif current_facility.present? %>
+                  <% if reservation.facility_id == @facility.id %>
+                    <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(@facility, reservation, user: reservation.user_id), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+            <% end %>
+          </div>
+        </div>
+        <%#= render 'reservation_list' %>
+      </div>
+    </div>
+  </div>
+</div>
