@@ -50,7 +50,7 @@ RSpec.describe 'Sessions', type: :system do
           # 次へボタンをクリック
           find('.button.is-link.is-medium.is-fullwidth.new-btn.has-text-weight-bold').click
 
-          # Capybara::Session画面
+          # step3 Capybara::Session画面
           # click_button '新規登録'
           # find('.button.is-link.is-medium').
           # expect(page).to have_selector('.notification.is-success')

@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe "Informations", type: :system do
   describe '記事のテスト' do
     let(:facility) { create(:facility) }
-
     before do
       visit new_facility_session_path
       fill_in 'メールアドレス', with: facility.email
       fill_in 'パスワード', with: facility.password
       click_button 'ログイン'
     end
+
     describe 'お知らせ機能' do
       context 'お知らせの新規作成' do
         it '作成に成功する' do
