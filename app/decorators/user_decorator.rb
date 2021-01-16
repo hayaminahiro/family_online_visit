@@ -20,11 +20,26 @@ module UserDecorator # rubocop:disable Metrics/ModuleLength
     image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "mypage-facility-icon-image"
   end
 
+  # 施設iconを表示（モーダル内）
+  def mypage_modal_facilities_icon(id)
+    facility = Facility.find(id)
+    return image_tag facility.icon.url, class: "mypage-facility-modal-icon" if facility.icon?
+
+    image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "mypage-facility-modal-icon"
+  end
+
   # お知らせiconを表示
   def mypage_informations_icon(id)
     return image_tag id.image.url, class: "mypage-info-icon-image" if id.image?
 
     image_tag 'https://bulma.io/images/placeholders/128x128.png', class: "mypage-info-icon-image"
+  end
+
+  # お知らせiconを表示（モーダル内）
+  def mypage_modal_informations(id)
+    return image_tag id.image.url, class: "mypage-modal-info" if id.image?
+
+    image_tag 'https://bulma.io/images/placeholders/128x128.png', class: "mypage-modal-info"
   end
 
   def reservation_calendar

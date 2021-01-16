@@ -623,6 +623,78 @@ mypage-main {
       display: inline-block;
       object-fit: cover;
     }
+
+    //お知らせモーダル
+    .mypage-facility-modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      display: inline-block;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .mypage-modal-info {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    #modal-info-content {
+      text-align: center;
+    }
+
+    #modal-header-title {
+      background-color: #FFEBCD;
+      font-weight: bold;
+      border-bottom: none;
+      padding: 1% 5%;
+
+      p.modai-facility-icon {
+        padding-top: 2%;
+      }
+
+      p.modal-card-title {
+        color: #696969;
+      }
+    }
+
+    #modal-body-info {
+      background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+      #modal-image-size {
+        padding-top: 47%;
+      }
+
+      .modal-title-info {
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: solid 1px #C0C0C0;
+      }
+
+      .modal-news-info {
+        font-size: 18px;
+        text-align: left;
+        width: 80%;
+        margin: 4% auto 0px auto;
+        background-color: #fff;
+        border-radius: 5px;
+      }
+    }
+
+    #modal-footer-info {
+      display: inline-block;
+      height: auto;
+
+      #modal-info-button {
+        background: #FA8072;
+        border-radius: 290486px;
+        color: #fff;
+        font-weight: bold;
+        border-color: #FA8072;
+      }
+    }
   }
 
   #Web {

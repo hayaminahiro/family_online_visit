@@ -65,18 +65,25 @@
                       </div>
 
                       <div class="modal" id="my-modal-<%= information.id %>">
-                        <div class="modal-background"></div>
-                        <div class="modal-card">
-                          <header class="modal-card-head">
+                        <div class="modal-background" data-target="my-modal-<%= information.id %>"></div>
+                        <div class="modal-card" id="modal-info-content">
+                          <header class="modal-card-head" id="modal-header-title">
+                            <p class="modai-facility-icon"><%= current_user.mypage_modal_facilities_icon(facility_id) %></p>
                             <p class="modal-card-title"><%= information.facility.facility_name %>からのお知らせ</p>
-                            <button class="delete" aria-label="close" data-target="my-modal-<%= information.id %>"></button>
                           </header>
-                          <section class="modal-card-body">
-                            <%= information.title %>
-                            <%= information.news %>
+                          <section class="modal-card-body" id="modal-body-info">
+                            <p class="image is-3by2" id="modal-image-size">
+                              <%= current_user.mypage_modal_informations(information) %>
+                            </p>
+                            <div class="modal-title-info">
+                              <%= information.title %>
+                            </div>
+                            <div class="modal-news-info">
+                              <%= information.news %>
+                            </div>
                           </section>
-                          <footer class="modal-card-foot">
-                            <button type="button" class="button is-danger">はい</button>
+                          <footer class="modal-card-foot" id="modal-footer-info">
+                            <button type="button" id="modal-info-button" class="button close" data-target="my-modal-<%= information.id %>">マイページへ</button>
                           </footer>
                         </div>
                       </div>
@@ -224,7 +231,7 @@
 </script>
 
 <script>
-  for (const element of document.querySelectorAll('.modal .delete, .show-modal')) {
+  for (const element of document.querySelectorAll('.modal, .show-modal, .button, .modal-background')) {
     element.addEventListener('click', e => {
         const modalId = element.dataset.target;
         const modal = document.getElementById(modalId);
