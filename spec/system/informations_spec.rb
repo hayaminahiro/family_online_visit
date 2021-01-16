@@ -24,13 +24,13 @@ RSpec.describe "Informations", type: :system do
         # end
       end
 
-        # context 'お知らせの編集' do
-        # it '編集に成功する' do
-        # end
+      # context 'お知らせの編集' do
+      # it '編集に成功する' do
+      # end
 
-        # it '編集に失敗する' do
-        # end
-        # end
+      # it '編集に失敗する' do
+      # end
+      # end
     end
   end
 end
