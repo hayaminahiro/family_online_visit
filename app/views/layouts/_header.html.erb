@@ -50,8 +50,8 @@
           <a class="navbar-link has-text-weight-bold more">
             <!--ヘッダーのアイコン（ ユーザー ・ 施設 ）-->
             <% if user_signed_in? %>
-              <% if current_user.image? %>
-                <%= image_tag current_user.image.url, class: "header-icon" %>
+              <% if current_user.icon? %>
+                <%= image_tag current_user.icon.url, class: "header-icon" %>
               <% else %>
                 <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', class: "header-icon" %>
               <% end %>

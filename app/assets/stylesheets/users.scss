@@ -408,7 +408,7 @@ p.meta {
   font-size: 15px;
 }
 
-img#img_prev.user-edit-image {
+img#icon_prev_0.user-edit-image {
   width: 210px;
   height: 210px;
   border-radius: 50%;
@@ -573,17 +573,11 @@ mypage-main {
   }
 
   .user-icon-image {
-    z-index: 2;
     display: none;
-    position: absolute;
-    width: 95px;
-    height: 95px;
-    border-radius: 50%;
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
+  }
+
+  .user-icon-tablet {
+    display: none;
   }
 
   .Web-section {
@@ -860,6 +854,11 @@ mypage-main {
   width: 100%;
 }
 
+//背景画像
+.user-bg-edit-responsive {
+  display: none;
+}
+
 /*アイコン*/
 .user-icon-outline {
   z-index: 2;
@@ -891,13 +890,130 @@ mypage-main {
 }
 
 //アイコン変更イメージ
-.edit-image-icon {
+.user-edit-icon-back {
   display: none;
 }
 
 //背景変更イメージ
-.edit-image-background {
+.user-edit-background-back {
   display: none;
+}
+
+//現在の背景画像の確認
+.user-image-field {
+  height: 150px;
+  width: 100%;
+  border-style: dashed;
+  border-width: 2px;
+  margin: 20px 0 20px 0;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: #dedede;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.user-bg-edit {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+//アイコン削除チェック
+input#user_icon_delete[type="checkbox"] {
+  display: none;
+}
+
+input#user_icon_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  left: 30%;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#user_icon_delete[type="checkbox"] + label.check_position:last-child {
+  margin-bottom: 0;
+}
+
+input#user_icon_delete[type="checkbox"] + label.check_position:before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0.6;
+  -webkit-transition: all 0.12s, border-color 0.08s;
+  transition: all 0.12s, border-color 0.08s;
+}
+
+input#user_icon_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: 100%;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+//背景画像削除チェック
+input#bg_delete[type="checkbox"] {
+  display: none;
+}
+
+input#bg_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  left: 30%;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#bg_delete[type="checkbox"] + label.check_position:last-child {
+  margin-bottom: 0;
+}
+
+input#bg_delete[type="checkbox"] + label.check_position:before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0.6;
+  -webkit-transition: all 0.12s, border-color 0.08s;
+  transition: all 0.12s, border-color 0.08s;
+}
+
+input#bg_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: 100%;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 #edit-title {
@@ -913,7 +1029,7 @@ mypage-main {
 
 aside {
   /*画面左*/
-  width: 40%;
+  width: 35%;
   font-size: 15px;
   min-width: 250px;
   display: flex;
@@ -1033,7 +1149,7 @@ edit-aside {
 }
 
 main {
-  width: 50%;
+  width: 60%;
 }
 
 .edit-links {
@@ -1050,6 +1166,7 @@ main {
 
 .user-edit-table {
   background: rgba(224, 231, 231, 0.605);
+  text-align: center;
   width: 100%;
 }
 
@@ -1060,6 +1177,7 @@ main {
 
 #u-edit-table th {
   background-color: rgb(241, 244, 248);
+  width: 30%;
 }
 
 .edit-hr {
@@ -1295,10 +1413,23 @@ main {
   }
 
   .user-icon-image {
+    display: none;
+  }
+
+  .user-icon-tablet {
     display: block;
+    position: absolute;
+    z-index: 3;
+    border-radius: 50%;
     width: 115px;
     height: 115px;
-    top: 2%;
+    left: 2%;
+  }
+
+  //アイコン確認画像
+  img#icon_prev_0.user-edit-image {
+    width: 130px;
+    height: 130px;
   }
 
   //タグ
@@ -1543,7 +1674,13 @@ main {
   }
 
   .mypage-image {
+    display: none;
+  }
+
+  .user-bg-edit-responsive {
+    display: block;
     height: 150px;
+    width: 100%;
   }
 
   //ユーザー（アイコン）
@@ -1559,6 +1696,10 @@ main {
     width: 93px;
     height: 93px;
     top: 4%;
+  }
+
+  .user-icon-tablet {
+    display: none;
   }
 
   //アイコン変更イメージ
@@ -1704,6 +1845,10 @@ main {
       text-align: center;
       width: 100%;
     }
+  }
+
+  #u-edit-table {
+    margin-top: 90px;
   }
 
   #u-edit-table tr.image-change {
