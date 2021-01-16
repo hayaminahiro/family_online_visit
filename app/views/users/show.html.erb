@@ -64,7 +64,8 @@
                         </div>
                       </div>
 
-                      <div class="modal" id="my-modal-<%= information.id %>">
+                      <!-->お知らせモーダル表示-->
+                      <div class="modal-info" id="my-modal-<%= information.id %>">
                         <div class="modal-background" data-target="my-modal-<%= information.id %>"></div>
                         <div class="modal-card" id="modal-info-content">
                           <header class="modal-card-head" id="modal-header-title">
@@ -231,11 +232,11 @@
 </script>
 
 <script>
-  for (const element of document.querySelectorAll('.modal, .show-modal, .button, .modal-background')) {
+  for (const element of document.querySelectorAll('.modal-info, .show-modal, .button, .modal-background')) {
     element.addEventListener('click', e => {
-        const modalId = element.dataset.target;
-        const modal = document.getElementById(modalId);
-        modal.classList.toggle('is-active');
+      const modalId = element.dataset.target;
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('is-active');
     });
   }
 </script>
