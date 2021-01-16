@@ -8,7 +8,6 @@
     <div class="container">
       <div class="card card-width" id="reservations-calendar">
         <%#= link_to "月間カレンダーへ", facility_reservations_path(current_facility), class: "button is-warning is-light is-outlined" %>
-        <%= link_to "戻る", users_path, class: "button is-light" if current_facility.present? %>
         <div class="has-text-centered">
           <div class="is-centered">
             <h1 class="has-text-centered reservation-title">予約状況確認</h1>
@@ -18,19 +17,15 @@
               <% else %>
                 <p><%= l(date, format: :short) %></p>
               <% end %>
-
               <% @reservations.each do |reservation| %>
-
                 <% if reservation.facility_id == current_facility.id %>
                   <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
                 <% end %>
-
               <% end %>
-
             <% end %>
           </div>
         </div>
-        <%#= render 'reservation_list' %>
+        <%= render 'reservations/reservation_list' %>
       </div>
     </div>
   </div>
