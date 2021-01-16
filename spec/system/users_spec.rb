@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Sessions', type: :system do
   let(:user) { create(:user) }
+  let(:facility) { create(:facility) }
 
   it 'ログインページの要素検証' do
     visit new_user_session_path
@@ -14,11 +15,20 @@ RSpec.describe 'Sessions', type: :system do
   end
 
   describe 'ユーザー認証のテスト' do
+    before do
+      Information.create!(
+        facility_id: facility.id,
+        title: "当システムの利用方法",
+        news: "ご利用前にご入居者様の・・・",
+        status: 1
+      )
+    end
+
     describe 'ユーザー新規登録' do
       before do
-        # 新規登録画面へ遷移
         visit step1_signup_index_path
       end
+
       context '新規登録画面に遷移' do
         it '新規登録に成功する' do
           # step1
@@ -40,34 +50,37 @@ RSpec.describe 'Sessions', type: :system do
           # 次へボタンをクリック
           find('.button.is-link.is-medium.is-fullwidth.new-btn.has-text-weight-bold').click
 
-          # 確認画面/新規登録ボタンをクリック
-          find('input[type="submit"]').click
-          expect(page).to have_selector('.notification')
+          # Capybara::Session画面
+          # click_button '新規登録'
+          # find('.button.is-link.is-medium').
+          # expect(page).to have_selector('.notification.is-success')
         end
       end
     end
 
-    # describe 'ユーザーログイン' do
-    #   # before do
-    #   #   visit new_user_session_path
-    #   # end
+    describe 'ユーザーログイン' do
+      before do
+        visit new_user_session_path
+      end
 
-    #   context 'ログイン画面に遷移' do
-    #     it 'ログインに成功する' do
-    #       fill_in "メールアドレス", with: user.email
-    #       fill_in 'パスワード', with: user.password
-    #       click_button 'ログイン'
-    #       # expect(page).to have_content 'ログインしました。'
-    #       expected to find text 'ログインしました。'
-    #     end
+      context 'ログイン画面に遷移' do
+        it 'ログインに成功する' do
+          fill_in 'メールアドレス', with: user.email
+          fill_in 'パスワード', with: user.password
+          click_button 'ログイン'
+          expect(current_path).to eq "/"
+          expect(body).to have_content 'ログインしました。'
+          expect(page).to have_selector('.notification.is-success')
+        end
 
-    #     it 'ログインに失敗する' do
-    #       fill_in 'メールアドレス', with: ''
-    #       fill_in 'パスワード', with: ''
-    #       click_button 'ログイン'
-    #       expect(current_path).to eq new_user_session_path
-    #     end
-    #   end
-    # end
+        it 'ログインに失敗する' do
+          fill_in 'メールアドレス', with: ''
+          fill_in 'パスワード', with: ''
+          click_button 'ログイン'
+          expect(current_path).to eq new_user_session_path
+          expect(page).to have_selector('.notification.is-danger')
+        end
+      end
+    end
   end
 end
