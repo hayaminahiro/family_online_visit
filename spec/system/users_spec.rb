@@ -7,7 +7,7 @@ RSpec.describe 'Sessions', type: :system do
     visit new_user_session_path
 
     expect(page).to have_selector '.new-title', text: 'ログイン'
-    expect(page).to have_selector '.field', text:'メールアドレス'
+    expect(page).to have_selector '.field', text: 'メールアドレス'
     expect(page).to have_selector '.field', text: 'パスワード'
     expect(page).to have_button 'ログイン'
     expect(page).to have_link '新規アカウント登録'
@@ -42,7 +42,7 @@ RSpec.describe 'Sessions', type: :system do
 
           # 確認画面/新規登録ボタンをクリック
           find('input[type="submit"]').click
-          expect(page).to have_selector ('.notification')
+          expect(page).to have_selector('.notification')
         end
       end
     end
