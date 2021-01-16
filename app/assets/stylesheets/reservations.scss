@@ -47,7 +47,6 @@
 
 	.non-sign {
 		display: none;
-		font-size: 16px;
 	}
 }
 
@@ -92,6 +91,8 @@
 
 		.non-sign {
 			display: block;
+            font-size: 11px;
+            color: #2E2F30;
 		}
 
 		.mobile-modal {

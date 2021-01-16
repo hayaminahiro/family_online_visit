@@ -22,6 +22,9 @@
                   <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
                 <% end %>
               <% end %>
+              <% if @reservations_facility_max.reservation_date(date).length >= 1 %>
+                <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
+              <% end %>
             <% end %>
           </div>
         </div>
