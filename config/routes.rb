@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'calendar_settings/index'
   root 'static_pages#top'
 
   # メール機能 ============================================================================
@@ -62,6 +63,9 @@ Rails.application.routes.draw do
     end
     resources :rooms, only: %i[new create edit update]
   end
+
+  # カレンダー設定 =========================================================================
+  resources :calendar_settings
 
   # 利用施設登録 ==========================================================================
   resources :facility_users, only: %i[new update]
