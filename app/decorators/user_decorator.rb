@@ -162,4 +162,10 @@ module UserDecorator # rubocop:disable Metrics/ModuleLength
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: "chat-icon"
     end
   end
+
+  # 施設ごとの予約情報
+  def grouped_facility_reservation
+    reservations = Reservation.where(facility_id: current_user.facilities)
+    reservations.group_by(&:facility_id)
+  end
 end
