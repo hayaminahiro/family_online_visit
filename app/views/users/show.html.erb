@@ -111,8 +111,7 @@
                           <div id="time-info" class="tag mobile-none">
                             予約<%= l(reservation.started_at, format: :time) %>~
                           </div>
-                        <% end %>  
-                        <%#= link_to "予約#{l(reservation.started_at, format: :time)}~", '#', class:"tag is-rounded mobile-none", id: "time-info" if reservation.reservation_date == date %>
+                        <% end %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -120,7 +119,8 @@
               </div><br>
             </div>
           </div>
-
+        </div>
+        <div class="web-info">
           <% current_user.grouped_facility_reservation.each do |facility_id, other| %>
             <div class="card" id="mypage-reservations-list">
               <div class="card-content">
@@ -130,7 +130,7 @@
                     <% facility = current_user.facilities.find(facility_id) %>
                     <p class="reservation-facility-name">
                       <%= facility.facility_name %>
-                    </p>  
+                    </p>
                   </div>
                 </div>
                 <div class="content">

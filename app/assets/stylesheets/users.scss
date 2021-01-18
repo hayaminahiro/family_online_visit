@@ -665,7 +665,7 @@ mypage-main {
     }
 
     #modal-header-title {
-      background-color: #FFEBCD;
+      background-color: #ffebcd;
       font-weight: bold;
       border-bottom: none;
       padding: 1% 5%;
@@ -688,7 +688,7 @@ mypage-main {
       .modal-title-info {
         font-size: 20px;
         font-weight: bold;
-        border-bottom: solid 1px #C0C0C0;
+        border-bottom: solid 1px #c0c0c0;
       }
 
       .modal-news-info {
@@ -706,11 +706,11 @@ mypage-main {
       height: auto;
 
       #modal-info-button {
-        background: #FA8072;
+        background: #fa8072;
         border-radius: 290486px;
         color: #fff;
         font-weight: bold;
-        border-color: #FA8072;
+        border-color: #fa8072;
       }
     }
   }
@@ -813,7 +813,7 @@ mypage-main {
   }
 
   #calendar-info .calendar-th {
-    background-color: #FFEBCD;
+    background-color: #ffebcd;
   }
 
   p.user-holiday-color {
@@ -821,7 +821,7 @@ mypage-main {
   }
 
   #time-info {
-    background: #FA8072;
+    background: #fa8072;
     color: #fff;
     font-weight: bold;
     border-radius: 290486px;
@@ -829,6 +829,10 @@ mypage-main {
 }
 
 .web-container {
+  display: flex;
+}
+
+.web-info {
   display: flex;
 }
 
