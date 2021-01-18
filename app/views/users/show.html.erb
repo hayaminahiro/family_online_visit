@@ -135,39 +135,37 @@
                 </div>
                 <div class="content">
                   <div class="reservation-contents">
-                    【予約内容】
+                    -予約内容-
                   </div>
                   <% @reservations.each do |reservation| %>
-                    <table class="table is-fullwidth is-narrow is-bordered user-edit-table" id="mypage-reserve-table">
-                      <% if current_user.present? %>
-                        <% if current_user.name == reservation.reservation_user %>
-                          <tbody>
-                            <tr>
-                              <th>
-                                日付
-                              </th>
-                              <td>
-                                <%= l(reservation.reservation_date.in_time_zone, format: :date) %>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>
-                                面会者
-                              </th>
-                              <td>
-                                <%= reservation.reservation_residents %><br>
-                              </td>
-                            </tr>
-                          </tbody>
+                    <% @facility = Facility.find(facility_id) %>
+                    <% if (reservation.facility_id == @facility.id) && (current_user.name == reservation.reservation_user) && (reservation.reservation_date >= Date.today) %>
+                      <table class="table is-fullwidth is-narrow user-edit-table" id="mypage-reserve-table">
+                        <% if current_user.present? %>
+                          <% if current_user.name == reservation.reservation_user %>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <%= link_to "#{l(reservation.reservation_date, format: :long)}#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation), class: "has-text-white has-text-weight-bold	" %>
+                                </td>
+                              </tr>
+                            </tbody>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                    </table>
+                      </table>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
             </div>
           <% end %>
         </div>
+        <section class="hero is-small">
+          <div class="hero-body">
+            <div class="container">
+            </div>
+          </div>
+        </section>
       </div>
 
       <div id="Faci" class="content-tab" style="display:none">

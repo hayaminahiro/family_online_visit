@@ -741,7 +741,6 @@ mypage-main {
   #mypage-reserve-table tr {
     height: 30px;
     line-height: 24px;
-    border-left: solid 3px darkgray;
   }
 
   #mypage-reserve-table th {
@@ -760,6 +759,11 @@ mypage-main {
     color: #79c29a;
     text-align: center;
     display: block;
+  }
+
+  #mypage-reserve-table {
+    background: #FFA07A;
+    border-radius: 6px;
   }
 
   #edit-content {
@@ -796,7 +800,7 @@ mypage-main {
 
 #mypage-reservations-calendar {
   height: 100%;
-  margin: 34px 8px 34px 15px;
+  margin: 34px 15px 34px 15px;
   padding: 35px;
   font-size: 15px;
   border-radius: 6px;
@@ -821,7 +825,8 @@ mypage-main {
   }
 
   #time-info {
-    background: #fa8072;
+    background: #FFA07A;
+    margin-bottom: 5px;
     color: #fff;
     font-weight: bold;
     border-radius: 290486px;
@@ -839,7 +844,7 @@ mypage-main {
 #mypage-reservations-list {
   flex: 1;
   height: 100%;
-  margin: 35px 16px 13px 10px;
+  margin: 15px 15px 13px 15px;
   font-size: 17px;
   border-radius: 6px;
 
@@ -850,11 +855,14 @@ mypage-main {
 
   .reservation-contents {
     font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: solid 1px silver;
   }
 
   #facility-reservation-title {
     display: inline-flex;
-    border-bottom: solid 1px silver;
+    background: #FFEBCD;
+    border-radius: 6px;
 
     p.reservation-facility-name {
       margin-right: auto;
@@ -865,8 +873,8 @@ mypage-main {
   }
 
   p.reservation-facility-icon {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     margin-left: auto;
     margin-right: auto;
   }
