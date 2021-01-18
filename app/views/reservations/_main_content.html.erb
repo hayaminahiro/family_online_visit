@@ -6,21 +6,27 @@
 
 <%# if date.wday != CalendarSetting.find_by(facility_id: 1).regular_holiday.to_i  %>
 <%#= CalendarSetting.find_by(facility_id: 1).regular_holiday.to_i  %>
-<%#= date.wday.class %>
-<% if current_facility.present? %>
-  <% if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 %>
-    <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
-  <% else %>
-    <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
+<%= date.wday %>
+
+<% if @sunday != date.wday && @monday != date.wday && @tuesday != date.wday && @wednesday != date.wday && @thursday != date.wday && @friday != date.wday && @saturday != date.wday %>
+  <% if current_facility.present? %>
+    <% if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 %>
+      <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
+    <% else %>
+      <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
+    <% end %>
+  <% elsif current_user.present? %>
+    <% if @reservations.facility(@facility).reservation_user(current_user.name).reservation_date(date).length < 1 && @reservations.facility(@facility).where(reservation_date: date).length < 10 %>
+      <%= link_to "◯", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
+    <% else %>
+      <p class="non-sign">--</p>
+    <% end %>
   <% end %>
-<% elsif current_user.present? %>
-  <% if @reservations.facility(@facility).reservation_user(current_user.name).reservation_date(date).length < 1 && @reservations.facility(@facility).where(reservation_date: date).length < 10 %>
-    <%= link_to "◯", reservation_time_facility_reservations_path(@facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
-  <% else %>
-    <p class="non-sign">--</p>
-  <% end %>
-<% end %>
-<%# end %>
+<% else %>
+  定休日
+
+<% end%>
+
 
 <!--モーダル表示-->
 <div class="modal">

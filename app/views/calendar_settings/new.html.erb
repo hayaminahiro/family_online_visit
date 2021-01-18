@@ -5,18 +5,20 @@
   <%#= f.number_field :regular_holiday, class: "image_uploading_0 drop-area-mandatory" %>
 
   <%#= f.check_box :regular_holiday, id: :calendar_settings,:as => :integer %>
-  <% @nums =[0, 1, 2, 3, 4, 5, 6] %>
-  <% @nums.each do |regular_holiday| %>
+
+  <% youbi =["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"] %>
+  <% youbi.each do |regular_holiday| %>
     <%#= f.check_box(:regular_holiday, {:checked=>false}, k ,false) %>
-    <%= regular_holiday %>
-    <%= f.hidden_field :facility_id, :value => current_facility.id %>
+
+
     <%#= check_box_tag :regular_holiday,{multiple: true} %>
     <%= f.check_box :regular_holiday, {multiple: true}, regular_holiday, nil %>
+    <%= regular_holiday %><br>
   <% end %>
 
   <%#= f.text_field :regular_holiday %>
   <%#= @calendar_settings.present? %>
-  <% @calendar_settings.each do |set| %>
+  <% @calendar_settings.where(facility_id: current_facility.id).each do |set| %>
     <%= set.regular_holiday %>
   <% end %>
 

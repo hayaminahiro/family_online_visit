@@ -5,7 +5,19 @@ class ReservationsController < ApplicationController
   before_action :set_reservations, only: %i[index index_week reservation_time]
   before_action :set_reservation_limit, only: %i[index index_week]
 
-  def index; end
+  def index
+    @calendar_settings = CalendarSetting.all
+
+    @sunday = 0 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("日曜日")
+    @monday = 1 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("月曜日")
+    @tuesday = 2 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("火曜日")
+    @wednesday = 3 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("水曜日")
+    @thursday = 4 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("木曜日")
+    @friday = 5 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("金曜日")
+    @saturday = 6 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("土曜日")
+
+    # raise
+  end
 
   def index_week; end
 

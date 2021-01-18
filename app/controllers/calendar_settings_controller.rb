@@ -6,8 +6,9 @@ class CalendarSettingsController < ApplicationController
     @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.name) if @user.present?
     @reservations_user_max = @reservations.facility(@facility)
     @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.name) if current_user.present?
+
     @calendar_settings = CalendarSetting.all
-    @set_id = @calendar_settings.find_by(facility_id: current_facility.id).id if @calendar_settings.present?
+    @set_id = @calendar_settings.find_by(facility_id: current_facility.id).id if @calendar_settings.find_by(facility_id: current_facility.id).present?
   end
 
   def new
@@ -33,7 +34,7 @@ class CalendarSettingsController < ApplicationController
   end
 
   def edit
-    @calendar_settings = CalendarSetting.all
+    @calendar_settings = CalendarSetting.all.where(facility_id: current_facility)
     @facility = Facility.find(current_facility.id)
     @calendar_setting = @facility.calendar_setting.find(params[:id])
   end
