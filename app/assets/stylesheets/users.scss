@@ -763,7 +763,10 @@ mypage-main {
 
   #mypage-reserve-table {
     background: #FFA07A;
-    border-radius: 6px;
+    border-radius: 290486px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   #edit-content {
@@ -787,6 +790,11 @@ mypage-main {
 
     p.layout-content {
       text-align: center;
+    }
+
+    p.content-layout {
+      background: #FFE4B5;
+      border-radius: 6px;
     }
   }
 
@@ -1207,6 +1215,7 @@ aside {
 //モバイルタグ
 edit-aside {
   position: fixed;
+  z-index: 20;
   display: flex;
   width: 30%;
   height: 100%;
@@ -1360,6 +1369,15 @@ main {
 
 .edit-tfoot {
   margin: 10px 0px;
+}
+
+#card-layout {
+  width: 40%;
+  margin-left: 5%;
+
+  #media-layout {
+    margin-bottom: 0px;
+  }
 }
 
 // レスポンシブ
