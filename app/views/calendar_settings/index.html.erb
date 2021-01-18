@@ -1,4 +1,3 @@
-
 <body id="page-back-color"></body>
 <%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
 
@@ -7,7 +6,12 @@
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
     <div class="container">
       <div class="card card-width" id="reservations-calendar">
-        <%#= link_to "月間カレンダーへ", facility_reservations_path(current_facility), class: "button is-warning is-light is-outlined" %>
+        <%# set_id = @calendar_settings.find_by(facility_id: current_facility.id).id if @calendar_settings.present? %>
+        <% if @calendar_settings.where(facility_id: current_facility.id).present? %>
+          <%= link_to "予約設定変更EDIT", edit_calendar_setting_path(@set_id), class: "button is-danger is-light is-outlined" %>
+        <% else %>
+          <%= link_to "新規予約設定変更", new_calendar_setting_path, class: "button is-danger is-light is-outlined" %>
+        <% end %>
         <div class="has-text-centered">
           <div class="is-centered">
             <h1 class="has-text-centered reservation-title">予約状況確認</h1>

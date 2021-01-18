@@ -9,11 +9,16 @@
         <div class="is-centered">
           <h1 class="has-text-centered reservation-title"><%= @user.name if current_facility.present? %>&nbsp;&nbsp;予約日時選択</h1>
           <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
+            <%= date.wday %>
+
             <%= render partial: 'main_content', locals: { date: date} %>
+
+
           <% end %>
         </div>
       </div>
       <%= render 'reservation_list' %>
+      <%#= CalendarSetting.find_by(facility_id: 1).regular_holiday %>
     </div>
   </div>
 </body>

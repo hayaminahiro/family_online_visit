@@ -4,6 +4,9 @@
   <p><%= l(date, format: :short) %></p>
 <% end %>
 
+<%# if date.wday != CalendarSetting.find_by(facility_id: 1).regular_holiday.to_i  %>
+<%#= CalendarSetting.find_by(facility_id: 1).regular_holiday.to_i  %>
+<%#= date.wday.class %>
 <% if current_facility.present? %>
   <% if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 %>
     <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
@@ -17,6 +20,7 @@
     <p class="non-sign">--</p>
   <% end %>
 <% end %>
+<%# end %>
 
 <!--モーダル表示-->
 <div class="modal">
