@@ -78,6 +78,8 @@
                   <%= link_to resident_memories_path(resident), class:"button is-link" do %>
                     <i class="fas fa-images"></i>
                   <% end %>
+                  <!--毎月の画像投稿数-->
+                  <%= resident.this_month_image_count %>
                 </td>
                 <td>
                   <div class=" js-contents--edit-button">
