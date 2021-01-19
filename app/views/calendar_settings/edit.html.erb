@@ -22,6 +22,20 @@
     <%= set.regular_holiday %>
   <% end %>
 
+  <h1>時間の設定</h1>
+  <% times =["10:00 ~ 10:30", "10:30 ~ 11:00", "11:00 ~ 11:30", "11:30 ~ 12:00", "14:00 ~ 14:30", "14:30 ~ 15:00", "15:00 ~ 15:30", "15:30 ~ 16:00", "16:00 ~ 16:30", "16:30 ~ 17:00"] %>
+
+  <% times.each do |time| %>
+    <%= f.check_box :cancellation_time, {multiple: true}, time, nil %>
+    <%= time %><br>
+  <% end %>
+
+  <% @calendar_settings.each do |set| %>
+    <%= set.cancellation_time %>
+  <% end %>
+
+  <%= @calendar_settings.where(facility_id: current_facility.id).first.regular_holiday %>
+
   <%= f.hidden_field :facility_id, :value => current_facility.id %>
   <%= f.submit "設定を変更する", class: "message-btn" %>
 <% end %>

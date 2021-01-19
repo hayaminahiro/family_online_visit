@@ -7,16 +7,17 @@ class ReservationsController < ApplicationController
 
   def index
     @calendar_settings = CalendarSetting.all
-
-    @sunday = 0 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("日曜日")
-    @monday = 1 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("月曜日")
-    @tuesday = 2 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("火曜日")
-    @wednesday = 3 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("水曜日")
-    @thursday = 4 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("木曜日")
-    @friday = 5 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("金曜日")
-    @saturday = 6 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("土曜日")
-
-    # raise
+    if current_facility.present?
+      if @calendar_settings.find_by(facility_id: current_facility.id).present?
+        @sunday = 0 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("日曜日")
+        @monday = 1 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("月曜日")
+        @tuesday = 2 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("火曜日")
+        @wednesday = 3 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("水曜日")
+        @thursday = 4 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("木曜日")
+        @friday = 5 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("金曜日")
+        @saturday = 6 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("土曜日")
+      end
+    end
   end
 
   def index_week; end
@@ -24,6 +25,7 @@ class ReservationsController < ApplicationController
   def show; end
 
   def reservation_time
+    @calendar_settings = CalendarSetting.all
     @title_date = params[:title_date]
     @date = params[:date]
   end

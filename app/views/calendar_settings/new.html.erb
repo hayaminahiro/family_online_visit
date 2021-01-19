@@ -1,4 +1,6 @@
-<h1>予約詳細設定ページ</h1>
+<h1>予約詳細設定ページ</h1><br>
+
+<h1>定休日の設定</h1>
 <%= form_with(model: @calendar_setting, url: calendar_settings_path(@calendar_setting), method: :post, local: true) do |f| %>
 <%#= render partial: 'shared/error_messages', locals: { obj: @calendar_setting } %>
 
@@ -21,6 +23,22 @@
   <% @calendar_settings.where(facility_id: current_facility.id).each do |set| %>
     <%= set.regular_holiday %>
   <% end %>
+
+  <br>
+
+  <h1>時間の設定</h1>
+  <% times =["10:00 ~ 10:30", "10:30 ~ 11:00", "11:00 ~ 11:30", "11:30 ~ 12:00", "14:00 ~ 14:30", "14:30 ~ 15:00", "15:00 ~ 15:30", "15:30 ~ 16:00", "16:00 ~ 16:30", "16:30 ~ 17:00"] %>
+
+  <% times.each do |time| %>
+    <%= f.check_box :cancellation_time, {multiple: true}, time, nil %>
+    <%= time %><br>
+  <% end %>
+
+
+
+
+
+
 
   <%= f.submit "設定を変更する", class: "message-btn" %>
 <% end %>
