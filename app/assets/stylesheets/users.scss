@@ -1380,6 +1380,34 @@ main {
   }
 }
 
+//登録施設の解除
+.facilities-used-edit-label {
+  input[type="checkbox"],
+  input[type="radio"] {
+    vertical-align: baseline;
+    display: none;
+  }
+}
+
+.facilities-used-edit-label span {
+  color: #fff; /* 文字色を黒に */
+  background: #FF7F50;
+  font-size: 14px; /* 文字サイズを14pxに */
+  border: 1px solid #FF7F50; /* 淵の線を指定 */
+  border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
+  padding: 5px 20px; /* 上下左右に余白をトル */
+}
+
+.facilities-used-edit-label input:checked + span {
+  color: black; /* 文字色を白に */
+  background: #fff; /* 背景色を薄いオレンジに */
+  border: 1px solid black; /* 淵の線を薄いオレンジに */
+}
+
+.span-edit-check {
+  color: #FF7F50;
+}
+
 // レスポンシブ
 @media screen and (max-width: 1050px) {
   // マイページ
