@@ -774,7 +774,7 @@ mypage-main {
   #panel-content {
     width: 97%;
     margin-left: auto;
-    margin-left: auto;
+    margin-right: auto;
     background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
 
     span.facility-title {
@@ -798,6 +798,7 @@ mypage-main {
   .mypage-facility-icon-image {
     width: 60px;
     height: 60px;
+    margin-top: 1%;
     border-radius: 50%;
   }
 }
@@ -1927,6 +1928,26 @@ main {
     #modal-header-title p {
       font-size: 30px;
     }
+
+    #panel-content {
+      margin-bottom: 100px;
+
+      p.content-layout {
+        text-align: center;
+      }
+
+      span.facility-title {
+        margin-top: 4%;
+        margin-left: 10%;
+      }
+    }
+  }
+
+  #facility-columns-layout {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
   }
 }
 
@@ -1986,6 +2007,17 @@ main {
       .mypage-facility-modal-icon {
         width: 50px;
         height: 50px;
+      }
+    }
+
+    #facility-columns-layout {
+      width: 100%;
+    }
+
+    #panel-content {
+
+      span.facility-title {
+        margin-top: 8%;
       }
     }
   }

@@ -228,7 +228,7 @@
               <span>施設追加</span>
             <% end %>
           </div>
-          <div class="columns is-multiline is-narrow-mobile">
+          <div class="columns is-multiline" id="facility-columns-layout">
             <% current_user.facilities.each do |facility| %>
               <div class="column is-4">
                 <%= link_to facility_home_path(facility) do %>
