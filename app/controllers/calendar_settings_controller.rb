@@ -43,6 +43,8 @@ class CalendarSettingsController < ApplicationController
     @facility = Facility.find(current_facility.id)
     @calendar_setting = @facility.calendar_setting.find(params[:id])
     if @calendar_setting.update(setting_params)
+
+      # raise
       redirect_to calendar_settings_url, notice: "success!"
     else
       render :edit
