@@ -1,52 +1,43 @@
-<h1>予約詳細設定ページ</h1><br>
+<body id="page-back-color"></body>
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
 
-<h1>定休日の設定</h1>
-<%= form_with(model: @calendar_setting, url: calendar_settings_path(@calendar_setting), method: :post, local: true) do |f| %>
-<%#= render partial: 'shared/error_messages', locals: { obj: @calendar_setting } %>
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <div class="container">
+      <div class="card card-width" id="reservations-calendar">
+        <h1>予約設定変更</h1>
 
-  <%#= f.number_field :regular_holiday, class: "image_uploading_0 drop-area-mandatory" %>
+        <%= form_with(model: @calendar_setting, url: calendar_settings_path(@calendar_setting), method: :post, local: true) do |f| %>
+          <%#= render partial: 'shared/error_messages', locals: { obj: @calendar_setting } %>
 
-  <%#= f.check_box :regular_holiday, id: :calendar_settings,:as => :integer %>
+          <% CalendarSetting::DayOfTheWeek.each do |regular_holiday| %>
+            <%= f.check_box :regular_holiday, {multiple: true}, "#{regular_holiday}", nil %>
+            <%= regular_holiday %><br>
+          <% end%>
 
-  <% youbi =["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"] %>
-  <% youbi.each do |regular_holiday| %>
-
-
-    <%= f.check_box :regular_holiday, {multiple: true, checked: true}, regular_holiday, nil %>
-
-    <%= f.check_box :regular_holiday, {multiple: true}, regular_holiday, nil %>
-
-    <%= f.check_box :regular_holiday, {multiple: true}, regular_holiday, nil %>
-
-
-    <%= regular_holiday %><br>
-
-
-  <% end %>
-
-  <%#= check_box_tag 'calendar_setting[regular_holiday][]', false, checked = @calendar_setting.present? ? true : false %>
-
-  <%#= f.text_field :regular_holiday %>
-  <%#= @calendar_settings.present? %>
-  <% @calendar_settings.where(facility_id: current_facility.id).each do |set| %>
-    <%= set.regular_holiday %>
-  <% end %>
-
-  <br>
-
-  <h1>時間の設定</h1>
-  <% times =["10:00 ~ 10:30", "10:30 ~ 11:00", "11:00 ~ 11:30", "11:30 ~ 12:00", "14:00 ~ 14:30", "14:30 ~ 15:00", "15:00 ~ 15:30", "15:30 ~ 16:00", "16:00 ~ 16:30", "16:30 ~ 17:00"] %>
-
-  <% times.each do |time| %>
-    <%= f.check_box :cancellation_time, {multiple: true}, time, nil %>
-    <%= time %><br>
-  <% end %>
+          <div style="display:none;"> <!--チェックボックスが全てなし状態でも更新-->
+            <%= f.check_box :regular_holiday, {multiple: true, checked: true}, 1, nil %>
+          </div>
 
 
+          <h1>時間の設定</h1>
 
+          <% CalendarSetting::ReservationTimes.each do |time| %>
+            <%= f.check_box :cancellation_time, {multiple: true}, "#{time}", nil %>
+            <%= time %><br>
+          <% end %>
 
+          <div style="display:none;"> <!--チェックボックスが全てなし状態でも更新-->
+            <%= f.check_box :cancellation_time, {multiple: true, checked: true}, 1, nil %>
+          </div>
 
+          <%= f.hidden_field :facility_id, :value => current_facility.id %>
+          <%= f.submit "設定を変更する", class: "message-btn" %>
+        <% end %>
 
-
-  <%= f.submit "設定を変更する", class: "message-btn" %>
-<% end %>
+        <%= link_to "戻る", calendar_settings_path %>
+      </div>
+    </div>
+  </div>
+</div>

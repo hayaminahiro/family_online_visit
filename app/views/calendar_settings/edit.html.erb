@@ -9,13 +9,13 @@
         <h1>予約設定変更</h1>
 
         <%= form_with(model: @calendar_setting, url: calendar_setting_path(@calendar_setting), method: :patch, local: true) do |f| %>
-          <%= render partial: 'shared/error_messages', locals: { obj: @calendar_setting } %>
+          <%#= render partial: 'shared/error_messages', locals: { obj: @calendar_setting } %>
 
           <% CalendarSetting::DayOfTheWeek.each do |regular_holiday| %>
             <%= f.check_box :regular_holiday, {multiple: true, checked: @calendar_settings.first.regular_holiday.include?("#{regular_holiday}") ? true : false}, "#{regular_holiday}", nil %><%= regular_holiday %><br>
           <% end%>
 
-          <div style="display:none;"> <!--チェックボックスが全てなし状態で更新できるようにする-->
+          <div style="display:none;"> <!--チェックボックスが全てなし状態でも更新-->
             <%= f.check_box :regular_holiday, {multiple: true, checked: true}, 1, nil %>
           </div>
 
@@ -27,7 +27,7 @@
             <%= time %><br>
           <% end %>
 
-          <div style="display:none;"> <!--チェックボックスが全てなし状態で更新できるようにする-->
+          <div style="display:none;"> <!--チェックボックスが全てなし状態でも更新-->
             <%= f.check_box :cancellation_time, {multiple: true, checked: true}, 1, nil %>
           </div>
 
