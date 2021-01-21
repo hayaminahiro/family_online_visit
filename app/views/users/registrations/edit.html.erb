@@ -287,12 +287,19 @@
                         <% @residents = current_user.residents %>
                         <% @facility_residents = @residents.where(facility_id: fa.id) %>
                         <% @facility_residents.each do |resident| %>
-                          <%= resident.name %>
+                          <table class="table is-fullwidth is-narrow is-bordered" id="residents-info">
+                            <thead>
+                              <tr>
+                                <th>利用者</th>
+                                <td><%= resident.name %></td>
+                              </tr>
+                            </thead>
+                          </table>
                         <% end %>
                       </div>
                     </div>
                   </div>
-                <% end %>  
+                <% end %>
                 </div>
               </div>
             </article>

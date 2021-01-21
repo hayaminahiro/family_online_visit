@@ -598,8 +598,8 @@ mypage-main {
     padding: 21px 18px;
 
     .media-left {
-      margin-right: 8px;
-      width: 71px;
+      width: 15%;
+      text-align: center;
     }
 
     #web-media-section {
@@ -785,7 +785,6 @@ mypage-main {
       vertical-align: top;
       margin-top: 8%;
       margin-left: 10%;
-      color: gray;
     }
 
     p.layout-content {
@@ -839,6 +838,56 @@ mypage-main {
     font-weight: bold;
     border-radius: 290486px;
   }
+
+  #mobile-time-info {
+    display: none;
+  }
+}
+
+//マイページ（登録施設タブ）
+#card-content-color {
+  background-color: linear-gradient(to bottom, #ffffff, #f7f0e7);
+}
+
+#facility-plus {
+  margin-bottom: 2%;
+  font-size: 20px;
+  text-align: center;
+
+  .btn-real-dent {
+    /*周りの凹み*/
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: black;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    text-align: center;
+    background: #f7f0e7;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+  }
+  .btn-real-dent span {
+    /*ボタン自体*/
+    position: absolute;
+    content: '';
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    left: 10px;
+    top: 9px;
+    border-radius: 50%;
+    font-size: 15px;
+    background: #FFE4B5;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+  }
+
+  .btn-real-dent .fa:active {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #d8d8d8;
+  }
 }
 
 .web-container {
@@ -847,12 +896,15 @@ mypage-main {
 
 .web-info {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #mypage-reservations-list {
-  flex: 1;
+  width: 30.3%;
   height: 100%;
-  margin: 15px 15px 13px 15px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 17px;
   border-radius: 6px;
 
@@ -1408,6 +1460,22 @@ main {
   color: #FF7F50;
 }
 
+//登録利用者テーブル
+#residents-info {
+  margin-top: 10px;
+  font-size: 15px;
+
+  tr {
+    height: 45px;
+    line-height: 45px;
+  }
+
+  th {
+    width: 30%;
+    background: #F1F4F8;
+  }
+}
+
 // レスポンシブ
 @media screen and (max-width: 1050px) {
   // マイページ
@@ -1459,6 +1527,7 @@ main {
 
     .panel-tab i {
       width: 100%;
+      color: gray;
       text-align: center;
       margin-left: 0px;
       line-height: 34px;
@@ -1480,6 +1549,7 @@ main {
 
     .panel-tab p {
       position: absolute;
+      color: gray;
       top: 15px;
       font-size: 10px;
       text-align: center;
@@ -1570,7 +1640,7 @@ main {
   }
 
   #mypage-reservations-list {
-    margin: 15px;
+    width: 47%;
 
     .card-content {
       background-color: transparent;
@@ -1828,6 +1898,16 @@ main {
       height: 45px;
     }
   }
+
+  #mypage-reservations-list {
+    width: 46%;
+    margin-top: 20px;
+    margin-bottom: 35px;
+
+    .card-content {
+      margin-bottom: 45px;
+    }
+  }
 }
 
 //モバイル
@@ -1874,6 +1954,37 @@ main {
   //タグ
   mypage-aside {
     top: 225px;
+  }
+
+  //マイページ（予約情報）
+  .web-info {
+    display: block;
+  }
+
+  //マイページ（予約内容）
+  #mypage-reservations-list {
+    width: 90%;
+  }
+
+  //マイページ（予約カレンダー情報）
+  #mypage-reservations-calendar {
+    td {
+      padding: 2px;
+    }
+
+    #time-info {
+      display: none;
+    }
+
+    #mobile-time-info {
+      display: block;
+      background: #FFA07A;
+      margin-bottom: 5px;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 290486px;
+      font-size: 1px;
+    }
   }
 
   //【ユーザ編集画面】

@@ -111,6 +111,9 @@
                           <div id="time-info" class="tag mobile-none">
                             予約<%= l(reservation.started_at, format: :time) %>~
                           </div>
+                          <div id="mobile-time-info">
+                            <%= l(reservation.started_at, format: :time) %>~
+                          </div>
                         <% end %>
                       <% end %>
                     <% end %>
@@ -121,13 +124,12 @@
           </div>
         </div>
         <div class="web-info">
-          <% current_user.grouped_facility_reservation.each do |facility_id, other| %>
+          <% current_user.facilities.each do |facility| %>
             <div class="card" id="mypage-reservations-list">
               <div class="card-content">
                 <div class="media">
                   <div class="media-content" id="facility-reservation-title">
-                    <p class="reservation-facility-icon"><%= current_user.mypage_modal_facilities_icon(facility_id) %></p>
-                    <% facility = current_user.facilities.find(facility_id) %>
+                    <p class="reservation-facility-icon"><%= current_user.mypage_modal_facilities_icon(facility.id) %></p>
                     <p class="reservation-facility-name">
                       <%= facility.facility_name %>
                     </p>
@@ -138,16 +140,15 @@
                     -予約内容-
                   </div>
                   <% @reservations.each do |reservation| %>
-                    <% @facility = Facility.find(facility_id) %>
-                    <% if (reservation.facility_id == @facility.id) && (current_user.name == reservation.reservation_user) && (reservation.reservation_date >= Date.today) %>
+                    <% if (reservation.facility_id == facility.id) && (current_user.name == reservation.reservation_user) && (reservation.reservation_date >= Date.today) %>
                       <table class="table is-fullwidth is-narrow user-edit-table" id="mypage-reserve-table">
                         <% if current_user.present? %>
                           <% if current_user.name == reservation.reservation_user %>
                             <tbody>
                               <tr>
                                 <td>
-                                  <%= link_to facility_reservation_path(@facility, reservation), class: "has-text-white has-text-weight-bold" do %>
-                                    <%= l(reservation.reservation_date, format: :long) %>
+                                  <%= link_to facility_reservation_path(facility, reservation), class: "has-text-white has-text-weight-bold" do %>
+                                    <%= l(reservation.reservation_date, format: :base) %>
                                     <p><%= l(reservation.started_at, format: :time) %>~</p>
                                   <% end %>
                                 </td>
@@ -222,6 +223,11 @@
 
       <div id="Infor" class="content-tab" style="display:none">
         <article class="panel" id="panel-content">
+          <div class="has-text-weight-bold" id="facility-plus">
+            <%= link_to new_facility_user_path, class: "btn-real-dent" do %>
+              <span>施設追加</span>
+            <% end %>
+          </div>
           <div class="columns is-multiline is-narrow-mobile">
             <% current_user.facilities.each do |facility| %>
               <div class="column is-4">
@@ -230,7 +236,7 @@
                     <figure class="image is-4by3">
                       <%= facility_season_image(facility) %>
                     </figure>
-                    <div class="card-content">
+                    <div class="card-content" id="card-content-color">
                       <p class="title is-4 content-layout">
                         <% @facility = facility.id %>
                         <%= current_user.mypage_facilities_icon(facility.id) %>
