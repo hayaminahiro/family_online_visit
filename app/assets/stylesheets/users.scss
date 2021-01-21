@@ -1612,6 +1612,8 @@ main {
       .media-left {
         margin-right: 0px;
         margin-left: 5px;
+        padding-right: 13px;
+        padding-top: 8px;
       }
 
       .mypage-facility-icon-image {
@@ -1646,6 +1648,13 @@ main {
       background-color: transparent;
       padding: 1.5rem;
       margin-bottom: 90px;
+    }
+
+    #facility-reservation-title {
+
+      p.reservation-facility-name {
+        margin-top: 3%;
+      }
     }
   }
 
@@ -1953,7 +1962,7 @@ main {
 
   //タグ
   mypage-aside {
-    top: 225px;
+    top: 203px;
   }
 
   //マイページ（予約情報）
@@ -2104,7 +2113,7 @@ main {
     height: 57px;
     line-height: 58px;
     z-index: 1;
-    top: 299px;
+    top: 272px;
     border-bottom: 1px solid #c0c0c0;
 
     .edit-side-link {
