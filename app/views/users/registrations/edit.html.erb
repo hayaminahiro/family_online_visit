@@ -210,9 +210,9 @@
         </div>
     <% end %>
         <div id="Faci" class="content-tab" style="display:none">
-          <article class="panel">
+          <article class="panel" id="user-edit-panel">
             <div class="columns is-multiline">
-              <div class="field" style="padding: 20px;">
+              <div class="field" id="user-edit-field">
                 <% if current_user.facilities.blank? %>
                   <p class="title is-6 result">現在の登録施設はありません。</p>
                 <% end %>
@@ -262,9 +262,9 @@
         </div>
 
         <div id="Resi" class="content-tab" style="display:none">
-          <article class="panel">
+          <article class="panel" id="user-edit-panel">
             <div class="columns is-multiline">
-              <div class="field" style="padding: 20px;">
+              <div class="field" id="user-edit-field">
                 <% if current_user.facilities.blank? %>
                   <p class="title is-6 result">現在の登録施設はありません。</p>
                 <% end %>

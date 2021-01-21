@@ -1423,11 +1423,16 @@ main {
 
 #card-layout {
   width: 40%;
-  margin-left: 5%;
 
   #media-layout {
     margin-bottom: 0px;
   }
+}
+
+//登録施設一覧レイアウト
+#user-edit-field {
+  text-align: center;
+  padding: 20px;
 }
 
 //登録施設の解除
@@ -2327,6 +2332,15 @@ main {
     .modal-card-head {
       height: 68px;
     }
+  }
+
+  #user-edit-panel {
+    margin-top: 90px;
+  }
+
+  #card-layout {
+    width: 100%;
+    margin: 10px 0px;
   }
 
   #content-back .word-break {
