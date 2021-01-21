@@ -596,6 +596,7 @@ mypage-main {
 
   #my-page-info-content {
     padding: 21px 18px;
+    text-align: center;
 
     .media-left {
       width: 15%;
@@ -658,10 +659,6 @@ mypage-main {
       object-fit: cover;
       margin-right: auto;
       margin-left: auto;
-    }
-
-    #modal-info-content {
-      text-align: center;
     }
 
     #modal-header-title {
@@ -1633,6 +1630,7 @@ main {
         display: inline-block;
         object-fit: cover;
       }
+
     }
   }
 
@@ -1917,6 +1915,19 @@ main {
       margin-bottom: 45px;
     }
   }
+
+  //マイページ
+  //お知らせモーダル
+  mypage-main {
+
+    #modal-info-content{
+      width: 90%;
+    }
+
+    #modal-header-title p {
+      font-size: 30px;
+    }
+  }
 }
 
 //モバイル
@@ -1957,6 +1968,25 @@ main {
     .user-icon-image {
       width: 100px;
       height: 100px;
+    }
+
+    #my-page-info-content {
+
+      .mypage-modal-info {
+        height: 125px;
+      }
+    }
+
+    #modal-header-title p {
+      font-size: 17px;
+    }
+
+    #modal-header-title p.modai-facility-icon {
+
+      .mypage-facility-modal-icon {
+        width: 50px;
+        height: 50px;
+      }
     }
   }
 
