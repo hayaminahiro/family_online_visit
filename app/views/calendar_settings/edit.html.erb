@@ -32,7 +32,7 @@
           </div>
 
           <%= f.hidden_field :facility_id, :value => current_facility.id %>
-          <%= f.submit "設定を変更する", class: "message-btn" %>
+          <%= f.submit "設定を変更する", class: "button is-danger is-light is-outlined" %>
         <% end %>
 
         <%= link_to "デフォルト設定に戻す", calendar_setting_path, method: :delete, data: { confirm: "デフォルト設置に戻してよろしいですか?" } %>

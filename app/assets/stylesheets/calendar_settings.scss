@@ -1,3 +1,96 @@
 // Place all the styles related to the CalendarSettings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//indexページ
+#reservations-setting {
+  height: 100%;
+  margin: 100px;
+  font-size: 15px;
+  color: #401c00;
+  border-radius: 6px;
+  flex: 2;
+
+  .inner-table {
+    text-align: center;
+    width: 100%;
+  }
+
+  #setting-table {
+    margin: auto;
+    padding-top: 20px;
+    height: 100%;
+    vertical-align: middle;
+
+    th{
+      width: 180px;
+      height: 100px;
+      vertical-align: middle;
+      text-align: center;
+      font-weight: 500;
+      font-size: 20px;
+      background-color: aliceblue;
+    }
+
+    td {
+      vertical-align: middle;
+      text-align: center;
+      height: 40px;
+      padding: 0 100px 20px 100px;
+
+      #explanation {
+        color: #b32b4a;
+        font-size: 16px;
+      }
+
+      #day-of-the-week {
+        margin-right: 16px;
+        font-size: 20px;
+      }
+
+      #time-select {
+        margin-right: 30px;
+        font-size: 20px;
+      }
+
+      #hidden-value {
+        display:none;
+      }
+
+      #btn-position {
+        padding-left: 0;
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+// レスポンシブshow
+@media screen and (max-width: 1024px) {
+  #reservations-setting {
+    height: 100%;
+    margin: 10px 10px 50px 10px;
+    font-size: 15px;
+    color: #401c00;
+    border-radius: 6px;
+    flex: 2;
+
+    #setting-table {
+      th {
+        width: 70px;
+        vertical-align: middle;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        background-color: aliceblue;
+      }
+
+      td {
+        vertical-align: middle;
+        text-align: center;
+        height: 40px;
+        padding: 20px;
+      }
+    }
+  }
+}
