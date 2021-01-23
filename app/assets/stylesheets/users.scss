@@ -1426,6 +1426,25 @@ main {
 
   #media-layout {
     margin-bottom: 0px;
+
+    .resident-warning {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #FF6347;
+      text-align: left;
+    }
+
+    p.new-request-transition {
+      font-size: 15px;
+      margin: 10px 0px;
+
+      .link-design {
+        background: #48D1CC;
+        padding: 5px;
+        color: #fff;
+        border-radius: 15px;
+      }
+    }
   }
 }
 
