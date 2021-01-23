@@ -1,42 +1,19 @@
 class ReservationsController < ApplicationController
   before_action :set_facility_id
+  before_action :change_facility, only: %i[index index_week]
   before_action :set_user, except: %i[show create destroy]
   before_action :set_reservation, only: %i[show destroy]
   before_action :set_reservations, only: %i[index index_week reservation_time]
   before_action :set_reservation_limit, only: %i[index index_week]
+  before_action :calendar_settings, only: %i[index index_week reservation_time]
 
-  def index
-    @calendar_settings = CalendarSetting.all
-    @facility = current_facility if current_facility.present?
-    if @calendar_settings.find_by(facility_id: @facility.id).present?
-      @sunday = 0 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("日曜日")
-      @monday = 1 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("月曜日")
-      @tuesday = 2 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("火曜日")
-      @wednesday = 3 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("水曜日")
-      @thursday = 4 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("木曜日")
-      @friday = 5 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("金曜日")
-      @saturday = 6 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("土曜日")
-    end
-  end
+  def index; end
 
-  def index_week
-    @calendar_settings = CalendarSetting.all
-    @facility = current_facility if current_facility.present?
-    if @calendar_settings.find_by(facility_id: @facility.id).present?
-      @sunday = 0 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("日曜日")
-      @monday = 1 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("月曜日")
-      @tuesday = 2 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("火曜日")
-      @wednesday = 3 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("水曜日")
-      @thursday = 4 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("木曜日")
-      @friday = 5 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("金曜日")
-      @saturday = 6 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("土曜日")
-    end
-  end
+  def index_week; end
 
   def show; end
 
   def reservation_time
-    @calendar_settings = CalendarSetting.all
     @title_date = params[:title_date]
     @date = params[:date]
   end
@@ -89,6 +66,10 @@ class ReservationsController < ApplicationController
       @facility = Facility.find(params[:facility_id])
     end
 
+    def change_facility
+      @facility = current_facility if current_facility.present?
+    end
+
     def set_reservation
       @reservation = Reservation.find(params[:id])
     end
@@ -102,6 +83,19 @@ class ReservationsController < ApplicationController
       @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.name) if @user.present?
       @reservations_user_max = @reservations.facility(@facility)
       @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.name) if current_user.present?
+    end
+
+    def calendar_settings
+      @calendar_settings = CalendarSetting.all.facility(@facility)
+      if @calendar_settings.present?
+        @sunday = 0 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("日曜日")
+        @monday = 1 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("月曜日")
+        @tuesday = 2 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("火曜日")
+        @wednesday = 3 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("水曜日")
+        @thursday = 4 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("木曜日")
+        @friday = 5 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("金曜日")
+        @saturday = 6 if @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?("土曜日")
+      end
     end
 
     def reservation_params

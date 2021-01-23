@@ -6,7 +6,7 @@
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
     <div class="container">
       <div class="card card-width" id="reservations-calendar">
-        <% if @calendar_settings.where(facility_id: current_facility.id).present? %>
+        <% if @calendar_settings.present? %>
           <%= link_to "予約設定", edit_calendar_setting_path(@set_id), class: "button is-warning is-light is-outlined" %>
         <% else %>
           <%= link_to "予約設定", new_calendar_setting_path, class: "button is-warning is-light is-outlined" %>
