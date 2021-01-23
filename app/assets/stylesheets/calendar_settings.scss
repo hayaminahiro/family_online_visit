@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //indexページ
+.container-top {
+  padding-top: 10px;
+}
+
 #reservations-setting {
   height: 100%;
   margin: 100px;
@@ -56,10 +60,14 @@
       #hidden-value {
         display:none;
       }
+    }
 
-      #btn-position {
-        padding-left: 0;
-        padding-top: 15px;
+    #btn-position {
+      padding-left: 0;
+      padding-top: 15px;
+
+      #set-default {
+        float: right;
       }
     }
   }
@@ -90,6 +98,15 @@
         text-align: center;
         height: 40px;
         padding: 20px;
+
+        #btn-position {
+          padding-left: 0;
+          padding-top: 15px;
+
+          #set-default {
+            float: right;
+          }
+        }
       }
     }
   }
