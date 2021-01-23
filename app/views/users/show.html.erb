@@ -7,10 +7,18 @@
       </div>
     </div>
     <div class="mypage-side-link">
-      <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="fas fa-home"></i><p>予約</p></a>
-      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i><p>写真</p></a>
-      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i><p>動画</p></a>
-      <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="fas fa-phone-volume"></i><p>お問い合わせ</p></a>
+      <a class="panel-tab is-active mypage-links has-text-centered" onclick="openTab(event,'Web')"><i class="far fa-calendar-alt"></i>
+        <p>予約</p>
+      </a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Faci')"><i class="fas fa-images"></i>
+        <p>写真</p>
+      </a>
+      <a class="panel-tab mypage-links has-text-centered" onclick="openTab(event,'Resi')"><i class="fas fa-film"></i>
+        <p>動画</p>
+      </a>
+      <a class="panel-tab mypage-links has-text-centered has-text-centered" onclick="openTab(event,'Infor')"><i class="far fa-building"></i>
+        <p>施設</p>
+      </a>
     </div>
   </mypage-aside>
 
@@ -18,16 +26,7 @@
     <article>
       <section class="hero-image-user">
         <div class="user-home-image">
-        <% month = Date.today.month %>
-        <% if month.in?([ 12, 1, 2 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/winter.jpg', class: "mypage-image"%>
-        <% elsif month.in?([ 3, 4, 5 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/spring.jpg', class: "mypage-image" %>
-        <% elsif month.in?([ 6, 7, 8 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/summer.jpg', class: "mypage-image"%>
-        <% elsif month.in?([ 9, 10, 11 ]) %>
-          <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/+autumn.jpg', class: "mypage-image"%>
-        <% end %>
+          <%= current_user.user_background %>
           <div class="user-icon-outline">
             <%= current_user.user_icon_responsive %>
           </div>
@@ -45,25 +44,49 @@
                   </div>
                   <div class="media-content" id="web-media-section">
                     <% current_user.mypage_informations(facility_id).last(2).each do |information| %>
-                    <div class="mypage-information">
-                      <div>
-                        <div class="box" id="mypage-user-box">
-                          <div class="media">
-                            <%= current_user.mypage_informations_icon(information) %>
-                            <div class="media-content">
-                              <div class="content" id="edit-content">
-                                <p class="is-size-7">
-                                <strong><%= information.title.truncate(9) %></strong><br>
-                                  <small><%= information.facility.facility_name %></small>
-                                  <br>
-                                  <span><%= information.news.truncate(10) %></span>
-                                </p>
+                      <div class="mypage-information">
+                        <div class="show-modal" data-target="my-modal-<%= information.id %>">
+                          <div class="box" id="mypage-user-box">
+                            <div class="media">
+                              <%= current_user.mypage_informations_icon(information) %>
+                              <div class="media-content">
+                                <div class="content" id="edit-content">
+                                  <p class="is-size-7">
+                                    <strong><%= information.title.truncate(9) %></strong><br>
+                                    <small><%= information.facility.facility_name %></small><br>
+                                    <span><%= information.news.truncate(10) %></span>
+                                  </p>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+
+                      <!--お知らせモーダル表示-->
+                      <div class="modal-info" id="my-modal-<%= information.id %>" data-target="my-modal-<%= information.id %>">
+                        <div class="modal-background" data-target="my-modal-<%= information.id %>"></div>
+                        <div class="modal-card" id="modal-info-content">
+                          <header class="modal-card-head" id="modal-header-title">
+                            <p class="modai-facility-icon"><%= current_user.mypage_modal_facilities_icon(facility_id) %></p>
+                            <p class="modal-card-title"><%= information.facility.facility_name %>からのお知らせ</p>
+                          </header>
+                          <section class="modal-card-body" id="modal-body-info">
+                            <p class="image is-3by2" id="modal-image-size">
+                              <%= current_user.mypage_modal_informations(information) %>
+                            </p>
+                            <div class="modal-title-info">
+                              <%= information.title %>
+                            </div>
+                            <div class="modal-news-info">
+                              <%= information.news %>
+                            </div>
+                          </section>
+                          <footer class="modal-card-foot" id="modal-footer-info">
+                            <button type="button" id="modal-info-button" class="button" data-target="my-modal-<%= information.id %>">マイページへ</button>
+                          </footer>
+                        </div>
+                      </div>
                     <% end %>
                   </div>
                 </div>
@@ -76,40 +99,77 @@
             <div class="has-text-centered">
               <div class="is-centered">
                 <%= month_calendar(attribute: :calendar_day, events: current_user.reservation_calendar) do |date, reservations| %>
-                  <%= l(date, format: :short) %>
+                  <% if HolidayJapan.check(date) == true %>
+                    <p class="user-holiday-color"><%= l(date, format: :short) %></p>
+                  <% else %>
+                    <p><%= l(date, format: :short) %></p>
+                  <% end %>
+                  <% @reservations.each do |reservation| %>
+                    <% if current_user.present? %>
+                      <% if current_user.name == reservation.reservation_user %>
+                        <% if reservation.reservation_date == date %>
+                          <div id="time-info" class="tag mobile-none">
+                            予約<%= l(reservation.started_at, format: :time) %>~
+                          </div>
+                          <div id="mobile-time-info">
+                            <%= l(reservation.started_at, format: :time) %>~
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
                 <% end %>
               </div><br>
             </div>
           </div>
-          <div class="card" id="mypage-reservations-list">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">予約の確認</p>
-                  <p class="subtitle is-6">予約した情報が表示されます</p>
+        </div>
+        <div class="web-info">
+          <% current_user.facilities.each do |facility| %>
+            <div class="card" id="mypage-reservations-list">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content" id="facility-reservation-title">
+                    <p class="reservation-facility-icon"><%= current_user.mypage_modal_facilities_icon(facility.id) %></p>
+                    <p class="reservation-facility-name">
+                      <%= facility.facility_name %>
+                    </p>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="reservation-contents">
+                    -予約内容-
+                  </div>
+                  <% @reservations.each do |reservation| %>
+                    <% if (reservation.facility_id == facility.id) && (current_user.name == reservation.reservation_user) && (reservation.reservation_date >= Date.today) %>
+                      <table class="table is-fullwidth is-narrow user-edit-table" id="mypage-reserve-table">
+                        <% if current_user.present? %>
+                          <% if current_user.name == reservation.reservation_user %>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <%= link_to facility_reservation_path(facility, reservation), class: "has-text-white has-text-weight-bold" do %>
+                                    <%= l(reservation.reservation_date, format: :base) %>
+                                    <p><%= l(reservation.started_at, format: :time) %>~</p>
+                                  <% end %>
+                                </td>
+                              </tr>
+                            </tbody>
+                          <% end %>
+                        <% end %>
+                      </table>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
-              <div class="content">
-                <table class="table is-fullwidth is-narrow user-edit-table" id="mypage-reserve-table">
-                  <tbody>
-                    <tr>
-                      <th>
-                        <figure class="image is-48x48">
-                          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                        </figure>
-                      </th>
-                      <td>
-                      <strong>山本　太郎</strong><br>
-                      <small>2020/12/15 10:00~</small>
-                      </td>
-                      <td><i class="far fa-times-circle"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            </div>
+          <% end %>
+        </div>
+        <section class="hero is-small">
+          <div class="hero-body">
+            <div class="container">
             </div>
           </div>
-        </div>
+        </section>
       </div>
 
       <div id="Faci" class="content-tab" style="display:none">
@@ -131,12 +191,12 @@
                     </div>
                   </li>
                 <% end %>
-              <div class="tag-plus-btn">
-                <!--タグを新規作成 （tags/new ⇨ new.js.erb ⇨ 作成フォームをモーダル表示）-->
-                <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
-                  <i class="fas fa-folder-plus fa-3x"></i>
-                <% end %>
-              </div>
+                <div class="tag-plus-btn">
+                  <!--タグを新規作成 （tags/new ⇨ new.js.erb ⇨ 作成フォームをモーダル表示）-->
+                  <%= link_to new_tag_path, class: "new-folder-btn", remote: true do %>
+                    <i class="fas fa-folder-plus fa-3x"></i>
+                  <% end %>
+                </div>
               </ul>
             </div>
 
@@ -162,7 +222,35 @@
       </div>
 
       <div id="Infor" class="content-tab" style="display:none">
-        <p>お問い合わせ</p>
+        <article class="panel" id="panel-content">
+          <div class="has-text-weight-bold" id="facility-plus">
+            <%= link_to new_facility_user_path, class: "btn-real-dent" do %>
+              <span>施設追加</span>
+            <% end %>
+          </div>
+          <div class="columns is-multiline" id="facility-columns-layout">
+            <% current_user.facilities.each do |facility| %>
+              <div class="column is-4">
+                <%= link_to facility_home_path(facility) do %>
+                  <div class="card">
+                    <figure class="image is-4by3">
+                      <%= facility_season_image(facility) %>
+                    </figure>
+                    <div class="card-content" id="card-content-color">
+                      <p class="title is-4 content-layout">
+                        <% @facility = facility.id %>
+                        <%= current_user.mypage_facilities_icon(facility.id) %>
+                        <span class="facility-title">
+                          <%= facility.facility_name %>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </article>
       </div>
     </article>
   </mypage-main>
@@ -181,5 +269,15 @@
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " is-active";
+  }
+</script>
+
+<script>
+  for (const element of document.querySelectorAll('.show-modal, .modal-background, #modal-info-button')) {
+    element.addEventListener('click', e => {
+      const modalId = element.dataset.target;
+      const modal = document.getElementById(modalId);
+      modal.classList.toggle('is-active');
+    });
   }
 </script>
