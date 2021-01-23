@@ -4,10 +4,6 @@
   <p><%= l(date, format: :short) %></p>
 <% end %>
 
-<%# if date.wday != CalendarSetting.find_by(facility_id: 1).regular_holiday.to_i  %>
-<%#= CalendarSetting.find_by(facility_id: 1).regular_holiday.to_i  %>
-<%= date.wday %>
-
 <% if @sunday != date.wday && @monday != date.wday && @tuesday != date.wday && @wednesday != date.wday && @thursday != date.wday && @friday != date.wday && @saturday != date.wday %>
   <% if current_facility.present? %>
     <% if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 %>
@@ -23,10 +19,8 @@
     <% end %>
   <% end %>
 <% else %>
-  定休日
-
+  <p class="impossible-btn">✗</p>
 <% end%>
-
 
 <!--モーダル表示-->
 <div class="modal">
