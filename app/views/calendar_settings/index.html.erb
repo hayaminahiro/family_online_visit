@@ -21,14 +21,12 @@
                 <p><%= l(date, format: :short) %></p>
               <% end %>
               <% @reservations.each do |reservation| %>
-                <% if reservation.facility_id == current_facility.id %>
+                <% if reservation.facility_id == current_facility.id && date >= Date.current %>
                   <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
                 <% end %>
               <% end %>
-
               <% unless @sunday != date.wday && @monday != date.wday && @tuesday != date.wday && @wednesday != date.wday && @thursday != date.wday && @friday != date.wday && @saturday != date.wday %>
-
-                <p class="impossible-btn">--</p>
+                <p class="impossible-btn">✗</p>
               <% end %>
               <% if @reservations_facility_max.reservation_date(date).length >= 1 %>
                 <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
