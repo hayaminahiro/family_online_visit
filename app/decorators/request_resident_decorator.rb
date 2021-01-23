@@ -26,11 +26,11 @@ module RequestResidentDecorator
   def approval_link_request(facility)
     case req_approval
     when "request"
-      tag.(link_to "利用者登録は #{req_approval_i18n} です", edit_request_resident_path(id), class: "link-design")
+      tag.p((link_to "利用者登録は #{req_approval_i18n} です", edit_request_resident_path(id), class: "link-design"))
     when "approval"
-      tag.(link_to "利用者登録は #{req_approval_i18n} です", new_request_resident_path(facility_id: facility), class: "link-design")
+      tag.p((link_to "利用者登録は #{req_approval_i18n} です", new_request_resident_path(facility_id: facility), class: "link-design"))
     else
-      tag.(link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: facility), class: "link-design")
+      tag.p((link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: facility), class: "link-design"))
     end
   end
 
