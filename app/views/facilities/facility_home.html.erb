@@ -21,12 +21,36 @@
         </p>
 
         <div id="Web" class="content-tab" >
-          <div class="has-text-centered" id="calendar-reservations">
-            <div class="is-centered">
-              <%= month_calendar(attribute: :calendar_day, events: current_facility.reservation_calendar) do |date, reservations| %>
-                <%= l(date, format: :short) %>
-              <% end %>
-            </div><br>
+          <div class="card-width" id="facility-home-calendar">
+            <% if @calendar_settings.present? %>
+              <%= link_to "予約詳細設定", edit_calendar_setting_path(@set_id), class: "button is-warning is-light is-outlined" %>
+            <% else %>
+              <%= link_to "予約詳細設定", new_calendar_setting_path, class: "button is-warning is-light is-outlined" %>
+            <% end %>
+            <div class="has-text-centered">
+              <div class="is-centered">
+                <h1 class="has-text-centered reservation-title">予約状況確認</h1>
+                <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
+                  <% if HolidayJapan.check(date) %>
+                    <p class="holiday-color"><%= l(date, format: :short) %></p>
+                  <% else %>
+                    <p><%= l(date, format: :short) %></p>
+                  <% end %>
+                  <% @reservations.each do |reservation| %>
+                    <% if reservation.facility_id == current_facility.id && date >= Date.current %>
+                      <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
+                    <% end %>
+                  <% end %>
+                  <% unless @sunday != date.wday && @monday != date.wday && @tuesday != date.wday && @wednesday != date.wday && @thursday != date.wday && @friday != date.wday && @saturday != date.wday %>
+                    <p class="impossible-btn">✗</p>
+                  <% end %>
+                  <% if @reservations_facility_max.reservation_date(date).length >= 1 %>
+                    <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <%= render 'reservations/reservation_list' %>
           </div>
         </div>
 

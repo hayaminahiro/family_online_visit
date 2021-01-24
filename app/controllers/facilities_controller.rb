@@ -21,6 +21,23 @@ class FacilitiesController < ApplicationController
   def facility_home
     @info_top = Information.find_by(status: "head")
     @request_residents = RequestResident.where(req_approval: "request").where(facility_id: current_facility)
+
+    @calendar_settings = CalendarSetting.all.facility(current_facility)
+    @reservations = Reservation.all.sorted
+    @reservations_facility_max = @reservations.facility(current_facility)
+    @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.try(:name))
+    @reservations_user_max = @reservations.facility(@facility)
+    @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.try(:name))
+    @set_id = @calendar_settings.find_by(facility_id: current_facility.id).try(:id)
+    if @calendar_settings.find_by(facility_id: current_facility.id).try(:present?)
+      @sunday = 0 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("日曜日")
+      @monday = 1 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("月曜日")
+      @tuesday = 2 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("火曜日")
+      @wednesday = 3 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("水曜日")
+      @thursday = 4 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("木曜日")
+      @friday = 5 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("金曜日")
+      @saturday = 6 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("土曜日")
+    end
   end
 
   def destroy
