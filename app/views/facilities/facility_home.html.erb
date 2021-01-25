@@ -15,9 +15,9 @@
         </div>
 
         <p class="panel-tabs">
-          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;<span>カレンダー</span></a>
-          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;<span>登録申請</span><%= current_facility.request_count(@request_residents) %></a>
-          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;<span>NEWS</span></a>
+          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;<span class="tab-title">カレンダー</span></a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;<span class="tab-title">登録申請</span><%= current_facility.request_count(@request_residents) %></a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;<span class="tab-title">NEWS</span></a>
         </p>
 
         <div id="Web" class="content-tab" >
