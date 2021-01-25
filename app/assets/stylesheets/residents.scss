@@ -100,11 +100,11 @@
 .image-total-count {
   display: inline-block;
   font-size: 10px;
-}
 
-.image-total-count-span {
-  font-size: 20px;
-  margin: 5px;
+  span {
+    font-size: 20px;
+    margin: 5px;
+  }
 }
 
 .image-count-td {
