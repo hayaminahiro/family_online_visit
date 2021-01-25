@@ -53,7 +53,7 @@
                   <td id="btn-position">
                     <%= f.hidden_field :facility_id, :value => current_facility.id %>
                     <%= f.submit "設定を変更する", class: "button is-link is-light is-outlined" %>
-                    <%= link_to "戻る", calendar_settings_path, class: "button is-light" %>
+                    <%= link_to "戻る", facility_home_facility_path(id: current_facility), class: "button is-light" %>
                   </td>
                 </tbody>
               </table>

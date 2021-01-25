@@ -21,7 +21,7 @@ class FacilitiesController < ApplicationController
   def facility_home
     @info_top = Information.find_by(status: "head")
     @request_residents = RequestResident.where(req_approval: "request").where(facility_id: current_facility)
-
+    # カレンダー設定と予約
     @calendar_settings = CalendarSetting.all.facility(current_facility)
     @reservations = Reservation.all.sorted
     @reservations_facility_max = @reservations.facility(current_facility)

@@ -1,25 +1,7 @@
 class CalendarSettingsController < ApplicationController
-  before_action :set_facility_id
+  before_action :set_facility_id, except: :index
   before_action :set_calendar_setting, only: %i[edit update destroy]
-  before_action :calendar_settings_all, only: %i[index new edit]
-
-  def index
-    @reservations = Reservation.all.sorted
-    @reservations_facility_max = @reservations.facility(current_facility)
-    @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.try(:name))
-    @reservations_user_max = @reservations.facility(@facility)
-    @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.try(:name))
-    @set_id = @calendar_settings.find_by(facility_id: current_facility.id).try(:id)
-    if @calendar_settings.find_by(facility_id: current_facility.id).try(:present?)
-      @sunday = 0 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("日曜日")
-      @monday = 1 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("月曜日")
-      @tuesday = 2 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("火曜日")
-      @wednesday = 3 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("水曜日")
-      @thursday = 4 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("木曜日")
-      @friday = 5 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("金曜日")
-      @saturday = 6 if @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?("土曜日")
-    end
-  end
+  before_action :calendar_settings_all, only: %i[new edit]
 
   def new
     @calendar_setting = @facility.calendar_setting.new
@@ -28,7 +10,7 @@ class CalendarSettingsController < ApplicationController
   def create
     @calendar_setting = @facility.calendar_setting.new(setting_params)
     if @calendar_setting.save
-      redirect_to calendar_settings_url, notice: "予約設定を変更しました。"
+      redirect_to facility_home_facility_url(current_facility), notice: "予約設定を変更しました。"
     else
       render :new
     end
@@ -38,7 +20,7 @@ class CalendarSettingsController < ApplicationController
 
   def update
     if @calendar_setting.update(setting_params)
-      redirect_to calendar_settings_url, notice: "予約設定を変更しました。"
+      redirect_to facility_home_facility_url(current_facility), notice: "予約設定を変更しました。"
     else
       render :edit
     end
@@ -46,7 +28,7 @@ class CalendarSettingsController < ApplicationController
 
   def destroy
     @calendar_setting.delete
-    redirect_to calendar_settings_url, alert: "予約設定をデフォルトに戻しました。"
+    redirect_to facility_home_facility_url(current_facility), alert: "予約設定をデフォルトに戻しました。"
   end
 
   private
