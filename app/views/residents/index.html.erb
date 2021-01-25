@@ -6,7 +6,7 @@
     <section class="resident-title hero">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title is-size-3 has-text-white">
+          <h1 class="title is-size-3 has-text-white" id="table">
             利用者一覧
           </h1>
         </div>
@@ -64,7 +64,7 @@
                   思い出アルバム
                 </th>
                 <th class="text-left">
-                  <div class="js-contents--content" id="table">
+                  <div class="js-contents--content">
                     <div class="image-total-count">合計<span class="image-total-count-span"><%= @total_image_count %></span>枚</div>
                       <%= form_with model: current_facility, url:  residents_path(current_facility), class: "residents-month-select", method: :get, remote: true do |f| %>
                         <%= f.select :user_id, [[ @select_month.prev_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.prev_month.all_month, user_id: current_facility.id)],
@@ -205,14 +205,4 @@
       }
     })
   });
-  // 画面遷移後
-  var headerHeight = $('.navbar-brand').outerHeight();
-  var urlHash = location.hash;
-  if(urlHash) {
-    setTimeout(function(){
-      var target = $(urlHash);
-      var position = target.offset().top - (headerHeight + 80);
-      $('body,html').scrollTop(position);
-    }, 330);
-  }
 </script>
