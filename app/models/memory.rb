@@ -53,7 +53,7 @@ class Memory < ApplicationRecord
   def self.total_image_count(residents, day)
     image_columns = []
     residents.each do |resident|
-      resident.memories.where(created_at: day.all_month).each do |m|
+      resident.memories.where(created_at: day.all_month).find_each do |m|
         image_columns << m.image0 if m.image0?
         image_columns << m.image1 if m.image1?
         image_columns << m.image2 if m.image2?
