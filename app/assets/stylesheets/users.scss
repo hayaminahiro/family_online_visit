@@ -420,12 +420,13 @@ img#icon_prev_0.user-edit-image {
 mypage-aside {
   /*画面左*/
   position: fixed;
-  width: 15.5%;
+  z-index: 5;
+  width: 20%;
   height: 100%;
   font-size: 15px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background: linear-gradient(to bottom, #f7f0e7, #f24f4f 100%);
   box-shadow: inset -1px 0px 0px 0px #dddddd;
 
   .profile-section {
@@ -485,13 +486,14 @@ mypage-aside {
 
   .panel-tab p {
     font-size: 17px;
-    font-weight: lighter;
+    color: #fff;
+    font-weight: bold;
     text-align: left;
   }
 
   .panel-tab.is-active p {
     font-size: 17px;
-    font-weight: normal;
+    font-weight: bold;
     color: rgb(235, 94, 39);
   }
 
@@ -500,7 +502,7 @@ mypage-aside {
     float: left;
     line-height: 23px;
     font-size: 22px;
-    color: gray;
+    color: #fff;
     margin-left: 20px;
     width: 92px;
   }
@@ -524,8 +526,8 @@ mypage-aside {
 
 mypage-main {
   /*画面中央*/
-  padding-left: 15.5%;
-  width: 100%;
+  margin-left: auto;
+  width: 80%;
   background-color: rgb(244, 243, 238);
   display: flex;
   margin-bottom: -25px;
@@ -594,10 +596,11 @@ mypage-main {
 
   #my-page-info-content {
     padding: 21px 18px;
+    text-align: center;
 
     .media-left {
-      margin-right: 8px;
-      width: 71px;
+      width: 15%;
+      text-align: center;
     }
 
     #web-media-section {
@@ -620,6 +623,92 @@ mypage-main {
       height: 45px;
       display: inline-block;
       object-fit: cover;
+    }
+
+    //お知らせモーダル
+    .modal-info {
+      align-items: center;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      position: fixed;
+      z-index: 40;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+
+    .modal-info.is-active {
+      display: flex;
+    }
+
+    .mypage-facility-modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      display: inline-block;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .mypage-modal-info {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    #modal-header-title {
+      background-color: #ffebcd;
+      font-weight: bold;
+      border-bottom: none;
+      padding: 1% 5%;
+
+      p.modai-facility-icon {
+        padding-top: 2%;
+      }
+
+      p.modal-card-title {
+        color: #696969;
+      }
+    }
+
+    #modal-body-info {
+      background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+      #modal-image-size {
+        padding-top: 47%;
+      }
+
+      .modal-title-info {
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: solid 1px #c0c0c0;
+      }
+
+      .modal-news-info {
+        font-size: 18px;
+        text-align: left;
+        width: 80%;
+        margin: 4% auto 0px auto;
+        background-color: #fff;
+        border-radius: 5px;
+      }
+    }
+
+    #modal-footer-info {
+      display: inline-block;
+      height: auto;
+
+      #modal-info-button {
+        background: #fa8072;
+        border-radius: 290486px;
+        color: #fff;
+        font-weight: bold;
+        border-color: #fa8072;
+      }
     }
   }
 
@@ -649,11 +738,11 @@ mypage-main {
   #mypage-reserve-table tr {
     height: 30px;
     line-height: 24px;
-    border-left: solid 3px darkgray;
   }
 
   #mypage-reserve-table th {
-    width: 20%;
+    width: 30%;
+    font-size: 10px;
   }
 
   #mypage-reserve-table figure {
@@ -669,14 +758,54 @@ mypage-main {
     display: block;
   }
 
+  #mypage-reserve-table {
+    background: #FFA07A;
+    border-radius: 290486px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   #edit-content {
     margin-top: 0px;
+  }
+
+  //施設タブ（レイアウト）
+  #panel-content {
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+
+    span.facility-title {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 8%;
+      margin-left: 10%;
+    }
+
+    p.layout-content {
+      text-align: center;
+    }
+
+    p.content-layout {
+      background: #FFE4B5;
+      border-radius: 6px;
+    }
+  }
+
+  //施設タブ（アイコン）
+  .mypage-facility-icon-image {
+    width: 60px;
+    height: 60px;
+    margin-top: 1%;
+    border-radius: 50%;
   }
 }
 
 #mypage-reservations-calendar {
   height: 100%;
-  margin: 34px 8px 34px 15px;
+  margin: 34px 15px 34px 15px;
   padding: 35px;
   font-size: 15px;
   border-radius: 6px;
@@ -693,7 +822,69 @@ mypage-main {
   }
 
   #calendar-info .calendar-th {
-    background: #f39560;
+    background-color: #ffebcd;
+  }
+
+  p.user-holiday-color {
+    color: red;
+  }
+
+  #time-info {
+    background: #FFA07A;
+    margin-bottom: 5px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 290486px;
+  }
+
+  #mobile-time-info {
+    display: none;
+  }
+}
+
+//マイページ（登録施設タブ）
+#card-content-color {
+  background-color: linear-gradient(to bottom, #ffffff, #f7f0e7);
+}
+
+#facility-plus {
+  margin-bottom: 2%;
+  font-size: 20px;
+  text-align: center;
+
+  .btn-real-dent {
+    /*周りの凹み*/
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: black;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    text-align: center;
+    background: #f7f0e7;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+  }
+  .btn-real-dent span {
+    /*ボタン自体*/
+    position: absolute;
+    content: '';
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    left: 10px;
+    top: 9px;
+    border-radius: 50%;
+    font-size: 15px;
+    background: #FFE4B5;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+  }
+
+  .btn-real-dent .fa:active {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #d8d8d8;
   }
 }
 
@@ -701,16 +892,49 @@ mypage-main {
   display: flex;
 }
 
+.web-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 #mypage-reservations-list {
-  flex: 1;
+  width: 30.3%;
   height: 100%;
-  margin: 35px 16px 13px 10px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 17px;
   border-radius: 6px;
 
   .card-content {
     background-color: transparent;
     padding: 1.5rem;
+  }
+
+  .reservation-contents {
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: solid 1px silver;
+  }
+
+  #facility-reservation-title {
+    display: inline-flex;
+    background: #FFEBCD;
+    border-radius: 6px;
+
+    p.reservation-facility-name {
+      margin-right: auto;
+      margin-top: 7%;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  p.reservation-facility-icon {
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -724,6 +948,7 @@ mypage-main {
   padding: 8px 10px 7px 10px;
   margin: 8px 10px 8px 15px;
   border: solid 1px #9daba6;
+  cursor: pointer !important;
 
   .media.media {
     border-top: 0px;
@@ -1040,6 +1265,7 @@ aside {
 //モバイルタグ
 edit-aside {
   position: fixed;
+  z-index: 20;
   display: flex;
   width: 30%;
   height: 100%;
@@ -1195,6 +1421,83 @@ main {
   margin: 10px 0px;
 }
 
+#card-layout {
+  width: 40%;
+
+  #media-layout {
+    margin-bottom: 0px;
+
+    .resident-warning {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #FF6347;
+      text-align: left;
+    }
+
+    p {
+      font-size: 15px;
+      margin: 10px 0px;
+
+      .link-design {
+        background: #48D1CC;
+        padding: 5px;
+        color: #fff;
+        border-radius: 15px;
+      }
+    }
+  }
+}
+
+//登録施設一覧レイアウト
+#user-edit-field {
+  text-align: center;
+  padding: 20px;
+}
+
+//登録施設の解除
+.facilities-used-edit-label {
+  input[type="checkbox"],
+  input[type="radio"] {
+    vertical-align: baseline;
+    display: none;
+  }
+}
+
+.facilities-used-edit-label span {
+  color: #fff; /* 文字色を黒に */
+  background: #FF7F50;
+  font-size: 14px; /* 文字サイズを14pxに */
+  border: 1px solid #FF7F50; /* 淵の線を指定 */
+  border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
+  padding: 5px 20px; /* 上下左右に余白をトル */
+}
+
+.facilities-used-edit-label input:checked + span {
+  color: black; /* 文字色を白に */
+  background: #fff; /* 背景色を薄いオレンジに */
+  border: 1px solid black; /* 淵の線を薄いオレンジに */
+}
+
+.span-edit-check {
+  color: #FF7F50;
+}
+
+//登録利用者テーブル
+#residents-info {
+  margin-top: 10px;
+  font-size: 15px;
+
+  tr {
+    height: 45px;
+    line-height: 45px;
+  }
+
+  th {
+    width: 30%;
+    background: #F1F4F8;
+  }
+}
+
 // レスポンシブ
 @media screen and (max-width: 1050px) {
   // マイページ
@@ -1246,6 +1549,7 @@ main {
 
     .panel-tab i {
       width: 100%;
+      color: gray;
       text-align: center;
       margin-left: 0px;
       line-height: 34px;
@@ -1267,6 +1571,7 @@ main {
 
     .panel-tab p {
       position: absolute;
+      color: gray;
       top: 15px;
       font-size: 10px;
       text-align: center;
@@ -1323,16 +1628,14 @@ main {
       overflow: scroll;
     }
 
-    #edit-content p span {
-      display: none;
-    }
-
     #my-page-info-content {
       padding: 13px 18px;
 
       .media-left {
         margin-right: 0px;
         margin-left: 5px;
+        padding-right: 13px;
+        padding-top: 8px;
       }
 
       .mypage-facility-icon-image {
@@ -1352,6 +1655,7 @@ main {
         display: inline-block;
         object-fit: cover;
       }
+
     }
   }
 
@@ -1361,12 +1665,19 @@ main {
   }
 
   #mypage-reservations-list {
-    margin: 15px;
+    width: 47%;
 
     .card-content {
       background-color: transparent;
       padding: 1.5rem;
       margin-bottom: 90px;
+    }
+
+    #facility-reservation-title {
+
+      p.reservation-facility-name {
+        margin-top: 3%;
+      }
     }
   }
 
@@ -1619,6 +1930,49 @@ main {
       height: 45px;
     }
   }
+
+  #mypage-reservations-list {
+    width: 46%;
+    margin-top: 20px;
+    margin-bottom: 35px;
+
+    .card-content {
+      margin-bottom: 45px;
+    }
+  }
+
+  //マイページ
+  //お知らせモーダル
+  mypage-main {
+
+    #modal-info-content{
+      width: 90%;
+    }
+
+    #modal-header-title p {
+      font-size: 30px;
+    }
+
+    #panel-content {
+      margin-bottom: 100px;
+
+      p.content-layout {
+        text-align: center;
+      }
+
+      span.facility-title {
+        margin-top: 4%;
+        margin-left: 10%;
+      }
+    }
+  }
+
+  #facility-columns-layout {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
+  }
 }
 
 //モバイル
@@ -1660,11 +2014,72 @@ main {
       width: 100px;
       height: 100px;
     }
+
+    #my-page-info-content {
+
+      .mypage-modal-info {
+        height: 125px;
+      }
+    }
+
+    #modal-header-title p {
+      font-size: 17px;
+    }
+
+    #modal-header-title p.modai-facility-icon {
+
+      .mypage-facility-modal-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    #facility-columns-layout {
+      width: 100%;
+    }
+
+    #panel-content {
+
+      span.facility-title {
+        margin-top: 8%;
+      }
+    }
   }
 
   //タグ
   mypage-aside {
-    top: 225px;
+    top: 203px;
+  }
+
+  //マイページ（予約情報）
+  .web-info {
+    display: block;
+  }
+
+  //マイページ（予約内容）
+  #mypage-reservations-list {
+    width: 90%;
+  }
+
+  //マイページ（予約カレンダー情報）
+  #mypage-reservations-calendar {
+    td {
+      padding: 2px;
+    }
+
+    #time-info {
+      display: none;
+    }
+
+    #mobile-time-info {
+      display: block;
+      background: #FFA07A;
+      margin-bottom: 5px;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 290486px;
+      font-size: 1px;
+    }
   }
 
   //【ユーザ編集画面】
@@ -1673,8 +2088,10 @@ main {
     display: block;
   }
 
-  .mypage-image {
-    display: none;
+  .edit-image-user {
+    .mypage-image {
+      display: none;
+    }
   }
 
   .user-bg-edit-responsive {
@@ -1782,7 +2199,7 @@ main {
     height: 57px;
     line-height: 58px;
     z-index: 1;
-    top: 299px;
+    top: 272px;
     border-bottom: 1px solid #c0c0c0;
 
     .edit-side-link {
@@ -1934,6 +2351,15 @@ main {
     .modal-card-head {
       height: 68px;
     }
+  }
+
+  #user-edit-panel {
+    margin-top: 90px;
+  }
+
+  #card-layout {
+    width: 100%;
+    margin: 10px 0px;
   }
 
   #content-back .word-break {

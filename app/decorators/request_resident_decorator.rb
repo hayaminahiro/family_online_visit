@@ -23,6 +23,17 @@ module RequestResidentDecorator
     end
   end
 
+  def approval_link_request(facility)
+    case req_approval
+    when "request"
+      tag.p((link_to "利用者登録は #{req_approval_i18n} です", edit_request_resident_path(id), class: "link-design"))
+    when "approval"
+      tag.p((link_to "利用者登録は #{req_approval_i18n} です", new_request_resident_path(facility_id: facility), class: "link-design"))
+    else
+      tag.p((link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: facility), class: "link-design"))
+    end
+  end
+
   def exclude_ids
     Resident.all.where.not(facility_id: current_facility.id)
   end

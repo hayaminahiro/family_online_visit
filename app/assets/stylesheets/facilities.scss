@@ -366,19 +366,27 @@ div.under-line {
 
 //施設ホーム画面（タブのパネル）
 #facility-contents {
+  position: relative;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-top: 30px;
   margin-right: 20px;
   background-color: #fff;
 
+  span.tab-title {
+    font-size: 18px;
+  }
+
   sup {
+    position: absolute;
+    z-index: 20;
+    text-align: center;
+    width: 23px;
+    height: 23px;
     color: white;
-    border: solid 2px;
     border-radius: 50%;
-    padding: 1px 7px;
-    background-color: #4bd3e0;
-    font-weight: 700;
+    background-color: red;
+    top: 0%;
   }
 }
 
@@ -402,8 +410,9 @@ div.under-line {
 }
 
 //施設情報タブタイトル
-.panel-tabs a .facility-tab {
+.panel-tabs a.facility-tab {
   font-size: 18px;
+  position: relative;
 }
 
 //施設情報タブのクリック時
@@ -618,6 +627,7 @@ input#facility_icon.image_uploading_icon {
   overflow: hidden;
   background: black;
   border-bottom-right-radius: 30%;
+  position: relative;
 }
 
 #request-user img {
@@ -633,8 +643,8 @@ input#facility_icon.image_uploading_icon {
 
 #request-user p {
   position: absolute;
-  top: 57%;
-  left: 38%;
+  top: 50%;
+  left: 50%;
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -923,6 +933,18 @@ h1.mini-title {
 
 //タブレット
 @media screen and (max-width: 1050px) {
+
+  #facility-contents {
+
+    span.tab-title {
+      font-size: 11px;
+    }
+
+    sup {
+      font-size: 15px;
+      top: -13%;
+    }
+  }
   //施設側ホーム画面の情報タブ
   .panel-tabs a.facility-tab {
     font-size: 2px;
@@ -934,6 +956,10 @@ h1.mini-title {
     display: block;
     text-align: center;
     margin-bottom: 3px;
+  }
+
+  .content-request {
+    font-size: 18px;
   }
 
   //【施設編集画面】
@@ -979,12 +1005,6 @@ h1.mini-title {
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 65px;
-  }
-
-  //登録申請ボタン【ユーザー側施設ホーム】
-  #request-user p {
-    top: 24%;
-    left: 50%;
   }
 
   //タブレットでの説明文
@@ -1079,6 +1099,15 @@ h1.mini-title {
     top: 0%;
   }
 
+  #facility-contents {
+
+    sup {
+      width: 23px;
+      height: 23px;
+      font-size: 15px;
+    }
+  }
+
   .panel.is-success .panel-heading {
     font-size: 24px;
   }
@@ -1088,14 +1117,19 @@ h1.mini-title {
     width: 60px;
   }
 
+  //システムからのお知らせ
+  #panel-content {
+
+    #panel-content-home {
+      width: 30%;
+      height: auto;
+      display: inline-block;
+    }
+  }
+
   //ユーザーの名前
   .user-name-layout {
     font-size: 16px;
-  }
-
-  //登録申請ボタン
-  #request-user p {
-    top: 24%;
   }
 
   .btn-shine {
@@ -1123,6 +1157,7 @@ h1.mini-title {
   #layout-comment {
     display: -webkit-flex;
     display: flex;
+    margin-left: 8%;
   }
 
   //メニュー項目

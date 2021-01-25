@@ -15,13 +15,15 @@
 
 <div class="about-title has-text-centered">お知らせ</div>
 
-<section class="hero" style="background-color: #F5F5F5;">
-  <article class="panel" id="panel-content">
-    <div class="columns is-multiline has-text-left">
-      施設のお知らせ表示が入る
-    </div>
-  </article>
-</section>
+<article class="panel" id="panel-content">
+  <div class="columns is-multiline has-text-left">
+    <article class="panel" id="panel-content">
+      <div class="columns is-multiline has-text-left">
+        ここにシステムからのお知らせ表示される
+      </div>
+    </article>
+  </div>
+</article>
 
 <div class="about-title has-text-centered">登録申請</div>
 
@@ -45,11 +47,11 @@
       必要があります。まずは<br>
       <font color="#1E90FF">ご利用者様の登録申請</font><br>
       をおこなってください。<br>
-      申請が完了した場合、<br>
+      申請が承認された場合、<br>
       <font color="FFDD58">面会予約</font>、<font color="3173DC">ビデオ通話、</font><br>
       <font color="#228B22">写真・動画の閲覧</font>などの<br>
-      メニューを使用することが<br>
-      できるようになります。
+      メニューが表示され<br>
+      使用できるようになります。
     </p>
   </div>
 
@@ -59,121 +61,122 @@
       利用されている方とのマッチングを<br>
       おこなう必要があります。<br>
       まずは<font color="#1E90FF">ご利用者様の登録申請</font>をおこなってください。<br>
-      申請が完了した場合、<br>
+      申請が承認された場合、<br>
       <font color="FFDD58">面会予約</font>、<font color="3173DC">ビデオ通話、</font><font color="#228B22">写真・動画の閲覧</font>などの<br>
-      メニューを使用することができるようになります。
+      メニューが表示され使用できるようになります。
     </p>
   </div>
 </div>
 
+<% if @menu_approval.present? %>
+  <div class="about-title has-text-centered">Menu</div>
 
-<div class="about-title has-text-centered">Menu</div>
-
-<div class="columns .is-variable is-0" style="margin-top: 20px;">
-  <div class="column is-3">
-    <div class="card" style="height: auto;">
-      <div class="card-image" id="home-images">
-        <figure class="image is-4by3">
-          <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_reservation.jpg"), '#' %>
-          <p><%= link_to "面会予約",  facility_reservations_path(facility_id: @facility.id), :style=>"color: #fff;" %></p>
-        </figure>
-      </div>
-      <div class="card-content has-text-centered menu-card">
-        <div class="is-size-5">
-          <%= link_to facility_reservations_path(facility_id: @facility.id), class: "button menu-btn is-rounded is-warning is-outlined" do %>
-            <span class="icon">
-              <i class="far fa-calendar-alt"></i>&nbsp;
-            </span>
-            <span>
-              面会予約
-            </span>
-          <% end %>
-        </div><br>
-        <div class="menu-content">
-          オンラインでの面会予約の日時の登録、編集、削除ができます。
+  <div class="columns .is-variable is-0" style="margin-top: 20px;">
+    <div class="column is-3">
+      <div class="card" style="height: auto;">
+        <div class="card-image" id="home-images">
+          <figure class="image is-4by3">
+            <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_reservation.jpg"), '#' %>
+            <p><%= link_to "面会予約",  facility_reservations_path(facility_id: @facility.id), :style=>"color: #fff;" %></p>
+          </figure>
+        </div>
+        <div class="card-content has-text-centered menu-card">
+          <div class="is-size-5">
+            <%= link_to facility_reservations_path(facility_id: @facility.id), class: "button menu-btn is-rounded is-warning is-outlined" do %>
+              <span class="icon">
+                <i class="far fa-calendar-alt"></i>&nbsp;
+              </span>
+              <span>
+                面会予約
+              </span>
+            <% end %>
+          </div><br>
+          <div class="menu-content">
+            オンラインでの面会予約の日時の登録、編集、削除ができます。
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="column is-3">
+      <div class="card" style="height: auto;">
+        <div class="card-image" id="home-images">
+          <figure class="image is-4by3">
+            <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_chat.jpg"), '#' %>
+            <p><%= link_to "ビデオ通話", video_room_user_path(current_user, facility_id: @facility.id), :style=>"color: #fff;" %></p>
+          </figure>
+        </div>
+        <div class="card-content has-text-centered menu-card">
+          <div class="is-size-5">
+            <%= link_to video_room_user_path(current_user, facility_id: @facility.id), class: "button menu-btn is-link is-rounded is-outlined" do %>
+              <span class="icon">
+                <i class="fas fa-video"></i>&nbsp;
+              </span>
+              <span>
+                ビデオ通話
+              </span>
+            <% end %>
+          </div><br>
+          <div class="menu-content">
+            施設ご利用者様とのビデオ通話をすることができます。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-3">
+      <div class="card" style="height: auto;">
+        <div class="card-image" id="home-images">
+          <figure class="image is-4by3">
+            <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_album.jpg"), new_request_resident_path(facility_id: @facility) %>
+            <p><%= link_to "写真・動画", '#', :style=>"color: #fff;" %></p>
+          </figure>
+        </div>
+        <div class="card-content has-text-centered menu-card">
+          <div class="is-size-5">
+            <%= link_to '#', class: "button menu-btn is-rounded is-outlined is-success" do %>
+              <span class="icon">
+                <i class="fas fa-photo-video"></i>&nbsp;
+              </span>
+              <span>
+                写真・動画
+              </span>
+            <% end %>
+          </div><br>
+          <div class="menu-content">
+            ご利用者様の写真の閲覧、動画の視聴をすることができます。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-3">
+      <div class="card" style="height: auto;">
+        <div class="card-image" id="home-images">
+          <figure class="image is-4by3">
+            <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_+contact.jpg"), inquiry_facility_inquiries_path(@facility) %>
+            <p><%= link_to "お問い合わせ", inquiry_facility_inquiries_path(@facility), :style=>"color: #fff;" %></p>
+          </figure>
+        </div>
+        <div class="card-content has-text-centered menu-card">
+          <div class="is-size-5">
+            <%= link_to inquiry_facility_inquiries_path(@facility), class: "button menu-btn is-primary is-rounded is-outlined" do %>
+              <span class="icon">
+                <i class="far fa-paper-plane"></i>&nbsp;
+              </span>
+              <span>
+                お問い合わせ
+              </span>
+            <% end %>
+          </div><br>
+          <div class="menu-content">
+            登録申請した施設に問い合わせをすることができます。
+          </div>
+        </div>
+      </div>
+    </div><br>
   </div>
-
-  <div class="column is-3">
-    <div class="card" style="height: auto;">
-      <div class="card-image" id="home-images">
-        <figure class="image is-4by3">
-          <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_chat.jpg"), '#' %>
-          <p><%= link_to "ビデオ通話", video_room_user_path(current_user, facility_id: @facility.id), :style=>"color: #fff;" %></p>
-        </figure>
-      </div>
-      <div class="card-content has-text-centered menu-card">
-        <div class="is-size-5">
-          <%= link_to video_room_user_path(current_user, facility_id: @facility.id), class: "button menu-btn is-link is-rounded is-outlined" do %>
-            <span class="icon">
-              <i class="fas fa-video"></i>&nbsp;
-            </span>
-            <span>
-              ビデオ通話
-            </span>
-          <% end %>
-        </div><br>
-        <div class="menu-content">
-          施設ご利用者様とのビデオ通話をすることができます。
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="column is-3">
-    <div class="card" style="height: auto;">
-      <div class="card-image" id="home-images">
-        <figure class="image is-4by3">
-          <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_album.jpg"), new_request_resident_path(facility_id: @facility) %>
-          <p><%= link_to "写真・動画", '#', :style=>"color: #fff;" %></p>
-        </figure>
-      </div>
-      <div class="card-content has-text-centered menu-card">
-        <div class="is-size-5">
-          <%= link_to '#', class: "button menu-btn is-rounded is-outlined is-success" do %>
-            <span class="icon">
-              <i class="fas fa-photo-video"></i>&nbsp;
-            </span>
-            <span>
-              写真・動画
-            </span>
-          <% end %>
-        </div><br>
-        <div class="menu-content">
-          ご利用者様の写真の閲覧、動画の視聴をすることができます。
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="column is-3">
-    <div class="card" style="height: auto;">
-      <div class="card-image" id="home-images">
-        <figure class="image is-4by3">
-          <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_home_+contact.jpg"), inquiry_facility_inquiries_path(@facility) %>
-          <p><%= link_to "お問い合わせ", inquiry_facility_inquiries_path(@facility), :style=>"color: #fff;" %></p>
-        </figure>
-      </div>
-      <div class="card-content has-text-centered menu-card">
-        <div class="is-size-5">
-          <%= link_to inquiry_facility_inquiries_path(@facility), class: "button menu-btn is-primary is-rounded is-outlined" do %>
-            <span class="icon">
-              <i class="far fa-paper-plane"></i>&nbsp;
-            </span>
-            <span>
-              お問い合わせ
-            </span>
-          <% end %>
-        </div><br>
-        <div class="menu-content">
-          登録申請した施設に問い合わせをすることができます。
-        </div>
-      </div>
-    </div>
-  </div><br>
-</div>
+<% end %>
 
 <script>
   ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });

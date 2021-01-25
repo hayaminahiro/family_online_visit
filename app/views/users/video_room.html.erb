@@ -20,7 +20,7 @@
             <div id="timer" class="has-text-weight-semibold">残り30分</div>
           </div>
         </div>
-      <% end %>  
+      <% end %>
       <div class="has-text-centered columns is-gapless">
         <div class="column is-half" id="local-video">
           <video id="js-local-stream"></video>
@@ -43,7 +43,7 @@
               <p>タイマー</p>
             </button>
           </div>&emsp;
-        <% end %>  
+        <% end %>
         <button id="js-leave-trigger" class="button is-focused is-danger is-rounded has-text-weight-semibold">退室する</button>
       </div><br>
       <div class="has-text-centered messages-layout">
@@ -129,7 +129,7 @@
     const localStream = await navigator.mediaDevices
       .getUserMedia({
         audio: true,
-        video: true,
+        video: { facingMode: 'user' },
       })
       .catch(console.error);
     // Render local stream

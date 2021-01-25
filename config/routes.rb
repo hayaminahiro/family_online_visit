@@ -64,7 +64,11 @@ Rails.application.routes.draw do
   end
 
   # 利用施設登録 ==========================================================================
-  resources :facility_users, only: %i[new update]
+  resources :facility_users, only: %i[new update] do
+    member do
+      patch :facility_update
+    end
+  end
 
   # 入居者 ================================================================================
   resources :residents do

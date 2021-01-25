@@ -78,14 +78,14 @@
                       <%= link_to edit_user_room_path(user, id: room.id), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
                         <i class="fas fa-key"></i>
                       <% end %>
-                    </div>  
+                    </div>
                   <% else %>
                     <div class=" js-contents--create-button">
                       <%= link_to new_user_room_path(user), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
                         <i class="fas fa-key"></i>
                       <% end %>
-                    </div>  
-                  <% end %>  
+                    </div>
+                  <% end %>
                 </td>
                 <td class="is-vcentered">
                   <div class="has-text-weight-semibold user-table-tag">
@@ -155,8 +155,20 @@
 </script>
 
 <script>
-  $(function(){
-    ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
-    ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+  $(function() {
+    ScrollReveal().reveal('.facility-icon-image', {
+      delay: 600,
+      distance: '70%',
+      origin: 'top',
+      duration: 2000,
+      viewFactor: 0.5
+    });
+    ScrollReveal().reveal('#facility-name', {
+      delay: 100,
+      distance: '100%',
+      origin: 'left',
+      duration: 2000,
+      viewFactor: 0.5
+    });
   });
 </script>
