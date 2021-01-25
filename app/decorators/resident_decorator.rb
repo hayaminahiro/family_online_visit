@@ -20,9 +20,9 @@ module ResidentDecorator
     image_columns
   end
 
-  def this_month_image_count
+  def image_count(select_days)
     image_columns = []
-    memories.where(created_at: Time.now.all_month).each do |m|
+    memories.where(created_at: select_days).each do |m|
       image_columns << m.image0 if m.image0?
       image_columns << m.image1 if m.image1?
       image_columns << m.image2 if m.image2?

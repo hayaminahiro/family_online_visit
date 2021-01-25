@@ -3,22 +3,8 @@ class ResidentsController < ApplicationController
 
   def index
     @residents = Resident.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
-
-    @image_columns = []
-    @residents.each do |resident|
-      resident.memories.where(created_at: Time.now.all_month).each do |m|
-        @image_columns << m.image0 if m.image0?
-        @image_columns << m.image1 if m.image1?
-        @image_columns << m.image2 if m.image2?
-        @image_columns << m.image3 if m.image3?
-        @image_columns << m.image4 if m.image4?
-        @image_columns << m.image5 if m.image5?
-        @image_columns << m.image6 if m.image6?
-        @image_columns << m.image7 if m.image7?
-      end
-    end
-    @image_columns
-
+    @select_month = params[:date].nil? ? Time.now : params[:date].to_date
+    @total_image_count = Memory.total_image_count(current_facility.residents, @select_month)
   end
 
   def new
