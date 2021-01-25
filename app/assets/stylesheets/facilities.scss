@@ -374,7 +374,7 @@ div.under-line {
   background-color: #fff;
 
   span.tab-title {
-    font-size: 11px;
+    font-size: 18px;
   }
 
   sup {
@@ -935,6 +935,10 @@ h1.mini-title {
 @media screen and (max-width: 1050px) {
 
   #facility-contents {
+
+    span.tab-title {
+      font-size: 11px;
+    }
 
     sup {
       font-size: 15px;
