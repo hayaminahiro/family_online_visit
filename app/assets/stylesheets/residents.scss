@@ -23,12 +23,12 @@
 }
 
 .button.resident--create-button {
-  padding-top: 14px!important;
+  padding-top: 14px !important;
   font-size: 20px;
 }
 
 .resident--update-button {
-  padding-top: 10px!important;
+  padding-top: 10px !important;
 }
 
 #resident-modal-form {
@@ -36,7 +36,7 @@
 }
 
 .resident-title {
-  background-color: rgb( 117, 150, 224 );
+  background-color: rgb(117, 150, 224);
 }
 
 .residents-search {
@@ -73,21 +73,23 @@
     font-size: 17px;
   }
 
-  thead th {/*table内のヘッダーに対して*/
+  thead th {
+    /*table内のヘッダーに対して*/
     color: white;
-    font-size:20px;
+    font-size: 20px;
   }
 
   thead tr {
-    background-color: rgb( 117, 150, 224 )
+    background-color: rgb(117, 150, 224);
   }
 
-  .tr-head {/*table内のラベル対して*/
-      background-color: rgb( 188, 214, 226 )
-    }
+  .tr-head {
+    /*table内のラベル対して*/
+    background-color: rgb(188, 214, 226);
+  }
 
   .text-color {
-    color:white;
+    color: white;
   }
 
   .text-left {
@@ -106,7 +108,7 @@
 }
 
 .image-count-td {
-  text-align :left !important;
+  text-align: left !important;
   padding-left: 41px !important;
   font-weight: 400;
 }
@@ -121,13 +123,14 @@
 }
 
 .resident_cp_tooltip {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .resident_cp_tooltip .resident_cp_tooltiptext {
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+    0 0px 0 1px rgba(10, 10, 10, 0.02);
   position: absolute;
   z-index: 1;
   bottom: 0px;
@@ -146,13 +149,12 @@
 }
 
 .resident_cp_tooltip:hover .resident_cp_tooltiptext {
-	visibility: visible;
-	opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 //タブレット
 @media screen and (max-width: 1000px) {
-
   #file-js-example {
     width: 78%;
   }
@@ -179,7 +181,6 @@
 
 //モバイル
 @media screen and (max-width: 500px) {
-
   #file-js-example {
     font-size: 15px;
     width: 46%;
