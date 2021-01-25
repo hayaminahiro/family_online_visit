@@ -66,7 +66,7 @@
                 <th class="text-left">
                   <div class="js-contents--content">
                     <div class="image-total-count">合計<span class="image-total-count-span"><%= @total_image_count %></span>枚</div>
-                      <%= form_with model: current_facility, url:  residents_path(current_facility), class: "residents-month-select", method: :get, remote: true do |f| %>
+                      <%= form_with model: current_facility, url:  residents_path(current_facility), class: "residents-month-select", method: :get do |f| %>
                         <%= f.select :user_id, [[ @select_month.prev_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.prev_month.all_month)],
                                                 [ @select_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.all_month)],
                                                 [ @select_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.all_month)],
