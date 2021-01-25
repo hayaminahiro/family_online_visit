@@ -1,4 +1,4 @@
-<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background: #efefef; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" data-turbolinks="false" style="background: #efefef; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);">
   <div class="navbar-brand" style="background: #efefef;">
     <section class="navbar dark-top" style="background-color: #FFDEAD;">
       <div class="navbar-body">
@@ -6,7 +6,7 @@
           <%= link_to root_path, class: "navbar-item" do %>
             <i class="fas fa-photo-video font-awe-video"></i>
             <h1 class="title-header s-2">
-              <font color="#DAA520">O</font><font color="#fff">nli<font color="#FA8072">n</font></font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
+              <font color="#DAA520">O</font><font color="#fff">nli</font><font color="#FA8072">n</font><font color="#4682B4">e</font> <font color="#4DADA1">V</font><font color="#fff">isi</font><font color="#DF907C">t</font>
             </h1>
           <% end %>
         </div>
@@ -61,7 +61,7 @@
               <% else %>
                 <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "header-icon" %>
               <% end %>
-            <% end %>    
+            <% end %>
           </a>
           <div class="navbar-dropdown" style="background-color: #efefef;">
             <% if user_signed_in? %>
@@ -80,7 +80,7 @@
         <div class="navbar-item">
           <div class="buttons">
             <p class="navbar-item has-text-weight-bold is-size-5">
-              <font color ="#828282">管理者はこちらから</font>
+              <font color="#828282">管理者はこちらから</font>
             </p>
             <%= link_to facility_session_path, class: "circle_spread_btn" do %>
               <i class="far fa-user-circle fa-2x" style="padding-top: 9px;"></i>
