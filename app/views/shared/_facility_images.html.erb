@@ -2,15 +2,16 @@
   <div class="facility-home-image">
     <% if current_page?('/facilities/edit') %>
       <%= facility.facility_edit_background_image %>
-    <% else %>  
+    <% else %>
       <%= facility.facility_background_image %>
-    <% end %>  
+    <% end %>
     <div class="image-outline" id="scroll-position">
       <% if facility.icon? %>
         <%= image_tag facility.icon.url, class: "facility-icon-image" %>
       <% else %>
         <%= image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "facility-icon-image" %>
-      <% end %>  
+      <% end %>
+      <div id="top"></div>
       <div class="has-text-right" id="facility-name">
         <%= facility.facility_name %>
       </div>
@@ -27,13 +28,13 @@
         <div class="user-edit-background-back">
           <div class="user-edit-backgroung-image">
             <i class="fas fa-camera"></i>
-          </div>  
+          </div>
         </div>
       </div>
     <% else %>
       <div class="facility-icon-outline">
         <%= facility.facility_icon_responsive %>
       </div>
-    <% end %>  
+    <% end %>
   </div>
 </section>
