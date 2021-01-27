@@ -45,8 +45,8 @@
                   <% unless calendar_setting(@week, date) %>
                     <p class="impossible-btn">✗</p>
                   <% end %>
-                  <% if @reservations_facility_max.reservation_date(date).length >= 1 %>
-                    <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
+                  <% if @reservations.facility(current_facility).reservation_date(date).length >= 1 %>
+                    <p class="non-sign"><%= @reservations.facility(current_facility).reservation_date(date).length %>件</p>
                   <% end %>
                 <% end %>
               </div>

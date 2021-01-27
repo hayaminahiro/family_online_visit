@@ -6,12 +6,12 @@
 
 <% if calendar_setting(@week, date) %>
   <% if current_facility.present? %>
-    <% if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 && date >= Date.current %>
+    <% if @reservations.facility_day_max(@facility, @user).reservation_date(date).length < 1 && @reservations.facility(current_facility).reservation_date(date).length < 10 && date >= Date.current %>
       <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
     <% elsif date < Date.current %>
       <p class="impossible-btn">✗</p>
     <% else %>
-      <p class="non-sign"><%= @reservations_facility_max.reservation_date(date).length %>件</p>
+      <p class="non-sign"><%= @reservations.facility(current_facility).reservation_date(date).length %>件</p>
     <% end %>
   <% elsif current_user.present? %>
     <% if @reservations.facility(@facility).reservation_user(current_user.name).reservation_date(date).length < 1 && @reservations.facility(@facility).where(reservation_date: date).length < 10 && date >= Date.current %>

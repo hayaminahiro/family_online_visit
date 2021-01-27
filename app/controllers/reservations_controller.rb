@@ -4,7 +4,6 @@ class ReservationsController < ApplicationController
   before_action :set_user, except: %i[show create destroy]
   before_action :set_reservation, only: %i[show destroy]
   before_action :set_reservations, only: %i[index index_week reservation_time]
-  before_action :set_reservation_limit, only: %i[index index_week]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
 
   def index; end
@@ -78,18 +77,11 @@ class ReservationsController < ApplicationController
       @reservations = Reservation.all.sorted
     end
 
-    def set_reservation_limit
-      @reservations_facility_max = @reservations.facility(current_facility)
-      @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.name) if @user.present?
-      @reservations_user_max = @reservations.facility(@facility)
-      @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.name) if current_user.present?
-    end
-
     def calendar_settings
       @calendar_settings = CalendarSetting.all.facility(@facility)
       @week = []
       CalendarSetting::DAY_OF_THE_WEEK.each do |day|
-        @week << @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?(day) if @calendar_settings.find_by(facility_id: current_facility.id).present? ? day : nil
+        @week << @calendar_settings.find_by(facility_id: @facility.id).regular_holiday.include?(day) if @calendar_settings.find_by(facility_id: @facility.id).present? ? day : nil
         num = -1
         while num < 6
           @week[num] = num + 1 if @week[num].present?

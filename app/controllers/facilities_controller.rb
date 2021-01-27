@@ -27,10 +27,6 @@ class FacilitiesController < ApplicationController
     # カレンダー設定と予約
     @calendar_settings = CalendarSetting.all.facility(current_facility)
     @reservations = Reservation.all.sorted
-    @reservations_facility_max = @reservations.facility(current_facility)
-    @reservations_facility_day_max = @reservations_facility_max.reservation_user(@user.try(:name))
-    @reservations_user_max = @reservations.facility(@facility)
-    @reservations_user_day_max = @reservations_user_max.reservation_user(current_user.try(:name))
     @set_id = @calendar_settings.find_by(facility_id: current_facility.id).try(:id)
     # 曜日が存在していた場合、該当する曜日の整数を代入
     @week = []
