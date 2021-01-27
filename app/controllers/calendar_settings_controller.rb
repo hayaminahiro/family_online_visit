@@ -1,5 +1,5 @@
 class CalendarSettingsController < ApplicationController
-  before_action :set_facility_id, except: :index
+  before_action :set_facility_id
   before_action :set_calendar_setting, only: %i[edit update destroy]
   before_action :calendar_settings_all, only: %i[new edit]
 
@@ -32,6 +32,7 @@ class CalendarSettingsController < ApplicationController
   end
 
   private
+
     def set_facility_id
       @facility = Facility.find(current_facility.id)
     end
