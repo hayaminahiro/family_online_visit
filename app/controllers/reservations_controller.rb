@@ -89,7 +89,7 @@ class ReservationsController < ApplicationController
       @calendar_settings = CalendarSetting.all.facility(@facility)
       @week = []
       CalendarSetting::DAY_OF_THE_WEEK.each do |day|
-        @week << @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?(day) ? day : nil
+        @week << @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?(day) if @calendar_settings.find_by(facility_id: current_facility.id).present? ? day : nil
         num = -1
         while num < 6
           @week[num] = num + 1 if @week[num].present?
