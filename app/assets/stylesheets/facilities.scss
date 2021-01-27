@@ -580,6 +580,30 @@ input#facility_icon.image_uploading_icon {
   color: #fff;
 }
 
+//登録申請タブ
+#registration-table {
+  margin-top: 50px;
+
+  #applying-btn {
+    width: 45%;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+
+  #applied-btn {
+    width: 45%;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  #applicant-btn {
+    width: 45%;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}
+
 //ユーザールートの施設ホーム画面のメニュー画像
 #home-images {
   overflow: hidden;
@@ -1115,6 +1139,35 @@ h1.mini-title {
   //ユーザアイコン
   .facility-user-image {
     width: 60px;
+  }
+
+  //登録申請タブ
+  #registration-table {
+
+    th {
+      font-size: 13px;
+    }
+
+    td {
+      font-size: 10px;
+    }
+
+    #applying-btn {
+      font-size: 10px;
+      margin-right: 0;
+      width: 47%;
+    }
+
+    #applied-btn {
+      font-size: 10px;
+      width: 47%;
+    }
+
+    #applicant-btn {
+      font-size: 10px;
+      width: 58%;
+    }
+
   }
 
   //システムからのお知らせ

@@ -33,14 +33,14 @@
         <div id="Aud" class="content-tab" style="display:none">
           <div class="columns">
             <div class="column is-offset-1 is-10 is-offset-1 table-container">
-              <table class="table is-striped is-hoverable is-fullwidth" style="margin-top: 50px;">
+              <table class="table is-striped is-hoverable is-fullwidth" id="registration-table">
                 <thead>
                   <tr>
                     <th>申請日</th>
                     <th>申請者</th>
                     <th>
-                      <%= link_to "申請中一覧", new_relative_path, class: "button is-primary is-outlined is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>
-                      <%= link_to "申請済一覧", relatives_path, class: "button is-small is-size-6", style: "width: 45%; margin-left: 20px;" %>
+                      <%= link_to "申請中一覧", new_relative_path, class: "button is-primary is-outlined is-small", id: "applying-btn" %>
+                      <%= link_to "申請済一覧", relatives_path, class: "button is-small", id: "applied-btn" %>
                     </th>
                   </tr>
                 </thead>
@@ -52,7 +52,7 @@
                       <td><%= l(request_resident.created_at, format: :long) %></td>
                       <td><%= @request_user.name %></td>
                       <td>
-                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small has-text-weight-bold is-size-6", style: "width: 45%;" %>
+                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small", id: "applicant-btn" %>
                       </td>
                     </tr>
                   <% end %>
