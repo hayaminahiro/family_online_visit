@@ -366,20 +366,28 @@ div.under-line {
 
 //施設ホーム画面（タブのパネル）
 #facility-contents {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin-top: 30px;
-	margin-right: 20px;
-	background-color: #fff;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  background-color: #fff;
 
-	sup {
-		color: white;
-		border: solid 2px;
-		border-radius: 50%;
-		padding: 1px 7px;
-		background-color: #4bd3e0;
-		font-weight: 700;
-	}
+  span.tab-title {
+    font-size: 18px;
+  }
+
+  sup {
+    position: absolute;
+    z-index: 20;
+    text-align: center;
+    width: 23px;
+    height: 23px;
+    color: white;
+    border-radius: 50%;
+    background-color: red;
+    top: 0%;
+  }
 }
 
 .inline-block_home {
@@ -402,8 +410,9 @@ div.under-line {
 }
 
 //施設情報タブタイトル
-.panel-tabs a .facility-tab {
-	font-size: 18px;
+.panel-tabs a.facility-tab {
+  font-size: 18px;
+  position: relative;
 }
 
 //施設情報タブのクリック時
@@ -615,9 +624,10 @@ input#facility_icon.image_uploading_icon {
 
 //登録申請
 #request-user {
-	overflow: hidden;
-	background: black;
-	border-bottom-right-radius: 30%;
+  overflow: hidden;
+  background: black;
+  border-bottom-right-radius: 30%;
+  position: relative;
 }
 
 #request-user img {
@@ -632,18 +642,18 @@ input#facility_icon.image_uploading_icon {
 }
 
 #request-user p {
-	position: absolute;
-	top: 57%;
-	left: 38%;
-	-ms-transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	margin: 0;
-	padding: 0;
-	font-weight: bold;
-	font-size: 23px;
-	color: #fff;
-	white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 23px;
+  color: #fff;
+  white-space: nowrap;
 }
 
 //初めての登録申請ボタン
@@ -923,117 +933,127 @@ h1.mini-title {
 
 //タブレット
 @media screen and (max-width: 1050px) {
-	//施設側ホーム画面の情報タブ
-	.panel-tabs a.facility-tab {
-		font-size: 2px;
-		margin: 0 50px;
-	}
 
-	.panel-tabs a.facility-tab i {
-		font-size: 30px;
-		display: block;
-		text-align: center;
-		margin-bottom: 3px;
-	}
+  #facility-contents {
 
-	//【施設編集画面】
-	//インプット欄のレイアウト
-	#input-field {
-		margin-bottom: 20px;
-	}
+    span.tab-title {
+      font-size: 11px;
+    }
+
+    sup {
+      font-size: 15px;
+      top: -13%;
+    }
+  }
+  //施設側ホーム画面の情報タブ
+  .panel-tabs a.facility-tab {
+    font-size: 2px;
+    margin: 0 50px;
+  }
+
+  .panel-tabs a.facility-tab i {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    margin-bottom: 3px;
+  }
+
+  .content-request {
+    font-size: 18px;
+  }
+
+  //【施設編集画面】
+  //インプット欄のレイアウト
+  #input-field {
+    margin-bottom: 20px;
+  }
 }
 
 //resposiveデザイン
 @media screen and (max-width: 1000px) {
-	//背景画像【施設側ホームページ】
-	.home-image {
-		height: 280px;
-	}
+  //背景画像【施設側ホームページ】
+  .home-image {
+    height: 280px;
+  }
 
-	.image-outline {
-		height: 80px;
-		top: 200px;
-	}
+  .image-outline {
+    height: 80px;
+    top: 200px;
+  }
 
-	#facility-name {
-		font-size: 27px;
-	}
+  #facility-name {
+    font-size: 27px;
+  }
 
-	.facility-icon-image {
-		top: 21%;
-		width: 50px;
-		height: 50px;
-	}
+  .facility-icon-image {
+    top: 21%;
+    width: 50px;
+    height: 50px;
+  }
 
-	.panel.is-success .panel-heading {
-		font-size: 30px;
-	}
+  .panel.is-success .panel-heading {
+    font-size: 30px;
+  }
 
-	#facility-contents {
-		margin-top: 0px;
-		margin-right: 8px;
-		padding: 15px;
-	}
+  #facility-contents {
+    margin-top: 0px;
+    margin-right: 8px;
+    padding: 15px;
+  }
 
-	#calendar-reservations {
-		margin-left: 0px;
-		margin-right: 0px;
-		margin-bottom: 65px;
-	}
+  #calendar-reservations {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 65px;
+  }
 
-	//登録申請ボタン【ユーザー側施設ホーム】
-	#request-user p {
-		top: 24%;
-		left: 50%;
-	}
+  //タブレットでの説明文
+  #layout-comment-tablet {
+    display: block;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-left: 25%;
+  }
 
-	//タブレットでの説明文
-	#layout-comment-tablet {
-		display: block;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-justify-content: center;
-		justify-content: center;
-		margin-left: 25%;
-	}
+  //デスクトップとモバイルでの説明文
+  #layout-comment {
+    display: none;
+  }
 
-	//デスクトップとモバイルでの説明文
-	#layout-comment {
-		display: none;
-	}
+  //メニュー項目
+  #home-images p {
+    font-size: 40px;
+  }
 
-	//メニュー項目
-	#home-images p {
-		font-size: 40px;
-	}
+  //メニューボタン
+  .button.menu-btn {
+    font-size: 25px;
+  }
 
-	//メニューボタン
-	.button.menu-btn {
-		font-size: 25px;
-	}
+  //メニュー説明文
+  .menu-content {
+    font-size: 23px;
+    text-align: center;
+  }
 
-	//メニュー説明文
-	.menu-content {
-		font-size: 23px;
-		text-align: center;
-	}
+  //検索フォーム【施設登録画面】
+  #input-mobile.field.is-grouped > .control:not(:last-child) {
+    width: 70%;
+  }
 
-	//検索フォーム【施設登録画面】
-	#input-mobile.field.is-grouped > .control:not(:last-child) {
-		width: 70%;
-	}
+  //タイトル
+  #hero-5 h1.search-title {
+    font-size: 40px;
+    margin-top: 10%;
+    margin-bottom: 10px;
+  }
 
-	//タイトル
-	#hero-5 h1.search-title {
-		font-size: 40px;
-		margin-top: 10%;
-		margin-bottom: 10px;
-	}
-
-	//モーダル
-	input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
-		margin-left: 32%;
-	}
+  //モーダル
+  input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
+    margin-left: 32%;
+  }
 }
 
 //モバイル
@@ -1392,4 +1412,243 @@ h1.mini-title {
 	.card-width {
 		margin: 10px 10px 50px 10px !important;
 	}
+  //施設ホーム画面背景画像
+  .home-image {
+    height: 150px;
+  }
+
+  .image-outline {
+    display: none;
+    height: 55px;
+    top: 245px;
+  }
+
+  //施設名
+  #facility-name {
+    font-size: 22px;
+    padding-right: 6%;
+  }
+
+  //施設アイコン
+  .facility-icon-image {
+    top: 6%;
+  }
+
+  //モバイル表示の施設アイコンの背景
+  .facility-icon-outline {
+    display: block;
+    width: 100px;
+    height: 100px;
+    top: 42%;
+  }
+
+  //モバイル表示施設デフォルトアイコン
+  .default-icon-image {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    top: 0%;
+  }
+
+  #facility-contents {
+
+    sup {
+      width: 23px;
+      height: 23px;
+      font-size: 15px;
+    }
+  }
+
+  .panel.is-success .panel-heading {
+    font-size: 24px;
+  }
+
+  //ユーザアイコン
+  .facility-user-image {
+    width: 60px;
+  }
+
+  //システムからのお知らせ
+  #panel-content {
+
+    #panel-content-home {
+      width: 30%;
+      height: auto;
+      display: inline-block;
+    }
+  }
+
+  //ユーザーの名前
+  .user-name-layout {
+    font-size: 16px;
+  }
+
+  .btn-shine {
+    font-size: 19px;
+    width: auto;
+  }
+
+  //申請中の登録申請ボタン
+  #disabled-btn {
+    font-size: 19px;
+    width: auto;
+  }
+
+  //登録申請の説明文
+  .content-request {
+    font-size: 16px;
+  }
+
+  //タブレットでの説明文
+  #layout-comment-tablet {
+    display: none;
+  }
+
+  //デスクトップとモバイルでの説明文
+  #layout-comment {
+    display: -webkit-flex;
+    display: flex;
+    margin-left: 8%;
+  }
+
+  //メニュー項目
+  #home-images p {
+    font-size: 27px;
+  }
+
+  //メニューボタン
+  .button.menu-btn {
+    font-size: 1rem;
+  }
+
+  //メニュー説明文
+  .menu-content {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .card-content.menu-card {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+
+  //施設側ホーム画面の情報タブ
+  .panel-tabs a.facility-tab {
+    margin: 0 20px;
+  }
+
+  //【施設登録画面】
+  .card.card-style.search-mobile {
+    margin: 20px 10px;
+    width: 92%;
+  }
+
+  //モーダル
+  input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
+    font-size: 17px;
+    margin-left: 17%;
+  }
+
+  //検索フォーム
+  #hero-5 h1.search-title {
+    font-size: 24px;
+    margin: 0px 0px 10px 0px;
+  }
+
+  .is-medium.input,
+  .is-medium.textarea {
+    height: 95%;
+  }
+
+  .button.search-btn {
+    height: 95%;
+  }
+
+  //背景画像
+  #hero-5 {
+    height: 50%;
+  }
+
+  .search-img {
+    height: 100%;
+  }
+
+  //検索フォームのプレイスフォルダー
+  input.search-facility::placeholder {
+    font-size: 0.7em;
+  }
+
+  //【利用施設登録画面】
+  p.title.is-6.result {
+    margin: 50px;
+  }
+
+  //【施設編集画面】
+  //施設編集タイトル
+  #facility-edit-title {
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      rgba(78, 111, 139, 0.8) 10%,
+      rgba(10, 32, 63, 0.8) 90%
+    );
+  }
+
+  #facility-edit-title h1 {
+    color: #fff;
+  }
+
+  //サブタイトル
+  #account-title {
+    display: none;
+  }
+
+  //メニュータイトル
+  .mini-title {
+    display: none;
+  }
+
+  //コメント
+  .title-description {
+    display: none;
+  }
+
+  //現在の背景画像
+  .facility-photo {
+    display: none;
+  }
+
+  //背景画像のファイル選択
+  .drop-zone-area {
+    display: none;
+  }
+
+  //アイコンのファイル選択
+  #drop-zone-area {
+    display: none;
+  }
+
+  //位置調整
+  .position-control {
+    display: none;
+  }
+
+  //施設編集インプット欄
+  #panel-style {
+    padding: 0px;
+  }
+
+  //インプット欄の幅
+  #input-field {
+    width: 70%;
+    margin: 0px auto;
+  }
+
+  //パネル
+  .top-btn-position {
+    margin-top: 48px;
+  }
 }

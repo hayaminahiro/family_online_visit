@@ -3,6 +3,8 @@ class ResidentsController < ApplicationController
 
   def index
     @residents = Resident.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+    @select_month = params[:date].nil? ? Time.current : params[:date].to_date
+    @total_image_count = Memory.total_image_count(current_facility.residents, @select_month)
   end
 
   def new

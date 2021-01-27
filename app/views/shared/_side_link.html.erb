@@ -11,7 +11,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to residents_path do %>
+        <%= link_to residents_path(anchor: 'top') do %>
           <span class="icon">
             <i class="fas fa-id-badge"></i>
           </span>&nbsp;
@@ -19,7 +19,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to users_path do %>
+        <%= link_to users_path(anchor: 'top') do %>
           <span class="icon">
             <i class="fas fa-user-friends"></i>
           </span>&nbsp;
@@ -27,7 +27,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to informations_path do %>
+        <%= link_to informations_path(anchor: 'top') do %>
           <span class="icon">
             <i class="far fa-bell"></i>
           </span>&nbsp;
@@ -35,7 +35,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to facility_inquiries_path(facility_id: current_facility.id) do %>
+        <%= link_to facility_inquiries_path(facility_id: current_facility.id, anchor: 'top') do %>
           <span class="icon">
             <i class="fas fa-phone"></i>
           </span>&nbsp;
@@ -45,3 +45,14 @@
     </ul>
   </section>
 </div>
+
+<script>
+  var headerHeight = $('.navbar-brand').outerHeight();
+  var urlHash = location.hash;
+  if(urlHash) {
+    var target = $(urlHash);
+    var position = target.offset().top - headerHeight;
+
+    $('body,html').stop().animate({scrollTop:position}, 800);
+  }
+</script>

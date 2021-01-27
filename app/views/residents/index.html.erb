@@ -6,7 +6,7 @@
     <section class="resident-title hero">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title is-size-3 has-text-white">
+          <h1 class="title is-size-3 has-text-white" id="table">
             利用者一覧
           </h1>
         </div>
@@ -55,10 +55,26 @@
           <table class="table is-striped is-fullwidth" id="table-residents">
             <thead>
               <tr class="has-text-weight-bold">
-                <th>利用者名</th>
+                <th>
+                  利用者名(<%= current_facility.residents.count %>)
+                </th>
                 <th>ご家族名</th>
                 <th>担当者名</th>
-                <th>思い出アルバム</th>
+                <th>
+                  思い出アルバム
+                </th>
+                <th class="text-left">
+                  <div class="js-contents--content">
+                    <div class="image-total-count">合計<span><%= @total_image_count %></span>枚</div>
+                      <%= form_with model: current_facility, url:  residents_path(current_facility), class: "residents-month-select", method: :get do |f| %>
+                        <%= f.select :user_id, [[ @select_month.prev_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.prev_month.all_month)],
+                                                [ @select_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.all_month)],
+                                                [ @select_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.all_month)],
+                                                [ @select_month.next_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.next_month.all_month)]
+                                              ], { selected: residents_path(anchor: "table", date: @select_month.all_month) }, { class: "residents-month-select-form" } %>
+                      <% end %>
+                  </div>
+                </th>
                 <th>編集</th>
                 <th>退所</th>
                 <th>削除</th>
@@ -78,6 +94,9 @@
                   <%= link_to resident_memories_path(resident), class:"button is-link" do %>
                     <i class="fas fa-images"></i>
                   <% end %>
+                </td>
+                <td class="image-count-td">
+                  <%= resident.image_count(@select_month.all_month) %>
                 </td>
                 <td>
                   <div class=" js-contents--edit-button">
@@ -172,5 +191,18 @@
   $(function(){
     ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
     ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+  });
+</script>
+
+<script>
+  // select変更時
+  $(function() {
+    $('select').change(function() {
+      var url = $(this).val();
+
+      if(url != '') {
+        location.href = url
+      }
+    })
   });
 </script>

@@ -14,17 +14,11 @@
                 <i class="fas fa-folder-open fa-3x"></i>
               <% end %>
 
-              <% if facility_signed_in? %>
-                <%= link_to new_resident_memory_path(resident, add_images: m), class: "folder" do %>
-                  <i class="fas fa-folder-plus fa-3x"></i>
-                <% end %>
-              <% end %>
               <p class="photo-card-text">行事日: <%= l(m.event_date, format: :long) %></p>
             </div>
           </section>
         </div>
       <% end %>
-      <%# <div class="bottom-control">&nbsp;</div> %>
     <% end %>
 
   <% else %>
