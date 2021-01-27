@@ -42,7 +42,7 @@
                       <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
                     <% end %>
                   <% end %>
-                  <% unless @week[0] != date.wday && @week[1] != date.wday && @week[2] != date.wday && @week[3] != date.wday && @week[4] != date.wday && @week[5] != date.wday && @week[6] != date.wday %>
+                  <% unless calendar_setting(@week, date) %>
                     <p class="impossible-btn">✗</p>
                   <% end %>
                   <% if @reservations_facility_max.reservation_date(date).length >= 1 %>

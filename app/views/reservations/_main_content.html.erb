@@ -4,7 +4,7 @@
   <p><%= l(date, format: :short) %></p>
 <% end %>
 
-<% if @week[0] != date.wday && @week[1] != date.wday && @week[2] != date.wday && @week[3] != date.wday && @week[4] != date.wday && @week[5] != date.wday && @week[6] != date.wday %>
+<% if calendar_setting(@week, date) %>
   <% if current_facility.present? %>
     <% if @reservations_facility_day_max.reservation_date(date).length < 1 && @reservations_facility_max.reservation_date(date).length < 10 && date >= Date.current %>
       <%= link_to "◯", reservation_time_facility_reservations_path(current_facility, title_date: l(date, format: :long), date: date, user: @user), remote: true, class: "is-link is-light possible-btn" %>
