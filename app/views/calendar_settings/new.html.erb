@@ -43,7 +43,6 @@
                         <%= f.check_box :cancellation_time, {multiple: true}, "#{time}", nil %>
                         <span id="time-select"><%= time %></span>
                       <% end %>
-
                       <div id="hidden-value"> <!--チェックボックスが全てなし状態でも更新-->
                         <%= f.check_box :cancellation_time, {multiple: true, checked: true}, 1, nil %>
                       </div>

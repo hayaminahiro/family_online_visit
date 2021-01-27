@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'calendar_settings/index'
   root 'static_pages#top'
 
   # メール機能 ============================================================================
