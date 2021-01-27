@@ -25,7 +25,7 @@
                         <i class="fas fa-tools"></i>&nbsp;設定したい定休日を選択して下さい。設定を変更すると定休日として設定されます。
                       </p>
                       <% CalendarSetting::DAY_OF_THE_WEEK.each do |regular_holiday| %>
-                        <%= f.check_box :regular_holiday, {multiple: true, checked: @calendar_settings.first.regular_holiday.include?("#{regular_holiday}") ? true : false}, "#{regular_holiday}", nil %>
+                        <%= f.check_box :regular_holiday, {multiple: true, checked: @calendar_setting.regular_holiday.include?("#{regular_holiday}") ? true : false}, "#{regular_holiday}", nil %>
                         <span id="day-of-the-week"><%= regular_holiday %></span>
                       <% end%>
                       <div id="hidden-value"> <!--チェックボックスが全てなし状態でも更新-->
@@ -40,7 +40,7 @@
                         <i class="far fa-clock"></i>&nbsp;非表示にしたい予約時間を選択して下さい。設定を変更すると選択した時間は非表示になります。
                       </p>
                       <% CalendarSetting::RESERVATION_TIMES.each do |time| %>
-                        <%= f.check_box :cancellation_time, {multiple: true, checked: @calendar_settings.first.cancellation_time.include?("#{time}") ? true : false}, "#{time}", nil %>
+                        <%= f.check_box :cancellation_time, {multiple: true, checked: @calendar_setting.cancellation_time.include?("#{time}") ? true : false}, "#{time}", nil %>
                         <span id="time-select"><%= time %></span>
                       <% end %>
                       <div id="hidden-value"> <!--チェックボックスが全てなし状態でも更新-->

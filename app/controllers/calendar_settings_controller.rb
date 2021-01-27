@@ -1,7 +1,7 @@
 class CalendarSettingsController < ApplicationController
   before_action :set_facility_id
   before_action :set_calendar_setting, only: %i[edit update destroy]
-  before_action :calendar_settings_all, only: %i[new edit]
+  before_action :calendar_setting, only: :edit
 
   def new
     @calendar_setting = @facility.calendar_setting.new
@@ -41,8 +41,8 @@ class CalendarSettingsController < ApplicationController
       @calendar_setting = @facility.calendar_setting.find(params[:id])
     end
 
-    def calendar_settings_all
-      @calendar_settings = CalendarSetting.all.facility(current_facility)
+    def calendar_setting
+      @calendar_setting = CalendarSetting.facility(current_facility).first
     end
 
     def setting_params
