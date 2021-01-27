@@ -48,5 +48,4 @@ class CalendarSettingsController < ApplicationController
     def setting_params
       params.require(:calendar_setting).permit(:cancellation_date, :cancellation_time, regular_holiday: [], cancellation_time: [])
     end
-
 end
