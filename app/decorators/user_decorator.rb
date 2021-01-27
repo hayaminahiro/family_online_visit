@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module UserDecorator # rubocop:disable Metrics/ModuleLength
+  def address
+    prefecture_name + address_city + address_street
+  end
+
   # facility_idごとにグループ分け
   def grouped_facility
     informations = Information.where(facility_id: current_user.facilities).where(status: "others")
