@@ -1,7 +1,10 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
 
 <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
-  <%= render 'shared/side_link' %>
+  <%= render 'shared/side_link' if current_facility.present? %>
+  <% if current_user.present? %>
+    <div id="no-side-link"></div>
+  <% end %>
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
     <body id="page-back-color">
       <div class="container">
@@ -55,12 +58,10 @@
               </table>
               <% if params[:setting].present? %>
                 <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation, setting: :setting), method: :delete, data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" }, class: "button is-danger is-light show-back-btn" %>
-
-                <%= link_to "予約状況確認ページへ戻る", facility_home_facility_path(facility_id: @facility.id), class: "button is-light show-back-btn" %>
+                <%= link_to "予約状況確認ページへ戻る", facility_home_facility_path(id: current_facility, user: @reservation.user_id), class: "button is-light show-back-btn" %>
               <% else %>
                 <%= link_to "予約をキャンセルする", facility_reservation_path(@facility, @reservation), method: :delete, data: { confirm: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消してよろしいですか?" }, class: "button is-danger is-light show-back-btn" %>
-
-                <%= link_to "予約ページ戻る", facility_reservations_path(facility_id: @facility.id, user: @reservation.user_id), class: "button is-light show-back-btn" %>
+                <%= link_to "予約ページへ戻る", facility_reservations_path(facility_id: @facility.id, user: @reservation.user_id), class: "button is-light show-back-btn" %>
               <% end %>
             </div>
           </div>
