@@ -1,6 +1,12 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
 <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
-  <%= render 'shared/side_link' %>
+
+  <%= render 'shared/side_link' if current_facility.present? %>
+
+  <% if current_user.present? %>
+    <div id="no-side-link"></div>
+  <% end %>
+
   <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
     <div class="container container-top">
       <body id="page-back-color">

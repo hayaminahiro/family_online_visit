@@ -6,6 +6,11 @@
 	background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
 }
 
+// ユーザー予約ページでサイドリンク使用しない為の調整
+#no-side-link {
+	margin-left: 140px;
+}
+
 //indexページ
 #reservations-calendar {
 	height: 100%;
