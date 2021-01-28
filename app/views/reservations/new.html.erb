@@ -1,93 +1,101 @@
 <%= form_with(model: @reservation, url: facility_reservations_path, method: :post, local: true) do |f| %>
   <%= render partial: 'shared/facility_images', locals: { facility: @facility } %>
-  <body id="page-back-color">
-    <div class="card reservations-top card-width">
-      <div class="has-text-centered">
-        <div class="is-centered">
-          <h1 class="has-text-centered reservation-new-title">予約情報確認</h1>
-          <%= render partial: 'shared/error_messages', locals: { obj: @reservation } %>
-          <table class="table is-bordered is-fullwidth" id="reservation-new-tables">
-            <tbody>
-              <tr>
-                <th>ご家族名前</th>
-                <td>
-                  <% if @reservation.reservation_user.present? %>
-                    <%= @reservation.reservation_user %>
-                    <%= f.hidden_field :reservation_user, :value => @reservation.reservation_user %>
-                  <% else %>
-                    <%= current_user.name %>
-                    <%= f.hidden_field :reservation_user, :value => current_user.name %>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <th>メールアドレス</th>
-                <td>
-                  <% if @reservation.reservation_email.present? %>
-                    <%= @reservation.reservation_email %>
-                    <%= f.hidden_field :reservation_email, :value => @reservation.reservation_email %>
-                  <% else %>
-                    <%= current_user.email %>
-                    <%= f.hidden_field :reservation_email, :value => current_user.email %>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  面会したい利用者
-                  <button class="button tag is-danger is-light is-rounded sign-tag">必須</button>
-                </th>
-                <td>
-                  <% if @user.present? %>
-                    <% @user.residents.each do |resident| %>
-                      <% if @facility.id == resident.facility_id %>
-                        <%= f.check_box :reservation_residents, {multiple: true}, resident.name, nil %>
-                        <%= resident.name %>&nbsp;
-                      <% end %>
-                    <% end %>
-                  <% else %>
-                    <% current_user.residents.each do |resident| %>
-                      <% if @facility.id == resident.facility_id %>
-                        <%= f.check_box :reservation_residents, {multiple: true}, resident.name, nil %>
-                        <%= resident.name %>&nbsp;
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <th>予約日</th>
-                <td>
-                  <% if @reservation.reservation_date.present? %>
-                    <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
-                  <% else %>
-                    <%= l(@date.in_time_zone, format: :date) %>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <th>予約時間</th>
-                <td>
-                  <% if @reservation.started_at.present? %>
-                    <%= l(@reservation.started_at.in_time_zone, format: :time) %>
-                  <% else %>
-                    <%= l(@time.in_time_zone, format: :time) %>
-                  <% end %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <%= f.text_area :comment, :placeholder => "\uf303 面会時のご要望等あればご記入下さい。", class: "fa textarea" %>
-          <%= f.hidden_field :user_id, :value => @reservation.user_id %>
-          <%= f.hidden_field :facility_id, :value => @facility.id %>
-          <%= f.hidden_field :reservation_date, :value => @reservation.reservation_date %>
-          <%= f.hidden_field :started_at, :value => @reservation.started_at %>
-          <div>
-            <%= f.submit "予約を決定する", class: "message-btn" %>
-            <%= link_to "予約ページ戻る", facility_reservations_path(facility_id: @facility.id, user: @user), class: "button is-light back-btn" %>
+
+  <div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+    <%= render 'shared/side_link' %>
+    <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+      <body id="page-back-color">
+        <div class="container">
+          <div class="card reservations-top card-width">
+            <div class="has-text-centered">
+              <div class="is-centered">
+                <h1 class="has-text-centered reservation-new-title">予約情報確認</h1>
+                <%= render partial: 'shared/error_messages', locals: { obj: @reservation } %>
+                <table class="table is-bordered is-fullwidth" id="reservation-new-tables">
+                  <tbody>
+                    <tr>
+                      <th>ご家族名前</th>
+                      <td>
+                        <% if @reservation.reservation_user.present? %>
+                          <%= @reservation.reservation_user %>
+                          <%= f.hidden_field :reservation_user, :value => @reservation.reservation_user %>
+                        <% else %>
+                          <%= current_user.name %>
+                          <%= f.hidden_field :reservation_user, :value => current_user.name %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>メールアドレス</th>
+                      <td>
+                        <% if @reservation.reservation_email.present? %>
+                          <%= @reservation.reservation_email %>
+                          <%= f.hidden_field :reservation_email, :value => @reservation.reservation_email %>
+                        <% else %>
+                          <%= current_user.email %>
+                          <%= f.hidden_field :reservation_email, :value => current_user.email %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        面会したい利用者
+                        <button class="button tag is-danger is-light is-rounded sign-tag">必須</button>
+                      </th>
+                      <td>
+                        <% if @user.present? %>
+                          <% @user.residents.each do |resident| %>
+                            <% if @facility.id == resident.facility_id %>
+                              <%= f.check_box :reservation_residents, {multiple: true}, resident.name, nil %>
+                              <%= resident.name %>&nbsp;
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <% current_user.residents.each do |resident| %>
+                            <% if @facility.id == resident.facility_id %>
+                              <%= f.check_box :reservation_residents, {multiple: true}, resident.name, nil %>
+                              <%= resident.name %>&nbsp;
+                            <% end %>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>予約日</th>
+                      <td>
+                        <% if @reservation.reservation_date.present? %>
+                          <%= l(@reservation.reservation_date.in_time_zone, format: :date) %>
+                        <% else %>
+                          <%= l(@date.in_time_zone, format: :date) %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>予約時間</th>
+                      <td>
+                        <% if @reservation.started_at.present? %>
+                          <%= l(@reservation.started_at.in_time_zone, format: :time) %>
+                        <% else %>
+                          <%= l(@time.in_time_zone, format: :time) %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <%= f.text_area :comment, :placeholder => "\uf303 面会時のご要望等あればご記入下さい。", class: "fa textarea" %>
+                <%= f.hidden_field :user_id, :value => @reservation.user_id %>
+                <%= f.hidden_field :facility_id, :value => @facility.id %>
+                <%= f.hidden_field :reservation_date, :value => @reservation.reservation_date %>
+                <%= f.hidden_field :started_at, :value => @reservation.started_at %>
+                <div>
+                  <%= f.submit "予約を決定する", class: "message-btn" %>
+                  <%= link_to "予約ページ戻る", facility_reservations_path(facility_id: @facility.id, user: @user), class: "button is-light back-btn" %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </body>
     </div>
-  </body>
+  </div>
 <% end %>
