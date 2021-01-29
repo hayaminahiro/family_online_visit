@@ -31,6 +31,7 @@ Layout/IndentationConsistency:
     - 'app/controllers/tag_images_controller.rb'
     - 'app/models/facility.rb'
     - 'app/controllers/inquiries_controller.rb'
+    - 'app/controllers/calendar_settings_controller.rb'
 
 # private下のインデント指摘
 Layout/IndentationWidth:
@@ -56,6 +57,7 @@ Layout/IndentationWidth:
     - 'config/initializers/carrierwave.rb'
     - 'app/models/facility.rb'
     - 'app/controllers/inquiries_controller.rb'
+    - 'app/controllers/calendar_settings_controller.rb'
 
 Lint/UnusedMethodArgument:
   Exclude:
