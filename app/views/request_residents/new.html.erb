@@ -9,13 +9,6 @@
       <%= render "users/shared/error_messages", resource: @request %>
         <div class="card">
           <table class="table is-narrow user-edit-table is-bordered" id="req-table">
-            <tfoot>
-              <tr>
-                <th><abbr title="Position"></abbr></th>
-                <td><%= f.submit "申請", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
-                </td>
-              </tr>
-            </tfoot>
             <tbody>
               <tr>
                 <th>利用者名</th>
@@ -26,6 +19,13 @@
                 </td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td><%= f.submit "申請", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       <% end %>
