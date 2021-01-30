@@ -172,7 +172,7 @@ module UserDecorator # rubocop:disable Metrics/ModuleLength
   end
 
   def set_ids
-    @selected_ids[:set_ids] = [] if @selected_ids[:set_ids] == nil
+    @selected_ids[:set_ids] = [] if @selected_ids[:set_ids].nil?
 
     resident_ids = @selected_ids[:set_ids] | @selected_ids[:resident_ids]
     resident_ids.map(&:to_i).reject(&:zero?).sort

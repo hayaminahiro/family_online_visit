@@ -102,7 +102,7 @@ module FacilityDecorator
   end
 
   def newly_numbers(r_ids)
-    r_ids[:set_ids] = [] if r_ids[:set_ids] == nil
+    r_ids[:set_ids] = [] if r_ids[:set_ids].nil?
 
     resident_ids = r_ids[:set_ids] | r_ids[:resident_ids]
     resident_ids.map(&:to_i).reject(&:zero?)

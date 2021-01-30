@@ -72,7 +72,7 @@ class RelativesController < ApplicationController
     def update_relatives_params
       permited_hash = {}
       params.require(:update_relatives).each_pair do |id, value|
-        permited_hash[id] = value.permit(resident_ids:[], set_ids: [])
+        permited_hash[id] = value.permit(resident_ids: [], set_ids: [])
       end
       permited_hash
     end
