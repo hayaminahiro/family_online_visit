@@ -28,6 +28,7 @@ class RelativesController < ApplicationController
     update_relatives_params.each do |id, update_ids|
       request_user = User.find(id)
       request = RequestResident.changer(current_facility, id)
+      update_ids[:set_ids] = [] if update_ids[:set_ids].nil?
       new_resident_ids = update_ids[:resident_ids].concat(update_ids[:set_ids])
       update_ids.delete(:set_ids)
 
