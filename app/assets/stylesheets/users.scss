@@ -612,7 +612,7 @@ mypage-main {
       margin: 13px 0px 0px 15px;
       width: 60px;
       height: 60px;
-      border-radius: 100%;
+      border-radius: 50%;
       display: inline-block;
       object-fit: cover;
     }
@@ -775,13 +775,11 @@ mypage-main {
     width: 97%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
     background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
 
     span.facility-title {
       display: inline-block;
-      vertical-align: top;
-      margin-top: 8%;
-      margin-left: 10%;
     }
 
     p.layout-content {
@@ -791,15 +789,8 @@ mypage-main {
     p.content-layout {
       background: #FFE4B5;
       border-radius: 6px;
+      text-align: center;
     }
-  }
-
-  //施設タブ（アイコン）
-  .mypage-facility-icon-image {
-    width: 60px;
-    height: 60px;
-    margin-top: 1%;
-    border-radius: 50%;
   }
 }
 
@@ -968,6 +959,20 @@ mypage-main {
 
   strong {
     border-bottom: solid 1px rgb(201, 199, 193);
+  }
+}
+
+#facility-columns-layout {
+
+  p.index-facility-icon {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    z-index: 10;
+    background: rgba(0, 0, 0,0.5);
+    top: 61%;
+    border-radius: 50%;
+    left: 30px;
   }
 }
 
@@ -1958,13 +1963,12 @@ main {
     #panel-content {
       margin-bottom: 100px;
 
-      p.content-layout {
-        text-align: center;
+      span.facility-title {
+        font-size: 30px;
       }
 
-      span.facility-title {
-        margin-top: 4%;
-        margin-left: 10%;
+      p.content-layout {
+        text-align: center;
       }
     }
   }
@@ -1974,6 +1978,13 @@ main {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 70px;
+
+    p.index-facility-icon {
+      height: 100px;
+      width: 100px;
+      top: 56%;
+      left: 40px;
+    }
   }
 }
 
@@ -2038,12 +2049,19 @@ main {
 
     #facility-columns-layout {
       width: 100%;
+
+      p.index-facility-icon {
+        height: 60px;
+        width: 60px;
+        top: 47%;
+        left: 20px;
+      }
     }
 
     #panel-content {
 
       span.facility-title {
-        margin-top: 8%;
+        font-size: 20px;
       }
     }
   }

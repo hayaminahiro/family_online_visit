@@ -230,16 +230,18 @@
           </div>
           <div class="columns is-multiline" id="facility-columns-layout">
             <% current_user.facilities.each do |facility| %>
-              <div class="column is-4">
+              <div class="column is-6">
                 <%= link_to facility_home_path(facility) do %>
                   <div class="card">
                     <figure class="image is-4by3">
                       <%= facility_season_image(facility) %>
                     </figure>
                     <div class="card-content" id="card-content-color">
+                      <p class="index-facility-icon">
+                        <%= current_user.mypage_facilities_icon(facility.id) %>
+                      </p>
                       <p class="title is-4 content-layout">
                         <% @facility = facility.id %>
-                        <%= current_user.mypage_facilities_icon(facility.id) %>
                         <span class="facility-title">
                           <%= facility.facility_name %>
                         </span>
