@@ -80,7 +80,7 @@ group :development do
   gem 'bullet'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  gem 'brakeman', :require => false
+  gem 'brakeman', require: false
 end
 
 group :test do
