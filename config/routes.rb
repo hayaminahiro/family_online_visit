@@ -63,6 +63,9 @@ Rails.application.routes.draw do
     resources :rooms, only: %i[new create edit update]
   end
 
+  # カレンダー設定 =========================================================================
+  resources :calendar_settings, except: :index
+
   # 利用施設登録 ==========================================================================
   resources :facility_users, only: %i[new update] do
     member do

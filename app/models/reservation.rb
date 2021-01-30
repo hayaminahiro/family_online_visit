@@ -34,4 +34,5 @@ class Reservation < ApplicationRecord
   scope :reservation_user, ->(name) { where(reservation_user: name) }
   scope :reservation_date, ->(date) { where(reservation_date: date) }
   scope :sorted, -> { order(reservation_date: :asc) }
+  scope :facility_day_max, ->(facility, user) { where(facility_id: facility).reservation_user(user.name) }
 end
