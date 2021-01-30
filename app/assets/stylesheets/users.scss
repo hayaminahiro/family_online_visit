@@ -438,6 +438,11 @@ mypage-aside {
 
   .mypage-side-link {
     margin-top: 50px;
+    margin-left: 10%;
+
+    .link-layout {
+      text-align: center;
+    }
   }
 
   img.user-profile-image {
@@ -1523,6 +1528,7 @@ main {
 
     .mypage-side-link {
       margin-top: 0px;
+      margin-left: 0px;
       display: flex;
     }
 
