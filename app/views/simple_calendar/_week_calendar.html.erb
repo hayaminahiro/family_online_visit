@@ -1,12 +1,12 @@
 <div class="simple-calendar">
   <div class="calendar-heading" style="margin-bottom: 10px;">
-    <%= link_to t('simple_calendar.previous', default: '前月'), calendar.url_for_previous_view, class: "button is-small is-success is-rounded is-outlined" %>
+    <%= link_to t('simple_calendar.previous', default: '前週'), calendar.url_for_previous_view, class: "button is-small is-success is-rounded is-outlined" %>
     <% if calendar.number_of_weeks == 1 %>
       <span class="calendar-title"><%= calendar.week_number %>週目</span>
     <%else%>
       <span class="calendar-title"><%= calendar.week_number %> - <%= calendar.end_week %>週目</span>
     <%end%>
-    <%= link_to t('simple_calendar.next', default: '次月'), calendar.url_for_next_view, class: "button is-small is-success is-rounded is-outlined" %>
+    <%= link_to t('simple_calendar.next', default: '次週'), calendar.url_for_next_view, class: "button is-small is-success is-rounded is-outlined" %>
   </div>
 
   <table class="table table-striped is-bordered is-hoverable">
