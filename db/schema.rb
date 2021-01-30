@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_132507) do
+ActiveRecord::Schema.define(version: 2021_01_27_211120) do
 
   create_table "facilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "facility_name"
@@ -169,7 +169,6 @@ ActiveRecord::Schema.define(version: 2021_01_11_132507) do
     t.string "password"
     t.boolean "admin", default: false
     t.string "phone"
-    t.string "address"
     t.integer "postal_code"
     t.string "prefecture_name"
     t.string "address_city"
