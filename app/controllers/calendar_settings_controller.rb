@@ -9,6 +9,7 @@ class CalendarSettingsController < ApplicationController
 
   def create
     @calendar_setting = @facility.calendar_setting.new(setting_params)
+    @calendar_setting.max_reservation = setting_params[:cancellation_time].length - 1
     if @calendar_setting.save
       redirect_to facility_home_facility_url(current_facility), notice: "予約設定を変更しました。"
     else
@@ -19,6 +20,7 @@ class CalendarSettingsController < ApplicationController
   def edit; end
 
   def update
+    @calendar_setting.max_reservation = setting_params[:cancellation_time].length - 1
     if @calendar_setting.update(setting_params)
       redirect_to facility_home_facility_url(current_facility), notice: "予約設定を変更しました。"
     else
@@ -46,6 +48,6 @@ class CalendarSettingsController < ApplicationController
     end
 
     def setting_params
-      params.require(:calendar_setting).permit(:cancellation_date, :cancellation_time, regular_holiday: [], cancellation_time: [])
+      params.require(:calendar_setting).permit(:cancellation_date, :cancellation_time, :max_reservation, regular_holiday: [], cancellation_time: [])
     end
 end

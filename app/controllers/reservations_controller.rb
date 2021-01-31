@@ -6,7 +6,13 @@ class ReservationsController < ApplicationController
   before_action :set_reservations, only: %i[index index_week reservation_time]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
 
-  def index; end
+  def index
+    if @calendar_settings.facility(@facility).first.try(:max_reservation).present?
+      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
+    else
+      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
+    end
+  end
 
   def index_week; end
 

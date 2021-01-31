@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_031026) do
+ActiveRecord::Schema.define(version: 2021_01_31_071555) do
 
   create_table "calendar_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "regular_holiday"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_01_16_031026) do
     t.bigint "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "max_reservation"
     t.index ["facility_id"], name: "index_calendar_settings_on_facility_id"
   end
 
