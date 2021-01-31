@@ -12,7 +12,7 @@ class RelativesController < ApplicationController
       update_relatives_params.each do |id, item|
         hash[RequestResident.where(facility_id: current_facility).where(req_approval: "request").find_by(user_id: id)] = item
       end
-      @requests = hash
+      @requests = hash.sort.reverse.to_h
     else
       @requests = RequestResident.active(current_facility)
     end
