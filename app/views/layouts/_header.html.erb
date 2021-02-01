@@ -1,7 +1,7 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="background: #efefef; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);">
   <div class="navbar-brand" style="background: #efefef;">
     <section class="navbar dark-top" style="background-color: #FFDEAD;">
-      <div class="navbar-body">
+      <div class="navbar-body" id="title-nav">
         <div class="container">
           <%= link_to root_path, class: "navbar-item" do %>
             <i class="fas fa-photo-video font-awe-video"></i>
@@ -77,13 +77,13 @@
           </div>
         </div>
       <% else %>
-        <div class="navbar-item">
+        <div class="navbar-item" id="facility-login-nav">
           <div class="buttons">
             <p class="navbar-item has-text-weight-bold is-size-5">
               <font color="#828282">管理者はこちらから</font>
             </p>
             <%= link_to facility_session_path, class: "circle_spread_btn" do %>
-              <i class="far fa-user-circle fa-2x" style="padding-top: 9px;"></i>
+              <i class="far fa-user-circle fa-2x"></i>
             <% end %>
           </div>
         </div>

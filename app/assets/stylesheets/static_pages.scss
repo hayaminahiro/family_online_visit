@@ -448,6 +448,13 @@ footer {
   margin-left: 55px;
 }
 
+#top-coments {
+
+  p {
+    text-align: left;
+  }
+}
+
 p.content1 {
   line-height: 30px;
 }
@@ -798,7 +805,7 @@ p.content1 {
 @media screen and (max-width: 500px) {
   //Online Visit
   h1.title-header {
-    font-size: 18px;
+    font-size: 23px;
   }
 
   //Online Visit（アイコン）
@@ -822,6 +829,7 @@ p.content1 {
   }
 
   .inline-block_content {
+    width: 100%;
     margin: 0px;
   }
 
@@ -832,6 +840,10 @@ p.content1 {
 
   #top-coments {
     margin-bottom: 80px;
+
+    p {
+      text-align: center;
+    }
   }
 
   //お知らせ

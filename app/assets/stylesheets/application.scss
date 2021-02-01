@@ -25,6 +25,13 @@
   object-fit: cover;
 }
 
+#facility-login-nav {
+
+  i {
+    margin-top: 9px;
+  }
+}
+
 /*ページネーションの左右ラベルを非表示にする*/
 .pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
   display: none;
@@ -171,9 +178,24 @@
 
 @media screen and (max-width: 500px) {
 
+  #title-nav {
+
+    i {
+      font-size: 27px;
+    }
+  }
+
   //ハンバーガー
   .navbar-burger {
-    margin-top: 0px;
+    margin-top: 4px;
+  }
+
+  #facility-login-nav {
+
+    i {
+      font-size: 27px;
+      margin-top: 11px;
+    }
   }
 
   footer {
