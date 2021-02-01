@@ -116,6 +116,15 @@ puts "ご家族ユーザを作成しました！"
   )
 end
 
+40.times do |n|
+  name = "入居者-#{n + 41}"
+  Resident.create!(
+    facility_id: 3,
+    name: name,
+    charge_worker: "担当者-#{n + 1}"
+  )
+end
+
 puts "入居者を作成しました！"
 
 31.times do |n|
@@ -136,3 +145,107 @@ Information.create!(
 )
 
 puts "お知らせを作成しました！"
+
+FacilityUser.create!(
+  user_id: 1,
+  facility_id: 2
+)
+
+FacilityUser.create!(
+  user_id: 1,
+  facility_id: 3
+)
+
+FacilityUser.create!(
+  user_id: 2,
+  facility_id: 2
+)
+
+FacilityUser.create!(
+  user_id: 3,
+  facility_id: 2
+)
+
+FacilityUser.create!(
+  user_id: 4,
+  facility_id: 2
+)
+
+puts "施設を登録しました"
+
+# 同じユーザ(user_1)から複数施設(home_a, home_b)への申請/承認 =================================================================================
+# user_1からA施設への申請/承認
+user1_to_home_a = RequestResident.create!(
+  user_id: 1,
+  facility_id: 2,
+  req_name: "入居者-1",
+  req_approval: 0
+)
+
+Relative.create!(
+  user_id: 1,
+  resident_id: 1
+)
+
+user1_to_home_a.update(
+  user_id: 1,
+  facility_id: 2,
+  req_approval: 1
+)
+
+# user_1からB施設への申請/承認
+user1_to_home_b = RequestResident.create!(
+  user_id: 1,
+  facility_id: 3,
+  req_name: "入居者-41",
+  req_approval: 0
+)
+
+Relative.create!(
+  user_id: 1,
+  resident_id: 41
+)
+
+user1_to_home_b.update(
+  user_id: 1,
+  facility_id: 3,
+  req_approval: 1
+)
+
+# user_2からA施設への申請/承認 ==============================================================================================================
+user2_to_home_a = RequestResident.create!(
+  user_id: 2,
+  facility_id: 2,
+  req_name: "入居者-8",
+  req_approval: 0
+)
+
+Relative.create!(
+  user_id: 2,
+  resident_id: 8
+)
+
+user2_to_home_a.update(
+  user_id: 2,
+  facility_id: 2,
+  req_approval: 1
+)
+
+# 異なるユーザ(user_3, user_4)から同じ施設(home_a)への申請のみ ===============================================================================
+# user_3からA施設への申請
+user3_to_home_a = RequestResident.create!(
+  user_id: 3,
+  facility_id: 2,
+  req_name: "user_3からの申請テスト",
+  req_approval: 0
+)
+
+# user_4からA施設への申請
+user4_to_home_a = RequestResident.create!(
+  user_id: 4,
+  facility_id: 2,
+  req_name: "user_4からの申請テスト",
+  req_approval: 0
+)
+
+puts "入居者申請/承認をしました！"

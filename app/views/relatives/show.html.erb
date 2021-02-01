@@ -45,13 +45,13 @@
             <tr>
               <th>連絡先</th>
               <td>
-                <%= simple_format(@request.req_phone) %>
+                <%= @request.user.phone %>
               </td>
             </tr>
             <tr>
               <th>住所</th>
               <td>
-                <%= simple_format(@request.req_address) %>
+                <%= @request.user.address %>
               </td>
             </tr>
             <tr>
