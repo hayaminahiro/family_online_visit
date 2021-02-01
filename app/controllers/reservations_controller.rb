@@ -14,7 +14,13 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def index_week; end
+  def index_week
+    if @calendar_settings.facility(@facility).first.try(:max_reservation).present?
+      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
+    else
+      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
+    end
+  end
 
   def show; end
 

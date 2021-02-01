@@ -110,8 +110,6 @@ ActiveRecord::Schema.define(version: 2021_01_31_071555) do
     t.bigint "user_id"
     t.bigint "facility_id"
     t.string "req_name"
-    t.string "req_phone"
-    t.string "req_address"
     t.integer "req_approval", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -180,7 +178,6 @@ ActiveRecord::Schema.define(version: 2021_01_31_071555) do
     t.string "password"
     t.boolean "admin", default: false
     t.string "phone"
-    t.string "address"
     t.integer "postal_code"
     t.string "prefecture_name"
     t.string "address_city"
