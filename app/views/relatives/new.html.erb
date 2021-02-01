@@ -13,8 +13,9 @@
     </div>
   <% end %>
 
-  <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), local: true) do |f| %>
-    <% @requests.each do |request| %>
+  <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), method: :post, local: true) do |f| %>
+    <% @requests.each do |request, selected_ids| %>
+    <% request = ActiveDecorator::Decorator.instance.decorate(request) %>
       <% if request.req_approval == "request" %>
         <div class="request-time"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
         <div class="card">
@@ -50,32 +51,41 @@
                   <tr>
                     <th>連絡先</th>
                     <td>
-                      <%= simple_format(request.req_phone) %>
+                      <%= request.user.phone %>
                     </td>
                   </tr>
                   <tr>
                     <th>住所</th>
                     <td>
-                      <%= simple_format(request.req_address) %>
+                      <%= request.user.address %>
                     </td>
                   </tr>
                   <tr>
                     <th>紐付け</th>
                     <td>
                       <%= render partial: 'shared/error_messages', locals: { obj: @request_user } if @request_user.present? %>
-
                       <%= f.fields_for "request_residents[]", request.user do |i| %>
-                        <div class="new-checkbox">
-                          <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
-                            <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
-                          <% end %><br>
-                        </div>
+
+                        <% if selected_ids.present? %>
+                          <% request.user.send_ids(selected_ids) %>
+                          <div class="new-checkbox">
+                            <%= i.collection_check_boxes :set_ids, @residents, :id, :name do |b| %>
+                              <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                            <% end %><br>
+                          </div>
+                        <% else %>
+                          <div class="new-checkbox">
+                            <%= i.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                              <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                            <% end %><br>
+                          </div>
+                        <% end %>
+
                         <div class="d-none">
                           <%= i.collection_check_boxes :resident_ids, request.exclude_ids, :id, :name do |b| %>
                             <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
                           <% end %>
                         </div>
-
                         <div class="tag-apply">
                           <%= i.collection_check_boxes :resident_ids, request.user.residents, :id, :name, class: 'd-none' do |b| %>
                             <% if b.object.facility_id == current_facility.id  %>
@@ -83,6 +93,7 @@
                             <% end %>
                           <% end %>
                         </div>
+
                       <% end %>
                     </td>
                   </tr>

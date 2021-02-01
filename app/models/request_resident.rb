@@ -2,20 +2,19 @@ class RequestResident < ApplicationRecord
   belongs_to :user
 
   validates :req_name, presence: true, on: :create_request
-  validates :req_phone, presence: true, on: :create_request
-  validates :req_address, presence: true, on: :create_request
 
   enum req_approval: { request: 0,
                        approval: 1,
                        denial: 2 }
 
   scope :applied, ->(facility) { includes(:user).where(facility_id: facility).where.not(req_approval: "request") }
-  scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "request") }
+  scope :active, ->(facility) { includes(user: :residents).where(facility_id: facility).where(req_approval: "request").order(id: :desc) }
   scope :search_request_columns, (lambda do |search|
     where('users.name LIKE ?', "%#{search}%")
       .or(where('req_name LIKE ?', "%#{search}%"))
-      .or(where('req_phone LIKE ?', "%#{search}%"))
-      .or(where('req_address LIKE ?', "%#{search}%"))
+      .or(where('users.prefecture_name LIKE ?', "%#{search}%"))
+      .or(where('users.address_city LIKE ?', "%#{search}%"))
+      .or(where('users.address_street LIKE ?', "%#{search}%"))
   end)
 
   def self.changer(facility, user)

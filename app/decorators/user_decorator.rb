@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module UserDecorator # rubocop:disable Metrics/ModuleLength
+  def address
+    prefecture_name + address_city + address_street
+  end
+
   # facility_idごとにグループ分け
   def grouped_facility
     informations = Information.where(facility_id: current_user.facilities).where(status: "others")
@@ -161,5 +165,16 @@ module UserDecorator # rubocop:disable Metrics/ModuleLength
     else
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_default.png', id: "chat-icon"
     end
+  end
+
+  def send_ids(selected_ids)
+    @selected_ids = selected_ids
+  end
+
+  def set_ids
+    @selected_ids[:set_ids] = [] if @selected_ids[:set_ids].nil?
+
+    resident_ids = @selected_ids[:set_ids] | @selected_ids[:resident_ids]
+    resident_ids.map(&:to_i).reject(&:zero?).sort
   end
 end

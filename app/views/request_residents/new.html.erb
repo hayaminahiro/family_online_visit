@@ -9,6 +9,16 @@
       <%= render "users/shared/error_messages", resource: @request %>
         <div class="card">
           <table class="table is-narrow user-edit-table is-bordered" id="req-table">
+            <tbody>
+              <tr>
+                <th>利用者名</th>
+                <td>
+                  <%= f.text_area :req_name, :placeholder => " \uf304 利用者名", autofocus: true, class: "fa textarea input is-hovered req-table-edit-form" %>
+                  <%= f.hidden_field :req_approval %>
+                  <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
+                </td>
+              </tr>
+            </tbody>
             <tfoot>
               <tr>
                 <th><abbr title="Position"></abbr></th>
@@ -16,28 +26,6 @@
                 </td>
               </tr>
             </tfoot>
-            <tbody>
-              <tr>
-                <th>利用者名</th>
-                <td>
-                  <%= f.text_area :req_name, :placeholder => " \uf304 利用者名", class: "fa textarea input is-hovered req-table-edit-form" %>
-                </td>
-              </tr>
-              <tr>
-                <th>連絡先</th>
-                <td>
-                  <%= f.text_field :req_phone, :placeholder => " \uf304 電話番号", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
-                </td>
-              </tr>
-              <tr>
-                <th>住所</th>
-                <td>
-                  <%= f.text_field :req_address, :placeholder => " \uf304 住所", class: "fa input input is-hovered req-table-edit-form2" %><br><br>
-                  <%= f.hidden_field :req_approval %>
-                  <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
-                </td>
-              </tr>
-            </tbody>
           </table>
         </div>
       <% end %>
