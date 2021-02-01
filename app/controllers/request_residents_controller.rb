@@ -49,6 +49,6 @@ class RequestResidentsController < ApplicationController
     end
 
     def request_params
-      params.require(:request_resident).permit(:req_name, :req_phone, :req_address, :req_approval, :facility_id)
+      params.require(:request_resident).permit(:req_name, :req_approval, :facility_id)
     end
 end

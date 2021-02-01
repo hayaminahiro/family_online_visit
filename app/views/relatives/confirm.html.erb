@@ -1,6 +1,7 @@
 <div class="relative-confirm-body">
   <% @request_residents.each do |user, r_ids| %>
     <% current_facility.acceptance_requests(user).each do |request| %>
+    <% request = ActiveDecorator::Decorator.instance.decorate(request) %>
       <div class="request-time"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
       <div class="card">
         <div class="relative-new-container">
@@ -23,13 +24,13 @@
                 <tr>
                   <th>連絡先</th>
                   <td>
-                    <%= simple_format(request.req_phone) %>
+                    <%= request.user.phone %>
                   </td>
                 </tr>
                 <tr>
                   <th>住所</th>
                   <td>
-                    <%= simple_format(request.req_address) %>
+                    <%= request.user.address %>
                   </td>
                 </tr>
                 <tr>
@@ -64,5 +65,8 @@
       </div>
     <% end %>
   <% end %>
-  <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @request_residents), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
+  <div>
+    <%= link_to "入力画面に戻る", new_relative_path(update_relatives: @request_residents), class: "button is-light has-text-weight-bold", id: "req-submit" %>
+    <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @request_residents), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
+  </div>
 </div>

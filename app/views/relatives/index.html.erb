@@ -47,8 +47,8 @@
             <% end %>
           </td>
           <td colspan="2"><%= simple_format(applied[0].req_name) %></td>
-          <td><%= simple_format(applied[0].req_phone) %></td>
-          <td colspan="2"><%= simple_format(applied[0].req_address) %></td>
+          <td><%= applied[0].user.phone %></td>
+          <td colspan="2"><%= applied[0].user.address %></td>
           <td>
             <span class="relative-modal-link"><button type="button" class="button is-small is-rounded" id="<%= applied[0].user.name %>">一覧へ<i class="fas fa-arrow-circle-right"></i></button></span>
           </td>
