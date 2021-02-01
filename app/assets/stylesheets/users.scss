@@ -490,14 +490,33 @@ mypage-aside {
   }
 
   .panel-tab p {
-    font-size: 17px;
+    font-size: 22px;
+    width: 55%;
+    margin-left: 21%;
     color: #fff;
     font-weight: bold;
     text-align: left;
+    transition: 0s;
+    position: relative;
+  }
+
+  .panel-tab p:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 0;
+    border-bottom: solid 2px;
+    margin-bottom: -2px;
+    transition: 0.5s;
+  }
+
+  .panel-tab p:hover::after {
+    width: 90%;
   }
 
   .panel-tab.is-active p {
-    font-size: 17px;
+    font-size: 22px;
     font-weight: bold;
     color: rgb(235, 94, 39);
   }
@@ -506,20 +525,20 @@ mypage-aside {
     text-align: center;
     float: left;
     line-height: 23px;
-    font-size: 22px;
+    font-size: 27px;
     color: #fff;
-    margin-left: 20px;
-    width: 92px;
+    margin-left: 11%;
+    width: 40%;
   }
 
   .panel-tab.is-active i {
     text-align: center;
     float: left;
     line-height: 23px;
-    font-size: 22px;
+    font-size: 27px;
     color: rgb(235, 94, 39);
-    margin-left: 20px;
-    width: 92px;
+    margin-left: 11%;
+    width: 40%;
   }
 }
 
@@ -934,7 +953,7 @@ mypage-main {
     height: 50px;
     margin-left: auto;
     margin-right: auto;
-    left: 5%;
+    left: 2%;
     top: 12px;
   }
 }
@@ -969,13 +988,23 @@ mypage-main {
 
 #facility-columns-layout {
 
+  .image.is-2by1 {
+    padding-top: 0px;
+    height: 300px;
+  }
+
+  #image-fit img {
+    object-fit: cover;
+    position: relative
+  }
+
   p.index-facility-icon {
     position: absolute;
     height: 60px;
     width: 60px;
     z-index: 10;
     background: rgba(0, 0, 0,0.5);
-    top: 61%;
+    top: 76%;
     border-radius: 50%;
     left: 30px;
   }
@@ -1460,6 +1489,11 @@ main {
         border-radius: 15px;
       }
     }
+  }
+
+  footer#footer-submit {
+    display: block;
+    margin-bottom: 0px;
   }
 }
 
@@ -1986,10 +2020,21 @@ main {
     margin-bottom: 70px;
 
     p.index-facility-icon {
-      height: 100px;
-      width: 100px;
+      height: 80px;
+      width: 80px;
       top: 56%;
       left: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #facility-columns-layout {
+
+    p.index-facility-icon {
+      height: 60px;
+      width: 60px;
+      top: 52%;
     }
   }
 }

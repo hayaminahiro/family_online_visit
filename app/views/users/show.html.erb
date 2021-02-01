@@ -233,13 +233,14 @@
               <div class="column is-6">
                 <%= link_to facility_home_path(facility) do %>
                   <div class="card">
-                    <figure class="image is-4by3">
+                    <figure class="image is-2by1" id="image-fit">
                       <%= facility_season_image(facility) %>
-                    </figure>
-                    <div class="card-content" id="card-content-color">
                       <p class="index-facility-icon">
                         <%= current_user.mypage_facilities_icon(facility.id) %>
                       </p>
+                    </figure>
+                    <div class="card-content" id="card-content-color">
+
                       <p class="title is-4 content-layout">
                         <% @facility = facility.id %>
                         <span class="facility-title">
