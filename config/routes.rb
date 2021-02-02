@@ -84,10 +84,11 @@ Rails.application.routes.draw do
   resources :request_residents
 
   # 入居者登録 ============================================================================
-  resources :relatives, except: %i[create] do
+  resources :relatives, except: %i[new create] do
     patch :update_relatives, on: :collection
     post :confirm, on: :member
   end
+  post '/relatives/new', to: 'relatives#new', as: :new_relative
 
   # お知らせ ==============================================================================
   resources :informations do
