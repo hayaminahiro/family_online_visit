@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   resources :calendar_settings, except: :index
 
   # 利用施設登録 ==========================================================================
-  resources :facility_users, only: %i[new update] do
+  resources :facility_users, only: %i[new update destroy] do
     member do
       patch :facility_update
     end

@@ -31,6 +31,15 @@ class FacilityUsersController < ApplicationController
     redirect_to edit_user_registration_url
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @facility_user = FacilityUser.find_by(user_id: params[:id], facility_id: current_facility.id)
+    @facility_user.destroy
+
+    Relative.eager_load(:resident).where(user_id: params[:id]).where(residents: {facility_id: current_facility}).destroy_all
+    redirect_to users_url, alert: "#{@user.name}のデータを削除しました。"
+  end
+
   private
 
     def facilities_used_params
