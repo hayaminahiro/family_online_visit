@@ -129,7 +129,7 @@
               <div class="card-content">
                 <div class="media">
                   <div class="media-content" id="facility-reservation-title">
-                    <p class="reservation-facility-icon"><%= current_user.mypage_modal_facilities_icon(facility.id) %></p>
+                    <p class="reservation-facility-icon"><%= current_user.mypage_reservation_facility_icon(facility.id) %></p>
                     <p class="reservation-facility-name">
                       <%= facility.facility_name %>
                     </p>
@@ -230,16 +230,19 @@
           </div>
           <div class="columns is-multiline" id="facility-columns-layout">
             <% current_user.facilities.each do |facility| %>
-              <div class="column is-4">
+              <div class="column is-6">
                 <%= link_to facility_home_path(facility) do %>
                   <div class="card">
-                    <figure class="image is-4by3">
+                    <figure class="image is-2by1" id="image-fit">
                       <%= facility_season_image(facility) %>
+                      <p class="index-facility-icon">
+                        <%= current_user.mypage_facilities_icon(facility.id) %>
+                      </p>
                     </figure>
                     <div class="card-content" id="card-content-color">
+
                       <p class="title is-4 content-layout">
                         <% @facility = facility.id %>
-                        <%= current_user.mypage_facilities_icon(facility.id) %>
                         <span class="facility-title">
                           <%= facility.facility_name %>
                         </span>
