@@ -1,5 +1,5 @@
 <div class="relative-new-body">
-  <%= form_with(url: new_relative_path, method: :get, local: true) do |f| %>
+  <%= form_with(url: new_relative_path, method: :post, local: true) do |f| %>
     <div class="field is-grouped is-grouped-right">
       <div class="control has-icons-left">
         <%= f.text_field :search, :placeholder => "利用者名を入力..", class: "input is-rounded" %>
