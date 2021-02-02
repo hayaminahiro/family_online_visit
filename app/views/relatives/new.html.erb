@@ -1,4 +1,5 @@
 <div class="relative-new-body">
+<% if !params[:update_relatives].present? %>
   <%= form_with(url: new_relative_path, method: :post, local: true) do |f| %>
     <div class="field is-grouped is-grouped-right">
       <div class="control has-icons-left">
@@ -12,6 +13,7 @@
       </div>
     </div>
   <% end %>
+<% end %>
 
   <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), method: :post, local: true) do |f| %>
     <% @requests.each do |request, selected_ids| %>

@@ -40,12 +40,12 @@
 
 .relative-new-body {
   text-align: center;
+  margin-top: 6%;
 
   .field.is-grouped.is-grouped-right {
     justify-content: center;
     width: 812px;
     margin: auto;
-    padding-top: 21px;
   }
 
   .field.is-grouped > .control:not(:last-child) {
@@ -685,6 +685,8 @@
 //タブレット
 @media screen and (max-width: 1000px) {
   .relative-new-body {
+    margin-top: 13%;
+
     .field.is-grouped.is-grouped-right {
       width: 65%;
     }
