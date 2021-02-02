@@ -36,7 +36,7 @@ class FacilityUsersController < ApplicationController
     @facility_user = FacilityUser.find_by(user_id: params[:id], facility_id: current_facility.id)
     @facility_user.destroy
 
-    Relative.eager_load(:resident).where(user_id: params[:id]).where(residents: {facility_id: current_facility}).destroy_all
+    Relative.eager_load(:resident).where(user_id: params[:id]).where(residents: { facility_id: current_facility }).destroy_all
     redirect_to users_url, alert: "#{@user.name}のデータを削除しました。"
   end
 
