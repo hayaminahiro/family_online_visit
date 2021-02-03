@@ -14,7 +14,7 @@ class FacilitiesController < ApplicationController
 
   # 各施設のホーム画面
   def home
-    @menu_approval = current_user.request_residents.where(req_approval: "approval").where(facility_id: @facility.id)
+    @menu_approval = Relative.eager_load(:resident).where(user_id: current_user).where(residents: { facility_id: @facility.id })
     @request = current_user.request_residents.order(created_at: :desc).where(facility_id: @facility.id).first
     @informations = Information.where(status: "head").order(id: "DESC")
     @info_top = Information.find_by(status: "head")
