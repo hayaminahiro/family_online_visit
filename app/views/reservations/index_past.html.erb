@@ -25,9 +25,9 @@
               <table class="table is-bordered is-fullwidth" id="reservation-past-tables">
                 <thead>
                   <tr class="has-text-weight-bold">
+                    <th>面会利用者</th>
                     <th>ご家族名</th>
                     <th>メールアドレス</th>
-                    <th>面会利用者</th>
                     <th>予約日時</th>
                     <th>ご要望等</th>
                     <th>予約削除</th>
@@ -38,15 +38,15 @@
                     <% if reservation.reservation_date < Date.today  %>
                       <tr>
                         <td>
+                          <% eval(reservation.reservation_residents).each do |resident| %>
+                            <%= resident %><br>
+                          <% end %>
+                        </td>
+                        <td>
                           <%= reservation.reservation_user %>
                         </td>
                         <td>
                           <%= reservation.reservation_email %>
-                        </td>
-                        <td>
-                          <% eval(reservation.reservation_residents).each do |resident| %>
-                            <%= resident %><br>
-                          <% end %>
                         </td>
                         <td>
                           <%= l(reservation.reservation_date.in_time_zone, format: :date) %>
