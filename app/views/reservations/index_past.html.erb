@@ -1,0 +1,68 @@
+<%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
+
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' if current_facility.present? %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <body id="page-back-color">
+      <div class="container">
+        <div class="card index-past-top card-width">
+          <div class="has-text-centered">
+            <div class="is-centered">
+              <h1 class="has-text-centered past-title">過去の予約一覧</h1>
+              <table class="table is-bordered is-fullwidth" id="reservation-past-tables">
+                <thead>
+                  <tr class="has-text-weight-bold">
+                    <th>ご家族名</th>
+                    <th>メールアドレス</th>
+                    <th>面会利用者</th>
+                    <th>予約日時</th>
+                    <th>ご要望等</th>
+                    <th>予約削除</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @reservations.facility(@facility).each do |reservation| %>
+                    <% if reservation.reservation_date < Date.today  %>
+                      <tr>
+                        <td>
+                          <%= reservation.reservation_user %>
+                        </td>
+                        <td>
+                          <%= reservation.reservation_email %>
+                        </td>
+                        <td>
+                          <% eval(reservation.reservation_residents).each do |resident| %>
+                            <%= resident %><br>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= l(reservation.reservation_date.in_time_zone, format: :date) %>
+                          <%= l(reservation.started_at, format: :time) %>~
+                        </td>
+
+                        <td>
+                          <%= reservation.comment %>
+                        </td>
+                        <td>
+                          <%= link_to facility_reservation_path(current_facility, reservation, past: :past), method: :delete, data: { confirm: "削除してよろしいですか?" }, class: "button is-danger is-light" do %>
+                            <span><i class="far fa-trash-alt"></i></span>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </div>
+</div>
+
+<!--9. ページネーション -->
+
+<!--9. 名前検索 -->
+
+<!--9. ５年後に消える -->

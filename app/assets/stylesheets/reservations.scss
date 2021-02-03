@@ -325,3 +325,185 @@
 		margin: 3px;
 	}
 }
+
+//index_pastページ
+.index-past-top {
+	height: 100%;
+	margin: 50px 10px;
+	padding: 30px;
+	font-size: 15px;
+	color: #401c00;
+	border-radius: 6px;
+	flex: 2;
+
+	.past-title {
+		font-size: 30px;
+		font-weight: bold;
+		padding: 20px;
+		color: #401c00;
+		border-bottom: 1px solid #401c00;
+		margin: 0 0 20px 0;
+	}
+
+	#reservation-past-tables {
+		th {
+			text-align: center;
+			vertical-align: middle;
+			font-size: 20px;
+			letter-spacing: 3px;
+			background-color: #f7f3e8;
+			color: #401c00;
+			font-weight: 400;
+
+			.sign-tag {
+				margin-top: 3px;
+			}
+		}
+
+		td {
+			text-align: center;
+			vertical-align: middle;
+			letter-spacing: 3px;
+			color: #401c00;
+			font-weight: 400;
+			font-size: 18px;
+		}
+
+		tr:nth-child(2n + 1) td {
+			background-color: #fbfbfb;
+		}
+
+		.button.is-rounded {
+			border-radius: 290486px;
+			padding-right: 14px;
+		}
+	}
+
+	.message-btn {
+		text-align: center;
+		border-radius: 5px;
+		border: 2px solid #13b1c0;
+		color: #13b1c0;
+		text-decoration: none;
+		padding: 9px 25px;
+		background: #fff;
+		cursor: pointer;
+		font-weight: 700;
+		margin-top: 30px;
+	}
+
+	.message-btn:hover {
+		background: #51afbe;
+		color: #fff;
+	}
+
+	.back-btn {
+		text-decoration: none;
+		padding: 20px 35px;
+		cursor: pointer;
+		font-weight: 500;
+		margin-top: 30px;
+	}
+
+	.show-back-btn {
+		text-decoration: none;
+		padding: 20px 35px;
+		cursor: pointer;
+		font-weight: 500;
+		margin-top: 30px;
+	}
+}
+
+//index_pastページのレスポンシブ
+@media screen and (max-width: 1024px) {
+	.index-past-top {
+		height: 100%;
+		margin: 50px 10px;
+		padding: 30px 5px;
+		font-size: 20px;
+		color: #401c00;
+		border-radius: 6px;
+		flex: 2;
+		overflow-x: auto;
+		white-space: nowrap;
+		padding-left: 5px;
+		padding-right: 5px;
+
+		.past-title {
+			font-size: 20px;
+			font-weight: bold;
+			padding: 20px;
+			color: #401c00;
+			border-bottom: 1px solid #401c00;
+			margin: 0 0 20px 0;
+		}
+
+		#reservation-past-tables {
+			th {
+				text-align: center;
+				vertical-align: middle;
+				font-size: 12px;
+				letter-spacing: 3px;
+				background-color: #f7f3e8;
+				color: #401c00;
+				font-weight: 400;
+
+				.sign-tag {
+					margin-top: 3px;
+				}
+			}
+
+			td {
+				text-align: center;
+				vertical-align: middle;
+				letter-spacing: 3px;
+				color: #401c00;
+				font-weight: 400;
+				font-size: 12px;
+			}
+
+			tr:nth-child(2n + 1) td {
+				background-color: #fbfbfb;
+			}
+
+			.button.is-rounded {
+				border-radius: 290486px;
+				padding-right: 14px;
+			}
+		}
+
+		.message-btn {
+			text-align: center;
+			border-radius: 5px;
+			border: 2px solid #13b1c0;
+			color: #13b1c0;
+			text-decoration: none;
+			padding: 9px 25px;
+			background: #fff;
+			cursor: pointer;
+			font-weight: 400;
+			margin-top: 30px;
+		}
+
+		.message-btn:hover {
+			background: #51afbe;
+			color: #fff;
+		}
+
+		.back-btn {
+			text-decoration: none;
+			padding: 12px 35px;
+			cursor: pointer;
+			font-weight: 400;
+			margin-top: 30px;
+		}
+
+		.show-back-btn {
+			text-decoration: none;
+			padding: 12px 35px;
+			cursor: pointer;
+			font-weight: 400;
+			margin-top: 30px;
+		}
+	}
+}

@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :change_facility, only: %i[index index_week]
   before_action :set_user, except: %i[show create destroy index_past]
   before_action :set_reservation, only: %i[show destroy]
-  before_action :set_reservations, only: %i[index index_week reservation_time]
+  before_action :set_reservations, only: %i[index index_week reservation_time index_past]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
 
   def index
@@ -60,7 +60,11 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation.destroy
-    redirect_to facility_reservations_url(user: @reservation.user_id), alert: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消しました。"
+    if params[:past].present?
+      redirect_to index_past_facility_reservations_url(current_facility), alert: "予約を削除しました。"
+    else
+      redirect_to facility_reservations_url(user: @reservation.user_id), alert: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消しました。"
+    end
   end
 
   private
