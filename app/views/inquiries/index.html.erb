@@ -35,24 +35,24 @@
       <% if @inquiries.present? %>
         <div class="table-container has-text-centered inquiry-table-adjust">
           <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-            <table class="table is-striped is-fullwidth inquiry-table">
+            <table class="table is-striped is-fullwidth" id="inquiry-table">
               <thead>
-                <tr class="is-size-5 has-background-info has-text-weight-bold">
-                  <th class="inquiry-th has-text-white">日付</th>
-                  <th class="inquiry-th has-text-white">お名前</th>
-                  <th class="inquiry-th2 has-text-white">連絡先</th>
-                  <th class="inquiry-th2 has-text-white">内容</th>
-                  <th class="inquiry-th2 has-text-white">詳細</th>
+                <tr>
+                  <th>日付</th>
+                  <th>名前</th>
+                  <th>連絡先</th>
+                  <th>内容</th>
+                  <th>詳細</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 <% @inquiries.each do |inquiry| %>
                   <tr class="is-size-5">
-                    <td class="has-text-centered inquiry-index-tbody has-text-weight-semibold"><%= l(inquiry.created_at, format: :long) %></td>
-                    <td class="inquiry-index-tbody has-text-weight-semibold"><%= inquiry.name %></td>
-                    <td class="inquiry-index-tbody has-text-weight-semibold"><%= inquiry.email %></td>
-                    <td class="inquiry-index-tbody has-text-weight-semibold"><div class="inquiry-message-short"><%= inquiry.message %></div></td>
+                    <td><%= l(inquiry.created_at, format: :long) %></td>
+                    <td><div class="inquiry-message-short"><%= inquiry.name %></div></td>
+                    <td><%= inquiry.email %></td>
+                    <td><div class="inquiry-message-short"><%= inquiry.message %></div></td>
                     <td>
                       <%= link_to facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success contents--create-button--circle js-contents--create-button--circle" do %>
                         <i class="far fa-file-alt"></i>
