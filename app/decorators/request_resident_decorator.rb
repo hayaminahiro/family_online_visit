@@ -14,12 +14,13 @@ module RequestResidentDecorator
 
   def approval_link(facility)
     default_request_link = tag.p((link_to "ご利用者様の登録申請", new_request_resident_path(facility_id: facility), class: "btn-shine"))
-    return default_request_link unless current_user.resident_ids.any? { |id| facility.resident_ids.include?(id) }
 
     case req_approval
     when "request"
       tag.p((link_to "利用者登録は #{req_approval_i18n} です", edit_request_resident_path(id), class: "btn-shine"))
     when "approval"
+      return default_request_link unless current_user.resident_ids.any? { |id| facility.resident_ids.include?(id) }
+
       tag.p((link_to "利用者登録は #{req_approval_i18n} です", new_request_resident_path(facility_id: facility), class: "btn-shine"))
     else
       default_request_link
