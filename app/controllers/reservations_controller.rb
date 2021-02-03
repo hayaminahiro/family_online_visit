@@ -23,7 +23,7 @@ class ReservationsController < ApplicationController
   end
 
   def index_past
-
+    @reservations = Reservation.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
   end
 
   def show; end

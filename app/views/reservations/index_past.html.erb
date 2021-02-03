@@ -8,6 +8,19 @@
         <div class="card index-past-top card-width">
           <div class="has-text-centered">
             <div class="is-centered">
+              <div class="search">
+                <%#= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+                <%= form_with(url: index_past_facility_reservations_path(current_facility), method: :get, local: true) do |f| %>
+                  <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                      <%= f.text_field :search, :placeholder => "面会利用者を入力", class: "input is-rounded is-black" %>
+                    </div>
+                    <div class="control">
+                      <%= f.submit "\uf002検索", class: "fa button is-link is-rounded" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
               <h1 class="has-text-centered past-title">過去の予約一覧</h1>
               <table class="table is-bordered is-fullwidth" id="reservation-past-tables">
                 <thead>
