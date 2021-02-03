@@ -9,7 +9,7 @@
           <div class="has-text-centered">
             <div class="is-centered">
               <div class="search">
-                <%#= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+                <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
                 <%= form_with(url: index_past_facility_reservations_path(current_facility), method: :get, local: true) do |f| %>
                   <div class="field is-grouped is-grouped-right">
                     <div class="control">
@@ -52,7 +52,6 @@
                           <%= l(reservation.reservation_date.in_time_zone, format: :date) %>
                           <%= l(reservation.started_at, format: :time) %>~
                         </td>
-
                         <td>
                           <%= reservation.comment %>
                         </td>
@@ -66,6 +65,7 @@
                   <% end %>
                 </tbody>
               </table>
+              <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
             </div>
           </div>
         </div>
@@ -73,9 +73,5 @@
     </body>
   </div>
 </div>
-
-<!--9. ページネーション -->
-
-<!--9. 名前検索 -->
 
 <!--9. ５年後に消える -->
