@@ -3,24 +3,13 @@ class ReservationsController < ApplicationController
   before_action :change_facility, only: %i[index index_week]
   before_action :set_user, except: %i[show create destroy index_past]
   before_action :set_reservation, only: %i[show destroy]
-  before_action :set_reservations, only: %i[index index_week reservation_time]
+  before_action :set_reservations, only: %i[index index_week reservation_time  index_past]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
+  before_action :count_max_reservation, only: %i[index index_week]
 
-  def index
-    if @calendar_settings.facility(@facility).first.try(:max_reservation).present?
-      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
-    else
-      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
-    end
-  end
+  def index; end
 
-  def index_week
-    if @calendar_settings.facility(@facility).first.try(:max_reservation).present?
-      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
-    else
-      @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
-    end
-  end
+  def index_week; end
 
   def index_past
     @reservations = Reservation.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
@@ -91,6 +80,12 @@ class ReservationsController < ApplicationController
 
     def set_reservations
       @reservations = Reservation.all.sorted
+      # 5年間経過した予約データは自動削除
+      @reservations.facility(@facility).each do |reservation|
+        if Date.today > reservation.created_at.since(5.years).to_date
+          reservation.destroy
+        end
+      end
     end
 
     def calendar_settings
@@ -103,6 +98,14 @@ class ReservationsController < ApplicationController
           @week[num] = num + 1 if @week[num].present?
           num += 1
         end
+      end
+    end
+
+    def count_max_reservation
+      if @calendar_settings.facility(@facility).first.try(:max_reservation).present?
+        @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
+      else
+        @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
       end
     end
 
