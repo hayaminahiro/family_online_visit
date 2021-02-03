@@ -2,9 +2,10 @@
 <body id="page-back-color">
   <div class="container">
     <div class="card card-width" id="reservations-calendar">
-      <%= link_to "月間カレンダーへ", facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
+      <%= link_to "月間カレンダー", facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
       <%= link_to "戻る", facility_home_path(@facility), class: "button is-light" if current_user.present? %>
       <%= link_to "戻る", users_path, class: "button is-light" if current_facility.present? %>
+      <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility), class: "button is-light is-pulled-right" if current_facility.present? %>
       <div class="has-text-centered">
         <div class="is-centered">
           <h1 class="has-text-centered reservation-title"><%= @user.name if current_facility.present? %>&nbsp;&nbsp;予約日時選択</h1>

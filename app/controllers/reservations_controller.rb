@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_facility_id
   before_action :change_facility, only: %i[index index_week]
-  before_action :set_user, except: %i[show create destroy]
+  before_action :set_user, except: %i[show create destroy index_past]
   before_action :set_reservation, only: %i[show destroy]
   before_action :set_reservations, only: %i[index index_week reservation_time]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
@@ -20,6 +20,10 @@ class ReservationsController < ApplicationController
     else
       @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
     end
+  end
+
+  def index_past
+
   end
 
   def show; end
