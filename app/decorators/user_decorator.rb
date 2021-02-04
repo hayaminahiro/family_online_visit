@@ -24,6 +24,14 @@ module UserDecorator # rubocop:disable Metrics/ModuleLength
     image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "mypage-facility-icon-image"
   end
 
+  # マイページ（予約内容アイコン）
+  def mypage_reservation_facility_icon(id)
+    facility = Facility.find(id)
+    return image_tag facility.icon.url, class: "mypage-facility-icon" if facility.icon?
+
+    image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "mypage-facility-icon"
+  end
+
   # 施設iconを表示（モーダル内）
   def mypage_modal_facilities_icon(id)
     facility = Facility.find(id)
