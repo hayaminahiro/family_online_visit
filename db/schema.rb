@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_071555) do
+ActiveRecord::Schema.define(version: 2021_02_03_151214) do
 
   create_table "calendar_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "regular_holiday"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_071555) do
     t.string "reservation_user"
     t.string "reservation_email"
     t.string "reservation_residents"
+    t.boolean "read", default: false
     t.index ["facility_id"], name: "index_reservations_on_facility_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

@@ -97,6 +97,10 @@ module FacilityDecorator
     requests.present? ? tag.sup(requests.count) : nil
   end
 
+  def reservations_count(values)
+    reservations.present? ? tag.sup(values.length) : nil
+  end
+
   def acceptance_requests(user)
     RequestResident.includes(:user).where(user_id: user).where(facility_id: id).where(req_approval: "request")
   end
