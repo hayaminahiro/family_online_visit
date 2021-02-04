@@ -15,7 +15,9 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
   end
 
-  def show; end
+  def show
+    @reservation.update_attributes(read: true)
+  end
 
   def reservation_time
     @title_date = params[:title_date]

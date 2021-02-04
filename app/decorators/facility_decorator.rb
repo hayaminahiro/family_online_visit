@@ -98,7 +98,7 @@ module FacilityDecorator
   end
 
   def reservations_count(values)
-    reservations.present? ? tag.sup(values.length) : nil
+    values.where(read: false).length > 0 ? tag.sup(values.where(read: false).length) : nil
   end
 
   def acceptance_requests(user)
