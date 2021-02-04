@@ -21,6 +21,9 @@
           <% unless reservation.read? %>
             <span class="tag is-danger is-light is-rounded">New</span>
           <% end %>
+          <% if reservation.comment? %>
+            <p class="tag is-info is-light is-rounded">★</p>
+          <% end %>
           <%= link_to "#{reservation.reservation_user} / #{l(reservation.reservation_date, format: :base)}#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation, user: reservation.user_id, setting: :setting), style:"color: #401c00;" %>
         </div>
       <% end %>
