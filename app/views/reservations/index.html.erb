@@ -9,10 +9,14 @@
       <body id="page-back-color">
         <div class="container">
           <div class="card card-width" id="reservations-calendar">
-            <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
-            <%= link_to "戻る", facility_home_path(@facility), class: "button is-light " if current_user.present? %>
-            <%= link_to "戻る", users_path(anchor: 'top'), class: "button is-light" if current_facility.present? %>
-            <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility, anchor: 'top'), class: "button is-light is-pulled-right" if current_facility.present? %>
+            <% if current_user.present? %>
+              <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
+              <%= link_to "戻る", facility_home_path(@facility), class: "button is-light" %>
+            <% else %>
+              <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user, anchor: 'top'), class: "button is-warning is-light is-outlined" %>
+              <%= link_to "戻る", users_path(anchor: 'top'), class: "button is-light" %>
+              <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility, anchor: 'top'), class: "button is-light is-pulled-right" %>
+            <% end %>
             <div class="has-text-centered">
               <div class="is-centered">
                 <h1 class="has-text-centered reservation-title"><%= @user.name if current_facility.present? %>&nbsp;&nbsp;予約日時選択</h1>
