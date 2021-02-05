@@ -25,13 +25,12 @@ class FacilitiesController < ApplicationController
     @info_top = Information.find_by(status: "head")
     @request_residents = RequestResident.where(req_approval: "request").where(facility_id: current_facility).order(id: :desc)
     # カレンダー設定と予約
-    @calendar_settings = CalendarSetting.all.facility(current_facility)
+    @calendar_setting = CalendarSetting.find_by(facility_id: current_facility.id)
     @reservations = Reservation.all.sorted
-    @set_id = @calendar_settings.find_by(facility_id: current_facility.id).try(:id)
     # 曜日が存在していた場合、該当する曜日の整数を代入
     @week = []
     CalendarSetting::DAY_OF_THE_WEEK.each do |day|
-      @week << @calendar_settings.find_by(facility_id: current_facility.id).regular_holiday.include?(day) if @calendar_settings.find_by(facility_id: current_facility.id).present? ? day : nil
+      @week << @calendar_setting.regular_holiday.include?(day) if @calendar_setting.present? ? day : nil
       num = -1
       while num < 6
         @week[num] = num + 1 if @week[num].present?

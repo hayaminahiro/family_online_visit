@@ -104,7 +104,7 @@ class ReservationsController < ApplicationController
     end
 
     def count_max_reservation
-      if @calendar_settings.facility(@facility).first.try(:max_reservation).present?
+      if @calendar_settings.facility(@facility).first&.max_reservation.present?
         @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
       else
         @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
