@@ -65,7 +65,7 @@
                     <th>申請日</th>
                     <th>申請者</th>
                     <th>
-                      <%= link_to "申請中一覧", new_relative_path, class: "button is-primary is-outlined is-small", id: "applying-btn" %>
+                      <%= link_to "申請中一覧", new_relative_path, class: "button is-primary is-outlined is-small", id: "applying-btn", method: :post %>
                       <%= link_to "申請済一覧", relatives_path, class: "button is-small", id: "applied-btn" %>
                     </th>
                   </tr>

@@ -65,8 +65,8 @@
       </div>
     <% end %>
   <% end %>
-  <div>
-    <%= link_to "入力画面に戻る", new_relative_path(update_relatives: @request_residents), class: "button is-light has-text-weight-bold", id: "req-submit" %>
+  <div class="confirm-submit">
+    <%= button_to "入力画面に戻る", new_relative_path, params: {update_relatives: @request_residents}, class: "button is-light has-text-weight-bold", id: "req-submit" %>
     <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @request_residents), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
   </div>
 </div>
