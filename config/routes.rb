@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   resources :calendar_settings, except: :index
 
   # 利用施設登録 ==========================================================================
-  resources :facility_users, only: %i[new update] do
+  resources :facility_users, only: %i[new update destroy] do
     member do
       patch :facility_update
     end
@@ -84,10 +84,11 @@ Rails.application.routes.draw do
   resources :request_residents
 
   # 入居者登録 ============================================================================
-  resources :relatives, except: %i[create] do
+  resources :relatives, except: %i[new create] do
     patch :update_relatives, on: :collection
     post :confirm, on: :member
   end
+  post '/relatives/new', to: 'relatives#new', as: :new_relative
 
   # お知らせ ==============================================================================
   resources :informations do

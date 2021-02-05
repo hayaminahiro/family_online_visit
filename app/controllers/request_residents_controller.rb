@@ -1,5 +1,6 @@
 class RequestResidentsController < ApplicationController
   before_action :set_request, only: %i[edit update destroy]
+  before_action :set_facility, only: %i[new]
 
   # 入居者登録申請
   def new
@@ -46,6 +47,10 @@ class RequestResidentsController < ApplicationController
 
     def set_request
       @request = RequestResident.find(params[:id])
+    end
+
+    def set_facility
+      @facility = Facility.find(params[:facility_id].to_i)
     end
 
     def request_params

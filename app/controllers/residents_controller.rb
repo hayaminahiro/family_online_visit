@@ -51,6 +51,8 @@ class ResidentsController < ApplicationController
   def destroy
     @resident.facility_id = current_facility.id
     @resident.destroy
+
+    Relative.eager_load(:resident).where(resident_id: params[:id]).where(residents: { facility_id: current_facility }).destroy_all
     redirect_to residents_url, alert: "入居者情報を削除しました"
   end
 
