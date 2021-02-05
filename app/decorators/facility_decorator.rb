@@ -98,7 +98,7 @@ module FacilityDecorator
   end
 
   def reservations_count(values)
-    values.where(read: false).where('reservation_date >= ?', Date.today).length > 0 ? tag.sup(values.where(read: false).where('reservation_date >= ?', Date.today).length) : nil
+    values.where(read: false).where('reservation_date >= ?', Time.zone.today).length >= 1 ? tag.sup(values.where(read: false).where('reservation_date >= ?', Time.zone.today).length) : nil
   end
 
   def acceptance_requests(user)

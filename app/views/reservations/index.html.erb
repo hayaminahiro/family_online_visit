@@ -12,7 +12,7 @@
             <% if current_user.present? %>
               <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
               <%= link_to "戻る", facility_home_path(@facility), class: "button is-light" %>
-            <% else %>
+            <% elsif current_facility.present? %>
               <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user, anchor: 'top'), class: "button is-warning is-light is-outlined" %>
               <%= link_to "戻る", users_path(anchor: 'top'), class: "button is-light" %>
               <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility, anchor: 'top'), class: "button is-light is-pulled-right" %>

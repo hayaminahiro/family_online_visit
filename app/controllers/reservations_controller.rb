@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :change_facility, only: %i[index index_week]
   before_action :set_user, except: %i[show create destroy index_past]
   before_action :set_reservation, only: %i[show destroy]
-  before_action :set_reservations, only: %i[index index_week reservation_time  index_past]
+  before_action :set_reservations, only: %i[index index_week reservation_time index_past]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
   before_action :count_max_reservation, only: %i[index index_week]
 
@@ -84,9 +84,7 @@ class ReservationsController < ApplicationController
       @reservations = Reservation.all.sorted
       # 5年間経過した予約データは自動削除
       @reservations.facility(@facility).each do |reservation|
-        if Date.today > reservation.created_at.since(5.years).to_date
-          reservation.destroy
-        end
+        reservation.destroy if Time.zone.today > reservation.created_at.since(5.years).to_date
       end
     end
 
@@ -104,11 +102,11 @@ class ReservationsController < ApplicationController
     end
 
     def count_max_reservation
-      if @calendar_settings.facility(@facility).first&.max_reservation.present?
-        @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
-      else
-        @current_max_reservation = CalendarSetting::RESERVATION_TIMES.length
-      end
+      @current_max_reservations = if @calendar_settings.facility(@facility).first&.max_reservation.present?
+                                    CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
+                                  else
+                                    CalendarSetting::RESERVATION_TIMES.length
+                                  end
     end
 
     def reservation_params
