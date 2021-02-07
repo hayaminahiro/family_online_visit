@@ -47,7 +47,7 @@ class CalendarSettingsController < ApplicationController
     end
 
     def max_reservation
-      @calendar_setting.max_reservation = setting_params[:cancellation_time].length - 1
+      @calendar_setting&.max_reservation = setting_params[:cancellation_time].length - 1
     end
 
     def setting_params
