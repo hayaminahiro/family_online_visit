@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @reservation.update_attributes(read: true)
+    @reservation.update_attributes(read: true) if current_facility
   end
 
   def reservation_time
