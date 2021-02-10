@@ -29,7 +29,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(*)
-    user = current_user.facilities
-    user.present? ? user_path(current_user) : new_facility_user_path
+    current_user.facilities.present? ? user_path(current_user) : new_facility_user_path
   end
 end
