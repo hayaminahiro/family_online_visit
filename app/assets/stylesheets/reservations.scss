@@ -125,8 +125,21 @@
 	}
 }
 
-// レスポンシブindexページ(iPad Pro以下)
+// レスポンシブindexページ(iPad以下)
 @media screen and (max-width: 768px) {
+	#reservations-calendar {
+		height: 100vh;
+		margin: 100px;
+		padding: 30px 10px 30px 10px;
+		font-size: 15px;
+		color: #401c00;
+		border-radius: 6px;
+		flex: 2;
+	}
+}
+
+// レスポンシブindexページ(スマホ)
+@media screen and (max-width: 480px) {
 	#reservations-calendar {
 		height: 100%;
 		margin: 100px;
