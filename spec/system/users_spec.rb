@@ -68,7 +68,7 @@ RSpec.describe 'Sessions', type: :system do
           fill_in 'メールアドレス', with: user.email
           fill_in 'パスワード', with: user.password
           click_button 'ログイン'
-          expect(current_path).to eq "/"
+          expect(current_path).to eq new_facility_user_path
           expect(body).to have_content 'ログインしました。'
           expect(page).to have_selector('.notification.is-success')
         end
