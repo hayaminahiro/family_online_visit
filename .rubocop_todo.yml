@@ -70,6 +70,11 @@ Lint/UselessAssignment:
     - 'app/models/user.rb'
     - 'app/models/facility.rb'
 
+# bulk: true 推奨の指摘
+Rails/BulkChangeTable:
+  Exclude:
+    - 'db/migrate/20210130102909_remove_req_phone_from_request_residents.rb'
+
 Metrics/AbcSize:
   Max: 55
 

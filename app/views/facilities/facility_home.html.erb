@@ -15,18 +15,19 @@
         </div>
 
         <p class="panel-tabs">
-          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;<span class="tab-title">カレンダー</span></a>
+          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;<span class="tab-title">カレンダー</span><%= current_facility.reservations_count(@reservations) %></a>
           <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;<span class="tab-title">登録申請</span><%= current_facility.request_count(@request_residents) %></a>
           <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;<span class="tab-title">NEWS</span></a>
         </p>
 
         <div id="Web" class="content-tab" >
           <div class="card-width" id="facility-home-calendar">
-            <% if @calendar_settings.present? %>
-              <%= link_to "予約詳細設定", edit_calendar_setting_path(@set_id), class: "button is-warning is-light is-outlined" %>
+            <% if @calendar_setting.present? %>
+              <%= link_to "予約詳細設定", edit_calendar_setting_path(@calendar_setting, anchor: 'top'), class: "button is-warning is-light is-outlined" %>
             <% else %>
-              <%= link_to "予約詳細設定", new_calendar_setting_path, class: "button is-warning is-light is-outlined" %>
+              <%= link_to "予約詳細設定", new_calendar_setting_path(anchor: 'top'), class: "button is-warning is-light is-outlined" %>
             <% end %>
+            <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility, anchor: 'top'), class: "button is-light is-pulled-right" if current_facility.present? %>
             <div class="has-text-centered">
               <div class="is-centered">
                 <h1 class="has-text-centered reservation-title">予約状況確認</h1>
@@ -39,7 +40,7 @@
                   <% end %>
                   <% @reservations.each do |reservation| %>
                     <% if reservation.facility_id == current_facility.id && date >= Date.current %>
-                      <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
+                      <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting, anchor: 'top'), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
                     <% end %>
                   <% end %>
                   <% unless calendar_setting(@week, date) %>

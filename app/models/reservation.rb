@@ -35,4 +35,10 @@ class Reservation < ApplicationRecord
   scope :reservation_date, ->(date) { where(reservation_date: date) }
   scope :sorted, -> { order(reservation_date: :asc) }
   scope :facility_day_max, ->(facility, user) { where(facility_id: facility).reservation_user(user.name) }
+
+  # search定義
+  def self.search(search, facility)
+    facility.reservations unless search
+    facility.reservations.where('reservation_residents LIKE ?', "%#{search}%").sorted
+  end
 end
