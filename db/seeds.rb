@@ -1,5 +1,6 @@
 # deviseの場合、~.save!しないとpasswordがseedに反映されない。
 admin = Facility.create!(
+  id: 1,
   facility_name: "管理者ユーザー",
   email: "facility_admin@email.com",
   password: "password",
@@ -19,6 +20,7 @@ home = Facility.create!(
 home.save!
 
 home = Facility.create!(
+  id: 3,
   facility_name: "老人ホーム-B",
   email: "home-b@email.com",
   password: "password",
@@ -27,6 +29,7 @@ home = Facility.create!(
 home.save!
 
 home = Facility.create!(
+  id: 4,
   facility_name: "老人ホーム-C",
   email: "home-c@email.com",
   password: "password",
@@ -35,6 +38,7 @@ home = Facility.create!(
 home.save!
 
 home = Facility.create!(
+  id: 5,
   facility_name: "老人ホーム-D",
   email: "home-d@email.com",
   password: "password",
@@ -43,6 +47,7 @@ home = Facility.create!(
 home.save!
 
 home = Facility.create!(
+  id: 6,
   facility_name: "老人ホーム-E",
   email: "home-e@email.com",
   password: "password",
@@ -51,6 +56,7 @@ home = Facility.create!(
 home.save!
 
 home = Facility.create!(
+  id: 7,
   facility_name: "老人ホーム-F",
   email: "home-f@email.com",
   password: "password",
@@ -59,6 +65,7 @@ home = Facility.create!(
 home.save!
 
 hospital = Facility.create!(
+  id: 8,
   facility_name: "病院-B",
   email: "hospital@email.com",
   password: "password",
@@ -67,6 +74,7 @@ hospital = Facility.create!(
 hospital.save!
 
 hoiku = Facility.create!(
+  id: 9,
   facility_name: "保育園-C",
   email: "hoiku@email.com",
   password: "password",
@@ -94,6 +102,7 @@ puts "施設を作成しました！"
   email = "sample#{n + 1}@email.com"
   password = "password"
   User.create!(
+    id: n + 1,
     name: name,
     email: email,
     password: password,
@@ -110,6 +119,7 @@ puts "ご家族ユーザを作成しました！"
 40.times do |n|
   name = "入居者-#{n + 1}"
   Resident.create!(
+    id: n + 1,
     facility_id: 2,
     name: name,
     charge_worker: "担当者-#{n + 1}"
@@ -119,6 +129,7 @@ end
 40.times do |n|
   name = "入居者-#{n + 41}"
   Resident.create!(
+    id: n + 41,
     facility_id: 3,
     name: name,
     charge_worker: "担当者-#{n + 1}"
