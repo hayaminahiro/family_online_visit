@@ -1,33 +1,59 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  
-  def google_oauth2
-    callback_for(:google)
-  end
-
-  def line
-    callback_for(:line)
-  end
-  
-
   def callback_for(provider)
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+    @omniauth = request.env['omniauth.auth']
+    info = User.find_oauth(@omniauth)
+    @user = info[:user]
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
+      sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     else
-      session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-      redirect_to new_user_registration_url
+      @sns = info[:sns]
+      render template: "devise/registrations/new"
     end
   end
 
   def failure
-    redirect_to root_path
+    redirect_to root_path and return
   end
 
-  
-  
+  def line
+    basic_action
+  end
+
+  private
+
+    def basic_action
+      @omniauth = request.env['omniauth.auth']
+      if @omniauth.present?
+        @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+        if @profile
+        else
+          @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+          email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+          @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+          # redirect_to edit_user_path(@profile.user.id) and return
+        end
+        @profile.set_values(@omniauth)
+        sign_in(:user, @profile)
+        # Style/IdenticalConditionalBranches(rubocop) ⬇️⬇️これに書き換えても大丈夫なら変更
+        # @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+        # unless @profile
+        #   @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+        #   email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+        #   @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+        # end
+        # @profile.set_values(@omniauth)
+        # sign_in(:user, @profile)
+      end
+      redirect_to root_path, notice: "ログインしました"
+    end
+
+    def fake_email(uid, provider)
+      # ↓"#{auth.uid}-#{auth.provider}@example.com"ここはreturnがなくて良さそう
+      return "#{auth.uid}-#{auth.provider}@example.com"
+    end
 
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]

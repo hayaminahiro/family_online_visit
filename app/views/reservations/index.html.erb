@@ -1,1 +1,35 @@
-<h1>予約状況一覧画面</h1>
+<%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
+<ul class="calendar-background"></ul>
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' if current_facility.present? %>
+  <% if current_user.present? %>
+    <div id="no-side-link"></div>
+  <% end %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <div class="container container-top">
+      <body id="page-back-color">
+        <div class="container">
+          <div class="card card-width" id="reservations-calendar">
+            <% if current_user.present? %>
+              <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user), class: "button is-warning is-light is-outlined" %>
+              <%= link_to "戻る", facility_home_path(@facility), class: "button is-light" %>
+            <% elsif current_facility.present? %>
+              <%= link_to "週間カレンダー", index_week_facility_reservations_path(@facility, user: @user, anchor: 'top'), class: "button is-warning is-light is-outlined" %>
+              <%= link_to "戻る", users_path(anchor: 'top'), class: "button is-light" %>
+              <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility, anchor: 'top'), class: "button is-light is-pulled-right" %>
+            <% end %>
+            <div class="has-text-centered">
+              <div class="is-centered">
+                <h1 class="has-text-centered reservation-title"><%= @user.name if current_facility.present? %>&nbsp;&nbsp;予約日時選択</h1>
+                <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
+                  <%= render partial: 'main_content', locals: { date: date} %>
+                <% end %>
+              </div>
+            </div>
+            <%= render 'reservation_list' %>
+          </div>
+        </div>
+      </body>
+    </div>
+  </div>
+</div>

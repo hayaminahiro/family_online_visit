@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-line'
 gem 'dotenv-rails'
+gem 'simple_calendar', '~> 2.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -44,17 +45,29 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'font-awesome-sass', '~> 5.4.1'
-gem "bulma-rails"
+gem 'bulma-rails'
 gem 'will_paginate-bulma'
+gem 'jquery-rails'
+gem 'carrierwave'
+gem 'fog-aws'
+gem 'mini_magick'
+gem 'dropzonejs-rails'
+gem 'activerecord-import'
+gem 'active_decorator'
+gem 'enum_help'
+gem "holiday_japan"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
   # gem 'pry-byebug'
   gem 'pry-doc'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -64,15 +77,19 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'brakeman', require: false
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

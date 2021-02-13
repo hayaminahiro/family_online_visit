@@ -1,50 +1,64 @@
 class InformationsController < ApplicationController
+  # ログインしてなければ閲覧不可
+  before_action :authenticate_user!, only: %i[top_notice show]
+  before_action :authenticate_facility!, only: %i[index create new update destroy]
+  before_action :set_information, only: %i[show edit update destroy]
+
   def index
     @info_top = Information.find_by(status: "head")
-    @informations = Information.where(status: "others").order(id: "DESC").paginate(page: params[:page], per_page: 10)
-    @information = Information.new
+    @informations = Information.search(params[:search], current_facility).paginate(page: params[:page], per_page: 9)
   end
 
-  def show
-    @information = Information.find(params[:id])
+  def show; end
+
+  def new
+    @information = if params[:image_cache].present?
+                     Information.new(information_params)
+                   else
+                     Information.new
+                   end
   end
 
   def create
     @information = Information.new(information_params)
-    if  @information.save
-      flash[:notice] = "お知らせを新規作成できました"
+    @information.facility_id = current_facility.id
+    if @information.save
+      redirect_to informations_url, notice: "タイトル【#{@information.title}】/お知らせを新規作成できました。"
     else
-      flash[:alert] = "新規作成できませんでした。入力内容をご確認ください"
+      render :new
     end
-    redirect_to informations_path
   end
 
+  def edit; end
+
   def update
-    @information = Information.find(params[:id])
+    @information.facility_id = current_facility.id
     if @information.update(information_params)
-      flash[:notice] = "更新できました"
+      flash[:notice] = "タイトル【#{@information.title}】/お知らせを更新できました。"
+      @information.status == "head" ? redirect_to(facility_home_facility_url) : redirect_to(informations_url)
     else
-      flash[:alert] = "更新できませんでした。入力内容をご確認ください"
+      render :edit
     end
-    redirect_to informations_path
   end
 
   def destroy
-    @information = Information.find(params[:id])
     @information.destroy
-    flash[:alert] = "お知らせを削除しました"
-    redirect_to informations_path
+    redirect_to informations_url, alert: "お知らせを削除しました"
   end
+
   # 家族向けお知らせ表示ページ
   def top_notice
     @info_top = Information.find_by(status: "head")
-    @informations = Information.where(status: "others")
+    @informations = Information.where(facility_id: params[:facility_id].to_i).where(status: "others").order(id: "DESC")
   end
 
   private
 
-  def information_params
-    params.require(:information).permit(:news, :title)
-  end
+    def information_params
+      params.require(:information).permit(:news, :title, :image, :remove_image, :image_cache)
+    end
 
+    def set_information
+      @information = Information.find(params[:id])
+    end
 end

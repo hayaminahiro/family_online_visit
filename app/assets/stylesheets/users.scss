@@ -3,25 +3,2576 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* 面会ルームのタイトル */
-
-.hero-1 {
+.hero-6 {
   background-size: cover;
   background-position: center;
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/video_room.jpg");
+
+  h1 {
+    font-size: 40px;
+  }
+}
+
+//ビデオチャットレイアウト
+.chat-section {
+  padding: 3rem 1.5rem;
+}
+
+.video_background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: -1;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/Video_Room_phote.jpg");
+  background-size: cover;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  pointer-events: none;
+}
+
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+
+video::-webkit-media-controls-current-time-display {
+  display: none;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none;
+  pointer-events: none;
+}
+
+video::-webkit-media-controls-pause-button {
+  pointer-events: none;
+}
+
+#js-remote-streams {
+  width: 100%;
+}
+
+//ローカルモニター
+#local-video {
+  span#js-room-mode {
+    display: none;
+  }
+}
+
+//Room Name記入欄
+#input-key {
+  p#room-key {
+    display: none;
+  }
+
+  h3 {
+    display: none;
+  }
+}
+
+//入室ボタン
+#js-join-trigger {
+  font-size: 22px;
+}
+
+//退室ボタン
+#js-leave-trigger {
+  font-size: 22px;
+}
+
+//チャット
+.messages-layout {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+
+  #chat-icon {
+    display: none;
+  }
+}
+
+#js-messages {
+  height: 295px;
+  word-break: break-all;
+  overflow-x: hidden;
+  background: -webkit-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(135, 206, 250, 1)
+    ),
+    url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/cloud.jpg");
+  background-size: cover;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  padding: 0px 20px 10px 20px;
+
+  .chat-day {
+    color: #fff;
+    width: 22%;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -37px;
+    padding-top: 2px;
+  }
+
+  .local-start {
+    margin-top: 30px;
+  }
+
+  .local-start span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    font-size: 13px;
+    padding: 5px 13px;
+  }
+
+  .remote-start {
+    margin-top: 25px;
+  }
+
+  .remote-start span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    padding: 5px 13px;
+    border-radius: 25px;
+  }
+
+  .room-end {
+    margin-top: 25px;
+  }
+
+  .room-end span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 13px;
+    font-size: 13px;
+    border-radius: 25px;
+  }
+
+  .chat-end {
+    margin-top: 25px;
+  }
+
+  .chat-end span {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 13px;
+    font-size: 13px;
+    border-radius: 25px;
+  }
+
+  .remote-text {
+    position: relative;
+    width: 60%;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  //チャットアイコン
+  .remote-text img.message-chat-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: -8px;
+    display: inline-block;
+  }
+
+  .remote-text span {
+    top: 53px;
+    position: absolute;
+    margin-right: auto;
+    color: gray;
+    border-radius: 25px;
+    padding: 6px;
+    font-size: 8px;
+    display: block;
+  }
+
+  .remote-text p {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    margin-left: 30px;
+    border-radius: 25px;
+    white-space: pre-wrap;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+  }
+
+  .remote-text p:after {
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    position: absolute;
+    border-color: rgba(255, 255, 255, 0);
+    border-top-width: 3px;
+    border-bottom-width: 8px;
+    border-left-width: 20px;
+    border-right-width: 20px;
+    margin-top: -10px;
+    border-right-color: #fff;
+    right: 100%;
+    top: 26px;
+  }
+
+  .local-text {
+    width: 60%;
+    margin-right: 3%;
+    margin-left: auto;
+    margin-top: 30px;
+    text-align: right;
+  }
+
+  .local-text span {
+    position: relative;
+    text-align: left;
+    margin-left: auto;
+    background-color: #90ee90;
+    border-radius: 25px;
+    padding: 10px;
+    white-space: pre-wrap;
+    display: inline-block;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+  }
+
+  .local-text span:after {
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    position: absolute;
+    border-color: rgba(255, 255, 255, 0);
+    border-top-width: 3px;
+    border-bottom-width: 8px;
+    border-left-width: 20px;
+    border-right-width: 20px;
+    margin-top: -10px;
+    border-left-color: #90ee90;
+    left: 100%;
+    top: 23px;
+  }
+}
+
+//送信ボタン
+#js-send-trigger {
+  font-size: 22px;
+}
+
+//戻るボタン
+#return-btn {
+  margin-top: 20px;
+  font-size: 22px;
+  margin-bottom: 9%;
+}
+
+//タイマー
+#timer {
+  font-size: 25px;
+}
+
+//タイマーボタン
+#buttonBox {
+  display: inline-block;
+  background-color: #b0c4de;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: none;
+  padding: 0px;
+  margin-left: auto;
+
+  button#start {
+    background: -webkit-linear-gradient(top, #4e6f8b, #0a203f);
+    color: #fff;
+    font-size: 15px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    padding: 0px;
+    margin-top: 4%;
+    outline: none;
+    overflow: hidden;
+  }
+
+  button#start span {
+    display: inline-block;
+    font-size: 40px;
+    transition: 0.5s;
+  }
+
+  button#start:hover span {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+  }
+
+  button#start p {
+    font-size: 10px;
+    transition: 0.5s;
+  }
+
+  button#start:hover p {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+  }
+}
+
+//テレビ電話のシステム表示
+p#js-meta {
+  display: none;
+}
+
+p.meta {
+  display: none;
 }
 
 /* ご家族一覧 */
-
-#family-table th {
-  background-color: #FFDAB9;
+#user-table th {
+  background-color: #ffdab9;
   font-size: 20px;
-  text-align: center; 
+  text-align: center;
+  vertical-align: middle;
 }
 
-#family-table td {
+#user-table td {
   text-align: center;
+  vertical-align: middle;
+  padding: 15px 5px;
+}
+
+//User Name
+.user-table-tag {
+  font-size: 17px;
 }
 
 .hero .tabs ul {
-  margin-right: 40px;
-  margin-left: 40px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.tabs a {
+  font-size: 20px;
+}
+
+//検索フォーム
+.search-user.input {
+  font-size: 20px;
+}
+
+.search-btn-user.button {
+  font-size: 20px;
+}
+
+/* ご家族マイページ */
+.mypage-main-content {
+  margin: 0px;
+  display: flex;
+  font-size: 1rem;
+  min-height: 100vh;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.user-icon-field {
+  height: 150px;
+  width: 100%;
+  border-style: dashed;
+  border-width: 2px;
+  margin: 20px 0 20px 0;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: #dedede;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+img#icon_prev_0.user-edit-image {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  display: inline-block;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+mypage-aside {
+  /*画面左*/
+  position: fixed;
+  z-index: 5;
+  width: 20%;
+  height: 100%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #f7f0e7, #f24f4f 100%);
+  box-shadow: inset -1px 0px 0px 0px #dddddd;
+
+  .profile-section {
+    text-align: center;
+    margin: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(102, 97, 91, 0.3);
+  }
+
+  .mypage-side-link {
+    margin-top: 50px;
+    margin-left: 10%;
+
+    .link-layout {
+      text-align: center;
+    }
+  }
+
+  img.user-profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    display: inline-block;
+    object-fit: cover;
+  }
+
+  input#user_image.user_img {
+    color: #ccc;
+    height: 250px !important;
+    width: 100%;
+    margin: 20px 0 20px 0;
+    border-style: dashed;
+    border-width: 2px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .panel-tab {
+    margin: 35px 0px;
+  }
+
+  .panel-tab.is-active {
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 30px 0px;
+  }
+
+  .panel-tab.is-active::after {
+    position: absolute;
+    border-right: 17px solid #f4f3ef;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    top: -5px;
+    right: 0px;
+  }
+
+  .panel-tab p {
+    font-size: 22px;
+    width: 55%;
+    margin-left: 21%;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    transition: 0s;
+    position: relative;
+  }
+
+  .panel-tab p:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 0;
+    border-bottom: solid 2px;
+    margin-bottom: -2px;
+    transition: 0.5s;
+  }
+
+  .panel-tab p:hover::after {
+    width: 90%;
+  }
+
+  .panel-tab.is-active p {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(235, 94, 39);
+  }
+
+  i {
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 27px;
+    color: #fff;
+    margin-left: 11%;
+    width: 40%;
+  }
+
+  .panel-tab.is-active i {
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 27px;
+    color: rgb(235, 94, 39);
+    margin-left: 11%;
+    width: 40%;
+  }
+}
+
+.mypage-links {
+  display: block;
+  color: black;
+  margin: 25px;
+}
+
+mypage-main {
+  /*画面中央*/
+  margin-left: auto;
+  width: 80%;
+  background-color: rgb(244, 243, 238);
+  display: flex;
+  margin-bottom: -25px;
+
+  article {
+    height: 100%;
+    width: 100%;
+  }
+
+  /*背景画像*/
+  .hero-image-user {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-image-user img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+
+  .user-home-image {
+    position: relative;
+  }
+
+  .mypage-image {
+    height: 170px;
+    width: 100%;
+  }
+
+  /*アイコン*/
+  .user-icon-outline {
+    z-index: 1;
+    display: none;
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    top: 46%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: #fff;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+
+  .user-icon-image {
+    display: none;
+  }
+
+  .user-icon-tablet {
+    display: none;
+  }
+
+  .Web-section {
+    margin-top: 30px;
+    margin-left: 10px;
+    overflow: scroll;
+    overflow-y: hidden;
+    height: 100%;
+  }
+
+  .card {
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+  }
+
+  #my-page-info-content {
+    padding: 21px 18px;
+    text-align: center;
+
+    .media-left {
+      width: 15%;
+      text-align: center;
+    }
+
+    #web-media-section {
+      display: flex;
+      border-left: solid 1px rgb(238, 236, 228);
+    }
+
+    .mypage-facility-icon-image {
+      margin: 13px 0px 0px 15px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-block;
+      object-fit: cover;
+    }
+
+    .mypage-info-icon-image {
+      margin: 3px 10px 0px 0px;
+      width: 45px;
+      height: 45px;
+      display: inline-block;
+      object-fit: cover;
+    }
+
+    //お知らせモーダル
+    .modal-info {
+      align-items: center;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      position: fixed;
+      z-index: 40;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+
+    .modal-info.is-active {
+      display: flex;
+    }
+
+    .mypage-facility-modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      display: inline-block;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .mypage-modal-info {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    #modal-header-title {
+      background-color: #ffebcd;
+      font-weight: bold;
+      border-bottom: none;
+      padding: 1% 5%;
+
+      p.modai-facility-icon {
+        padding-top: 2%;
+      }
+
+      p.modal-card-title {
+        color: #696969;
+      }
+    }
+
+    #modal-body-info {
+      background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+      #modal-image-size {
+        padding-top: 47%;
+      }
+
+      .modal-title-info {
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: solid 1px #c0c0c0;
+      }
+
+      .modal-news-info {
+        font-size: 18px;
+        text-align: left;
+        width: 80%;
+        margin: 4% auto 0px auto;
+        background-color: #fff;
+        border-radius: 5px;
+      }
+    }
+
+    #modal-footer-info {
+      display: inline-block;
+      height: auto;
+
+      #modal-info-button {
+        background: #fa8072;
+        border-radius: 290486px;
+        color: #fff;
+        font-weight: bold;
+        border-color: #fa8072;
+      }
+    }
+  }
+
+  #Web {
+    .columns {
+      padding: 0;
+    }
+
+    .column {
+      width: 371px;
+      display: block;
+      flex-basis: 0;
+      flex-grow: 1;
+      flex-shrink: 1;
+      padding: 0px;
+      border-radius: 5px;
+      margin: 10px 15px;
+    }
+  }
+
+  sub {
+    padding: 10px;
+    width: 35%;
+    border-left: solid 1px rgb(254, 252, 245);
+  }
+
+  #mypage-reserve-table tr {
+    height: 30px;
+    line-height: 24px;
+  }
+
+  #mypage-reserve-table th {
+    width: 30%;
+    font-size: 10px;
+  }
+
+  #mypage-reserve-table figure {
+    margin: 0;
+    text-align: center;
+  }
+
+  #mypage-reserve-table i {
+    line-height: 2;
+    font-size: 24px;
+    color: #79c29a;
+    text-align: center;
+    display: block;
+  }
+
+  #mypage-reserve-table {
+    background: #FFA07A;
+    border-radius: 290486px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #edit-content {
+    margin-top: 0px;
+  }
+
+  //施設タブ（レイアウト）
+  #panel-content {
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+
+    span.facility-title {
+      display: inline-block;
+    }
+
+    p.layout-content {
+      text-align: center;
+    }
+
+    p.content-layout {
+      background: #FFE4B5;
+      border-radius: 6px;
+      text-align: center;
+    }
+  }
+}
+
+#mypage-reservations-calendar {
+  height: 100%;
+  margin: 34px 15px 34px 15px;
+  padding: 35px;
+  font-size: 15px;
+  border-radius: 6px;
+  flex: 2;
+
+  tr {
+    background-color: white;
+  }
+
+  .button.is-info.is-outlined {
+    background-color: transparent;
+    border-color: rgb(231, 125, 66);
+    color: rgb(231, 125, 66);
+  }
+
+  #calendar-info .calendar-th {
+    background-color: #ffebcd;
+  }
+
+  p.user-holiday-color {
+    color: red;
+  }
+
+  #time-info {
+    background: #FFA07A;
+    margin-bottom: 5px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 290486px;
+  }
+
+  #mobile-time-info {
+    display: none;
+  }
+}
+
+//マイページ（登録施設タブ）
+#card-content-color {
+  background-color: linear-gradient(to bottom, #ffffff, #f7f0e7);
+}
+
+#facility-plus {
+  margin-bottom: 2%;
+  font-size: 20px;
+  text-align: center;
+
+  .btn-real-dent {
+    /*周りの凹み*/
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: black;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    text-align: center;
+    background: #f7f0e7;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+  }
+  .btn-real-dent span {
+    /*ボタン自体*/
+    position: absolute;
+    content: '';
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    left: 10px;
+    top: 9px;
+    border-radius: 50%;
+    font-size: 15px;
+    background: #FFE4B5;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+  }
+
+  .btn-real-dent .fa:active {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #d8d8d8;
+  }
+}
+
+.web-container {
+  display: flex;
+}
+
+.web-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#mypage-reservations-list {
+  width: 30.3%;
+  height: 100%;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+  border-radius: 6px;
+  position: relative;
+
+  .card-content {
+    background-color: transparent;
+    padding: 1.5rem;
+  }
+
+  .reservation-contents {
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: solid 1px silver;
+  }
+
+  #facility-reservation-title {
+    display: inline-block;
+    background: #FFEBCD;
+    border-radius: 6px;
+
+    p.reservation-facility-name {
+      margin-right: auto;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  p.reservation-facility-icon {
+    position: absolute;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 2%;
+    top: 12px;
+  }
+}
+
+.mypage-information {
+  flex: 1;
+  display: flex;
+}
+
+#mypage-user-box {
+  width: 188px;
+  padding: 8px 10px 7px 10px;
+  margin: 8px 10px 8px 15px;
+  border: solid 1px #9daba6;
+  cursor: pointer !important;
+
+  .media.media {
+    border-top: 0px;
+    display: flex;
+    padding-top: 0px;
+  }
+
+  .image.is-64x64 {
+    height: 64px;
+    width: 47px;
+  }
+
+  strong {
+    border-bottom: solid 1px rgb(201, 199, 193);
+  }
+}
+
+#facility-columns-layout {
+
+  .image.is-2by1 {
+    padding-top: 0px;
+    height: 300px;
+  }
+
+  #image-fit img {
+    object-fit: cover;
+    position: relative
+  }
+
+  p.index-facility-icon {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    z-index: 10;
+    background: rgba(0, 0, 0,0.5);
+    top: 76%;
+    border-radius: 50%;
+    left: 30px;
+  }
+}
+
+.tag-container {
+  margin: 10px 10px 10px 25px;
+}
+
+.user-show-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tag-delete-btn {
+    color: #cacaca;
+    font-size: 13px;
+    margin-right: 11px;
+  }
+
+  #tag-links {
+    display: flex;
+    list-style: none;
+    font-size: 16px;
+  }
+
+  .tag-title {
+    color: #6e798a;
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .tag-title-branch {
+    color: #6e798a;
+    padding: 10px 1px 10px 10px;
+    display: inline-block;
+  }
+
+  .tag-title-branch-ajax {
+    color: #6e798a;
+    padding: 10px 5px 10px 10px;
+    display: inline-block;
+  }
+}
+
+#tag-images-view {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.tag-plus-btn {
+  margin: auto 10px;
+}
+
+.new-folder-btn i {
+  font-size: 25px;
+  color: burlywood;
+}
+
+// ログイン画面
+.google-sentence {
+  font-size: 30px;
+  // color: red;
+  // background-color: white;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.google-privacy {
+  text-align: center;
+  color: black;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+// プライバシーポリシー画面
+.pp-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.pp-sentence {
+  font-size: 20px;
+}
+
+.pp-black {
+  margin-bottom: 40px;
+}
+
+.pp-border {
+  border-bottom: solid 5px orange;
+  margin-bottom: 20px;
+}
+
+/* ご家族編集画面 */
+/*背景画像*/
+.edit-image-user {
+  background-size: cover;
+  background-position: center;
+  width: 70%;
+  margin-left: auto;
+}
+
+.edit-image-user img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.user-home-image {
+  position: relative;
+}
+
+.mypage-image {
+  height: 220px;
+  width: 100%;
+}
+
+//背景画像
+.user-bg-edit-responsive {
+  display: none;
+}
+
+/*アイコン*/
+.user-icon-outline {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  top: 46%;
+  left: 50%;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+.user-icon-image {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+
+//アイコン変更イメージ
+.user-edit-icon-back {
+  display: none;
+}
+
+//背景変更イメージ
+.user-edit-background-back {
+  display: none;
+}
+
+//現在の背景画像の確認
+.user-image-field {
+  height: 150px;
+  width: 100%;
+  border-style: dashed;
+  border-width: 2px;
+  margin: 20px 0 20px 0;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: #dedede;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.user-bg-edit {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+//アイコン削除チェック
+input#user_icon_delete[type="checkbox"] {
+  display: none;
+}
+
+input#user_icon_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  left: 30%;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#user_icon_delete[type="checkbox"] + label.check_position:last-child {
+  margin-bottom: 0;
+}
+
+input#user_icon_delete[type="checkbox"] + label.check_position:before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0.6;
+  -webkit-transition: all 0.12s, border-color 0.08s;
+  transition: all 0.12s, border-color 0.08s;
+}
+
+input#user_icon_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: 100%;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+//背景画像削除チェック
+input#bg_delete[type="checkbox"] {
+  display: none;
+}
+
+input#bg_delete[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  left: 30%;
+  color: #333;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input#bg_delete[type="checkbox"] + label.check_position:last-child {
+  margin-bottom: 0;
+}
+
+input#bg_delete[type="checkbox"] + label.check_position:before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0d47a1;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0.6;
+  -webkit-transition: all 0.12s, border-color 0.08s;
+  transition: all 0.12s, border-color 0.08s;
+}
+
+input#bg_delete[type="checkbox"]:checked + label.check_position:before {
+  width: 10px;
+  top: 100%;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#edit-title {
+  display: none;
+}
+
+.main-content {
+  display: flex;
+  font-size: 2rem;
+  min-height: 100vh;
+  padding-top: 3%;
+}
+
+aside {
+  /*画面左*/
+  width: 35%;
+  font-size: 15px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+//モバイルタグ
+edit-aside {
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  width: 30%;
+  height: 100%;
+  top: 74px;
+  font-size: 15px;
+  flex-direction: column;
+  background: linear-gradient(
+    to bottom,
+    rgba(247, 240, 231, 1),
+    rgba(242, 79, 79, 1) 100%
+  );
+  box-shadow: inset -1px 0px 0px 0px #dddddd;
+
+  .edit-menu-title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 34px;
+    padding: 0px 67px;
+    font-size: 30px;
+    color: gray;
+  }
+
+  //サイドタグ内のユーザーアイコン
+  img.user-profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: inline-block;
+    object-fit: cover;
+  }
+
+  //サイドタグ内のアイコンレイアウト
+  .profile-section {
+    text-align: center;
+    margin-top: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(102, 97, 91, 0.3);
+  }
+
+  .edit-side-link {
+    width: 100%;
+  }
+
+  .panel-tab {
+    width: auto;
+    padding-bottom: 20px;
+    margin: 10% 25% 10% 33%;
+  }
+
+  //サイドタグのホバーアニメーション
+  .panel-tab p:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 0;
+    border-bottom: solid 2px;
+    margin-bottom: -2px;
+    transition: 0.5s;
+  }
+
+  .panel-tab p:hover::after {
+    width: 90%;
+  }
+
+  .panel-tab.is-active {
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  .panel-tab p {
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 12px;
+    width: 175px;
+    transition: 0s;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .panel-tab.is-active p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: rgb(235, 94, 39);
+  }
+
+  i {
+    text-align: center;
+    float: left;
+    line-height: 23px;
+    font-size: 2.1em;
+    color: #fff;
+    width: 70px;
+  }
+
+  .panel-tab.is-active i {
+    text-align: center;
+    float: left;
+    font-size: 2.1em;
+    color: rgb(235, 94, 39);
+    width: 70px;
+  }
+}
+
+main {
+  width: 60%;
+}
+
+.edit-links {
+  display: block;
+  color: black;
+  margin: 25px;
+}
+
+.user-aside-link {
+  display: block;
+  color: black;
+  margin: 10px;
+}
+
+.user-edit-table {
+  background: rgba(224, 231, 231, 0.605);
+  text-align: center;
+  width: 100%;
+}
+
+#u-edit-table tr {
+  height: 45px;
+  line-height: 45px;
+}
+
+#u-edit-table th {
+  background-color: rgb(241, 244, 248);
+  width: 30%;
+}
+
+.edit-hr {
+  margin: 0px;
+}
+
+.edit-link {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.edit-tfoot {
+  margin: 10px 0px;
+}
+
+#card-layout {
+  width: 40%;
+
+  #media-layout {
+    margin-bottom: 0px;
+
+    .resident-warning {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #FF6347;
+      text-align: left;
+    }
+
+    p {
+      font-size: 15px;
+      margin: 10px 0px;
+
+      .link-design {
+        background: #48D1CC;
+        padding: 5px;
+        color: #fff;
+        border-radius: 15px;
+      }
+    }
+  }
+
+  footer#footer-submit {
+    display: block;
+    margin-bottom: 0px;
+  }
+}
+
+//登録施設一覧レイアウト
+#user-edit-field {
+  text-align: center;
+  padding: 20px;
+}
+
+//登録施設の解除
+.facilities-used-edit-label {
+  input[type="checkbox"],
+  input[type="radio"] {
+    vertical-align: baseline;
+    display: none;
+  }
+}
+
+.facilities-used-edit-label span {
+  color: #fff; /* 文字色を黒に */
+  background: #FF7F50;
+  font-size: 14px; /* 文字サイズを14pxに */
+  border: 1px solid #FF7F50; /* 淵の線を指定 */
+  border-radius: 20px; /* 角丸を入れて、左右が丸いボタンにする */
+  padding: 5px 20px; /* 上下左右に余白をトル */
+}
+
+.facilities-used-edit-label input:checked + span {
+  color: black; /* 文字色を白に */
+  background: #fff; /* 背景色を薄いオレンジに */
+  border: 1px solid black; /* 淵の線を薄いオレンジに */
+}
+
+.span-edit-check {
+  color: #FF7F50;
+}
+
+//登録利用者テーブル
+#residents-info {
+  margin-top: 10px;
+  font-size: 15px;
+
+  tr {
+    height: 45px;
+    line-height: 45px;
+  }
+
+  th {
+    width: 30%;
+    background: #F1F4F8;
+  }
+}
+
+// レスポンシブ
+@media screen and (max-width: 1050px) {
+  // マイページ
+  mypage-aside {
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    z-index: 1;
+    top: 299px;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+    border-bottom: 1px solid #c0c0c0;
+
+    .mypage-side-link {
+      margin-top: 0px;
+      margin-left: 0px;
+      display: flex;
+    }
+
+    .profile-section {
+      display: none;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+      margin-bottom: 26px;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      color: gray;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      color: gray;
+      top: 15px;
+      font-size: 10px;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .mypage-main-content {
+    article {
+      background-color: rgb(239, 238, 232);
+      margin-bottom: 0px;
+    }
+
+    .Web-section {
+      margin-top: 15px;
+    }
+
+    .web-container {
+      display: block;
+    }
+  }
+
+  mypage-main {
+    padding-left: 0px;
+    width: 100%;
+    display: flex;
+
+    .hero-image-user {
+      margin-bottom: 77px;
+    }
+
+    //背景画像
+    .mypage-image {
+      height: 225px;
+    }
+
+    //ユーザー（アイコン）
+    .user-icon-outline {
+      display: block;
+      width: 120px;
+      height: 120px;
+      top: 54%;
+    }
+
+    .user-icon-image {
+      display: block;
+      width: 120px;
+      height: 120px;
+    }
+
+    #Web .columns {
+      padding: 0;
+      display: flex;
+      overflow: scroll;
+    }
+
+    #my-page-info-content {
+      padding: 13px 18px;
+
+      .media-left {
+        margin-right: 0px;
+        margin-left: 5px;
+        padding-right: 13px;
+        padding-top: 8px;
+      }
+
+      .mypage-facility-icon-image {
+        margin: 10px 0px 0px 9px;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        display: inline-block;
+        object-fit: cover;
+      }
+
+      .mypage-info-icon-image {
+        margin-right: 8px;
+        margin-top: 0px;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        object-fit: cover;
+      }
+
+    }
+  }
+
+  #mypage-reservations-calendar {
+    padding: 25px 25px 15px 25px;
+    margin: 15px;
+  }
+
+  #mypage-reservations-list {
+    width: 47%;
+
+    .card-content {
+      background-color: transparent;
+      padding: 1.5rem;
+      margin-bottom: 90px;
+    }
+
+    p.reservation-facility-icon {
+      left: 3%;
+    }
+  }
+
+  #mypage-user-box .image.is-64x64 {
+    height: 40px;
+    width: 34px;
+  }
+
+  .media-left .image.is-48x48 {
+    height: 45px;
+    width: 40px;
+  }
+
+  //ユーザー編集画面
+  .main-content {
+    display: block;
+    min-height: fit-content;
+    padding-top: 8%;
+    margin: 0px 0px 100px 0px;
+  }
+
+  aside {
+    .edit-side-tab {
+      display: none;
+    }
+  }
+
+  //背景画像
+  .edit-image-user {
+    display: block;
+    width: 100%;
+  }
+
+  .mypage-image {
+    height: 225px;
+  }
+
+  //ユーザー（アイコン）
+  .user-icon-outline {
+    display: block;
+    width: 120px;
+    height: 120px;
+    top: 54%;
+  }
+
+  .user-icon-image {
+    display: none;
+  }
+
+  .user-icon-tablet {
+    display: block;
+    position: absolute;
+    z-index: 3;
+    border-radius: 50%;
+    width: 115px;
+    height: 115px;
+    left: 2%;
+  }
+
+  //アイコン確認画像
+  img#icon_prev_0.user-edit-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  //タグ
+  edit-aside {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    z-index: 1;
+    top: 299px;
+    background: linear-gradient(to bottom right, #ffffff, #f7f0e7);
+    border-bottom: 1px solid #c0c0c0;
+
+    .edit-side-link {
+      margin-top: 0px;
+      display: flex;
+    }
+
+    .edit-menu-title {
+      display: none;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      color: gray;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      color: gray;
+      top: 15px;
+      font-size: 10px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .panel-tab p:after {
+      display: none;
+    }
+
+    .panel-tab p:hover::after {
+      display: none;
+    }
+  }
+
+  main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  //ご家族一覧のタイトルレイアウト
+  .column.is-0-mobile {
+    margin-top: 0px;
+  }
+
+  //ご家族一覧テーブル（th）
+  #user-table th {
+    font-size: 16px;
+  }
+
+  .table-layout {
+    margin-bottom: 50px;
+  }
+
+  .content {
+    .footer-position {
+      .d-none {
+        display: none;
+      }
+
+      .img-update-form {
+        margin: auto;
+        padding: 9px 13px;
+        display: flex;
+        height: 100%;
+
+        .label {
+          display: block;
+          background-color: #49bbc8;
+          color: white;
+          font-size: 14px !important;
+          border-radius: 6px;
+          padding: 10px 10px;
+          margin: auto;
+        }
+      }
+
+      .img-update-btn {
+        margin: 0 18px 0 5px;
+        font-size: 13px;
+        padding: 0px 10px;
+      }
+
+      .delete-btn {
+        margin: auto;
+        font-size: 13px;
+      }
+    }
+  }
+
+  //【Video Room】
+  //送信ボタン
+  #js-send-trigger {
+    margin-top: 17px;
+  }
+
+  //ビデオチャットレイアウト
+  .chat-section {
+    padding: 1.5rem 1.5rem;
+  }
+
+  //ローカルビデオ
+  #local-video {
+    position: relative;
+    height: 330px;
+
+    video {
+      position: absolute;
+      z-index: 5;
+      top: 0px;
+      left: 9%;
+      right: 9%;
+      height: 100%;
+    }
+  }
+
+  .messages-layout {
+    width: 75%;
+  }
+
+  #js-messages {
+    .chat-day {
+      width: 28%;
+    }
+
+    .remote-text span {
+      padding: 0px;
+    }
+
+    .remote-text img.message-chat-icon {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  #mypage-reservations-list {
+    width: 46%;
+    margin-top: 20px;
+    margin-bottom: 35px;
+
+    .card-content {
+      margin-bottom: 45px;
+    }
+  }
+
+  //マイページ
+  //お知らせモーダル
+  mypage-main {
+
+    #modal-info-content{
+      width: 90%;
+    }
+
+    #modal-header-title p {
+      font-size: 30px;
+    }
+
+    #panel-content {
+      margin-bottom: 100px;
+
+      span.facility-title {
+        font-size: 30px;
+      }
+
+      p.content-layout {
+        text-align: center;
+      }
+    }
+  }
+
+  #facility-columns-layout {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
+
+    p.index-facility-icon {
+      height: 80px;
+      width: 80px;
+      top: 56%;
+      left: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #facility-columns-layout {
+
+    p.index-facility-icon {
+      height: 60px;
+      width: 60px;
+      top: 52%;
+    }
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+  //ご家族一覧検索フォーム
+  .search-user.input {
+    font-size: 16px;
+    left: 8%;
+  }
+
+  .search-btn-user.button {
+    font-size: 16px;
+    left: 10%;
+  }
+
+  .user-table-tag {
+    font-size: 14px;
+  }
+
+  //タブタイトル
+  .tabs a {
+    font-size: 14px;
+  }
+
+  mypage-main {
+    //マイページ（背景画像）
+    .mypage-image {
+      height: 150px;
+    }
+
+    //ユーザー（アイコン）
+    .user-icon-outline {
+      width: 100px;
+      height: 100px;
+      top: 36%;
+    }
+
+    .user-icon-image {
+      width: 100px;
+      height: 100px;
+    }
+
+    #my-page-info-content {
+
+      .mypage-modal-info {
+        height: 125px;
+      }
+    }
+
+    #modal-header-title p {
+      font-size: 17px;
+    }
+
+    #modal-header-title p.modai-facility-icon {
+
+      .mypage-facility-modal-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    #facility-columns-layout {
+      width: 100%;
+
+      p.index-facility-icon {
+        height: 60px;
+        width: 60px;
+        top: 47%;
+        left: 20px;
+      }
+    }
+
+    #panel-content {
+
+      span.facility-title {
+        font-size: 20px;
+      }
+    }
+  }
+
+  //タグ
+  mypage-aside {
+    top: 203px;
+  }
+
+  //マイページ（予約情報）
+  .web-info {
+    display: block;
+  }
+
+  //マイページ（予約内容）
+  #mypage-reservations-list {
+    width: 90%;
+  }
+
+  //マイページ（予約カレンダー情報）
+  #mypage-reservations-calendar {
+    td {
+      padding: 2px;
+    }
+
+    #time-info {
+      display: none;
+    }
+
+    #mobile-time-info {
+      display: block;
+      background: #FFA07A;
+      margin-bottom: 5px;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 290486px;
+      font-size: 1px;
+    }
+  }
+
+  //【ユーザ編集画面】
+  //背景画像
+  .edit-image-user {
+    display: block;
+  }
+
+  .edit-image-user {
+    .mypage-image {
+      display: none;
+    }
+  }
+
+  .user-bg-edit-responsive {
+    display: block;
+    height: 150px;
+    width: 100%;
+  }
+
+  //ユーザー（アイコン）
+  .user-icon-outline {
+    display: block;
+    width: 100px;
+    height: 100px;
+    top: 42%;
+  }
+
+  .user-icon-image {
+    display: block;
+    width: 93px;
+    height: 93px;
+    top: 4%;
+  }
+
+  .user-icon-tablet {
+    display: none;
+  }
+
+  //アイコン変更イメージ
+  .user-edit-icon-back {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 53%;
+    right: -4%;
+    z-index: 3;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+
+    //カメラマーク
+    .user-edit-icon-image i {
+      position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 25%;
+      right: -21%;
+      z-index: 4;
+    }
+  }
+
+  //背景変更イメージ
+  .user-edit-background-back {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 40px;
+    left: 167px;
+    z-index: 3;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+
+    //カメラマーク
+    .user-edit-backgroung-image i {
+      position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 5px;
+      left: 6px;
+      z-index: 4;
+    }
+  }
+
+  #edit-title {
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      rgba(247, 240, 231, 0.8) 0%,
+      rgba(242, 79, 79, 0.8) 100%
+    );
+
+    h1 {
+      color: #fff;
+    }
+  }
+
+  .main-content {
+    display: block;
+    margin: 70px 0px;
+    padding-top: 0px;
+  }
+
+  edit-aside {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 57px;
+    line-height: 58px;
+    z-index: 1;
+    top: 272px;
+    border-bottom: 1px solid #c0c0c0;
+
+    .edit-side-link {
+      margin-top: 0px;
+      display: flex;
+    }
+
+    .panel-tab {
+      margin: 0px;
+      width: 25%;
+      position: relative;
+    }
+
+    .panel-tab.is-active {
+      margin: 0px;
+      width: 25%;
+      margin-bottom: 26px;
+    }
+
+    .panel-tab.is-active::after {
+      display: none;
+    }
+
+    .panel-tab.is-active i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab i {
+      width: 100%;
+      text-align: center;
+      margin-left: 0px;
+      line-height: 34px;
+      font-size: 26px;
+      z-index: 1;
+      position: absolute;
+      left: 0;
+    }
+
+    .panel-tab.is-active p {
+      position: absolute;
+      top: 15px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      height: 43px;
+    }
+
+    .panel-tab p {
+      position: absolute;
+      top: 15px;
+      font-size: 10px;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  #u-edit-table {
+    margin-top: 90px;
+  }
+
+  #u-edit-table tr.image-change {
+    display: none;
+  }
+
+  .main-index {
+    .index-photo-size {
+      width: 105px;
+      height: 75px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .image-modal-width {
+      width: 95%;
+    }
+
+    .modal-photo-size {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .card-photo-size {
+      width: 350px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .modal-card {
+      width: 90%;
+    }
+
+    .content {
+      .footer-position {
+        padding-left: 0px;
+        height: 60px;
+
+        .drop-zone {
+          margin: 0px;
+          font-size: 10px;
+        }
+
+        .d-none {
+          display: none;
+        }
+
+        .img-update-form {
+          margin: auto;
+          padding: 9px 13px;
+          display: flex;
+          height: 100%;
+
+          .label {
+            display: block;
+            background-color: #49bbc8;
+            color: white;
+            font-size: 14px !important;
+            border-radius: 6px;
+            padding: 10px 10px;
+            margin: auto;
+            width: 40%;
+          }
+        }
+
+        .img-update-btn {
+          margin: auto 10px auto 0px;
+          font-size: 13px;
+          padding: 0px 10px;
+          width: 32%;
+        }
+
+        .delete-btn {
+          margin: auto;
+          font-size: 13px;
+          width: 12%;
+        }
+      }
+    }
+
+    .modal-card-head {
+      height: 68px;
+    }
+  }
+
+  #user-edit-panel {
+    margin-top: 90px;
+  }
+
+  #card-layout {
+    width: 100%;
+    margin: 10px 0px;
+  }
+
+  #content-back .word-break {
+    padding-left: 0px;
+    font-size: 13px;
+  }
+
+  .tag-select-form {
+    width: 100%;
+  }
+
+  .tag-select-submit {
+    padding: 9px 8px;
+    font-size: 14px;
+  }
+
+  .cp_ipselect.cp_sl04 select {
+    margin-left: 0px;
+    padding: 8px;
+  }
+
+  .cp_ipselect.cp_sl04::before {
+    display: none;
+  }
+
+  .modal-card-body {
+    padding: 10px;
+  }
+
+  .modal-card-foot {
+    padding: 10px;
+    height: 80px;
+  }
+
+  //【Video Room】
+  .hero-6 {
+    .hero-body {
+      padding: 1.5rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+    }
+  }
+
+  //インプット欄
+  textarea#js-local-text::placeholder {
+    font-size: 0.7em;
+  }
+
+  //お知らせ（Video Room）
+  p.info-message {
+    font-size: 0.7em;
+  }
+
+  //入室ボタン
+  #js-join-trigger {
+    font-size: 14px;
+  }
+
+  //退室ボタン
+  #js-leave-trigger {
+    font-size: 14px;
+  }
+
+  //送信ボタン
+  #js-send-trigger {
+    font-size: 17px;
+    margin-top: 16px;
+  }
+
+  //戻るボタン
+  #return-btn {
+    font-size: 17px;
+  }
+
+  //タイマー
+  #timer {
+    font-size: 22px;
+  }
+
+  #timer-layout {
+    margin-bottom: 0px;
+  }
+
+  #buttonBox {
+    width: 66px;
+    height: 66px;
+
+    button#start {
+      width: 60px;
+      height: 60px;
+      font-size: 14px;
+    }
+
+    button#start span {
+      font-size: 30px;
+    }
+
+    button#start p {
+      font-size: 0px;
+    }
+  }
+
+  //ローカルビデオ
+  #local-video {
+    height: 220px;
+
+    video {
+      left: 0px;
+      right: 0px;
+      height: 84%;
+    }
+  }
+
+  //入室・退室ボタンの配置
+  #input-key {
+    margin-top: -55px;
+  }
+
+  //チャット
+  .messages-layout {
+    width: 100%;
+  }
+
+  #js-messages {
+    //日付
+    .chat-day {
+      width: 30%;
+      font-size: 10px;
+    }
+
+    .local-start span {
+      font-size: 10px;
+    }
+
+    .room-end span {
+      font-size: 10px;
+    }
+
+    .chat-end span {
+      font-size: 10px;
+    }
+  }
 }

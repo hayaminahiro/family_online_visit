@@ -4,11 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :email, unique: true, null: false
       t.string :password
-      t.string :room_name
       t.boolean :admin, default: false
-      t.boolean :floor_authority, default: false
-      t.string :resident_name1
-      t.string :resident_name2
       t.string :phone, unique: true
       t.string :address
       t.timestamps

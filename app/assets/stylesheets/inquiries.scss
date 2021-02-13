@@ -1,0 +1,184 @@
+// Place all the styles related to the inquiries controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.inquiry-btn {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.inquiry-notice {
+  margin: 50px 0;
+  background-color: #fcf8e3;
+  border: solid 1px #faebcc;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.inquiry-title {
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+span.inquiry-coment {
+  margin-top: 30px;
+}
+
+.inquiry-submit-btn {
+  width: 300px;
+}
+
+.inquiry-label {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.inquiry-label-block {
+  display: inline-block;
+}
+
+.inquiry-label-require {
+  display: inline-block;
+  color: red;
+  font-size: 18px;
+}
+
+#inquiry-table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+
+  th {
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    background-color: #4682B4;
+  }
+
+  td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 17px;
+    font-weight: 600;
+  }
+}
+
+.inquiry-th {
+  min-width: 120px;
+}
+
+.inquiry-th2 {
+  white-space: normal;
+}
+
+textarea#inquiry_message.textarea {
+  font-size: 20px;
+}
+
+.inquiry-index-title {
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 0.5em;
+}
+
+.field.is-grouped.is-grouped-right.inquiry-index-search {
+  justify-content: center;
+}
+
+.inquiry-panel {
+  padding: 1rem 1.5rem;
+}
+
+.inquiry-adjust {
+  margin-top: 50px;
+}
+
+.inquiry-table-adjust {
+  margin-top: 50px;
+}
+
+.inquiry-nothing {
+  margin-left: auto;
+  margin-top: 50px;
+}
+
+#facility-inquiry {
+  margin-right: 0px;
+  margin-top: -1.1rem;
+}
+
+.inquiry-confirm {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  color: red;
+  font-size: 18px;
+}
+
+.inquiry-title-block {
+  display: inline-block;
+}
+
+.detail-inquiry {
+  margin: 20px 90px 10px 20px;
+  padding: 0 50px 0 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.detail-inquiry-value {
+  margin: 0 0 0 20px;
+  padding: 0 20px 0 0;
+  word-wrap: break-word;
+}
+
+.detail-inquiry-message {
+  margin: 0 0 0 20px;
+  padding: 0 20px 0 0;
+  height: 250px;
+  word-wrap: break-word;
+}
+
+.detail-inquiry-content {
+  margin-bottom: 20px;
+}
+
+.inquiry-message-short {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inquiry-delete-btn {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 1000px) {
+  .inquiry-modal-size {
+    width: 60% !important;
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .inquiry-modal-size {
+    width: 85% !important;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #inquiry-table {
+
+    th {
+      font-size: 16px;
+    }
+
+    td {
+      font-size: 14px;
+    }
+  }
+}

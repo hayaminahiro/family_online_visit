@@ -1,0 +1,67 @@
+<body id="page-back-color"></body>
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
+<div class="columns is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem; height: 100vh;
+">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile">
+    <div class="container container-top" style="margin-bottom: 120px;">
+      <div class="card" id="reservations-setting">
+        <div class="has-text-centered">
+          <div class="is-centered">
+            <%= form_with(model: @calendar_setting, url: calendar_settings_path(@calendar_setting), method: :post, local: true) do |f| %>
+              <%#= render partial: 'shared/error_messages', locals: { obj: @calendar_setting } %>
+
+              <table class="table is-narrow inner-table is-bordered mb-30" id="setting-table">
+                <tbody>
+                  <tr>
+                    <th colspan="2">
+                      <h1 class="has-text-weight-bold is-size-4">予約設定変更</h1>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>定休日設定</th>
+                    <td>
+                      <p id="explanation">
+                        <i class="fas fa-tools"></i>&nbsp;設定したい定休日を選択して下さい。設定を変更すると定休日として設定されます。
+                      </p>
+                      <% CalendarSetting::DAY_OF_THE_WEEK.each do |regular_holiday| %>
+                        <%= f.check_box :regular_holiday, {multiple: true}, "#{regular_holiday}", nil %>
+                        <span id="day-of-the-week"><%= regular_holiday %></span>
+                      <% end%>
+                      <div id="hidden-value"> <!--チェックボックスが全てなし状態でも更新-->
+                        <%= f.check_box :regular_holiday, {multiple: true, checked: true}, 1, nil %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>予約時間設定</th>
+                    <td>
+                      <p id="explanation">
+                        <i class="far fa-clock"></i>&nbsp;非表示にしたい予約時間を選択して下さい。設定を変更すると選択した時間は非表示になります。
+                      </p>
+                      <% CalendarSetting::RESERVATION_TIMES.each do |time| %>
+                        <%= f.check_box :cancellation_time, {multiple: true}, "#{time}", nil %>
+                        <span id="time-select"><%= time %></span>
+                      <% end %>
+                      <div id="hidden-value"> <!--チェックボックスが全てなし状態でも更新-->
+                        <%= f.check_box :cancellation_time, {multiple: true, checked: true}, 1, nil %>
+                      </div>
+                    </td>
+                  </tr>
+                  <th></th>
+                  <td id="btn-position">
+                    <%= f.hidden_field :facility_id, :value => current_facility.id %>
+                    <%= f.submit "設定を変更する", class: "button is-link is-light is-outlined" %>
+                    <%= link_to "戻る", facility_home_facility_path(id: current_facility), class: "button is-light" %>
+                  </td>
+                </tbody>
+              </table>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

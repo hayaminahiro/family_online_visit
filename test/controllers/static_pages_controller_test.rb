@@ -5,5 +5,4 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get static_pages_top_url
     assert_response :success
   end
-
 end

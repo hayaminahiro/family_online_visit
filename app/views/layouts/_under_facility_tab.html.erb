@@ -1,0 +1,49 @@
+<div class="columns" id="under-link">
+  <div class="column is-0-desktop is-0-mobile" style="padding-right: 0px; padding-top: 0px; background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
+                                                      background: -moz-linear-gradient(top,#4E6F8B,#0A203F);">
+    <section id="facility_tab_nav">
+      <ul>
+        <li>
+            <%= link_to facility_home_facility_path(id: current_facility) do %>
+              <span class="icon">
+                <i class="fas fa-home"></i>
+              </span>&nbsp;
+              HOME
+            <% end %>
+          </li>
+          <li>
+            <%= link_to residents_path do %>
+              <span class="icon">
+                <i class="fas fa-id-badge"></i>
+              </span>&nbsp;
+              利用者一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+              <span class="icon">
+                <i class="fas fa-user-friends"></i>
+              </span>&nbsp;
+              ご家族一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to informations_path do %>
+              <span class="icon">
+                <i class="far fa-bell"></i>
+              </span>&nbsp;
+              お知らせ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to facility_inquiries_path(facility_id: current_facility.id, anchor: 'top') do %>
+              <span class="icon">
+                <i class="fas fa-phone"></i>
+              </span>&nbsp;
+              お問い合わせ
+            <% end %>
+          </li>
+      </ul>
+    </section>
+  </div>
+</div>

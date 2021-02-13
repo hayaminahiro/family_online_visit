@@ -1,0 +1,140 @@
+<ul class="facility-background">
+</ul>
+
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
+<div class="columns .is-variable is-0 is-desktop facility-columns" style="margin-right: 0px; margin-top: -1.1rem;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="background-color: #537895; padding: 0px;">
+    <article class="panel is-success" id="facility-contents">
+      <nav class="panel" style="background-color: #fff;">
+        <p class="panel-heading has-text-centered">
+          施設情報
+        </p>
+        <div class="panel-block">
+        </div>
+
+        <p class="panel-tabs">
+          <a class="panel-tab is-active facility-tab" onclick="openTab(event,'Web')">&nbsp<i class="far fa-calendar-alt"></i>&nbsp;<span class="tab-title">カレンダー</span><%= current_facility.reservations_count(@reservations) %></a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Aud')"><i class="fas fa-user-plus"></i>&nbsp;<span class="tab-title">登録申請</span><%= current_facility.request_count(@request_residents) %></a>
+          <a class="panel-tab facility-tab" onclick="openTab(event,'Mov')"><i class="fas fa-info-circle"></i>&nbsp;<span class="tab-title">NEWS</span></a>
+        </p>
+
+        <div id="Web" class="content-tab" >
+          <div class="card-width" id="facility-home-calendar">
+            <% if @calendar_setting.present? %>
+              <%= link_to "予約詳細設定", edit_calendar_setting_path(@calendar_setting, anchor: 'top'), class: "button is-warning is-light is-outlined" %>
+            <% else %>
+              <%= link_to "予約詳細設定", new_calendar_setting_path(anchor: 'top'), class: "button is-warning is-light is-outlined" %>
+            <% end %>
+            <%= link_to "過去の予約", index_past_facility_reservations_path(current_facility, anchor: 'top'), class: "button is-light is-pulled-right" if current_facility.present? %>
+            <div class="has-text-centered">
+              <div class="is-centered">
+                <h1 class="has-text-centered reservation-title">予約状況確認</h1>
+
+                <%= month_calendar(attribute: :calendar_day, events: @reservations) do |date, reservations| %>
+                  <% if HolidayJapan.check(date) %>
+                    <p class="holiday-color"><%= l(date, format: :short) %></p>
+                  <% else %>
+                    <p><%= l(date, format: :short) %></p>
+                  <% end %>
+                  <% @reservations.each do |reservation| %>
+                    <% if reservation.facility_id == current_facility.id && date >= Date.current %>
+                      <%= link_to "#{reservation.reservation_user}(#{l(reservation.started_at, format: :time)}~)", facility_reservation_path(current_facility, reservation, setting: :setting, anchor: 'top'), class:"tag is-rounded mobile-none", id: "tag-color" if reservation.reservation_date == date %>
+                    <% end %>
+                  <% end %>
+                  <% unless calendar_setting(@week, date) %>
+                    <p class="impossible-btn">✗</p>
+                  <% end %>
+                  <% if @reservations.facility(current_facility).reservation_date(date).length >= 1 %>
+                    <p class="non-sign"><%= @reservations.facility(current_facility).reservation_date(date).length %>件</p>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <%= render 'reservations/reservation_list' %>
+          </div>
+        </div>
+
+        <div id="Aud" class="content-tab" style="display:none">
+          <div class="columns">
+            <div class="column is-offset-1 is-10 is-offset-1 table-container">
+              <table class="table is-striped is-hoverable is-fullwidth" id="registration-table">
+                <thead>
+                  <tr>
+                    <th>申請日</th>
+                    <th>申請者</th>
+                    <th>
+                      <%= link_to "申請中一覧", new_relative_path, class: "button is-primary is-outlined is-small", id: "applying-btn", method: :post %>
+                      <%= link_to "申請済一覧", relatives_path, class: "button is-small", id: "applied-btn" %>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% if @request_residents.present? %>
+                  <% @request_residents.each do |request_resident| %>
+                  <% @request_user = User.find(request_resident.user_id) %>
+                    <tr>
+                      <td><%= l(request_resident.created_at, format: :long) %></td>
+                      <td><%= @request_user.name %></td>
+                      <td>
+                        <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small", id: "applicant-btn" %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                <tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="Mov" class="content-tab" style="display:none">
+          <div class="has-text-centered">
+            <div class="tab-information">
+              <div class="columns is-multiline has-text-left">
+                <div class="show-info-container">
+                  <hr>
+                  <h1 class="show-info-title"><%= @info_top.title %></h1>
+                  <hr>
+                  <div>
+                    <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
+                    <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
+                    <hr>
+                    <% if current_facility.admin? %>
+                      <button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>
+                      <%= render 'static_pages/edit_info' , { information: @info_top } %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </article>
+  </div>
+</div>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("panel-tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+</script>
+
+<script>
+  $(function(){
+    ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
+    ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
+  });
+</script>

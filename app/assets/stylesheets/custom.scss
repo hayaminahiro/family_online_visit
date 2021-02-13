@@ -1,16 +1,38 @@
-//共通フラッシュメッセージ
-.error-position {
-  margin: 20px 0;
-  padding: 15px;
-}
-
 //エラーメッセージ（フルメッセージ用）
 .errors_full_messages {
   margin: 0 0 20px 0;
   padding: 15px;
 }
 
-div.notification.is-danger.error-count {
+//共通フラッシュメッセージ
+.error-position {
+  margin-top: 94px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+//ヘッダー下
+#layout-space {
+  margin-top: 74px;
+  text-align: center;
+}
+
+.notification {
+  position: fixed !important;
+  left: 15%;
+  top: 88px;
+  width: 70%;
+  z-index: 100;
+  border-radius: 10px !important;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 1rem 2rem !important;
+  font-size: 20px;
+  background-color: none;
+  color: white;
+}
+
+div.notification.is-alert.error-count {
   margin-bottom: 0;
 }
 
@@ -31,6 +53,12 @@ div.notification.is-danger.error-count {
   color: #f7f7f7;
 }
 
+.account-link-user {
+  color: #f7f7f7;
+  margin-top: -50px;
+  margin-bottom: 25px;
+}
+
 .new-account-btn {
   color: #f7f7f7;
 }
@@ -48,11 +76,16 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
 
 .line-login {
   position: relative;
-  margin-top: -30px;
+  padding-top: 20px;
+  margin-bottom: 20%;
+}
+
+.line-login-sentence {
+  margin-top: -40px;
 }
 
 .user-side {
-  padding-bottom: 10px;
+  padding-bottom: 50px;
   padding-right: 20px;
 }
 
@@ -60,4 +93,39 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
   margin-top: -80px;
   padding-bottom: 50px;
   width: 100%;
+}
+
+.notification-container {
+  font-size: 18px;
+}
+
+//タブレット
+@media screen and (max-width: 1024px) {
+  //フラッシュメッセージ
+  .notification {
+    padding: 0.5rem 1.5rem !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+  //フラッシュメッセージ
+  .notification {
+    font-size: 12px;
+    padding: 5px;
+    top: 70px;
+    left: 7%;
+    width: 86%;
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  //ヘッダー下
+  #layout-space {
+    margin-top: 52px;
+  }
 }

@@ -1,0 +1,95 @@
+<div class="relative-show-body">
+  <div class="relative-container">
+    <div class="relative-section">
+      <nav class="relative-level">
+        <div class="new-c-container">
+          <%= form_with(url: edit_relative_path(@request), method: :get, local: true) do |f| %>
+            <div class="field is-grouped is-grouped-right">
+              <div class="control has-icons-left">
+                <%= f.text_field :search, :placeholder => "利用者名を入力..", class: "input is-rounded" %>
+                <span class="icon is-left">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="control">
+                <%= f.submit "\uf002検索", class: "fa button is-light is-rounded" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+
+      <div class="request-time"><span>申請日</span><%= l(@request.created_at, format: :long) %></div>
+      <div class="card">
+        <table class="table is-narrow user-edit-table is-bordered mb-30" id="relative-table">
+          <tbody>
+            <tr>
+              <th colspan="2">
+                <div class="relative-edit-req-name">
+                  <h1 class="has-text-weight-bold is-size-4"><%= @user.name %> 様の申請は<span><%= @request.status %></span>です</h1>
+                    <div>
+                      <%= link_to request_mail_preview_path(denial: @request), method: :get, class:"button" do %>
+                        <i class="far fa-envelope"></i><span>メール</span>
+                      <% end %>
+                    </div>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th>利用者名</th>
+              <td>
+                <%= simple_format(@request.req_name) %>
+              </td>
+            </tr>
+            <tr>
+              <th>連絡先</th>
+              <td>
+                <%= @request.user.phone %>
+              </td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td>
+                <%= @request.user.address %>
+              </td>
+            </tr>
+            <tr>
+              <th>紐付け</th>
+              <td>
+                <%= render partial: 'shared/error_messages', locals: { obj: @user } if @user.present? %>
+                <%= form_with(model: @user, url: relative_path(user_id: @user), local: true) do |f| %>
+                  <div class="relative-check-box">
+                    <%= f.collection_check_boxes :resident_ids, @residents, :id, :name do |b| %>
+                      <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                    <% end %><br>
+                  </div>
+                  <div class="d-none">
+                    <%= f.collection_check_boxes :resident_ids, @request.exclude_ids, :id, :name do |b| %>
+                      <span class="r-check-box"><%= b.label { b.check_box + " " + b.text } %></span>
+                    <% end %>
+                  </div>
+
+                  <div class="tag-apply">
+                    <%= f.collection_check_boxes :resident_ids, @user.residents, :id, :name, class: 'd-none' do |b| %>
+                      <% if b.object.facility_id == current_facility.id  %>
+                        <span class="tag is-warning r-tag"><%= b.label { b.text } %>承認済</span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="propriety">
+                    <%= f.submit "承認済に変更", class: "button is-primary is-light is-midium", id: "edit-approval-btn" %>
+                    <%= link_to relative_path(denial: @request), method: :patch,
+                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"edit-denial-btn" do %>
+                      否認済に変更
+                    <% end %>
+                  </div>
+                  <p class="c-red">※申請の承認/否認を変更する場合はこちらから変更が可能です</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<nav class="panel" id="memory-panel-style">
+  <div class="notification-container notice-pad">
+    <div class="content has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-12 is-centered max-width">
+          <% if @add_images == 0 || @memory.add_image == 0 %>
+            <h1 class="memory-title">思い出アルバムの新規投稿ができます。</h1>
+          <% else %>
+            <h1 class="memory-title">思い出アルバムを追加</h1>
+            <p class="is-pulled-left">追加元と同じ日付&nbsp;</p>
+            <% @memories.each do |m| %>
+              <% @memory = m if m.id == @add_images %>
+              <p class="is-pulled-left"><%= l(m.event_date, format: :long) if m.id == @add_images %></p>
+            <% end %>
+            <p class="is-pulled-left">&nbsp;で投稿されます。</p>
+          <% end %>
+          <small class="is-pulled-right">
+            現在時刻&nbsp;<span id="app"><%= l(Date.current) %>&nbsp;<clock></clock></span>
+          </small>
+          <h1 class="memory-title-mini">思い出アルバムの画像選定</h1>
+          <p class="has-text-left">ここから思い出アルバムに使用する画像を最大８枚まで選定できます。</p>
+          <%= render 'new-card' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<%= render 'clock' %>

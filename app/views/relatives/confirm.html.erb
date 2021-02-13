@@ -1,0 +1,72 @@
+<div class="relative-confirm-body">
+  <% @request_residents.each do |user, r_ids| %>
+    <% current_facility.acceptance_requests(user).each do |request| %>
+    <% request = ActiveDecorator::Decorator.instance.decorate(request) %>
+      <div class="request-time"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
+      <div class="card">
+        <div class="relative-new-container">
+          <div class="relative-confirm-section">
+            <table class="table is-narrow user-edit-table is-bordered" id="relative-confirm-table">
+              <tbody>
+                <tr>
+                  <th colspan="2">
+                    <div class="relative-confirm-req-name">
+                      <h1 class="has-text-weight-bold is-size-4"><%= request.user.name %><span class="is-size-5 req-name"> 様からの申請</span></h1>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>利用者名</th>
+                  <td>
+                    <%= simple_format(request.req_name) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>連絡先</th>
+                  <td>
+                    <%= request.user.phone %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>住所</th>
+                  <td>
+                    <%= request.user.address %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>紐付け</th>
+                  <td>
+                    <p class="is-size-7">（登録済み入居者）</p>
+                    <% if request.user.residents.map(&:facility_id).include?(current_facility.id) %>
+                      <% request.user.residents.each do |resident| %>
+                        <span class="registered-name"><%= resident.name if resident.facility_id == current_facility.id %></span>
+                      <% end %><br><br>
+                    <% else %>
+                      <p class="registered-name">現在登録されている利用者はいません</p><br>
+                    <% end %>
+
+                    <p>↓↓</p>
+
+                    <p class="is-size-7">（承認後の入居者）</p>
+                    <% if current_facility.newly_numbers(r_ids).sort == request.user.resident_ids.sort %>
+                      <p class="c-red has-text-weight-bold">申請を保留します</p>
+                    <% else %>
+                      <% current_facility.newly_numbers(r_ids).each do |r_id| %>
+                        <span class="approval-name"><%= current_facility.resident_name(r_id) %></span>
+                      <% end %>
+                    <% end %>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="confirm-submit">
+    <%= button_to "入力画面に戻る", new_relative_path, params: {update_relatives: @request_residents}, class: "button is-light has-text-weight-bold", id: "req-submit" %>
+    <%= link_to 'まとめて承認', update_relatives_relatives_path(update_relatives: @request_residents), method: :patch, class: "button is-primary is-light has-text-weight-bold", id: "req-submit" %>
+  </div>
+</div>

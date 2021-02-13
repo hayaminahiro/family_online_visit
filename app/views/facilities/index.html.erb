@@ -1,0 +1,98 @@
+<section class="hero is-small">
+  <div class="hero-body">
+  </div>
+</section>
+
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title has-text-centered is-size-1">
+        システム利用施設一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div class="container section">
+  <div id="WebDev" class="content-tab">
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <%= form_with(url: facilities_path, method: :get, local: true) do |f| %>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <%= f.text_field :search, :placeholder => "\uf304 施設名を入力", class: "fa input is-medium is-rounded is-black" %>
+            </div>
+            <div class="control">
+              <%= f.submit "\uf002検索", class: "fa button is-medium is-link is-rounded" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <div class="table-container">
+      <table class="table is-fullwidth is-hoverable is-striped is-narrow" id="family-table">
+        <thead>
+          <tr>
+            <th>画像</th>
+            <th>施設名</th>
+            <th>メールアドレス</th>
+            <th>登録ユーザー数</th>
+            <th>利用者数</th>
+            <th>施設情報</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @facilities.each do |f| %>
+          <tr>
+            <td class="is-vcentered">
+              <div class="index-img-center">
+                <% if f.image? %>
+                  <%= image_tag f.image.url, id: :img_prev, :size => '120x120' %>
+                <% else %>
+                  <%= image_tag "https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.jpg", id: :img_prev, :size => '120x120' %>
+                <% end %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.facility_name %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.email %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.users.count %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <div class="has-text-weight-semibold is-size-5">
+                <%= f.residents.count %>
+              </div>
+            </td>
+            <td class="is-vcentered">
+              <%= link_to facility_path(f), class: "button is-link is-medium" do %>
+                <span><i class="fas fa-laptop-house"></i></span>
+              <% end %>
+            </td>
+            <td class="is-vcentered">
+              <%= link_to f, method: :delete, data: { confirm: "「#{f.facility_name}」を削除してよろしいですか?" },
+                class: "button is-danger is-medium" do %>
+              <span><i class="far fa-trash-alt"></i></span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><br>
+    <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+  </div>
+</div>

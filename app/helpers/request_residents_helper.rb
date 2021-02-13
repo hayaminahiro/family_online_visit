@@ -1,0 +1,2 @@
+module RequestResidentsHelper
+end

@@ -1,0 +1,110 @@
+<ul class="image-layout">
+</ul>
+<div class="container is-fluid">
+  <div class="content has-text-centered">
+    <div class="signup-upper">
+      <div class="signups-title">
+        <strong class="new-title">追加情報登録</strong><br>
+      </div>
+      <div class="page-display">
+        <div class="page-number">
+          <span class="fa-stack fa-lg" style="font-size: 1.5em; color: gainsboro;">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-inverse fa-stack-1x">1</i>
+          </span>
+        </div>
+        ・・・
+        <div class="page-number">
+          <span class="fa-stack fa-lg" style="font-size: 1.5em; color: fuchsia;">
+            <i class="fa fa-circle fa-stack-2x faa-tada animated"></i>
+            <i class="fa fa-inverse fa-stack-1x faa-tada animated" style="color: white;">2</i>
+          </span>
+        </div>
+        ・・・
+        <div class="page-number">
+          <span class="fa-stack fa-lg" style="font-size: 1.5em; color: white;">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-inverse fa-stack-1x" style="color: black;">3</i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-position">
+    <div class="columns is-centered">
+      <div class="column is-4-desktop is-12-mobile top-btn-position has-text-black">
+      <%= render "users/shared/error_messages", resource: @user %>
+      <form>
+        <div>
+          <div class="label step2-label" for="zip">郵便番号</div>
+          <input id="zip" type="text" size="10" placeholder="&#xf1fa; ハイフンなし", class="fa input is-medium step2-input-postcode" />
+        </div>
+      </form>
+      <%= form_with model: @user, url: step3_signup_index_path, local: true, method: :get do |f| %>
+
+        <div class="field">
+          <%= f.hidden_field :postal_code, id: "zipcode", autocomplete: 'postal_code', class: 'fa input is-medium input-top' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :prefecture_name, '都道府県', for: "address1", class: "label" %><br />
+          <%= f.text_field :prefecture_name, :placeholder => "\uf015 都道府県を入力", id: "address1", class: 'fa input is-medium input-top' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :address_city, '市区町村', for: "address2", class: "label" %><br />
+          <%= f.text_field :address_city, :placeholder => "\uf015 市区町村を入力", id: "address2", autocomplete: 'address_city', class: 'fa input is-medium input-top' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :address_street, '町域', for: "address3", class: "label" %><br />
+          <%= f.text_field :address_street, :placeholder => "\uf015 町域を入力", id: "address3", autocomplete: 'address_street', class: 'fa input is-medium input-top' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :phone, "電話番号", class: "label" %><br />
+          <%= f.text_field :phone, :placeholder => "\uf098 電話番号を入力", value: session[:phone], autocomplete: "phone", class: "fa input is-medium input-top" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "次へ", class: "button is-link is-medium is-fullwidth new-btn has-text-weight-bold" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column">
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    // ［検索］ボタンクリックで郵便番号検索を実行
+    $('#zip').on('input',function() {
+      $.getJSON('https://zipcloud.ibsnet.co.jp/api/search?callback=?',
+        {
+          zipcode: $('#zip').val()
+        }
+      )
+      // 結果を取得したら…
+      .done(function(data) {
+        // 中身が空でなければ、その値を［住所］欄に反映
+        if (data.results) {
+          var result = data.results[0];
+      $('#zipcode').val(result.zipcode);
+      $('#address1').val(result.address1);
+      $('#address2').val(result.address2);
+      $('#address3').val(result.address3);
+        // 中身が空の場合は、エラーメッセージを反映
+        } else {
+          $('#zipcode').val('該当する住所が存在しません。');
+          $('#address1').val('該当する住所が存在しません。');
+          $('#address2').val('該当する住所が存在しません。');
+          $('#address3').val('該当する住所が存在しません。');
+        }
+      });
+    });
+  });
+</script>

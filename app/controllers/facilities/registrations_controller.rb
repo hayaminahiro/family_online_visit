@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Facilities::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: :create
+  before_action :configure_account_update_params, only: :update
 
   # GET /resource/sign_up
   def new
@@ -40,23 +40,30 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  end
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[attribute facility_name])
+    end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  end
+    # If you have extra params to permit, append them to the sanitizer.
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute facility_name image icon remove_image remove_icon image_cache icon_cache])
+    end
 
-  # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    super(resource)
-  end
+    # The path used after sign up for inactive accounts.
+    def after_inactive_sign_up_path_for(resource)
+      super(resource)
+    end
 
-  # The path used after sign up for inactive accounts.
-  def after_inactive_sign_up_path_for(resource)
-    super(resource)
-  end
+    # アカウント登録後のリダイレクト先
+    def after_sign_up_path_for(_resource)
+      # facility_path(resource)
+      facility_home_facility_path(current_facility)
+    end
+
+    # アカウント編集後のリダイレクト先
+    def after_update_path_for(_resource)
+      # facility_path(resource)
+      facility_home_facility_path(current_facility)
+    end
 end

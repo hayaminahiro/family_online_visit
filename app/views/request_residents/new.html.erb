@@ -1,0 +1,35 @@
+<div class="req-show-body">
+  <div class="req-new-container">
+    <div class="req-new-section">
+      <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
+      <% if @request_resident&.req_approval == "approval" && current_user.resident_ids.any? { |id| @facility.resident_ids.include?(id) } %>
+        <p>※利用者登録は<span><%= @request_resident.status %></span>です。追加申請の際はご入力ください。</p>
+      <% end %>
+
+      <%= form_with(model: @request, url: request_residents_path(facility_id: params[:facility_id]), local: true) do |f| %>
+      <%= render "users/shared/error_messages", resource: @request %>
+        <div class="card">
+          <table class="table is-narrow user-edit-table is-bordered" id="req-table">
+            <tbody>
+              <tr>
+                <th>利用者名</th>
+                <td>
+                  <%= f.text_area :req_name, :placeholder => " \uf304 利用者名", autofocus: true, class: "fa textarea input is-hovered req-table-edit-form" %>
+                  <%= f.hidden_field :req_approval %>
+                  <%= f.hidden_field :facility_id, :value => params[:facility_id] %>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td><%= f.submit "申請", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

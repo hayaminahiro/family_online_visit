@@ -2,6 +2,17 @@
   margin-top: 100px;
 }
 
+//Online Visit
+h1.title-header {
+  font-size: 32px;
+  font-family: "Quicksand", sans-serif;
+}
+
+//Online Visit（アイコン）
+nav.navbar i {
+  font-size: 32px;
+}
+
 h2 {
   color: white !important;
 }
@@ -13,12 +24,13 @@ h2 {
 }
 
 .links {
-  color: #F7F7F7;
-  font-size: 20px;
+  color: #595a5a;
+  font-size: 17px;
+  font-family: "Quicksand", sans-serif;
 }
 
 .notice-link {
-  color: #2E2F30;
+  color: #2e2f30;
 }
 
 //背景
@@ -33,20 +45,59 @@ h2 {
   background-repeat: no-repeat;
   background-position: center 50%;
   background-size: cover;
+  z-index: -1;
   //家族と青空
-  background-image: url(/assets/family-sky.jpg);
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
 }
 
 .image-layout::before {
   /* 透過した黒を重ねる */
-  background-color: rgba(1, 1, 1, 0.2);
+  background-color: rgba(0, 0, 0, 0);
   /* どの範囲に重ねるかを指定 */
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  content: ' ';
+  content: " ";
+}
+
+.image-layout2 {
+  position: absolute;
+  top: 50px;
+  bottom: 100px;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+}
+
+.image-layout-user {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  color: white;
+  background-color: #3ecd85;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  z-index: -1;
+  //家族と青空
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/signup-pic2.jpg");
+}
+
+.image-layout-user::before {
+  /* 透過した黒を重ねる */
+  background-color: rgba(0, 0, 0, 0);
+  /* どの範囲に重ねるかを指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: " ";
 }
 
 .btn-flat-border {
@@ -60,7 +111,7 @@ h2 {
   color: #67c5ff;
   border: solid 2px #67c5ff;
   border-radius: 3px;
-  transition: .4s;
+  transition: 0.4s;
   margin-bottom: 50px;
 }
 
@@ -77,15 +128,15 @@ h2 {
   display: inline-block;
   padding: 0.3em 1em;
   text-decoration: none;
-  color: #32CD32;
-  border: solid 2px #32CD32;
+  color: #32cd32;
+  border: solid 2px #32cd32;
   border-radius: 3px;
-  transition: .4s;
+  transition: 0.4s;
   margin-bottom: 50px;
 }
 
 .btn-flat-border-new:hover {
-  background: #32CD32;
+  background: #32cd32;
   color: white;
 }
 
@@ -127,35 +178,44 @@ p#explanation {
   text-align: center;
 }
 
-footer.modal-card-foot {
-  padding-left: 450px;
-}
-
 .notice-btn {
   margin-top: 30px;
 }
 
 //スマホ表示用
 div#navbarBasicExample.navbar-menu.is-active {
-  background: royalblue;
+  background-color: #efefef;
 }
 
 p.navbar-item {
-  color: #F7F7F7;
-  font-size: 20px;
+  color: #595a5a;
+  font-size: 17px;
+  background-color: #efefef;
+  font-family: "Quicksand", sans-serif;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+//ヘッダー内のアイコン
+.header-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .dark-top {
   padding: 5px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 .font-awe-video {
   margin-right: 10px;
-  color: paleturquoise;
+  color: #cd853f;
 }
 
 .more {
-  color: #F7F7F7;
+  color: #f7f7f7;
   font-size: 22px;
 }
 
@@ -176,9 +236,23 @@ p.navbar-item {
   margin-top: -25px;
 }
 
+.step2-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.step2-input-postcode {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.input-top-user {
+  margin-top: -25px;
+}
+
 .new-btn {
-  margin-bottom: 80px;
-  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .login-hero-size {
@@ -191,20 +265,29 @@ p.navbar-item {
 }
 
 .to-new-userpage {
+  margin-top: 40px;
+  margin-bottom: 50%;
+}
+
+.to-new-userpage1 {
   margin-top: 20px;
   margin-bottom: -30px;
 }
 
 .login-title {
-  margin-top: 50px;
+  margin-top: 185px;
+}
+
+.login-title-user {
+  margin-top: 185px;
 }
 
 .signup-title {
   margin-top: 50px;
 }
 
-.admin-btn {
-  margin-top: 100px;
+.signup-title-facility {
+  margin-top: 185px;
 }
 
 .center-login {
@@ -214,4 +297,619 @@ p.navbar-item {
 a.button.is-success.is-rounded.is-large.has-text-weight-bold.center-login {
   border-color: green;
   border-width: 1.5px;
+}
+
+#hero-2 {
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/family.jpg");
+  overflow: hidden;
+  position: relative;
+}
+
+#hero-2 h1 {
+  font-size: 80px;
+}
+
+#hero-2 p {
+  font-size: 32px;
+}
+
+.hero-3 {
+  background-color: #ffdead;
+}
+
+html {
+  position: relative;
+  min-height: 105vh;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: #d3d3d3;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-layout {
+  width: 100%;
+  height: 100px;
+}
+
+.footer-content {
+  margin-right: 20px;
+  padding-top: 30px;
+}
+
+.top-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+  background: #efefef;
+}
+//トップページ画像のアニメーション
+.main_img {
+  z-index: 10;
+  opacity: 0;
+  width: 100%;
+  height: 650px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-animation: anime 36s 0s infinite;
+  animation: anime 36s 0s infinite;
+}
+
+.main_img:nth-of-type(2) {
+  -webkit-animation-delay: 6s;
+  animation-delay: 5s;
+}
+
+.main_img:nth-of-type(3) {
+  -webkit-animation-delay: 12s;
+  animation-delay: 10s;
+}
+
+.main_img:nth-of-type(4) {
+  -webkit-animation-delay: 18s;
+  animation-delay: 15s;
+}
+
+.main_img:nth-of-type(5) {
+  -webkit-animation-delay: 24s;
+  animation-delay: 24s;
+}
+
+.main_img:nth-of-type(6) {
+  -webkit-animation-delay: 30s;
+  animation-delay: 30s;
+}
+
+@keyframes anime {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+    transform: scale(1.2);
+    z-index: 9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#hero-4 {
+  position: relative;
+  background: #efefef;
+  padding-top: 20px;
+}
+
+//トップページご家族ログインブロック
+.inline-block_content {
+  display: inline-block;
+  vertical-align: top;
+  height: 267px;
+  width: 420px;
+  margin-right: 55px;
+  margin-bottom: 120px;
+  margin-top: 20px;
+  margin-left: 55px;
+}
+
+//トップページご家族ログイン後
+.inline-block_tab {
+  display: inline-block;
+  vertical-align: top;
+  height: 267px;
+  width: 420px;
+  margin-right: 55px;
+  margin-bottom: 80px;
+  margin-top: 75px;
+  margin-left: 55px;
+}
+
+#top-coments {
+
+  p {
+    text-align: left;
+  }
+}
+
+p.content1 {
+  line-height: 30px;
+}
+
+//ユーザーログインボタン
+.btn-animation-login {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  background-color: #4dada1;
+  border: 2px solid #4dada1;
+  font-size: 20px;
+  color: #4dada1;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.btn-animation-login span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-animation-login::before,
+.btn-animation-login::after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: 0.2s;
+}
+.btn-animation-login::before {
+  left: 0;
+}
+.btn-animation-login::after {
+  right: 0;
+}
+
+.btn-animation-login:hover:before,
+.btn-animation-login:hover:after {
+  width: 0;
+  background-color: #fff;
+}
+
+.btn-animation-login:hover {
+  color: #fff;
+}
+
+//施設ログインボタン
+.circle_spread_btn {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background: #4682b4;
+  border-radius: 50%;
+}
+.circle_spread_btn:hover {
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.3s;
+  transform-origin: center;
+  transform: scale(0.9, 0.9);
+  opacity: 0.7;
+}
+.circle_spread_btn::after {
+  display: inline-block;
+  content: "";
+  width: 49px;
+  height: 49px;
+  position: absolute;
+  border-radius: 50%;
+  color: #fff;
+  top: -0.5px;
+  left: -0.5px;
+  border: 1px solid #4682b4;
+  transition: transform 0.5s ease;
+  visibility: hidden;
+}
+.circle_spread_btn:hover::after {
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.5s ease;
+  transform-origin: center;
+  transform: scale(1.4, 1.4);
+  opacity: 0.7;
+  visibility: visible;
+}
+
+//施設登録遷移ボタン
+.btn-animation-facility {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  background-color: #ffd700;
+  border: 2px solid #ffd700;
+  font-size: 20px;
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.btn-animation-facility span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-animation-facility::before,
+.btn-animation-facility::after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: 0.2s;
+}
+.btn-animation-facility::before {
+  left: 0;
+}
+.btn-animation-facility::after {
+  right: 0;
+}
+
+.btn-animation-facility:hover:before,
+.btn-animation-facility:hover:after {
+  width: 0;
+  background-color: #fff;
+}
+
+.btn-animation-facility:hover {
+  color: #fff;
+}
+
+//タブ機能
+.cp_tab *,
+.cp_tab *:before,
+.cp_tab *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.cp_tab > input[type="radio"] {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.cp_tab .cp_tabpanel {
+  display: none;
+}
+
+.cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
+.cp_tab
+  > input:nth-child(3):checked
+  ~ .cp_tabpanels
+  > .cp_tabpanel:nth-child(2),
+.cp_tab
+  > input:nth-child(5):checked
+  ~ .cp_tabpanels
+  > .cp_tabpanel:nth-child(3),
+.cp_tab
+  > input:nth-child(7):checked
+  ~ .cp_tabpanels
+  > .cp_tabpanel:nth-child(4),
+.cp_tab
+  > input:nth-child(9):checked
+  ~ .cp_tabpanels
+  > .cp_tabpanel:nth-child(5),
+.cp_tab
+  > input:nth-child(11):checked
+  ~ .cp_tabpanels
+  > .cp_tabpanel:nth-child(6) {
+  display: block;
+}
+
+.cp_tab > label {
+  position: relative;
+  display: inline-block;
+  padding: 10px 88px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: 0;
+}
+
+.cp_tab > label:hover,
+.cp_tab > input:focus + label {
+  color: #006fcc;
+}
+
+.cp_tab > input:checked + label {
+  margin-bottom: -1px;
+  border-color: #cccccc;
+  border-bottom: 1px solid #efefef;
+  border-radius: 6px 6px 0 0;
+}
+
+.cp_tab .cp_tabpanel {
+  padding: 0.5em 1em;
+  border-top: 1px solid #cccccc;
+  padding-top: 100px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 480px) {
+  .cp_tab {
+    width: 100%;
+    font-size: 1em;
+  }
+  .cp_tab label {
+    padding: 0.5em;
+  }
+}
+
+.about-title {
+  border-bottom: 1px solid #ccc;
+  font-size: 30px;
+  padding-bottom: 7px;
+  margin-bottom: 50px;
+  margin-top: 100px;
+}
+
+#panel-content {
+  padding: 20px;
+}
+
+//ユーザーログイン後のお知らせpanel
+#panel-content-user {
+  padding: 20px;
+  margin: 37px;
+}
+
+.about-title-2 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 7px;
+  margin-bottom: 50px;
+  margin-top: 0px;
+  font-size: 32px;
+}
+
+@media screen and (max-width: 1050px) {
+  .inline-block_content {
+    width: 38%;
+  }
+
+  .inline-block_tab {
+    width: 38%;
+    margin-top: 25px;
+  }
+
+  .cp_tab .cp_tabpanel {
+    margin-bottom: 20px;
+  }
+}
+
+//タブレット〜モバイル
+@media screen and (max-width: 1000px) {
+  //トップ画面背景画像
+  .main_img {
+    height: 370px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #hero-2 {
+    height: 350px;
+  }
+
+  //補足コメント
+  p.content1 {
+    font-size: 12px;
+  }
+
+  //トップ画面の画像と文のレイアウト
+  .inline-block_content {
+    width: 290px;
+    margin: 10px 20px;
+    margin-bottom: 90px;
+  }
+
+  .inline-block_content img {
+    height: 280px;
+    object-fit: cover;
+  }
+
+  .inline-block_tab {
+    width: auto;
+    margin: 0px 10px 0px 10px;
+  }
+
+  .inline-block_tab img {
+    height: 280px;
+    object-fit: cover;
+  }
+
+  //メニュータブ
+  .cp_tab > label {
+    padding: 10px 44px;
+  }
+
+  .cp_tab .cp_tabpanel {
+    padding-top: 60px;
+    margin-bottom: 85px;
+  }
+
+  //【ユーザーログイン画面】
+  //タイトルレイアウト
+  .login-title-user {
+    margin-top: 154px;
+  }
+
+  //【施設ログイン画面】
+  //タイトルレイアウト
+  .login-title {
+    margin-top: 154px;
+  }
+
+  //【施設新規登録画面】
+  .signup-title-facility {
+    margin-top: 154px;
+  }
+}
+
+//モバイル
+@media screen and (max-width: 500px) {
+  //Online Visit
+  h1.title-header {
+    font-size: 23px;
+  }
+
+  //Online Visit（アイコン）
+  nav.navbar i {
+    font-size: 18px;
+  }
+
+  //アプリタイトル
+  #hero-2 h1 {
+    font-size: 45px;
+  }
+
+  //サブタイトル
+  #hero-2 p {
+    font-size: 18px;
+  }
+
+  //アプリについて（項目）
+  .about-title-2 {
+    font-size: 20px;
+  }
+
+  .inline-block_content {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .inline-block_tab {
+    height: auto;
+    margin-top: 40px;
+  }
+
+  #top-coments {
+    margin-bottom: 80px;
+
+    p {
+      text-align: center;
+    }
+  }
+
+  //お知らせ
+  #panel-content {
+    margin: 0px;
+  }
+
+  //ログイン後、トップ画面のメニュータブ
+  .cp_tab > label {
+    padding: 10px 10px;
+    font-size: 2px;
+    border: none;
+  }
+
+  .cp_tab > label i {
+    font-size: 30px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .cp_tab > input:checked + label {
+    border-bottom: 2px solid #006fcc;
+    border-radius: 0;
+  }
+
+  .cp_tab .cp_tabpanel {
+    margin-bottom: 70px;
+  }
+
+  //タブタイトル（文字）
+  #hero-4 {
+
+    span.tab-title {
+      font-size: 11px;
+    }
+  }
+
+  //項目タイトル
+  .about-title {
+    font-size: 22px;
+    margin-top: 50px;
+  }
+
+  //【施設ログイン画面】
+  //タイトルレイアウト
+  .login-title {
+    margin-top: 130px;
+  }
+
+  //【施設新規登録画面】
+  .signup-title-facility {
+    margin-top: 130px;
+  }
+
+  //【ユーザログイン画面】
+  .login-title-user {
+    margin-top: 130px;
+  }
+
+  //【ユーザー新規登録画面】
+  .signups-title {
+    margin-top: 54px;
+  }
+
+  //施設ログイン、施設新規登録
+  .new-title {
+    font-size: 27px;
+  }
 }

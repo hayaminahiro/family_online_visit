@@ -1,0 +1,88 @@
+<%= render partial: 'shared/facility_images', locals: { facility: current_facility} %>
+
+<div class="columns is-variable is-0 is-desktop facility-columns" id="facility-inquiry" style="height: 100vh;">
+  <%= render 'shared/side_link' %>
+  <div class="column is-10-desktop is-12-mobile" style="padding: 0px;">
+    <article class="panel is-success inquiry-panel" id="panel-info">
+      <!-- Main container -->
+      <nav class="level">
+        <!-- Left side -->
+        <div class="level-left">
+          <div class="level-item">
+            <div class="is-size-5 inquiry-index-title">
+              <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;お問い合わせ一覧
+            </div>
+          </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="level-right">
+          <%= form_with(url: facility_inquiries_path(current_facility), method: :get, local: true) do |f| %>
+            <div class="field is-grouped is-grouped-right inquiry-index-search">
+              <div class="control has-icons-left">
+                <%= f.text_field :search, :placeholder => "お名前を入力..", class: "input is-rounded" %>
+                <span class="icon is-left">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="control">
+                <%= f.submit "\uf002検索", class: "fa button is-info is-outlined is-rounded" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+      <% if @inquiries.present? %>
+        <div class="table-container has-text-centered inquiry-table-adjust">
+          <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+            <table class="table is-striped is-fullwidth" id="inquiry-table">
+              <thead>
+                <tr>
+                  <th>日付</th>
+                  <th>名前</th>
+                  <th>連絡先</th>
+                  <th>内容</th>
+                  <th>詳細</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @inquiries.each do |inquiry| %>
+                  <tr class="is-size-5">
+                    <td><%= l(inquiry.created_at, format: :long) %></td>
+                    <td><div class="inquiry-message-short"><%= inquiry.name %></div></td>
+                    <td><%= inquiry.email %></td>
+                    <td><div class="inquiry-message-short"><%= inquiry.message %></div></td>
+                    <td>
+                      <%= link_to facility_inquiry_path(current_facility, inquiry.id), remote: true, class: "button is-success contents--create-button--circle js-contents--create-button--circle" do %>
+                        <i class="far fa-file-alt"></i>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to facility_inquiry_path(current_facility, inquiry.id), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "button is-danger" do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="inquiry-adjust"></div>
+          <%= will_paginate @inquiries, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+        </div>
+      <% else %>
+        <div class="inquiry-nothing has-text-centered">
+          現在お問い合わせはありません。
+        </div>
+      <% end %>
+    </article>
+  </div>
+</div>
+
+<!--モーダル表示-->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card inquiry-modal-size">
+    <div class="js-contents--content-form"></div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="req-show-body">
+  <div class="req-new-container">
+    <div class="req-new-section">
+      <h1 class="has-text-weight-bold is-size-3">利用者登録申請</h1>
+      <p>※利用者登録は<span class="c-red"><%= @request.req_approval_i18n %></span>です。</p>
+      <%= form_with(model: @request, url: request_resident_path, local: true) do |f| %>
+        <%= render "users/shared/error_messages", resource: @request %>
+        <div class="card">
+          <table class="table is-narrow user-edit-table is-bordered" id="req-table">
+            <tbody>
+              <tr>
+                <th>利用者名</th>
+                <td>
+                  <%= f.text_area :req_name, :placeholder => " \uf304 入居者名", class: "fa textarea input is-hovered req-table-edit-form" %>
+                  <%= f.hidden_field :req_approval %>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th><abbr title="Position"></abbr></th>
+                <td><%= f.submit "申請内容を変更する", class: "button button is-warning is-light is-fullwidth new-btn has-text-weight-bold", id: "req-edit-tfoot" %>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      <% end %>
+      <div>
+        <p class="req-edit-cancel-btn">
+          <%= link_to request_resident_path(@request), method: :delete, data: { confirm: "この申請をキャンセルしますか？" }, class:"" do %>
+            <span class="c-red">申請をキャンセルする</span>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

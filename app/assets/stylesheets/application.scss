@@ -10,10 +10,198 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
+ *= require dropzone/dropzone
  */
- @import 'font-awesome-sprockets';
- @import 'font-awesome';
- @import "bulma";
-  
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import "bulma";
+
+//ヘッダーアイコンの画像
+.navbar-item img {
+  max-height: 100%;
+  object-fit: cover;
+}
+
+#facility-login-nav {
+
+  i {
+    margin-top: 9px;
+  }
+}
+
+/*ページネーションの左右ラベルを非表示にする*/
+.pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
+  display: none;
+}
+
+#under-link {
+  display: none;
+}
+
+/*下タブ（タブレット、モバイル）*/
+@media screen and (max-width: 1000px) {
+
+  #under-link {
+    display: inline-block;
+  }
+
+  //ハンバーガー
+  .navbar-burger {
+    margin-top: 11px;
+  }
+
+  //施設下タブ
+  #facility_tab_nav {
+    display: block;
+    z-index: 20;
+    text-align:center;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    right: 0px;
+    background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
+    background: -moz-linear-gradient(top,#4E6F8B,#0A203F);
+  }
+
+  #facility_tab_nav ul {
+    display: flex;
+    font-weight: bold;
+  }
+
+  #facility_tab_nav li {
+    flex: 1;
+  }
+
+  .facility-icon-image {
+    left: 12%;
+  }
+
+  #facility_tab_nav li a {
+    display: block;
+    color: #fff;
+    height: 51px;
+    padding-top: 0px;
+    font-size: 10px;
+  }
+
+  #facility_tab_nav li span {
+    font-size: 26px;
+    display: block;
+    margin: 8px auto;
+  }
+
+  #facility_tab_nav li i {
+    display: block;
+    line-height: 27px;
+  }
+
+  #facility_tab_nav li a:hover {
+    background: #EFEFEF;
+    color: black;
+  }
+
+  #facility-contents{
+    padding-bottom: 0px;
+
+    .panel {
+      margin: 0px;
+    }
+  }
+
+  //ユーザー下タブ
+  #user_tab_nav {
+    z-index: 20;
+    display: block;
+    text-align:center;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background: linear-gradient(to bottom, #ffffff, #f7f0e7);
+  }
+
+  #user_tab_nav ul {
+    display: flex;
+    font-weight: bold;
+  }
+
+  #user_tab_nav li {
+    flex: 1;
+  }
+
+  #user_tab_nav li a {
+    display: block;
+    height: 51px;
+    color: gray;
+    padding-top: 8px;
+    font-size: 10px;
+  }
+
+  #user_tab_nav li span {
+    font-size: 26px;
+    display: block;
+    margin: 5px auto;
+    margin-top: 2px;
+  }
+
+  #user_tab_nav li i {
+    display: block;
+    line-height: 20px;
+  }
+
+  //フッター
+  .footer-layout {
+    height: 70px;
+  }
+
+  footer {
+    height: 70px;
+    margin-bottom: 55px;
+
+    .footer-content{
+      padding-top: 0px;
+      height: 70px;
+    }
+
+    .content h1 {
+      font-size: 2em;
+      line-height: 70px;
+      height: 70px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  #title-nav {
+
+    i {
+      font-size: 27px;
+    }
+  }
+
+  //ハンバーガー
+  .navbar-burger {
+    margin-top: 4px;
+  }
+
+  #facility-login-nav {
+
+    i {
+      font-size: 27px;
+      margin-top: 11px;
+    }
+  }
+
+  footer {
+
+    .content h1 {
+      font-size: 18px;
+    }
+  }
+}

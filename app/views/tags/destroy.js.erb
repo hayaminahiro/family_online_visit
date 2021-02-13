@@ -1,0 +1,13 @@
+<!--destroyした"@tag.id"と同じ番号を持つhtml⇨ <li class="tag-link-<%#= tag.id %>" id="tag-links"> （users/show.html.erb） を削除する-->
+$(".tag-link-<%= @tag.id%>").remove();
+
+<!--_all_images.html.erbのモーダル表示（各画像）される画面において、フォルダ選択フォームのリストで、削除した@tagのデータを持つ選択リストを削除する-->
+$("select.select-tag option[value='<%= @tag.id%>']").remove();
+
+<!--コントローラから受け取ったフラッシュの内容を表示する-->
+$("#added-message").html("<div class='notification is-danger has-text-weight-bold'><p class='alert'><%= alert %></p></div>").hide().fadeIn(100);
+
+<!--フラッシュを12000ms表示し、1200msの速さでfadeOut（非表示）する-->
+$(function(){
+  setTimeout("$('#added-message').fadeOut(1200)", 12000)
+})
