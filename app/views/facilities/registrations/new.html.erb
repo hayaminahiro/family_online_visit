@@ -14,22 +14,22 @@
 
           <div class="field">
             <%= f.label :facility_name, "登録施設名", class: "label" %><br />
-            <%= f.text_field :facility_name, :placeholder => "\uf304 登録施設名を入力", autofocus: true, class: "fa input is-medium input-top", :size=>"100px" %>
+            <%= f.text_field :facility_name, :placeholder => "\uf304 登録施設名を入力", autofocus: true, autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
           </div>
 
           <div class="field">
             <%= f.label :email, class: "label" %><br />
-            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力", class: "fa input is-medium input-top" %>
+            <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力", autocomplete: "email", class: "fa input is-medium input-top" %>
           </div>
 
           <div class="field">
             <%= f.label :password, class: "label" %><br />
-            <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", class: "fa input is-medium input-top" %>
+            <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力", autocomplete: "new-password", class: "fa input is-medium input-top" %>
           </div>
 
           <div class="field">
             <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-            <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力", class: "fa input is-medium input-top" %>
+            <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力", autocomplete: "new-password", class: "fa input is-medium input-top" %>
           </div>
 
           <div class="actions">
