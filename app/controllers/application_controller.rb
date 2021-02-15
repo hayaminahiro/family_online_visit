@@ -2,6 +2,33 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configre_permitted_parameters, if: :devise_controller?
 
+  # 例外処理
+  rescue_from Exception, with: :render_500
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  rescue_from ActionController::RoutingError, with: :render_404
+
+  def render_404(e = nil)
+    logger.info "Rendering 404 with exception: #{e.message}" if e
+
+    if request.xhr?
+      render json: { error: '404 error' }, status: 404
+    else
+      format = params[:format] == :json ? :json : :html
+      render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
+    end
+  end
+
+  def render_500(e = nil)
+    logger.info "Rendering 500 with exception: #{e.message}" if e
+
+    if request.xhr?
+      render json: { error: '500 error' }, status: 500
+    else
+      format = params[:format] == :json ? :json : :html
+      render template: 'errors/error_500', status: 500, layout: 'application', content_type: 'text/html'
+    end
+  end
+
   # deviseでユーザー新規作成の際に名前のカラムを保存するためのもの（標準装備はemail,passwordのみ）
   def configre_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name facility_name])
