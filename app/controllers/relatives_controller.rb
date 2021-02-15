@@ -3,7 +3,6 @@ class RelativesController < ApplicationController
   before_action :set_user, only: %i[show edit]
   before_action :set_residents, except: %i[destroy index]
   before_action :set_active_requests, except: %i[new confirm destroy index]
-  before_action :denial, only: :update
 
   # 申請一覧
   def new
@@ -64,6 +63,20 @@ class RelativesController < ApplicationController
 
   def destroy; end
 
+  def denial
+    @request = RequestResident.find(params[:id])
+    @request.denial!
+    RequestMailer.send_denial_to_user(current_facility, @request).deliver
+    flash_message = "#{@request.user.name}の申請を否認しました。"
+
+    respond_to do |format|
+      format.html { flash[:notice] = flash_message
+                    request.referer.include?("edit") ? redirect_to(relatives_url) : redirect_to(facility_home_facility_url(current_facility))
+                  }
+      format.js { flash.now[:notice] = flash_message }
+    end
+  end
+
   private
 
     def confirm_params
@@ -96,14 +109,5 @@ class RelativesController < ApplicationController
 
     def set_active_requests
       @requests = RequestResident.active(current_facility)
-    end
-
-    def denial
-      return if params[:denial].blank?
-
-      request = RequestResident.find(params[:denial])
-      request.denial!
-      RequestMailer.send_denial_to_user(current_facility, request).deliver
-      redirect_to facility_home_facility_url(current_facility), notice: "#{request.user.name}様の申請を否認しました。"
     end
 end
