@@ -146,7 +146,7 @@
       msg = "";
     }
     // 画面表示メッセージ
-    var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
+    // var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
     // ローディング画像が表示されていない場合のみ出力
     if($(".loading-panel-wrap").length == 0){
       $("body").append("<div class='loading-panel-wrap'><div class='loading-panel'><span><h3>Loading</h3></span></div><div class='shadow'></div></div>");
@@ -158,7 +158,6 @@
 
       // Loading 画面を表示
       dispLoading("");
-      // dispLoading("Loading...");
     });
   });
 </script>

@@ -14,7 +14,7 @@ function dispLoading(msg) {
   if( msg == undefined ){
     msg = "";
   }
-  var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
+  <!--var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";-->
   if($(".loading-panel-wrap").length == 0){
     $("body").append("<div class='loading-panel-wrap'><div class='loading-panel'><span><h3>Loading</h3></span></div><div class='shadow'></div></div>");
   }
@@ -25,7 +25,7 @@ function dispLoading(msg) {
     <!-- 確認画面→申請一覧画面へ遷移の時（「入力画面に戻る」ボタン押下時） -->
     $(function () {
       $("#preview-<%= request[0].id %>").click( function() {
-        dispLoading("処理中...");
+        dispLoading("");
       });
     });
 
@@ -35,7 +35,7 @@ function dispLoading(msg) {
           return false;
           $("#loading").remove();
             } else {
-          dispLoading("処理中...");
+          dispLoading("");
         }
       });
     });

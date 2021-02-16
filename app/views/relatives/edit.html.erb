@@ -109,7 +109,7 @@ function dispLoading(msg) {
   if( msg == undefined ){
     msg = "";
   }
-  var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
+  // var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
   if($(".loading-panel-wrap").length == 0){
     $("body").append("<div class='loading-panel-wrap'><div class='loading-panel'><span><h3>Loading</h3></span></div><div class='shadow'></div></div>");
   }
@@ -117,7 +117,7 @@ function dispLoading(msg) {
 
 $(function () {
   $("#preview-<%= @request.id %>").click( function() {
-    dispLoading("処理中...");
+    dispLoading("");
   });
 });
 </script>
