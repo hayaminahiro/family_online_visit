@@ -7,16 +7,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::RoutingError, with: :render_404
 
-  def render_404(exception = nil)
-    logger.info "Rendering 404 with exception: #{exception.message}" if exception
-
-    if request.xhr?
-      render json: { error: '404 error' }, status: 404
-    else
-      render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
-    end
-  end
-
   def render_500(exception = nil)
     logger.info "Rendering 500 with exception: #{exception.message}" if exception
 
@@ -24,6 +14,16 @@ class ApplicationController < ActionController::Base
       render json: { error: '500 error' }, status: 500
     else
       render template: 'errors/error_500', status: 500, layout: 'application', content_type: 'text/html'
+    end
+  end
+
+  def render_404(exception = nil)
+    logger.info "Rendering 404 with exception: #{exception.message}" if exception
+
+    if request.xhr?
+      render json: { error: '404 error' }, status: 404
+    else
+      render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
     end
   end
 
