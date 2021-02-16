@@ -26,7 +26,7 @@ class RelativesController < ApplicationController
   def update_relatives
     update_relatives_params.each do |id, update_ids|
       user = User.find(id)
-      unless Relative.set_update_ids(update_ids) == user.resident_ids.sort
+      unless Relative.new_update_ids(update_ids) == user.resident_ids.sort
         user.update_attributes(update_ids)
         RequestResident.update_approval(current_facility, id)
       end
@@ -65,9 +65,10 @@ class RelativesController < ApplicationController
     flash_message = "#{@request.user.name}の申請を否認しました。"
 
     respond_to do |format|
-      format.html { flash[:notice] = flash_message
-                    request.referer.include?("edit") ? redirect_to(relatives_url) : redirect_to(facility_home_facility_url(current_facility))
-                  }
+      format.html do
+        flash[:notice] = flash_message
+        request.referer.include?("edit") ? redirect_to(relatives_url) : redirect_to(facility_home_facility_url(current_facility))
+      end
       format.js { flash.now[:notice] = flash_message }
     end
   end

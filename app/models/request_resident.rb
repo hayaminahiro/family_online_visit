@@ -29,7 +29,7 @@ class RequestResident < ApplicationRecord
   end
 
   def self.update_approval(facility, user)
-    request_resident = self.changer(facility, user)
+    request_resident = changer(facility, user)
     request_resident.approval!
   end
 end
