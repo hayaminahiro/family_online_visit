@@ -105,7 +105,7 @@ module FacilityDecorator
     r_ids[:set_ids] = [] if r_ids[:set_ids].nil?
 
     resident_ids = r_ids[:set_ids] | r_ids[:resident_ids]
-    resident_ids.map(&:to_i).reject(&:zero?)
+    Relative.reject_zero(resident_ids)
   end
 
   def resident_name(resident_id)
