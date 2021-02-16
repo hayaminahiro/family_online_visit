@@ -25,15 +25,10 @@ class RelativesController < ApplicationController
   # 一括で承認
   def update_relatives
     update_relatives_params.each do |id, update_ids|
-      request_user = User.find(id)
-      request = RequestResident.changer(current_facility, id)
-      update_ids[:set_ids] = [] if update_ids[:set_ids].nil?
-      new_resident_ids = update_ids[:resident_ids].concat(update_ids[:set_ids])
-      update_ids.delete(:set_ids)
-
-      unless new_resident_ids.map(&:to_i).reject(&:zero?).sort == request_user.resident_ids.sort
-        request_user.update_attributes(update_ids)
-        request.approval!
+      user = User.find(id)
+      unless Relative.set_update_ids(update_ids) == user.resident_ids.sort
+        user.update_attributes(update_ids)
+        RequestResident.update_approval(current_facility, id)
       end
     end
     redirect_to facility_home_facility_url(current_facility), notice: "まとめて承認しました。"
@@ -42,13 +37,13 @@ class RelativesController < ApplicationController
   # 個別に承認・否認
   def update
     @user = User.find(params[:user_id].to_i)
-    @user.attributes = update_params
-    if @user.save(context: :relative_update)
-      request = RequestResident.changer(current_facility, params[:user_id].to_i)
-      request.approval!
-      redirect_to facility_home_facility_url(current_facility), notice: "登録申請を承認しました。"
+    if @user.update_with_context(update_params, context: :relative_update)
+      request_resident = RequestResident.changer(current_facility, @user)
+      request_resident.approval!
+      flash[:notice] = "#{request_resident.user.name}の申請を承認しました。"
+      request.referer.include?("edit") ? redirect_to(relatives_url) : redirect_to(facility_home_facility_url(current_facility))
     else
-      params[:commit] == "承認済に変更" ? (render :edit) : (render :show)
+      request.referer.include?("edit") ? (render :edit) : (render :show)
     end
   end
 
