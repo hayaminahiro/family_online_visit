@@ -97,6 +97,10 @@ module FacilityDecorator
     requests.present? ? tag.sup(requests.count) : nil
   end
 
+  def reservations_count(values)
+    values.where(read: false).where('reservation_date >= ?', Time.zone.today).length >= 1 ? tag.sup(values.where(read: false).where('reservation_date >= ?', Time.zone.today).length) : nil
+  end
+
   def acceptance_requests(user)
     RequestResident.includes(:user).where(user_id: user).where(facility_id: id).where(req_approval: "request")
   end

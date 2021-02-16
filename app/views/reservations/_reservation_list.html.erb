@@ -5,7 +5,9 @@
     <% if current_user.present? %>
       <% if (reservation.facility_id == @facility.id) && (current_user.name == reservation.reservation_user) && (reservation.reservation_date >= Date.today) %>
         <div class="reservation-list">
-          <p class="today-color"><%= "面会当日" if Date.current == reservation.reservation_date %></p>
+          <% if Date.current == reservation.reservation_date %>
+            <p class="tag is-warning">本日面会</p>
+          <% end %>
           <span>予約情報 |</span>
           <%= link_to "#{l(reservation.reservation_date, format: :long)}#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation), style:"color: #401c00;" %>
         </div>
@@ -13,8 +15,16 @@
     <% elsif current_facility.present? %>
       <% if (reservation.facility_id == @facility.id) && (reservation.reservation_date >= Date.today) %>
         <div class="reservation-list">
-          <p class="today-color"><%= "面会当日" if Date.current == reservation.reservation_date %></p>
-          <%= link_to "#{reservation.reservation_user} / #{l(reservation.reservation_date, format: :base)}#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation, user: reservation.user_id, setting: :setting), style:"color: #401c00;" %>
+          <% if Date.current == reservation.reservation_date %>
+            <p class="tag is-warning">本日面会</p>
+          <% end %>
+          <% unless reservation.read? %>
+            <span class="tag is-danger is-light is-rounded">New</span>
+          <% end %>
+          <% if reservation.comment? %>
+            <p class="tag is-info is-light is-rounded">★</p>
+          <% end %>
+          <%= link_to "#{reservation.reservation_user} / #{l(reservation.reservation_date, format: :base)}#{l(reservation.started_at, format: :time)}~", facility_reservation_path(@facility, reservation, user: reservation.user_id, setting: :setting, anchor: 'top'), style:"color: #401c00;" %>
         </div>
       <% end %>
     <% end %>

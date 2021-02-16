@@ -27,4 +27,8 @@ class Users::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
+
+  def after_sign_in_path_for(*)
+    current_user.facilities.present? ? user_path(current_user) : new_facility_user_path
+  end
 end

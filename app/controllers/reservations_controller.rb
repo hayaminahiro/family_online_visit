@@ -1,16 +1,23 @@
 class ReservationsController < ApplicationController
   before_action :set_facility_id
   before_action :change_facility, only: %i[index index_week]
-  before_action :set_user, except: %i[show create destroy]
+  before_action :set_user, except: %i[show create destroy index_past]
   before_action :set_reservation, only: %i[show destroy]
-  before_action :set_reservations, only: %i[index index_week reservation_time]
+  before_action :set_reservations, only: %i[index index_week reservation_time index_past]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
+  before_action :count_max_reservation, only: %i[index index_week]
 
   def index; end
 
   def index_week; end
 
-  def show; end
+  def index_past
+    @reservations = Reservation.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+  end
+
+  def show
+    @reservation.update_attributes(read: true) if current_facility
+  end
 
   def reservation_time
     @title_date = params[:title_date]
@@ -44,7 +51,11 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation.destroy
-    redirect_to facility_reservations_url(user: @reservation.user_id), alert: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消しました。"
+    if params[:past].present?
+      redirect_to index_past_facility_reservations_url(current_facility), alert: "予約を削除しました。"
+    else
+      redirect_to facility_reservations_url(user: @reservation.user_id), alert: "#{l(@reservation.reservation_date.in_time_zone, format: :date)}/#{l(@reservation.started_at, format: :time)}~の予約を取り消しました。"
+    end
   end
 
   private
@@ -71,6 +82,10 @@ class ReservationsController < ApplicationController
 
     def set_reservations
       @reservations = Reservation.all.sorted
+      # 5年間経過した予約データは自動削除
+      @reservations.facility(@facility).each do |reservation|
+        reservation.destroy if Time.zone.today > reservation.created_at.since(5.years).to_date
+      end
     end
 
     def calendar_settings
@@ -84,6 +99,14 @@ class ReservationsController < ApplicationController
           num += 1
         end
       end
+    end
+
+    def count_max_reservation
+      @current_max_reservations = if @calendar_settings.facility(@facility).first&.max_reservation.present?
+                                    CalendarSetting::RESERVATION_TIMES.length - @calendar_settings.facility(@facility).first.max_reservation
+                                  else
+                                    CalendarSetting::RESERVATION_TIMES.length
+                                  end
     end
 
     def reservation_params

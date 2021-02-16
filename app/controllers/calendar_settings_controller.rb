@@ -2,6 +2,7 @@ class CalendarSettingsController < ApplicationController
   before_action :set_facility_id
   before_action :set_calendar_setting, only: %i[edit update destroy]
   before_action :calendar_setting, only: :edit
+  before_action :max_reservation, only: %i[create update]
 
   def new
     @calendar_setting = @facility.calendar_setting.new
@@ -45,7 +46,11 @@ class CalendarSettingsController < ApplicationController
       @calendar_setting = CalendarSetting.facility(current_facility).first
     end
 
+    def max_reservation
+      @calendar_setting&.max_reservation = setting_params[:cancellation_time].length - 1
+    end
+
     def setting_params
-      params.require(:calendar_setting).permit(:cancellation_date, :cancellation_time, regular_holiday: [], cancellation_time: [])
+      params.require(:calendar_setting).permit(:cancellation_date, :cancellation_time, :max_reservation, regular_holiday: [], cancellation_time: [])
     end
 end
