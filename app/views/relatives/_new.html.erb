@@ -1,21 +1,21 @@
 <div class="render-content">
   <div id="flash-message"></div>
   <div class="relative-new-body">
-  <% if !params[:update_relatives].present? %>
-    <%= form_with(url: new_relative_path, method: :get, remote: true) do |f| %>
-      <div class="field is-grouped is-grouped-right">
-        <div class="control has-icons-left">
-          <%= f.text_field :search, :placeholder => "利用者名を入力..", class: "input is-rounded" %>
-          <span class="icon is-left">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </span>
+    <% if !params[:update_relatives].present? %>
+      <%= form_with(url: new_relative_path, method: :get, remote: true) do |f| %>
+        <div class="field is-grouped is-grouped-right">
+          <div class="control has-icons-left">
+            <%= f.text_field :search, :placeholder => "利用者名を入力..", class: "input is-rounded" %>
+            <span class="icon is-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="control">
+            <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
+          </div>
         </div>
-        <div class="control">
-          <%= f.submit "\uf002検索", class: "fa button is-link is-outlined is-rounded" %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
 
     <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), method: :get, remote: true) do |f| %>
       <% @requests.each do |request, selected_ids| %>
