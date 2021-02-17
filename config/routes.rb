@@ -112,5 +112,5 @@ Rails.application.routes.draw do
   end
 
   # 例外処理 ==============================================================================
-  get '*path', to: 'application#render_404'
+  # get '*path', to: 'application#render_404'
 end
