@@ -19,7 +19,7 @@
 
     <%= form_with(model: current_facility, url: confirm_relative_path(current_facility), method: :get, remote: true) do |f| %>
       <% @requests.each do |request, selected_ids| %>
-      <% request = ActiveDecorator::Decorator.instance.decorate(request) %>
+        <% request = ActiveDecorator::Decorator.instance.decorate(request) %>
         <% if request.req_approval == "request" %>
           <div class="request-time" id="time-<%= request.id %>"><span>申請日</span><%= l(request.created_at, format: :long) %></div>
           <div class="card" id="card-<%= request.id %>">
