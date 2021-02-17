@@ -73,10 +73,9 @@
                   <tbody>
                     <% if @request_residents.present? %>
                       <% @request_residents.each do |request_resident| %>
-                        <% @request_user = User.find(request_resident.user_id) %>
                         <tr>
                           <td><%= l(request_resident.created_at, format: :long) %></td>
-                          <td><%= @request_user.name %></td>
+                          <td><%= request_resident.user.name %></td>
                           <td>
                             <%= link_to "申請者登録画面", relative_path(request_resident), class: "button is-primary is-small", id: "applicant-btn" %>
                           </td>
