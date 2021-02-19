@@ -37,7 +37,7 @@
     display: block;
     text-align: center;
     width: 55%;
-    margin: 15px auto;
+    margin: 35px auto;
   }
 
   span{
@@ -47,8 +47,13 @@
   }
 }
 
+.modal-mail-form {
+  overflow: scroll;
+  margin-top: 45px;
+}
+
 .mail-modal-body {
-  height: 75%;
+  height: 90%;
   background-color: white;
   flex-grow: 1;
   flex-shrink: 1;
@@ -63,7 +68,27 @@
     width: 75%;
 
     .preview-submit {
-      margin: 21px auto 50px auto;
+      margin-top: 35px;
     }
+  }
+
+  .modal-mail-form {
+    padding-top: 56px;
+    width: 80%;
+    margin: auto;
+  }
+
+  .mail-modal-body {
+    height: 85%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .modal-mail-form {
+      width: 85%;
+  }
+
+  .preview-container {
+    width: 100%;
   }
 }
