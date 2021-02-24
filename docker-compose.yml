@@ -24,7 +24,7 @@ services:
       - /app/log
       - /app/.git
     ports:
-      - "3306:3306"
+      - "3000:3000"
     tty: true
     stdin_open: true
     links:
