@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
     ports:
-      - "3306:3306"
+      - '3306:3306'
 
   web:
     build: .
@@ -24,7 +24,7 @@ services:
       - /app/log
       - /app/.git
     ports:
-      - "3000:3000"
+      - "3306:3306"
     tty: true
     stdin_open: true
     links:

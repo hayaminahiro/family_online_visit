@@ -57,6 +57,7 @@ gem 'active_decorator'
 gem 'enum_help'
 gem "holiday_japan"
 gem 'unicorn'
+gem 'foreman'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

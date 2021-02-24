@@ -1,6 +1,6 @@
 FROM nginx:stable
 
-# RUN rm -f /etc/nginx/conf.d/*
+RUN rm -f /etc/nginx/conf.d/*
 
 COPY nginx.conf /etc/nginx/conf.d/myapp.conf
 
