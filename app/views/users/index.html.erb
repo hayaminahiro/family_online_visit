@@ -48,12 +48,10 @@
             <thead>
               <tr>
                 <th>名前</th>
-                <th>利用者</th>
                 <th>面会予約</th>
                 <th>Room設定</th>
                 <th>Room Name</th>
                 <th>面会</th>
-                <th>編集</th>
                 <th>削除</th>
               </tr>
             </thead>
@@ -65,9 +63,6 @@
                   <div class="has-text-weight-semibold user-table-tag">
                     <%= user.name %>
                   </div>
-                </td>
-                <td>
-                  <%= link_to "登録", '#', class: "button is-info is-rounded has-text-weight-semibold" %>
                 </td>
                 <td>
                   <%= link_to "予約", facility_reservations_path(current_facility, user: user, anchor: 'top'), class: "button is-link is-rounded has-text-weight-semibold" %>
@@ -94,18 +89,13 @@
                 </td>
                 <td>
                   <%= link_to video_room_user_path(user, facility_id: current_facility.id), class: "button is-warning" do %>
-                  <span><i class="fas fa-photo-video"></i></span>
-                  <% end %>
-                </td>
-                <td>
-                  <%= link_to edit_user_path(user), class: "button is-success" do %>
-                  <span><i class="fas fa-user-edit"></i></span>
+                    <span><i class="fas fa-photo-video"></i></span>
                   <% end %>
                 </td>
                 <td>
                   <%= link_to facility_user_path(user), method: :delete, data: { confirm: "削除してよろしいですか?" },
                                   class: "button is-danger" do %>
-                  <span><i class="far fa-trash-alt"></i></span>
+                    <span><i class="far fa-trash-alt"></i></span>
                   <% end %>
                 </td>
               </tr>
