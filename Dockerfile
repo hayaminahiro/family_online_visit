@@ -27,6 +27,6 @@ ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
 # エラー回避の為、bundlerのバージョン下げる
-RUN gem install bundler:2.0.2
+RUN gem install bundler:1.17.3
 RUN bundle install
 ADD . $APP_ROOT
