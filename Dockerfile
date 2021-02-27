@@ -1,7 +1,10 @@
+# 19.01.20現在最新安定版のイメージを取得
 FROM ruby:2.5.3
 
+# dockerizeパッケージダウンロード用環境変数
 ENV DOCKERIZE_VERSION v0.6.1
 
+# 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
 RUN apt-get update && \
     apt-get install -y --no-install-recommends\
     mariadb-client  \
@@ -17,13 +20,13 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
         && apt-get install -y nodejs
 
 RUN mkdir /app_name
-ENV RUBYOPT -EUTF-8
 ENV APP_ROOT /app_name
 WORKDIR $APP_ROOT
 
 ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
+# bundle installの為に必要
 RUN gem install bundler
 RUN bundle install
 ADD . $APP_ROOT
