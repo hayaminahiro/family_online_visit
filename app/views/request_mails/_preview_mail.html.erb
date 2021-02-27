@@ -3,7 +3,6 @@
   <%= form_with(model: @request_mail, url: request_mail_create_path, remote: true) do |f| %>
     <table class="table is-narrow" id="mail-table">
       <tbody>
-      <div class="preview-container">
         <tr>
           <th>差出人:</th>
           <td>
@@ -33,7 +32,6 @@
             <%= f.hidden_field :facility_id, :value => params[:denial] %>
           </td>
         </tr>
-      </div>
       </tbody>
     </table>
     <div class="preview-submit">
