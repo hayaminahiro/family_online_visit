@@ -7,13 +7,15 @@ services:
       - db-volume:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+      MYSQL_DATABASE: app_name_development
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     ports:
       - '3306:3306'
 
   web:
     build: .
-    command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /app_name/config/unicorn.conf.rb
+    command: /bin/sh -c "rm -f tmp/pids/unicorn.pid && dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /app_name/config/unicorn.conf.rb"
     volumes:
       - .:/app_name
       - bundle:/usr/local/bundle:delegated
