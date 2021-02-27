@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #preview-modal-head {
-  background-color: #48D1CC;
+  background-color: #48d1cc;
 }
 
 #mail-modal-card {
@@ -41,13 +41,13 @@
     padding-left: 20px;
   }
 
-  .message-p{
+  .message-p {
     height: 400px;
     display: block;
     padding-left: 20px;
   }
 
-  .title-p{
+  .title-p {
     margin-bottom: 10px;
     padding-left: 20px;
   }
@@ -82,9 +82,8 @@
   overflow: auto;
   padding: 20px;
   padding-right: 30px;
-  border-radius: 0 0 6px 6px;border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
 }
-
 
 //タブレット(ipad-pro)
 @media screen and (max-width: 1050px) {
@@ -119,14 +118,13 @@
 }
 
 @media screen and (max-width: 500px) {
-
   .mail-modal-body {
     height: 84%;
     padding: 20px;
   }
 
   .modal-mail-form {
-      width: 85%;
+    width: 85%;
   }
 
   .preview-submit .button.is-primary.is-light {
