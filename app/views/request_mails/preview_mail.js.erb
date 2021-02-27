@@ -1,0 +1,34 @@
+document.querySelector(".modal-mail-form").innerHTML = "<%= escape_javascript(render 'preview_mail') %>";
+
+<!--モーダル表示する-->
+document.querySelector(".modal").classList.add("is-active");
+
+<!--モーダルを閉じる、モーダル外を押下でモーダルを閉じる-->
+$(".js-content-form--close-button, div.modal-background").on("click", function() {
+  $("div.modal").removeClass("is-active");
+})
+
+<!-- ローディング画面を非表示にする -->
+$(".loading-panel-wrap").remove();
+
+<!-- dispLoadingを定義 -->
+function dispLoading(msg) {
+  if( msg == undefined ){
+    msg = "";
+  }
+  <!--var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";-->
+  if($(".loading-panel-wrap").length == 0){
+    $("body").append("<div class='loading-panel-wrap'><div class='loading-panel'><span><h3>Loading</h3></span></div><div class='shadow'></div></div>");
+  }
+}
+
+<!-- メール送信時のconfirm -->
+$(function () {
+  $("#send-mail-submit-<%= @user.id %>").click( function() {
+    if(!confirm('この内容で送信してよろしいですか？')){
+      return false;
+        } else {
+      dispLoading("");
+    }
+  });
+});

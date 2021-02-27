@@ -2,15 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#preview-modal-head {
+  background-color: #48D1CC;
+}
+
 .preview-container{
-  width: 55%;
+  width: 90%;
   margin: auto;
 
-  .preview-p{
+  .mail-content {
     padding: 20px 10px 5px 10px;
     font-size: 20px;
     color: gray;
     font-size: 15px;
+  }
+
+  .preview-p {
+    border: solid 1px #dbdbdb;
+    border-radius: 4px;
+    padding: 10px;
   }
 
   .title-p{
@@ -23,11 +33,11 @@
     display: block;
   }
 
-  #preview-submit{
+  .preview-submit{
     display: block;
     text-align: center;
     width: 55%;
-    margin: 15px auto;
+    margin: 35px auto;
   }
 
   span{
@@ -37,13 +47,48 @@
   }
 }
 
+.modal-mail-form {
+  overflow: scroll;
+  margin-top: 45px;
+}
+
+.mail-modal-body {
+  height: 90%;
+  background-color: white;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 20px;
+  border-radius: 0 0 6px 6px;border-radius: 0 0 6px 6px;
+}
+
 //タブレット
 @media screen and (max-width: 1000px) {
   .preview-container {
     width: 75%;
 
-    #preview-submit {
-      margin: 21px auto 50px auto;
+    .preview-submit {
+      margin-top: 35px;
     }
+  }
+
+  .modal-mail-form {
+    padding-top: 56px;
+    width: 80%;
+    margin: auto;
+  }
+
+  .mail-modal-body {
+    height: 85%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .modal-mail-form {
+      width: 85%;
+  }
+
+  .preview-container {
+    width: 100%;
   }
 }

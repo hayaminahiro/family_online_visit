@@ -23,7 +23,7 @@ class FacilitiesController < ApplicationController
   # 施設ルートのhome画面
   def facility_home
     @info_top = Information.find_by(status: "head")
-    @request_residents = RequestResident.where(req_approval: "request").where(facility_id: current_facility).order(id: :desc)
+    @request_residents = RequestResident.includes(:user).where(req_approval: "request").where(facility_id: current_facility).order(id: :desc)
     # カレンダー設定と予約
     @calendar_setting = CalendarSetting.find_by(facility_id: current_facility.id)
     @reservations = Reservation.all.sorted

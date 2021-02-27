@@ -166,3 +166,7 @@ Metrics/CyclomaticComplexity:
     - 'app/controllers/facility_users_controller.rb'
     - 'app/decorators/resident_decorator.rb'
     - 'app/models/memory.rb'
+
+Rails/HttpStatus:
+  Exclude:
+    - 'app/controllers/application_controller.rb'

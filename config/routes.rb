@@ -87,11 +87,11 @@ Rails.application.routes.draw do
   resources :request_residents
 
   # 入居者登録 ============================================================================
-  resources :relatives, except: %i[new create] do
+  resources :relatives, except: %i[create] do
+    get :confirm, on: :member
+    patch :denial, on: :member
     patch :update_relatives, on: :collection
-    post :confirm, on: :member
   end
-  post '/relatives/new', to: 'relatives#new', as: :new_relative
 
   # お知らせ ==============================================================================
   resources :informations do
@@ -102,7 +102,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :tag_images
 
-  # お問い合わせ===============================================================================
+  # お問い合わせ ==========================================================================
   resources :inquiries do
     collection do
       get :inquiry
@@ -110,4 +110,7 @@ Rails.application.routes.draw do
       post :create_system
     end
   end
+
+  # 例外処理 ==============================================================================
+  # get '*path', to: 'application#render_404'
 end
