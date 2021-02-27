@@ -11,12 +11,13 @@ class RequestMailsController < ApplicationController
 
   def send_mail
     request = RequestResident.find(params[:request_mail][:facility_id].to_i)
-    # フォームで入力された値の取得
     title = params[:request_mail][:title]
     message = params[:request_mail][:message]
     RequestMailer.send_confirm_to_user(current_facility, request, title, message).deliver
 
-    redirect_to facility_home_facility_url(current_facility), notice: "#{request.user.name}様へ確認メールを送信しました。"
+    respond_to do |format|
+      format.js { flash.now[:notice] = "#{request.user.name}様へ確認メールを送信しました。" }
+    end
   end
 
   # private
