@@ -37,3 +37,6 @@ Style/FrozenStringLiteralComment:
 
 Style/StringLiterals:
   Enabled: false
+
+GlobalVars:
+  AllowedVariables: [$worker, $app_dir, $std_log, $timeout, $listen, $pid]
