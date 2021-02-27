@@ -26,7 +26,7 @@ WORKDIR $APP_ROOT
 ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
-# bundle installの為に必要
-RUN gem install bundler
+# エラー回避の為、bundlerのバージョン下げる
+RUN gem install bundler:2.0.2
 RUN bundle install
 ADD . $APP_ROOT
