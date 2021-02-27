@@ -1,20 +1,43 @@
-<header class="modal-card-head" id="preview-modal-head">
-</header>
+<header class="modal-card-head" id="preview-modal-head"></header>
 <section class="mail-modal-body">
-  <div class="preview-container">
-    <p class="mail-content">差出人:</p>
-    <p class="preview-p"><%= current_facility.facility_name %><span>[<%= ENV['USER_NAME'] %>]</span></p>
-    <p class="mail-content">宛先:</p>
-    <p class="preview-p"><%= @user.name %><span>[<%= @user.email %>]</span></p>
-    <%= form_with(model: @request_mail, url: request_mail_create_path, remote: true) do |f| %>
-      <p class="mail-content">件名:</p>
-      <%= f.text_field :title, value: @message.subject, class: "input title-p" %>
-
-      <p class="mail-content">本文:</p>
-      <%= f.text_area :message, value: @message.message.body.raw_source, class: "input message-p" %>
-      <%= f.hidden_field :facility_id, :value => params[:denial] %>
-
+  <%= form_with(model: @request_mail, url: request_mail_create_path, remote: true) do |f| %>
+    <table class="table is-narrow" id="mail-table">
+      <tbody>
+      <div class="preview-container">
+        <tr>
+          <th>差出人:</th>
+          <td>
+            <p class="sp">差出人:</p>
+            <p class="preview-p"><%= current_facility.facility_name %> [<%= ENV['USER_NAME'] %>]</p>
+          </td>
+        </tr>
+        <tr>
+          <th>宛先:</th>
+          <td>
+            <p class="sp">宛先:</p>
+            <p class="preview-p"><%= @user.name %> [<%= @user.email %>]</p>
+          </td>
+        </tr>
+        <tr>
+          <th>件名:</th>
+          <td>
+            <p class="sp">件名:</p>
+            <%= f.text_field :title, value: @message.subject, class: "input title-p" %>
+          </td>
+        </tr>
+        <tr>
+          <th>本文:</th>
+          <td>
+            <p class="sp">本文:</p>
+            <%= f.text_area :message, value: @message.message.body.raw_source, class: "input message-p" %>
+            <%= f.hidden_field :facility_id, :value => params[:denial] %>
+          </td>
+        </tr>
+      </div>
+      </tbody>
+    </table>
+    <div class="preview-submit">
       <%= f.submit "メールを送信する", class: "button is-primary is-light is-midium has-text-weight-bold preview-submit", id: "send-mail-submit-#{@user.id}" %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </section>
