@@ -2,48 +2,156 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.preview-container{
-  width: 55%;
+#preview-modal-head {
+  background-color: #48d1cc;
+}
+
+#mail-modal-card {
+  width: 63%;
+}
+
+#mail-table {
+  vertical-align: middle;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 95%;
   margin: auto;
 
-  .preview-p{
-    padding: 20px 10px 5px 10px;
-    font-size: 20px;
+  th {
+    text-align: right;
     color: gray;
     font-size: 15px;
+    padding: 10px;
+    border-width: 0px;
+    width: 8%;
   }
 
-  .title-p{
-    height: 50px;
+  td {
+    line-height: 12px;
+    font-size: 15px;
+    font-weight: 400;
+    border: 0px;
+  }
+
+  .preview-p {
+    border: solid 1px #dbdbdb;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  .message-p {
+    height: 400px;
     display: block;
+    padding-left: 20px;
   }
 
-  .message-p{
-    height: 600px;
-    display: block;
+  .title-p {
+    margin-bottom: 10px;
+    padding-left: 20px;
   }
 
-  #preview-submit{
-    display: block;
-    text-align: center;
-    width: 55%;
-    margin: 15px auto;
+  // スマホの時のみ表示
+  .sp {
+    display: none;
   }
+}
 
-  span{
-    font-size: 13px;
-    margin-left: 10px;
-    font-weight: 300;
+.preview-submit {
+  text-align: center;
+  margin-left: 5%;
+  margin-top: 8px;
+
+  .button.is-primary.is-light {
+    background-color: #ebfffc;
+    color: #00947e;
+    width: 45%;
+  }
+}
+
+.modal-mail-form {
+  margin-top: 45px;
+}
+
+.mail-modal-body {
+  height: 82%;
+  background-color: white;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 20px;
+  padding-right: 30px;
+  border-radius: 0 0 6px 6px;
+}
+
+//タブレット(ipad-pro)
+@media screen and (max-width: 1050px) {
+  #mail-table th {
+    width: 14%;
   }
 }
 
 //タブレット
 @media screen and (max-width: 1000px) {
-  .preview-container {
-    width: 75%;
+  #mail-table th {
+    width: 11%;
+  }
+  #mail-modal-card {
+    width: 100%;
+  }
 
-    #preview-submit {
-      margin: 21px auto 50px auto;
+  .modal-mail-form {
+    padding-top: 56px;
+    width: 80%;
+    margin: auto;
+  }
+
+  .mail-modal-body {
+    height: 85%;
+    padding: 20px 30px 20px 20px;
+  }
+
+  .preview-submit {
+    margin-left: 7%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .mail-modal-body {
+    height: 84%;
+    padding: 20px;
+  }
+
+  .modal-mail-form {
+    width: 85%;
+  }
+
+  .preview-submit .button.is-primary.is-light {
+    width: 71%;
+  }
+
+  .preview-submit {
+    margin-left: 0%;
+  }
+
+  #mail-table {
+    width: 100%;
+
+    th {
+      display: none;
+    }
+
+    td {
+      line-height: 22px;
+    }
+
+    .message-p {
+      height: 175px;
+    }
+
+    .sp {
+      display: block;
     }
   }
 }

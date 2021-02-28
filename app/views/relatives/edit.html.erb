@@ -1,4 +1,5 @@
 <div class="relative-show-body">
+  <div id="flash-message"></div>
   <div class="relative-container">
     <div class="relative-section">
       <nav class="relative-level">
@@ -28,7 +29,7 @@
                 <div class="relative-edit-req-name">
                   <h1 class="has-text-weight-bold is-size-4"><%= @user.name %> 様の申請は<span><%= @request.status %></span>です</h1>
                     <div>
-                      <%= link_to request_mail_preview_path(denial: @request), method: :get, class:"button" do %>
+                      <%= link_to request_mail_preview_path(denial: @request), class: "button", id: "preview-#{@request.id}", method: :get, remote: true do %>
                         <i class="far fa-envelope"></i><span>メール</span>
                       <% end %>
                     </div>
@@ -78,8 +79,8 @@
                   </div>
                   <div class="propriety">
                     <%= f.submit "承認済に変更", class: "button is-primary is-light is-midium", id: "edit-approval-btn" %>
-                    <%= link_to relative_path(denial: @request), method: :patch,
-                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class:"button is-danger is-light is-medium", id:"edit-denial-btn" do %>
+                    <%= link_to denial_relative_path(denial: @request), method: :patch,
+                      data: { confirm: "#{@user.name}の申請を否認してよろしいですか？" }, class: "button is-danger is-light is-medium", id: "edit-denial-btn" do %>
                       否認済に変更
                     <% end %>
                   </div>
@@ -93,3 +94,30 @@
     </div>
   </div>
 </div>
+
+<!-- モーダル表示 -->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card" id="mail-modal-card">
+    <div class="modal-mail-form"></div>
+  </div>
+</div>
+
+<script>
+// dispLoadingを定義
+function dispLoading(msg) {
+  if( msg == undefined ){
+    msg = "";
+  }
+  // var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";
+  if($(".loading-panel-wrap").length == 0){
+    $("body").append("<div class='loading-panel-wrap'><div class='loading-panel'><span><h3>Loading</h3></span></div><div class='shadow'></div></div>");
+  }
+}
+
+$(function () {
+  $("#preview-<%= @request.id %>").click( function() {
+    dispLoading("");
+  });
+});
+</script>

@@ -1,0 +1,11 @@
+$("#time-<%= @request.id %>").remove();
+
+$("#card-<%= @request.id %>").remove();
+
+$("#flash-message").html("<div class='notification is-success has-text-weight-bold'><p class='notice'><%= notice %></p></div>").hide().fadeIn(100);
+
+$(function(){
+  setTimeout("$('#flash-message').fadeOut(1200)", 12000)
+})
+
+$(".loading-panel-wrap").remove();
