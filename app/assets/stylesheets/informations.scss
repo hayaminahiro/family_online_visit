@@ -121,6 +121,10 @@ input#information_image.image_uploading {
   cursor: pointer;
 }
 
+.info-image-back {
+  display: none;
+}
+
 .info-btn {
   text-align: center;
   border-radius: 5px;
@@ -132,6 +136,7 @@ input#information_image.image_uploading {
   cursor: pointer;
   font-weight: 700;
   margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 .info-btn:hover {
@@ -154,6 +159,30 @@ input#information_image.image_uploading {
 
 .info-sub-title {
   margin-top: 200px;
+
+  p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #401c00;
+    padding-top: 50px;
+    border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+}
+
+.info-sub2-title {
+  p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #401c00;
+    padding-top: 50px;
+    border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
 }
 
 #info-title {
@@ -193,6 +222,13 @@ input#information_image.image_uploading {
   }
 }
 
+@media screen and (max-width: 1024px) {
+
+  .info-sub-title {
+    margin-top: 280px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
 
   //タグ（お知らせ一覧）
@@ -207,6 +243,23 @@ input#information_image.image_uploading {
   //panel調整
   #info-layout {
     display: block;
+  }
+
+  .info-sub-title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .label-space {
+    width: 80%;
+    margin: 0px auto;
+  }
+
+  .info-sub2-title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
