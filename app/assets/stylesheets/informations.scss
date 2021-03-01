@@ -104,6 +104,11 @@
   }
 }
 
+.info-image-layout {
+  margin-top: 40px;
+  position: relative;
+}
+
 input#information_image.image_uploading {
   color: #ccc;
   height: 240px;
@@ -135,15 +140,20 @@ input#information_image.image_uploading {
 }
 
 .label-space {
-  padding: 20px 0 0 32px;
+  margin-top: 40px;
 }
 
 .media-width {
   width: 95%;
 }
 
-.drop-zone-area {
-  padding: 0 0 100px 33px;
+.drop-zone-area-info {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.info-sub-title {
+  margin-top: 200px;
 }
 
 #info-title {
@@ -194,16 +204,6 @@ input#information_image.image_uploading {
     padding-top: 0px;
   }
 
-  //プレビュー画像
-  .label-space {
-    padding: 0px;
-  }
-
-  //画像選択欄
-  .drop-zone-area {
-    padding: 0px 15px 100px 15px;
-  }
-
   //panel調整
   #info-layout {
     display: block;
@@ -237,9 +237,29 @@ input#information_image.image_uploading {
     margin: 10px;
   }
 
-  //画像選択欄
-  .drop-zone-area {
-    padding: 0px;
+  .info-image-back {
+    position: absolute;
+    display: block;
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    top: 80%;
+    right: 10%;
+    z-index: 3;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .info-image-camera i {
+    position: absolute;
+      display: block;
+      color: #fff;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 17%;
+      right: 0%;
+      z-index: 4;
   }
 
   //画像選択アイコン
@@ -250,6 +270,14 @@ input#information_image.image_uploading {
   //ファイル選択位置
   input#information_image.image_uploading {
     line-height: 200px;
+  }
+
+  .drop-zone-area-info {
+    display: none;
+  }
+
+  .info-sub-title {
+    margin-top: 0px;
   }
 
   #notification-mobile {

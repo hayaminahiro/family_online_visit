@@ -61,13 +61,11 @@
               <% room = user.rooms.find_by(facility_id: current_facility.id) %>
               <tr>
                 <td class="is-vcentered">
-                  <div class="has-text-weight-semibold user-table-tag">
-                    <%= user.name %>
-                  </div>
+                  <%= user.name %>
                 </td>
-                <td>
+                <td class="resident-block">
                   <% user.residents.each do |resident| %>
-                    <%= resident.name %>
+                    <%= resident.name %></br>
                   <% end %>
                 </td>
                 <td>
