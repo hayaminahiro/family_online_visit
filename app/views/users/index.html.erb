@@ -48,6 +48,7 @@
             <thead>
               <tr>
                 <th>名前</th>
+                <th>利用者</th>
                 <th>面会予約</th>
                 <th>Room設定</th>
                 <th>Room Name</th>
@@ -63,6 +64,11 @@
                   <div class="has-text-weight-semibold user-table-tag">
                     <%= user.name %>
                   </div>
+                </td>
+                <td>
+                  <% user.residents.each do |resident| %>
+                    <%= resident.name %>
+                  <% end %>
                 </td>
                 <td>
                   <%= link_to "予約", facility_reservations_path(current_facility, user: user, anchor: 'top'), class: "button is-link is-rounded has-text-weight-semibold" %>
