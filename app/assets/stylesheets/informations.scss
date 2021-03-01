@@ -208,6 +208,62 @@ input#information_image.image_uploading {
   display: none;
 }
 
+// お知らせ（編集）
+.delete-check {
+  display: flex;
+  margin-top: 300px;
+  font-weight: bold;
+}
+
+input#img_info_delete[type="checkbox"] {
+	display: none;
+}
+
+input#img_info_delete[type="checkbox"] + label {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 20px;
+	color: #333;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+input#img_info_delete[type="checkbox"] + label.check_position:last-child {
+	margin-bottom: 0;
+}
+
+input#img_info_delete[type="checkbox"] + label.check_position:before {
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #0d47a1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0.6;
+	-webkit-transition: all 0.12s, border-color 0.08s;
+	transition: all 0.12s, border-color 0.08s;
+}
+
+input#img_info_delete[type="checkbox"]:checked + label.check_position:before {
+	width: 10px;
+	top: -5px;
+	left: 5px;
+	border-radius: 0;
+	opacity: 1;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#edit-info-sub {
+  margin-top: 0px;
+}
 //タブレット
 @media screen and (max-width: 1200px) {
 
@@ -233,6 +289,13 @@ input#information_image.image_uploading {
 
   .info-sub-title {
     margin-top: 280px;
+  }
+
+  //お知らせ（編集）
+  .delete-check {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -267,6 +330,14 @@ input#information_image.image_uploading {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  //お知らせ（編集）
+  .delete-check {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 320px;
   }
 }
 
@@ -370,5 +441,14 @@ input#information_image.image_uploading {
   //システムからのお知らせレイアウト
   .show-info-container {
     margin: 60px;
+  }
+
+  //お知らせ（編集）
+  .delete-check {
+    margin-top: 30px;
+  }
+
+  input#img_info_delete[type="checkbox"] + label.check_position:last-child {
+    font-size: 15px;
   }
 }
