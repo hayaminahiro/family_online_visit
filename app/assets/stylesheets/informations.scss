@@ -106,7 +106,6 @@
 
 .info-image-layout {
   margin-top: 40px;
-  position: relative;
 }
 
 input#information_image.image_uploading {
@@ -155,6 +154,14 @@ input#information_image.image_uploading {
 .drop-zone-area-info {
   width: 70%;
   margin: 20px auto;
+}
+
+.mobile-image-file {
+  display: none;
+}
+
+.mobile-info-image-layout {
+  display: none;
 }
 
 .info-sub-title {
@@ -290,32 +297,10 @@ input#information_image.image_uploading {
     margin: 10px;
   }
 
-  .info-image-back {
-    position: absolute;
-    display: block;
-    height: 27px;
-    width: 27px;
-    object-fit: cover;
-    top: 80%;
-    right: 10%;
-    z-index: 3;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
+  .info-image-layout {
+    display: none;
   }
 
-  .info-image-camera i {
-    position: absolute;
-      display: block;
-      color: #fff;
-      height: 27px;
-      width: 27px;
-      object-fit: cover;
-      top: 17%;
-      right: 0%;
-      z-index: 4;
-  }
-
-  //画像選択アイコン
   .fa.image_input_comment {
     display: none;
   }
@@ -327,6 +312,46 @@ input#information_image.image_uploading {
 
   .drop-zone-area-info {
     display: none;
+  }
+
+  .mobile-info-image-layout {
+    display: block;
+    position: relative;
+
+    img {
+      height: 300px;
+    }
+
+    .info-mobile-image {
+      height: 300px;
+      width: 90%;
+      object-fit: cover;
+    }
+
+    .info-image-back {
+      position: absolute;
+      display: block;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 80%;
+      right: 10%;
+      z-index: 3;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .info-image-camera i {
+      position: absolute;
+        display: block;
+        color: #fff;
+        height: 27px;
+        width: 27px;
+        object-fit: cover;
+        top: 13%;
+        right: 0%;
+        z-index: 4;
+    }
   }
 
   .info-sub-title {

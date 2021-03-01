@@ -16,6 +16,9 @@
                 <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
                 <div class="info-image-layout">
                   <%= @information.information_image %>
+                </div>
+                <div class="mobile-info-image-layout">
+                  <%= @information.info_mobile_image %>
                   <div class="info-image-back">
                     <div class="info-image-camera">
                       <i class="fas fa-camera"></i>
@@ -64,6 +67,23 @@
         var reader = new FileReader();
         reader.onload = function (e) {
           $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".image_uploading").change(function(){
+        readURL(this);
+    });
+  });
+</script>
+
+<script>
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev_1').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
       }
