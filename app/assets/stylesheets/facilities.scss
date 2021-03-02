@@ -759,6 +759,15 @@ input#facility_icon.image_uploading_icon {
 	width: 60%;
 	text-align: justify;
 	margin: 0 20% 0 20%;
+
+  .label:not(:last-child) {
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+  }
+
+  .label {
+    font-weight: 500;
+  }
 }
 
 #btn-field {
