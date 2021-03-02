@@ -76,10 +76,6 @@
               <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
               <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
             </div>
-            <div class="field" id="input-field">
-              <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
-              <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", class: "fa input is-medium input-top" %>
-            </div>
             <%= f.submit "設定を更新する", class: "info-btn has-text-centered" %>
             <% end %>
           </div>
