@@ -16,17 +16,27 @@ class Facility < ApplicationRecord
 
   validates :facility_name, presence: true, length: { maximum: 20 }
   validates :email,                   presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
-  validates :password,                presence: true, length: { minimum: 6, maximum: 128 }
-  validates :password_confirmation,   presence: true, length: { minimum: 6, maximum: 128 }
+
+  # モデル | ImageUploaderクラスとimageカラムを紐づける
+  mount_uploader :image, ImageUploader
+  mount_uploader :icon, ImageUploader
 
   # cookieでログイン情報を保持
   def remember_me
     true
   end
 
-  # モデル | ImageUploaderクラスとimageカラムを紐づける
-  mount_uploader :image, ImageUploader
-  mount_uploader :icon, ImageUploader
+  # パスワード入力なしで施設情報編集可能にするため追加
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
 
   # search定義
   def self.search(search)

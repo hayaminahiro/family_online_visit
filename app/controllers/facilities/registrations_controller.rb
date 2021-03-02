@@ -55,6 +55,10 @@ class Facilities::RegistrationsController < Devise::RegistrationsController
       super(resource)
     end
 
+    def update_resource(resource, params)
+      resource.update_without_current_password(params)
+    end
+
     # アカウント登録後のリダイレクト先
     def after_sign_up_path_for(_resource)
       # facility_path(resource)
