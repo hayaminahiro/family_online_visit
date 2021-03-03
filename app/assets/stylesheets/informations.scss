@@ -104,6 +104,10 @@
   }
 }
 
+.info-image-layout {
+  margin-top: 40px;
+}
+
 input#information_image.image_uploading {
   color: #ccc;
   height: 240px;
@@ -114,6 +118,10 @@ input#information_image.image_uploading {
   line-height: 200px;
   text-align: center;
   cursor: pointer;
+}
+
+.info-image-back {
+  display: none;
 }
 
 .info-btn {
@@ -127,6 +135,7 @@ input#information_image.image_uploading {
   cursor: pointer;
   font-weight: 700;
   margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 .info-btn:hover {
@@ -135,15 +144,52 @@ input#information_image.image_uploading {
 }
 
 .label-space {
-  padding: 20px 0 0 32px;
+  margin-top: 40px;
 }
 
 .media-width {
   width: 95%;
 }
 
-.drop-zone-area {
-  padding: 0 0 100px 33px;
+.drop-zone-area-info {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.mobile-image-file {
+  display: none;
+}
+
+.mobile-info-image-layout {
+  display: none;
+}
+
+.info-sub-title {
+  margin-top: 200px;
+
+  p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #401c00;
+    padding-top: 50px;
+    border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+}
+
+.info-sub2-title {
+  p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #401c00;
+    padding-top: 50px;
+    border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
 }
 
 #info-title {
@@ -162,6 +208,62 @@ input#information_image.image_uploading {
   display: none;
 }
 
+// お知らせ（編集）
+.delete-check {
+  display: flex;
+  margin-top: 300px;
+  font-weight: bold;
+}
+
+input#img_info_delete[type="checkbox"] {
+	display: none;
+}
+
+input#img_info_delete[type="checkbox"] + label {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 20px;
+	color: #333;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+input#img_info_delete[type="checkbox"] + label.check_position:last-child {
+	margin-bottom: 0;
+}
+
+input#img_info_delete[type="checkbox"] + label.check_position:before {
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #0d47a1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0.6;
+	-webkit-transition: all 0.12s, border-color 0.08s;
+	transition: all 0.12s, border-color 0.08s;
+}
+
+input#img_info_delete[type="checkbox"]:checked + label.check_position:before {
+	width: 10px;
+	top: -5px;
+	left: 5px;
+	border-radius: 0;
+	opacity: 1;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#edit-info-sub {
+  margin-top: 0px;
+}
 //タブレット
 @media screen and (max-width: 1200px) {
 
@@ -183,6 +285,20 @@ input#information_image.image_uploading {
   }
 }
 
+@media screen and (max-width: 1024px) {
+
+  .info-sub-title {
+    margin-top: 280px;
+  }
+
+  //お知らせ（編集）
+  .delete-check {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media screen and (max-width: 1000px) {
 
   //タグ（お知らせ一覧）
@@ -194,19 +310,34 @@ input#information_image.image_uploading {
     padding-top: 0px;
   }
 
-  //プレビュー画像
-  .label-space {
-    padding: 0px;
-  }
-
-  //画像選択欄
-  .drop-zone-area {
-    padding: 0px 15px 100px 15px;
-  }
-
   //panel調整
   #info-layout {
     display: block;
+  }
+
+  .info-sub-title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .label-space {
+    width: 80%;
+    margin: 0px auto;
+  }
+
+  .info-sub2-title {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  //お知らせ（編集）
+  .delete-check {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 320px;
   }
 }
 
@@ -237,12 +368,10 @@ input#information_image.image_uploading {
     margin: 10px;
   }
 
-  //画像選択欄
-  .drop-zone-area {
-    padding: 0px;
+  .info-image-layout {
+    display: none;
   }
 
-  //画像選択アイコン
   .fa.image_input_comment {
     display: none;
   }
@@ -250,6 +379,54 @@ input#information_image.image_uploading {
   //ファイル選択位置
   input#information_image.image_uploading {
     line-height: 200px;
+  }
+
+  .drop-zone-area-info {
+    display: none;
+  }
+
+  .mobile-info-image-layout {
+    display: block;
+    position: relative;
+
+    img {
+      height: 300px;
+    }
+
+    .info-mobile-image {
+      height: 300px;
+      width: 90%;
+      object-fit: cover;
+    }
+
+    .info-image-back {
+      position: absolute;
+      display: block;
+      height: 27px;
+      width: 27px;
+      object-fit: cover;
+      top: 80%;
+      right: 10%;
+      z-index: 3;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .info-image-camera i {
+      position: absolute;
+        display: block;
+        color: #fff;
+        height: 27px;
+        width: 27px;
+        object-fit: cover;
+        top: 13%;
+        right: 0%;
+        z-index: 4;
+    }
+  }
+
+  .info-sub-title {
+    margin-top: 0px;
   }
 
   #notification-mobile {
@@ -264,5 +441,14 @@ input#information_image.image_uploading {
   //システムからのお知らせレイアウト
   .show-info-container {
     margin: 60px;
+  }
+
+  //お知らせ（編集）
+  .delete-check {
+    margin-top: 30px;
+  }
+
+  input#img_info_delete[type="checkbox"] + label.check_position:last-child {
+    font-size: 15px;
   }
 }

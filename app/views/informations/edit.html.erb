@@ -14,28 +14,38 @@
               <p class="title-description">ここからお知らせに使用する背景画像の設定ができます。</p>
               <%= form_with(model: @information, url: information_path, method: :patch, local: true) do |f| %>
                 <%= render partial: 'shared/error_messages', locals: { obj: @information } %>
-                <div class="label-space">
+                <div class="info-image-layout">
                   <%= @information.information_image %>
                 </div>
-                <div class="drop-zone-area">
+                <div class="mobile-info-image-layout">
+                  <%= @information.info_mobile_image %>
+                  <div class="info-image-back">
+                    <div class="info-image-camera">
+                      <i class="fas fa-camera"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="drop-zone-area-info">
                   <%= f.label :image, "\uf574", class: "fa image_input_comment" %>
                   <%= f.file_field :image, value: "upload", class: "image_uploading" %>
-                  <%= f.check_box :remove_image, id: "img_delete" %>
-                  <label for="img_delete" class="check_position has-text-weight-bold" style="position:absolute; margin-top: 280px;">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
                   <%= f.hidden_field :image_cache %>
                 </div>
+                <div class="delete-check">
+                  <%= f.check_box :remove_image, id: "img_info_delete" %>
+                  <label for="img_info_delete" class="check_position">使用中の画像を削除してデフォルト画像に戻したい場合のみチェックを入れて下さい。</label>
+                </div>
                 <div class="position-control"><h1>位置調整</h1></div>
-                <label class="media-left has-text-weight-bold">
-                  <h1 class="mini-title" style="font-size: 20px; color: #401c00;">お知らせタイトル</h1>
+                <div id="edit-info-sub" class="info-sub-title">
+                  <p>お知らせタイトル</p>
                 </label>
                 <div class="media-content">
                   <div class="content label-space">
                     <%= f.text_field :title, :placeholder => "\uf303 タイトルを入力してください", class: "fa input" %>
                   </div>
                 </div>
-                <label class="media-left has-text-weight-bold">
-                  <h1 class="mini-title" style="font-size: 20px; color: #401c00;">本文</h1>
-                </label>
+                <div class="info-sub2-title">
+                  <p>本文</p>
+                </div>
                 <div class="media-content">
                   <div class="content label-space">
                     <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
@@ -50,9 +60,9 @@
     </nav>
 
     <%= render 'responsive_layout' %> <!--レスポンシブ対応のため記述-->
-    
+
   </div>
-</div>    
+</div>
 
 <script>
   $(function() {
@@ -61,6 +71,23 @@
         var reader = new FileReader();
         reader.onload = function (e) {
           $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".image_uploading").change(function(){
+        readURL(this);
+    });
+  });
+</script>
+
+<script>
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev_1').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
       }
