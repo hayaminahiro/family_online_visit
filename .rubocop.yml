@@ -41,5 +41,5 @@ Style/StringLiterals:
 GlobalVars:
   AllowedVariables: [$worker, $app_dir, $std_log, $timeout, $listen, $pid]
 
-  Naming/VariableNumber:
+Naming/VariableNumber:
   Enabled: false
