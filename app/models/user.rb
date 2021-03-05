@@ -78,7 +78,7 @@ class User < ApplicationRecord
 
   #search定義
   def self.search(search, facility)
-    facility.users unless search
-    facility.users.where('name LIKE ?', "%#{search}%").order(:id)
+    facility.users.includes(:residents) unless search
+    facility.users.includes(:residents).where('name LIKE ?', "%#{search}%").order(:id)
   end
 end

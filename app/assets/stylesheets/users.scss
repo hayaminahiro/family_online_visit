@@ -356,12 +356,9 @@ p.meta {
 #user-table td {
   text-align: center;
   vertical-align: middle;
-  padding: 15px 5px;
-}
-
-//User Name
-.user-table-tag {
+  font-weight: bold;
   font-size: 17px;
+  padding: 15px 5px;
 }
 
 .hero .tabs ul {
@@ -1889,8 +1886,14 @@ main {
   }
 
   //ご家族一覧テーブル（th）
-  #user-table th {
-    font-size: 16px;
+  #user-table {
+    th {
+      font-size: 16px;
+    }
+
+    td {
+      font-size: 12px;
+    }
   }
 
   .table-layout {
