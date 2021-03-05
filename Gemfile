@@ -19,7 +19,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
-gem 'omniauth'
+gem 'omniauth', '1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-line'
 gem 'dotenv-rails'
@@ -56,6 +56,8 @@ gem 'activerecord-import'
 gem 'active_decorator'
 gem 'enum_help'
 gem "holiday_japan"
+gem 'unicorn'
+gem 'foreman'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
