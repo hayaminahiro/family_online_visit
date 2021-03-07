@@ -768,6 +768,24 @@ input#facility_icon.image_uploading_icon {
   .label {
     font-weight: 500;
   }
+
+  p {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 16px;
+    color: #cc0404;
+  }
+}
+
+#password-field {
+  width: 90%;
+  text-align: justify;
+
+  .label:not(:last-child) {
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+    font-weight: 500;
+  }
 }
 
 #btn-field {
@@ -856,7 +874,7 @@ input#icon_delete[type="checkbox"] + label.check_position:before {
   border: 1px solid #0d47a1;
   position: absolute;
   left: 0;
-  top: 100%;
+  top: 0;
   opacity: 0.6;
   -webkit-transition: all 0.12s, border-color 0.08s;
   transition: all 0.12s, border-color 0.08s;
@@ -864,7 +882,7 @@ input#icon_delete[type="checkbox"] + label.check_position:before {
 
 input#icon_delete[type="checkbox"]:checked + label.check_position:before {
   width: 10px;
-  top: 100%;
+  top: 0;
   left: 5px;
   border-radius: 0;
   opacity: 1;
@@ -962,6 +980,92 @@ h1.mini-title {
 
 .title-description {
   text-align: left;
+}
+
+// パスワードフォーム/アコーディオン
+.accordion-container {
+  position: relative;
+  width: 60%;
+  border: 1px solid #0079c1;
+  border-top: none;
+  outline: 0;
+  margin: 1.875em auto;
+  cursor: pointer
+}
+
+.accordion-container .accordion-title {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0.325em 0.625em 0.325em 2em;
+  font-size: 1.15em;
+  font-weight: normal;
+  color: #fff;
+  background: #000;
+  cursor: pointer;
+}
+
+.accordion-title.open:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 45%;
+}
+
+.accordion-container .accordion-title:hover,
+.accordion-container .accordion-title:active,
+.accordion-container .content-entry.open .accordion-title {
+  background-color: #00aaa7;
+  color: white;
+}
+
+.accordion-container .accordion-title:hover i:before,
+.accordion-container .accordion-title:hover i:active,
+.accordion-container .content-entry.open i {
+  color: white;
+}
+
+.accordion-title:after {
+  content: "";
+  position: absolute;
+  right: 25px;
+  top: 38%;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: solid 2px #fff;
+  border-right: solid 2px #fff;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.accordion-content {
+  display: none;
+  padding: 20px 0 27px 50px;
+}
+
+.facility-edit-submit {
+  width: 50%;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #13b1c0;
+  color: #13b1c0;
+  text-decoration: none;
+  padding: 9px 25px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  font-size: 16px;
+}
+
+.facility-edit-submit:hover {
+  background-color: #05b7b4d1;
+  color: white;
+  border: solid 1px #888888;
+  font-weight: 600;
 }
 
 //タブレット
