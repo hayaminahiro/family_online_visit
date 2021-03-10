@@ -23,8 +23,8 @@
 
           <div id="Web" class="content-tab" >
             <div class="card-width" id="facility-home-calendar">
-              <% if @calendar_settings.present? %>
-                <%= link_to "予約詳細設定", edit_calendar_setting_path(@set_id), class: "button is-warning is-light is-outlined" %>
+              <% if @calendar_setting.present? %>
+                <%= link_to "予約詳細設定", edit_calendar_setting_path(@calendar_setting), class: "button is-warning is-light is-outlined" %>
               <% else %>
                 <%= link_to "予約詳細設定", new_calendar_setting_path, class: "button is-warning is-light is-outlined" %>
               <% end %>
