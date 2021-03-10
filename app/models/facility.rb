@@ -16,17 +16,15 @@ class Facility < ApplicationRecord
 
   validates :facility_name, presence: true, length: { maximum: 20 }
   validates :email,                   presence: true, uniqueness: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
-  validates :password,                presence: true, length: { minimum: 6, maximum: 128 }
-  validates :password_confirmation,   presence: true, length: { minimum: 6, maximum: 128 }
+
+  # モデル | ImageUploaderクラスとimageカラムを紐づける
+  mount_uploader :image, ImageUploader
+  mount_uploader :icon, ImageUploader
 
   # cookieでログイン情報を保持
   def remember_me
     true
   end
-
-  # モデル | ImageUploaderクラスとimageカラムを紐づける
-  mount_uploader :image, ImageUploader
-  mount_uploader :icon, ImageUploader
 
   # search定義
   def self.search(search)

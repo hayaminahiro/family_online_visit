@@ -19,6 +19,7 @@
           <div class="column is-10 top-btn-position is-centered">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= render "facilities/shared/error_messages", resource: resource %>
+
             <h1 id="account-title">背景画像やアイコン、アカウントの編集ができます。</h1>
             <h1 class="mini-title" style="font-size: 20px; color: #401c00;">背景画像設定</h1>
             <p class="title-description">こちらから背景画像として使用される画像の登録・編集ができます。</p>
@@ -39,12 +40,13 @@
             <div class="position-control">
               <h1>位置調整</h1>
             </div>
+
             <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アイコン画像設定</h1>
             <p class="title-description">こちらからアイコンとして使用される画像の登録・編集ができます。</p>
             <div class="facility-photo">
               <%= @facility.facility_icon_image %>
             </div>
-            <div id="drop-zone-area" style="padding-left: 40px;">
+            <div class="drop-zone-area">
               <%= f.label :icon, "\uf574", class: "fa image_input_comment_user" %>
               <%= f.file_field :icon, value: "upload", class: "image_uploading_icon" %>
               <%= f.hidden_field :icon_cache %>
@@ -55,11 +57,12 @@
                 使用中のアイコンを削除してデフォルトアイコンに戻したい場合のみチェックを入れて下さい。
               </label>
             </div>
-            <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アカウント設定</h1>
-            <p class="title-description">こちらからアカウントの設定・変更ができます。</p>
             <div class="position-control">
               <h1>位置調整</h1>
             </div>
+
+            <h1 class="mini-title" style="font-size: 20px; color: #401c00;">アカウント設定</h1>
+            <p class="title-description">こちらからアカウントの設定・変更ができます。</p>
             <div class="field" id="input-field">
               <%= f.label :facility_name,  class: "label" %><br />
               <%= f.text_field :facility_name, :placeholder => "\uf304 施設名を入力してください", autocomplete: "name", class: "fa input is-medium input-top", :size=>"100px" %>
@@ -68,19 +71,26 @@
               <%= f.label :email, class: "label" %><br />
               <%= f.email_field :email, :placeholder => "\uf0e0 メールアドレスを入力してください", autocomplete: "email", class: "fa input is-medium input-top" %>
             </div>
-            <div class="field" id="input-field">
-              <%= f.label :password, class: "label" %><br />
-              <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
+
+            <div id="accordion" class="accordion-container">
+              <h4 class="accordion-title js-accordion-title">パスワードの変更はこちらから</h4>
+              <div class="accordion-content">
+                <div class="field" id="password-field">
+                  <%= f.label :password, class: "label" %><br />
+                  <%= f.password_field :password, :placeholder => "\uf13e パスワードを入力してください", autocomplete: "new-password", class: " fa input is-medium input-top" %>
+                </div>
+                <div class="field" id="password-field">
+                  <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
+                  <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
+                </div>
+              </div>
             </div>
+
             <div class="field" id="input-field">
-              <%= f.label :password_confirmation, "パスワード再確認", class: "label" %><br />
-              <%= f.password_field :password_confirmation, :placeholder => "\uf13e パスワードを再入力してください", autocomplete: "new-password", class: "fa input is-medium input-top" %>
-            </div>
-            <div class="field" id="input-field">
-              <%= f.label :current_password %><p>(変更を反映するには現在のパスワードを入力)</p><br>
+              <%= f.label :current_password, class: "label"  %><p>(※変更を反映するには現在のパスワードを入力してください)</p><br>
               <%= f.password_field :current_password, :placeholder => "\uf13e 現在のパスワードを入力してください", class: "fa input is-medium input-top" %>
             </div>
-            <%= f.submit "設定を更新する", class: "info-btn has-text-centered" %>
+            <%= f.submit "設定を更新する", class: "has-text-centered facility-edit-submit" %>
             <% end %>
           </div>
         </div>
@@ -148,6 +158,14 @@
       origin: 'left',
       duration: 2000,
       viewFactor: 0.5
+    });
+  });
+
+  // パスワード変更フォーム表示/アコーディオン
+  $(document).ready(function($){
+    $('.js-accordion-title').on('click', function () {
+      $(this).next().slideToggle(200);
+      $(this).toggleClass('open', 200);
     });
   });
 </script>
