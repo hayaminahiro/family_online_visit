@@ -1458,9 +1458,15 @@ h1.mini-title {
     margin-top: 48px;
   }
 
+  #accordion {
+    .accordion-title {
+      padding: 12px 40px 12px 12px;;
+    }
+  }
+
   //登録申請ボタン
   #request-user p {
-    top: 24%;
+    top: 51%;
   }
 }
 
@@ -1685,12 +1691,11 @@ h1.mini-title {
   #layout-comment {
     display: -webkit-flex;
     display: flex;
-    margin-left: 8%;
   }
 
   //メニュー項目
   #home-images p {
-    font-size: 27px;
+    font-size: 24px;
   }
 
   //メニューボタン
@@ -1701,7 +1706,6 @@ h1.mini-title {
   //メニュー説明文
   .menu-content {
     font-size: 15px;
-    text-align: left;
   }
 
   .card-content.menu-card {

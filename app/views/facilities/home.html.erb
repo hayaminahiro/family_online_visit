@@ -62,7 +62,8 @@
       おこなう必要があります。<br>
       まずは<font color="#1E90FF">ご利用者様の登録申請</font>をおこなってください。<br>
       申請が承認された場合、<br>
-      <font color="FFDD58">面会予約</font>、<font color="3173DC">ビデオ通話、</font><font color="#228B22">写真・動画の閲覧</font>などの<br>
+      <font color="FFDD58">面会予約</font>、<font color="3173DC">ビデオ通話、</font>
+      <font color="#228B22">写真・動画の閲覧</font>などの<br>
       メニューが表示され使用できるようになります。
     </p>
   </div>
@@ -128,23 +129,23 @@
       <div class="card" style="height: auto;">
         <div class="card-image" id="home-images">
           <figure class="image is-4by3">
-            <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_album.jpg"), new_request_resident_path(facility_id: @facility) %>
-            <p><%= link_to "写真・動画", '#', :style=>"color: #fff;" %></p>
+            <%= link_to image_tag("https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/user_facility_menu_album.jpg"), user_path(current_user) %>
+            <p><%= link_to "マイページ", user_path(current_user), :style=>"color: #fff;" %></p>
           </figure>
         </div>
         <div class="card-content has-text-centered menu-card">
           <div class="is-size-5">
-            <%= link_to '#', class: "button menu-btn is-rounded is-outlined is-success" do %>
+            <%= link_to user_path(current_user), class: "button menu-btn is-rounded is-outlined is-success" do %>
               <span class="icon">
-                <i class="fas fa-photo-video"></i>&nbsp;
+                <i class="far fa-user"></i>&nbsp;
               </span>
               <span>
-                写真・動画
+                マイページ
               </span>
             <% end %>
           </div><br>
           <div class="menu-content">
-            ご利用者様の写真の閲覧、動画の視聴をすることができます。
+            ご自身のマイページに移動し、編集、情報の閲覧することができます。
           </div>
         </div>
       </div>
@@ -179,8 +180,32 @@
 <% end %>
 
 <script>
-  ScrollReveal().reveal('.facility-icon-image', { delay: 600, distance: '70%', origin: 'top', duration: 2000, viewFactor: 0.5 });
-  ScrollReveal().reveal('.card', { delay: 10, distance: '50px', origin: 'bottom', duration: 700, viewFactor: 0.2 });
-  ScrollReveal().reveal('#facility-name', { delay: 100, distance: '100%', origin: 'left', duration: 2000, viewFactor: 0.5 });
-  ScrollReveal().reveal('#layout-comment p', { delay: 100, distance: '100%', origin: 'right', duration: 2000, viewFactor: 0.5 });
+  ScrollReveal().reveal('.facility-icon-image', {
+    delay: 600,
+    distance: '70%',
+    origin: 'top',
+    duration: 2000,
+    viewFactor: 0.5
+  });
+  ScrollReveal().reveal('.card', {
+    delay: 10,
+    distance: '50px',
+    origin: 'bottom',
+    duration: 700,
+    viewFactor: 0.2
+  });
+  ScrollReveal().reveal('#facility-name', {
+    delay: 100,
+    distance: '100%',
+    origin: 'left',
+    duration: 2000,
+    viewFactor: 0.5
+  });
+  ScrollReveal().reveal('#layout-comment p', {
+    delay: 100,
+    distance: '100%',
+    origin: 'right',
+    duration: 2000,
+    viewFactor: 0.5
+  });
 </script>
