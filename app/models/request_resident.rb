@@ -27,4 +27,9 @@ class RequestResident < ApplicationRecord
 
     includes(:user).where(facility_id: facility).order(updated_at: :desc)
   end
+
+  def self.update_approval(facility, user)
+    request_resident = changer(facility, user)
+    request_resident.approval!
+  end
 end

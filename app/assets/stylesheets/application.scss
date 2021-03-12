@@ -15,9 +15,85 @@
  *= require_self
  *= require dropzone/dropzone
  */
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "bulma";
+
+// ローディング画面
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.loading-panel-wrap {
+  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+}
+
+.loading-panel {
+  display: table;
+  width: 200px;
+  height: 80px;
+  padding: 0px 30px;
+  background-color: #ddd;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0px 2px 0px 0px rgba(238, 238, 238, 1),
+    0px 1px 1px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset 0px 2px 0px 0px rgba(238, 238, 238, 1),
+    0px 1px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0px 2px 0px 0px rgba(238, 238, 238, 1),
+    0px 1px 1px rgba(0, 0, 0, 0.4);
+  animation: 2s bounce ease infinite;
+
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  h3 {
+    color: #666;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Montserrat";
+    font-weight: bold;
+  }
+}
+
+.shadow {
+  position: absolute;
+  width: 175px;
+  height: 20px;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: #464646;
+  opacity: 0.2;
+  transform-origin: -50% -50%;
+  animation: 2s pulsate ease infinite;
+  z-index: -1;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
 
 //ヘッダーアイコンの画像
 .navbar-item img {
@@ -26,14 +102,14 @@
 }
 
 #facility-login-nav {
-
   i {
     margin-top: 9px;
   }
 }
 
 /*ページネーションの左右ラベルを非表示にする*/
-.pagination.is-rounded .pagination-previous, .pagination.is-rounded .pagination-next {
+.pagination.is-rounded .pagination-previous,
+.pagination.is-rounded .pagination-next {
   display: none;
 }
 
@@ -43,7 +119,6 @@
 
 /*下タブ（タブレット、モバイル）*/
 @media screen and (max-width: 1000px) {
-
   #under-link {
     display: inline-block;
   }
@@ -57,14 +132,14 @@
   #facility_tab_nav {
     display: block;
     z-index: 20;
-    text-align:center;
+    text-align: center;
     position: fixed;
     bottom: 0;
     height: 60px;
     width: 100%;
     right: 0px;
-    background: -webkit-linear-gradient(top,#4E6F8B,#0A203F);
-    background: -moz-linear-gradient(top,#4E6F8B,#0A203F);
+    background: -webkit-linear-gradient(top, #4e6f8b, #0a203f);
+    background: -moz-linear-gradient(top, #4e6f8b, #0a203f);
   }
 
   #facility_tab_nav ul {
@@ -100,11 +175,11 @@
   }
 
   #facility_tab_nav li a:hover {
-    background: #EFEFEF;
+    background: #efefef;
     color: black;
   }
 
-  #facility-contents{
+  #facility-contents {
     padding-bottom: 0px;
 
     .panel {
@@ -116,7 +191,7 @@
   #user_tab_nav {
     z-index: 20;
     display: block;
-    text-align:center;
+    text-align: center;
     position: fixed;
     bottom: 0;
     height: 60px;
@@ -162,7 +237,7 @@
     height: 70px;
     margin-bottom: 55px;
 
-    .footer-content{
+    .footer-content {
       padding-top: 0px;
       height: 70px;
     }
@@ -177,9 +252,7 @@
 }
 
 @media screen and (max-width: 500px) {
-
   #title-nav {
-
     i {
       font-size: 27px;
     }
@@ -191,7 +264,6 @@
   }
 
   #facility-login-nav {
-
     i {
       font-size: 27px;
       margin-top: 11px;
@@ -199,7 +271,6 @@
   }
 
   footer {
-
     .content h1 {
       font-size: 18px;
     }

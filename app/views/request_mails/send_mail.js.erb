@@ -1,0 +1,13 @@
+<!--モーダルを閉じる-->
+$("div.modal").removeClass("is-active");
+
+<!--コントローラから受け取ったフラッシュの内容を表示する-->
+$("#flash-message").html("<div class='notification is-success has-text-weight-bold'><p class='notice'><%= notice %></p></div>").hide().fadeIn(100);
+
+<!--フラッシュを12000ms表示し、1200msの速さでfadeOut（非表示）する-->
+$(function(){
+  setTimeout("$('#flash-message').fadeOut(1200)", 12000)
+})
+
+<!-- ローディング画面を非表示にする -->
+$(".loading-panel-wrap").remove();

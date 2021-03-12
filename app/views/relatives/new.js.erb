@@ -1,0 +1,61 @@
+document.querySelector(".render-content").innerHTML = "<%= escape_javascript(render 'new') %>";
+
+<!-- 申請一覧・確認画面からリロードしようとした際にアラートを表示する -->
+window.addEventListener("beforeunload", function(eve){
+    eve.preventDefault();
+    eve.returnValue = '';
+  }, false)
+
+<!-- ローディング画面を非表示にする -->
+$(".loading-panel-wrap").remove();
+
+<!-- dispLoadingを定義 -->
+function dispLoading(msg) {
+  if( msg == undefined ){
+    msg = "";
+  }
+  <!--var dispMsg = "<div class='loadingMsg'>" + msg + "</div>";-->
+  if($(".loading-panel-wrap").length == 0){
+    $("body").append("<div class='loading-panel-wrap'><div class='loading-panel'><span><h3>Loading</h3></span></div><div class='shadow'></div></div>");
+  }
+}
+
+<% @requests.each do |request| %>
+  <% if @requests.instance_of?(Hash) %>
+    <!-- 確認画面→申請一覧画面へ遷移の時（「入力画面に戻る」ボタン押下時） -->
+    $(function () {
+      $("#preview-<%= request[0].id %>").click( function() {
+        dispLoading("");
+      });
+    });
+
+    $(function () {
+      $("#denial-mail-submit-<%= request[0].id %>").click( function() {
+        if(!confirm('<%= request[0].user.name %>の申請を否認してよろしいですか？')){
+          return false;
+          $("#loading").remove();
+            } else {
+          dispLoading("");
+        }
+      });
+    });
+
+  <% else %>
+    <!-- 初期状態 -->
+    $(function () {
+      $("#preview-<%= request.id %>").click( function() {
+        dispLoading("処理中...");
+      });
+    });
+
+    $(function () {
+      $("#denial-mail-submit-<%= request.id %>").click( function() {
+        if(!confirm('<%= request.user.name %>の申請を否認してよろしいですか？')){
+          return false;
+            } else {
+          dispLoading("処理中...");
+        }
+      });
+    });
+  <% end %>
+<% end %>

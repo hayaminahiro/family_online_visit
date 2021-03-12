@@ -75,6 +75,54 @@ Rails/BulkChangeTable:
   Exclude:
     - 'db/migrate/20210130102909_remove_req_phone_from_request_residents.rb'
 
+# 未使用のメソッドの指摘
+Lint/UselessMethodDefinition:
+  Exclude:
+    - 'app/controllers/facilities/confirmations_controller.rb'
+    - 'app/controllers/facilities/passwords_controller.rb'
+    - 'app/controllers/facilities/registrations_controller.rb'
+    - 'app/controllers/facilities/sessions_controller.rb'
+    - 'app/controllers/facilities/sessions_controller.rb'
+    - 'app/controllers/users/confirmations_controller.rb'
+    - 'app/controllers/users/passwords_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/controllers/users/sessions_controller.rb'
+
+# 名前の指摘
+Naming/VariableNumber:
+  Exclude:
+    - 'app/decorators/facility_decorator.rb'
+    - 'app/decorators/user_decorator.rb'
+    - 'app/models/reservation.rb'
+
+# 書き方の指摘
+Style/StringConcatenation:
+  Exclude:
+    - 'app/mailers/inquiry_mailer.rb'
+    - 'spec/models/facility_spec.rb'
+
+# デフォルトなので修正しない
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/environments/production.rb'
+
+Lint/DuplicateRequire:
+  Exclude:
+    - 'config/initializers/devise.rb'
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/puma.rb'
+
+# 指定コードなので変更しない
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'config/unicorn.conf.rb'
+
+Lint/SuppressedException:
+  Exclude:
+    - 'config/unicorn.conf.rb'
+
 Metrics/AbcSize:
   Max: 55
 
@@ -166,3 +214,7 @@ Metrics/CyclomaticComplexity:
     - 'app/controllers/facility_users_controller.rb'
     - 'app/decorators/resident_decorator.rb'
     - 'app/models/memory.rb'
+
+Rails/HttpStatus:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
