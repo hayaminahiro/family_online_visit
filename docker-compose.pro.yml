@@ -1,4 +1,3 @@
-# AWS版(Nginx & Unicorn)
 version: '3'
 services:
   # データベースのサービス定義
@@ -16,7 +15,7 @@ services:
   # アプリケーションサーバーのサービス定義
   web:
     build: .
-    # unicorn.pidを事前に削除
+    # unicorn使用
     command: /bin/sh -c "rm -f tmp/pids/unicorn.pid && dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /app_name/config/unicorn.conf.rb -E production"
     volumes:
       - .:/app_name
@@ -33,8 +32,6 @@ services:
     stdin_open: true
     links:
       - db
-    environment:
-    - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
 
   # WEBサーバーのサービス定義
   nginx:
@@ -49,11 +46,6 @@ services:
       - public-data:/app_name/public
     links:
       - web
-
-  selenium_chrome:
-    image: selenium/standalone-chrome-debug
-    logging:
-      driver: none
 
 volumes:
   public-data:
