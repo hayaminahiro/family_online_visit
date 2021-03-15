@@ -128,7 +128,7 @@
 
         <div class="resident-head-button">
           <div class="residents-search">
-            <%= form_with(url: residents_path(current_facility), method: :get, remote: true) do |f| %>
+            <%= form_with(url: residents_path(current_facility), method: :get, local: true) do |f| %>
               <div class="field is-grouped is-grouped-right">
                 <div class="control">
                   <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
