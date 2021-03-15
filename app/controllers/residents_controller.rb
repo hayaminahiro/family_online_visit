@@ -2,9 +2,8 @@ class ResidentsController < ApplicationController
   before_action :set_resident, only: %i[show edit update destroy leave_update]
 
   def index
-    @residents = Resident.where(enrolled: true).search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
-    @leave_residents = Resident.where(enrolled: false).search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
-
+    @residents = Resident.enrolled.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+    @leave_residents = Resident.leave.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
     @select_month = params[:date].nil? ? Time.current : params[:date].to_date
     @total_image_count = Memory.total_image_count(current_facility.residents, @select_month)
   end

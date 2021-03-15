@@ -124,12 +124,9 @@
 
       <!--退所-->
       <div id="WebAud" class="resident-content-tab" style="display:none">
-        <%#= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+        <%= will_paginate @leave_residents, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 
         <div class="resident-head-button">
-          <!--CSVインポート-->
-          <%#= render partial: 'csv_import' %>
-
           <div class="residents-search">
             <%= form_with(url: residents_path(current_facility), method: :get, remote: true) do |f| %>
               <div class="field is-grouped is-grouped-right">
@@ -210,6 +207,7 @@
               <% end %>
             </tbody>
           </table>
+          <%= will_paginate @leave_residents, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
         </div>
       </div>
     </div>

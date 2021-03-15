@@ -7,6 +7,9 @@ class Resident < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :charge_worker, presence: true, length: { maximum: 20 }
 
+  scope :enrolled, -> { where(enrolled: true) }
+  scope :leave, -> { where(enrolled: false) }
+
   # search定義
   def self.search(search, facility)
     facility.residents.includes(:users) unless search
