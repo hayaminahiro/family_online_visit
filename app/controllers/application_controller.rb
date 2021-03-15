@@ -43,4 +43,11 @@ class ApplicationController < ActionController::Base
         root_path
       end
     end
+
+    # アクセスしたユーザーが現在ログインしているユーザーかの確認
+    def correct_user
+      unless @user == current_user
+        redirect_to root_path, notice: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
+      end
+    end
 end
