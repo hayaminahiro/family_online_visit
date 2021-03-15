@@ -1,9 +1,9 @@
 class ResidentsController < ApplicationController
-  before_action :set_resident, only: %i[edit update destroy]
+  before_action :set_resident, only: %i[show edit update destroy leave_update]
 
   def index
-    @residents = Resident.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30).where(enrolled: true)
-    @leave_residents = Resident.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30).where(enrolled: false)
+    @residents = Resident.where(enrolled: true).search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+    @leave_residents = Resident.where(enrolled: false).search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
 
     @select_month = params[:date].nil? ? Time.current : params[:date].to_date
     @total_image_count = Memory.total_image_count(current_facility.residents, @select_month)
@@ -14,15 +14,12 @@ class ResidentsController < ApplicationController
   end
 
   def show
-    @resident = Resident.find(params[:id])
-    @resident.facility_id = current_facility.id
     @memories = @resident.memories
   end
 
   def create
     if params[:commit] == "登録する"
       @resident = Resident.new(resident_params)
-      @resident.facility_id = current_facility.id
       if @resident.save
         redirect_to residents_url, notice: "入居者を新規登録できました"
       else
@@ -42,7 +39,6 @@ class ResidentsController < ApplicationController
   def edit; end
 
   def update
-    @resident.facility_id = current_facility.id
     if @resident.update(resident_params)
       redirect_to residents_url, notice: "入居者情報を更新できました"
     else
@@ -51,11 +47,19 @@ class ResidentsController < ApplicationController
   end
 
   def destroy
-    @resident.facility_id = current_facility.id
     @resident.destroy
-
     Relative.eager_load(:resident).where(resident_id: params[:id]).where(residents: { facility_id: current_facility }).destroy_all
     redirect_to residents_url, alert: "入居者情報を削除しました"
+  end
+
+  def leave_update
+    if @resident.enrolled?
+      @resident.update(enrolled: false)
+      redirect_to residents_url, alert: "#{@resident.name}さんを退所登録しました。"
+    else
+      @resident.update(enrolled: true)
+      redirect_to residents_url, notice: "#{@resident.name}さんを再入所登録しました。"
+    end
   end
 
   private
@@ -66,6 +70,7 @@ class ResidentsController < ApplicationController
 
     def set_resident
       @resident = Resident.find(params[:id])
+      @resident.facility_id = current_facility.id
     end
 
     # CSVインポート

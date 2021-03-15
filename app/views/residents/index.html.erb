@@ -104,7 +104,11 @@
                     <%= link_to "\uf4ff", edit_resident_path(resident), remote: true, class: "fa button is-success resident--update-button" %>
                   </div>
                 </td>
-                <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
+                <td>
+                  <%= link_to leave_update_resident_path(resident), method: :patch, data: { confirm: "#{resident.name}さんを退所へ変更してよろしいですか？" }, class:"button is-warning" do %>
+                    <i class="fas fa-luggage-cart"></i>
+                  <% end %>
+                </td>
                 <td>
                   <%= link_to resident_path(resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
                   <i class="far fa-trash-alt"></i>
@@ -120,29 +124,22 @@
 
       <!--退所-->
       <div id="WebAud" class="resident-content-tab" style="display:none">
-        <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
-
-        <!--CSVインポートエラーログ-->
-        <% if params[:error_residents] %>
-          <a id="error">インポートエラーログ <%= "#{params[:error_residents].count}件" %></a>
-        <% end %>
+        <%#= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 
         <div class="resident-head-button">
           <!--CSVインポート-->
-          <%= render partial: 'csv_import' %>
-          <div class=" js-contents--create-button">
-            <%= link_to "\uf234", new_resident_path, remote: true, class: "resident--create-button fa button is-info is-rounded" %>
-          </div>
+          <%#= render partial: 'csv_import' %>
+
           <div class="residents-search">
-            <%= form_with(url: residents_path(current_facility), method: :get, local: true) do |f| %>
-            <div class="field is-grouped is-grouped-right">
-              <div class="control">
-                <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
+            <%= form_with(url: residents_path(current_facility), method: :get, remote: true) do |f| %>
+              <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                  <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
+                </div>
+                <div class="control">
+                  <%= f.submit "\uf002検索", class: "fa button is-link is-rounded" %>
+                </div>
               </div>
-              <div class="control">
-                <%= f.submit "\uf002検索", class: "fa button is-link is-rounded" %>
-              </div>
-            </div>
             <% end %>
           </div>
         </div>
@@ -199,7 +196,11 @@
                     <%= link_to "\uf4ff", edit_resident_path(resident), remote: true, class: "fa button is-success resident--update-button" %>
                   </div>
                 </td>
-                <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
+                <td>
+                  <%= link_to leave_update_resident_path(resident), method: :patch, data: { confirm: "#{resident.name}さんを再入所してよろしいですか？" }, class:"button is-warning" do %>
+                    <i class="fas fa-luggage-cart"></i>
+                  <% end %>
+                </td>
                 <td>
                   <%= link_to resident_path(resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
                   <i class="far fa-trash-alt"></i>
@@ -209,13 +210,11 @@
               <% end %>
             </tbody>
           </table>
-          <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <!--モーダル表示-->
 <div class="modal">
