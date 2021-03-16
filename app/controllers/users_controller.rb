@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
-  before_action :set_user,               only: %i[edit update destroy video_room set_room room_required]
+  before_action :set_user,               only: %i[edit update destroy video_room set_room room_required leave_update]
   before_action :set_facility_id,        only: %i[video_room set_room room_required]
   before_action :set_room,               only: %i[video_room room_required]
   # ログインしてなければ閲覧不可
-  before_action :authenticate_user!,     except: %i[index video_room edit update destroy]
+  before_action :authenticate_user!,     except: %i[index video_room edit update destroy leave_update]
   before_action :authenticate_facility!, only: %i[index edit update destroy]
   before_action :room_required,          only: :video_room
 
   def index
-    @users = User.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+    @users = User.enrolled.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+    @leave_users = User.leave.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
   end
 
   def show
@@ -41,6 +42,16 @@ class UsersController < ApplicationController
 
   def new_admin
     @user = User.new
+  end
+
+  def leave_update
+    if @user.enrolled?
+      @user.update(enrolled: false)
+      redirect_to users_url, alert: "#{@user.name}さんを退所登録しました。"
+    else
+      @user.update(enrolled: true)
+      redirect_to users_url, notice: "#{@user.name}さんを再入所登録しました。"
+    end
   end
 
   private

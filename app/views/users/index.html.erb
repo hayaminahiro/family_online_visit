@@ -12,9 +12,9 @@
         </div>
       </div>
       <div class="hero-foot">
-        <div class="tabs is-boxed is-fullwidth">
+        <div class="tabs is-boxed is-fullwidth is-large">
           <div class="container">
-            <ul>
+            <ul style="color: dimgray;">
               <li class="tab is-active" onclick="openTab(event,'WebDev')"><a class="has-text-weight-semibold">利用中</a></li>
               <li class="tab" onclick="openTab(event,'WebAud')"><a class="has-text-weight-semibold">退所</a></li>
             </ul>
@@ -24,6 +24,7 @@
     </section>
 
     <div class="container section">
+      <!--現在入所中-->
       <div id="WebDev" class="content-tab">
         <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
         <section class="hero is-small">
@@ -53,6 +54,7 @@
                 <th>Room設定</th>
                 <th>Room Name</th>
                 <th>面会</th>
+                <th>退所</th>
                 <th>削除</th>
               </tr>
             </thead>
@@ -92,8 +94,13 @@
                   </div>
                 </td>
                 <td>
-                  <%= link_to video_room_user_path(user, facility_id: current_facility.id), class: "button is-warning" do %>
+                  <%= link_to video_room_user_path(user, facility_id: current_facility.id), class: "button is-info" do %>
                     <span><i class="fas fa-photo-video"></i></span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to leave_update_user_path(user), method: :patch, data: { confirm: "#{user.name}さんを退所へ変更してよろしいですか？" }, class:"button is-warning" do %>
+                    <span><i class="fas fa-sign-out-alt"></i></span>
                   <% end %>
                 </td>
                 <td>
@@ -110,15 +117,98 @@
         <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
       </div>
 
+      <!--退所-->
       <div id="WebAud" class="content-tab" style="display:none">
-        <p>
-          test2<br>
-          Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-          it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-          versions of Lorem Ipsum.</p>
+        <%= will_paginate @leave_users, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+
+        <section class="hero is-small">
+          <div class="hero-body">
+            <div class="container">
+              <%= form_with(url: users_path, method: :get, local: true) do |f| %>
+              <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                  <%= f.text_field :search, :placeholder => "名前を入力", class: "input search-user is-rounded is-black" %>
+                </div>
+                <div class="control">
+                  <%= f.submit "\uf002検索", class: "fa button search-btn-user is-link is-rounded" %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </section>
+
+        <div class="table-container">
+          <table class="table is-fullwidth is-hoverable is-striped " id="user-table">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>利用者</th>
+                <th>面会予約</th>
+                <th>Room設定</th>
+                <th>Room Name</th>
+                <th>面会</th>
+                <th>再入所</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @leave_users.each do |user| %>
+              <% room = user.rooms.find_by(facility_id: current_facility.id) %>
+              <tr>
+                <td class="is-vcentered">
+                  <%= user.name %>
+                </td>
+                <td class="resident-block">
+                  <% user.residents.each do |resident| %>
+                    <%= resident.name %></br>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to "予約", facility_reservations_path(current_facility, user: user, anchor: 'top'), class: "button is-link is-rounded has-text-weight-semibold" %>
+                </td>
+                <td>
+                  <% if room.present? %>
+                    <div class=" js-contents--edit-button">
+                      <%= link_to edit_user_room_path(user, id: room.id), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
+                        <i class="fas fa-key"></i>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class=" js-contents--create-button">
+                      <%= link_to new_user_room_path(user), remote: true, class: "button is-primary is-rounded has-text-weight-semibold" do %>
+                        <i class="fas fa-key"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </td>
+                <td class="is-vcentered">
+                  <div class="has-text-weight-semibold user-table-tag">
+                    <%= room.room_name if room.present? %>
+                  </div>
+                </td>
+                <td>
+                  <%= link_to video_room_user_path(user, facility_id: current_facility.id), class: "button is-info" do %>
+                    <span><i class="fas fa-photo-video"></i></span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to leave_update_user_path(user), method: :patch, data: { confirm: "#{user.name}さんを再入所してよろしいですか？" }, class:"button is-warning" do %>
+                    <span><i class="fas fa-sign-out-alt"></i></span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to facility_user_path(user), method: :delete, data: { confirm: "削除してよろしいですか?" },
+                                  class: "button is-danger" do %>
+                    <span><i class="far fa-trash-alt"></i></span>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div><br>
+        <%= will_paginate @leave_users, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
       </div>
     </div>
   </div>

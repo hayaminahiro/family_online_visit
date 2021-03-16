@@ -73,6 +73,9 @@ class User < ApplicationRecord
     self.save!
   end
 
+  scope :enrolled, -> { where(enrolled: true) }
+  scope :leave, -> { where(enrolled: false) }
+
   #search定義
   def self.search(search, facility)
     facility.users.includes(:residents) unless search

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_053248) do
+ActiveRecord::Schema.define(version: 2021_03_16_071818) do
 
   create_table "calendar_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "regular_holiday"
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_053248) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.datetime "remember_created_at"
+    t.boolean "enrolled", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
