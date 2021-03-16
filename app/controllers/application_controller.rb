@@ -46,8 +46,20 @@ class ApplicationController < ActionController::Base
 
     # アクセスしたユーザーが現在ログインしているユーザーかの確認
     def correct_user
-      unless @user == current_user
-        redirect_to root_path, notice: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
-      end
+      return true if @user == current_user
+
+        redirect_to root_path, alert: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
+    end
+
+    # アクセスしたユーザーがご家族本人か登録施設かの確認
+    def correct_user_or_facility
+      @correct_facility = @user.facilities.find_by(id: @facility.id)
+      return true if @user == current_user || @correct_facility == current_facility
+
+        if current_user
+          redirect_to root_path, alert: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
+        elsif current_facility
+          redirect_to facility_home_facility_path(current_facility), alert: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
+        end
     end
 end
