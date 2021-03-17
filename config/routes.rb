@@ -62,9 +62,9 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :video_room
-      patch :leave_update
     end
     resources :rooms, only: %i[new create edit update]
+    resources :affiliations, only: %i[create destroy]
   end
 
   # カレンダー設定 =========================================================================

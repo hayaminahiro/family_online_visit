@@ -8,8 +8,7 @@ class UsersController < ApplicationController
   before_action :room_required,          only: :video_room
 
   def index
-    @users = User.enrolled.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
-    @leave_users = User.leave.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
+    @users = User.search(params[:search], current_facility).paginate(page: params[:page], per_page: 30)
   end
 
   def show
@@ -42,16 +41,6 @@ class UsersController < ApplicationController
 
   def new_admin
     @user = User.new
-  end
-
-  def leave_update
-    if @user.enrolled?
-      @user.update(enrolled: false)
-      redirect_to users_url, alert: "#{@user.name}さんを退所登録しました。"
-    else
-      @user.update(enrolled: true)
-      redirect_to users_url, notice: "#{@user.name}さんを再入所登録しました。"
-    end
   end
 
   private

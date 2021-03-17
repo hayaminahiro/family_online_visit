@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :tag_images, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
   has_many :rooms, dependent: :destroy
+  has_many :affiliations, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -72,9 +73,6 @@ class User < ApplicationRecord
     self.raw_info = raw_info.to_json
     self.save!
   end
-
-  scope :enrolled, -> { where(enrolled: true) }
-  scope :leave, -> { where(enrolled: false) }
 
   #search定義
   def self.search(search, facility)
