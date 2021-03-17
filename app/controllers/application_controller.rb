@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configre_permitted_parameters, if: :devise_controller?
 
+  ACCESS_ERROR_MSG = "お探しのページが見つからなかったため遷移できませんでした。もう一度ご確認してください。"
+
   # 例外処理
   # rescue_from Exception, with: :render_500
   # rescue_from ActiveRecord::RecordNotFound, with: :render_404
@@ -48,7 +50,7 @@ class ApplicationController < ActionController::Base
     def correct_user
       return true if @user == current_user
 
-        redirect_to root_path, alert: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
+        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
     end
 
     # アクセスしたユーザーがご家族本人か登録施設かの確認
@@ -56,10 +58,34 @@ class ApplicationController < ActionController::Base
       @correct_facility = @user.facilities.find_by(id: @facility.id)
       return true if @user == current_user || @correct_facility == current_facility
 
-        if current_user
-          redirect_to root_path, alert: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
-        elsif current_facility
-          redirect_to facility_home_facility_path(current_facility), alert: "不正なアクセスのため遷移できませんでした。もう一度ご確認してください。"
-        end
+      if current_user
+        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+      elsif current_facility
+        redirect_to facility_home_facility_path(current_facility), alert: ACCESS_ERROR_MSG
+      end
+    end
+
+    # アクセスしたユーザーが登録申請を完了または登録申請された施設かの確認
+    def request_done_user
+      @correct_user = current_user.request_residents.find_by(facility_id: @facility.id, req_approval: "approval")
+      return true if @correct_user || @facility == current_facility
+
+      if current_user
+        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+      elsif current_facility
+        redirect_to facility_home_facility_path(current_facility), alert: ACCESS_ERROR_MSG
+      end
+    end
+
+    # 予約関連ページにアクセスしたご家族ユーザーがログインユーザーまたは登録施設がログインユーザーであるかの確認
+    def correct_user_reservation
+      @user = User.find(@reservation.user_id)
+      return true if @user == current_user || @facility == current_facility
+
+      if current_user
+        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+      elsif current_facility
+        redirect_to facility_home_facility_path(current_facility), alert: ACCESS_ERROR_MSG
+      end
     end
 end
