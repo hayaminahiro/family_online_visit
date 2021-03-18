@@ -681,6 +681,11 @@ p.content1 {
 }
 
 //エラー画面
+#html-error-layout {
+  overflow: hidden;
+  height: 100%;
+}
+
 .error-top-background {
   position: fixed;
   top: 0px;
@@ -1003,6 +1008,7 @@ p.content1 {
     h1.main-title {
       width: 50%;
       font-size: 6vw;
+      margin-top: 80%;
     }
   }
 
