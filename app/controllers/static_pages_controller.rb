@@ -3,4 +3,7 @@ class StaticPagesController < ApplicationController
     @informations = Information.where(status: "head").order(id: "DESC")
     @info_top = Information.find_by(status: "head")
   end
+
+  def error_top
+  end
 end
