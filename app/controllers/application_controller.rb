@@ -50,7 +50,14 @@ class ApplicationController < ActionController::Base
     def correct_user
       return true if @user == current_user
 
-        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+      redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+    end
+
+    # ご家族ユーザーは登録施設のみアクセスができることの確認
+    def user_registered_facility
+      return true if current_user.facilities.find_by(id: @facility.id).present?
+
+      redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
     end
 
     # アクセスしたユーザーがご家族本人か登録施設かの確認
