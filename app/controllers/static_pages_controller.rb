@@ -4,6 +4,5 @@ class StaticPagesController < ApplicationController
     @info_top = Information.find_by(status: "head")
   end
 
-  def error_top
-  end
+  def error_top; end
 end

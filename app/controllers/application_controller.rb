@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
 
     # 登録申請の編集画面にアクセスできるか確認
     def user_request_residents
-      return true if @request.user_id ==  current_user.id
+      return true if @request.user_id == current_user.id
 
       redirect_to error_top_path
     end
