@@ -68,7 +68,9 @@
                     </td>
                     <td class="resident-block">
                       <% user.residents.each do |resident| %>
-                        <%= resident.name %></br>
+                        <% if resident.facility_id == current_facility.id %>
+                          <%= resident.name %></br>
+                        <% end %>
                       <% end %>
                     </td>
                     <td>
@@ -164,7 +166,9 @@
                     </td>
                     <td class="resident-block">
                       <% user.residents.each do |resident| %>
-                        <%= resident.name %></br>
+                        <% if resident.facility_id == current_facility.id %>
+                          <%= resident.name %></br>
+                        <% end %>
                       <% end %>
                     </td>
                     <td>
