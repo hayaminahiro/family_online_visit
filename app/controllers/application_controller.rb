@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configre_permitted_parameters, if: :devise_controller?
 
-  ACCESS_ERROR_MSG = "お探しのページが見つからなかったため遷移できませんでした。もう一度ご確認してください。"
-
   # 例外処理
   # rescue_from Exception, with: :render_500
   # rescue_from ActiveRecord::RecordNotFound, with: :render_404
@@ -50,14 +48,14 @@ class ApplicationController < ActionController::Base
     def correct_user
       return true if @user == current_user
 
-      redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+      redirect_to error_top_path
     end
 
     # ご家族ユーザーは登録施設のみアクセスができることの確認
     def user_registered_facility
       return true if current_user.facilities.find_by(id: @facility.id).present?
 
-      redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
+      redirect_to new_facility_user_path, alert: "施設登録が完了していないためアクセスできませんでした。"
     end
 
     # アクセスしたユーザーがご家族本人か登録施設かの確認
@@ -65,23 +63,15 @@ class ApplicationController < ActionController::Base
       @correct_facility = @user.facilities.find_by(id: @facility.id)
       return true if @user == current_user || @correct_facility == current_facility
 
-      if current_user
-        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
-      elsif current_facility
-        redirect_to facility_home_facility_path(current_facility), alert: ACCESS_ERROR_MSG
-      end
+      redirect_to error_top_path
     end
 
     # アクセスしたユーザーが登録申請を完了または登録申請された施設かの確認
     def request_done_user
-      @correct_user = current_user.request_residents.find_by(facility_id: @facility.id, req_approval: "approval")
+      @correct_user = @user.request_residents.find_by(facility_id: @facility.id, req_approval: "approval")
       return true if @correct_user || @facility == current_facility
 
-      if current_user
-        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
-      elsif current_facility
-        redirect_to facility_home_facility_path(current_facility), alert: ACCESS_ERROR_MSG
-      end
+      redirect_to error_top_path
     end
 
     # 予約関連ページにアクセスしたご家族ユーザーがログインユーザーまたは登録施設がログインユーザーであるかの確認
@@ -89,10 +79,13 @@ class ApplicationController < ActionController::Base
       @user = User.find(@reservation.user_id)
       return true if @user == current_user || @facility == current_facility
 
-      if current_user
-        redirect_to user_path(current_user), alert: ACCESS_ERROR_MSG
-      elsif current_facility
-        redirect_to facility_home_facility_path(current_facility), alert: ACCESS_ERROR_MSG
-      end
+      redirect_to error_top_path
+    end
+
+    # 登録申請の編集画面にアクセスできるか確認
+    def user_request_residents
+      return true if @request.user_id ==  current_user.id
+
+      redirect_to error_top_path
     end
 end
