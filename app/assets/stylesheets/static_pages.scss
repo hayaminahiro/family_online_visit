@@ -793,6 +793,26 @@ p.content1 {
   .cp_tab .cp_tabpanel {
     margin-bottom: 20px;
   }
+
+  //エラー画面
+  .error-container {
+
+    h1.main-title {
+      font-size: 5vw;
+      margin-top: 45%;
+    }
+  }
+
+  .error-layout {
+
+    h1 {
+      font-size: 4vw;
+    }
+
+    span {
+      font-size: 3vw;
+    }
+  }
 }
 
 //タブレット〜モバイル
@@ -975,5 +995,25 @@ p.content1 {
   //施設ログイン、施設新規登録
   .new-title {
     font-size: 27px;
+  }
+
+  //エラー画面
+  .error-container {
+
+    h1.main-title {
+      width: 50%;
+      font-size: 6vw;
+    }
+  }
+
+  .error-layout {
+
+    h1 {
+      font-size: 5vw;
+    }
+
+    span {
+      font-size: 5vw;
+    }
   }
 }

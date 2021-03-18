@@ -16,7 +16,12 @@
             <p>
               リンクに問題があるか、ページが削除された可能性があります。
             </p>
-            <span><%= link_to "マイページに戻る", root_path, data: {"turbolinks" => false} %></span>
+            <% if user_signed_in? || facility_signed_in? %>
+              <span><%= link_to "マイページに戻る", user_path(current_user), data: {"turbolinks" => false} if current_user %></span>
+              <span><%= link_to "HOMEに戻る", facility_home_facility_path(current_facility), data: {"turbolinks" => false} if current_facility %></span>
+            <% else %>
+              <span><%= link_to "TOPページに戻る", root_path, data: {"turbolinks" => false} %></span>
+            <% end %>
           </div>
         </div>
       </div>
