@@ -32,6 +32,7 @@ Layout/IndentationConsistency:
     - 'app/models/facility.rb'
     - 'app/controllers/inquiries_controller.rb'
     - 'app/controllers/calendar_settings_controller.rb'
+    - 'app/controllers/affiliations_controller.rb'
 
 # private下のインデント指摘
 Layout/IndentationWidth:
@@ -58,6 +59,7 @@ Layout/IndentationWidth:
     - 'app/models/facility.rb'
     - 'app/controllers/inquiries_controller.rb'
     - 'app/controllers/calendar_settings_controller.rb'
+    - 'app/controllers/affiliations_controller.rb'
 
 Lint/UnusedMethodArgument:
   Exclude:

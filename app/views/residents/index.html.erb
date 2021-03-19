@@ -23,6 +23,7 @@
       </div>
     </section>
     <div class="container section">
+      <!--現在入所中-->
       <div id="WebDev" class="resident-content-tab">
         <%= will_paginate @collection, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
 
@@ -103,7 +104,11 @@
                     <%= link_to "\uf4ff", edit_resident_path(resident), remote: true, class: "fa button is-success resident--update-button" %>
                   </div>
                 </td>
-                <td><button type="button" class="button is-warning" id=""><i class="fas fa-luggage-cart"></i></button></td>
+                <td>
+                  <%= link_to leave_update_resident_path(resident), method: :patch, data: { confirm: "#{resident.name}さんを退所へ変更してよろしいですか？" }, class:"button is-warning" do %>
+                    <i class="fas fa-sign-out-alt"></i>
+                  <% end %>
+                </td>
                 <td>
                   <%= link_to resident_path(resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
                   <i class="far fa-trash-alt"></i>
@@ -117,15 +122,97 @@
         </div>
       </div>
 
+      <!--退所-->
       <div id="WebAud" class="resident-content-tab" style="display:none">
-        <p>
-          退所者一覧<br>
-          Details Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <%= will_paginate @leave_residents, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+
+        <div class="resident-head-button">
+          <div class="residents-search">
+            <%= form_with(url: residents_path(current_facility), method: :get, local: true) do |f| %>
+              <div class="field is-grouped is-grouped-right">
+                <div class="control">
+                  <%= f.text_field :search, :placeholder => "名前を入力", class: "input is-rounded is-black" %>
+                </div>
+                <div class="control">
+                  <%= f.submit "\uf002検索", class: "fa button is-link is-rounded" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-striped is-fullwidth" id="table-residents">
+            <thead>
+              <tr class="has-text-weight-bold">
+                <th>
+                  利用者名(<%= current_facility.residents.count %>)
+                </th>
+                <th>ご家族名</th>
+                <th>担当者名</th>
+                <th>
+                  思い出アルバム
+                </th>
+                <th class="text-left">
+                  <div class="js-contents--content">
+                    <div class="image-total-count">合計<span><%= @total_image_count %></span>枚</div>
+                      <%= form_with model: current_facility, url:  residents_path(current_facility), class: "residents-month-select", method: :get do |f| %>
+                        <%= f.select :user_id, [[ @select_month.prev_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.prev_month.all_month)],
+                                                [ @select_month.prev_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.prev_month.all_month)],
+                                                [ @select_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.all_month)],
+                                                [ @select_month.next_month.strftime("%y年 %m月"), residents_path(anchor: "table", date: @select_month.next_month.all_month)]
+                                              ], { selected: residents_path(anchor: "table", date: @select_month.all_month) }, { class: "residents-month-select-form" } %>
+                      <% end %>
+                  </div>
+                </th>
+                <th>編集</th>
+                <th>再入所</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @leave_residents.each do |resident| %>
+              <tr class="has-text-weight-semibold">
+                <td><%= resident.name %></td>
+                <td>
+                  <% resident.users.each do |user| %>
+                    <%= user.name %>
+                  <% end %>
+                </td>
+                <td><%= resident.charge_worker %></td>
+                <td>
+                  <%= link_to resident_memories_path(resident), class:"button is-link" do %>
+                    <i class="fas fa-images"></i>
+                  <% end %>
+                </td>
+                <td class="image-count-td">
+                  <%= resident.image_count(@select_month.all_month) %>
+                </td>
+                <td>
+                  <div class=" js-contents--edit-button">
+                    <%= link_to "\uf4ff", edit_resident_path(resident), remote: true, class: "fa button is-success resident--update-button" %>
+                  </div>
+                </td>
+                <td>
+                  <%= link_to leave_update_resident_path(resident), method: :patch, data: { confirm: "#{resident.name}さんを再入所してよろしいですか？" }, class:"button is-warning" do %>
+                    <i class="fas fa-sign-out-alt"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to resident_path(resident), method: :delete, data: { confirm: "#{resident.name}さんの入居者情報を削除してよろしいですか？" }, class:"button is-danger" do %>
+                  <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= will_paginate @leave_residents, renderer: BulmaPagination::Rails, class: "is-centered is-rounded" %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <!--モーダル表示-->
 <div class="modal">
