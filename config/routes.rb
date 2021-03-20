@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get 'error_top', to: "static_pages#error_top"
 
   # メール機能 ============================================================================
   get '/request_mail/preview', to: 'request_mails#preview_mail'

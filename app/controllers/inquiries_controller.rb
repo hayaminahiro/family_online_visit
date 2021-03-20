@@ -3,6 +3,7 @@ class InquiriesController < ApplicationController
   before_action :set_inquiry, only: %i[inquiry inquiry_system]
   before_action :authenticate_user!, only: %i[inquiry create]
   before_action :authenticate_facility!, only: %i[index destroy]
+  before_action :user_registered_facility, only: %i[inquiry create]
 
   def inquiry; end
 

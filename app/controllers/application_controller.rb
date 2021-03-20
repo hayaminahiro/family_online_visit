@@ -43,4 +43,49 @@ class ApplicationController < ActionController::Base
         root_path
       end
     end
+
+    # アクセスしたユーザーが現在ログインしているユーザーかの確認
+    def correct_user
+      return true if @user == current_user
+
+      redirect_to error_top_path
+    end
+
+    # ご家族ユーザーは登録施設のみアクセスができることの確認
+    def user_registered_facility
+      return true if current_user.facilities.find_by(id: @facility.id).present?
+
+      redirect_to new_facility_user_path, alert: "施設登録が完了していないためアクセスできませんでした。"
+    end
+
+    # アクセスしたユーザーがご家族本人か登録施設かの確認
+    def correct_user_or_facility
+      @correct_facility = @user.facilities.find_by(id: @facility.id)
+      return true if @user == current_user || @correct_facility == current_facility
+
+      redirect_to error_top_path
+    end
+
+    # アクセスしたユーザーが登録申請を完了または登録申請された施設かの確認
+    def request_done_user
+      @correct_user = @user.request_residents.find_by(facility_id: @facility.id, req_approval: "approval")
+      return true if @correct_user || @facility == current_facility
+
+      redirect_to error_top_path
+    end
+
+    # 予約関連ページにアクセスしたご家族ユーザーがログインユーザーまたは登録施設がログインユーザーであるかの確認
+    def correct_user_reservation
+      @user = User.find(@reservation.user_id)
+      return true if @user == current_user || @facility == current_facility
+
+      redirect_to error_top_path
+    end
+
+    # 登録申請の編集画面にアクセスできるか確認
+    def user_request_residents
+      return true if @request.user_id == current_user.id
+
+      redirect_to error_top_path
+    end
 end
