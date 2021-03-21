@@ -16,13 +16,12 @@ class FacilitiesController < ApplicationController
   def home
     @menu_approval = Relative.eager_load(:resident).where(user_id: current_user).where(residents: { facility_id: @facility.id })
     @request = current_user.request_residents.order(created_at: :desc).where(facility_id: @facility.id).first
-    @informations = Information.where(status: "head").order(id: "DESC")
-    @info_top = Information.find_by(status: "head")
+    @informations = Information.where(facility_id: @facility).order(id: "DESC").limit(15)
   end
 
   # 施設ルートのhome画面
   def facility_home
-    @info_top = Information.find_by(status: "head")
+    @admin_informations = Information.where(status: "admin").order(id: "DESC").limit(15)
     @request_residents = RequestResident.includes(:user).where(req_approval: "request").where(facility_id: current_facility).order(id: :desc)
     # カレンダー設定と予約
     @calendar_setting = CalendarSetting.find_by(facility_id: current_facility.id)

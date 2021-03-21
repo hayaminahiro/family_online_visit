@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
   def top
-    @informations = Information.where(status: "head").order(id: "DESC")
-    @info_top = Information.find_by(status: "head")
+    @admin_informations = Information.where(status: "admin").order(id: "DESC").limit(15)
   end
 end
