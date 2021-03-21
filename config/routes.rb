@@ -94,9 +94,7 @@ Rails.application.routes.draw do
   end
 
   # お知らせ ==============================================================================
-  resources :informations do
-    get :top_notice, on: :collection
-  end
+  resources :informations
 
   # タグ ==================================================================================
   resources :tags
