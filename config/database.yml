@@ -50,12 +50,12 @@ test:
 production:
   <<: *default
   # heroku
-  # database: app_name_production
-  # username: app_name
-  # password: <%= ENV['APP_NAME_DATABASE_PASSWORD'] %>
+  database: app_name_production
+  username: app_name
+  password: <%= ENV['APP_NAME_DATABASE_PASSWORD'] %>
 
   # AWS_RDS
-  host: <%= Rails.application.credentials.rds[:host] %>
-  database: <%= Rails.application.credentials.rds[:database] %>
-  username: <%= Rails.application.credentials.rds[:username] %>
-  password: <%= Rails.application.credentials.rds[:password] %>
+  # host: <%= Rails.application.credentials.rds[:host] %>
+  # database: <%= Rails.application.credentials.rds[:database] %>
+  # username: <%= Rails.application.credentials.rds[:username] %>
+  # password: <%= Rails.application.credentials.rds[:password] %>

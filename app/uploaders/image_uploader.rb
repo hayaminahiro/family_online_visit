@@ -10,7 +10,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     storage :fog
   end
 
-  # 開発環境も本番環境もS3に保存(お試し用)
+  # 開発環境も本番環境もS3に保存(お試し用)→carrierwave.rbも切替必要
   # storage :fog
 
   def store_dir
