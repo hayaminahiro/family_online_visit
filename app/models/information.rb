@@ -4,7 +4,7 @@ class Information < ApplicationRecord
   validates :news, presence: true
   validates :title, presence: true
 
-  enum status: { others: 0, head: 1 }
+  enum status: { others: 0, admin: 1 }
 
   # モデル | ImageUploaderクラスとimageカラムを紐づける
   mount_uploader :image, ImageUploader
