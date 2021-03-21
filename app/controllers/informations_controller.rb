@@ -20,8 +20,7 @@ class InformationsController < ApplicationController
   end
 
   def create
-    @information = current_facility.informations.build(information_params)
-    @information.url = information_params[:url].last(11)
+    @information = current_facility.build_with_url(information_params)
     @information.admin! if current_facility.admin == true
     if @information.save
       redirect_to informations_url, notice: "タイトル【#{@information.title}】/お知らせを新規作成できました。"
@@ -33,8 +32,8 @@ class InformationsController < ApplicationController
   def edit; end
 
   def update
-    @information.facility_id = current_facility.id
-    if @information.update(information_params)
+    @information.admin! if current_facility.admin == true
+    if @information.update_with_url(information_params)
       flash[:notice] = "タイトル【#{@information.title}】/お知らせを更新できました。"
       @information.status == "admin" ? redirect_to(facility_home_facility_url) : redirect_to(informations_url)
     else
