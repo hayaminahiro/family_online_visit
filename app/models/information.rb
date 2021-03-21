@@ -14,4 +14,9 @@ class Information < ApplicationRecord
     facility.informations.where(status: "others").order(id: "DESC") unless search
     facility.informations.where(status: "others").where('title LIKE ?', "%#{search}%").order(id: "DESC")
   end
+
+  def update_with_url(information_params)
+    information_params[:url] = information_params[:url].last(11)
+    update(information_params)
+  end
 end
