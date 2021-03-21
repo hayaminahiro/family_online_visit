@@ -1068,6 +1068,83 @@ h1.mini-title {
   font-weight: 600;
 }
 
+// 施設ホーム
+#facility-home-header {
+  display: flex;
+
+  #profile {
+    flex: 1;
+    margin-right: 25px;
+  }
+
+  .news {
+    height: 230px;
+    overflow: auto;
+    margin-top: 30px;
+    margin-left: 20px;
+
+    .text-section {
+      display: flex;
+
+      .information-created_at {
+        font-size: 14px;
+      }
+
+      .information-title {
+        margin-bottom: 0px;
+        margin-left: 20px;
+        font-size: 14px;
+      }
+    }
+
+    hr {
+      background-color: whitesmoke;
+      border: none;
+      display: block;
+      height: 2px;
+      margin: 1rem 0;
+    }
+  }
+
+  .contents-menu {
+    flex: 2;
+    display: flex;
+
+    p {
+      font-size: 13px;
+
+      .span {
+        background-color: #ffeb00cc;
+        font-style: inherit;
+        font-weight: inherit;
+        border: solid 1px gray;
+        margin-left: 8px;
+        font-size: 10px;
+        padding: 3px;
+      }
+
+    }
+  }
+}
+
+.about-title {
+  border-bottom: 1px solid #ccc;
+  font-size: 30px;
+  padding-bottom: 7px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+#home-request-section {
+  background-color: #A9A9A9;
+  margin-bottom: 26px;
+
+  .column {
+    padding: 0px;
+    padding-bottom: 20px;
+  }
+}
+
 //タブレット
 @media screen and (max-width: 1050px) {
   #facility-contents {
@@ -1101,6 +1178,65 @@ h1.mini-title {
   //インプット欄のレイアウト
   #input-field {
     margin-bottom: 20px;
+  }
+
+  // 施設ホーム
+  #facility-home-header {
+    display: block;
+
+    .news {
+      height: 100px;
+      margin-top: 0px;
+      margin-bottom: 20px;
+
+      .text-section .information-created_at {
+        font-size: 12px;
+      }
+
+      .text-section .information-title {
+        font-size: 12px;
+      }
+    }
+  }
+
+  #facility-home-header .contents-menu {
+    display: block;
+    text-align: center;
+
+    .column {
+      display: inline-block;
+      vertical-align: top;
+      padding: 0.35rem;
+    }
+
+    .card {
+      width: 149px;
+
+      .card-content.menu-card {
+        padding-left: 8%;
+        padding-right: 8%;
+      }
+    }
+
+    .button.menu-btn {
+      font-size: 12px;
+    }
+  }
+
+  .about-title {
+    margin-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 28px;
+    font-size: 20px;
+  }
+
+  #home-request-section {
+    background-color: #A9A9A9;
+    margin-bottom: 26px;
+  }
+
+  .user-name-section {
+    display: none;
   }
 }
 
@@ -1287,6 +1423,55 @@ h1.mini-title {
     }
   }
 
+  // 施設ホーム
+  #facility-home-header {
+    display: block;
+
+    .news {
+      height: 100px;
+      margin-top: 0px;
+      margin-bottom: 20px;
+
+      .text-section .information-created_at {
+        font-size: 12px;
+      }
+
+      .text-section .information-title {
+        font-size: 12px;
+      }
+    }
+  }
+
+  #facility-home-header .contents-menu {
+    display: block;
+    text-align: center;
+
+    .column {
+      display: inline-block;
+      vertical-align: top;
+      padding: 0.35rem;
+    }
+
+    .card {
+      width: 149px;
+    }
+  }
+
+  .about-title {
+    margin-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 28px;
+    font-size: 20px;
+  }
+
+  #home-request-section {
+    background-color: #A9A9A9;
+    margin-bottom: 26px;
+  }
+
+  .user-name-section {
+    display: none;
+  }
   //ユーザーの名前
   .user-name-layout {
     font-size: 16px;
@@ -1328,11 +1513,15 @@ h1.mini-title {
   //メニューボタン
   .button.menu-btn {
     font-size: 1rem;
+
+    span {
+      font-size: 12px;
+    }
   }
 
   //メニュー説明文
   .menu-content {
-    font-size: 15px;
+    font-size: 11px;
     text-align: left;
   }
 
@@ -1705,7 +1894,7 @@ h1.mini-title {
 
   //メニュー説明文
   .menu-content {
-    font-size: 15px;
+    font-size: 11px;
   }
 
   .card-content.menu-card {
