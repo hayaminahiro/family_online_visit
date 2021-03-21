@@ -1,23 +1,34 @@
 <div class="about-title-2 has-text-centered">お知らせ</div>
-<article class="panel" id="panel-content">
-  <div class="columns is-multiline has-text-left">
-    <article class="panel" id="panel-content">
-      <div class="columns is-multiline has-text-left">
-        <div class="show-info-container">
-          <hr>
-          <h1 class="show-info-title"><%= @info_top.title %></h1>
-          <hr>
-          <div>
-            <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( @info_top.created_at, format: :dot) %></span><br>
-            <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-            <hr>
-            <%# if facility_signed_in? && current_facility.admin? %>
-              <!--<button type="button" class="button is-success is-light is-medium" id="edit"><i class="fas fa-edit"></i></button>-->
-              <%#= render 'edit_info' , { information: @info_top } %>
-            <%# end %>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</article>
+
+<div class="top-infomation">
+  <article class="panel">
+    <div class="admin-info-container">
+      <% @admin_informations.each do |information| %>
+          <article class="panel" id="panel-content">
+            <div class="columns is-multiline has-text-left">
+              <div class="show-info-container">
+                <%# <hr> %>
+                <h1 class="show-info-title"><%= information.title %></h1>
+                <hr>
+                <div>
+                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( information.created_at, format: :dot) %></span><br>
+                  <p class="show-info-p"><%=safe_join(information.news.split("\n"),tag(:br))%></p>
+                  <hr>
+
+                  <div class="preview-contents">
+                    <% if information.image? %>
+                      <%= image_tag information.image.url, id: :img_prev, class: "info-photo-size" %>
+                    <% end %>
+
+                    <% if information.url.present? %>
+                      <iframe width="385" height="265" src="https://www.youtube.com/embed/<%= information.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+      <% end %>
+    </div>
+  </article>
+</div>
