@@ -5,6 +5,7 @@ class FacilitiesController < ApplicationController
   before_action :authenticate_facility!, except: :home
   before_action :authenticate_user!, only: :home
   before_action :index_access_limits, only: :index
+  before_action :user_registered_facility, only: :home
 
   def index
     @facilities = Facility.search(params[:search]).paginate(page: params[:page], per_page: 30)

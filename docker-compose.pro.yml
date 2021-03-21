@@ -1,0 +1,55 @@
+version: '3'
+services:
+  # データベースのサービス定義
+  db:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    ports:
+      - '3306:3306'
+
+  # アプリケーションサーバーのサービス定義
+  web:
+    build: .
+    # unicorn使用
+    command: /bin/sh -c "rm -f tmp/pids/unicorn.pid && dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /app_name/config/unicorn.conf.rb -E production"
+    volumes:
+      - .:/app_name
+      - bundle:/usr/local/bundle:delegated
+      - tmp-data:/app_name/tmp/sockets
+      - public-data:/app_name/public
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    links:
+      - db
+
+  # WEBサーバーのサービス定義
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - tmp-data:/app_name/tmp/sockets
+      - public-data:/app_name/public
+    links:
+      - web
+
+volumes:
+  public-data:
+  tmp-data:
+  mysql-data:
+  db-volume:
+  bundle:

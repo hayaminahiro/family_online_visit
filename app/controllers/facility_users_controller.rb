@@ -1,4 +1,6 @@
 class FacilityUsersController < ApplicationController
+  before_action :correct_user, only: :facility_update
+
   def new
     @registered_facilities = current_user.facilities
     @facility_users = FacilityUser.search(params[:search], Facility.all, current_user).paginate(page: params[:page], per_page: 12)

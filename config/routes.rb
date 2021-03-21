@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get 'error_top', to: "static_pages#error_top"
 
   # メール機能 ============================================================================
   get '/request_mail/preview', to: 'request_mails#preview_mail'
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
       get :video_room
     end
     resources :rooms, only: %i[new create edit update]
+    resources :affiliations, only: %i[create destroy]
   end
 
   # カレンダー設定 =========================================================================
@@ -78,6 +80,7 @@ Rails.application.routes.draw do
 
   # 入居者 ================================================================================
   resources :residents do
+    patch :leave_update, on: :member # 入退所
     resources :memories do # 思い出アルバム
       delete '/delete_image/:memory_id/:column', on: :collection, to: 'memories#delete_image', as: :delete_image
     end

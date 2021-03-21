@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_071341) do
+ActiveRecord::Schema.define(version: 2021_03_17_074223) do
+
+  create_table "affiliations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "facility_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_affiliations_on_user_id"
+  end
 
   create_table "calendar_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "regular_holiday"
@@ -140,6 +148,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_071341) do
     t.bigint "facility_id"
     t.string "name", null: false
     t.string "charge_worker"
+    t.boolean "enrolled", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_residents_on_facility_id"
@@ -205,6 +214,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_071341) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "affiliations", "users"
   add_foreign_key "calendar_settings", "facilities"
   add_foreign_key "facility_users", "facilities"
   add_foreign_key "facility_users", "users"

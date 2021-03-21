@@ -1,6 +1,8 @@
 class RequestResidentsController < ApplicationController
   before_action :set_request, only: %i[edit update destroy]
   before_action :set_facility, only: %i[new]
+  before_action :user_registered_facility, only: :new
+  before_action :user_request_residents, only: :edit
 
   # 入居者登録申請
   def new

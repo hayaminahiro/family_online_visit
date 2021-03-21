@@ -185,4 +185,12 @@ module UserDecorator # rubocop:disable Metrics/ModuleLength
     resident_ids = @selected_ids[:set_ids] | @selected_ids[:resident_ids]
     Relative.reject_zero(resident_ids)
   end
+
+  def enrolled_user
+    affiliations.where(facility_id: current_facility.id).blank?
+  end
+
+  def leave_user
+    affiliations.where(facility_id: current_facility.id).present?
+  end
 end
