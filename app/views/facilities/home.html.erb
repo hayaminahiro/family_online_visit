@@ -1,31 +1,30 @@
 <%= render partial: 'shared/facility_images', locals: { facility: @facility} %>
 
 <section class="hero is-small">
-  <div class="hero-body" id="facility-home-header">
-    <div class="contaniner" id="profile">
-      <div class="user-name-section">
-        <div class="has-text-centered">
-          <%= image_tag 'user_default.png', class: "facility-user-image" %>
-        </div>
-        <div class="has-text-centered user-name-layout">
-          ようこそ<%= current_user.name %>さん
-        </div>
-      </div>
-
-      <div class="news">
-        <% @informations.each do |information| %>
-          <hr>
-          <div class="text-section">
-            <p class="information-created_at"><%= l(information.created_at, format: :long_info) %></p>
-            <p class="information-title"><%= information.title %></p>
+  <%# if @menu_approval.present? %>
+    <div class="hero-body" id="facility-home-header">
+      <div class="contaniner" id="profile">
+        <div class="user-name-section">
+          <div class="has-text-centered">
+            <%= image_tag 'user_default.png', class: "facility-user-image" %>
           </div>
-        <% end %>
-      </div>
-    </div>
+          <div class="has-text-centered user-name-layout">
+            ようこそ<%= current_user.name %>さん
+          </div>
+        </div>
 
-    <div class="contents-menu">
-    <% if @menu_approval.present? %>
-      <%# <div style="display:flex;"> %>
+        <div class="home-informations">
+          <% @informations.each do |information| %>
+            <hr>
+            <div class="text-section">
+              <p class="information-created_at"><%= l(information.created_at, format: :long_info) %></p>
+              <p class="information-title"><%= information.title %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="contents-menu">
         <div class="column is-3">
           <div class="card" style="height: auto;">
             <div class="card-image" id="home-images">
@@ -88,7 +87,7 @@
             </div>
             <div class="card-content has-text-centered menu-card">
               <div class="is-size-5">
-                <%= link_to user_path(current_user), class: "button menu-btn is-rounded is-outlined is-success" do %>
+                <%= link_to user_path(current_user), class: "button menu-btn is-rounded is-outlined is-success", id: "menu-linkww" do %>
                   <span class="icon">
                     <i class="far fa-user"></i>&nbsp;
                   </span>
@@ -129,10 +128,8 @@
             </div>
           </div>
         </div><br>
-      <%# </div> %>
-    <% end %>
+      </div>
     </div>
-  </div>
 </section>
 
 
@@ -180,6 +177,8 @@
   </div>
 </div>
 
+<div class="aa-<%= @menu_approval[0] %>"></div>
+
 <script>
   ScrollReveal().reveal('.facility-icon-image', {
     delay: 600,
@@ -209,4 +208,12 @@
     duration: 2000,
     viewFactor: 0.5
   });
+
+  // 申請が未承認の場合メニューボタンを非表示
+  var menu = '<%= @menu_approval[0]&.id %>'
+  if (!menu) {
+    $(".contents-menu").children().addClass("changeColor")
+    $(".card-content").children().addClass("changeColor2")
+    $(".card-content .button").children().addClass("changeColor2")
+  };
 </script>

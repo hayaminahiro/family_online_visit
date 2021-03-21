@@ -348,6 +348,22 @@ div.under-line {
   -ms-transform: translateX(-50%);
 }
 
+// 利用者申請が未承認時の場合の表示
+.changeColor {
+  pointer-events: none;
+  border-color: #6f6b5d52;
+  color: #3535312e;
+  background: #80808000;
+}
+
+.changeColor2 {
+  /* background-color: #ec191900; */
+  border-color: #6f6b5d52;
+  color: #3535312e;
+  background: #80808000;
+}
+
+
 //モバイル表示の施設アイコン
 .facility-icon-outline {
   z-index: 2;
@@ -1077,7 +1093,7 @@ h1.mini-title {
     margin-right: 25px;
   }
 
-  .news {
+  .home-informations {
     height: 230px;
     overflow: auto;
     margin-top: 30px;
@@ -1184,7 +1200,7 @@ h1.mini-title {
   #facility-home-header {
     display: block;
 
-    .news {
+    .home-informations {
       height: 100px;
       margin-top: 0px;
       margin-bottom: 20px;
@@ -1427,7 +1443,7 @@ h1.mini-title {
   #facility-home-header {
     display: block;
 
-    .news {
+    .home-informations {
       height: 100px;
       margin-top: 0px;
       margin-bottom: 20px;
