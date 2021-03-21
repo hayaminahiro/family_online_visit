@@ -85,17 +85,37 @@
 
       <div id="Aud" class="content-tab" style="display:none">
         <div class="has-text-centered">
-          <div class="columns is-multiline has-text-left" style="justify-content: center;">
-            <div class="show-info-container">
-              <hr>
-              <h1 class="show-info-title has-text-weight-bold is-size-5"><%= @info_top.title %></h1>
-              <hr>
-              <div>
-                <span class="show-info-sp"><i class="fa fa-calendar-alt"></i><%= l( @info_top.created_at, format: :dot) %></span><br>
-                <p class="show-info-p"><%=safe_join(@info_top.news.split("\n"),tag(:br))%></p>
-                <hr>
-              </div>
-            </div>
+          <div class="panel-edit-container">
+
+            <% @admin_informations.each do |information| %>
+              <article class="panel" id="panel-edit-content">
+                <div class="show-info-container">
+                  <h1 class="show-info-title has-text-weight-bold is-size-5"><%= information.title %></h1>
+                  <hr>
+                  <div>
+                    <span class="show-info-sp"><i class="fa fa-calendar-alt"></i><%= l( information.created_at, format: :dot) %></span><br>
+                    <p class="show-info-p"><%=safe_join(information.news.split("\n"),tag(:br))%></p>
+                    <hr>
+
+                    <div class="preview-contents">
+                      <% if information.image? %>
+                        <%= image_tag information.image.url, id: :img_prev, class: "info-photo-size" %>
+                      <% end %>
+
+                      <% if information.url.present? %>
+                        <iframe width="385" height="265" src="https://www.youtube.com/embed/<%= information.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <% end %>
+                    </div>
+                      <% if current_facility.admin? %>
+                        <%= link_to edit_information_path(information) do %>
+                          <button type="button" class="button is-success is-light is-medium"><i class="fas fa-edit"></i></button>
+                        <% end %>
+                      <% end %>
+                  </div>
+                </div>
+              </article>
+            <% end %>
+
           </div>
         </div>
       </div>
