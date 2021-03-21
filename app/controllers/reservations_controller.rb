@@ -6,6 +6,8 @@ class ReservationsController < ApplicationController
   before_action :set_reservations, only: %i[index index_week reservation_time index_past]
   before_action :calendar_settings, only: %i[index index_week reservation_time]
   before_action :count_max_reservation, only: %i[index index_week]
+  before_action :request_done_user, only: %i[index index_week]
+  before_action :correct_user_reservation, only: :show
 
   def index; end
 
