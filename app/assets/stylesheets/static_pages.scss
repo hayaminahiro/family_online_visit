@@ -449,7 +449,6 @@ footer {
 }
 
 #top-coments {
-
   p {
     text-align: left;
   }
@@ -729,7 +728,6 @@ p.content1 {
 }
 
 .error-layout {
-
   h1 {
     font-size: 3vw;
     font-weight: bold;
@@ -779,7 +777,6 @@ p.content1 {
 
 // ルート画面のお知らせ表示
 .top-infomation {
-
   #panel-content {
     height: 100%;
     padding: 20px;
@@ -810,7 +807,7 @@ p.content1 {
       }
     }
 
-    #panel-content:last-child{
+    #panel-content:last-child {
       border-right: solid 1px #80808029;
     }
 
@@ -826,7 +823,6 @@ p.content1 {
 
 // 各施設ホームのお知らせ表示
 .home-infomation {
-
   #panel-content {
     height: 100%;
     padding: 20px;
@@ -858,7 +854,7 @@ p.content1 {
       }
     }
 
-    #panel-content:last-child{
+    #panel-content:last-child {
       border-right: solid 1px #80808029;
     }
 
@@ -888,7 +884,6 @@ p.content1 {
 
   //エラー画面
   .error-container {
-
     h1.main-title {
       font-size: 5vw;
       margin-top: 45%;
@@ -896,7 +891,6 @@ p.content1 {
   }
 
   .error-layout {
-
     h1 {
       font-size: 4vw;
     }
@@ -1051,17 +1045,10 @@ p.content1 {
 
   //タブタイトル（文字）
   #hero-4 {
-
     span.tab-title {
       font-size: 11px;
     }
   }
-
-  //項目タイトル
-  // .about-title {
-  //   font-size: 22px;
-  //   margin-top: 50px;
-  // }
 
   //【施設ログイン画面】
   //タイトルレイアウト
@@ -1091,7 +1078,6 @@ p.content1 {
 
   //エラー画面
   .error-container {
-
     h1.main-title {
       width: 50%;
       font-size: 6vw;
@@ -1100,7 +1086,6 @@ p.content1 {
   }
 
   .error-layout {
-
     h1 {
       font-size: 5vw;
     }
