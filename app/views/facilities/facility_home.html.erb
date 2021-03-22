@@ -98,14 +98,11 @@
                       <hr>
                       <div>
                         <span class="show-info-sp"><i class="fa fa-calendar-alt"></i><%= l( information.created_at, format: :dot) %></span><br>
-                        <p class="show-info-p"><%=safe_join(information.news.split("\n"),tag(:br))%></p>
+                        <p class="show-info-p"><%=safe_join(information.news.split("\n"), tag.br) %></p>
                         <hr>
 
                         <div class="preview-contents">
-                          <% if information.image? %>
-                            <%= image_tag information.image.url, id: :img_prev, class: "info-photo-size" %>
-                          <% end %>
-
+                          <%= image_tag information.image.url, id: :img_prev, class: "info-photo-size" if information.image? %>
                           <% if information.url.present? %>
                             <iframe width="385" height="265" src="https://www.youtube.com/embed/<%= information.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                           <% end %>
