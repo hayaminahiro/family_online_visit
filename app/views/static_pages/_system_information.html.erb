@@ -7,11 +7,10 @@
           <article class="panel" id="panel-content">
             <div class="columns is-multiline has-text-left">
               <div class="show-info-container">
-                <%# <hr> %>
+                <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( information.created_at, format: :dot) %></span><br>
                 <h1 class="show-info-title"><%= information.title %></h1>
                 <hr>
-                <div>
-                  <span class="show-info-sp"><i class="fa fa-calendar-alt"></i> <%= l( information.created_at, format: :dot) %></span><br>
+                <div class="contents-section">
                   <p class="show-info-p"><%=safe_join(information.news.split("\n"), tag.br) %></p>
                   <hr>
 
