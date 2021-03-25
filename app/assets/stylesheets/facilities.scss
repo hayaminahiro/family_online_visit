@@ -1005,7 +1005,7 @@ h1.mini-title {
   border-top: none;
   outline: 0;
   margin: 1.875em auto;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .accordion-container .accordion-title {
@@ -1150,7 +1150,7 @@ h1.mini-title {
 }
 
 #home-request-section {
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
   margin-bottom: 26px;
 
   .column {
@@ -1220,11 +1220,11 @@ h1.mini-title {
     .column {
       display: inline-block;
       vertical-align: top;
-      padding: 0.35rem;
+      padding: 1.35rem;
     }
 
     .card {
-      width: 149px;
+      width: 168px;
 
       .card-content.menu-card {
         padding-left: 8%;
@@ -1245,7 +1245,7 @@ h1.mini-title {
   }
 
   #home-request-section {
-    background-color: #A9A9A9;
+    background-color: #a9a9a9;
     margin-bottom: 26px;
   }
 
@@ -1338,6 +1338,17 @@ h1.mini-title {
   //モーダル
   input.fa.button.is-focused.has-text-weight-semibold.orange-btn {
     margin-left: 32%;
+  }
+
+  // 各施設ホーム画面
+  #facility-home-header .contents-menu {
+    .column {
+      padding: 0.35rem;
+    }
+
+    .card {
+      width: 150px;
+    }
   }
 }
 
@@ -1479,7 +1490,7 @@ h1.mini-title {
   }
 
   #home-request-section {
-    background-color: #A9A9A9;
+    background-color: #a9a9a9;
     margin-bottom: 26px;
   }
 
@@ -1663,7 +1674,7 @@ h1.mini-title {
 
   #accordion {
     .accordion-title {
-      padding: 12px 40px 12px 12px;;
+      padding: 12px 40px 12px 12px;
     }
   }
 
