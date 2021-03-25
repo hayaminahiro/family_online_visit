@@ -794,8 +794,6 @@ p.content1 {
     margin-right: 20px;
 
     .show-info-container {
-      min-width: 250px;
-
       .preview-contents {
         margin: auto;
         text-align: center;
@@ -817,6 +815,24 @@ p.content1 {
       display: block;
       height: 2px;
       margin: 1.5rem 0;
+    }
+  }
+}
+
+.top-introduction-container {
+  .movie-content-section {
+    .inline-block_content {
+      margin-right: 10px;
+      margin-left: 18px;
+      width: 465px;
+    }
+
+    .iframe-preview {
+      display: inline-block;
+
+      iframe {
+        width: 400px;
+      }
     }
   }
 }
@@ -897,6 +913,42 @@ p.content1 {
 
     span {
       font-size: 3vw;
+    }
+  }
+
+  // トップ画面
+  .top-infomation {
+    #panel-content {
+      width: 45%;
+      max-width: none;
+    }
+
+    .contents-section {
+      iframe {
+        border: 0;
+        width: 100%;
+        height: 168px;
+      }
+    }
+  }
+
+  .top-introduction-container {
+    .movie-content-section {
+      .inline-block_content {
+        width: 335px;
+
+        br {
+          /* 動画コメント追加の際はdisplay noneを削除 */
+          display: none;
+        }
+      }
+
+      .iframe-preview {
+        iframe {
+          width: 100%;
+          height: 170px;
+        }
+      }
     }
   }
 }
@@ -1092,6 +1144,98 @@ p.content1 {
 
     span {
       font-size: 5vw;
+    }
+  }
+
+  // 【施設ホーム画面】
+  #top .hero-body {
+    flex-grow: 1;
+  }
+
+  .about-title-2 {
+    margin-bottom: 15px;
+    font-size: 17px;
+  }
+
+  .top-infomation {
+    .panel {
+      margin: 0;
+    }
+
+    #panel-content {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .admin-info-container {
+      display: inline;
+
+      .contents-section {
+        display: none;
+      }
+
+      .show-info-container {
+        min-width: 0;
+        margin: 0;
+
+        .show-info-sp {
+          font-size: 11px;
+
+          i {
+            display: none;
+          }
+        }
+
+        p {
+          display: none;
+        }
+
+        h1 {
+          font-size: 12px;
+        }
+      }
+
+      .panel {
+        box-shadow: none;
+      }
+
+      hr {
+        display: none;
+      }
+    }
+  }
+
+  .top-introduction-container {
+    .movie-content-section {
+      display: flex;
+      flex-direction: column;
+      height: 260px;
+
+      .inline-block_content {
+        width: auto;
+
+        br {
+          /* 動画コメント追加の際はdisplay noneを削除 */
+          display: none;
+        }
+      }
+
+      .iframe-preview {
+        iframe {
+          width: 286px;
+          height: 175px;
+        }
+      }
+
+      #top-coments {
+        margin-bottom: 0;
+        height: auto;
+
+        p {
+          text-align: left;
+        }
+      }
     }
   }
 }
