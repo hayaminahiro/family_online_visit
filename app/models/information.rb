@@ -11,8 +11,7 @@ class Information < ApplicationRecord
 
   scope :set_limit, -> { order(id: "DESC").limit(15) }
   scope :admin_list, -> { where(status: "admin").set_limit }
-  scope :facility_list, -> (facility) { where(facility_id: facility).set_limit }
-
+  scope :facility_list, ->(facility) { where(facility_id: facility).set_limit }
 
   # search定義
   def self.search(search, facility)
