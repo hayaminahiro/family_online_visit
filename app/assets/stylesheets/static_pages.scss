@@ -798,10 +798,6 @@ p.content1 {
         margin: auto;
         text-align: center;
         max-width: 385px;
-
-        img {
-          max-width: 385px;
-        }
       }
     }
 
@@ -833,53 +829,6 @@ p.content1 {
       iframe {
         width: 400px;
       }
-    }
-  }
-}
-
-// 各施設ホームのお知らせ表示
-.home-infomation {
-  #panel-content {
-    height: 100%;
-    padding: 20px;
-    display: flex;
-    display: inline-block;
-    max-width: 38%;
-    vertical-align: top;
-    flex-shrink: 0;
-  }
-
-  .admin-info-container {
-    text-align: left;
-    display: flex;
-    overflow: auto;
-    margin-right: 20px;
-
-    .show-info-container {
-      min-width: 150px;
-
-      .preview-contents {
-        margin: auto;
-        text-align: center;
-        max-width: 285px;
-
-        img {
-          max-width: 285px;
-          max-height: 200px;
-        }
-      }
-    }
-
-    #panel-content:last-child {
-      border-right: solid 1px #80808029;
-    }
-
-    hr {
-      background-color: #fdfdfd;
-      border: none;
-      display: block;
-      height: 2px;
-      margin: 1.5rem 0;
     }
   }
 }
