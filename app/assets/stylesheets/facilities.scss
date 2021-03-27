@@ -1138,6 +1138,10 @@ h1.mini-title {
         padding: 3px;
       }
     }
+
+    .column {
+      width: 25%;
+    }
   }
 }
 
@@ -1219,6 +1223,7 @@ h1.mini-title {
 
     .column {
       display: inline-block;
+      width: auto;
       vertical-align: top;
       padding: 1.35rem;
     }
