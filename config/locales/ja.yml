@@ -208,6 +208,7 @@ ja:
       date: "%Y年%m月%d日(%a)"
       year_month: "%Y年%m月"
       long: "%Y/%m/%d %H:%M"
+      long_info: "%Y/%m/%d"
       short: "%m/%d %H:%M"
       time: "%H:%M"
       dot: "%Y.%m.%d"

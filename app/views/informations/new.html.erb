@@ -47,6 +47,14 @@
                     <%= f.text_area :news, :placeholder => "\uf303 お知らせを入力してください", class: "fa textarea" %>
                   </div>
                 </div>
+                <div class="info-sub2-title">
+                  <p>YouTube動画</p>
+                </div>
+                <div class="media-content">
+                  <div class="content label-space">
+                    <%= f.text_field :url, :placeholder => "\uf303 動画URLを貼り付けてください", class: "fa input" %>
+                  </div>
+                </div>
                 <%= f.submit "お知らせを新規投稿する", class: "info-btn" %>
               <% end %>
             </div>

@@ -1,7 +1,6 @@
 class StaticPagesController < ApplicationController
   def top
-    @informations = Information.where(status: "head").order(id: "DESC")
-    @info_top = Information.find_by(status: "head")
+    @admin_informations = Information.admin_list
   end
 
   def error_top; end
