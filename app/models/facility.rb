@@ -31,4 +31,9 @@ class Facility < ApplicationRecord
     where.not(admin: true).order(:id) unless search
     where('facility_name LIKE ?', "%#{search}%").where.not(admin: true).order(:id)
   end
+
+  def build_with_url(information_params)
+    information_params[:url] = information_params[:url].last(11)
+    informations.build(information_params)
+  end
 end

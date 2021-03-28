@@ -99,6 +99,29 @@ input.button.is-success.is-medium.is-fullwidth.has-text-weight-bold.new-btn {
   font-size: 18px;
 }
 
+@media screen and (max-width: 1050px) {
+  // レスポンシブ時に表示順の指定
+  .order1 {
+    order: 1;
+  }
+
+  .order2 {
+    order: 2;
+  }
+
+  .order3 {
+    order: 3;
+  }
+
+  .order4 {
+    order: 4;
+  }
+
+  .order5 {
+    order: 5;
+  }
+}
+
 //タブレット
 @media screen and (max-width: 1024px) {
   //フラッシュメッセージ

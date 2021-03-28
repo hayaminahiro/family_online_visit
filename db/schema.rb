@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_03_17_074223) do
     t.bigint "facility_id"
     t.string "title"
     t.text "news"
+    t.string "url"
     t.integer "status", default: 0, null: false
     t.string "image"
     t.datetime "created_at", null: false
