@@ -131,3 +131,6 @@
 ## 使用API
 * SkyWay
 * 郵便番号検索API
+
+## ER図
+<img width="1166" alt="スクリーンショット 2021-03-30 21 04 13" src="https://user-images.githubusercontent.com/50825013/112986106-0cc38d00-919c-11eb-9e15-297054eacf7a.png">
