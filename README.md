@@ -35,8 +35,11 @@
 * Puma
 
 ## 本番環境②/AWS
-* EC2、RDS for MySQL、ALB、Route53、VPC、ACM
+* EC2、RDS for MySQL、ALB、Route53、VPC、ACM、S3
 * Nginx、unicorn
+
+## AWSインフラ構成図
+<img width="1140" alt="スクリーンショット 2021-03-30 20 45 11" src="https://user-images.githubusercontent.com/50825013/112983635-e51ef580-9198-11eb-9152-2e961593ef89.png">
 
 ## タスク管理
 * Git
