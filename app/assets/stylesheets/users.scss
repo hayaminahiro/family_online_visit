@@ -936,6 +936,12 @@ mypage-main {
     background: #FFEBCD;
     border-radius: 6px;
 
+    .mypage-facility-icon {
+      border-radius: 50%;
+      height: 50px;
+      object-fit: cover;
+    }
+
     p.reservation-facility-name {
       margin-right: auto;
       text-align: center;
@@ -1005,6 +1011,10 @@ mypage-main {
     top: 76%;
     border-radius: 50%;
     left: 30px;
+  }
+
+  .mypage-facility-icon-image {
+    border-radius: 50%;
   }
 }
 
