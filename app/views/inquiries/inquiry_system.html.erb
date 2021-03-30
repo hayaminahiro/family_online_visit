@@ -9,6 +9,7 @@
 
       <%= form_with(model: @inquiry, url: create_system_inquiries_path, method: :post, local: true) do |f| %>
         <%= render partial: 'shared/error_messages', locals: { obj: @inquiry } %>
+        <%= f.hidden_field :facility_id, :value => Facility.find_by(admin: "true").id %>
         <div class="inquiry-label-block"><%= f.label :name, "名前", class: "label inquiry-label" %></div><div class="inquiry-label-require">【必須】</div>
         <%= f.text_field :name, :placeholder => "名前を入力", class: "input is-medium inquiry-input-blank" %>
 
