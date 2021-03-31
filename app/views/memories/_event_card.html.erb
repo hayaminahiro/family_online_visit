@@ -2,7 +2,7 @@
   <% if user_signed_in? %>
     <% residents.each do |resident| %>
       <% resident.memories.each do |m| %>
-        <div class="card-float card-inline-block">
+        <div class="card-float card-inline-block" id="card-point">
           <section class="photo-card card-inline-block">
             <%= image_tag m.image0.url, class: "card-photo-size" if m.image0.present? %>
             <div class="photo-card-content">
