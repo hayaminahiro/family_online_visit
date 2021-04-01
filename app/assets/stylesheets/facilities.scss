@@ -1192,6 +1192,22 @@ h1.mini-title {
     font-size: 18px;
   }
 
+  .facility-icon-outline {
+
+    .facility-icon-image-tablet {
+      z-index: 2;
+      position: absolute;
+      width: 93px;
+      height: 93px;
+      border-radius: 50%;
+      top: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
+  }
+
   //【施設編集画面】
   //インプット欄のレイアウト
   #input-field {
