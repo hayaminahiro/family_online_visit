@@ -19,6 +19,7 @@ class ResidentsController < ApplicationController
   def create
     if params[:commit] == "登録する"
       @resident = Resident.new(resident_params)
+      @resident.facility_id = current_facility.id
       if @resident.save
         redirect_to residents_url, notice: "入居者を新規登録できました"
       else

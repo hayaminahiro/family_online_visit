@@ -51,6 +51,14 @@ class ApplicationController < ActionController::Base
       redirect_to error_top_path
     end
 
+    # 登録施設解除（マイページ）
+    def facilities_users_correct_user
+      @user = User.find(params[:id])
+      return true if @user == current_user
+
+      redirect_to error_top_path
+    end
+
     # ご家族ユーザーは登録施設のみアクセスができることの確認
     def user_registered_facility
       return true if current_user.facilities.find_by(id: @facility.id).present?

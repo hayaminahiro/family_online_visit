@@ -76,4 +76,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def after_inactive_sign_up_path_for(resource)
       super(resource)
     end
+
+    # アカウント編集後のリダイレクト先
+    def after_update_path_for(_resource)
+      user_path(current_user)
+    end
 end

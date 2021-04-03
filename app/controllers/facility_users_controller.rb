@@ -1,5 +1,5 @@
 class FacilityUsersController < ApplicationController
-  before_action :correct_user, only: :facility_update
+  before_action :facilities_users_correct_user, only: :facility_update
 
   def new
     @registered_facilities = current_user.facilities

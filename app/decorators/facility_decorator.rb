@@ -74,7 +74,7 @@ module FacilityDecorator
   # 施設のモバイルでのアイコン表示
   def facility_icon_responsive
     if icon?
-      image_tag icon.url, class: "user-icon-image"
+      image_tag icon.url, class: "facility-icon-image-tablet"
     else
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', class: "default-icon-image"
     end
@@ -83,7 +83,7 @@ module FacilityDecorator
   # 施設のモバイルでのアイコン編集
   def facility_icon_edit_responsive
     if icon?
-      image_tag icon.url, id: :icon_prev_1, class: "user-icon-image", onClick: "$('.image_uploading_icon').click()"
+      image_tag icon.url, id: :icon_prev_1, class: "facility-icon-image-tablet", onClick: "$('.image_uploading_icon').click()"
     else
       image_tag 'https://img-photo.s3-ap-northeast-1.amazonaws.com/uploads/content_image/facility_default.png', id: :icon_prev_1, class: "default-icon-image", onClick: "$('.image_uploading_icon').click()"
     end
