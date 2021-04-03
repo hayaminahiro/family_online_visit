@@ -35,7 +35,7 @@ class InformationsController < ApplicationController
     @information.admin! if current_facility.admin?
     if @information.update_with_url(information_params)
       flash[:notice] = "タイトル【#{@information.title}】/お知らせを更新できました。"
-      @information.status == "admin" ? redirect_to(facility_home_facility_url) : redirect_to(informations_url)
+      @information.status == "admin" ? redirect_to(facility_home_facility_url(current_facility)) : redirect_to(informations_url)
     else
       render :edit
     end

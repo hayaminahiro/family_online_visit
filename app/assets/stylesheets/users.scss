@@ -936,6 +936,12 @@ mypage-main {
     background: #FFEBCD;
     border-radius: 6px;
 
+    .mypage-facility-icon {
+      border-radius: 50%;
+      height: 50px;
+      object-fit: cover;
+    }
+
     p.reservation-facility-name {
       margin-right: auto;
       text-align: center;
@@ -1005,6 +1011,10 @@ mypage-main {
     top: 76%;
     border-radius: 50%;
     left: 30px;
+  }
+
+  .mypage-facility-icon-image {
+    border-radius: 50%;
   }
 }
 
@@ -1149,7 +1159,7 @@ mypage-main {
   width: 95px;
   height: 95px;
   border-radius: 50%;
-  top: 4%;
+  top: 0%;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -1620,10 +1630,15 @@ main {
     .panel-tab p {
       position: absolute;
       color: gray;
+      margin-left: 0%;
       top: 15px;
       font-size: 10px;
       text-align: center;
       width: 100%;
+    }
+
+    .panel-tab p:hover::after {
+      width: 0%;
     }
   }
 
@@ -1666,8 +1681,9 @@ main {
 
     .user-icon-image {
       display: block;
-      width: 120px;
-      height: 120px;
+      width: 112px;
+      height: 112px;
+      top: 4%;
     }
 
     #Web .columns {
@@ -1736,6 +1752,13 @@ main {
     width: 40px;
   }
 
+  #facility-columns-layout {
+
+    p.index-facility-icon {
+      top: 71%;
+    }
+  }
+
   //ユーザー編集画面
   .main-content {
     display: block;
@@ -1777,9 +1800,10 @@ main {
     position: absolute;
     z-index: 3;
     border-radius: 50%;
-    width: 115px;
-    height: 115px;
-    left: 2%;
+    width: 112px;
+    height: 112px;
+    left: 3%;
+    top: 4%;
   }
 
   //アイコン確認画像
@@ -2026,7 +2050,7 @@ main {
     p.index-facility-icon {
       height: 80px;
       width: 80px;
-      top: 56%;
+      top: 67%;
       left: 40px;
     }
   }
@@ -2038,7 +2062,14 @@ main {
     p.index-facility-icon {
       height: 60px;
       width: 60px;
-      top: 52%;
+      top: 73%;
+    }
+  }
+
+  #event-card-show {
+
+    #card-point {
+      float: none;
     }
   }
 }
@@ -2079,8 +2110,9 @@ main {
     }
 
     .user-icon-image {
-      width: 100px;
-      height: 100px;
+      width: 93px;
+      height: 93px;
+      top: 4%;
     }
 
     #my-page-info-content {
@@ -2108,7 +2140,7 @@ main {
       p.index-facility-icon {
         height: 60px;
         width: 60px;
-        top: 47%;
+        top: 74%;
         left: 20px;
       }
     }
