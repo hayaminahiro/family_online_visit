@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     # 登録施設解除（マイページ）
     def facilities_users_correct_user
       @user = User.find(params[:id])
-      eturn true if @user == current_user
+      return true if @user == current_user
 
       redirect_to error_top_path
     end
