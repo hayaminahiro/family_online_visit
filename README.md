@@ -9,7 +9,7 @@
 
 ***OnlineVisit/heroku_URL***　[https://family-online-visit.herokuapp.com/](https://family-online-visit.herokuapp.com/)
 
-***OnlineVisit/AWS_URL(現在閉鎖中)***　[https://family-online-visit.herokuapp.com/](https://family-online-visit.herokuapp.com/)
+***OnlineVisit/AWS_URL(現在閉鎖中)***　[https://family.online-visit.com/](https://family-online-visit.herokuapp.com/)
 
 ## フロントエンド
 * HTML/CSS
